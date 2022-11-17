@@ -20,12 +20,13 @@ class User(AbstractUser):
     # нужно создать кастомный менеджер
     # созданя юзеров, чтобы создать админа при ограничении на обязательность
     tg_nickname = models.CharField(max_length=32, blank=True)
-    confirmation_code = models.CharField(max_length=30)
+    confirmation_code = models.CharField(max_length=30, blank=True)
+    # TODO - как спрятать лишние поля в админке?
 
     class Meta:
         ordering = ['id']
-        verbose_name = 'Пользователь'
-        verbose_name_plural = 'Пользователи'
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'
         constraints = [
             models.UniqueConstraint(fields=['username', 'email'],
                                     name='unique_user')
