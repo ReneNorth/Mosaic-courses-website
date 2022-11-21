@@ -5,15 +5,17 @@ User = get_user_model()
 
 
 class Post(models.Model):
+    title = models.CharField(max_length=80)
+    slug = models.CharField(max_length=80)
     text = models.TextField()
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='posts')
     image = models.ImageField(
-        upload_to='posts/', null=True, blank=True)
+        upload_to='blog/posts/', null=True, blank=True)
 
     def __str__(self):
-        return self.text[:15]
+        return f'{self.title}, {self.pub_date.strftime("%Y-%m-%d %H:%M:%S")}'
     
     
     
