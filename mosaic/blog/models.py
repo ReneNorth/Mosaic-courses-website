@@ -1,4 +1,5 @@
 from django.db import models
+from mdeditor.fields import MDTextField
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -7,7 +8,7 @@ User = get_user_model()
 class Post(models.Model):
     title = models.CharField(max_length=80)
     slug = models.CharField(max_length=80)
-    text = models.TextField()
+    text = MDTextField(null=True, blank=True)
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='posts')

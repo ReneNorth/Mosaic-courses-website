@@ -127,3 +127,18 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Project-specific
+.content/
+.media/
+
+### react ###
+.DS_*
+logs
+**/*.backup.*
+**/*.back.*
+
+mosaic_frontend/node_modules/
+bower_components
+content/
+mosaic/media/
