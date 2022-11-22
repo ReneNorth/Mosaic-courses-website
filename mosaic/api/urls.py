@@ -4,6 +4,7 @@ from .views import (MasterclassReadOnlyViewset,
                     MasterclassTypeReadOnlyViewset,
                     PostReadOnlyViewset)
 
+
 router1 = routers.SimpleRouter()
 
 router1.register(
@@ -32,3 +33,4 @@ urlpatterns = [
     path('v1/', include('djoser.urls.authtoken')),  # Работа с токенами
     # TODO path('v1/auth/', include('custom_auth.urls')),
 ]
+
