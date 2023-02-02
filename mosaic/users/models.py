@@ -7,7 +7,9 @@ from phonenumber_field.modelfields import PhoneNumberField
 class UserManager(BaseUserManager):
     """Здесь будет переопределение метода создания суперюзера, чтобы 
     обходить ограничение базы по consent_general = models.BooleanField(
-        required=True)"""
+    required=True)
+    """
+
     pass
 
 
