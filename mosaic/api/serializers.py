@@ -43,9 +43,9 @@ class MasterclassTypeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MasterclassType
-        fields = ['id', 'type', 'slug', 'max_guests', 'length',
+        fields = ['id', 'type', 'slug', 'max_guests', 'duration',
                   'short_description', 'full_description', 'masterclasses']
-        read_only_fields = ['id', 'type', 'slug', 'max_guests', 'length',
+        read_only_fields = ['id', 'type', 'slug', 'max_guests', 'duration',
                             'short_description', 'full_description',
                             'masterclasses']
 

@@ -15,7 +15,8 @@ class UserManager(BaseUserManager):
 
 class User(AbstractUser):
     email = models.EmailField(unique=True)
-    phone = PhoneNumberField(blank=False, unique=True)
+    # phone = PhoneNumberField(blank=True, unique=True)
+    phone = PhoneNumberField(blank=True, unique=False)
     consent_comm = models.BooleanField(blank=True, null=True)
     consent_general = models.BooleanField(blank=True, null=True)
     # consent_general = models.BooleanField()
@@ -29,8 +30,9 @@ class User(AbstractUser):
         ordering = ['id']
         verbose_name = 'User'
         verbose_name_plural = 'Users'
-        constraints = [
-            models.UniqueConstraint(fields=['username', 'email'],
-                                    name='unique_user')
-        ]
+        # TODO вернуть позже
+        # constraints = [
+            # models.UniqueConstraint(fields=['username', 'email'],
+                                    # name='unique_user')
+        # ]
     

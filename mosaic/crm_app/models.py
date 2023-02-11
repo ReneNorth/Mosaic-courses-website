@@ -8,8 +8,8 @@ class Inquiry(models.Model):
 
     name = models.CharField(max_length=50, blank=True)
     date = models.DateTimeField(auto_now_add=True)
-    contact = PhoneNumberField(blank=False)
-    comment = models.TextField(max_length=500)
+    contact = PhoneNumberField()
+    comment = models.TextField(max_length=500, blank=False)
 
     def __str__(self) -> str:
         return f'{self.contact} оставил обращение'

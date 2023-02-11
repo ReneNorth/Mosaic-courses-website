@@ -8,7 +8,7 @@ class MasterclassType(models.Model):
     max_guests = models.PositiveSmallIntegerField(
         verbose_name='Max number of guests'
     )
-    length = models.PositiveSmallIntegerField(
+    duration = models.PositiveSmallIntegerField(
         verbose_name='How many hours required to finish the masterclass'
     )
     short_description = models.CharField(max_length=50,

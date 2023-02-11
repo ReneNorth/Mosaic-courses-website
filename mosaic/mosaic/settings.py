@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 from django.conf import settings
 from django.conf.urls.static import static
+from datetime import timedelta
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,8 +32,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djoser',
+    'drf_yasg',
     'rest_framework',
+    'djoser',
     'rest_framework.authtoken',
     'mdeditor',
     'corsheaders',
@@ -41,7 +43,7 @@ INSTALLED_APPS = [
     'masterclass',
     'users',
     'booking',
-    'blog.apps.BlogConfig'
+    'blog.apps.BlogConfig',
     # 'blog',
 ]
 
@@ -164,13 +166,16 @@ REST_FRAMEWORK = {
     ],
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
-    
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
 }
 
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=15),
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
 
 # Markdown editor settings
 # repo https://github.com/pylixm/django-mdeditor
