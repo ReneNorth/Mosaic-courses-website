@@ -9,16 +9,16 @@ class UserManager(BaseUserManager):
     обходить ограничение базы по consent_general = models.BooleanField(
     required=True)
     """
-
     pass
 
 
 class User(AbstractUser):
+    """Basic user class."""
+
     email = models.EmailField(unique=True)
-    # phone = PhoneNumberField(blank=True, unique=True)
-    phone = PhoneNumberField(blank=True, unique=False)
-    consent_comm = models.BooleanField(blank=True, null=True)
-    consent_general = models.BooleanField(blank=True, null=True)
+    phone = PhoneNumberField(blank=True, unique=True)
+    consent_markcomm = models.BooleanField(blank=True, null=True)
+    consent_general = models.BooleanField(blank=False, null=True)
     # consent_general = models.BooleanField()
     # нужно создать кастомный менеджер
     # созданя юзеров, чтобы создать админа при ограничении на обязательность
@@ -31,8 +31,7 @@ class User(AbstractUser):
         verbose_name = 'User'
         verbose_name_plural = 'Users'
         # TODO вернуть позже
-        # constraints = [
-            # models.UniqueConstraint(fields=['username', 'email'],
-                                    # name='unique_user')
-        # ]
-    
+        constraints = [
+            models.UniqueConstraint(fields=['username', 'email'],
+                                    name='unique_user')
+        ]

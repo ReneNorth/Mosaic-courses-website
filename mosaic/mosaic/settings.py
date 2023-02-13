@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework',
     'djoser',
-    'rest_framework.authtoken',
+    # 'rest_framework.authtoken',
     'mdeditor',
     'corsheaders',
     'api',
@@ -156,9 +156,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-# SIMPLE_JWT = {
-#     'ACCESS_TOKEN_LIFETIME': timedelta(days=40),
-# }
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [

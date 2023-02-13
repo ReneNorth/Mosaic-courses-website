@@ -30,7 +30,21 @@ router1.register(
 urlpatterns = [
     path('v1/', include(router1.urls)),
     path('v1/', include('djoser.urls')),  # Работа с пользователями
-    path('v1/', include('djoser.urls.authtoken')),  # Работа с токенами
+    # path(r'auth/', include('djoser.urls.authtoken')),  # Работа с токенами
+    path(r'auth/', include('djoser.urls.jwt')),
     # TODO path('v1/auth/', include('custom_auth.urls')),
 ]
+
+
+# urls from djoser.jwt
+# urlpatterns = [
+#     re_path(r"^jwt/create/?", views.TokenObtainPairView.as_view(), name="jwt-create"),
+#     re_path(r"^jwt/refresh/?", views.TokenRefreshView.as_view(), name="jwt-refresh"),
+#     re_path(r"^jwt/verify/?", views.TokenVerifyView.as_view(), name="jwt-verify"),
+# ]
+
+# urlpatterns = [
+#     re_path(r"^token/login/?$", views.TokenCreateView.as_view(), name="login"),
+#     re_path(r"^token/logout/?$", views.TokenDestroyView.as_view(), name="logout"),
+# ]
 
