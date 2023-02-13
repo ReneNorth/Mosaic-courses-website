@@ -16,13 +16,13 @@ class User(AbstractUser):
     """Basic user class."""
 
     email = models.EmailField(unique=True)
-    phone = PhoneNumberField(blank=True, unique=True)
-    consent_markcomm = models.BooleanField(blank=True, null=True)
-    consent_general = models.BooleanField(blank=False, null=True)
+    phone = PhoneNumberField(null=True, unique=True)
+    markcomm_agreement = models.BooleanField(blank=True, null=True)
+    general_agreement = models.BooleanField(blank=False, null=True)
     # consent_general = models.BooleanField()
     # нужно создать кастомный менеджер
     # созданя юзеров, чтобы создать админа при ограничении на обязательность
-    tg_nickname = models.CharField(max_length=32, blank=True)
+    tg_nickname = models.CharField(unique=True, blank=True, max_length=32)
     confirmation_code = models.CharField(max_length=30, blank=True)
     # TODO - как спрятать лишние поля в админке?
 
