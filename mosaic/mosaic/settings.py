@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
+ 
 load_dotenv()
 KEY_ENV = os.getenv('SECRET_KEY')
 SECRET_KEY = f'{KEY_ENV}'
@@ -20,7 +20,7 @@ SECRET_KEY = f'{KEY_ENV}'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'users',
     'booking',
     'blog.apps.BlogConfig',
-    # 'blog',
+    # 'blog',w
 ]
 
 MIDDLEWARE = [
@@ -137,7 +137,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/' # префикс для url
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/') # папка, в которой будет лежать статика
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
