@@ -40,7 +40,7 @@ class Masterclass(models.Model):
     currency = models.CharField(max_length=20)
     # if price == 0: write 'free'
     time_begin = models.DateTimeField()
-    time_end = models.DateTimeField()
+    time_begin = models.DateTimeField()
     address = models.CharField(max_length=80)
     # num_of_guests = models.PositiveSmallIntegerField(
     #     null=False,
@@ -57,6 +57,7 @@ class Masterclass(models.Model):
     # проверка дата окончания позже даты начала
     
     def __str__(self) -> str:
+        # return f'{self.course_type} / {self.title} at {self.time_begin}'
         return f'{self.course_type} / {self.title} at {self.time_begin}'
         # TODO поменять репрезентацию времени в админке
     

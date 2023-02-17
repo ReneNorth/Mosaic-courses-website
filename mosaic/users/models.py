@@ -16,7 +16,8 @@ class User(AbstractUser):
     """Basic user class."""
 
     email = models.EmailField(unique=True)
-    phone = PhoneNumberField(null=True, unique=True)
+    # blank = True только на стадию разработки 
+    phone = PhoneNumberField(blank=True, unique=True)
     markcomm_agreement = models.BooleanField(blank=True, null=True)
     general_agreement = models.BooleanField(blank=False, null=True)
     # consent_general = models.BooleanField()

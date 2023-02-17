@@ -57,9 +57,14 @@ class BookingViewSet(AbstractView):
     # permission_classes = TODO
 
 
-class PostReadOnlyViewset(viewsets.ReadOnlyModelViewSet):
+class PostViewset(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [AllowAny, ]
     pagination_class = PageNumberPagination
     # pagination_class = LimitOffsetPagination
+    
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user) 
+
+

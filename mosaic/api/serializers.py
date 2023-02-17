@@ -1,10 +1,11 @@
 import base64
-
+from django.shortcuts import get_object_or_404
 from django.core.files.base import ContentFile
 from booking.models import Booking
 from blog.models import Post
 from masterclass.models import Masterclass, MasterclassType
 from rest_framework import serializers
+
 
 
 class Base64ImageField(serializers.ImageField):
@@ -57,12 +58,18 @@ class BookingSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
-    author = serializers.SlugRelatedField(read_only=True,
-                                          slug_field='username')
+    author = serializers.PrimaryKeyRelatedField(read_only=True)
     image = Base64ImageField(required=False, allow_null=True)
-    pub_date = serializers.DateTimeField(format='%d %B %Y')
+    # pub_date = serializers.DateTimeField(format='%d %B %Y')
+    
+    # def perform_create(self, serializer):
+        # title = get_object_or_404(Post, id=self.kwargs.get("post_id"))
+        # serializer.save(author_id=self.request.user.id)
 
     class Meta:
         model = Post
         fields = ['id', 'title', 'text', 'pub_date', 'author', 'image']
-        read_only_fields = ['id', 'text', 'pub_date', 'author', 'image']
+        read_only_fields = ['id', 'pub_date', 'author']
+        extra_kwargs = {
+            'text': {'required': True}
+        }

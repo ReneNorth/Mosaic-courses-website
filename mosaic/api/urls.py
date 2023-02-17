@@ -2,7 +2,7 @@ from django.urls import path, include
 from rest_framework import routers
 from .views import (MasterclassReadOnlyViewset,
                     MasterclassTypeReadOnlyViewset,
-                    PostReadOnlyViewset)
+                    PostViewset)
 
 
 router1 = routers.SimpleRouter()
@@ -22,7 +22,7 @@ router1.register(
 
 router1.register(
     r'blog/posts',
-    PostReadOnlyViewset,
+    PostViewset,
     basename='posts'
 )
 
@@ -30,9 +30,7 @@ router1.register(
 urlpatterns = [
     path('v1/', include(router1.urls)),
     path('v1/', include('djoser.urls')),  # Работа с пользователями
-    # path(r'auth/', include('djoser.urls.authtoken')),  # Работа с токенами
     path(r'auth/', include('djoser.urls.jwt')),
-    # TODO path('v1/auth/', include('custom_auth.urls')),
 ]
 
 

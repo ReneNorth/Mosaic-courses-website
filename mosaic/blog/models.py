@@ -6,12 +6,12 @@ User = get_user_model()
 
 
 class Post(models.Model):
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='author')
     title = models.CharField(max_length=80)
     slug = models.CharField(max_length=80)
-    text = MDTextField(null=True, blank=True)
+    text = MDTextField(max_length=2000)
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
-    author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='posts')
     image = models.ImageField(
         upload_to='blog/posts/', null=True, blank=True)
 
