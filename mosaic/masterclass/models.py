@@ -40,7 +40,7 @@ class Masterclass(models.Model):
     currency = models.CharField(max_length=20)
     # if price == 0: write 'free'
     time_begin = models.DateTimeField()
-    time_begin = models.DateTimeField()
+    time_end = models.DateTimeField()
     address = models.CharField(max_length=80)
     # num_of_guests = models.PositiveSmallIntegerField(
     #     null=False,

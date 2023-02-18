@@ -32,19 +32,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'api.apps.ApiConfig',
+    'blog.apps.BlogConfig',
+    'booking.apps.BookingConfig',
+    'crm_app.apps.CrmAppConfig',
+    'marketplace.apps.MarketplaceConfig',
+    'masterclass.apps.MasterclassConfig',
+    'school.apps.SchoolConfig',
+    'users.apps.UsersConfig',
+    'custom_auth.apps.CustomAuthConfig',
+    'teachers.apps.TeachersConfig',
     'drf_yasg',
     'rest_framework',
     'djoser',
-    # 'rest_framework.authtoken',
     'mdeditor',
     'corsheaders',
-    'api',
-    'custom_auth',
-    'masterclass',
-    'users',
-    'booking',
-    'blog.apps.BlogConfig',
-    # 'blog',w
 ]
 
 MIDDLEWARE = [
@@ -59,9 +61,9 @@ MIDDLEWARE = [
 ]
 
 
-# CORS 
+# CORS
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_URLS_REGEX = r'^/api/.*$' 
+CORS_URLS_REGEX = r'^/api/.*$'
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
