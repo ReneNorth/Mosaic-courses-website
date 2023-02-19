@@ -1,11 +1,16 @@
-FROM python:3.7-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY api_yamdb/requirements.txt .
+COPY requirements.txt .
+
+# COPY ../mosaic/requirements.txt .
+
+# RUN ls
 
 RUN pip3 install -r ./requirements.txt --no-cache-dir
+# RUN pip3 install -r requirements.txt --no-cache-dir
 
-COPY api_yamdb/ .
+COPY . .
 
-CMD ["gunicorn", "api_yamdb.wsgi:application", "--bind", "0:8000" ] 
+CMD ["gunicorn", "mosaic.wsgi:application", "--bind", "0:8000" ] 

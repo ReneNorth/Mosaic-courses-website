@@ -13,14 +13,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
  
-load_dotenv()
+load_dotenv(dotenv_path=os.path.abspath(os.path.join(BASE_DIR, f'{os.pardir}/infra/.env')))
+# load_dotenv()
 KEY_ENV = os.getenv('SECRET_KEY')
 SECRET_KEY = f'{KEY_ENV}'
 
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['*', 'web', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -64,10 +65,12 @@ MIDDLEWARE = [
 # CORS
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/api/.*$'
+CSRF_TRUSTED_ORIGINS = ['http://localhost']
 CORS_ALLOWED_ORIGINS = [
+    'http://localhost',
     'http://localhost:3000',
+    'http://localhost:8000',
 ]
-
 
 
 ROOT_URLCONF = 'mosaic.urls'
@@ -98,13 +101,13 @@ WSGI_APPLICATION = 'mosaic.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT')
+        'NAME': os.getenv('DB_NAME', default='postgres'),
+        'USER': os.getenv('POSTGRES_USER', default='postgres'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='mosaic_admin'),
+        'HOST': os.getenv('DB_HOST', default='db'),
+        'PORT': os.getenv('DB_PORT', default='5432')
     }
-} 
+}
 
 
 # Password validation
@@ -146,22 +149,16 @@ USE_TZ = True
 STATIC_URL = '/static/' # префикс для url
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/') # папка, в которой будет лежать статика
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-
 AUTH_USER_MODEL = 'users.User'
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # urlpatterns = [
     # ... the rest of your URLconf goes here ...
 # ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
 
 
 REST_FRAMEWORK = {
