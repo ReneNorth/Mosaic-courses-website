@@ -6,20 +6,17 @@ from django.conf.urls.static import static
 from datetime import timedelta
 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
- 
 # load_dotenv(dotenv_path=os.path.abspath(os.path.join(BASE_DIR, f'{os.pardir}/infra/.env')))
-# load_dotenv()
+load_dotenv()
 KEY_ENV = os.getenv('SECRET_KEY')
 SECRET_KEY = f'{KEY_ENV}'
 
 
 DEBUG = True
+LOCAL_DEV = True
 
 ALLOWED_HOSTS = ['*', 'web', '127.0.0.1', 'localhost']
 
@@ -95,22 +92,32 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mosaic.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
-        # 'NAME': os.getenv('DB_NAME', default='postgres'),
-        'NAME': os.getenv('DB_NAME', default='mosaic'),
-        # 'USER': os.getenv('POSTGRES_USER', default='postgres'),
-        'USER': os.getenv('POSTGRES_USER', default='mosaic_admin'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='mosaic_admin'),
-        # 'HOST': os.getenv('DB_HOST', default='db'),
-        'HOST': os.getenv('DB_HOST', default='localhost'),
-        'PORT': os.getenv('DB_PORT', default='5432')
+if LOCAL_DEV is True:
+    print('LOCAL DEV')
+    DATABASES = {
+        'default': {
+            'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
+            # 'NAME': os.getenv('DB_NAME', default='postgres'),
+            'NAME': os.getenv('DB_NAME', default='mosaic'),
+            # 'USER': os.getenv('POSTGRES_USER', default='postgres'),
+            'USER': os.getenv('POSTGRES_USER', default='mosaic_admin'),
+            'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='mosaic_admin'),
+            # 'HOST': os.getenv('DB_HOST', default='db'),
+            'HOST': os.getenv('DB_HOST', default='localhost'),
+            'PORT': os.getenv('DB_PORT', default='5432')
+        }
     }
-}
+if LOCAL_DEV is False:
+    DATABASES = {
+        'default': {
+            'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
+            'NAME': os.getenv('DB_NAME', default='postgres'),
+            'USER': os.getenv('POSTGRES_USER', default='postgres'),
+            'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='mosaic_admin'),
+            'HOST': os.getenv('DB_HOST', default='db'),
+            'PORT': os.getenv('DB_PORT', default='5432')
+        }
+    }
 
 
 # Password validation
@@ -166,8 +173,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10,
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # 'PAGE_SIZE': 10,
 }
 
 SIMPLE_JWT = {

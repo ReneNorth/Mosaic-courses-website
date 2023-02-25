@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.core.files.base import ContentFile
 from booking.models import Booking
 from blog.models import Post
+from school.models import School, Approach, Question, Advatage, Review
 from masterclass.models import Masterclass, MasterclassType
 from rest_framework import serializers
 
@@ -29,7 +30,8 @@ class MasterclassSerializer(serializers.ModelSerializer):
     class Meta:
         model = Masterclass
         fields = ['id', 'title', 'price', 'currency',
-                  'time_begin', 'time_end', 'num_of_guests']
+                #   'time_begin', 'time_end',
+                  'num_of_guests']
         read_only_fields = ['title', 'price', 'time_begin',
                             'time_end', 'num_of_guests']
         # extra_kwargs = {
@@ -73,3 +75,45 @@ class PostSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'text': {'required': True}
         }
+
+class AdvantagesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Advatage
+        fields = ['id', 'title', 'description']
+
+
+class QuestionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Question
+        fields = ['id', 'question', 'answer'] 
+
+
+class ApproachSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Approach
+        fields = ['id', 'title', 'description'] 
+
+
+class ReviewsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = ['id', 'student_name', 'photo', 'review', 'pub_date']
+
+
+class SchoolSerializer(serializers.ModelSerializer):
+    advantages = AdvantagesSerializer(many=True)
+    questions = QuestionsSerializer(many=True)
+    approach = ApproachSerializer(many=True)
+    reviews = ReviewsSerializer(many=True)
+
+    class Meta:
+        model = School
+        fields = ['name', 'logo', 'full_description', 'short_description',
+                  'address_text', 'address_link', 'working_hours',
+                  'phone', 'email', 'facebook_link', 'tg_link',
+                  'instagram_link',
+                  'advantages',
+                  'questions',
+                  'approach',
+                  'reviews',
+                  ]

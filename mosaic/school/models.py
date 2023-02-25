@@ -23,12 +23,14 @@ class School(models.Model):
         return f'Информация о школе {self.name}'
 
 
-class Questions(models.Model):
+class Question(models.Model):
     """Вопросы и ответы для главной страницы."""
 
+    school = models.ForeignKey(School, on_delete=models.CASCADE,
+                               related_name='questions', default=1)
     question = models.CharField(max_length=100)
     answer = models.CharField(max_length=150)
-    
+
     def __str__(self) -> str:
         return f'Вопрос {self.question[:15]}'
 
@@ -36,16 +38,32 @@ class Questions(models.Model):
 class Advatage(models.Model):
     """Преимущества школы для главной страницы."""
 
+    school = models.ForeignKey(School, on_delete=models.CASCADE,
+                               related_name='advantages', default=1)
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=200)
-    
+
     def __str__(self) -> str:
         return f'Преимущество {self.title[:15]}'
+
+
+class Approach(models.Model):
+    """Подход к занятиям для главной страницы."""
+
+    school = models.ForeignKey(School, on_delete=models.CASCADE,
+                               related_name='approach', default=1)
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length=200)
+
+    def __str__(self) -> str:
+        return f'Подход {self.title[:15]}'
 
 
 class Review(models.Model):
     """Отзывы учеников."""
 
+    school = models.ForeignKey(School, on_delete=models.CASCADE,
+                               related_name='reviews', default=1)
     student_name = models.CharField(max_length=20)
     photo = models.ImageField(blank=True)
     review = models.TextField(max_length=500)

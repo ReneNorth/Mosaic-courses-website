@@ -7,26 +7,23 @@ from rest_framework.response import Response
 from masterclass.models import Masterclass, MasterclassType
 from booking.models import Booking
 from blog.models import Post
+from school.models import School, Question, Advatage, Review
+
 from rest_framework.pagination import (LimitOffsetPagination,
                                        PageNumberPagination)
 from rest_framework.permissions import AllowAny
 from api.serializers import (MasterclassSerializer,
                              MasterclassTypeSerializer,
-                             BookingSerializer, PostSerializer)
-
-
-# мастерклассы - ридонли
-# блоги - ридонли
-
-# booking - чтение по своему аккаунту, запись, update, delete /
-# все операции но с разными правами в зависимости от объекта
+                             BookingSerializer,
+                             SchoolSerializer,
+                             PostSerializer,)
 
 
 class MasterclassReadOnlyViewset(viewsets.ReadOnlyModelViewSet):
     serializer_class = MasterclassSerializer
     # queryset = Masterclass.objects.all()
     permission_classes = [AllowAny, ]
-    
+
     def get_queryset(self):
         return Masterclass.objects.all().annotate(
             num_of_guests=Count('bookings__guest'))
@@ -66,3 +63,11 @@ class PostViewset(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
+
+
+
+class SchoolReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    # подумать как на уровне БД ограничить модель одной записью
+    queryset = School.objects.all()
+    serializer_class = SchoolSerializer
+    
