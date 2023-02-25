@@ -39,8 +39,8 @@ class Masterclass(models.Model):
     )
     currency = models.CharField(max_length=20)
     # if price == 0: write 'free'
-    time_begin = models.DateTimeField()
-    time_end = models.DateTimeField()
+    # time_begin = models.DateTimeField()
+    # time_end = models.DateTimeField()
     address = models.CharField(max_length=80)
     # num_of_guests = models.PositiveSmallIntegerField(
     #     null=False,
@@ -53,7 +53,7 @@ class Masterclass(models.Model):
     class Meta:
         verbose_name = 'Masterclass'
         verbose_name_plural = 'Masterclasses'
-        ordering = ['-time_begin']
+        # ordering = ['-time_begin']
     # проверка дата окончания позже даты начала
     
     def __str__(self) -> str:

@@ -22,3 +22,13 @@ http://127.0.0.1:8000/api/v1/users/
 
 drf-yasg
 Swagger
+
+### 
+Для работы с юзерами - djoser 
+
+https://djoser.readthedocs.io/en/latest/base_endpoints.html
+
+1. Зарегистрировать юзера 
+users/
+
+2. 
