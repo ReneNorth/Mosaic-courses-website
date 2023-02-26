@@ -8,7 +8,6 @@ from masterclass.models import Masterclass, MasterclassType
 from rest_framework import serializers
 
 
-
 class Base64ImageField(serializers.ImageField):
     def to_internal_value(self, data):
         if isinstance(data, str) and data.startswith('data:image'):
@@ -34,10 +33,6 @@ class MasterclassSerializer(serializers.ModelSerializer):
                   'num_of_guests']
         read_only_fields = ['title', 'price', 'time_begin',
                             'time_end', 'num_of_guests']
-        # extra_kwargs = {
-        #     'score': {'required': True},
-        #     'text': {'required': True},
-        # }
 
 
 class MasterclassTypeSerializer(serializers.ModelSerializer):

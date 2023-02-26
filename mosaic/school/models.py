@@ -3,7 +3,7 @@ from mdeditor.fields import MDTextField
 
 
 class School(models.Model):
-    """Основные данные про школу."""
+    """Основные данные о школе."""
 
     name = models.CharField(max_length=20)
     logo = models.ImageField(
