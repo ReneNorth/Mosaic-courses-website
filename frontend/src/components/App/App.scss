@@ -1,0 +1,9 @@
+@import '../../vendor/normalize.css';
+@import '../../vendor/fonts/stylesheet.scss';
+@import '../../utils/variables/global.scss';
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
