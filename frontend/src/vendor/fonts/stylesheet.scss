@@ -33,3 +33,12 @@
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'Book Antiqua';
+  src: url('BookAntiqua.woff2') format('woff2'),
+    url('BookAntiqua.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
