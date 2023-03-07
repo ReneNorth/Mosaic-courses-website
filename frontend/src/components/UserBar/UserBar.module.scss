@@ -1,0 +1,34 @@
+.list {
+  padding: 0;
+  margin: 0;
+  max-width: 156px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+}
+
+.btn {
+  width: 32px;
+  height: 32px;
+  background-image: url('../../images/search.svg');
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+}
+
+.link {
+  display: block;
+  width: 32px;
+  height: 32px;
+  background-repeat: no-repeat;
+}
+
+.profile {
+  background-image: url('../../images/profile.svg');
+}
+
+.cart {
+  background-image: url('../../images/cart.svg');
+}
