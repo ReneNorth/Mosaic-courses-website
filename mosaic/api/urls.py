@@ -4,10 +4,19 @@ from .views import (MasterclassReadOnlyViewset,
                     MasterclassTypeReadOnlyViewset,
                     PostViewset,
                     SchoolReadOnlyViewSet,
+                    RequestSerializerCreateOnlyViewSet,
                     )
 
 
 router1 = routers.SimpleRouter()
+
+
+router1.register(
+    'feedback',
+    RequestSerializerCreateOnlyViewSet,
+    basename='feedback'
+)
+
 
 router1.register(
     r'masterclasses',

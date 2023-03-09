@@ -4,6 +4,7 @@ from django.core.files.base import ContentFile
 from booking.models import Booking
 from blog.models import Post
 from school.models import School, Approach, Question, Advatage, Review
+from crm_app.models import Request
 from masterclass.models import Masterclass, MasterclassType
 from rest_framework import serializers
 
@@ -16,6 +17,13 @@ class Base64ImageField(serializers.ImageField):
             data = ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
 
         return super().to_internal_value(data)
+
+
+
+class RequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Request
+        fields = ['name', 'contact', 'comment', 'contact_consent']
 
 
 class MasterclassSerializer(serializers.ModelSerializer):

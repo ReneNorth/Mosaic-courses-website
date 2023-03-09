@@ -16,7 +16,14 @@ from api.serializers import (MasterclassSerializer,
                              MasterclassTypeSerializer,
                              BookingSerializer,
                              SchoolSerializer,
-                             PostSerializer,)
+                             PostSerializer,
+                             RequestSerializer,
+                             )
+
+
+class RequestSerializerCreateOnlyViewSet(mixins.CreateModelMixin,
+                                         viewsets.GenericViewSet):
+    pass
 
 
 class MasterclassReadOnlyViewset(viewsets.ReadOnlyModelViewSet):
