@@ -7,7 +7,7 @@ from datetime import timedelta
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-LOCAL_DEV = True
+LOCAL_DEV = False
 DEBUG = True
 
 

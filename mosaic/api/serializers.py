@@ -19,28 +19,28 @@ class Base64ImageField(serializers.ImageField):
         return super().to_internal_value(data)
 
 
-
 class RequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Request
-        fields = ['name', 'contact', 'comment', 'contact_consent']
+        fields = ['name', 'phone_num', 'comment', 'contact_consent']
+        extra_kwargs = {
+            'contact_consent': {'required': True}
+        }
 
 
 class MasterclassSerializer(serializers.ModelSerializer):
     num_of_guests = serializers.IntegerField(read_only=True)
-    # course_type = serializers.SlugRelatedField(
-    #     slug_field='type',
-    #     queryset=MasterclassType.objects.all()
-    # )
-    # short_description = serializers.RelatedField
-
+    
     class Meta:
         model = Masterclass
         fields = ['id', 'title', 'price', 'currency',
                 #   'time_begin', 'time_end',
-                  'num_of_guests']
+                  'num_of_guests',
+                  ]
         read_only_fields = ['title', 'price', 'time_begin',
-                            'time_end', 'num_of_guests']
+                            'time_end',
+                            'num_of_guests',
+                            ]
 
 
 class MasterclassTypeSerializer(serializers.ModelSerializer):

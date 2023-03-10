@@ -21,14 +21,15 @@ from api.serializers import (MasterclassSerializer,
                              )
 
 
-class RequestSerializerCreateOnlyViewSet(mixins.CreateModelMixin,
-                                         viewsets.GenericViewSet):
-    pass
+class RequestCreateOnlyViewSet(mixins.CreateModelMixin,
+                               viewsets.GenericViewSet):
+    serializer_class = RequestSerializer
+    permission_classes = [AllowAny, ]
+    
 
 
 class MasterclassReadOnlyViewset(viewsets.ReadOnlyModelViewSet):
     serializer_class = MasterclassSerializer
-    # queryset = Masterclass.objects.all()
     permission_classes = [AllowAny, ]
 
     def get_queryset(self):
