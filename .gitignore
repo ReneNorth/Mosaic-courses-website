@@ -131,6 +131,8 @@ dmypy.json
 # Project-specific
 .content/
 mosaic/media/*
+my_temp_practicum.py
+
 
 ### react ###
 .DS_*
@@ -146,4 +148,6 @@ mosaic/media/
 
 #vscode
 .vscode/
+
+
 

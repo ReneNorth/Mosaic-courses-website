@@ -5,9 +5,11 @@ from mdeditor.fields import MDTextField
 class School(models.Model):
     """Основные данные о школе."""
 
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=20,
+                            verbose_name='School name ',
+                            help_text='Add or change the school name')
     logo = models.ImageField(
-        upload_to='logo/', null=True, blank=True)
+        upload_to='logo/', blank=True)
     full_description = MDTextField(max_length=500)
     short_description = models.TextField(max_length=300)
     address_text = models.CharField(max_length=50)

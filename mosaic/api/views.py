@@ -78,3 +78,4 @@ class SchoolReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     # подумать как на уровне БД ограничить модель одной записью
     queryset = School.objects.all()
     serializer_class = SchoolSerializer
+    permission_classes = [AllowAny, ]
