@@ -12,8 +12,8 @@ export const Slider = () => {
           className={cls.swiper}
           spaceBetween={40}
           slidesPerView="auto"
-        // onSlideChange={() => console.log('slide change')}
-        // onSwiper={(swiper) => console.log(swiper)}
+          // onSlideChange={() => console.log('slide change')}
+          // onSwiper={(swiper) => console.log(swiper)}
         >
           <SwiperSlide className={cls.slide}>
             <img className={cls.image} src={slide} alt="Слайд" />
@@ -21,9 +21,9 @@ export const Slider = () => {
           <SwiperSlide className={cls.slide}>
             <img className={cls.image} src={slide} alt="Слайд" />
           </SwiperSlide>
-          <SwiperSlide className={cls.slide}>
+          {/* <SwiperSlide className={cls.slide}>
             <img className={cls.image} src={slide} alt="Слайд" />
-          </SwiperSlide>
+          </SwiperSlide> */}
           {/* <SwiperSlide className={cls.slide}>
             <img className={cls.image} src={slide} alt="Слайд" />
           </SwiperSlide> */}

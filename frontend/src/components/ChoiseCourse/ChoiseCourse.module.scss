@@ -1,0 +1,134 @@
+.section {
+  max-width: 1280px;
+  width: 100%;
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-family: var(--font-book-antiqua);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 58px;
+}
+
+.titleBtn {
+  padding: 18px 40px;
+  border: 1px solid #000000;
+  border-radius: 60px;
+  background-color: transparent;
+  font-family: var(--font-roboto);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 20px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  gap: 88px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.img {
+  max-width: 550px;
+  width: 100%;
+
+}
+
+.contentWrapper {
+  max-width: 620px;
+}
+
+.contentTitle {
+  font-family: var(--font-roboto);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 38px;
+}
+
+.atributContainer {
+  margin-top: 20px;
+}
+
+.wrapperAtribut {
+  margin-bottom: 30px;
+  display: flex;
+  gap: 81px;
+}
+
+.priceContainer {
+  display: flex;
+
+  p {
+    margin-left: 16px;
+    align-self: center;
+    font-family: var(--font-roboto);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 20px;
+  }
+}
+
+.timeIcon {
+  display: block;
+  width: 48px;
+  height: 48px;
+  background-image: url('../../images/time.svg');
+  background-repeat: no-repeat;
+}
+
+.rubleIcon {
+  display: block;
+  width: 36px;
+  height: 36px;
+  background-image: url('../../images/ruble.svg');
+  background-repeat: no-repeat;
+}
+
+.description {
+  font-family: var(--font-roboto);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 20px;
+}
+
+.btnGroup {
+  display: flex;
+  margin-top: 66px;
+  gap: 32px;
+
+  button {
+    padding: 18px 40px;
+    cursor: pointer;
+    font-family: var(--font-roboto);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 20px;
+    border-radius: 60px;
+  }
+}
+
+.btnBlack {
+  background-color: #000000;
+  color: #FFF;
+}
+
+.btnWhite {
+  border: 1px solid #000000;
+  background-color: transparent;
+}
