@@ -4,20 +4,34 @@
   width: 100%;
 }
 
-.span {
-  font-family: var(--font-roboto);
+.subtitle {
+  font-family: var(--font-primary);
+  font-style: normal;
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
-  line-height: 23px;
+  line-height: 130%;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-color);
 }
 
 .title {
-  font-family: var(--font-book-antiqua);
+  font-family: var(--font-secondary);
   font-style: normal;
-  font-weight: 400;
-  font-size: 48px;
-  line-height: 58px;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 110%;
+  color: var(--text-color);
+
+  span {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 58px;
+    line-height: 110%;
+    color: var(--text-color-secondary);
+  }
 }
 
 .list {
@@ -34,11 +48,11 @@
 .ellipse {
   display: block;
   width: 160px;
-  height: 130px;
+  height: 135px;
   background-image: url('../../images/Ellipse.svg');
   background-repeat: no-repeat;
-  font-family: var(--font-book-antiqua);
-  -webkit-text-stroke: 1px black;
+  font-family: var(--font-secondary);
+  -webkit-text-stroke: 1px var(--text-color-secondary);
   color: transparent;
   font-style: normal;
   font-weight: 400;
@@ -49,18 +63,20 @@
 
 .cardTitle {
   margin-top: 30px;
-  font-family: var(--font-roboto);
+  font-family: var(--font-primary);
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
   line-height: 23px;
+  color: #247251;
 }
 
 .description {
   margin-top: 8px;
-  font-family: var(--font-roboto);
+  font-family: var(--font-primary);
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
-  line-height: 20px;
+  line-height: 135%;
+  color: var(--text-color);
 }

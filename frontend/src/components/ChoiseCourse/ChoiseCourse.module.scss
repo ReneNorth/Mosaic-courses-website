@@ -9,19 +9,29 @@
 }
 
 .title {
-  font-family: var(--font-book-antiqua);
+  font-family: var(--font-primary);
   font-style: normal;
-  font-weight: 400;
-  font-size: 48px;
-  line-height: 58px;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 110%;
+  color: var(--text-color);
+
+  span {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 58px;
+    line-height: 110%;
+    color: var(--text-color-secondary);
+  }
 }
 
 .titleBtn {
   padding: 18px 40px;
-  border: 1px solid #000000;
+  border: 1px solid #000000 !important;
   border-radius: 60px;
   background-color: transparent;
-  font-family: var(--font-roboto);
+  font-family: var(--font-primary);
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
@@ -51,11 +61,12 @@
 }
 
 .contentTitle {
-  font-family: var(--font-roboto);
+  font-family: var(--font-primary);
   font-style: normal;
   font-weight: 700;
   font-size: 32px;
-  line-height: 38px;
+  line-height: 135%;
+  color: var(--text-color);
 }
 
 .atributContainer {
@@ -74,7 +85,7 @@
   p {
     margin-left: 16px;
     align-self: center;
-    font-family: var(--font-roboto);
+    font-family: var(--font-primary);
     font-style: normal;
     font-weight: 400;
     font-size: 17px;
@@ -99,11 +110,12 @@
 }
 
 .description {
-  font-family: var(--font-roboto);
+  font-family: var(--font-primary);
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
-  line-height: 20px;
+  line-height: 135%;
+  color: var(--text-color);
 }
 
 .btnGroup {
@@ -114,7 +126,7 @@
   button {
     padding: 18px 40px;
     cursor: pointer;
-    font-family: var(--font-roboto);
+    font-family: var(--font-primary);
     font-style: normal;
     font-weight: 400;
     font-size: 17px;
@@ -129,6 +141,6 @@
 }
 
 .btnWhite {
-  border: 1px solid #000000;
+  border: 1px solid #000000 !important;
   background-color: transparent;
 }

@@ -12,28 +12,29 @@
 
 .title {
   max-width: 530px;
-  font-family: var(--font-roboto);
+  font-family: var(--font-primary);
   font-style: normal;
-  font-weight: 400;
-  font-size: 48px;
-  line-height: 56px;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 110%;
   color: var(--text-color);
 
   span {
-    font-family: var(--font-book-antiqua);
-    font-style: normal;
-    font-weight: 400;
-    font-size: 48px;
-    line-height: 58px;
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 58px;
+    line-height: 110%;
+    color: var(--text-color-secondary);
   }
 }
 
 .description {
-  font-family: var(--font-roboto);
+  font-family: var(--font-primary);
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
-  line-height: 20px;
+  line-height: 135%;
   color: var(--text-color);
 
   &:first-of-type {
@@ -71,7 +72,7 @@
   margin-left: 75px;
   max-width: 204px;
   transform: rotate(-41.35deg);
-  font-family: var(--font-roboto);
+  font-family: var(--font-primary);
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -85,12 +86,11 @@
   margin-top: 8px;
   margin-left: 160px;
   max-width: 198px;
-  font-family: var(--font-roboto);
+  font-family: var(--font-primary);
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
-  line-height: 20px;
-  text-align: center;
+  line-height: 135%;
 }
 
 .twoColumn {

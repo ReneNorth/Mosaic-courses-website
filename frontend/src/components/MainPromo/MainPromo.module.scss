@@ -19,29 +19,34 @@
 }
 
 .title {
-  font-family: var(--font-roboto);
+  font-family: var(--font-primary);
   font-style: normal;
-  font-weight: 400;
-  font-size: 48px;
-  line-height: 56px;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 110%;
 }
 
 .description {
-  margin-top: 4px;
+  margin-top: 28px;
   max-width: 584px;
-  font-family: var(--font-roboto);
+  font-family: var(--font-primary);
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
-  line-height: 23px;
+  line-height: 135%;
+
+  &:last-of-type {
+    margin-top: 10px;
+  }
 }
 
 .span {
-  font-family: var(--font-book-antiqua);
-  font-weight: 400;
-  font-size: 80px;
-  line-height: 96px;
-  text-transform: uppercase;
+  font-family: var(--font-secondary);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 58px;
+  line-height: 110%;
+  color: var(--text-color-secondary);
 }
 
 .button {
@@ -50,7 +55,7 @@
   border-radius: 60px;
   padding: 18px 40px;
   color: var(--text-color-invert);
-  font-family: var(--font-roboto);
+  font-family: var(--font-primary);
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
@@ -67,6 +72,7 @@
     top: 0;
     border: 1px solid #000000;
     border-radius: 100px;
+    z-index: -1;
   }
 }
 
@@ -78,7 +84,7 @@
 .image {
   max-width: 426px;
   width: 100%;
-  z-index: 4;
+  z-index: 100;
 }
 
 .radius {
@@ -89,7 +95,7 @@
   right: 0;
   border: 1px solid #000000;
   border-radius: 600px 600px 0px 0px;
-  z-index: 5;
+  z-index: -1;
 }
 
 .rectangle {
@@ -97,7 +103,7 @@
   max-width: 326px;
   width: 100%;
   height: 444px;
-  background-color: #DBDBDB;
+  background-color: var(--bg-green-primary);
   position: absolute;
   top: -143px;
   right: -141px;
