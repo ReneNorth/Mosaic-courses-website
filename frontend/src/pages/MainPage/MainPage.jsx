@@ -1,3 +1,4 @@
+import { AboutTeach } from '../../components/AboutTeach/AboutTeach';
 import { AboutUs } from '../../components/AboutUs/AboutUs';
 import { ChoiseCourse } from '../../components/ChoiseCourse/ChoiseCourse';
 import { Gallery } from '../../components/Gallery/Gallery';
@@ -14,6 +15,7 @@ export const MaingPage = () => {
       <Reasons />
       <Gallery />
       <ChoiseCourse />
+      <AboutTeach />
     </>
   );
 };
