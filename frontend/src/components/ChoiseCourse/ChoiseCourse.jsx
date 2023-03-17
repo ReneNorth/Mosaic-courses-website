@@ -1,4 +1,6 @@
-import image from '../../images/Frame68.png';
+import imageOne from '../../images/choice-one.png';
+import imageThree from '../../images/choice-three.png';
+import imageTwo from '../../images/choice-two.png';
 import cls from './ChoiseCourse.module.scss';
 
 export const ChoiseCourse = () => {
@@ -15,7 +17,7 @@ export const ChoiseCourse = () => {
       </div>
       <ul className={cls.list}>
         <li className={cls.item}>
-          <img className={cls.img} src={image} alt="карточка курса" />
+          <img className={cls.img} src={imageOne} alt="карточка курса" />
           <div className={cls.contentWrapper}>
             <h3 className={cls.contentTitle}>
               Курс по Римской мозаике однодневный
@@ -33,12 +35,9 @@ export const ChoiseCourse = () => {
               </div>
               <p className={cls.description}>
                 Мы проводим мастер-классы по живописи и гончарному делу для
-                деток и взрослых.
-              </p>
-              <p className={cls.description}>
-                Мы делаем рисование доступным с помощью пошаговой программы и
-                вовлечённых преподавателей. Вы как ученик обязательно
-                прочувствуете нашу дружескую и лёгкую атмосферу.
+                деток и взрослых. Мы делаем рисование доступным с помощью
+                пошаговой программы и вовлечённых преподавателей. Вы как ученик
+                обязательно прочувствуете нашу дружескую и лёгкую атмосферу.
               </p>
             </div>
             <div className={cls.btnGroup}>
@@ -52,7 +51,7 @@ export const ChoiseCourse = () => {
           </div>
         </li>
         <li className={cls.item}>
-          <img className={cls.img} src={image} alt="карточка курса" />
+          <img className={cls.img} src={imageTwo} alt="карточка курса" />
           <div className={cls.contentWrapper}>
             <h3 className={cls.contentTitle}>
               Курс по Римской мозаике однодневный
@@ -70,12 +69,9 @@ export const ChoiseCourse = () => {
               </div>
               <p className={cls.description}>
                 Мы проводим мастер-классы по живописи и гончарному делу для
-                деток и взрослых.
-              </p>
-              <p className={cls.description}>
-                Мы делаем рисование доступным с помощью пошаговой программы и
-                вовлечённых преподавателей. Вы как ученик обязательно
-                прочувствуете нашу дружескую и лёгкую атмосферу.
+                деток и взрослых. Мы делаем рисование доступным с помощью
+                пошаговой программы и вовлечённых преподавателей. Вы как ученик
+                обязательно прочувствуете нашу дружескую и лёгкую атмосферу.
               </p>
             </div>
             <div className={cls.btnGroup}>
@@ -89,7 +85,7 @@ export const ChoiseCourse = () => {
           </div>
         </li>
         <li className={cls.item}>
-          <img className={cls.img} src={image} alt="карточка курса" />
+          <img className={cls.img} src={imageThree} alt="карточка курса" />
           <div className={cls.contentWrapper}>
             <h3 className={cls.contentTitle}>
               Курс по Римской мозаике однодневный
@@ -107,12 +103,9 @@ export const ChoiseCourse = () => {
               </div>
               <p className={cls.description}>
                 Мы проводим мастер-классы по живописи и гончарному делу для
-                деток и взрослых.
-              </p>
-              <p className={cls.description}>
-                Мы делаем рисование доступным с помощью пошаговой программы и
-                вовлечённых преподавателей. Вы как ученик обязательно
-                прочувствуете нашу дружескую и лёгкую атмосферу.
+                деток и взрослых. Мы делаем рисование доступным с помощью
+                пошаговой программы и вовлечённых преподавателей. Вы как ученик
+                обязательно прочувствуете нашу дружескую и лёгкую атмосферу.
               </p>
             </div>
             <div className={cls.btnGroup}>
