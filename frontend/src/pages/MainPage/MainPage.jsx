@@ -5,6 +5,7 @@ import { ChoiseCourse } from '../../components/ChoiseCourse/ChoiseCourse';
 import { Gallery } from '../../components/Gallery/Gallery';
 import { MainPromo } from '../../components/MainPromo/MainPromo';
 import { Reasons } from '../../components/Reasons/Reasons';
+import { RemainedQuestion } from '../../components/RemainedQuestion/RemainedQuestion';
 import { Slider } from '../../components/Slider/Slider';
 
 export const MaingPage = () => {
@@ -18,6 +19,7 @@ export const MaingPage = () => {
       <ChoiseCourse />
       <AboutTeach />
       <AnswersToQuestions />
+      <RemainedQuestion />
     </>
   );
 };

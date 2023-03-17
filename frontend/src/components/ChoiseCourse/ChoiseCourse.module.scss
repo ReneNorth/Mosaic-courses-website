@@ -94,7 +94,7 @@
 }
 
 .timeIcon {
-  display: block;
+  align-self: center;
   width: 48px;
   height: 48px;
   background-image: url('../../images/time.svg');
@@ -102,11 +102,12 @@
 }
 
 .rubleIcon {
-  display: block;
+  align-self: center;
   width: 36px;
   height: 36px;
-  background-image: url('../../images/ruble.svg');
+  background-image: url('../../images/choise_icon-tenge.svg');
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 .description {
@@ -120,11 +121,11 @@
 
 .btnGroup {
   display: flex;
-  margin-top: 66px;
+  margin-top: 42px;
   gap: 32px;
 
   button {
-    padding: 18px 40px;
+    padding: 16.5px 40px;
     cursor: pointer;
     font-family: var(--font-primary);
     font-style: normal;
@@ -136,7 +137,7 @@
 }
 
 .btnBlack {
-  background-color: #000000;
+  background-color: var(--btn-color);
   color: #FFF;
 }
 
