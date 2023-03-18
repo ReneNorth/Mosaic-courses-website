@@ -21,9 +21,9 @@ export const Slider = () => {
           <SwiperSlide className={cls.slide}>
             <img className={cls.image} src={slide} alt="Слайд" />
           </SwiperSlide>
-          {/* <SwiperSlide className={cls.slide}>
+          <SwiperSlide className={cls.slide}>
             <img className={cls.image} src={slide} alt="Слайд" />
-          </SwiperSlide> */}
+          </SwiperSlide>
           {/* <SwiperSlide className={cls.slide}>
             <img className={cls.image} src={slide} alt="Слайд" />
           </SwiperSlide> */}

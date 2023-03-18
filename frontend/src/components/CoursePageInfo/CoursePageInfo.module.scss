@@ -1,0 +1,118 @@
+//   поменять шрифты
+
+.section {
+  max-width: 1280px;
+  width: 100%;
+
+  font-size: 20px;
+}
+.block {
+  margin-top: 43px;
+  display: flex;
+  justify-content: space-between;
+}
+.headerTitle {
+  margin-top: 88px;
+  width: 716px;
+  font-family: var(--font-primary);
+}
+.headerName {
+  margin-left: 0px;
+  font-size: 56px;
+  font-weight: 400;
+}
+.courseName {
+  margin-left: 0px;
+  text-transform: lowercase;
+  font-size: 58px;
+  font-family: var(--font-book-secondary);
+  font-weight: 500;
+  color: #6aaf12;
+}
+.text {
+  margin-top: 24px;
+  line-height: 1.2;
+  width: 584px;
+}
+.paragraph {
+  margin-top: 8px;
+}
+.button {
+  margin-top: 40px;
+  background-color: #247251;
+  border-radius: 60px;
+  padding: 18px 40px;
+  color: var(--text-color-invert);
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 20px;
+  position: relative;
+  cursor: pointer;
+
+  &:after {
+    content: '';
+    width: 100%;
+    height: 63px;
+    position: absolute;
+    left: 8px;
+    top: 0;
+    border: 1px solid #000;
+    border-radius: 100px;
+  }
+}
+
+.wrapper {
+  position: relative;
+  z-index: 10;
+}
+
+.image {
+  max-width: 426px;
+  width: 100%;
+  z-index: 4;
+}
+
+.radius {
+  width: 440px;
+  height: 605px;
+  position: absolute;
+  top: 11px;
+  right: 0;
+  border: 1px solid #000000;
+  border-radius: 600px 600px 0px 0px;
+  z-index: 5;
+}
+
+.rectangle {
+  display: block;
+  max-width: 326px;
+  width: 100%;
+  height: 444px;
+  background-color: #dbdbdb;
+  position: absolute;
+  top: -143px;
+  right: -141px;
+  z-index: -1;
+}
+
+.route {
+  display: flex;
+  margin-top: 456px;
+  // list-style: none;
+}
+.routeItems {
+  // list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.routeItem {
+  text-decoration: none;
+  color: #819286;
+}
+
+.route-items li:last-child {
+  color: #6aaf12;
+}
