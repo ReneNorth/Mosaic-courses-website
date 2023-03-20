@@ -1,0 +1,33 @@
+.infoBlock {
+  max-width: 1280px;
+  width: 100%;
+}
+
+.sectionContainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.containerHeading {
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  margin-top: 88px;
+  margin-left: 0px;
+  grid-column: 0 / 1;
+}
+.containerInfo {
+  grid-column: 1 / 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.listFirst,
+.listSecond,
+.text {
+  font-size: 17px;
+  line-height: 1.5;
+}
+.sectionContainer {
+  grid-column: 1/2;
+}
