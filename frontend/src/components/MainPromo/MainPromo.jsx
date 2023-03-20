@@ -1,4 +1,4 @@
-import promoImg from '../../images/promo-image.png';
+import promoImg from '../../images/promo__image_ellipse.png';
 import cls from './MainPromo.module.scss';
 
 export const MainPromo = () => {
@@ -15,9 +15,12 @@ export const MainPromo = () => {
             Единственная в Казахстане студия римской мозаики.
           </p>
           <p className={cls.description}>
-            Научим создавать античные шедевры на мастер-классах и украсим ваш дом оригинальными арт-объектами.
+            Научим создавать античные шедевры на мастер-классах и украсим ваш
+            дом оригинальными арт-объектами.
           </p>
-          <button className={cls.button} type="button">Записаться на мастер-класс</button>
+          <button className={cls.button} type="button">
+            Записаться на мастер-класс
+          </button>
         </div>
         <div className={cls.wrapper}>
           <img className={cls.image} src={promoImg} alt="Промо картинка" />

@@ -14,7 +14,7 @@
 .headerTitle {
   margin-top: 88px;
   width: 716px;
-  font-family: var(--font-roboto);
+  font-family: var(--font-primary);
 }
 .headerName {
   margin-left: 0px;
@@ -25,7 +25,7 @@
   margin-left: 0px;
   text-transform: lowercase;
   font-size: 58px;
-  font-family: var(--font-book-antiqua);
+  font-family: var(--font-book-secondary);
   font-weight: 500;
   color: #6aaf12;
 }
@@ -43,7 +43,7 @@
   border-radius: 60px;
   padding: 18px 40px;
   color: var(--text-color-invert);
-  font-family: var(--font-roboto);
+  font-family: var(--font-primary);
   font-style: normal;
   font-weight: 400;
   font-size: 17px;

@@ -1,7 +1,7 @@
 .section {
   margin-top: 417px;
   width: 100%;
-  background-color: #DBDBDB;
+  background-color: var(--bg-green-primary);
   display: flex;
   justify-content: center;
 
@@ -23,10 +23,28 @@
   position: relative;
 }
 
+.figureWrapper {
+  position: relative;
+  z-index: 2;
+}
+
 .figure {
+  display: block;
   max-width: 340px;
   margin-left: auto;
   margin-right: 0;
+  z-index: 2;
+}
+
+.figureBorder {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 349px;
+  height: 349px;
+  border: 1px solid #121210;
+  border-radius: 200px 50px 50px 50px;
+  z-index: -1;
 }
 
 .wrapper {
@@ -34,35 +52,46 @@
   flex-direction: column;
   gap: 24px;
   position: absolute;
-  top: -50%;
+  top: -40%;
   left: 0;
 }
 
-.span {
-  font-family: var(--font-roboto);
+.subtitle {
+  font-family: var(--font-primary);
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
-  line-height: 23px;
+  line-height: 130%;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--text-color);
 }
 
 .title {
-  font-family: var(-font-book-antiqua);
+  font-family: var(--font-primary);
   font-style: normal;
-  font-weight: 400;
-  font-size: 48px;
-  line-height: 58px;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 110%;
   color: var(--text-color);
+
+  span {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 58px;
+    line-height: 110%;
+    color: var(--text-color-secondary)
+  }
 }
 
 .description {
   margin-top: 24px;
-  font-family: var(--font-roboto);
+  font-family: var(--font-primary);
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
-  line-height: 20px;
+  line-height: 135%;
   color: var(--text-color);
 }
 
@@ -72,7 +101,7 @@
   background-color: transparent;
   border: 1px solid #000000 !important;
   border-radius: 60px;
-  font-family: var(--font-roboto);
+  font-family: var(--font-primary);
   color: var(--text-color);
   font-style: normal;
   font-weight: 400;

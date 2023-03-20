@@ -25,8 +25,11 @@
 .listFirst,
 .listSecond,
 .text {
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 400;
   font-size: 17px;
-  line-height: 1.5;
+  line-height: 135%;
 }
 .sectionContainer {
   grid-column: 1/2;
