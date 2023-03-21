@@ -85,11 +85,11 @@ const data = [
 export const Gallery = () => {
   return (
     <section className="section-gallery">
-      <div>
+      <div className="slider-wrapper">
         <Swiper
           loop
           centeredSlides
-          slidesPerView={5}
+          slidesPerView="auto"
           spaceBetween={40}
           pagination={{
             clickable: true,
@@ -104,7 +104,7 @@ export const Gallery = () => {
                 // eslint-disable-next-line react/no-array-index-key
                 key={item.id}
                 virtualIndex={index}
-                className="slideContainer-gallery"
+                // className="slideContainer-gallery"
               >
                 <img className="" src={item.link} alt="слайд" />
               </SwiperSlide>
