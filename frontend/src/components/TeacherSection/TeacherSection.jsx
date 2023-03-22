@@ -1,5 +1,5 @@
 import cls from './TeacherSection.module.scss';
-import teacherImg from '../../images/teacher-photo.jpg';
+import teacherImg from '../../images/teacher-img.png';
 
 export const TeacherSection = () => {
   return (

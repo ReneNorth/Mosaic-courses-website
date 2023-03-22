@@ -1,4 +1,4 @@
-import promoImg from '../../images/promo-image.png';
+import coursePageMain from '../../images/course-page-main.png';
 import cls from './CoursePageInfo.module.scss';
 
 export const CoursePageInfo = () => {
@@ -49,7 +49,11 @@ export const CoursePageInfo = () => {
           </div>
         </div>
         <div className={cls.wrapper}>
-          <img className={cls.image} src={promoImg} alt="Промо картинка" />
+          <img
+            className={cls.image}
+            src={coursePageMain}
+            alt="Промо картинка"
+          />
           <div className={cls.radius} />
           <div className={cls.rectangle} />
         </div>
