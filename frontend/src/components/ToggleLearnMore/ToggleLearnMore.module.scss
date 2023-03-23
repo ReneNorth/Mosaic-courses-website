@@ -3,6 +3,7 @@
   width: 100%;
   margin-left: 320px;
   margin-right: 320px;
+  font-family: var(--font-primary);
 }
 
 .sectionContainer {
@@ -75,7 +76,7 @@
     position: absolute;
     top: 2px;
     left: 35px;
-    font-family: var(--font-primary);
+    font-family: inherit;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;

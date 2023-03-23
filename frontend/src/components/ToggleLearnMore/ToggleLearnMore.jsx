@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import cls from './TogleLearnMore.module.scss';
-// import PageDownImg from '../..images/button-learn_more.svg';
+import cls from './ToggleLearnMore.module.scss';
 
-export const TogleLearnMore = () => {
+export const ToggleLearnMore = () => {
   const [toggle, setToggle] = useState(true);
+  const handleClick = () => {
+    setToggle(!toggle);
+  };
   return (
     <div className={cls.infoBlock}>
       <h3 className={cls.containerHeading}>Требования к ученику</h3>
@@ -28,22 +30,21 @@ export const TogleLearnMore = () => {
             вовлечённых преподавателей. Вы как ученик обязательно прочувствуете
             нашу дружескую и лёгкую атмосферу.
           </p>
-          <div className={cls.learnMore}>
-            <butto
-              onClick={() => setToggle(!toggle)}
-              type="button"
-              className={cls.btn}
-            />
-          </div>
-          {toggle && (
-            <p>
-              Мы делаем рисование доступным с помощью пошаговой программы и
-              вовлечённых преподавателей. Вы как ученик обязательно
-              прочувствуете нашу дружескую и лёгкую атмосферу. какой-то текскт
-              какой-то текскт какой-то текскт какой-то текскт какой-то текскт
-              какой-то текскт какой-то текскт какой-то текскт какой-то текскт
-            </p>
-          )}
+          <div>
+            <button onClick={handleClick} type="button" className={cls.btn} />
+
+            {toggle ? (
+              <></>
+            ) : (
+              <p>
+                Мы делаем рисование доступным с помощью пошаговой программы и
+                вовлечённых преподавателей. Вы как ученик обязательно
+                прочувствуете нашу дружескую и лёгкую атмосферу. какой-то текскт
+                какой-то текскт какой-то текскт какой-то текскт какой-то текскт
+                какой-то текскт какой-то текскт какой-то текскт какой-то текскт
+              </p>
+            )}
+          </div>{' '}
         </div>
       </div>
     </div>
