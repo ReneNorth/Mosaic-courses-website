@@ -49,47 +49,23 @@ const data = [
   },
 ];
 
-// export const Gallery = () => {
-//   return (
-//     <section className={cls.section}>
-//       <div className={cls.slider}>
-//         <Swiper
-//           loop
-//           centeredSlides
-//           slidesPerView={5}
-//           spaceBetween={40}
-//           pagination={{
-//             clickable: true,
-//           }}
-//           navigation={true}
-//           modules={[Pagination, Navigation]}
-//           className={cls.swipper}
-//         >
-//           {data.map((item, index) => {
-//             return (
-//               <SwiperSlide
-//                 key={item}
-//                 virtualIndex={index}
-//                 className={cls.slideContainer}
-//               >
-//                 <img className={cls.image} src={item} alt="слайд" />
-//               </SwiperSlide>
-//             );
-//           })}
-//         </Swiper>
-//       </div>
-//     </section>
-//   );
-// };
-
 export const Gallery = () => {
   return (
     <section className="section-gallery">
-      <div>
+      <div className="container">
+        <div className="title-wrapper">
+          <p className="title-wrapper__description">наши работы</p>
+          <h2 className="title-wrapper__title">
+            Галерея
+            <span> вдохновения</span>
+          </h2>
+        </div>
+      </div>
+      <div className="slider-wrapper">
         <Swiper
           loop
           centeredSlides
-          slidesPerView={5}
+          slidesPerView="auto"
           spaceBetween={40}
           pagination={{
             clickable: true,
@@ -104,7 +80,6 @@ export const Gallery = () => {
                 // eslint-disable-next-line react/no-array-index-key
                 key={item.id}
                 virtualIndex={index}
-                className="slideContainer-gallery"
               >
                 <img className="" src={item.link} alt="слайд" />
               </SwiperSlide>
