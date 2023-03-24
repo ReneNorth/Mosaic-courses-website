@@ -1,9 +1,9 @@
 import cls from './TeacherSection.module.scss';
-import teacherImg from '../../images/teacher-photo.jpg';
+import teacherImg from '../../images/teacher-img.png';
 
 export const TeacherSection = () => {
   return (
-    <div className={cls.infoBlock}>
+    <div>
       <h3 className={cls.containerHeading}>Преподаватель</h3>
       <div className={cls.containerInfo}>
         <img className={cls.teacherImg} src={teacherImg} alt="Промо картинка" />
@@ -21,17 +21,6 @@ export const TeacherSection = () => {
           </div>
         </div>
       </div>
-      {/* <h3 class="container-heading">Также покупают</h3>
-      <div class="container-info"></div>
-    </section>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-    ></script> */}
     </div>
   );
 };

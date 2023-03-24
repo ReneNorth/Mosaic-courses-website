@@ -1,5 +1,7 @@
-import promoImg from '../../images/promo-image.png';
+import coursePageMain from '../../images/course-page-main.png';
 import cls from './CoursePageInfo.module.scss';
+import indicator from '../../images/indicator.svg';
+import decorationElement from '../../images/decorationElement.png';
 
 export const CoursePageInfo = () => {
   return (
@@ -18,6 +20,11 @@ export const CoursePageInfo = () => {
           <button className={cls.button} type="button">
             Записаться на курс
           </button>
+          {/* /* <img
+            className={cls.decorationElement}
+            src={decorationElement}
+            alt="Декоративный элемент"
+          />*/}
           <div className={cls.route}>
             <ul className={cls.routeItems}>
               <li>
@@ -25,9 +32,15 @@ export const CoursePageInfo = () => {
                   Главная
                 </a>
               </li>
-              {/* <li>
-                <a href="!#" className={cls.routeItem} />
-              </li> */}
+              <li>
+                <a href="!#" className={cls.routeItem}>
+                  <img
+                    className={cls.indicator}
+                    src={indicator}
+                    alt="Промо картинка"
+                  />
+                </a>
+              </li>
               <li>
                 <a href="!#" className={cls.routeItem}>
                   {' '}
@@ -36,7 +49,11 @@ export const CoursePageInfo = () => {
               </li>
               <li>
                 <a href="!#" className={cls.routeItem}>
-                  {' '}
+                  <img
+                    className={cls.indicator}
+                    src={indicator}
+                    alt="Промо картинка"
+                  />
                 </a>
               </li>
               <li>
@@ -49,7 +66,11 @@ export const CoursePageInfo = () => {
           </div>
         </div>
         <div className={cls.wrapper}>
-          <img className={cls.image} src={promoImg} alt="Промо картинка" />
+          <img
+            className={cls.image}
+            src={coursePageMain}
+            alt="Промо картинка"
+          />
           <div className={cls.radius} />
           <div className={cls.rectangle} />
         </div>
