@@ -23,10 +23,32 @@ export const StudentReviews = () => {
       <div className={cls.sliderContainer}>
         <Swiper
           className={cls.swiper}
-          // loop
+          loop
           spaceBetween={40}
           slidesPerView="auto"
         >
+          <SwiperSlide className={cls.slide}>
+            <div className={cls.cardWrapper}>
+              <img className={cls.image} src={image} alt="Слайд" />
+              <div className={cls.textWrapper}>
+                <h4 className={cls.cardTitle}>Волшебно!</h4>
+                <p className={cls.cardDescription}>
+                  Мы обожаем такие трепетные моменты и с радостью поможем
+                  устроить вам самый яркий праздник в нашей мастерской. Мы
+                  обожаем такие трепетные моменты и с радостью поможем устроить
+                  вам самый яркий праздник в нашей мастерской. Мы обожаем такие
+                  трепетные моменты и с радостью поможем устроить вам самый
+                  яркий праздник в нашей мастерской. Мы обожаем такие трепетные
+                  моменты и с радостью поможем устроить вам самый яркий праздник
+                  в нашей мастерской.
+                </p>
+                <div className={cls.authorContainer}>
+                  <span>Валерия М.</span>
+                  <span>24.01.2023</span>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
           <SwiperSlide className={cls.slide}>
             <div className={cls.cardWrapper}>
               <img className={cls.image} src={image} alt="Слайд" />
