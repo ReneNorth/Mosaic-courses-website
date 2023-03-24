@@ -1,0 +1,147 @@
+.section {
+  max-width: 1280px;
+  width: 100%;
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 110%;
+  color: var(--text-color);
+
+  span {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 58px;
+    line-height: 110%;
+    color: var(--text-color-secondary);
+  }
+}
+
+.titleBtn {
+  padding: 18px 40px;
+  border: 1px solid #000000 !important;
+  border-radius: 60px;
+  background-color: transparent;
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 20px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  gap: 88px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.img {
+  max-width: 550px;
+  width: 100%;
+
+}
+
+.contentWrapper {
+  max-width: 620px;
+}
+
+.contentTitle {
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 135%;
+  color: var(--text-color);
+}
+
+.atributContainer {
+  margin-top: 20px;
+}
+
+.wrapperAtribut {
+  margin-bottom: 30px;
+  display: flex;
+  gap: 81px;
+}
+
+.priceContainer {
+  display: flex;
+
+  p {
+    margin-left: 16px;
+    align-self: center;
+    font-family: var(--font-primary);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 20px;
+  }
+}
+
+.timeIcon {
+  align-self: center;
+  width: 48px;
+  height: 48px;
+  background-image: url('../../images/time.svg');
+  background-repeat: no-repeat;
+}
+
+.rubleIcon {
+  align-self: center;
+  width: 36px;
+  height: 36px;
+  background-image: url('../../images/choise_icon-tenge.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.description {
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 135%;
+  color: var(--text-color);
+}
+
+.btnGroup {
+  display: flex;
+  margin-top: 42px;
+  gap: 32px;
+
+  button {
+    padding: 16.5px 40px;
+    cursor: pointer;
+    font-family: var(--font-primary);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 20px;
+    border-radius: 60px;
+  }
+}
+
+.btnBlack {
+  background-color: var(--btn-color);
+  color: #FFF;
+}
+
+.btnWhite {
+  border: 1px solid #000000 !important;
+  background-color: transparent;
+}
