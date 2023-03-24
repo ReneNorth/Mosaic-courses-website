@@ -4,7 +4,43 @@
   width: 100%;
 }
 
+.title-wrapper {
+  max-width: 592px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-wrapper__description {
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 130%;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-color);
+}
+
+.title-wrapper__title {
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 110%;
+  color: var(--text-color);
+
+  span {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 58px;
+    line-height: 110%;
+    color: var(--text-color-secondary);
+  }
+}
+
 .slider-wrapper {
+  margin-top: 62px;
   max-width: 1280px;
   width: 100%;
   height: 578px;
@@ -13,16 +49,13 @@
 .swipper-gallery {
   width: 100%;
   height: 100%;
-  // height: 573px;
+  
   .swiper-wrapper {
     max-width: 1280px;
     width: 100%;
     display: flex;
-    // justify-content: space-between;
+
     .swiper-slide {
-      transition: all 0.5s ease;
-      // padding: 80px 0;
-        // width: 180px;
         max-width: 180px;
         width: 100%;
         display: flex;
@@ -33,69 +66,12 @@
     .swiper-slide-active {
       max-width: 400px;
       width: 100%;
-      // width: 400px !important;
-      // transform: scale(1.6) !important;
 
       img {
-        // width: 400px;
-        // height: 574px;
         width: 400px;
         height: 100%;
+        border-radius: 300px 300px 0px 0px;
       }
     }
   }
 }
-
-// .slideContainer-gallery {
-//   display: flex;
-//   max-width: 180px;
-//   width: 100%;
-//   max-height: 573px;
-//   height: 100%;
-//   justify-content: center;
-//   align-items: center;
-// }
-
-// .swiper-wrapper {
-//   .swiper-slide {
-//     transition: all 0.5s ease;
-//     padding: 40px 0;
-//   }
-  
-//   .swiper-slide-active {
-//     // width: 400px;
-//     transform: scale(1.2) !important;
-//   }
-// }
-
-// .slideBigContainer-gallery {
-//   display: flex;
-//   width: 400px !important;
-//   height: 100%;
-// }
-
-// .image-gallery {
-//   max-width: 400px;
-//   width: 100%;
-//   max-height: 260px;
-// }
-
-// .imageBig-gallery {
-//   max-width: 400px;
-//   width: 100%;
-//   max-height: 573px;
-//   height: 100%;
-// }
-
-// .swiper-slide {
-//   transition: all 0.5s ease;
-//   padding: 40px 0;
-// }
-
-// .swiper-slide-active {
-//   // width: 400px !important;
-//   // height: 578px !important;
-//   transform: scale(1.7) !important;
-//   margin-left: 40px;
-//   right: 40px;
-// }

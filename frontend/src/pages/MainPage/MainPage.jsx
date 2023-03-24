@@ -7,6 +7,7 @@ import { MainPromo } from '../../components/MainPromo/MainPromo';
 import { Reasons } from '../../components/Reasons/Reasons';
 import { RemainedQuestion } from '../../components/RemainedQuestion/RemainedQuestion';
 import { Slider } from '../../components/Slider/Slider';
+import { StudentReviews } from '../../components/StudentReviews/StudentReviews';
 
 export const MaingPage = () => {
   return (
@@ -20,6 +21,7 @@ export const MaingPage = () => {
       <AboutTeach />
       <AnswersToQuestions />
       <RemainedQuestion />
+      <StudentReviews />
     </>
   );
 };

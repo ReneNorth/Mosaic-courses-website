@@ -1,0 +1,31 @@
+.block {
+  margin: 88px auto 0;
+  max-width: 1280px;
+  width: 100%;
+}
+
+.topContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 88px;
+}
+
+.contactsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  justify-content: center;
+}
+
+.contactsTitle {
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 135%;
+  color: var(--text-color);
+
+  span {
+    font-weight: 500;
+  }
+}

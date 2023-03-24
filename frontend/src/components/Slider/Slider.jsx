@@ -10,10 +10,9 @@ export const Slider = () => {
       <div className={cls.slider}>
         <Swiper
           className={cls.swiper}
+          // loop
           spaceBetween={40}
           slidesPerView="auto"
-          // onSlideChange={() => console.log('slide change')}
-          // onSwiper={(swiper) => console.log(swiper)}
         >
           <SwiperSlide className={cls.slide}>
             <img className={cls.image} src={slide} alt="Слайд" />
@@ -24,9 +23,6 @@ export const Slider = () => {
           <SwiperSlide className={cls.slide}>
             <img className={cls.image} src={slide} alt="Слайд" />
           </SwiperSlide>
-          {/* <SwiperSlide className={cls.slide}>
-            <img className={cls.image} src={slide} alt="Слайд" />
-          </SwiperSlide> */}
         </Swiper>
       </div>
     </section>
