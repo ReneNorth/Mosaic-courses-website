@@ -45,10 +45,7 @@ class Masterclass(models.Model):
                                 default='тенге')
     time_begin = models.DateTimeField(default=timezone.now)
     time_end = models.DateTimeField(default=timezone.now)
-    num_of_guests = models.PositiveSmallIntegerField(
-        null=False,
-        default=5)
-        # validators=[MaxValueValidator()]
+
 
     class Meta:
         verbose_name = 'Masterclass'

@@ -13,7 +13,6 @@ class Booking(models.Model):
     attending = models.ForeignKey(Masterclass,
                                   on_delete=models.CASCADE,
                                   related_name='bookings')
-    
-    
+
     def __str__(self) -> str:
         return f'{self.guest} attends {self.attending}'
