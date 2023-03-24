@@ -9,7 +9,6 @@ export const MapAndContacts = () => {
           <Map
             width={620}
             height={360}
-            // style={{ borderRadius: '20px' }}
             defaultState={{ center: [55.75, 37.57], zoom: 15 }}
           />
         </div>
