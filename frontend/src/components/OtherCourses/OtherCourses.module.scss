@@ -1,0 +1,99 @@
+.containerHeading {
+  font-size: 32px;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  margin-bottom: 20px;
+  margin-top: 88px;
+  margin-left: 0px;
+}
+.containerInfo {
+  display: flex;
+  gap: 40px;
+  max-width: 400px;
+  margin-top: 16px;
+}
+.courseName {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 130%;
+  text-transform: uppercase;
+}
+.description {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 17px;
+  margin-top: 28px;
+  line-height: 135%;
+}
+
+.atributContainer {
+  margin-top: 20px;
+}
+
+.wrapperAtribut {
+  margin-bottom: 30px;
+  display: flex;
+  gap: 40px;
+}
+
+.priceContainer {
+  flex-direction: row;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.timeIcon {
+  align-self: center;
+  width: 32px;
+  height: 32px;
+  background-image: url('../../images/time.svg');
+  background-repeat: no-repeat;
+  padding: 5px;
+}
+
+.rubleIcon {
+  align-self: center;
+  width: 32px;
+  height: 32px;
+  background-image: url('../../images/choise_icon-tenge.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.courseBox {
+  padding: 40px 40px 48px 40px;
+  background-color: #dad5c9;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: #dad5c9;
+  box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.6);
+}
+
+.courseImage {
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  margin-bottom: 0px;
+  display: block;
+  box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.6);
+}
+.contanerCourseOne,
+.contanerCourseTwo {
+  margin-bottom: 100px;
+}
+.btnWhite {
+  margin-top: 40px;
+  box-sizing: border-box;
+  border: 1px solid #000000 !important;
+  background-color: transparent;
+  padding: 10px 40px 10px 40px;
+  cursor: pointer;
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 20px;
+  border-radius: 56px;
+}

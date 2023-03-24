@@ -1,0 +1,52 @@
+.sidebar {
+  box-sizing: border-box;
+
+  top: 0px;
+  display: block;
+  position: sticky;
+  -webkit-position: sticky;
+  max-width: 400px;
+  height: 580px;
+
+  background-color: #ccdac6;
+}
+.innerBlock {
+  max-width: 400px;
+  height: 580px;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+  align-self: center;
+  padding: 173px 71px 38px 71px;
+  font-family: var(--font-primary);
+}
+.title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 120%;
+}
+.coursePrice {
+  font-size: 32px;
+}
+.duration {
+  font-size: 17px;
+}
+.button {
+  margin-top: 40px;
+  background-color: #247251;
+  border-radius: 60px;
+  padding: 8px 20px;
+  color: var(--text-color-invert);
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.gift {
+  margin-top: 113px;
+}

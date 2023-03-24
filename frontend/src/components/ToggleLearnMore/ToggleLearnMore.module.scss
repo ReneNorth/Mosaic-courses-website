@@ -1,0 +1,51 @@
+.containerHeading {
+  font-size: 32px;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  margin-bottom: 20px;
+  margin-top: 88px;
+  margin-left: 0px;
+}
+
+.text {
+  justify-self: center;
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 135%;
+}
+
+.text p {
+  margin-top: 10px;
+}
+
+.learnMore {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+}
+.btn {
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  background-image: url('../../images/button-learn_more.svg');
+  background-color: transparent;
+  background-size: cover;
+  cursor: pointer;
+  position: relative;
+
+  &:after {
+    content: 'Читать подробнее';
+    position: absolute;
+    top: 2px;
+    left: 35px;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 135%;
+    width: 100%;
+    white-space: nowrap;
+  }
+}
