@@ -1,11 +1,12 @@
 .section {
   margin-top: 200px;
+  margin-left: 660px;
   padding-bottom: 332px;
-  max-width: 1280px;
+  max-width: 1920px;
   width: 100%;
   display: flex;
-  justify-content: space-between;
   gap: 110px;
+  overflow: hidden;
 }
 
 .titleContent {
@@ -42,18 +43,22 @@
 }
 
 // .sliderContainer {
-
+//   // position: relative;
 // }
 
-// .swiper {
+.swiper {
+  max-width: 1040px;
+  width: 100%;
+}
 
-// }
-
-// .slide {
-
-// }
+.slide {
+  max-width: 730px;
+  width: 100%;
+}
 
 .cardWrapper {
+  max-width: 730px;
+  width: 100%;
   display: flex;
   background-color: var(--bg-green-primary);
   border-radius: 20px;
