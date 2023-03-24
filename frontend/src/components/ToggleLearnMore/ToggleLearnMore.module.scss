@@ -1,16 +1,3 @@
-.infoBlock {
-  max-width: 1280px;
-  width: 100%;
-  margin-left: 320px;
-  margin-right: 320px;
-  font-family: var(--font-primary);
-}
-
-.sectionContainer {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-}
-
 .containerHeading {
   font-size: 32px;
   font-family: var(--font-primary);
@@ -18,17 +5,8 @@
   margin-bottom: 20px;
   margin-top: 88px;
   margin-left: 0px;
-  grid-column: 0 / 1;
-}
-.containerInfo {
-  grid-column: 1 / 2;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
 }
 
-.listFirst,
-.listSecond,
 .text {
   justify-self: center;
   font-family: var(--font-primary);
@@ -37,21 +15,7 @@
   font-size: 17px;
   line-height: 135%;
 }
-.listFirst li,
-.listSecond li {
-  margin-bottom: 10px;
-  list-style-type: disc;
-}
 
-::marker {
-  color: #000;
-  // font-size: 15px;
-  display: inline-block;
-  vertical-align: middle;
-}
-.sectionContainer {
-  grid-column: 1/2;
-}
 .text p {
   margin-top: 10px;
 }

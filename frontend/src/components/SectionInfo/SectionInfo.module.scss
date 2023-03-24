@@ -6,8 +6,8 @@
 }
 
 .sectionContainer {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
+  display: flex;
+  gap: 40px;
 }
 
 .containerHeading {
@@ -17,7 +17,6 @@
   margin-bottom: 20px;
   margin-top: 88px;
   margin-left: 0px;
-  grid-column: 0 / 1;
 }
 .containerInfo {
   grid-column: 1 / 2;
@@ -44,13 +43,10 @@
 
 ::marker {
   color: #000;
-  // font-size: 15px;
   display: inline-block;
   vertical-align: middle;
 }
-.sectionContainer {
-  grid-column: 1/2;
-}
+
 .text p {
   margin-top: 10px;
 }
@@ -64,15 +60,38 @@
   background-size: cover;
   cursor: pointer;
 }
-.learnMore {
-  margin-top: 16px;
+
+///
+.sidebar {
+  top: 0px;
   display: flex;
-  align-items: center;
+  position: sticky;
+  -webkit-position: sticky;
+  max-width: 400px;
+  height: 580px;
+  background-color: #ccdac6;
 }
-.learnMore span {
+.innerBlock {
+  justify-content: center;
+}
+.title {
+}
+.coursePrice {
+}
+.button {
+  margin-top: 40px;
+  background-color: #247251;
+  border-radius: 60px;
+  padding: 18px 40px;
+  color: var(--text-color-invert);
   font-family: var(--font-primary);
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
-  line-height: 135%;
+  line-height: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.gift {
 }

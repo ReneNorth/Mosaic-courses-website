@@ -7,7 +7,7 @@ export const ToggleLearnMore = () => {
     setToggle(!toggle);
   };
   return (
-    <div className={cls.infoBlock}>
+    <div>
       <h3 className={cls.containerHeading}>Требования к ученику</h3>
       <div className={cls.sectionContainer}>
         <div className={cls.text}>
