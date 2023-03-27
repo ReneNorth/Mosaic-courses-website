@@ -1,0 +1,15 @@
+.route {
+  display: flex;
+  margin-top: 446px;
+}
+.routeItems {
+  display: flex;
+  gap: 20px;
+  font-size: 17px;
+  font-family: var(--font-primary);
+  color: #819286;
+}
+
+.routeItem {
+  text-decoration: none;
+}

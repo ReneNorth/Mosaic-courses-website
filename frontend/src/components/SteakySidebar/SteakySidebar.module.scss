@@ -1,27 +1,26 @@
 .sidebar {
   box-sizing: border-box;
 
-  top: 0px;
+  top: 244px;
   display: block;
   position: sticky;
   -webkit-position: sticky;
-  max-width: 400px;
+  max-width: 500px;
   height: 580px;
 
   background-color: #ccdac6;
 }
 .innerBlock {
-  max-width: 400px;
-  height: 580px;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  align-content: center;
-  align-self: center;
-  padding: 173px 71px 38px 71px;
+
+  padding: 60px 71px 38px 71px;
   font-family: var(--font-primary);
 }
 .title {
   text-align: center;
+
   font-weight: 700;
   font-size: 20px;
   line-height: 120%;
@@ -36,17 +35,50 @@
   margin-top: 40px;
   background-color: #247251;
   border-radius: 60px;
-  padding: 8px 20px;
+  padding: 10px 40px;
+  white-space: nowrap;
   color: var(--text-color-invert);
   font-family: var(--font-primary);
   font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  position: relative;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 135%;
+  cursor: pointer;
+}
+.buttonOutline {
+  margin-top: 24px;
+  background-color: transparent;
+  border-radius: 60px;
+  padding: 10px 40px;
+  white-space: nowrap;
+  color: #247251;
+  font-family: var(--font-primary);
+  font-style: normal;
+  border: 1px solid #247251 !important;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 135%;
   cursor: pointer;
 }
 
+.giftGroup {
+  display: flex;
+  margin-top: 69px;
+  gap: 10px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
 .gift {
-  margin-top: 113px;
+  font-weight: 500;
+  color: #000;
+}
+
+.giftIcon {
+  align-self: center;
+  width: 36px;
+  height: 36px;
+  background-image: url('../../images/gift.svg');
+  background-repeat: no-repeat;
+  background-position: center;
 }

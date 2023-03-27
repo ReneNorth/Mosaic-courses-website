@@ -3,13 +3,16 @@ import { SteakySidebar } from '../SteakySidebar/SteakySidebar';
 import { TeacherSection } from '../TeacherSection/TeacherSection';
 import { ToggleLearnMore } from '../ToggleLearnMore/ToggleLearnMore';
 import { OtherCourses } from '../OtherCourses/OtherCourses';
+import { Route } from '../Route/Route';
+
 export const SectionInfo = () => {
   return (
     <div className={cls.infoBlock}>
-      <h3 className={cls.containerHeading}>Чему вы научитесь?</h3>
-
       <div className={cls.sectionContainer}>
         <div>
+          <Route />
+          <h3 className={cls.containerHeading}>Чему вы научитесь?</h3>
+
           <div className={cls.containerInfo}>
             <ul className={cls.listFirst}>
               <li> Изучите базовый синтаксис и структуры данных Python 3! </li>

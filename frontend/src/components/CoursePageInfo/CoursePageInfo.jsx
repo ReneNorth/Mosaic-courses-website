@@ -1,7 +1,5 @@
 import coursePageMain from '../../images/course-page-main.png';
 import cls from './CoursePageInfo.module.scss';
-import indicator from '../../images/indicator.svg';
-import decorationElement from '../../images/decorationElement.png';
 
 export const CoursePageInfo = () => {
   return (
@@ -20,50 +18,6 @@ export const CoursePageInfo = () => {
           <button className={cls.button} type="button">
             Записаться на курс
           </button>
-          {/* /* <img
-            className={cls.decorationElement}
-            src={decorationElement}
-            alt="Декоративный элемент"
-          />*/}
-          <div className={cls.route}>
-            <ul className={cls.routeItems}>
-              <li>
-                <a href="!#" className={cls.routeItem}>
-                  Главная
-                </a>
-              </li>
-              <li>
-                <a href="!#" className={cls.routeItem}>
-                  <img
-                    className={cls.indicator}
-                    src={indicator}
-                    alt="Промо картинка"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="!#" className={cls.routeItem}>
-                  {' '}
-                  Курсы
-                </a>
-              </li>
-              <li>
-                <a href="!#" className={cls.routeItem}>
-                  <img
-                    className={cls.indicator}
-                    src={indicator}
-                    alt="Промо картинка"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="!#" className={cls.routeItem}>
-                  {' '}
-                  Курс по Римской мозайке
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
         <div className={cls.wrapper}>
           <img
