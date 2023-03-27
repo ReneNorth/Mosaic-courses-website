@@ -1,7 +1,6 @@
 import coursePageMain from '../../images/course-page-main.png';
-import cls from './CoursePageInfo.module.scss';
 import indicator from '../../images/indicator.svg';
-import decorationElement from '../../images/decorationElement.png';
+import cls from './CoursePageInfo.module.scss';
 
 export const CoursePageInfo = () => {
   return (
@@ -20,11 +19,6 @@ export const CoursePageInfo = () => {
           <button className={cls.button} type="button">
             Записаться на курс
           </button>
-          {/* /* <img
-            className={cls.decorationElement}
-            src={decorationElement}
-            alt="Декоративный элемент"
-          />*/}
           <div className={cls.route}>
             <ul className={cls.routeItems}>
               <li>

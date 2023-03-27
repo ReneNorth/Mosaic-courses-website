@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState } from 'react';
 import cls from './ToggleLearnMore.module.scss';
 
@@ -34,6 +35,7 @@ export const ToggleLearnMore = () => {
             <button onClick={handleClick} type="button" className={cls.btn} />
 
             {toggle ? (
+              // eslint-disable-next-line react/jsx-no-useless-fragment
               <></>
             ) : (
               <p>
@@ -44,7 +46,8 @@ export const ToggleLearnMore = () => {
                 какой-то текскт какой-то текскт какой-то текскт какой-то текскт
               </p>
             )}
-          </div>{' '}
+          </div>
+          {' '}
         </div>
       </div>
     </div>
