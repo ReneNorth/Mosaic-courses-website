@@ -1,8 +1,9 @@
-import cls from './SectionInfo.module.scss';
+import { OtherCourses } from '../OtherCourses/OtherCourses';
 import { SteakySidebar } from '../SteakySidebar/SteakySidebar';
 import { TeacherSection } from '../TeacherSection/TeacherSection';
 import { ToggleLearnMore } from '../ToggleLearnMore/ToggleLearnMore';
-import { OtherCourses } from '../OtherCourses/OtherCourses';
+import cls from './SectionInfo.module.scss';
+
 export const SectionInfo = () => {
   return (
     <div className={cls.infoBlock}>
@@ -53,17 +54,6 @@ export const SectionInfo = () => {
           <OtherCourses />
         </div>
         <SteakySidebar />
-        {/* <div className={cls.sidebar}>
-          <div className={cls.innerBlock}>
-            <h3 className={cls.title}> Курс по римской мозайке однодевный</h3> 
-             <p className={cls.coursePrice}> 4 000 ₽ </p> 
-            <p>  Продолжительность: 6 часов</p>
-            <button className={cls.button} type="button">
-              Записаться на курс
-            </button>
-            <div className={cls.gift}> Подарить этот курс</div>
-          </div>
-        </div> */}
       </div>
     </div>
   );
