@@ -1,10 +1,17 @@
+.backgroundImg {
+  width: 1920px;
+  height: 900px;
+  background-image: url(../../images/main-img-course.png);
+  background-repeat: no-repeat;
+}
 .section {
   max-width: 1280px;
   width: 100%;
-
   font-size: 20px;
   margin-left: 320px;
   margin-right: 320px;
+  background-image: url(../../images/main-img-course.png);
+  background-repeat: no-repeat;
 }
 .block {
   margin-top: 43px;
@@ -72,13 +79,6 @@
     z-index: -1;
   }
 }
-.button::before {
-  content: url('../../images/decorationElement.png');
-  display: block;
-  position: absolute;
-  left: -320px;
-  top: 130px;
-}
 
 .wrapper {
   position: relative;
@@ -112,22 +112,6 @@
   top: -143px;
   right: -141px;
   z-index: -1;
-}
-
-.route {
-  display: flex;
-  margin-top: 446px;
-  // list-style: none;
-}
-.routeItems {
-  // list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-.routeItem {
-  text-decoration: none;
-  color: #819286;
 }
 
 // .routeItem:last-child {

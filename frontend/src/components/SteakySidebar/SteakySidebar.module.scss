@@ -17,7 +17,7 @@
   text-align: center;
   align-content: center;
   align-self: center;
-  padding: 173px 71px 38px 71px;
+  padding: 60px 71px 38px 34px;
   font-family: var(--font-primary);
 }
 .title {
@@ -31,22 +31,52 @@
 }
 .duration {
   font-size: 17px;
+  white-space: nowrap;
 }
 .button {
   margin-top: 40px;
   background-color: #247251;
   border-radius: 60px;
-  padding: 8px 20px;
+  padding: 8px 28px;
   color: var(--text-color-invert);
   font-family: var(--font-primary);
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 17px;
   line-height: 20px;
-  position: relative;
+
+  white-space: nowrap;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.buttonOutline {
+  margin-top: 24px;
+  background-color: transparent;
+  border-radius: 60px;
+  padding: 8px 20px;
+  border: 1px solid #247251 !important;
+  color: #247251;
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  white-space: nowrap;
+  line-height: 20px;
+
   cursor: pointer;
 }
 
+.giftContainer {
+  margin-top: 69px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.giftIcon {
+  width: 36px;
+  height: 36px;
+}
 .gift {
-  margin-top: 113px;
 }

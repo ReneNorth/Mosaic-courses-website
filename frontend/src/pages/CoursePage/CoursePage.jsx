@@ -6,7 +6,6 @@ import './CoursePage.module.scss';
 export const CoursePage = () => {
   return (
     <>
-      <CoursePageInfo />
       <SectionInfo />
     </>
   );
