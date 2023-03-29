@@ -1,5 +1,8 @@
+/* eslint-disable import/no-unresolved */
 // eslint-disable-next-line import/no-unresolved
+import { Autoplay, Pagination } from 'swiper';
 import 'swiper/css';
+import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import slide from '../../images/slide1.png';
 import cls from './Slider.module.scss';
@@ -12,8 +15,14 @@ export const Slider = () => {
           className={cls.swiper}
           spaceBetween={40}
           slidesPerView="auto"
-          // onSlideChange={() => console.log('slide change')}
-          // onSwiper={(swiper) => console.log(swiper)}
+          pagination={{
+            clickable: true,
+          }}
+          autoplay={{
+            delay: 3500,
+            disableOnInteraction: false,
+          }}
+          modules={[Pagination, Autoplay]}
         >
           <SwiperSlide className={cls.slide}>
             <img className={cls.image} src={slide} alt="Слайд" />
@@ -21,12 +30,6 @@ export const Slider = () => {
           <SwiperSlide className={cls.slide}>
             <img className={cls.image} src={slide} alt="Слайд" />
           </SwiperSlide>
-          <SwiperSlide className={cls.slide}>
-            <img className={cls.image} src={slide} alt="Слайд" />
-          </SwiperSlide>
-          {/* <SwiperSlide className={cls.slide}>
-            <img className={cls.image} src={slide} alt="Слайд" />
-          </SwiperSlide> */}
         </Swiper>
       </div>
     </section>

@@ -1,7 +1,7 @@
-import cls from './SteakySidebar.module.scss';
 import giftIcon from '../../images/gift-outline.svg';
-import { PickDate } from '../PickDate/PickDate';
 import share from '../../images/share.png';
+import { PickDate } from '../PickDate/PickDate';
+import cls from './SteakySidebar.module.scss';
 
 export const SteakySidebar = () => {
   return (

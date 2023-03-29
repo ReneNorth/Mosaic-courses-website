@@ -1,0 +1,133 @@
+.section {
+  margin-top: 200px;
+  margin-left: 660px;
+  padding-bottom: 332px;
+  max-width: 1920px;
+  width: 100%;
+  display: flex;
+  gap: 110px;
+  overflow: hidden;
+}
+
+.titleContent {
+  max-width: 440px;
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 110%;
+  color: var(--text-color);
+
+  span {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 58px;
+    line-height: 110%;
+    color: var(--text-color-secondary);
+  }
+}
+
+.description {
+  margin-top: 20px;
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 135%;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: var(--text-color);
+}
+
+// .sliderContainer {
+//   // position: relative;
+// }
+
+.swiper {
+  max-width: 1040px;
+  width: 100%;
+  height: 570px;
+
+  :global(.swiper-pagination) {
+    left: var(--swiper-pagination-left, 120px);
+  }
+
+  :global(.swiper-pagination-bullet) {
+    margin: 0 var(--swiper-pagination-bullet-horizontal-gap, 0px) !important;
+    background-color: #247251;
+    width: 80px;
+    height: 2px;
+    border-radius: 0 !important;
+    opacity: 1;
+}
+
+  :global(.swiper-pagination-bullet-active) {
+    margin: 0 var(--swiper-pagination-bullet-horizontal-gap, 0px) !important;
+    background: #247251;
+    width: 80px;
+    height: 7px;
+    border-radius: 0 !important;
+  }
+}
+
+.slide {
+  max-width: 730px;
+  width: 100%;
+
+  &:last-of-type {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.cardWrapper {
+  max-width: 730px;
+  width: 100%;
+  display: flex;
+  background-color: var(--bg-green-primary);
+  border-radius: 20px;
+}
+
+.textWrapper {
+  max-width: 376px;
+  align-self: center;
+  margin: 0 auto;
+}
+
+.cardTitle {
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 120%;
+  color: var(--text-color);
+}
+
+.cardDescription {
+  margin-top: 8px;
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 135%;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: var(--text-color);
+}
+
+.authorContainer {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    font-family: var(--font-primary);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 135%;
+    color: var(--text-color);
+  }
+}

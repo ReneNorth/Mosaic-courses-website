@@ -131,6 +131,8 @@ dmypy.json
 # Project-specific
 .content/
 mosaic/media/*
+my_temp_practicum.py
+
 
 ### react ###
 .DS_*
@@ -162,3 +164,4 @@ node_modules
 .DS_Store
 .idea
 settings.json
+

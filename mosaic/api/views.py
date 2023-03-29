@@ -16,12 +16,20 @@ from api.serializers import (MasterclassSerializer,
                              MasterclassTypeSerializer,
                              BookingSerializer,
                              SchoolSerializer,
-                             PostSerializer,)
+                             PostSerializer,
+                             RequestSerializer,
+                             )
+
+
+class RequestCreateOnlyViewSet(mixins.CreateModelMixin,
+                               viewsets.GenericViewSet):
+    serializer_class = RequestSerializer
+    permission_classes = [AllowAny, ]
+    
 
 
 class MasterclassReadOnlyViewset(viewsets.ReadOnlyModelViewSet):
     serializer_class = MasterclassSerializer
-    # queryset = Masterclass.objects.all()
     permission_classes = [AllowAny, ]
 
     def get_queryset(self):
@@ -70,4 +78,4 @@ class SchoolReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     # подумать как на уровне БД ограничить модель одной записью
     queryset = School.objects.all()
     serializer_class = SchoolSerializer
-    
+    permission_classes = [AllowAny, ]

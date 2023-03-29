@@ -1,0 +1,63 @@
+.block {
+  padding-bottom: 103px;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid #819286;
+}
+
+.otherContainer {
+  margin: 88px auto 0;
+  max-width: 1280px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.linkList {
+  margin-top: 15px;
+  max-width: 128px;
+  display: flex;
+  height: 32px;
+  gap: 16px;
+}
+
+.linkVk {
+  display: block;
+  width: 32px;
+  height: 32px;
+  background-repeat: no-repeat;
+  background-image: url('../../images/icon_vk.svg');
+}
+
+.linkFb {
+  display: block;
+  width: 32px;
+  height: 32px;
+  background-repeat: no-repeat;
+  background-image: url('../../images/icon_facebook.svg');
+}
+
+.linkTg {
+  display: block;
+  width: 32px;
+  height: 32px;
+  background-repeat: no-repeat;
+  background-image: url('../../images/icon_telegram.svg');
+}
+
+.navList {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 40px 56px;
+}
+
+.navlink {
+  text-decoration: none;
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 135%;
+  color: var(--text-color);
+}

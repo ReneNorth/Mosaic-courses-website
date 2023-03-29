@@ -16,7 +16,9 @@ if LOCAL_DEV is False:
 
 KEY_ENV = os.getenv('SECRET_KEY')
 SECRET_KEY = f'{KEY_ENV}'
-ALLOWED_HOSTS = ['*', 'web', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['*', 'web', '127.0.0.1', 'localhost',
+                 '[::1]', 'testserver',
+                 ]
 
 
 INSTALLED_APPS = [
