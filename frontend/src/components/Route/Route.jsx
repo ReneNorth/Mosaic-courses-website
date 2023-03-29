@@ -35,7 +35,7 @@ export const Route = () => {
           </a>
         </li>
         <li>
-          <a href="!#" className={cls.routeItem}>
+          <a href="!#" className={cls.routeItemGreen}>
             {' '}
             Курс по Римской мозайке
           </a>

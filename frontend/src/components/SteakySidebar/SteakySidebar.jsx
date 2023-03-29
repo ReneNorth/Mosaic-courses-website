@@ -1,9 +1,15 @@
 import cls from './SteakySidebar.module.scss';
 import giftIcon from '../../images/gift-outline.svg';
 import { PickDate } from '../PickDate/PickDate';
+import share from '../../images/share.png';
+
 export const SteakySidebar = () => {
   return (
     <div className={cls.sidebar}>
+      <a href="!#" className={cls.shareItem}>
+        <img className={cls.share} src={share} alt="ссылка" />
+      </a>
+
       <div className={cls.innerBlock}>
         <h3 className={cls.title}> Курс по римской мозайке однодевный</h3>   
         <p className={cls.coursePrice}> 4 000 ₽ </p> 

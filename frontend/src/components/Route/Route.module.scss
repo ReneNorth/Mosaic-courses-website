@@ -1,10 +1,8 @@
 .route {
   display: flex;
   margin-top: 446px;
-  // list-style: none;
 }
 .routeItems {
-  // list-style: none;
   display: flex;
   gap: 20px;
 }
@@ -12,4 +10,16 @@
 .routeItem {
   text-decoration: none;
   color: #819286;
+  justify-content: center;
+  align-content: center;
+}
+.routeItemGreen {
+  text-decoration: none;
+  color: #6aaf12;
+  justify-content: center;
+  align-content: center;
+}
+.indicator {
+  text-align: center;
+  margin-top: 5px;
 }

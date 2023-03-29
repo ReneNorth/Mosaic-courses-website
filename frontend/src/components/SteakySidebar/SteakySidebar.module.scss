@@ -10,14 +10,18 @@
 
   background-color: #ccdac6;
 }
+.share {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
 .innerBlock {
   max-width: 400px;
   height: 580px;
   justify-content: center;
   text-align: center;
-  align-content: center;
-  align-self: center;
-  padding: 60px 71px 38px 34px;
+
+  padding: 173px 77px 38px 77px;
   font-family: var(--font-primary);
 }
 .title {
