@@ -21,22 +21,21 @@ export const OtherCourses = () => {
             </h4>
             <div className={cls.wrapperAtribut}>
               <div className={cls.priceContainer}>
-                <div className={cls.iconContainer}>
-                  <div className={cls.timeIcon} />
-                </div>
+                {/* <div className={cls.iconContainer}> */}
+                <div className={cls.timeIcon} />
+                {/* </div> */}
                 <p>3 часа</p>
               </div>
               <div className={cls.priceContainer}>
-                <div className={cls.iconContainer}>
-                  <div className={cls.rubleIcon} />
-                </div>
+                <div className={cls.rubleIcon} />
+
                 <p>4000 рублей</p>
               </div>
             </div>
 
             <p className={cls.description}>
-              Мы делаем рисование доступным с помощью пошаговой программы
-              и вовлечённых преподавателей.
+              Мы делаем рисование доступным с помощью пошаговой программы и
+              вовлечённых преподавателей.
             </p>
             <button className={cls.btnWhite} type="button">
               Узнать подробнее
@@ -57,21 +56,21 @@ export const OtherCourses = () => {
             </h4>
             <div className={cls.wrapperAtribut}>
               <div className={cls.priceContainer}>
-                <div className={cls.iconContainer}>
-                  <div className={cls.timeIcon} />
-                </div>
+                {/* <div className={cls.iconContainer}> */}
+                <div className={cls.timeIcon} />
+                {/* </div> */}
                 <p>3 часа</p>
               </div>
               <div className={cls.priceContainer}>
-                <div className={cls.iconContainer}>
-                  <div className={cls.rubleIcon} />
-                </div>
+                {/* <div className={cls.iconContainer}> */}
+                <div className={cls.rubleIcon} />
+                {/* </div> */}
                 <p>4000 рублей</p>
               </div>
             </div>
             <p className={cls.description}>
-              Мы делаем рисование доступным с помощью пошаговой программы
-              и вовлечённых преподавателей.
+              Мы делаем рисование доступным с помощью пошаговой программы и
+              вовлечённых преподавателей.
             </p>
 
             <button className={cls.btnWhite} type="button">
