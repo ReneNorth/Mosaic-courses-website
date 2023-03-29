@@ -3,9 +3,5 @@ import { CoursePageFinal } from '../../components/CoursePageFinal/CoursePageFina
 import './CoursePage.module.scss';
 
 export const CoursePage = () => {
-  return (
-    <>
-      <CoursePageFinal />
-    </>
-  );
+  return <CoursePageFinal />;
 };
