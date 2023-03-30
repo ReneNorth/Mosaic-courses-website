@@ -1,10 +1,5 @@
 .section {
-  max-width: 1280px;
-  width: 100%;
-
   font-size: 20px;
-  margin-left: 320px;
-  margin-right: 320px;
 }
 .block {
   margin-top: 43px;
@@ -12,13 +7,10 @@
   justify-content: space-between;
 }
 .headerTitle {
-  margin-top: 88px;
   width: 716px;
   font-family: var(--font-primary);
 }
 .headerName {
-  margin-left: 0px;
-
   font-family: var(--font-primary);
   font-style: normal;
   font-weight: 700;
@@ -26,7 +18,6 @@
   line-height: 110%;
 }
 .courseName {
-  margin-left: 0px;
   text-transform: lowercase;
   font-size: 58px;
   font-style: italic;
@@ -78,38 +69,4 @@
   position: absolute;
   left: -320px;
   top: 130px;
-}
-
-.wrapper {
-  position: relative;
-  z-index: 10;
-}
-
-.image {
-  max-width: 426px;
-  width: 100%;
-  z-index: 100;
-}
-
-.radius {
-  width: 440px;
-  height: 605px;
-  position: absolute;
-  top: 11px;
-  right: 0;
-  border: 1px solid #000000;
-  border-radius: 600px 600px 0px 0px;
-  z-index: -1;
-}
-
-.rectangle {
-  display: block;
-  max-width: 326px;
-  width: 100%;
-  height: 444px;
-  background-color: #ccdac6;
-  position: absolute;
-  top: -143px;
-  right: -141px;
-  z-index: -1;
 }

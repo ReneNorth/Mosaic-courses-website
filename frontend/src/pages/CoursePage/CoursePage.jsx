@@ -4,10 +4,5 @@ import './CoursePage.module.scss';
 import { TeacherSection } from '../../components/TeacherSection/TeacherSection';
 
 export const CoursePage = () => {
-  return (
-    <>
-      <CoursePageFinal />
-      <TeacherSection />
-    </>
-  );
+  return <CoursePageFinal />;
 };

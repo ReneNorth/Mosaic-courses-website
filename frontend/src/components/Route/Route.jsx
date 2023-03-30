@@ -1,5 +1,5 @@
-import indicator from '../../images/indicator.svg';
 import cls from './Route.module.scss';
+import indicator from '../../images/indicator.svg';
 
 export const Route = () => {
   return (
@@ -35,7 +35,7 @@ export const Route = () => {
           </a>
         </li>
         <li>
-          <a href="!#" className={cls.routeItem}>
+          <a href="!#" className={cls.routeItemGreen}>
             {' '}
             Курс по Римской мозайке
           </a>

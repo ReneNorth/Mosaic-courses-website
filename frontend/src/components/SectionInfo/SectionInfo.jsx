@@ -1,9 +1,9 @@
 import cls from './SectionInfo.module.scss';
 
-import { TeacherSection } from '../TeacherSection/TeacherSection';
-import { ToggleLearnMore } from '../ToggleLearnMore/ToggleLearnMore';
 import { OtherCourses } from '../OtherCourses/OtherCourses';
 import { Route } from '../Route/Route';
+import { TeacherSection } from '../TeacherSection/TeacherSection';
+import { ToggleLearnMore } from '../ToggleLearnMore/ToggleLearnMore';
 
 export const SectionInfo = () => {
   return (
