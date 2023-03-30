@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image {
+  max-width: 550px;
+  width: 100%;
+}
+
+.titleWrapper {
+  max-width: 620px;
+  width: 100%;
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 38px;
+  color: var(--text-color)
+}
+
+.description {
+  margin-top: 24px;
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 20px;
+  color: var(--text-color)
+}

@@ -1,4 +1,3 @@
-import coursePageMain from '../../images/course-page-main.png';
 import cls from './CoursePageInfo.module.scss';
 
 export const CoursePageInfo = () => {
@@ -18,15 +17,6 @@ export const CoursePageInfo = () => {
           <button className={cls.button} type="button">
             Записаться на курс
           </button>
-        </div>
-        <div className={cls.wrapper}>
-          <img
-            className={cls.image}
-            src={coursePageMain}
-            alt="Промо картинка"
-          />
-          <div className={cls.radius} />
-          <div className={cls.rectangle} />
         </div>
       </div>
     </div>

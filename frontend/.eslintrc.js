@@ -14,12 +14,9 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-    'react-hooks',
-  ],
+  plugins: ['react', 'react-hooks'],
   rules: {
-    'linebreak-style': ['error', 'windows'],
+    'linebreak-style': ['error', 'unix'],
     'arrow-body-style': ['off'],
     'react/jsx-indent': [2, 2],
     'react/jsx-indent-props': [2, 2],

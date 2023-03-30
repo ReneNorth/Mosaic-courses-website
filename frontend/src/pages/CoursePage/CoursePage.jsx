@@ -1,13 +1,13 @@
-import { CoursePageInfo } from '../../components/CoursePageInfo/CoursePageInfo';
-import { SectionInfo } from '../../components/SectionInfo/SectionInfo';
+import { CoursePageFinal } from '../../components/CoursePageFinal/CoursePageFinal';
 
 import './CoursePage.module.scss';
+import { TeacherSection } from '../../components/TeacherSection/TeacherSection';
 
 export const CoursePage = () => {
   return (
     <>
-      <CoursePageInfo />
-      <SectionInfo />
+      <CoursePageFinal />
+      <TeacherSection />
     </>
   );
 };

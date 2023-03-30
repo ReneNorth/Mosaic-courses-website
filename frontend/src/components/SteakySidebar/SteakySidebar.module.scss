@@ -1,26 +1,31 @@
 .sidebar {
   box-sizing: border-box;
 
-  top: 244px;
+  top: 0px;
   display: block;
   position: sticky;
   -webkit-position: sticky;
-  max-width: 500px;
+  max-width: 400px;
   height: 580px;
 
   background-color: #ccdac6;
 }
+.share {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
 .innerBlock {
-  display: flex;
-  flex-direction: column;
+  max-width: 400px;
+  height: 580px;
+  justify-content: center;
   text-align: center;
 
-  padding: 60px 71px 38px 71px;
+  padding: 173px 77px 38px 77px;
   font-family: var(--font-primary);
 }
 .title {
   text-align: center;
-
   font-weight: 700;
   font-size: 20px;
   line-height: 120%;
@@ -30,55 +35,52 @@
 }
 .duration {
   font-size: 17px;
+  white-space: nowrap;
 }
 .button {
   margin-top: 40px;
   background-color: #247251;
   border-radius: 60px;
-  padding: 10px 40px;
-  white-space: nowrap;
+  padding: 8px 28px;
   color: var(--text-color-invert);
   font-family: var(--font-primary);
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 17px;
-  line-height: 135%;
+  line-height: 20px;
+
+  white-space: nowrap;
   cursor: pointer;
+  white-space: nowrap;
 }
 .buttonOutline {
   margin-top: 24px;
   background-color: transparent;
   border-radius: 60px;
-  padding: 10px 40px;
-  white-space: nowrap;
+  padding: 8px 20px;
+  border: 1px solid #247251 !important;
   color: #247251;
   font-family: var(--font-primary);
   font-style: normal;
-  border: 1px solid #247251 !important;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 17px;
-  line-height: 135%;
+  white-space: nowrap;
+  line-height: 20px;
+
   cursor: pointer;
 }
 
-.giftGroup {
-  display: flex;
+.giftContainer {
   margin-top: 69px;
-  gap: 10px;
+  display: flex;
+  gap: 12px;
   justify-content: center;
   align-content: center;
   align-items: center;
 }
-.gift {
-  font-weight: 500;
-  color: #000;
-}
-
 .giftIcon {
-  align-self: center;
   width: 36px;
   height: 36px;
-  background-image: url('../../images/gift.svg');
-  background-repeat: no-repeat;
-  background-position: center;
+}
+.gift {
 }
