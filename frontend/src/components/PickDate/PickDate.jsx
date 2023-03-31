@@ -9,6 +9,7 @@ export const PickDate = () => {
   return (
     <div>
       <DatePicker
+        className={cls.pick}
         wrapperClassName="picker"
         selected={selectedDate}
         onChange={(date) => setSelectedDate(date)}

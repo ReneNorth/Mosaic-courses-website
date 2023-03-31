@@ -11,9 +11,9 @@ export const SteakySidebar = () => {
       </a>
 
       <div className={cls.innerBlock}>
-        <h3 className={cls.title}> Курс по римской мозайке однодевный</h3>   
-        <p className={cls.coursePrice}> 4 000 ₽ </p> 
-        <p className={cls.duration}>  Продолжительность: 6 часов</p>
+        <h3 className={cls.title}> Курс по римской мозайке однодевный</h3>
+        <p className={cls.coursePrice}> 4 000₽ </p>
+        <p className={cls.duration}>Продолжительность: 6 часов</p>
         <PickDate />
         <button className={cls.button} type="button">
           Записаться на курс
