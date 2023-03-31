@@ -1,16 +1,58 @@
-.containerHeading {
-  font-size: 32px;
-  font-family: var(--font-primary);
-  font-weight: 700;
-  margin-bottom: 20px;
-  margin-top: 88px;
-  margin-left: 0px;
+.main {
+  max-width: 1280px;
+  width: 100%;
 }
-.containerInfo {
+
+.mainSection {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.notFoundText {
+  font-family: var(--font-primary);
+  font-size: 32px;
+  line-height: 135%;
+  text-align: center;
+
+  margin-top: 83px;
+}
+.instruction {
+  font-weight: 400;
+
+  font-size: 17px;
+  line-height: 135%;
+  text-align: center;
+  font-family: var(--font-primary);
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  margin-top: 20px;
+}
+.buttonContainer {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 17px;
+  font-weight: 500;
+  font-family: var(--font-primary);
+  font-style: normal;
+}
+
+button {
+  padding: 16.5px 40px;
+  cursor: pointer;
+  background-color: var(--btn-color);
+  color: var(--text-color-invert);
+  line-height: 135%;
+  border-radius: 60px;
+}
+
+.groupOFCouses {
   display: flex;
   gap: 40px;
   max-width: 400px;
-  margin-top: 16px;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 .courseName {
   font-family: var(--font-primary);
@@ -93,10 +135,7 @@
   display: block;
   box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.6);
 }
-.contanerCourseOne,
-.contanerCourseTwo {
-  margin-bottom: 100px;
-}
+
 .btnWhite {
   margin-top: 40px;
   box-sizing: border-box;
