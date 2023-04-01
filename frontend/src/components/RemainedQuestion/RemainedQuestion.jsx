@@ -15,9 +15,12 @@ export const RemainedQuestion = () => {
             Если вы не уверены в выборе занятия, наш менеджер поможет вам
             определиться, исходя из вашего уровня подготовки и пожеланий.
           </p>
-          <button className={cls.btn} type="button">
-            Заказать обратный звонок
-          </button>
+          <div className={cls.btnWrapper}>
+            <button className={cls.btn} type="button">
+              Заказать обратный звонок
+            </button>
+            <div className={cls.btnBorder} />
+          </div>
         </div>
         <div className={cls.imgWrapper}>
           <img className={cls.image} src={image} alt="Мозаика" />
