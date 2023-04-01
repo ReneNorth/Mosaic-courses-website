@@ -4,7 +4,7 @@ from django.core.files.base import ContentFile
 from booking.models import Booking
 from blog.models import Post
 from school.models import School, Approach, Question, Advatage, Review
-from crm_app.models import Request
+from crm_app.models import Feedback_request
 from masterclass.models import Masterclass, MasterclassType
 from rest_framework import serializers
 
@@ -21,7 +21,7 @@ class Base64ImageField(serializers.ImageField):
 
 class RequestSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Request
+        model = Feedback_request
         fields = ['name', 'phone_num', 'comment', 'contact_consent']
         extra_kwargs = {
             'contact_consent': {'required': True}

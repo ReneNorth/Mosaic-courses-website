@@ -2,7 +2,7 @@ from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
 
-class Request(models.Model):
+class Feedback_request(models.Model):
     """Class for customer requests for feedback in the 'contact me' forms."""
 
     name = models.CharField(max_length=50)
