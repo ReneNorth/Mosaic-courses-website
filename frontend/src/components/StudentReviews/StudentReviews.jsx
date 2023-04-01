@@ -1,3 +1,4 @@
+import { Pagination } from 'swiper';
 // eslint-disable-next-line import/no-unresolved
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -26,6 +27,10 @@ export const StudentReviews = () => {
           loop
           spaceBetween={40}
           slidesPerView="auto"
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Pagination]}
         >
           <SwiperSlide className={cls.slide}>
             <div className={cls.cardWrapper}>

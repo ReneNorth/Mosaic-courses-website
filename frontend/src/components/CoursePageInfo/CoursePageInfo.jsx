@@ -1,5 +1,3 @@
-import coursePageMain from '../../images/course-page-main.png';
-import indicator from '../../images/indicator.svg';
 import cls from './CoursePageInfo.module.scss';
 
 export const CoursePageInfo = () => {
@@ -19,54 +17,6 @@ export const CoursePageInfo = () => {
           <button className={cls.button} type="button">
             Записаться на курс
           </button>
-          <div className={cls.route}>
-            <ul className={cls.routeItems}>
-              <li>
-                <a href="!#" className={cls.routeItem}>
-                  Главная
-                </a>
-              </li>
-              <li>
-                <a href="!#" className={cls.routeItem}>
-                  <img
-                    className={cls.indicator}
-                    src={indicator}
-                    alt="Промо картинка"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="!#" className={cls.routeItem}>
-                  {' '}
-                  Курсы
-                </a>
-              </li>
-              <li>
-                <a href="!#" className={cls.routeItem}>
-                  <img
-                    className={cls.indicator}
-                    src={indicator}
-                    alt="Промо картинка"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="!#" className={cls.routeItem}>
-                  {' '}
-                  Курс по Римской мозайке
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className={cls.wrapper}>
-          <img
-            className={cls.image}
-            src={coursePageMain}
-            alt="Промо картинка"
-          />
-          <div className={cls.radius} />
-          <div className={cls.rectangle} />
         </div>
       </div>
     </div>

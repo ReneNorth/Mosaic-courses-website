@@ -36,22 +36,36 @@
   display: flex;
   gap: 40px;
 }
+.iconContainer {
+  align-self: center;
+}
 
 .priceContainer {
+  display: flex;
   flex-direction: row;
   justify-content: center;
-  display: flex;
+
   align-items: center;
   gap: 8px;
+
+  p {
+    align-items: center;
+    font-family: var(--font-primary);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 20px;
+  }
 }
 
 .timeIcon {
-  align-self: center;
+  margin-top: 6px;
+  margin-right: 8px;
   width: 32px;
   height: 32px;
   background-image: url('../../images/time.svg');
   background-repeat: no-repeat;
-  padding: 5px;
+  padding: 4px;
 }
 
 .rubleIcon {
@@ -86,11 +100,12 @@
 .btnWhite {
   margin-top: 40px;
   box-sizing: border-box;
-  border: 1px solid #000000 !important;
+  border: 1px solid #247251 !important;
   background-color: transparent;
   padding: 10px 40px 10px 40px;
   cursor: pointer;
   font-family: var(--font-primary);
+  color: #247251;
   font-style: normal;
   font-weight: 400;
   font-size: 17px;

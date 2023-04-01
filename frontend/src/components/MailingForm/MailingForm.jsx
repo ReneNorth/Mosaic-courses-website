@@ -8,9 +8,12 @@ export const MailingForm = () => {
       </h4>
       <form className={cls.form}>
         <input className={cls.input} type="email" placeholder="E-MAIL" />
-        <button className={cls.submit} type="submit">
-          Подписаться на рассылку
-        </button>
+        <div className={cls.btnWrapper}>
+          <button className={cls.submit} type="submit">
+            Подписаться на рассылку
+          </button>
+          <div className={cls.btnBorder} />
+        </div>
       </form>
     </div>
   );

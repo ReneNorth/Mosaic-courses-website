@@ -94,10 +94,11 @@
 
 .timeIcon {
   align-self: center;
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
   background-image: url('../../images/time.svg');
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .rubleIcon {
@@ -137,7 +138,7 @@
 
 .btnBlack {
   background-color: var(--btn-color);
-  color: #FFF;
+  color: #fff;
 }
 
 .btnWhite {
