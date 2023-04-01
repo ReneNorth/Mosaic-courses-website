@@ -1,0 +1,24 @@
+.NotFoundElement {
+  margin-top: 89px;
+  max-width: 1280px;
+  display: flex;
+  gap: 50px;
+}
+
+.four {
+  display: block;
+  position: relative;
+}
+
+.NotFoundImg {
+  width: 100%;
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+.zero {
+  position: absolute;
+  top: 200px;
+  left: 610px;
+  z-index: -1;
+}
