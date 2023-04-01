@@ -6,6 +6,7 @@ from blog.models import Post
 from school.models import School, Approach, Question, Advatage, Review
 from crm_app.models import Feedback_request
 from masterclass.models import Masterclass, MasterclassType
+from carousel.models import CarouselItem
 from rest_framework import serializers
 
 
@@ -120,3 +121,9 @@ class SchoolSerializer(serializers.ModelSerializer):
                   'approach',
                   'reviews',
                   ]
+
+
+class CarouselSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CarouselItem
+        fields = ['link', 'test', 'button', 'order', 'carousel_type']

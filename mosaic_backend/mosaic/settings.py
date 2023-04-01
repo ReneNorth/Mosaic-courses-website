@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'booking.apps.BookingConfig',
     'crm_app.apps.CrmAppConfig',
     'marketplace.apps.MarketplaceConfig',
+    'carousel.apps.CarouselConfig',
     'masterclass.apps.MasterclassConfig',
     'school.apps.SchoolConfig',
     'users.apps.UsersConfig',
