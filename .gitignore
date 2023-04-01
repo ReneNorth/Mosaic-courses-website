@@ -1,3 +1,5 @@
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -130,7 +132,7 @@ dmypy.json
 
 # Project-specific
 .content/
-mosaic/media/*
+mosaic/media/
 my_temp_practicum.py
 
 
