@@ -53,6 +53,7 @@ export const SectionInfo = () => {
 
           <ToggleLearnMore />
           <TeacherSection />
+          <h3 className={cls.containerHeading}>Также покупают</h3>
           <OtherCourses />
         </div>
       </div>

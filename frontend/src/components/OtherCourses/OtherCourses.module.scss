@@ -1,16 +1,7 @@
-.containerHeading {
-  font-size: 32px;
-  font-family: var(--font-primary);
-  font-weight: 700;
-  margin-bottom: 20px;
-  margin-top: 88px;
-  margin-left: 0px;
-}
 .containerInfo {
   display: flex;
   gap: 40px;
-  max-width: 400px;
-  margin-top: 16px;
+  max-width: 840px;
 }
 .courseName {
   font-family: var(--font-primary);
@@ -93,10 +84,7 @@
   display: block;
   box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.6);
 }
-.contanerCourseOne,
-.contanerCourseTwo {
-  margin-bottom: 100px;
-}
+
 .btnWhite {
   margin-top: 40px;
   box-sizing: border-box;

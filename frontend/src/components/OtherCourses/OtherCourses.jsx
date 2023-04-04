@@ -5,7 +5,6 @@ import cls from './OtherCourses.module.scss';
 export const OtherCourses = () => {
   return (
     <div className={cls.section}>
-      <h3 className={cls.containerHeading}> Также покупают</h3>
       <div className={cls.containerInfo}>
         <div className={cls.contanerCourseOne}>
           <div className={cls.wrapper}>

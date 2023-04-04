@@ -1,6 +1,7 @@
 import { SectionInfo } from '../SectionInfo/SectionInfo';
 import { CoursePageInfo } from '../CoursePageInfo/CoursePageInfo';
-import { SteakySidebar } from '../SteakySidebar/SteakySidebar';
+import { StickySidebar } from '../StickySidebar/StickySidebar';
+
 import cls from './CoursePageFinal.module.scss';
 
 export const CoursePageFinal = () => {
@@ -10,7 +11,7 @@ export const CoursePageFinal = () => {
         <CoursePageInfo />
         <SectionInfo />
       </div>
-      <SteakySidebar />
+      <StickySidebar />
     </div>
   );
 };

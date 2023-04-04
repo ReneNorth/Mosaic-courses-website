@@ -1,4 +1,5 @@
 import cls from './CoursePageInfo.module.scss';
+import decorationElement from '../../images/decorationElement.png';
 
 export const CoursePageInfo = () => {
   return (
@@ -14,9 +15,11 @@ export const CoursePageInfo = () => {
               требуется.
             </p>
           </div>
-          <button className={cls.button} type="button">
-            Записаться на курс
-          </button>
+          <img
+            className={cls.decorationElement}
+            src={decorationElement}
+            alt="Промо картинка"
+          />
         </div>
       </div>
     </div>

@@ -38,7 +38,7 @@
   font-style: normal;
 }
 
-button {
+.btn {
   padding: 16.5px 40px;
   cursor: pointer;
   background-color: var(--btn-color);
@@ -50,9 +50,9 @@ button {
 .groupOFCouses {
   display: flex;
   gap: 40px;
-  max-width: 400px;
-  margin-top: 100px;
-  margin-bottom: 100px;
+
+  margin-top: 200px;
+  margin-bottom: 200px;
 }
 .courseName {
   font-family: var(--font-primary);
@@ -135,7 +135,10 @@ button {
   display: block;
   box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.6);
 }
-
+.contanerCourseOne,
+.contanerCourseTwo {
+  margin-bottom: 100px;
+}
 .btnWhite {
   margin-top: 40px;
   box-sizing: border-box;

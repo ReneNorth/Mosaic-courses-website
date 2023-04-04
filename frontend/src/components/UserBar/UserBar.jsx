@@ -7,10 +7,13 @@ export const UserBar = () => {
   return (
     <ul className={cls.list}>
       <li>
-        <button className={cls.btn} type="button" />
+        <button className={cls.search} type="button" />
       </li>
       <li>
-        <Link className={classNames(cls.link, {}, [cls.profile])} to="/profile" />
+        <Link
+          className={classNames(cls.link, {}, [cls.profile])}
+          to="/profile"
+        />
       </li>
       <li>
         <Link className={classNames(cls.link, {}, [cls.cart])} to="/cart" />

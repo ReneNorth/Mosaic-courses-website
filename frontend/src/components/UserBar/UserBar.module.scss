@@ -4,12 +4,12 @@
   max-width: 156px;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  gap: 20px;
   align-items: center;
   list-style-type: none;
 }
 
-.btn {
+.search {
   width: 32px;
   height: 32px;
   background-image: url('../../images/search.svg');

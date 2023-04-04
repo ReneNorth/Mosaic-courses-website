@@ -1,15 +1,29 @@
-.sidebar {
-  box-sizing: border-box;
-
-  top: 0px;
+.section {
   display: block;
   position: sticky;
   -webkit-position: sticky;
+  box-sizing: border-box;
+  top: 88px;
   max-width: 400px;
   height: 580px;
-
   background-color: #ccdac6;
+  border-radius: 20px;
 }
+
+.sidebar {
+  &::after {
+    content: '';
+    width: 400px;
+    height: 580px;
+    border: 1px solid #000;
+    top: 16px;
+    left: -16px;
+    position: absolute;
+    border-radius: 20px;
+    z-index: -1;
+  }
+}
+
 .share {
   position: absolute;
   top: 24px;
