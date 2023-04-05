@@ -5,17 +5,16 @@
 
   &::before {
     content: '';
-    background-image: url('../../images/promo_mosaic-unit.png');
+    background-image: url('../../images/AllCoursesDecor.png');
     background-repeat: no-repeat;
     max-width: 390px;
     width: 100%;
     height: 100%;
     position: absolute;
     left: -320px;
-    top: 541px;
+    top: 521px;
   }
 }
-
 .block {
   margin-top: 35px;
   display: flex;
@@ -62,33 +61,6 @@
   color: var(--text-color-secondary);
 }
 
-.button {
-  margin-top: 40px;
-  background-color: var(--btn-color);
-  border-radius: 60px;
-  padding: 18px 40px;
-  color: var(--text-color-invert);
-  font-family: var(--font-primary);
-  font-style: normal;
-  font-weight: 400;
-  font-size: 17px;
-  line-height: 20px;
-  position: relative;
-  cursor: pointer;
-
-  &:after {
-    content: '';
-    width: 100%;
-    height: 56px;
-    position: absolute;
-    left: 8px;
-    top: 10px;
-    border: 1px solid #000000;
-    border-radius: 100px;
-    z-index: -1;
-  }
-}
-
 .wrapper {
   position: relative;
   z-index: 10;
@@ -121,4 +93,35 @@
   top: -143px;
   right: -141px;
   z-index: -1;
+}
+
+.courses {
+  margin-top: 121px;
+  margin-bottom: 200px;
+}
+
+.route {
+  display: flex;
+  margin-top: 188px;
+}
+.routeItems {
+  display: flex;
+  gap: 20px;
+}
+
+.routeItem {
+  text-decoration: none;
+  color: #819286;
+  justify-content: center;
+  align-content: center;
+}
+.routeItemGreen {
+  text-decoration: none;
+  color: #6aaf12;
+  justify-content: center;
+  align-content: center;
+}
+.indicator {
+  text-align: center;
+  margin-top: 5px;
 }

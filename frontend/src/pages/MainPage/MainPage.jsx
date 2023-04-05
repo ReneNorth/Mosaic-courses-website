@@ -1,7 +1,7 @@
 import { AboutTeach } from '../../components/AboutTeach/AboutTeach';
 import { AboutUs } from '../../components/AboutUs/AboutUs';
 import { AnswersToQuestions } from '../../components/AnswersToQuestions/AnswersToQuestions';
-import { ChoiseCourse } from '../../components/ChoiseCourse/ChoiseCourse';
+import { ChooseCourseFinal } from '../../components/ChooseCourseFinal/ChooseCourseFinal';
 import { Gallery } from '../../components/Gallery/Gallery';
 import { MainPromo } from '../../components/MainPromo/MainPromo';
 import { Reasons } from '../../components/Reasons/Reasons';
@@ -17,7 +17,7 @@ export const MaingPage = () => {
       <AboutUs />
       <Reasons />
       <Gallery />
-      <ChoiseCourse />
+      <ChooseCourseFinal />
       <AboutTeach />
       <AnswersToQuestions />
       <RemainedQuestion />

@@ -6,15 +6,6 @@ import cls from './ChoiseCourse.module.scss';
 export const ChoiseCourse = () => {
   return (
     <section className={cls.section}>
-      <div className={cls.titleWrapper}>
-        <h2 className={cls.title}>
-          Выбери свой
-          <span> курс</span>
-        </h2>
-        <button className={cls.titleBtn} type="button">
-          Смотреть все курсы
-        </button>
-      </div>
       <ul className={cls.list}>
         <li className={cls.item}>
           <img className={cls.img} src={imageOne} alt="карточка курса" />
