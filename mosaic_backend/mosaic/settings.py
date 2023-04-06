@@ -7,7 +7,7 @@ from datetime import timedelta
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-LOCAL_DEV = False
+LOCAL_DEV = True
 DEBUG = True
 
 
@@ -96,8 +96,8 @@ if LOCAL_DEV is True:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'mosaic',
-            'USER': 'mosaic_admin',
+            'NAME': 'postgres',
+            'USER': 'postgres',
             'PASSWORD': 'mosaic_admin',
             'HOST': 'db',
             'PORT': '5432'
