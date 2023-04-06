@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@pbe/react-yandex-maps": "^1.2.3",
@@ -54,5 +55,6 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-webpack-plugin": "^4.0.0",
     "sass": "^1.58.3"
-  }
+  },
+  "proxy": "http://127.0.1.:8000"
 }

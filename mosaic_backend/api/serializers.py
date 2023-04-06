@@ -45,6 +45,8 @@ class MasterclassSerializer(serializers.ModelSerializer):
 
 
 class MasterclassTypeSerializer(serializers.ModelSerializer):
+    """ тут что-то рассказано про конкретно этот сериализтор
+    от"""
     masterclasses = MasterclassSerializer(many=True, read_only=True)
     # full_description =
 
