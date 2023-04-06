@@ -16,6 +16,7 @@ Clone the repository.
 Install Docker and Docker Compose.
 Run the following command to build the project's Docker containers:
 ```console
+cd infra/
 docker-compose up --build -d
 ```
 
