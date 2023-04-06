@@ -1,17 +1,15 @@
-.section {
+.sidebar {
   display: block;
   position: sticky;
   -webkit-position: sticky;
   box-sizing: border-box;
-  top: 88px;
+  top: 0;
   max-width: 400px;
   height: 580px;
   background-color: #ccdac6;
   border-radius: 20px;
-}
 
-.sidebar {
-  &::after {
+  ::after {
     content: '';
     width: 400px;
     height: 580px;
@@ -21,6 +19,7 @@
     position: absolute;
     border-radius: 20px;
     z-index: -1;
+    overflow: visible;
   }
 }
 

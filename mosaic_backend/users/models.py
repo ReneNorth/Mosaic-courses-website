@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from phonenumber_field.modelfields import PhoneNumberField
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 
 
 # https://stackoverflow.com/questions/54233005/error-in-superuser-creation-not-null-constraint-failed
@@ -36,3 +39,14 @@ class User(AbstractUser):
             models.UniqueConstraint(fields=['username', 'email'],
                                     name='unique_user')
         ]
+        
+        
+    # @action(detail=False,
+    #         methods=['GET', ],
+    #         permission_classes=[IsAuthenticated, ],
+    #         url_path='me',)
+    # def get_me(self, request):
+    #     user = get_object_or_404(User, pk=request.user.pk)
+    #     return Response(UserReadOnlySerializer(
+    #         user,
+    #         context={'request': request}).data, status=status.HTTP_200_OK)
