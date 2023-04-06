@@ -73,4 +73,4 @@ class FeedbackTest(TestCase):
         response = view(request)
         # self.assertEqual(response.status, 200)
         print(response)
-        print(Feedback_request.objects.get(phone='+77770202936'))
+        print(Feedback_request.objects.get(phone_num='+77770202936'))
