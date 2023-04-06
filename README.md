@@ -10,20 +10,6 @@ Website for Mosaic Courses that utilizes React and Django. It allows users to vi
 - nginx
 - GitHub Actions
 
-### 
-
-Создать юзера
-http://127.0.0.1:8000/api/v1/users/
-
-
-### Docs 
-Дока тут -> <http://127.0.0.1:8000>/swagger/
-часть ссылки в <> зависит от того как ты запустил проект 
-Если локально на порте 8000, то будет http://127.0.0.1:8000/swagger/
-
-drf-yasg
-Swagger
-
 
 ### Installation
 Clone the repository.
