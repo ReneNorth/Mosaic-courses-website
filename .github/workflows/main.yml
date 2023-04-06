@@ -1,6 +1,8 @@
 name: Mosaic-app workflow
 
-on: [push]
+on: 
+  push:
+    branches: [ backend ]
 jobs:
   tests:
     runs-on: ubuntu-latest
