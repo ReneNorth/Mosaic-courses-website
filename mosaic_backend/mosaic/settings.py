@@ -99,7 +99,7 @@ if LOCAL_DEV is True:
             'NAME': 'mosaic',
             'USER': 'mosaic_admin',
             'PASSWORD': 'mosaic_admin',
-            'HOST': 'localhost',
+            'HOST': 'db',
             'PORT': '5432'
         }
     }
