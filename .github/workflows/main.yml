@@ -18,14 +18,12 @@ jobs:
         python -m pip install --upgrade pip
         cd mosaic_backend/
         pip install -r requirements.txt 
-        pwd
 
 # pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort
 
     - name: Test with flake8 and django tests
       run: |
-        pwd
-        ls
+
         cd mosaic_backend
         python manage.py test
 

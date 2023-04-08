@@ -7,7 +7,7 @@ from datetime import timedelta
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-LOCAL_DEV = True
+LOCAL_DEV = False
 DEBUG = True
 
 
@@ -92,14 +92,13 @@ WSGI_APPLICATION = 'mosaic.wsgi.application'
 
 
 if LOCAL_DEV is True:
-    print('LOCAL DEV')
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'postgres',
-            'USER': 'postgres',
+            'NAME': 'mosaic',
+            'USER': 'mosaic_admin',
             'PASSWORD': 'mosaic_admin',
-            'HOST': 'db',
+            'HOST': 'localhost',
             'PORT': '5432'
         }
     }
@@ -133,11 +132,14 @@ if LOCAL_DEV is False:
         'NAME': os.getenv('DB_NAME', default='postgres'),
         'USER': os.getenv('POSTGRES_USER', default='postgres'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='postgres'),
-        'HOST': os.getenv('DB_HOST', default='localhost'),
+        'HOST': os.getenv('DB_HOST', default='db'),
         'PORT': os.getenv('DB_PORT', default='5432')
         }
     }
   
+print(LOCAL_DEV)
+print(DATABASES)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -169,8 +171,8 @@ USE_L10N = True
 USE_TZ = True
 
 
-STATIC_URL = '/static/' # префикс для url
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/') # папка, в которой будет лежать статика
+STATIC_URL = '/django_static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'django_static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
