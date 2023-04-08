@@ -4,12 +4,7 @@ WORKDIR /app
 
 COPY requirements.txt .
 
-# COPY ../mosaic/requirements.txt .
-
-# RUN ls
-
 RUN pip3 install -r ./requirements.txt --no-cache-dir
-# RUN pip3 install -r requirements.txt --no-cache-dir
 
 COPY . .
 

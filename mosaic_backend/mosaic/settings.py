@@ -7,12 +7,8 @@ from datetime import timedelta
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-LOCAL_DEV = False
 DEBUG = True
 
-
-if LOCAL_DEV is True:
-    load_dotenv(dotenv_path=os.path.abspath(os.path.join(BASE_DIR, f'{os.pardir}/infra/.env')))
 
 KEY_ENV = os.getenv('SECRET_KEY')
 SECRET_KEY = f'{KEY_ENV}'
@@ -90,55 +86,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mosaic.wsgi.application'
 
-
-if LOCAL_DEV is True:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'mosaic',
-            'USER': 'mosaic_admin',
-            'PASSWORD': 'mosaic_admin',
-            'HOST': 'localhost',
-            'PORT': '5432'
-        }
-    }
     
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
-    #         'NAME': os.getenv('DB_NAME', default='mosaic'),
-    #         'USER': os.getenv('POSTGRES_USER', default='mosaic_admin'),
-    #         'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='mosaic_admin'),
-    #         'HOST': os.getenv('DB_HOST', default='localhost'),
-    #         'PORT': os.getenv('DB_PORT', default='5432')
-    #     }
-    # }
-
-if LOCAL_DEV is False:
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
-    #         'NAME': os.getenv('DB_NAME', default='postgres'),
-    #         'USER': os.getenv('POSTGRES_USER', default='postgres'),
-    #         'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='mosaic_admin'),
-    #         'HOST': os.getenv('DB_HOST', default='db'),
-    #         'PORT': os.getenv('DB_PORT', default='5432')
-    #     }
-    # }
-    
-    DATABASES = {
-    'default': {
-        'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
-        'NAME': os.getenv('DB_NAME', default='postgres'),
-        'USER': os.getenv('POSTGRES_USER', default='postgres'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='mosaic_admin'), # было mosaic_admin
-        'HOST': os.getenv('DB_HOST', default='localhost'), # было db
-        'PORT': os.getenv('DB_PORT', default='5432')
-        }
+DATABASES = {
+'default': {
+    'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
+    'NAME': os.getenv('DB_NAME', default='postgres'),
+    'USER': os.getenv('POSTGRES_USER', default='postgres'),
+    'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='mosaic_admin'),
+    'HOST': os.getenv('DB_HOST', default='db'),
+    'PORT': os.getenv('DB_PORT', default='5432')
     }
+}
   
-print(LOCAL_DEV)
-print(DATABASES)
 
 
 # Password validation

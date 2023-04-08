@@ -6,6 +6,7 @@ from django.utils import timezone
 class MasterclassType(models.Model):
     type = models.CharField(max_length=50, verbose_name='Name')
     slug = models.SlugField(max_length=15, verbose_name='Link')
+    image = models.ImageField(upload_to='masterclasses/', blank=True)
     max_guests = models.PositiveSmallIntegerField(
         verbose_name='Max number of guests'
     )
