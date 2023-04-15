@@ -13,7 +13,7 @@ class Post(models.Model):
     text = MDTextField(max_length=2000)
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     image = models.ImageField(
-        upload_to='blog/posts/', blank=True)
+        upload_to='blog/posts/', blank=True, default=None)
 
     def __str__(self):
         return f'{self.title}, {self.pub_date.strftime("%Y-%m-%d %H:%M:%S")}'

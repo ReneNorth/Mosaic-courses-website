@@ -7,24 +7,6 @@ services:
       - mosaic:/var/lib/postgresql/data
     env_file:
       - ./.env
-  web:
-    build: ../mosaic_backend
-    restart: always
-    volumes:
-      - static_value:/app/static/
-      - media_value:/app/media/
-    depends_on:
-      - db
-    env_file:
-      - ./.env
-
-
-  frontend:
-    build:
-      context: ../frontend
-      dockerfile: Dockerfile
-    volumes:
-      - ../frontend/:/app/result_build/
 
 
   nginx:
@@ -39,7 +21,27 @@ services:
       - media_value:/var/html/media/
 
     depends_on:
-      - web
+      - db
+
+
+  web:
+    build: ../mosaic_backend
+    restart: always
+    volumes:
+      - static_value:/app/static/
+      - media_value:/app/media/
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ../frontend/:/app/result_build/
+
 
 volumes:
   mosaic:

@@ -1,7 +1,7 @@
 from django.contrib import admin
-from carousel.models import CarouselItem
+from carousel.models import MainCarouselItem
 
 
-@admin.register(CarouselItem)
+@admin.register(MainCarouselItem)
 class Admin(admin.ModelAdmin):
     pass

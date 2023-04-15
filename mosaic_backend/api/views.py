@@ -8,8 +8,9 @@ from masterclass.models import Masterclass, MasterclassType
 from booking.models import Booking
 from blog.models import Post
 from school.models import School, Question, Advatage, Review
+from carousel.models import MainCarouselItem
 # from carousel.models import
-
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.pagination import (LimitOffsetPagination,
                                        PageNumberPagination)
 from rest_framework.permissions import AllowAny
@@ -19,7 +20,7 @@ from api.serializers import (MasterclassSerializer,
                              SchoolSerializer,
                              PostSerializer,
                              RequestSerializer,
-                             CarouselSerializer
+                             MainCarouselSerializer
                              )
 
 
@@ -67,12 +68,11 @@ class PostViewset(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [AllowAny, ]
-    pagination_class = PageNumberPagination
-    # pagination_class = LimitOffsetPagination
+    # pagination_class = PageNumberPagination
+    pagination_class = LimitOffsetPagination
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
-
 
 
 class SchoolReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
@@ -80,6 +80,9 @@ class SchoolReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = School.objects.all()
     serializer_class = SchoolSerializer
     permission_classes = [AllowAny, ]
-    
-    
-# class 
+
+
+class MainCarouselReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = MainCarouselItem.objects.all()
+    serializer_class = MainCarouselSerializer
+    permission_classes = [AllowAny, ]

@@ -55,3 +55,4 @@ wcwidth==0.2.5
 webcolors==1.11.1
 yarg==0.1.9
 zipp
+django-filter==23.1

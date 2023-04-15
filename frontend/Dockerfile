@@ -2,9 +2,9 @@
 FROM node:13.12.0-alpine as build
 WORKDIR /app
 COPY package*.json ./
-COPY .eslintrc.js ./
-COPY .prettierrc.json ./
-COPY .stylelintrc.json ./
+# COPY .eslintrc.js ./
+# COPY .prettierrc.json ./
+# COPY .stylelintrc.json ./
 
 RUN npm install
 COPY . ./
