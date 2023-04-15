@@ -19,8 +19,6 @@ services:
       - ./.env
 
 
-
-
   frontend:
     build:
       context: ../frontend
