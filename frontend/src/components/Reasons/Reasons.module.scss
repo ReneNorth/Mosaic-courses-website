@@ -46,11 +46,14 @@
 }
 
 .ellipse {
-  display: block;
   width: 160px;
   height: 135px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-image: url('../../images/Ellipse.svg');
   background-repeat: no-repeat;
+  background-position: top center;
   font-family: var(--font-secondary);
   -webkit-text-stroke: 1px var(--text-color-secondary);
   color: transparent;

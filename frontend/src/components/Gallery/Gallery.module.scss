@@ -47,3 +47,13 @@
 //   max-height: 573px;
 //   height: 100%;
 // }
+
+.test {
+  position: relative;
+
+  &:before {
+  display: block;
+    background-image: url('../../images/arrow_left.svg');
+    margin-right: 3px;
+  }
+}

@@ -77,6 +77,9 @@ export const StudentReviews = () => {
             </div>
           </SwiperSlide>
         </Swiper>
+        <div className={cls.counter}>
+          <p>01/05</p>
+        </div>
       </div>
     </section>
   );

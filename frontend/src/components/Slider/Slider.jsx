@@ -31,6 +31,9 @@ export const Slider = () => {
             <img className={cls.image} src={slide} alt="Слайд" />
           </SwiperSlide>
         </Swiper>
+        <div className={cls.counter}>
+          <p>01/05</p>
+        </div>
       </div>
     </section>
   );

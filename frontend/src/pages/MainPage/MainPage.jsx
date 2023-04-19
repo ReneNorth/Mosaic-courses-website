@@ -12,6 +12,7 @@ import { StudentReviews } from '../../components/StudentReviews/StudentReviews';
 export const MaingPage = () => {
   return (
     <>
+      {/* <NewSettler /> */}
       <MainPromo />
       <Slider />
       <AboutUs />

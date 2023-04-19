@@ -16,7 +16,7 @@ module.exports = {
   },
   plugins: ['react', 'react-hooks'],
   rules: {
-    'linebreak-style': ['error', 'unix'],
+    'linebreak-style': 0,
     'arrow-body-style': ['off'],
     'react/jsx-indent': [2, 2],
     'react/jsx-indent-props': [2, 2],

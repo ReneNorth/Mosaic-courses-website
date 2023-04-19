@@ -11,7 +11,7 @@ import imageFive from '../../images/gallery_slider_5.png';
 import imageSix from '../../images/gallery_slider_6.png';
 import imagetru from '../../images/gallery_slider_7.png';
 import imagehru from '../../images/gallery_slider_8.png';
-// import cls from './Gallery.module.scss';
+import cls from './Gallery.module.scss';
 import './Gallery.scss';
 
 const data = [
@@ -52,6 +52,9 @@ const data = [
 export const Gallery = () => {
   return (
     <section className="section-gallery">
+      <div className={cls.test}>
+        what
+      </div>
       <div className="container">
         <div className="title-wrapper">
           <p className="title-wrapper__description">наши работы</p>

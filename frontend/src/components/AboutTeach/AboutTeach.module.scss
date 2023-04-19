@@ -50,12 +50,22 @@
 }
 
 .accentWrapper {
-  margin-top: 30px;
-  display: flex;
-  width: 100%;
-  max-height: 600px;
-  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
   position: relative;
+
+  div:nth-child(2) {
+    grid-column: 2;
+    grid-row: span 2;
+    position: absolute;
+    top: 42%;
+    right: 8%;
+  }
+
+  div:nth-child(3) {
+    grid-column: 1;
+  }
 }
 
 .ellipse {
@@ -97,4 +107,36 @@
   position: absolute;
   top: 240px;
   right: 30px;
+}
+
+.test {
+  width: 355px;
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 50%;
+  border: 1px solid #121210;
+  transform: rotate(41.35deg);
+
+  h3 {
+    max-width: 205px;
+    width: 100%;
+    margin: 100px 50px 15px;
+    text-transform: uppercase;
+    font-size: 20px;
+    line-height: 130%;
+    letter-spacing: 0.04em;
+    transform: rotate(-41.35deg);
+  }
+
+  p {
+    max-width: 205px;
+    width: 100%;
+    margin: -75px 150px;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 135%;
+    transform: rotate(-41.35deg);
+  }
 }
