@@ -74,3 +74,13 @@ class FeedbackTest(TestCase):
         # self.assertEqual(response.status, 200)
         print(response)
         print(Feedback_request.objects.get(phone_num='+77770202936'))
+
+
+# create tests for all apis in the project
+# https://stackoverflow.com/questions/47950889/how-to-create-tests-for-all-apis-in-django-project
+
+# write tests for all API endpoints 
+# https://stackoverflow.com/questions/47950889/how-to-create-tests-for-all-apis-in-django-project
+
+# implement tests for the masterclasses API endpoint
+  
