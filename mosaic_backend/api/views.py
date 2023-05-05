@@ -20,13 +20,19 @@ from api.serializers import (MasterclassSerializer,
                              SchoolSerializer,
                              PostSerializer,
                              RequestSerializer,
-                             MainCarouselSerializer
+                             MainCarouselSerializer,
+                             EmailMainSerializer,
                              )
 
 
 class RequestCreateOnlyViewSet(mixins.CreateModelMixin,
                                viewsets.GenericViewSet):
     serializer_class = RequestSerializer
+    permission_classes = [AllowAny, ]
+    
+class EmailCreateOnlyViewSet(mixins.CreateModelMixin,
+                               viewsets.GenericViewSet):
+    serializer_class = EmailMainSerializer
     permission_classes = [AllowAny, ]
 
 

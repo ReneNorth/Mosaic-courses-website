@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
 from school.models import School
-from crm_app.models import Feedback_request
+from crm_app.models import FeedbackRequest
 from api.views import RequestCreateOnlyViewSet
 from rest_framework.test import APIRequestFactory, APIClient
 
@@ -73,7 +73,7 @@ class FeedbackTest(TestCase):
         response = view(request)
         # self.assertEqual(response.status, 200)
         print(response)
-        print(Feedback_request.objects.get(phone_num='+77770202936'))
+        print(FeedbackRequest.objects.get(phone_num='+77770202936'))
 
 
 # create tests for all apis in the project
