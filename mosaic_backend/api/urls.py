@@ -20,9 +20,9 @@ router1.register(
 )
 
 router1.register(
-    'emain_form',
+    'email_form',
     EmailCreateOnlyViewSet,
-    basename='emain_form'
+    basename='email_form'
 )
 
 
