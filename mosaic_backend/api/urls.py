@@ -5,7 +5,8 @@ from .views import (MasterclassReadOnlyViewset,
                     PostViewset,
                     SchoolReadOnlyViewSet,
                     RequestCreateOnlyViewSet,
-                    MainCarouselReadOnlyViewSet
+                    MainCarouselReadOnlyViewSet,
+                    EmailCreateOnlyViewSet
                     )
 
 
@@ -17,6 +18,13 @@ router1.register(
     RequestCreateOnlyViewSet,
     basename='feedback'
 )
+
+router1.register(
+    'email_form',
+    EmailCreateOnlyViewSet,
+    basename='email_form'
+)
+
 
 router1.register(
     'main_carousel',
