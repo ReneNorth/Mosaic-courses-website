@@ -1,12 +1,11 @@
 import image from '../../images/remained-question__image.png';
 import cls from './RemainedQuestion.module.scss';
 
-export const RemainedQuestion = () => {
+export const RemainedQuestion = ({ setIsOpen }) => {
   return (
     <section className={cls.section}>
       <div className={cls.container}>
         <div className={cls.wrapper}>
-          <h3 className={cls.subtitle}>обратная связь</h3>
           <h2 className={cls.title}>
             Остались вопросы?
             <span> Перезвоним и поможем</span>
@@ -16,7 +15,7 @@ export const RemainedQuestion = () => {
             определиться, исходя из вашего уровня подготовки и пожеланий.
           </p>
           <div className={cls.btnWrapper}>
-            <button className={cls.btn} type="button">
+            <button onClick={() => setIsOpen(true)} className={cls.btn} type="button">
               Заказать обратный звонок
             </button>
             <div className={cls.btnBorder} />

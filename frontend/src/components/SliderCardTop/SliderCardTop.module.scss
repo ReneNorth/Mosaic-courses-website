@@ -1,0 +1,71 @@
+.sliderCard {
+  min-width: 1280px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background-color: #000;
+    opacity: .7;
+    z-index: 0;
+  }
+
+  img {
+    height: 480px;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+
+  & > div {
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    color: #fff;
+
+    h2 {
+      max-width: 660px;
+      width: 100%;
+      margin-bottom: 16px;
+      font-family: 'Raleway', sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 135%;
+    }
+
+    p {
+      max-width: 660px;
+      width: 100%;
+      margin-bottom: 40px;
+      font-family: 'Raleway', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 135%;
+      opacity: .8;
+    }
+
+    button {
+      padding: 10px 40px;
+      font-family: 'Raleway', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 17px;
+      line-height: 135%;
+      color: #fff;
+      background-color: #247251;
+      border-radius: 56px;
+      border: none;
+      opacity: .9;
+      cursor: pointer;
+    }
+  }
+
+}

@@ -1,5 +1,5 @@
 .section {
-  margin-top: 200px;
+  margin-top: 140px;
   max-width: 1280px;
   width: 100%;
   display: flex;
@@ -54,6 +54,7 @@
   grid-template-columns: 1fr 1fr;
   place-items: center;
   position: relative;
+  font-family: 'Raleway', sans-serif;
 
   div:nth-child(2) {
     grid-column: 2;

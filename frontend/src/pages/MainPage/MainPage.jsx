@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { AboutTeach } from '../../components/AboutTeach/AboutTeach';
 import { AboutUs } from '../../components/AboutUs/AboutUs';
 import { AnswersToQuestions } from '../../components/AnswersToQuestions/AnswersToQuestions';
@@ -6,14 +7,17 @@ import { Gallery } from '../../components/Gallery/Gallery';
 import { MainPromo } from '../../components/MainPromo/MainPromo';
 import { Reasons } from '../../components/Reasons/Reasons';
 import { RemainedQuestion } from '../../components/RemainedQuestion/RemainedQuestion';
-import { Slider } from '../../components/Slider/Slider';
 import { StudentReviews } from '../../components/StudentReviews/StudentReviews';
+import Slider from '../../components/Slider/Slider';
+import NewSettler from '../../components/NewSettler/NewSettler';
 
 export const MaingPage = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
-      {/* <NewSettler /> */}
-      <MainPromo />
+      <NewSettler isOpen={isOpen} setIsOpen={setIsOpen} />
+      <MainPromo isOpen={isOpen} setIsOpen={setIsOpen} />
       <Slider />
       <AboutUs />
       <Reasons />
@@ -21,7 +25,7 @@ export const MaingPage = () => {
       <ChooseCourseFinal />
       <AboutTeach />
       <AnswersToQuestions />
-      <RemainedQuestion />
+      <RemainedQuestion setIsOpen={setIsOpen} />
       <StudentReviews />
     </>
   );

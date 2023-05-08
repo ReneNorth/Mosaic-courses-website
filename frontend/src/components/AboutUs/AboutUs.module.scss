@@ -1,5 +1,5 @@
 .section {
-  margin-top: 200px;
+  margin-top: 140px;
   width: 100%;
   background-color: var(--bg-green-primary);
   display: flex;
@@ -98,11 +98,10 @@
 .btn {
   margin-top: 40px;
   padding: 18px 40px;
-  background-color: transparent;
-  border: 1px solid #000000 !important;
+  background-color: var(--btn-color);
   border-radius: 60px;
   font-family: var(--font-primary);
-  color: var(--text-color);
+  color: #fff;
   font-style: normal;
   font-weight: 400;
   font-size: 17px;

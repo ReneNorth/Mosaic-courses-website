@@ -1,82 +1,71 @@
-.section {
-  margin-top: 350px;
-  // margin-top: 170px;
-  overflow: hidden;
-}
 
-.swiper {
+.slider {
+  max-width: 1920px;
   width: 100%;
-  height: 570px;
+  margin: 140px 0 0 370px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 
-  :global(.swiper-pagination) {
-    width: 80%;
+  .active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .next {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  &__top {
+    max-width: 1280px;
+    width: 100%;
+    height: 480px;
+    position: relative;
+  }
+
+  &__item {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70%;
+    height: 100%;
+    opacity: 0;
+    transition: .5s;
+  }
+
+  &__dots {
+    width: 30%;
+    margin: 80px 0 0 90px;
+    align-self: flex-start;
+    display: flex;
     gap: 8px;
   }
 
-  :global(.swiper-pagination-bullet) {
-    margin: 0 var(--swiper-pagination-bullet-horizontal-gap, 0px) !important;
+  &__dot {
+    width: 120px;
+    height: 10px;
     border: 1px solid #247251;
-    width: 120px;
-    height: 10px;
     border-radius: 10px;
-    background-color: transparent;
-    opacity: 1;
-}
+    cursor: pointer;
 
-  :global(.swiper-pagination-bullet-active) {
-    margin: 0 var(--swiper-pagination-bullet-horizontal-gap, 0px) !important;
-    background: #247251;
-    width: 120px;
-    height: 10px;
-    border-radius: 10px;
+    &_active {
+      background-color: #247251;
+    }
   }
 
-
-}
-
-.slider {
-  margin-left: 320px;
-
-  .counter {
-    width: 80%;
+  &__counter {
+    width: 90%;
     margin-top: 20px;
     display: flex;
-    justify-content: flex-end;
-    font-family: 'Lora';
+    justify-content: flex-start;
+    font-family: 'Lora', serif;
     font-style: italic;
     font-weight: 600;
     font-size: 36px;
     line-height: 46px;
     color: #247251;
   }
-}
-
-.slide {
-  // max-width: 1280px;
-  // width: 100%;
-  width: 68%;
-
-  &:last-of-type {
-    width: 100%;
-    max-height: 480px;
-    height: 100%;
-  }
-}
-
-.image {
-  width: 100%;
-
-  &:last-of-type {
-    width: 100%;
-    max-height: 480px;
-    height: 100%;
-    object-fit: contain;
-    object-position: left;
-  }
-}
-
-.bullit {
-  color: red;
 }

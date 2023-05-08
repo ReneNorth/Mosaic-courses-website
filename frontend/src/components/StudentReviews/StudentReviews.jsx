@@ -1,11 +1,46 @@
-import { Pagination } from 'swiper';
 // eslint-disable-next-line import/no-unresolved
 import 'swiper/css';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import image from '../../images/students-review_image-card.png';
+import React, { useEffect, useState } from 'react';
 import cls from './StudentReviews.module.scss';
+import SliderCardBottom from '../SliderCardBottom/SliderCardBottom';
+
+const sliderDataBottom = [
+  {
+    id: 1,
+  },
+  {
+    id: 2,
+  },
+  {
+    id: 3,
+  },
+  {
+    id: 4,
+  },
+  {
+    id: 5,
+  },
+];
 
 export const StudentReviews = () => {
+  const [sliderIndex, setSliderIndex] = useState(1);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSliderIndex(sliderIndex + 1);
+    }, 5000);
+
+    const lastSliderIndex = sliderDataBottom.length;
+    if (sliderIndex < 0) {
+      setSliderIndex(lastSliderIndex);
+    }
+    if (sliderIndex > lastSliderIndex) {
+      setSliderIndex(1);
+    }
+
+    return () => clearTimeout(timer);
+  }, [sliderIndex]);
+
   return (
     <section className={cls.section}>
       <div className={cls.titleContent}>
@@ -21,66 +56,46 @@ export const StudentReviews = () => {
           и лёгкую атмосферу.
         </p>
       </div>
-      <div className={cls.sliderContainer}>
-        <Swiper
-          className={cls.swiper}
-          loop
-          spaceBetween={40}
-          slidesPerView="auto"
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Pagination]}
-        >
-          <SwiperSlide className={cls.slide}>
-            <div className={cls.cardWrapper}>
-              <img className={cls.image} src={image} alt="Слайд" />
-              <div className={cls.textWrapper}>
-                <h4 className={cls.cardTitle}>Волшебно!</h4>
-                <p className={cls.cardDescription}>
-                  Мы обожаем такие трепетные моменты и с радостью поможем
-                  устроить вам самый яркий праздник в нашей мастерской. Мы
-                  обожаем такие трепетные моменты и с радостью поможем устроить
-                  вам самый яркий праздник в нашей мастерской. Мы обожаем такие
-                  трепетные моменты и с радостью поможем устроить вам самый
-                  яркий праздник в нашей мастерской. Мы обожаем такие трепетные
-                  моменты и с радостью поможем устроить вам самый яркий праздник
-                  в нашей мастерской.
-                </p>
-                <div className={cls.authorContainer}>
-                  <span>Валерия М.</span>
-                  <span>24.01.2023</span>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className={cls.slide}>
-            <div className={cls.cardWrapper}>
-              <img className={cls.image} src={image} alt="Слайд" />
-              <div className={cls.textWrapper}>
-                <h4 className={cls.cardTitle}>Волшебно!</h4>
-                <p className={cls.cardDescription}>
-                  Мы обожаем такие трепетные моменты и с радостью поможем
-                  устроить вам самый яркий праздник в нашей мастерской. Мы
-                  обожаем такие трепетные моменты и с радостью поможем устроить
-                  вам самый яркий праздник в нашей мастерской. Мы обожаем такие
-                  трепетные моменты и с радостью поможем устроить вам самый
-                  яркий праздник в нашей мастерской. Мы обожаем такие трепетные
-                  моменты и с радостью поможем устроить вам самый яркий праздник
-                  в нашей мастерской.
-                </p>
-                <div className={cls.authorContainer}>
-                  <span>Валерия М.</span>
-                  <span>24.01.2023</span>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-        </Swiper>
-        <div className={cls.counter}>
-          <p>01/05</p>
+
+      <div className={cls.slider}>
+        <ul className={cls.slider__top}>
+          {sliderDataBottom.map((slide) => {
+            let position = 'next';
+            if (slide.id === sliderIndex) {
+              position = 'active';
+            }
+            return (
+              <li
+                key={slide.id}
+                className={`${cls.slider__item} ${sliderIndex === slide.id
+                  ? `${cls.active}` : `${cls[position]}`}`}
+
+              >
+                <SliderCardBottom />
+              </li>
+            );
+          })}
+        </ul>
+        <ul className={cls.slider__dots}>
+          {sliderDataBottom.map((slide) => (
+            <li key={slide.id}>
+              <button
+                onClick={() => setSliderIndex(slide.id)}
+                aria-label="сладер пагинация"
+                type="button"
+                className={`${cls.slider__dot} ${sliderIndex === slide.id ? `${cls.slider__dot_active}` : ''}`}
+              />
+            </li>
+          ))}
+        </ul>
+
+        <div className={cls.slider__counter}>
+          0
+          {sliderIndex}
+          /05
         </div>
       </div>
+
     </section>
   );
 };

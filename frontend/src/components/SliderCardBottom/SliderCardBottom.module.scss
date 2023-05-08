@@ -1,0 +1,52 @@
+.slider {
+  width: 730px;
+  display: flex;
+  gap: 32px;
+  background-color: #CCDAC6;
+  box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.6);
+  border-radius: 20px;
+
+  img {
+    width: 290px;
+    height: 480px;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+
+  &__right {
+    padding: 55px 65px 55px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    h3 {
+      font-family: 'Raleway', sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 120%;
+      color: #121210;
+    }
+
+    p {
+      margin-bottom: 8px;
+      font-family: 'Raleway', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 135%;
+      color: #121210;
+    }
+
+    & > div {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Raleway', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 17px;
+      line-height: 135%;
+      color: #121210;
+    }
+  }
+}

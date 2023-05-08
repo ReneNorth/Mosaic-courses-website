@@ -9,9 +9,6 @@ export const ChooseCourseFinal = () => {
           Выбери свой
           <span> курс</span>
         </h2>
-        <button className={cls.titleBtn} type="button">
-          Смотреть все курсы
-        </button>
       </div>
       <ChoiseCourse />
     </section>

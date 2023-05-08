@@ -1,7 +1,7 @@
 import promoImg from '../../images/promo__image_ellipse.png';
 import cls from './MainPromo.module.scss';
 
-export const MainPromo = () => {
+export const MainPromo = ({ isOpen, setIsOpen }) => {
   return (
     <section className={cls.section}>
       <div className={cls.block}>
@@ -9,7 +9,7 @@ export const MainPromo = () => {
           <h1 className={cls.title}>
             Мастер-классы по&nbsp;
             <span className={cls.span}>римской</span>
-            &nbsp;мозаике
+                        &nbsp;мозаике
           </h1>
           <p className={cls.description}>
             Единственная в Казахстане студия римской мозаики.
@@ -18,7 +18,7 @@ export const MainPromo = () => {
             Научим создавать античные шедевры на мастер-классах и украсим ваш
             дом оригинальными арт-объектами.
           </p>
-          <button className={cls.button} type="button">
+          <button onClick={() => setIsOpen(!isOpen)} className={cls.button} type="button">
             Записаться на мастер-класс
           </button>
         </div>
