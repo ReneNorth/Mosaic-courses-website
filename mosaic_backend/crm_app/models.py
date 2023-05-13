@@ -7,7 +7,7 @@ class FeedbackRequest(models.Model):
 
     name = models.CharField(max_length=50)
     date = models.DateTimeField(auto_now_add=True)
-    phone_num = PhoneNumberField()
+    phone_num = models.CharField(max_length=15)
     comment = models.TextField(max_length=150, blank=True)
     contact_consent = models.BooleanField(default=False)
 
