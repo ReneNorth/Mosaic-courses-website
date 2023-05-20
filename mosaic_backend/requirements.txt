@@ -56,3 +56,4 @@ webcolors==1.11.1
 yarg==0.1.9
 zipp
 django-filter==23.1
+drf-api-logger==1.1.12

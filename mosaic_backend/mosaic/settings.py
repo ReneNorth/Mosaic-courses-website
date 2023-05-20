@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from django.conf import settings
 from django.conf.urls.static import static
 from datetime import timedelta
+from django.utils.log import DEFAULT_LOGGING
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,8 +39,9 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework',
     'djoser',
-    # 'mdeditor',
+    'mdeditor',
     'corsheaders',
+    'drf_api_logger',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'drf_api_logger.middleware.api_logger_middleware.APILoggerMiddleware',
 ]
 
 
@@ -65,9 +68,12 @@ CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://localhost:3000']
 # ]
 
 
+
+
+
 ROOT_URLCONF = 'mosaic.urls'
 
-TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -167,33 +173,82 @@ SIMPLE_JWT = {
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-# MDEDITOR_CONFIGS = {
-#     'default': {
-#         'width': '100% ',  # Custom edit box width
-#         'height': 700,  # Custom edit box height
-#         'toolbar': ["undo", "redo", "|",
-#                     "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
-#                     "h1", "h2", "h3", "h5", "h6", "|",
-#                     "list-ul", "list-ol", "hr", "|",
-#                     "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime",
-#                     "emoji", "html-entities", "pagebreak", "goto-line", "|",
-#                     "help", "info",
-#                     "||", "preview", "watch", "fullscreen"],  # custom edit box toolbar
-#         # image upload format type
-#         'upload_image_formats': ["jpg", "jpeg", "gif", "png", "bmp", "webp", "svg"],
-#         'image_folder': 'editor',  # image save the folder name
-#         'theme': 'default',  # edit box theme, dark / default
-#         'preview_theme': 'default',  # Preview area theme, dark / default
-#         'editor_theme': 'default',  # edit area theme, pastel-on-dark / default
-#         'toolbar_autofixed': False,  # Whether the toolbar capitals
-#         'search_replace': True,  # Whether to open the search for replacement
-#         'emoji': True,  # whether to open the expression function
-#         'tex': True,  # whether to open the tex chart function
-#         'flow_chart': True,  # whether to open the flow chart function
-#         'sequence': True,  # Whether to open the sequence diagram function
-#         'watch': True,  # Live preview
-#         'lineWrapping': True,  # lineWrapping
-#         'lineNumbers': True,  # lineNumbers
-#         'language': 'en'  # zh / en / es
-#     }
-# }
+MDEDITOR_CONFIGS = {
+    'default': {
+        'width': '100% ',  # Custom edit box width
+        'height': 700,  # Custom edit box height
+        'toolbar': ["undo", "redo", "|",
+                    "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
+                    "h1", "h2", "h3", "h5", "h6", "|",
+                    "list-ul", "list-ol", "hr", "|",
+                    "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime",
+                    "emoji", "html-entities", "pagebreak", "goto-line", "|",
+                    "help", "info",
+                    "||", "preview", "watch", "fullscreen"],  # custom edit box toolbar
+        # image upload format type
+        'upload_image_formats': ["jpg", "jpeg", "gif", "png", "bmp", "webp", "svg"],
+        'image_folder': 'editor',  # image save the folder name
+        'theme': 'default',  # edit box theme, dark / default
+        'preview_theme': 'default',  # Preview area theme, dark / default
+        'editor_theme': 'default',  # edit area theme, pastel-on-dark / default
+        'toolbar_autofixed': False,  # Whether the toolbar capitals
+        'search_replace': True,  # Whether to open the search for replacement
+        'emoji': True,  # whether to open the expression function
+        'tex': True,  # whether to open the tex chart function
+        'flow_chart': True,  # whether to open the flow chart function
+        'sequence': True,  # Whether to open the sequence diagram function
+        'watch': True,  # Live preview
+        'lineWrapping': True,  # lineWrapping
+        'lineNumbers': True,  # lineNumbers
+        'language': 'en'  # zh / en / es
+    }
+}
+
+
+# LOGGING_CONFIG = None
+# LOGLEVEL = os.getenv('DJ_LOGLEVEL', 'info').upper()
+DRF_API_LOGGER_DATABASE = True
+LOGLEVEL = 'DEBUG'
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        # Use JSON formatter as default
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+        'django.server': DEFAULT_LOGGING['formatters']['django.server'],
+    },
+    'handlers': {
+        # Route console logs to stdout
+        'console': {
+            'level': f'{LOGLEVEL}',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+        'docker_log': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'formatter': 'verbose',
+            'filename': f'{BASE_DIR}/logs/logs_main.log'
+        },
+        'django.server': DEFAULT_LOGGING['handlers']['django.server'],
+    },
+    'loggers': {
+        # Default logger for all modules
+        '': {
+            'level': LOGLEVEL,
+            'handlers': ['console', 'docker_log'],
+        },
+        # Default runserver request logging
+        'django.server': DEFAULT_LOGGING['loggers']['django.server'],
+    }
+}
+
+if __name__ == '__main__':
+    print(BASE_DIR)

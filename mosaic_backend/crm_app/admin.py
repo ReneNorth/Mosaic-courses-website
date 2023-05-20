@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import FeedbackRequest, EmailMainForm
 
-# Register your models here.
+
+@admin.register(FeedbackRequest, EmailMainForm)
+class Admin(admin.ModelAdmin):
+    pass
