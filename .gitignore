@@ -152,8 +152,8 @@ mosaic/media/
 .vscode/
 
 # Logs
-logs
-*.log
+# logs
+# *.log
 npm-debug.log*
 
 # Dependency directory
