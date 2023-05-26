@@ -249,6 +249,3 @@ LOGGING = {
         'django.server': DEFAULT_LOGGING['loggers']['django.server'],
     }
 }
-
-if __name__ == '__main__':
-    print(BASE_DIR)

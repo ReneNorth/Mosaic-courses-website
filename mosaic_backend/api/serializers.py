@@ -1,4 +1,5 @@
 import base64
+import logging
 from django.shortcuts import get_object_or_404
 from django.core.files.base import ContentFile
 from booking.models import Booking
@@ -8,6 +9,8 @@ from crm_app.models import FeedbackRequest, EmailMainForm
 from masterclass.models import Masterclass, MasterclassType
 from carousel.models import MainCarouselItem
 from rest_framework import serializers
+
+logger = logging.getLogger(__name__)
 
 
 class Base64ImageField(serializers.ImageField):
@@ -28,6 +31,7 @@ class RequestSerializer(serializers.ModelSerializer):
             'contact_consent': {'required': True}
         }
 
+    
 
 class EmailMainSerializer(serializers.ModelSerializer):
     class Meta:

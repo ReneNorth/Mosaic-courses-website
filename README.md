@@ -32,7 +32,7 @@ A successful containers launch is followed by a similar output
 
 Once the containers are ready, enter the web container CLI
 ```console
-docker exec infra-web-1 bash    
+docker exec -it infra-web-1 bash    
 ```
 
 Run the following command to make migrations:
