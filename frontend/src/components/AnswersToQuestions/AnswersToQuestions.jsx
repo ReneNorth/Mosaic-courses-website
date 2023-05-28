@@ -22,8 +22,8 @@ export const AnswersToQuestions = () => {
           </label>
           <div className={cls.answerWrapper}>
             <p className={cls.answer}>
-              Недалеко от школы есть городские парковки на улицах Палиха, Лесной
-              и Новослободской.
+              Да, никаких предварительных навыков не требуется.
+              Мы рекомендуем начать с короткого мастер-класса, чтобы понять ваше ли это ремесло.
             </p>
           </div>
         </li>
@@ -32,20 +32,9 @@ export const AnswersToQuestions = () => {
           <label htmlFor="chacor2">Что нужно принести с собой?</label>
           <div className={cls.answerWrapper}>
             <p className={cls.answer}>
-              Недалеко от школы есть городские парковки на улицах Палиха, Лесной
-              и Новослободской.
-            </p>
-          </div>
-        </li>
-        <li className={cls.acorСontainer}>
-          <input type="checkbox" name="chacor" id="chacor3" />
-          <label htmlFor="chacor3">
-            Какие материалы входят в стоимость курса?
-          </label>
-          <div className={cls.answerWrapper}>
-            <p className={cls.answer}>
-              Недалеко от школы есть городские парковки на улицах Палиха, Лесной
-              и Новослободской.
+              Ничего, мы работаем по принципу &quot;всё включено&quot;.
+              Мы даем вам материалы и инструменты, вы получаете результат
+              и забираете вашу работу с собой.
             </p>
           </div>
         </li>
@@ -54,18 +43,8 @@ export const AnswersToQuestions = () => {
           <label htmlFor="chacor4">Что я смогу освоить на курсах?</label>
           <div className={cls.answerWrapper}>
             <p className={cls.answer}>
-              Недалеко от школы есть городские парковки на улицах Палиха, Лесной
-              и Новослободской.
-            </p>
-          </div>
-        </li>
-        <li className={cls.acorСontainer}>
-          <input type="checkbox" name="chacor" id="chacor5" />
-          <label htmlFor="chacor5">Рядом с вашей студией есть парковка?</label>
-          <div className={cls.answerWrapper}>
-            <p className={cls.answer}>
-              Недалеко от школы есть городские парковки на улицах Палиха, Лесной
-              и Новослободской.
+              В зависимости от курса вы создадите небольшой арт-объект
+              или целый портрет.
             </p>
           </div>
         </li>

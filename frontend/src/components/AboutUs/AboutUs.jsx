@@ -18,20 +18,15 @@ export const AboutUs = () => {
         <div className={cls.container}>
           <p className={cls.subtitle}>про студию</p>
           <h2 className={cls.title}>
-            Здесь
-            <span> название</span>
+            <span> Tessera</span>
           </h2>
           <p className={cls.description}>
-            Арт-школа — мастерская в центре Ростова-на-Дону.
+            Наша студия расположена в самом центре Алматы в 3 минутах от
+            Парка 28 Панфиловцев, по адресу Казыбек би, 40.
           </p>
           <p className={cls.description}>
-            Мы проводим мастер-классы по живописи и гончарному делу для деток и
-            взрослых.
-          </p>
-          <p className={cls.description}>
-            Мы делаем рисование доступным с помощью пошаговой программы и
-            вовлечённых преподавателей. Вы как ученик обязательно прочувствуете
-            нашу дружескую и лёгкую атмосферу.
+            Преподаватель училась в московской школе Сад Гранат и
+            итальянской Mosaic Art School by Luciana Notturni в Равенне.
           </p>
           <button type="button" className={cls.btn}>
             Узнать подробнее

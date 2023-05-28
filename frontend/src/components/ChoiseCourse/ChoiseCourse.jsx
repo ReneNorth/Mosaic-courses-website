@@ -11,24 +11,24 @@ export const ChoiseCourse = () => {
           <img className={cls.img} src={imageOne} alt="карточка курса" />
           <div className={cls.contentWrapper}>
             <h3 className={cls.contentTitle}>
-              Курс по Римской мозаике однодневный
+              Вводный мастер-класс по римской мозаике
             </h3>
             <div className={cls.atributContainer}>
               <div className={cls.wrapperAtribut}>
                 <div className={cls.priceContainer}>
                   <span className={cls.timeIcon} />
-                  <p>3 часа</p>
+                  <p>4 часа</p>
                 </div>
                 <div className={cls.priceContainer}>
                   <span className={cls.rubleIcon} />
-                  <p>4000 рублей</p>
+                  <p>15 000 тенге</p>
                 </div>
               </div>
               <p className={cls.description}>
-                Мы проводим мастер-классы по живописи и гончарному делу для
-                деток и взрослых. Мы делаем рисование доступным с помощью
-                пошаговой программы и вовлечённых преподавателей. Вы как ученик
-                обязательно прочувствуете нашу дружескую и лёгкую атмосферу.
+                На мастер классе вы создадите подставку под горячее или небольшой
+                интерьерный арт-объект с любым понравившимся вам рисунком.
+                Этот вводный курс - лучшая возможность научиться работе с камнем
+                и создать что-то своими руками.
               </p>
             </div>
             <div className={cls.btnGroup}>
@@ -45,24 +45,24 @@ export const ChoiseCourse = () => {
           <img className={cls.img} src={imageTwo} alt="карточка курса" />
           <div className={cls.contentWrapper}>
             <h3 className={cls.contentTitle}>
-              Курс по Римской мозаике однодневный
+              Курс античной римской мозаики
             </h3>
             <div className={cls.atributContainer}>
               <div className={cls.wrapperAtribut}>
                 <div className={cls.priceContainer}>
                   <span className={cls.timeIcon} />
-                  <p>3 часа</p>
+                  <p>6 занятий по 5 часов</p>
                 </div>
                 <div className={cls.priceContainer}>
                   <span className={cls.rubleIcon} />
-                  <p>4000 рублей</p>
+                  <p>70 000 тенге</p>
                 </div>
               </div>
               <p className={cls.description}>
-                Мы проводим мастер-классы по живописи и гончарному делу для
-                деток и взрослых. Мы делаем рисование доступным с помощью
-                пошаговой программы и вовлечённых преподавателей. Вы как ученик
-                обязательно прочувствуете нашу дружескую и лёгкую атмосферу.
+                Это расширенный курс по созданию мозаики в формате картины 30х30 см.
+                На этом курсе вы создадите копию существующего шедевра
+                римской мозаики, а также познакомитесь с историей мозаики
+                с древних времен по текущее время.
               </p>
             </div>
             <div className={cls.btnGroup}>
@@ -79,24 +79,25 @@ export const ChoiseCourse = () => {
           <img className={cls.img} src={imageThree} alt="карточка курса" />
           <div className={cls.contentWrapper}>
             <h3 className={cls.contentTitle}>
-              Курс по Римской мозаике однодневный
+              Курс портретной мозаики
             </h3>
             <div className={cls.atributContainer}>
               <div className={cls.wrapperAtribut}>
                 <div className={cls.priceContainer}>
                   <span className={cls.timeIcon} />
-                  <p>3 часа</p>
+                  <p>8 занятий по 5 часов</p>
                 </div>
                 <div className={cls.priceContainer}>
                   <span className={cls.rubleIcon} />
-                  <p>4000 рублей</p>
+                  <p>100 000 тенге</p>
                 </div>
               </div>
               <p className={cls.description}>
-                Мы проводим мастер-классы по живописи и гончарному делу для
-                деток и взрослых. Мы делаем рисование доступным с помощью
-                пошаговой программы и вовлечённых преподавателей. Вы как ученик
-                обязательно прочувствуете нашу дружескую и лёгкую атмосферу.
+                Курс для уже продолжающих мозаичистов. На занятиях разберем
+                анатомию человеческого лица и расскажем о правильном подходе к
+                выкладке тессер на портретных работах. За время курса вы
+                создадите портрет 30 см на 40 см себя, своего близкого
+                или просто известного человека.
               </p>
             </div>
             <div className={cls.btnGroup}>

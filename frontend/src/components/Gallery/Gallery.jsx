@@ -69,7 +69,7 @@ export const Gallery = () => {
   return (
     <section className={cls.sectiongallery}>
       <div className={cls.titlewrapper}>
-        <p className={cls.titlewrapper__description}>наши работы</p>
+        <p className={cls.titlewrapper__description}>работы учеников и преподавателей</p>
         <h2 className={cls.titlewrapper__title}>
           Галерея
           <span> вдохновения</span>

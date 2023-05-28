@@ -6,7 +6,7 @@ export const ChooseCourseFinal = () => {
     <section className={cls.section}>
       <div className={cls.titleWrapper}>
         <h2 className={cls.title}>
-          Выбери свой
+          Выберите свой
           <span> курс</span>
         </h2>
       </div>
