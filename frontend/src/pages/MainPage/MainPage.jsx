@@ -17,12 +17,12 @@ export const MaingPage = () => {
   return (
     <>
       <NewSettler isOpen={isOpen} setIsOpen={setIsOpen} />
-      <MainPromo isOpen={isOpen} setIsOpen={setIsOpen} />
+      <MainPromo setIsOpen={setIsOpen} />
       <Slider />
-      <AboutUs />
+      <AboutUs setIsOpen={setIsOpen} />
       <Reasons />
       <Gallery />
-      <ChooseCourseFinal />
+      <ChooseCourseFinal setIsOpen={setIsOpen} />
       <AboutTeach />
       <AnswersToQuestions />
       <RemainedQuestion setIsOpen={setIsOpen} />
