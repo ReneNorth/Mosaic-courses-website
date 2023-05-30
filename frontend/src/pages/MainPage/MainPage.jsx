@@ -13,7 +13,6 @@ import NewSettler from '../../components/NewSettler/NewSettler';
 
 export const MaingPage = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <>
       <NewSettler isOpen={isOpen} setIsOpen={setIsOpen} />
