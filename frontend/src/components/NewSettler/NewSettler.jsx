@@ -64,12 +64,12 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
               name="phone"
               placeholder="ТЕЛЕФОН*"
               required
-              pattern="(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?"
+              pattern="(\+)([\d]){5,16}$"
               className={`${errors.phone ? `${styles.invalid}` : ''}`}
             />
             <span>
               {errors.phone
-                ? 'Телефонный номер введен некорректно'
+                ? 'Номер должен начинаться со знака "+" иметь от 5 до 16 символов'
                 : ''}
             </span>
           </div>
