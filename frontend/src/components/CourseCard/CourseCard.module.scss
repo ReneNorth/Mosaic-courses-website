@@ -1,3 +1,7 @@
+.imgWrapper {
+  position: relative;
+}
+
 .img {
   max-width: 550px;
   width: 100%;
@@ -28,16 +32,16 @@
 
 .priceContainer {
   display: flex;
+}
 
-  p {
-    margin-left: 16px;
-    align-self: center;
-    font-family: var(--font-primary);
-    font-style: normal;
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 20px;
-  }
+.info {
+  margin-left: 16px;
+  align-self: center;
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 20px;
 }
 
 .timeIcon {
@@ -92,4 +96,22 @@
 .btnWhite {
   border: 1px solid #000000 !important;
   background-color: transparent;
+}
+
+.start {
+  position: absolute;
+  box-sizing: border-box;
+  width: 180px;
+  padding: 13px 16px;
+  background-color: var(--bg-green-primary);
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  color: var(--text-color);
+  text-align: center;
+  top: -33px;
+  right: -70px;
+  border-radius: 0px 40px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  line-height: 140%;
 }

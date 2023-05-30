@@ -1,5 +1,5 @@
 import cls from './ChooseCourseFinal.module.scss';
-import { ChoiseCourse } from '../ChoiseCourse/ChoiseCourse';
+import { MainCardsList } from '../MainCardsList/MainCardsList';
 
 export const ChooseCourseFinal = ({ setIsOpen }) => {
   return (
@@ -10,7 +10,7 @@ export const ChooseCourseFinal = ({ setIsOpen }) => {
           <span> курс</span>
         </h2>
       </div>
-      <ChoiseCourse setIsOpen={setIsOpen} />
+      <MainCardsList setIsOpen={setIsOpen} />
     </section>
   );
 };

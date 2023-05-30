@@ -11,6 +11,7 @@ export const courses = [
     камнем и создать что-то своими руками.`,
     price: 15000,
     hours: 4,
+    date: '28 февраля',
     img: imageOne,
   },
   {
@@ -22,6 +23,7 @@ export const courses = [
     с древних времен по текущее время.`,
     price: 70000,
     hours: 30,
+    date: '28 февраля',
     img: imageTwo,
   },
   {
@@ -34,6 +36,7 @@ export const courses = [
     или просто известного человека.`,
     price: 100000,
     hours: 40,
+    date: '28 февраля',
     img: imageThree,
   },
 ];
