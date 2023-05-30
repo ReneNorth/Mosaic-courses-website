@@ -3,7 +3,7 @@ import imageThree from '../../images/choice-three.png';
 import imageTwo from '../../images/choice-two.png';
 import cls from './ChoiseCourse.module.scss';
 
-export const ChoiseCourse = () => {
+export const ChoiseCourse = ({ setIsOpen }) => {
   return (
     <section className={cls.section}>
       <ul className={cls.list}>
@@ -32,10 +32,10 @@ export const ChoiseCourse = () => {
               </p>
             </div>
             <div className={cls.btnGroup}>
-              <button className={cls.btnBlack} type="button">
+              <button className={cls.btnBlack} type="button" onClick={() => setIsOpen(true)}>
                 Записаться
               </button>
-              <button className={cls.btnWhite} type="button">
+              <button className={cls.btnWhite} type="button" onClick={() => setIsOpen(true)}>
                 Узнать подробнее
               </button>
             </div>
@@ -66,10 +66,10 @@ export const ChoiseCourse = () => {
               </p>
             </div>
             <div className={cls.btnGroup}>
-              <button className={cls.btnBlack} type="button">
+              <button className={cls.btnBlack} type="button" onClick={() => setIsOpen(true)}>
                 Записаться
               </button>
-              <button className={cls.btnWhite} type="button">
+              <button className={cls.btnWhite} type="button" onClick={() => setIsOpen(true)}>
                 Узнать подробнее
               </button>
             </div>
@@ -101,10 +101,10 @@ export const ChoiseCourse = () => {
               </p>
             </div>
             <div className={cls.btnGroup}>
-              <button className={cls.btnBlack} type="button">
+              <button className={cls.btnBlack} type="button" onClick={() => setIsOpen(true)}>
                 Записаться
               </button>
-              <button className={cls.btnWhite} type="button">
+              <button className={cls.btnWhite} type="button" onClick={() => setIsOpen(true)}>
                 Узнать подробнее
               </button>
             </div>

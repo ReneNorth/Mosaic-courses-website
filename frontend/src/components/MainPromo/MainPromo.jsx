@@ -1,7 +1,7 @@
 import promoImg from '../../images/promo__image_ellipse.png';
 import cls from './MainPromo.module.scss';
 
-export const MainPromo = ({ isOpen, setIsOpen }) => {
+export const MainPromo = ({ setIsOpen }) => {
   return (
     <section className={cls.section}>
       <div className={cls.block}>
@@ -18,7 +18,7 @@ export const MainPromo = ({ isOpen, setIsOpen }) => {
             В группах до 6 человек под присмотром преподавателя вы научитесь работать с камнем,
             выстраивать композицию и монтировать работу на деревянную основу.
           </p>
-          <button onClick={() => setIsOpen(!isOpen)} className={cls.button} type="button">
+          <button onClick={() => setIsOpen(true)} className={cls.button} type="button">
             Записаться на мастер-класс
           </button>
         </div>
