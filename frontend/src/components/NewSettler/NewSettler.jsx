@@ -52,7 +52,7 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
             />
             <span>
               {errors.name
-                ? 'Имя должен быть не менее 2-х символов'
+                ? 'Имя должно быть не менее 2-х символов'
                 : ''}
             </span>
           </div>
@@ -64,12 +64,12 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
               name="phone"
               placeholder="ТЕЛЕФОН*"
               required
-              pattern="^\+7\s?\(?\d{3}\)?\s?\d{3}\s?-?\s?\d{2}\s?-?\s?\d{2}$"
+              pattern="(\+)([\d]){5,16}$"
               className={`${errors.phone ? `${styles.invalid}` : ''}`}
             />
             <span>
               {errors.phone
-                ? 'Номер должен быть формата +7 999 999 99 99'
+                ? 'Номер должен начинаться со знака "+" иметь от 5 до 16 символов'
                 : ''}
             </span>
           </div>
