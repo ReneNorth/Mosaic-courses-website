@@ -13,11 +13,9 @@ import NewSettler from '../../components/NewSettler/NewSettler';
 
 export const MaingPage = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isResponse, setIsResponse] = useState(0);
-
   return (
     <>
-      <NewSettler isOpen={isOpen} setIsOpen={setIsOpen} isResponse={isResponse} setIsResponse={setIsResponse} />
+      <NewSettler isOpen={isOpen} setIsOpen={setIsOpen} />
       <MainPromo isOpen={isOpen} setIsOpen={setIsOpen} />
       <Slider />
       <AboutUs />

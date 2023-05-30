@@ -1,15 +1,14 @@
+import { useState } from 'react';
 import styles from './NewSettler.module.scss';
 import formImg from '../../images/form_header.png';
 import CancelIcon from '../../images/CancelIcon';
 import useFormValidation from '../../hooks/useFormValidation';
 
-const NewSettler = ({
-  isOpen, setIsOpen, isResponse, setIsResponse,
-}) => {
+const NewSettler = ({ isOpen, setIsOpen }) => {
   const {
     errors, isValid, handleChange, handleBlur, handleChangeInRealTime, resetForm, values,
   } = useFormValidation();
-
+  const [isResponse, setIsResponse] = useState('wait');
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -27,17 +26,16 @@ const NewSettler = ({
       },
       body: JSON.stringify(data),
     }).then(() => {
-      setIsResponse(1);
+      setIsResponse('success');
       resetForm();
-    }).catch((err) => {
-      console.log(err);
-      setIsResponse(2);
+    }).catch(() => {
+      setIsResponse('fail');
     });
   };
 
   return (
     <div className={`${styles.popup} ${isOpen ? `${styles.popup_open}` : ''}`}>
-      {(isResponse === 0) ? (
+      {(isResponse === 'wait') && (
         <form onSubmit={handleSubmit} className={styles.content} noValidate>
           <button onClick={() => setIsOpen(!isOpen)} type="button" aria-label="close">
             <CancelIcon />
@@ -95,9 +93,9 @@ const NewSettler = ({
             <button type="submit" disabled={!isValid}>Заказать обратный звонок</button>
           </div>
         </form>
-      ) : null }
-      {(isResponse === 1)
-        ? (
+      ) }
+      {(isResponse === 'success')
+        && (
           <div className={styles.content}>
             <button onClick={() => setIsOpen(!isOpen)} type="button" aria-label="close">
               <CancelIcon />
@@ -119,9 +117,8 @@ const NewSettler = ({
               </p>
             </div>
           </div>
-        )
-        : null}
-      {(isResponse === 2) ? (
+        )}
+      {(isResponse === 'fail') && (
         <div className={styles.content}>
           <button onClick={() => setIsOpen(!isOpen)} type="button" aria-label="close">
             <CancelIcon />
@@ -142,7 +139,7 @@ const NewSettler = ({
             </p>
           </div>
         </div>
-      ) : null}
+      ) }
     </div>
   );
 };
