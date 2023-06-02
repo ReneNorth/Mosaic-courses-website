@@ -89,7 +89,7 @@ export const CertificateSection = () => {
               : <p className={cls.margin}>Минимальная сумма 1500р</p>}
             <div className={cls.btnWrapper}>
               <button className={cls.submit} type="submit" disabled={!isValid}>
-                Подписаться на рассылку
+                Купить сертификат
               </button>
               <div className={cls.btnBorder} />
             </div>
