@@ -11,6 +11,7 @@ import { Footer } from '../Footer/Footer';
 import { Header } from '../Header/Header';
 
 import './App.scss';
+import { Certificates } from '../../pages/Certificates/Certificates';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/notfound" element={<NotFound />} />
             <Route path="/courses" element={<AllCourses />} />
+            <Route path="/certificates" element={<Certificates />} />
           </Routes>
         </main>
         <Footer />
