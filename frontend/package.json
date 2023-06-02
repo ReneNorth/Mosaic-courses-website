@@ -24,7 +24,7 @@
     "ymaps": "^0.2.1"
   },
   "scripts": {
-    "start": "BROWSER='google chrome' react-scripts start",
+    "start":" react-scripts start",
     "dev": "cross-env BROWSER=none react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test"
