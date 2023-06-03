@@ -1,16 +1,16 @@
 import cls from './Atmosphere.module.scss';
-import paint from '../../images/AtmospherePaint.png';
-import arm from '../../images/AtmosphereArm.png';
-import man from '../../images/AtmosphereMan.png';
-import mosaic from '../../images/AtmosphereMosaic.png';
-import table from '../../images/AtmosphereTable.png';
+import paint from '../../images/atmospherePaint.png';
+import arm from '../../images/atmosphereArm.png';
+import man from '../../images/atmosphereMan.png';
+import mosaic from '../../images/atmosphereMosaic.png';
+import table from '../../images/atmosphereTable.png';
 
 export const Atmosphere = () => {
   return (
     <section className={cls.AtmosphereBox}>
       <h1 className={cls.title}>
-        О студии мозаики&nbsp;
-        <span className={cls.span}>Tessera</span>
+        Атмосфера&nbsp;
+        <span className={cls.span}>в студии</span>
       </h1>
       <div className={cls.container}>
         {' '}

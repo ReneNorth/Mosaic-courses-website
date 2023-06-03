@@ -1,8 +1,8 @@
 import cls from './AboutStudioHeader.module.scss';
 import indicator from '../../images/indicator.svg';
 import { PromoSection } from '../PromoSection/PromoSection';
-import promoImg from '../../images/AboutStudioPromo.png';
-import imgBg from '../../images/AboutStudioDecor.png';
+import promoImg from '../../images/sboutStudioPromo.png';
+import imgBg from '../../images/aboutStudioDecor.png';
 
 export const AllStudioHeader = () => {
   return (
@@ -13,9 +13,9 @@ export const AllStudioHeader = () => {
         btnText="Записаться на мастеркласс"
       >
         <h1 className={cls.title}>
-          Атмосфера&nbsp;
+          О студии мозаики&nbsp;
           <br />
-          <span className={cls.span}>в студии</span>
+          <span className={cls.span}>Tessera</span>
         </h1>
         <p className={cls.description}>
           Единственная в Казахстане студия римской мозаики.
