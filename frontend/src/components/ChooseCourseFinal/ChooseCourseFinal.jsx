@@ -1,7 +1,7 @@
 import cls from './ChooseCourseFinal.module.scss';
-import { ChoiseCourse } from '../ChoiseCourse/ChoiseCourse';
+import { MainCardsList } from '../MainCardsList/MainCardsList';
 
-export const ChooseCourseFinal = () => {
+export const ChooseCourseFinal = ({ setIsOpen }) => {
   return (
     <section className={cls.section}>
       <div className={cls.titleWrapper}>
@@ -10,7 +10,7 @@ export const ChooseCourseFinal = () => {
           <span> курс</span>
         </h2>
       </div>
-      <ChoiseCourse />
+      <MainCardsList setIsOpen={setIsOpen} />
     </section>
   );
 };

@@ -14,10 +14,9 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 135%;
-
-  &:last-of-type {
-    margin-top: 10px;
-  }
+}
+.description:last-of-type {
+  margin-top: 10px;
 }
 
 .span {
@@ -59,3 +58,5 @@
   text-align: center;
   margin-top: 5px;
 }
+
+/*# sourceMappingURL=GiftCertificatesHeader.module.css.map */

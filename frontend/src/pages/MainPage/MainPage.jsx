@@ -13,16 +13,15 @@ import NewSettler from '../../components/NewSettler/NewSettler';
 
 export const MaingPage = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <>
       <NewSettler isOpen={isOpen} setIsOpen={setIsOpen} />
-      <MainPromo isOpen={isOpen} setIsOpen={setIsOpen} />
+      <MainPromo setIsOpen={setIsOpen} />
       <Slider />
-      <AboutUs />
+      <AboutUs setIsOpen={setIsOpen} />
       <Reasons />
       <Gallery />
-      <ChooseCourseFinal />
+      <ChooseCourseFinal setIsOpen={setIsOpen} />
       <AboutTeach />
       <AnswersToQuestions />
       <RemainedQuestion setIsOpen={setIsOpen} />

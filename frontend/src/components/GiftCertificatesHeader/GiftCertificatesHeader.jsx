@@ -1,20 +1,20 @@
-import cls from './AllCoursesHeader.module.scss';
+import cls from './GiftCertificatesHeader.module.scss';
 import indicator from '../../images/indicator.svg';
 import { PromoSection } from '../PromoSection/PromoSection';
-import promoImg from '../../images/AllCoursesPromo.png';
-import imgBg from '../../images/AllCoursesDecor.png';
+import promoImg from '../../images/CertificatesPromo.png';
+import imgBg from '../../images/CertificatesDecor.png';
 
-export const AllCoursesHeader = () => {
+export const GiftCertificatesHeader = () => {
   return (
     <>
       <PromoSection
         img={promoImg}
         imgBg={imgBg}
-        isBtn={false}
+        btnText="Купить сертификат"
       >
         <h1 className={cls.title}>
-          Курсы мозаики в студии&nbsp;
-          <span className={cls.span}>&quot;Под горой&quot;</span>
+          Подарочные сертификаты&nbsp;
+          <span className={cls.span}>&quot;для самых любимых&quot;</span>
         </h1>
         <p className={cls.description}>
           Единственная в Казахстане студия римской мозаики.
@@ -43,7 +43,7 @@ export const AllCoursesHeader = () => {
           <li>
             <a href="!#" className={cls.routeItemGreen}>
               {' '}
-              Курсы
+              Сертификаты
             </a>
           </li>
         </ul>
