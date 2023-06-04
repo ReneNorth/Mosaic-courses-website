@@ -134,6 +134,7 @@ dmypy.json
 .content/
 mosaic/media/
 my_temp_practicum.py
+local_settings.py
 
 
 ### react ###

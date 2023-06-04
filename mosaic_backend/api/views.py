@@ -1,37 +1,43 @@
-from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404
-from django.db.models import Count
-from rest_framework import viewsets, mixins
+import random
+import string
+from rest_framework import status
 from rest_framework.response import Response
 
-from masterclass.models import Masterclass, MasterclassType
-from booking.models import Booking
 from blog.models import Post
-from school.models import School, Question, Advatage, Review
+from booking.models import Booking
 from carousel.models import MainCarouselItem
-# from carousel.models import
+from crm_app.models import GiftCert
+from django.contrib.auth.models import User
+from django.db.models import Count
+from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
+from masterclass.models import Masterclass, MasterclassType
+from rest_framework import mixins, viewsets
 from rest_framework.pagination import (LimitOffsetPagination,
                                        PageNumberPagination)
 from rest_framework.permissions import AllowAny
-from api.serializers import (MasterclassSerializer,
-                             MasterclassTypeSerializer,
-                             BookingSerializer,
-                             SchoolSerializer,
-                             PostSerializer,
-                             RequestSerializer,
-                             MainCarouselSerializer,
-                             EmailMainSerializer,
-                             )
+from school.models import Advatage, Question, Review, School
+
+from api.serializers import (BookingSerializer, EmailMainSerializer,
+                             GiftCertSerializer, MainCarouselSerializer,
+                             MasterclassSerializer, MasterclassTypeSerializer,
+                             PostSerializer, RequestSerializer,
+                             SchoolSerializer)
+
+
+def generate_cert_id(size=6, chars=string.ascii_uppercase + string.digits):
+    """generates an unique 6 letters/digits code"""
+    return ''.join(random.choice(chars) for _ in range(size))
 
 
 class RequestCreateOnlyViewSet(mixins.CreateModelMixin,
                                viewsets.GenericViewSet):
     serializer_class = RequestSerializer
     permission_classes = [AllowAny, ]
-    
+
+
 class EmailCreateOnlyViewSet(mixins.CreateModelMixin,
-                               viewsets.GenericViewSet):
+                             viewsets.GenericViewSet):
     serializer_class = EmailMainSerializer
     permission_classes = [AllowAny, ]
 
@@ -92,3 +98,30 @@ class MainCarouselReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = MainCarouselItem.objects.all()
     serializer_class = MainCarouselSerializer
     permission_classes = [AllowAny, ]
+
+
+class CertificatePostPatchViewSet(viewsets.GenericViewSet,
+                                  mixins.DestroyModelMixin,
+                                  mixins.CreateModelMixin):
+    queryset = GiftCert.objects.all()
+    serializer_class = GiftCertSerializer
+    permission_classes = [AllowAny, ]
+
+    def perform_create(self, serializer):
+        """Standard behaviour except for calling a method to
+        generate a 6-symbols (digits and letters) code as the cert ID"""
+        cert_id = generate_cert_id()
+        serializer.save(id=cert_id)
+        return cert_id
+
+    def create(self, request, *args, **kwargs):
+        """Returns the certificate's ID among the other data"""
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        cert_id = self.perform_create(serializer)
+        serializer_id = {'certificate_id': f'{cert_id}'}
+        serializer_id.update(serializer.data)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer_id,
+                        status=status.HTTP_201_CREATED,
+                        headers=headers)

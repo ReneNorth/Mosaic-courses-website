@@ -7,8 +7,19 @@ from datetime import timedelta
 from django.utils.log import DEFAULT_LOGGING
 
 
+# def import_local():
+#     """Function only to ease local developement"""
+#     try:
+#         from local_settings import LOCAL_DATABASES 
+#         return LOCAL_DATABASES
+#     except ImportError:
+#         return True
+# import_local()
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
+LOCAL_DEV = True
 
 
 KEY_ENV = os.getenv('SECRET_KEY')
@@ -92,18 +103,32 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mosaic.wsgi.application'
 
-    
-DATABASES = {
-'default': {
-    'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
-    'NAME': os.getenv('DB_NAME', default='postgres'),
-    'USER': os.getenv('POSTGRES_USER', default='postgres'),
-    'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='mosaic_admin'),
-    'HOST': os.getenv('DB_HOST', default='db'),
-    'PORT': os.getenv('DB_PORT', default='5432')
+
+if LOCAL_DEV is False:
+    DATABASES = {
+    'default': {
+        'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
+        'NAME': os.getenv('DB_NAME', default='postgres'),
+        'USER': os.getenv('POSTGRES_USER', default='postgres'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='mosaic_admin'),
+        'HOST': os.getenv('DB_HOST', default='db'),
+        'PORT': os.getenv('DB_PORT', default='5432')
+        }
     }
-}
-  
+
+
+if LOCAL_DEV is True:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'mosaic',
+            'USER': 'mosaic_admin',
+            'PASSWORD': 'mosaic_admin',
+            'HOST': 'localhost',
+            'PORT': '5432'
+            }
+        }
+
 
 
 # Password validation

@@ -1,14 +1,16 @@
 import base64
 import logging
-from django.shortcuts import get_object_or_404
-from django.core.files.base import ContentFile
-from booking.models import Booking
+
 from blog.models import Post
-from school.models import School, Approach, Question, Advatage, Review
-from crm_app.models import FeedbackRequest, EmailMainForm
-from masterclass.models import Masterclass, MasterclassType
+from booking.models import Booking
 from carousel.models import MainCarouselItem
-from rest_framework import serializers
+from crm_app.models import EmailMainForm, FeedbackRequest, GiftCert
+from django.core.files.base import ContentFile
+from django.shortcuts import get_object_or_404
+from masterclass.models import Masterclass, MasterclassType
+from rest_framework import serializers, status
+from rest_framework.response import Response
+from school.models import Advatage, Approach, Question, Review, School
 
 logger = logging.getLogger(__name__)
 
@@ -101,13 +103,13 @@ class AdvantagesSerializer(serializers.ModelSerializer):
 class QuestionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = ['id', 'question', 'answer'] 
+        fields = ['id', 'question', 'answer']
 
 
 class ApproachSerializer(serializers.ModelSerializer):
     class Meta:
         model = Approach
-        fields = ['id', 'title', 'description'] 
+        fields = ['id', 'title', 'description']
 
 
 class ReviewsSerializer(serializers.ModelSerializer):
@@ -139,3 +141,22 @@ class MainCarouselSerializer(serializers.ModelSerializer):
     class Meta:
         model = MainCarouselItem
         fields = ['link', 'text', 'button', 'order', 'image']
+
+
+class GiftCertSerializer(serializers.ModelSerializer):
+    """
+    Expects amount, sender's name and email, recepient's name and email
+    Generates a 6-symbols (digits and letters) code as the ID and sets status
+    to issued.
+    """
+    class Meta:
+        model = GiftCert
+        fields = ['amount', 'name_sender', 'email_sender',
+                  'name_recepient', 'email_recipient']
+
+    # def create(self, validated_data):
+        # cert = GiftCert(**validated_data)
+        # cert.save()
+        # return GiftCert(**validated_data)
+        # return Response({"Success": "msb blablabla"}, status=status.HTTP_201_CREATED)
+

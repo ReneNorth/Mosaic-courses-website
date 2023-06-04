@@ -1,14 +1,10 @@
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework import routers
-from .views import (MasterclassReadOnlyViewset,
-                    MasterclassTypeReadOnlyViewset,
-                    PostViewset,
-                    SchoolReadOnlyViewSet,
-                    RequestCreateOnlyViewSet,
-                    MainCarouselReadOnlyViewSet,
-                    EmailCreateOnlyViewSet
-                    )
 
+from .views import (CertificatePostPatchViewSet, EmailCreateOnlyViewSet,
+                    MainCarouselReadOnlyViewSet, MasterclassReadOnlyViewset,
+                    MasterclassTypeReadOnlyViewset, PostViewset,
+                    RequestCreateOnlyViewSet, SchoolReadOnlyViewSet)
 
 router1 = routers.SimpleRouter()
 
@@ -49,6 +45,12 @@ router1.register(
     r'blog/posts',
     PostViewset,
     basename='posts'
+)
+
+router1.register(
+    r'certificate',
+    CertificatePostPatchViewSet,
+    basename='certificate'
 )
 
 

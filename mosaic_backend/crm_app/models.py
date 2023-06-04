@@ -1,5 +1,7 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+from django.core.validators import MinValueValidator
+from mosaic.business_logic import MIN_CERT_TG
 
 
 class FeedbackRequest(models.Model):
@@ -24,3 +26,36 @@ class EmailMainForm(models.Model):
     def __str__(self) -> str:
         """Returns email as class str repr."""
         return self.email
+
+
+class GiftCert(models.Model):
+    """Class for gift certificates.
+    Sertificate has a status model, it can be issued or redeemed."""
+
+    ISSUED = 'ISSUED'
+    REDEEMED = 'REDEEMED'
+    EXPIRED = 'EXPIRED'
+    STATUS_MODEL = [
+        (ISSUED, 'Issued'),
+        (REDEEMED, 'Redeemed'),
+        (EXPIRED, 'Expired'),
+    ]
+    id = models.CharField(primary_key=True,
+                          blank=False,
+                          max_length=6)
+    amount = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(MIN_CERT_TG,
+                                     f'Минимальная стоимость сертификата'
+                                     f'{MIN_CERT_TG} тенге')])
+    name_sender = models.CharField(max_length=50)
+    email_sender = models.EmailField(max_length=50)
+    name_recepient = models.CharField(max_length=50)
+    email_recipient = models.EmailField(max_length=50)
+    status = models.CharField(max_length=10,
+                              choices=STATUS_MODEL,
+                              default=ISSUED)
+    date_created = models.DateField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        """Returns gift cert as class str repr."""
+        return f'certificate №{self.id}'
