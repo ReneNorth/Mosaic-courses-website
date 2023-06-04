@@ -19,7 +19,7 @@ from django.utils.log import DEFAULT_LOGGING
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
-LOCAL_DEV = True
+LOCAL_DEV = False
 
 
 KEY_ENV = os.getenv('SECRET_KEY')
