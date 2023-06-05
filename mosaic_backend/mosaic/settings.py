@@ -7,16 +7,6 @@ from datetime import timedelta
 from django.utils.log import DEFAULT_LOGGING
 
 
-# def import_local():
-#     """Function only to ease local developement"""
-#     try:
-#         from local_settings import LOCAL_DATABASES 
-#         return LOCAL_DATABASES
-#     except ImportError:
-#         return True
-# import_local()
-
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 LOCAL_DEV = False
