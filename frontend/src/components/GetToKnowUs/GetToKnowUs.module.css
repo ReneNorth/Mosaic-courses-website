@@ -5,6 +5,7 @@
   justify-content: space-between;
 }
 .GetToKnowUs .section {
+  margin-left: 108px;
   font-family: var(--font-primary);
   font-style: normal;
   font-weight: 700;
@@ -36,14 +37,23 @@
 .GetToKnowUs .section .textBox {
   margin-top: 24px;
   display: flex;
+  justify-content: space-between;
+  max-width: 700px;
+  width: 100%;
+}
+.GetToKnowUs .section .textBox .text:nth-child(2) {
+  margin-left: 100px;
 }
 .GetToKnowUs .section .textBox p {
-  max-width: 269px;
+  max-width: 300px;
   font-family: var(--font-primary);
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
   line-height: 22.95px;
+}
+.GetToKnowUs .section .textBox .description:not(:first-child) {
+  margin-top: 10px;
 }
 
 /*# sourceMappingURL=GetToKnowUs.module.css.map */

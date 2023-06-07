@@ -3,6 +3,7 @@ import 'swiper/css';
 import React, { useEffect, useState } from 'react';
 import cls from './CreateWithLove.module.scss';
 import SliderCardBottom from '../SliderCardBottom/SliderCardBottom';
+import imageSrc from '../../images/AlenaPetrova.png';
 
 const sliderDataBottom = [
   {
@@ -68,9 +69,18 @@ export const CreateWithLove = () => {
                 key={slide.id}
                 className={`${cls.slider__item} ${sliderIndex === slide.id
                   ? `${cls.active}` : `${cls[position]}`}`}
-
               >
-                <SliderCardBottom />
+                <SliderCardBottom
+                  image={imageSrc}
+                  title="Алёна Петрова"
+                  text="Мы обожаем такие трепетные моменты и с радостью поможем
+                  устроить вам самый яркий праздник в нашей мастерской. Мы
+                  обожаем такие трепетные моменты и с радостью поможем устроить
+                  вам самый яркий праздник в нашей мастерской. Мы обожаем такие
+                  трепетные моменты и с радостью поможем"
+                  name={null}
+                  date={null}
+                />
               </li>
             );
           })}
