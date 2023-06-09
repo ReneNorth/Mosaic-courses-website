@@ -15,7 +15,7 @@ services:
       - "80:80"
 
     volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      # - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ../frontend/build:/usr/share/nginx/html/
       - static_value:/var/html/django_static/
       - media_value:/var/html/media/
@@ -41,6 +41,14 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ../frontend/:/app/result_build/
+
+
+  gateway:
+    build: 
+      context: ../gateway/
+      dockerfile: Dockerfile
+    ports:
+      - 8000:80 
 
 
 volumes:
