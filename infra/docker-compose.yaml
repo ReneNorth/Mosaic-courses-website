@@ -35,19 +35,31 @@ services:
     env_file:
       - ./.env
 
-  frontend:
-    build:
-      context: ../frontend
-      dockerfile: Dockerfile
-    volumes:
-      - ../frontend/:/app/result_build/
+  
+  
+  # the old approach
+  # frontend:
+  #   build:
+  #     context: ../frontend
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - ../frontend/:/app/result_build/
 
+
+  frontend:
+    env_file: .env
+    build: ../frontend/ 
+    command: cp -r /app/build/. /frontend_static/
+    volumes:
+      - static:/frontend_static
 
   gateway:
     build: 
       context: ../gateway/
       dockerfile: Dockerfile
     volumes:
+      # new
+      - static:/staticfiles/ 
       - static_value:/var/html/django_static/
       - media_value:/var/html/media/
     ports:
@@ -58,3 +70,4 @@ volumes:
   mosaic:
   static_value:
   media_value:
+  static:
