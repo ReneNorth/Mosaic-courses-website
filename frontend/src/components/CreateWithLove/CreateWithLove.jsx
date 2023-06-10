@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-unresolved
 import 'swiper/css';
 import React, { useEffect, useState } from 'react';
-import cls from './StudentReviews.module.scss';
+import cls from './CreateWithLove.module.scss';
 import SliderCardBottom from '../SliderCardBottom/SliderCardBottom';
-import imageSrc from '../../images/students-review_image-card.png';
+import imageSrc from '../../images/AlenaPetrova.png';
 
 const sliderDataBottom = [
   {
@@ -23,7 +23,7 @@ const sliderDataBottom = [
   },
 ];
 
-export const StudentReviews = () => {
+export const CreateWithLove = () => {
   const [sliderIndex, setSliderIndex] = useState(1);
 
   useEffect(() => {
@@ -46,14 +46,14 @@ export const StudentReviews = () => {
     <section className={cls.section}>
       <div className={cls.titleContent}>
         <h2 className={cls.title}>
-          Отзывы наших
-          <span> учеников</span>
+          Учим творить с
+          <span> любовью</span>
         </h2>
+        {/* eslint-disable max-len */}
         <p className={cls.description}>
-          Опыт наших учеников - самое важное для нас,
-          это наша главная мотивация и ценный источник
-          обратной связи. Посмотрите отзывы других учеников
-          и решите для себя, стоит ли прийти на наши курсы и мастер-классы.
+          Арт-школа — мастерская в центре Ростова-на-Дону.
+          Мы проводим мастер-классы по живописи и гончарному делу для деток и взрослых.
+          Мы делаем рисование доступным с помощью пошаговой программы и вовлечённых преподавателей. Вы как ученик обязательно прочувствуете нашу дружескую и лёгкую атмосферу.
         </p>
       </div>
 
@@ -69,21 +69,17 @@ export const StudentReviews = () => {
                 key={slide.id}
                 className={`${cls.slider__item} ${sliderIndex === slide.id
                   ? `${cls.active}` : `${cls[position]}`}`}
-
               >
                 <SliderCardBottom
                   image={imageSrc}
-                  title="Волшебно!"
+                  title="Алёна Петрова"
                   text="Мы обожаем такие трепетные моменты и с радостью поможем
                   устроить вам самый яркий праздник в нашей мастерской. Мы
                   обожаем такие трепетные моменты и с радостью поможем устроить
                   вам самый яркий праздник в нашей мастерской. Мы обожаем такие
-                  трепетные моменты и с радостью поможем устроить вам самый
-                  яркий праздник в нашей мастерской. Мы обожаем такие трепетные
-                  моменты и с радостью поможем устроить вам самый яркий праздник
-                  в нашей мастерской."
-                  name="Валерия М."
-                  date="24.01.2023"
+                  трепетные моменты и с радостью поможем"
+                  name={null}
+                  date={null}
                 />
               </li>
             );

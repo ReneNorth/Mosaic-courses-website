@@ -12,6 +12,8 @@ import { Header } from '../Header/Header';
 
 import './App.scss';
 import { Certificates } from '../../pages/Certificates/Certificates';
+import { AboutUs } from '../AboutUs/AboutUs';
+import { AboutStudio } from '../../pages/AboutStudio/AboutStudio';
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
             <Route path="/notfound" element={<NotFound />} />
             <Route path="/courses" element={<AllCourses />} />
             <Route path="/certificates" element={<Certificates />} />
+            <Route path="/about" element={<AboutStudio />} />
           </Routes>
         </main>
         <Footer />
