@@ -1,5 +1,8 @@
 version: '3.8'
 
+volumes:
+  static:
+
 services:
   db:
     image: postgres:13.0-alpine
@@ -13,7 +16,7 @@ services:
     build: ../mosaic_backend
     restart: always
     volumes:
-      - static_value:/app/static/
+      - static:/backend_static
       - media_value:/app/media/
     depends_on:
       - db
@@ -35,9 +38,7 @@ services:
     depends_on:
       - web
     volumes:
-      # new
-      - static:/staticfiles/ 
-      - static_value:/var/html/django_static/
+      - static:/staticfiles
       - media_value:/var/html/media/
     ports:
       - 8000:80 
@@ -45,6 +46,5 @@ services:
 
 volumes:
   mosaic:
-  static_value:
   media_value:
   static:
