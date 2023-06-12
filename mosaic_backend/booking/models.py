@@ -1,7 +1,7 @@
-from django.db import models
 from django.contrib.auth import get_user_model
-from masterclass.models import Masterclass
+from django.db import models
 
+from masterclass.models import Masterclass
 
 User = get_user_model()
 

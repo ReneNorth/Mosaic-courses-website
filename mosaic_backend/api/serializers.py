@@ -1,15 +1,14 @@
 import base64
 import logging
 
+from django.core.files.base import ContentFile
+from rest_framework import serializers
+
 from blog.models import Post
 from booking.models import Booking
 from carousel.models import MainCarouselItem
 from crm_app.models import EmailMainForm, FeedbackRequest, GiftCert
-from django.core.files.base import ContentFile
-from django.shortcuts import get_object_or_404
 from masterclass.models import Masterclass, MasterclassType
-from rest_framework import serializers, status
-from rest_framework.response import Response
 from school.models import Advatage, Approach, Question, Review, School
 
 logger = logging.getLogger(__name__)
@@ -33,7 +32,6 @@ class RequestSerializer(serializers.ModelSerializer):
             'contact_consent': {'required': True}
         }
 
-    
 
 class EmailMainSerializer(serializers.ModelSerializer):
     class Meta:
@@ -43,11 +41,11 @@ class EmailMainSerializer(serializers.ModelSerializer):
 
 class MasterclassSerializer(serializers.ModelSerializer):
     num_of_guests = serializers.IntegerField(read_only=True)
-    
+
     class Meta:
         model = Masterclass
         fields = ['id', 'title', 'price', 'currency',
-                #   'time_begin', 'time_end',
+                  #   'time_begin', 'time_end',
                   'num_of_guests',
                   ]
         read_only_fields = ['title', 'price', 'time_begin',
@@ -60,7 +58,6 @@ class MasterclassTypeSerializer(serializers.ModelSerializer):
     """ тут что-то рассказано про конкретно этот сериализтор
     от"""
     masterclasses = MasterclassSerializer(many=True, read_only=True)
-    # full_description =
 
     class Meta:
         model = MasterclassType
@@ -80,11 +77,6 @@ class BookingSerializer(serializers.ModelSerializer):
 class PostSerializer(serializers.ModelSerializer):
     author = serializers.PrimaryKeyRelatedField(read_only=True)
     image = Base64ImageField(required=False, allow_null=True)
-    # pub_date = serializers.DateTimeField(format='%d %B %Y')
-    
-    # def perform_create(self, serializer):
-        # title = get_object_or_404(Post, id=self.kwargs.get("post_id"))
-        # serializer.save(author_id=self.request.user.id)
 
     class Meta:
         model = Post
@@ -93,6 +85,7 @@ class PostSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'text': {'required': True}
         }
+
 
 class AdvantagesSerializer(serializers.ModelSerializer):
     class Meta:
@@ -153,10 +146,3 @@ class GiftCertSerializer(serializers.ModelSerializer):
         model = GiftCert
         fields = ['amount', 'name_sender', 'email_sender',
                   'name_recepient', 'email_recipient']
-
-    # def create(self, validated_data):
-        # cert = GiftCert(**validated_data)
-        # cert.save()
-        # return GiftCert(**validated_data)
-        # return Response({"Success": "msb blablabla"}, status=status.HTTP_201_CREATED)
-

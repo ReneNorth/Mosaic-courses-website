@@ -1,11 +1,11 @@
-from pathlib import Path
 import os
-from dotenv import load_dotenv
+from datetime import timedelta
+from pathlib import Path
+
 from django.conf import settings
 from django.conf.urls.static import static
-from datetime import timedelta
 from django.utils.log import DEFAULT_LOGGING
-
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True

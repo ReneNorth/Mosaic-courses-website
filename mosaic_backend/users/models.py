@@ -1,9 +1,8 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
 
 
 # https://stackoverflow.com/questions/54233005/error-in-superuser-creation-not-null-constraint-failed

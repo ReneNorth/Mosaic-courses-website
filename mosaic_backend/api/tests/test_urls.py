@@ -1,9 +1,9 @@
-from crm_app.models import FeedbackRequest
 from django.test import Client, TestCase
 from rest_framework.test import APIClient, APIRequestFactory
-from school.models import School
 
 from api.views import RequestCreateOnlyViewSet
+from crm_app.models import FeedbackRequest
+from school.models import School
 
 
 class FeedbackPostTest(TestCase):

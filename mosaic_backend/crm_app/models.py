@@ -1,6 +1,7 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-from django.core.validators import MinValueValidator
+
 from mosaic.business_logic import MIN_CERT_TG
 
 
@@ -45,8 +46,8 @@ class GiftCert(models.Model):
                           max_length=6)
     amount = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(MIN_CERT_TG,
-                                     f'Минимальная стоимость сертификата'
-                                     f'{MIN_CERT_TG} тенге')])
+                                      f'Минимальная стоимость сертификата'
+                                      f'{MIN_CERT_TG} тенге')])
     name_sender = models.CharField(max_length=50)
     email_sender = models.EmailField(max_length=50)
     name_recepient = models.CharField(max_length=50)

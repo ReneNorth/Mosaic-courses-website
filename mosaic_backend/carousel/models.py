@@ -2,8 +2,9 @@ from django.db import models
 
 
 class MainCarouselItem(models.Model):
-    """ ДОБАВИТЬ Докстринг """
-    link = models.CharField(max_length=200, verbose_name='Hyperlink') # написать пояснение 
+    """Represents an item of the main carousel."""
+    link = models.CharField(
+        max_length=200, verbose_name='Hyperlink')  # написать пояснение
     text = models.CharField(max_length=100, verbose_name='Text on banner')
     button = models.CharField(max_length=20, blank=True)
     order = models.PositiveSmallIntegerField(default=1)
@@ -11,4 +12,4 @@ class MainCarouselItem(models.Model):
         upload_to='carousel_items/', default=None)
 
     def __str__(self) -> str:
-        return f'Item in carouser: {self.text[15:]}'
+        return f'Item in the carousel: {self.text[15:]}'

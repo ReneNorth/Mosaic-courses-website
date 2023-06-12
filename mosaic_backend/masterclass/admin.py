@@ -1,5 +1,6 @@
 from django.contrib import admin
-from masterclass.models import MasterclassType, Masterclass
+
+from masterclass.models import Masterclass, MasterclassType
 
 
 # @admin.register(MasterclassType)

@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import FeedbackRequest, EmailMainForm, GiftCert
+
+from .models import EmailMainForm, FeedbackRequest, GiftCert
 
 
 @admin.register(FeedbackRequest, EmailMainForm, GiftCert)

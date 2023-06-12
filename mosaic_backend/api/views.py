@@ -1,28 +1,25 @@
 import random
 import string
-from rest_framework import status
-from rest_framework.response import Response
 
-from blog.models import Post
-from booking.models import Booking
-from carousel.models import MainCarouselItem
-from crm_app.models import GiftCert
-from django.contrib.auth.models import User
 from django.db.models import Count
-from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
-from masterclass.models import Masterclass, MasterclassType
-from rest_framework import mixins, viewsets
+from rest_framework import mixins, status, viewsets
 from rest_framework.pagination import (LimitOffsetPagination,
                                        PageNumberPagination)
 from rest_framework.permissions import AllowAny
-from school.models import Advatage, Question, Review, School
+from rest_framework.response import Response
 
 from api.serializers import (BookingSerializer, EmailMainSerializer,
                              GiftCertSerializer, MainCarouselSerializer,
                              MasterclassSerializer, MasterclassTypeSerializer,
                              PostSerializer, RequestSerializer,
                              SchoolSerializer)
+from blog.models import Post
+from booking.models import Booking
+from carousel.models import MainCarouselItem
+from crm_app.models import GiftCert
+from masterclass.models import Masterclass, MasterclassType
+from school.models import Advatage, Question, Review, School
 
 
 def generate_cert_id(size=6, chars=string.ascii_uppercase + string.digits):
@@ -71,7 +68,7 @@ class BookingViewSet(AbstractView):
     that process get, post and delete requests.
     Only authorized user can book a course. For non-authorized users there is
     a redirect to the 'call me back' page (or it will be done if not yet."""
-    queryset = Booking.objects.all() # TODO после авторизации
+    queryset = Booking.objects.all()  # TODO после авторизации
     serializer_class = BookingSerializer
     # permission_classes = TODO
 
