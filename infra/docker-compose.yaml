@@ -1,7 +1,6 @@
 version: '3.8'
 
-volumes:
-  static:
+
 
 services:
   db:
@@ -17,7 +16,7 @@ services:
     restart: always
     volumes:
       - static:/backend_static
-      - media_value:/app/media/
+      - media_value:/app/media
     depends_on:
       - db
     env_file:
@@ -39,12 +38,12 @@ services:
       - web
     volumes:
       - static:/staticfiles
-      - media_value:/var/html/media/
+      - media_value:/app/media
     ports:
       - 8000:80 
 
 
 volumes:
-  mosaic:
-  media_value:
   static:
+  media_value:
+  mosaic:
