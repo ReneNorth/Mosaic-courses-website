@@ -3,6 +3,7 @@ import 'swiper/css';
 import React, { useEffect, useState } from 'react';
 import cls from './StudentReviews.module.scss';
 import SliderCardBottom from '../SliderCardBottom/SliderCardBottom';
+import imageSrc from '../../images/students-review_image-card.png';
 
 const sliderDataBottom = [
   {
@@ -70,7 +71,20 @@ export const StudentReviews = () => {
                   ? `${cls.active}` : `${cls[position]}`}`}
 
               >
-                <SliderCardBottom />
+                <SliderCardBottom
+                  image={imageSrc}
+                  title="Волшебно!"
+                  text="Мы обожаем такие трепетные моменты и с радостью поможем
+                  устроить вам самый яркий праздник в нашей мастерской. Мы
+                  обожаем такие трепетные моменты и с радостью поможем устроить
+                  вам самый яркий праздник в нашей мастерской. Мы обожаем такие
+                  трепетные моменты и с радостью поможем устроить вам самый
+                  яркий праздник в нашей мастерской. Мы обожаем такие трепетные
+                  моменты и с радостью поможем устроить вам самый яркий праздник
+                  в нашей мастерской."
+                  name="Валерия М."
+                  date="24.01.2023"
+                />
               </li>
             );
           })}

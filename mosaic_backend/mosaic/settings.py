@@ -14,7 +14,7 @@ LOCAL_DEV = False
 
 KEY_ENV = os.getenv('SECRET_KEY')
 SECRET_KEY = f'{KEY_ENV}'
-ALLOWED_HOSTS = ['*', 'web', '127.0.0.1', 'localhost',
+ALLOWED_HOSTS = ['*', 'web', '127.0.0.1', '127.0.0.1:8000', 'localhost',
                  '[::1]', 'testserver',
                  ]
 
@@ -61,15 +61,15 @@ MIDDLEWARE = [
 # CORS
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/api/.*$'
-CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://localhost:3000']
+CSRF_TRUSTED_ORIGINS = ['http://localhost',
+                        'http://localhost:3000',
+                        'https://tessera.hopto.org',
+                        ]
 # CORS_ALLOWED_ORIGINS = [
 #     'http://localhost',
 #     'http://localhost:3000',
 #     'http://localhost:8000',
 # ]
-
-
-
 
 
 ROOT_URLCONF = 'mosaic.urls'
@@ -96,13 +96,13 @@ WSGI_APPLICATION = 'mosaic.wsgi.application'
 
 if LOCAL_DEV is False:
     DATABASES = {
-    'default': {
-        'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
-        'NAME': os.getenv('DB_NAME', default='postgres'),
-        'USER': os.getenv('POSTGRES_USER', default='postgres'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='mosaic_admin'),
-        'HOST': os.getenv('DB_HOST', default='db'),
-        'PORT': os.getenv('DB_PORT', default='5432')
+        'default': {
+            'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
+            'NAME': os.getenv('DB_NAME', default='postgres'),
+            'USER': os.getenv('POSTGRES_USER', default='postgres'),
+            'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='mosaic_admin'),
+            'HOST': os.getenv('DB_HOST', default='db'),
+            'PORT': os.getenv('DB_PORT', default='5432')
         }
     }
 
@@ -116,9 +116,8 @@ if LOCAL_DEV is True:
             'PASSWORD': 'mosaic_admin',
             'HOST': 'localhost',
             'PORT': '5432'
-            }
         }
-
+    }
 
 
 # Password validation
@@ -151,8 +150,10 @@ USE_L10N = True
 USE_TZ = True
 
 
-STATIC_URL = '/django_static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'django_static')
+# STATIC_URL = '/django_static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'django_static')
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'collected_static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -162,7 +163,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 
 # urlpatterns = [
-    # ... the rest of your URLconf goes here ...
+# ... the rest of your URLconf goes here ...
 # ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

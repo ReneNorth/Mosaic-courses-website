@@ -51,7 +51,7 @@ const Slider = () => {
   const [sliderIndex, setSliderIndex] = useState(1);
 
   const fetchSliders = async () => {
-    const response = await fetch('http://127.0.0.1/api/v1/main_carousel/', {
+    const response = await fetch('https://tessera.hopto.org/api/v1/main_carousel/', {
       headers: {
         'Content-type': 'application/json',
       },

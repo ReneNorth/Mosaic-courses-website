@@ -1,26 +1,20 @@
 import styles from './SliderCardBottom.module.scss';
-import imageSrc from '../../images/students-review_image-card.png';
 
-const SliderCardBottom = () => {
+const SliderCardBottom = ({
+  text, title, image, name, date,
+}) => {
   return (
     <div className={styles.slider}>
-      <img src={imageSrc} alt="слайдер" />
+      <img src={image} alt="слайдер" />
       <div className={styles.slider__right}>
-        <h3>Волшебно!</h3>
+        <h3>{title}</h3>
         <p>
           {' '}
-          Мы обожаем такие трепетные моменты и с радостью поможем
-          устроить вам самый яркий праздник в нашей мастерской. Мы
-          обожаем такие трепетные моменты и с радостью поможем устроить
-          вам самый яркий праздник в нашей мастерской. Мы обожаем такие
-          трепетные моменты и с радостью поможем устроить вам самый
-          яркий праздник в нашей мастерской. Мы обожаем такие трепетные
-          моменты и с радостью поможем устроить вам самый яркий праздник
-          в нашей мастерской.
+          {text}
         </p>
         <div>
-          <p>Валерия М.</p>
-          <span>24.01.2023</span>
+          <p>{name}</p>
+          <span>{date}</span>
         </div>
       </div>
     </div>
