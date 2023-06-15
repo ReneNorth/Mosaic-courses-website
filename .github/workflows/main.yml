@@ -50,7 +50,7 @@ jobs:
 # cd backend/
         python .mosaic_backend/manage.py test 
 # cd mosaic_backend
-# python manage.py test
+
 
 #        python -m flake8
 #        cd infra_project/
