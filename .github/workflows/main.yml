@@ -1,5 +1,4 @@
 name: Mosaic-app workflow
-####
 on: 
   push:
     branches: 
@@ -34,8 +33,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r ./mosaic_backend/requirements.txt 
 
-# pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort
-
     - name: Test with django tests
       env:
         POSTGRES_USER: django_user
@@ -46,9 +43,13 @@ jobs:
         DB_HOST: 127.0.0.1
         DB_PORT: 5432
       run: |
+        python .mosaic_backend/manage.py test 
+
+
+
 # python -m flake8 backend/
 # cd backend/
-        python .mosaic_backend/manage.py test 
+        
 # cd mosaic_backend
 
 
