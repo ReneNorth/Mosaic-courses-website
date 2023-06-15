@@ -38,6 +38,7 @@ class FeedbackPostTest(TestCase):
         self.assertEqual(response.status_code, 200)
         
     def test_school_name(self):
+        """Tests that the school's name is correct."""
         response = FeedbackPostTest.guest_client.get('/api/v1/school/')
         # print(response.data.get('name')) # не работает, потому что без
         # пагинации данные содержатся в объекте https://stackoverflow.com/questions/55286605/drf-jsonrenderer-returnlist-object-has-no-attribute-get
