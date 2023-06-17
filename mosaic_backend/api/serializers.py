@@ -133,7 +133,7 @@ class SchoolSerializer(serializers.ModelSerializer):
 class MainCarouselSerializer(serializers.ModelSerializer):
     class Meta:
         model = MainCarouselItem
-        fields = ['link', 'text', 'button', 'order', 'image']
+        fields = ['link', 'title', 'text', 'button', 'order', 'image']
 
 
 class GiftCertSerializer(serializers.ModelSerializer):

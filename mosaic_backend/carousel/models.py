@@ -5,7 +5,11 @@ class MainCarouselItem(models.Model):
     """Represents an item of the main carousel."""
     link = models.CharField(
         max_length=200, verbose_name='Hyperlink')  # написать пояснение
-    text = models.CharField(max_length=100, verbose_name='Text on banner')
+    title = models.CharField(max_length=50,
+                             verbose_name='Header on the banner',
+                             blank=True)
+    text = models.CharField(max_length=250,
+                            verbose_name='Text on banner')
     button = models.CharField(max_length=20, blank=True)
     order = models.PositiveSmallIntegerField(default=1)
     image = models.ImageField(
