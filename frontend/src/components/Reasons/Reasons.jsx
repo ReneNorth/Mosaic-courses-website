@@ -13,7 +13,7 @@ export const Reasons = () => {
           <div className={cls.ellipse}>I</div>
           <h3 className={cls.cardTitle}>Уникальность</h3>
           <p className={cls.description}>
-            Если вы устали от стандартных мастреклассов,
+            Если вы устали от стандартных мастер-классов,
             то работа с камнем станет для вас новым опытом.
           </p>
         </li>
@@ -32,7 +32,7 @@ export const Reasons = () => {
           <h3 className={cls.cardTitle}>Медитативность и погружение</h3>
           <p className={cls.description}>
             Выкладывание мозаики - медитативный и приятный процесс,
-            который поможет отвлечся от ваших проблем
+            который поможет отвлечься от ваших проблем
           </p>
         </li>
       </ul>

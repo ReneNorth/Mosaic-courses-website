@@ -149,6 +149,8 @@ bower_components
 content/
 mosaic/media/
 
+my_temp_practicum.py
+
 #vscode
 .vscode/
 
