@@ -30,7 +30,7 @@ export const CourseCard = ({
               : (
                 <div className={cls.priceContainer}>
                   <span className={cls.priceIcon} />
-                  <p className={cls.info}>{`${item.price} рублей`}</p>
+                  <p className={cls.info}>{`${item.price} тенге`}</p>
                 </div>
               )}
           </div>
