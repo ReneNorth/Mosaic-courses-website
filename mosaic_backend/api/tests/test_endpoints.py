@@ -1,10 +1,11 @@
+from carousel.models import MainCarouselItem
+from crm_app.models import EmailMainForm, FeedbackRequest
 from django.test import Client, TestCase
 from rest_framework.test import APIRequestFactory
 
 from api.views import RequestCreateOnlyViewSet
-from crm_app.models import FeedbackRequest, EmailMainForm
-from carousel.models import MainCarouselItem
-from .data_tests import link 
+
+from .data_tests import link
 
 
 class FeedbackTest(TestCase):
@@ -14,6 +15,10 @@ class FeedbackTest(TestCase):
         cls.guest_client = Client()
         cls.factory = APIRequestFactory()
 
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
+
     def test_feedback_api(self):
         """Checks 200 response for api/v1/school get request."""
         view = RequestCreateOnlyViewSet.as_view({'post': 'create'})
@@ -21,7 +26,7 @@ class FeedbackTest(TestCase):
             "phone_num": "+77770202936",
             "name": "mynameis",
             "contact_consent": "TRUE"
-          }
+        }
         )
         response = view(request)
         self.assertEqual(FeedbackRequest.objects.count(), 1)
@@ -35,6 +40,10 @@ class EmailFormAPITest(TestCase):
     def setUpClass(cls) -> None:
         super().setUpClass()
         cls.guest_client = Client()
+
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
 
     def test_email_created(self):
         data = {'email': 'user@example.com'}
@@ -56,6 +65,10 @@ class CarouselItemAPITest(TestCase):
             order=1,
             image='/image'
         )
+
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
 
     def test_carousel_item_created_db(self):
         self.assertEqual(MainCarouselItem.objects.count(), 1)

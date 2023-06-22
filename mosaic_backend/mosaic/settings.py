@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
-LOCAL_DEV = False
+LOCAL_DEV = True
 
 
 KEY_ENV = os.getenv('SECRET_KEY')
@@ -151,8 +151,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-# STATIC_URL = '/django_static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'django_static')
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'collected_static'
 
@@ -163,10 +161,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
 
-# urlpatterns = [
-# ... the rest of your URLconf goes here ...
-# ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -176,8 +170,6 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
-    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    # 'PAGE_SIZE': 10,
 }
 
 SIMPLE_JWT = {

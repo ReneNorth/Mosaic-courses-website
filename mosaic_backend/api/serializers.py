@@ -1,16 +1,22 @@
 import base64
 import logging
 
-from django.core.files.base import ContentFile
-from rest_framework import serializers
-
 from blog.models import Post
 from booking.models import Booking
 from carousel.models import MainCarouselItem
 from crm_app.models import EmailMainForm, FeedbackRequest, GiftCert
+from django.contrib.auth import get_user_model
+from django.core.files.base import ContentFile
+from django.shortcuts import get_object_or_404
 from masterclass.models import Masterclass, MasterclassType
+from mosaic.business_logic import BusinessLogic
+from rest_framework import serializers
 from school.models import Advatage, Approach, Question, Review, School
 
+User = get_user_model()
+
+logging.basicConfig(format='%(message)s')
+log = logging.getLogger(__name__)
 logger = logging.getLogger(__name__)
 
 
@@ -55,8 +61,6 @@ class MasterclassSerializer(serializers.ModelSerializer):
 
 
 class MasterclassTypeSerializer(serializers.ModelSerializer):
-    """ тут что-то рассказано про конкретно этот сериализтор
-    от"""
     masterclasses = MasterclassSerializer(many=True, read_only=True)
 
     class Meta:
@@ -75,7 +79,7 @@ class BookingSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
-    author = serializers.PrimaryKeyRelatedField(read_only=True)
+    author = serializers.SerializerMethodField()
     image = Base64ImageField(required=False, allow_null=True)
 
     class Meta:
@@ -85,6 +89,14 @@ class PostSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'text': {'required': True}
         }
+
+    def get_author(self, post: Post) -> str:
+        author = get_object_or_404(User, id=post.author.id)
+        if not (author.first_name or author.last_name):
+            return BusinessLogic.ADMIN_NAME
+        if author.last_name:
+            return f'{author.first_name} {author.last_name}'
+        return author.first_name
 
 
 class AdvantagesSerializer(serializers.ModelSerializer):

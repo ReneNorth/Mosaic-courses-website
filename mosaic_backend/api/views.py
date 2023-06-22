@@ -1,25 +1,25 @@
 import random
 import string
 
+from blog.models import Post
+from booking.models import Booking
+from carousel.models import MainCarouselItem
+from crm_app.models import GiftCert
 from django.db.models import Count
 from django_filters.rest_framework import DjangoFilterBackend
+from masterclass.models import Masterclass, MasterclassType
 from rest_framework import mixins, status, viewsets
 from rest_framework.pagination import (LimitOffsetPagination,
                                        PageNumberPagination)
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from school.models import Advatage, Question, Review, School
 
 from api.serializers import (BookingSerializer, EmailMainSerializer,
                              GiftCertSerializer, MainCarouselSerializer,
                              MasterclassSerializer, MasterclassTypeSerializer,
                              PostSerializer, RequestSerializer,
                              SchoolSerializer)
-from blog.models import Post
-from booking.models import Booking
-from carousel.models import MainCarouselItem
-from crm_app.models import GiftCert
-from masterclass.models import Masterclass, MasterclassType
-from school.models import Advatage, Question, Review, School
 
 
 def generate_cert_id(size=6, chars=string.ascii_uppercase + string.digits):
@@ -77,7 +77,6 @@ class PostViewset(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [AllowAny, ]
-    # pagination_class = PageNumberPagination
     pagination_class = LimitOffsetPagination
 
     def perform_create(self, serializer):
