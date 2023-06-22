@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
-LOCAL_DEV = True
+LOCAL_DEV = False
 
 
 KEY_ENV = os.getenv('SECRET_KEY')
