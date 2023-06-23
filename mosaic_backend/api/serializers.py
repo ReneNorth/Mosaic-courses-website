@@ -84,10 +84,13 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id', 'title', 'text', 'pub_date', 'author', 'image']
+        fields = ['id', 'slug', 'title', 'read_time', 'preview_text',
+                  'text', 'pub_date', 'author', 'image', ]
+        lookup_field = 'slug'
         read_only_fields = ['id', 'pub_date', 'author']
         extra_kwargs = {
-            'text': {'required': True}
+            'text': {'required': True},
+            'url': {'lookup_field': 'slug'}
         }
 
     def get_author(self, post: Post) -> str:

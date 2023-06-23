@@ -78,13 +78,13 @@ class PostViewset(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     permission_classes = [AllowAny, ]
     pagination_class = LimitOffsetPagination
+    lookup_field = 'slug'
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
 
 class SchoolReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    # подумать как на уровне БД ограничить модель одной записью
     queryset = School.objects.all()
     serializer_class = SchoolSerializer
     permission_classes = [AllowAny, ]
