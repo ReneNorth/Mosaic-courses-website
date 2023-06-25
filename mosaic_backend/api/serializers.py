@@ -1,7 +1,7 @@
 import base64
 import logging
 
-from blog.models import Post
+from blog.models import Post, Tag
 from booking.models import Booking
 from carousel.models import MainCarouselItem
 from crm_app.models import EmailMainForm, FeedbackRequest, GiftCert
@@ -12,6 +12,7 @@ from masterclass.models import Masterclass, MasterclassType
 from mosaic.business_logic import BusinessLogic
 from rest_framework import serializers
 from school.models import Advatage, Approach, Question, Review, School
+from marketplace.models import Artwork, ArtworkMainPage
 
 User = get_user_model()
 
@@ -37,6 +38,50 @@ class RequestSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'contact_consent': {'required': True}
         }
+
+
+class MainCarouselSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MainCarouselItem
+        fields = ['link', 'title', 'text', 'button', 'order', 'image', ]
+
+
+class GiftCertSerializer(serializers.ModelSerializer):
+    """
+    Expects amount, sender's name and email, recepient's name and email
+    Generates a 6-symbols (digits and letters) code as the ID and sets status
+    to issued.
+    """
+    class Meta:
+        model = GiftCert
+        fields = ['amount', 'name_sender', 'email_sender',
+                  'name_recepient', 'email_recipient']
+
+
+class ArtworkSerializer(serializers.ModelSerializer):
+    custom_ordering = serializers.SerializerMethodField()
+    is_on_main = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Artwork
+        fields = ['id', 'title', 'author', 'author_type',
+                  'is_on_main', 'is_for_sale', 'price', 'description',
+                  'custom_ordering']
+
+    def get_custom_ordering(self, artwork: Artwork) -> int:
+        try:
+            ordering = ArtworkMainPage.objects.get(
+                artwork=artwork).custom_ordering
+            if ordering is not None:
+                return ordering
+            return None
+        except Exception as er:
+            logging.error(er, exc_info=True)
+
+    def get_is_on_main(self, artwork: Artwork) -> bool:
+        if ArtworkMainPage.objects.filter(artwork=artwork).exists():
+            return True
+        return False
 
 
 class EmailMainSerializer(serializers.ModelSerializer):
@@ -78,14 +123,21 @@ class BookingSerializer(serializers.ModelSerializer):
         fields = ['guest', 'attending']
 
 
+class TagReadOnlySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = ['id', 'title', 'slug']
+
+
 class PostSerializer(serializers.ModelSerializer):
     author = serializers.SerializerMethodField()
     image = Base64ImageField(required=False, allow_null=True)
+    tags = TagReadOnlySerializer(many=True)
 
     class Meta:
         model = Post
         fields = ['id', 'slug', 'title', 'read_time', 'preview_text',
-                  'text', 'pub_date', 'author', 'image', ]
+                  'text', 'pub_date', 'author', 'image', 'tags']
         lookup_field = 'slug'
         read_only_fields = ['id', 'pub_date', 'author']
         extra_kwargs = {
@@ -143,21 +195,3 @@ class SchoolSerializer(serializers.ModelSerializer):
                   'approach',
                   'reviews',
                   ]
-
-
-class MainCarouselSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MainCarouselItem
-        fields = ['link', 'title', 'text', 'button', 'order', 'image']
-
-
-class GiftCertSerializer(serializers.ModelSerializer):
-    """
-    Expects amount, sender's name and email, recepient's name and email
-    Generates a 6-symbols (digits and letters) code as the ID and sets status
-    to issued.
-    """
-    class Meta:
-        model = GiftCert
-        fields = ['amount', 'name_sender', 'email_sender',
-                  'name_recepient', 'email_recipient']

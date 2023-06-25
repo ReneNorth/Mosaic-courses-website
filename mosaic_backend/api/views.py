@@ -1,25 +1,30 @@
 import random
 import string
 
-from blog.models import Post
+from blog.models import Post, Tag
 from booking.models import Booking
 from carousel.models import MainCarouselItem
 from crm_app.models import GiftCert
 from django.db.models import Count
 from django_filters.rest_framework import DjangoFilterBackend
 from masterclass.models import Masterclass, MasterclassType
-from rest_framework import mixins, status, viewsets
+from rest_framework import mixins, status, viewsets, filters
 from rest_framework.pagination import (LimitOffsetPagination,
                                        PageNumberPagination)
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from school.models import Advatage, Question, Review, School
+from marketplace.models import Artwork
+from school.models import School
+from api.filters import ArtworksFilter, PostsFilter
+
 
 from api.serializers import (BookingSerializer, EmailMainSerializer,
                              GiftCertSerializer, MainCarouselSerializer,
                              MasterclassSerializer, MasterclassTypeSerializer,
                              PostSerializer, RequestSerializer,
-                             SchoolSerializer)
+                             SchoolSerializer, ArtworkSerializer,
+                             TagReadOnlySerializer
+                             )
 
 
 def generate_cert_id(size=6, chars=string.ascii_uppercase + string.digits):
@@ -31,6 +36,22 @@ class RequestCreateOnlyViewSet(mixins.CreateModelMixin,
                                viewsets.GenericViewSet):
     serializer_class = RequestSerializer
     permission_classes = [AllowAny, ]
+
+
+class TagReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Tag.objects.all()
+    serializer_class = TagReadOnlySerializer
+    permission_classes = [AllowAny, ]
+
+
+class ArtworkReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    # add get serializer class
+    queryset = Artwork.objects.all()
+    serializer_class = ArtworkSerializer
+    pagination_class = LimitOffsetPagination
+    filterset_class = ArtworksFilter
+    permission_classes = [AllowAny, ]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, ]
 
 
 class EmailCreateOnlyViewSet(mixins.CreateModelMixin,
@@ -48,7 +69,7 @@ class MasterclassReadOnlyViewset(viewsets.ReadOnlyModelViewSet):
             num_of_guests=Count('bookings__guest'))
 
 
-class MasterclassTypeReadOnlyViewset(viewsets.ReadOnlyModelViewSet):
+class MasterclassTypeReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = MasterclassTypeSerializer
     queryset = MasterclassType.objects.all()
     permission_classes = [AllowAny, ]
@@ -73,15 +94,13 @@ class BookingViewSet(AbstractView):
     # permission_classes = TODO
 
 
-class PostViewset(viewsets.ModelViewSet):
+class PostViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [AllowAny, ]
     pagination_class = LimitOffsetPagination
-    lookup_field = 'slug'
-
-    def perform_create(self, serializer):
-        serializer.save(author=self.request.user)
+    filterset_class = PostsFilter
+    filter_backends = [DjangoFilterBackend, ]
 
 
 class SchoolReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
@@ -113,11 +132,13 @@ class CertificatePostPatchViewSet(viewsets.GenericViewSet,
     def create(self, request, *args, **kwargs):
         """Returns the certificate's ID among the other data"""
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        cert_id = self.perform_create(serializer)
-        serializer_id = {'certificate_id': f'{cert_id}'}
-        serializer_id.update(serializer.data)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer_id,
-                        status=status.HTTP_201_CREATED,
-                        headers=headers)
+        if serializer.is_valid(raise_exception=True):
+            cert_id = self.perform_create(serializer)
+            serializer_id = {'certificate_id': f'{cert_id}'}
+            serializer_id.update(serializer.data)
+            headers = self.get_success_headers(serializer.data)
+            return Response(serializer_id,
+                            status=status.HTTP_201_CREATED,
+                            headers=headers)
+        return Response(serializer.errors,
+                        status=status.HTTP_400_BAD_REQUEST)

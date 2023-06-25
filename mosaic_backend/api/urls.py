@@ -3,8 +3,9 @@ from rest_framework import routers
 
 from .views import (CertificatePostPatchViewSet, EmailCreateOnlyViewSet,
                     MainCarouselReadOnlyViewSet, MasterclassReadOnlyViewset,
-                    MasterclassTypeReadOnlyViewset, PostViewset,
-                    RequestCreateOnlyViewSet, SchoolReadOnlyViewSet)
+                    MasterclassTypeReadOnlyViewSet, PostViewSet,
+                    RequestCreateOnlyViewSet, SchoolReadOnlyViewSet,
+                    ArtworkReadOnlyViewSet, TagReadOnlyViewSet)
 
 router1 = routers.SimpleRouter()
 
@@ -37,13 +38,13 @@ router1.register(
 
 router1.register(
     r'masterclass_types',
-    MasterclassTypeReadOnlyViewset,
+    MasterclassTypeReadOnlyViewSet,
     basename='masterclasses'
 )
 
 router1.register(
     r'blog/posts',
-    PostViewset,
+    PostViewSet,
     basename='posts'
 )
 
@@ -53,6 +54,17 @@ router1.register(
     basename='certificate'
 )
 
+router1.register(
+    r'artworks',
+    ArtworkReadOnlyViewSet,
+    basename='artwork'
+)
+
+router1.register(
+    r'tags',
+    TagReadOnlyViewSet,
+    basename='tags'
+)
 
 urlpatterns = [
     path('v1/', include(router1.urls)),

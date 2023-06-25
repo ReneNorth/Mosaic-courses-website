@@ -68,7 +68,7 @@ class Review(models.Model):
                                related_name='reviews', default=1)
     student_name = models.CharField(max_length=20)
     photo = models.ImageField(blank=True)
-    review = models.TextField(max_length=500)
+    review = models.TextField(max_length=450)
     pub_date = models.DateField(auto_now=False, auto_now_add=False)
 
     def __str__(self) -> str:
