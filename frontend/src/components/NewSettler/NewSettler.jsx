@@ -35,6 +35,7 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
 
   return (
     <div className={`${styles.popup} ${isOpen ? `${styles.popup_open}` : ''}`}>
+      <div className={styles.overlay} onClick={() => setIsOpen(!isOpen)} />
       {(isResponse === 'wait') && (
         <form onSubmit={handleSubmit} className={styles.content} noValidate>
           <button onClick={() => setIsOpen(!isOpen)} type="button" aria-label="close">
