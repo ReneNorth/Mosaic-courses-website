@@ -7,8 +7,8 @@ export const MapAndContacts = () => {
       <div className={cls.topContainer}>
         <div className={cls.mapWrapper}>
           <Map
-            width={620}
-            height={360}
+            width="100%"
+            height="100%"
             defaultState={{ center: [55.75, 37.57], zoom: 15 }}
           />
         </div>

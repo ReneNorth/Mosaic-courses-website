@@ -1,3 +1,5 @@
+@use "../../utils/variables/global.scss";
+
 .list {
   padding: 0;
   margin: 0;
@@ -31,4 +33,56 @@
 
 .cart {
   background-image: url('../../images/Ic_shopping_bag.svg');
+}
+
+.button {
+  display: none;
+  height: 24px;
+  width: 24px;
+  background-image: url('../../images/hamburger_menu.svg');
+  background-repeat: no-repeat;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+
+  .list {
+    background-color: var(--bg-green-primary);
+    padding: 31px 0 45px 0;
+    gap: 16px;
+    justify-content: center;
+    max-width: 140px;
+  }
+
+  .item {
+    display: none;
+    flex: 0 0 100%;
+  }
+
+  // .search {
+  //   display: none;
+  // }
+
+  .link {
+    width: 24px;
+    height: 24px;
+    background-size: 24px 24px;
+  }
+  
+  .profile {
+    width: 24px;
+    height: 24px;
+    background-size: 24px 24px;
+  }
+  
+  .cart {
+    width: 24px;
+    height: 24px;
+    background-size: 24px 24px;
+  }
+
+  .button {
+    display: block;
+  }
 }

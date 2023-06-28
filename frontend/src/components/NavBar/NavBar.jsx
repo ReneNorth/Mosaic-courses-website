@@ -2,9 +2,9 @@ import { NavLink } from 'react-router-dom';
 import { classNames } from '../../helpers/classNames';
 import cls from './NavBar.module.scss';
 
-export const NavBar = () => {
+export const NavBar = ({ isMobile = false }) => {
   return (
-    <nav className={classNames(cls.container, {}, [])}>
+    <nav className={classNames(cls.container, {}, [isMobile ? cls.container_mobile : ''])}>
       <ul className={classNames(cls.list, {}, [])}>
         <li className={classNames(cls.item, {}, [])}>
           <NavLink to="/about" className={classNames(cls.link, {}, [])}>

@@ -1,3 +1,5 @@
+@use "../../utils/variables/global.scss";
+
 .sectiongallery {
   margin-top: 140px;
   max-width: 1280px;
@@ -178,6 +180,78 @@
       font-size: 36px;
       line-height: 46px;
       color: #247251;
+    }
+  }
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .sectiongallery {
+    margin-top: 80px;
+
+    .titlewrapper {
+      margin: 0 0 40px 20px;
+    }
+  
+    .titlewrapper__description {
+      font-size: 10px;
+      letter-spacing: 0.02em;
+    }
+  
+    .titlewrapper__title {
+      font-size: 26px;
+  
+      span {
+        font-size: 28px;
+      }
+    }
+
+    .slider {
+      gap: 36px;
+  
+      .active {
+        z-index: 100;
+  
+        img {
+          width: 252px;
+          height: 361px;
+        }
+      }
+  
+      &__top {
+        height: 361px;
+        gap: 40px;
+        overflow: hidden;
+  
+        li {
+  
+          img {
+            width: 160px;
+            height: 232px;
+            object-fit: cover;
+          }
+        }
+      }
+  
+      &__dots {
+        gap: 7.71px;
+        width: calc(100% - 40px);
+  
+        &_prev, &_next {
+          width: 79px;
+          height: 13.49px;
+        }
+      }
+  
+      &__dot {
+        width: 11.57px;
+        height: 11.57px;
+        border: 1px solid #247251;
+  
+        &_active {
+          width: 19.28px;
+          height: 19.28px;
+        }
+      }
     }
   }
 }

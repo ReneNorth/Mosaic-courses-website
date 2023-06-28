@@ -31,10 +31,10 @@ export const MailingForm = () => {
 
   return (
     <div className={cls.formWrapper}>
-      <h4 className={cls.formTitle}>
+      <h3 className={cls.formTitle}>
         {isSuccess ? 'Вы успешно подписаны на рассылку!'
           : 'Будь в курсе новостей студии и получи скидку 10% на первое зянятие'}
-      </h4>
+      </h3>
       {!isSuccess && (
         <form onSubmit={handleSubmit} className={cls.form} noValidate>
           <div className={cls.label}>

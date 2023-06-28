@@ -1,3 +1,5 @@
+@use "../../utils/variables/global.scss";
+
 .section {
   max-width: 1280px;
   width: 100%;
@@ -121,4 +123,45 @@
   top: -143px;
   right: -141px;
   z-index: -1;
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+
+  .block {
+    margin: 18px 15px 0 20px;
+  }
+  
+  .textContainer {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bg {
+    display: none;
+  }
+
+  .button {
+    margin: 38px auto 80px;
+    border-radius: 56px;
+    padding: 11px 0;
+    font-weight: 500;
+    line-height: 135%;
+    width: 320px;
+    height: 44px;
+
+    &:after {
+      height: 44px;
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      border: 1px solid #000000;
+      border-radius: 100px;
+      z-index: -1;
+    }
+  }
+
+  .wrapper {
+    display: none;
+  }
 }
