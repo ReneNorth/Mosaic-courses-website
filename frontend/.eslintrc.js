@@ -46,5 +46,6 @@ module.exports = {
     'no-param-reassign': 'off',
     // 'no-undef': 'off',
     'react/prop-types': 'off',
+    'class-methods-use-this': 'off',
   },
 };

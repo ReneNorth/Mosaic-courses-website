@@ -1,13 +1,23 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
 import { PostCard } from '../../components/PostCard/PostCard';
-import { useGetPostsQuery } from '../../services/Api/postsApi/postsApi';
+
+import { getAllPosts } from '../../services/slices/postsSlice';
 import cls from './BlogPage.module.scss';
 
 export const BlogPage = () => {
-  const { data = [], isLoading } = useGetPostsQuery();
+  const { allPosts } = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllPosts());
+  }, [dispatch]);
+
   return (
     <section className={cls.section}>
       <ul className={cls.list}>
-        {data.map((item) => {
+        {allPosts.map((item) => {
           return <PostCard key={item.id} props={{ ...item }} />;
         })}
       </ul>

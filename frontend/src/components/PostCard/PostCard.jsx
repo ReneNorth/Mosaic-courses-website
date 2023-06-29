@@ -1,10 +1,21 @@
 import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { Button } from '../UI/Button/Button';
+
+import { setCurrentPost } from '../../services/slices/postsSlice';
 import cls from './PostCard.module.scss';
 
 export const PostCard = ({ props }) => {
   const {
-    title, text, image, author,
+    title, image, preview_text: previewText, pub_date: pubDate, read_time: readTime, id,
   } = props;
+  const date = new Date();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  date.setTime(Date.parse(pubDate));
 
   // eslint-disable-next-line consistent-return
   const validImage = useMemo(() => {
@@ -18,8 +29,32 @@ export const PostCard = ({ props }) => {
       <img className={cls.image} src={validImage} alt="картинка" />
       <div className={cls.titleWrapper}>
         <h3 className={cls.title}>{title}</h3>
-        <p className={cls.description}>{text}</p>
-        <span>{author}</span>
+        <div className={cls.info}>
+          <p className={cls.readingTime}>
+            Время прочтения
+            {' '}
+            {readTime}
+            {' '}
+            минут
+          </p>
+          <p className={cls.publishDate}>
+            Опубликовано
+            {' '}
+            {date.toLocaleString().slice(0, 10)}
+          </p>
+        </div>
+        <p className={cls.description}>
+          {previewText}
+        </p>
+        <Button
+          onClick={() => {
+            dispatch(setCurrentPost(props));
+            navigate(`/blog/${id}`);
+          }}
+          styleType="outline"
+        >
+          Узнать подробнее
+        </Button>
       </div>
     </li>
   );

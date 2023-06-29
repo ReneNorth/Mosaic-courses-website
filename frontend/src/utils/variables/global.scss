@@ -15,6 +15,14 @@ button {
   border: none;
 }
 
+
+@mixin h2_font {
+  font-size: 32px;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  line-height: 135%;
+}
+
 // .swiper-slide {
 //   transition: all 0.5s ease;
 //   padding: 40px 0;
