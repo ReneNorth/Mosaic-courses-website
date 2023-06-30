@@ -7,10 +7,10 @@ export const HamburgerMenu = ({ handleClick }) => {
   return (
     <div className={cls.menu}>
       <div className={cls.menu_heading}>
-        <Logo />
+        <Logo handleClick={handleClick} />
         <button type="button" className={cls.button} onClick={handleClick} aria-label="Закрыть меню навигации" />
       </div>
-      <NavBar isMobile />
+      <NavBar isMobile handleClick={handleClick} />
     </div>
   );
 };

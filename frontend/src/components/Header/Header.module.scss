@@ -13,19 +13,12 @@
 @media screen and (max-width: global.$breakpoint-mobile) {
   .section {
     margin-top: 0;
-    position: sticky;
-    top:0;
     height: 100px;
-    transition-property: all; 
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 500ms;
-  }
-
-  .section_hidden {
-    top: -100px;
+    align-items:flex-start;
   }
 
   .logoWrapper {
     margin-left: 20px;
+    margin-top: 16px;
   }
 }
