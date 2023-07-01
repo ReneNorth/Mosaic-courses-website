@@ -3,7 +3,7 @@ class Api {
     this._url = url;
   }
 
-  _checkResponse(res) {
+  static _checkResponse(res) {
     if (res.ok) {
       return res.json();
     }
@@ -13,17 +13,17 @@ class Api {
 
   async getPosts() {
     const res = await fetch(`${this._url}/blog/posts`);
-    return this._checkResponse(res);
+    return this.constructor._checkResponse(res);
   }
 
   async getPostWithSlug(slug) {
     const res = await fetch(`${this._url}/blog/posts/${slug}`);
-    return this._checkResponse(res);
+    return this.constructor._checkResponse(res);
   }
 
   async getTagsPost(id) {
     const res = await fetch(`${this._url}/tags/${id}`);
-    return this._checkResponse(res);
+    return this.constructor._checkResponse(res);
   }
 }
 
