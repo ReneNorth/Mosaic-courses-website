@@ -9,13 +9,13 @@ export const MapAndContacts = () => {
           <Map
             width="100%"
             height="100%"
-            defaultState={{ center: [55.75, 37.57], zoom: 15 }}
+            defaultState={{ center: [43.256561, 76.949076], zoom: 15 }}
           />
         </div>
         <div className={cls.contactsWrapper}>
           <p className={cls.contactsTitle}>
             Адрес:
-            <span> г. Москва, м. Менделеевская, ул. Лесная, д. 30, 3 этаж</span>
+            <span> г. Алматы, Казыбек би, 40</span>
           </p>
           <p className={cls.contactsTitle}>
             Часы работы:
