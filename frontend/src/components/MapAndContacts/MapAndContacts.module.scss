@@ -1,13 +1,24 @@
+@use "../../utils/variables/global.scss";
+
 .block {
   margin: 88px auto 0;
   max-width: 1280px;
   width: 100%;
+  display: flex;
 }
 
 .topContainer {
   display: flex;
   justify-content: space-between;
   padding-bottom: 88px;
+  width: 100%;
+}
+
+.mapWrapper {
+  width: 620px;
+  height: 360px;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .contactsWrapper {
@@ -27,5 +38,40 @@
 
   span {
     font-weight: 500;
+  }
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .block {
+    margin: 60px auto 0;
+    flex-direction: column;
+
+  }
+  
+  .topContainer {
+    padding-bottom: 60px;
+    flex-direction: column-reverse;
+    align-items: center;
+    align-self: center;
+    gap: 36px;
+    width: calc(100% - 40px);
+
+  }
+
+  .mapWrapper {
+    width: 100%;
+    height: 51vw;
+  }
+  
+  .contactsWrapper {
+    gap: 12px;
+  }
+  
+  .contactsTitle {
+    font-size: 14px;
+  
+    span {
+      font-weight: 400;
+    }
   }
 }

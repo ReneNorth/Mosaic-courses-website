@@ -1,3 +1,5 @@
+@use "../../utils/variables/global.scss";
+
 .section {
   margin-top: 140px;
 
@@ -46,6 +48,7 @@
 .acorСontainer {
   display: flex;
   flex-direction: column;
+  border-bottom: 1px solid #DAD5C9;
 }
 .acorСontainer .answerWrapper {
   max-width: 660px;
@@ -102,4 +105,53 @@
   height: auto;
   margin-top: -5px;
   color: #000;
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .section {
+    margin-top: 80px;
+    width: calc(100% - 40px);
+  }
+  
+  .title {
+    font-size: 26px;
+    text-align: left;
+  
+    span {
+      font-size: 28px;
+    }
+  }
+  
+  .list {
+    margin-top: 32px;
+    gap: 12px;
+  }
+
+  .acorСontainer {
+    padding-bottom: 12px;
+  }
+  
+  .acorСontainer .answerWrapper {
+    margin-top: 8px;
+    font-size: 14px;
+  }
+  
+  .acorСontainer label {
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .acorСontainer label:before {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .acorСontainer input:checked + label + .answerWrapper {
+    padding-top: 8px;
+    display: flex;
+    width: 100%;
+    height: auto;
+    margin-top: -5px;
+    color: #000;
+  }
 }

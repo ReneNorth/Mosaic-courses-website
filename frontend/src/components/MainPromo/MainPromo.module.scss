@@ -1,3 +1,5 @@
+@use "../../utils/variables/global.scss";
+
 .title {
   font-family: var(--font-primary);
   font-style: normal;
@@ -27,4 +29,18 @@
   font-size: 58px;
   line-height: 110%;
   color: var(--text-color-secondary);
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .title {
+    font-size: 26px;
+  }
+
+  .span {
+    font-size: 28px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
 }

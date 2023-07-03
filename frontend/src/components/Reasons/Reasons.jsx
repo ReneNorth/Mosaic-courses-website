@@ -3,7 +3,7 @@ import cls from './Reasons.module.scss';
 export const Reasons = () => {
   return (
     <section className={cls.section}>
-      <h3 className={cls.subtitle}>з причины</h3>
+      <h3 className={cls.subtitle}>3 причины</h3>
       <h2 className={cls.title}>
         Выбрать
         <span> нас</span>

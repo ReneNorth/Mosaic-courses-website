@@ -1,3 +1,5 @@
+@use "../../utils/variables/global.scss";
+
 .imgWrapper {
   position: relative;
 }
@@ -5,6 +7,7 @@
 .img {
   max-width: 550px;
   width: 100%;
+  border-radius: 20px;
 }
 
 .contentWrapper {
@@ -114,4 +117,79 @@
   display: flex;
   flex-direction: column;
   line-height: 140%;
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .imgWrapper {
+    width: 100%;
+  }
+
+  .img {
+    max-width: calc(global.$breakpoint-mobile - 40px);
+    max-height: 57vw;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .contentWrapper {
+    max-width: calc(global.$breakpoint-mobile - 40px);
+    width: 100%;
+  }
+  
+  .contentTitle {
+    font-size: 20px;
+    margin-top: 20px;
+    padding: 0 24px;
+  }
+  
+  .atributContainer {
+    margin-top: 17px;
+    padding: 0 24px;
+  }
+  
+  .wrapperAtribut {
+    margin-bottom: 16px;
+    gap: 50px;
+  }
+  
+  .info {
+    font-size: 16px;
+    line-height: 135%;
+    margin-left: 8px;
+  }
+  
+  .timeIcon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .priceIcon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .description {
+    font-size: 14px;
+  }
+  
+  .btnGroup {
+    margin-top: 16px;
+    gap: 0;
+    padding: 0 24px 40px 24px;
+    justify-content: center;
+  
+    button {
+      padding: 11px 70px;
+      font-size: 16px;
+      line-height: 135%;
+      border-radius: 56px;
+      width: 100%;
+    }
+  }
+  
+  .btnWhite {
+    display: none;
+  }
 }
