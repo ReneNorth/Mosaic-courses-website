@@ -3,6 +3,7 @@ import styles from './NewSettler.module.scss';
 import formImg from '../../images/form_header.png';
 import CancelIcon from '../../images/CancelIcon';
 import useFormValidation from '../../hooks/useFormValidation';
+import { api } from '../../utils/api';
 
 const NewSettler = ({ isOpen, setIsOpen }) => {
   const {
@@ -19,18 +20,13 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
       contact_consent: true,
     };
 
-    await fetch('http://127.0.0.1/api/v1/feedback/', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    }).then(() => {
-      setIsResponse('success');
-      resetForm();
-    }).catch(() => {
-      setIsResponse('fail');
-    });
+    await api.postCallbackNumber(data)
+      .then(() => {
+        setIsResponse('success');
+        resetForm();
+      }).catch(() => {
+        setIsResponse('fail');
+      });
   };
 
   return (

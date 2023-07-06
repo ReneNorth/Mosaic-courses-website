@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './Slider.module.scss';
 import sliderImg from '../../images/top_slider.jpg';
 import SliderCardTop from '../SliderCardTop/SliderCardTop';
+import { api } from '../../utils/api';
 
 const sliderData = [
   {
@@ -51,13 +52,10 @@ const Slider = () => {
   const [sliderIndex, setSliderIndex] = useState(1);
 
   const fetchSliders = async () => {
-    const response = await fetch('https://tessera.hopto.org/api/v1/main_carousel/', {
-      headers: {
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    setSliders(data);
+    await api.getMainCarouselSliders()
+      .then((data) => {
+        setSliders(data);
+      });
   };
 
   useEffect(() => {
