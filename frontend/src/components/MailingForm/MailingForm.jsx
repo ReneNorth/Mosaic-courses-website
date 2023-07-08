@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import cls from './MailingForm.module.scss';
 import useFormValidation from '../../hooks/useFormValidation';
+import { Button } from '../Button/Button';
 
 export const MailingForm = () => {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -54,10 +55,9 @@ export const MailingForm = () => {
             </span>
           </div>
           <div className={cls.btnWrapper}>
-            <button className={cls.submit} type="submit" disabled={!isValid}>
+            <Button className="fill" decoration="black" type="submit" disabled={!isValid}>
               Подписаться на рассылку
-            </button>
-            <div className={cls.btnBorder} />
+            </Button>
           </div>
         </form>
       )}

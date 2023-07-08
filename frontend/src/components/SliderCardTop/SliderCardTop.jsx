@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './SliderCardTop.module.scss';
+import { Button } from '../Button/Button';
 
 const SliderCardTop = ({ button, link, text }) => {
   return (
@@ -10,7 +11,7 @@ const SliderCardTop = ({ button, link, text }) => {
         <p>
           {text}
         </p>
-        <button aria-label="Заказать" type="button">{button}</button>
+        <Button className="fill" aria-label="Заказать" type="button">{button}</Button>
       </div>
     </div>
   );
