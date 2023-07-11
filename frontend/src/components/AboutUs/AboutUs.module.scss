@@ -95,20 +95,10 @@
   font-size: 17px;
   line-height: 135%;
   color: var(--text-color);
-}
 
-.btn {
-  margin-top: 40px;
-  padding: 18px 40px;
-  background-color: var(--btn-color);
-  border-radius: 60px;
-  font-family: var(--font-primary);
-  color: #fff;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 17px;
-  line-height: 20px;
-  cursor: pointer;
+  &:last-of-type {
+    margin-bottom: 40px;
+  }
 }
 
 @media screen and (max-width: global.$breakpoint-mobile) {

@@ -5,9 +5,11 @@
 }
 
 .img {
-  max-width: 550px;
-  width: 100%;
+  width: 550px;
   border-radius: 20px;
+  max-height: 360px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .contentWrapper {
@@ -78,27 +80,6 @@
   display: flex;
   margin-top: 42px;
   gap: 32px;
-
-  button {
-    padding: 16.5px 40px;
-    cursor: pointer;
-    font-family: var(--font-primary);
-    font-style: normal;
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 20px;
-    border-radius: 60px;
-  }
-}
-
-.btnBlack {
-  background-color: var(--btn-color);
-  color: #fff;
-}
-
-.btnWhite {
-  border: 1px solid #000000 !important;
-  background-color: transparent;
 }
 
 .start {
@@ -181,11 +162,10 @@
     justify-content: center;
   
     button {
-      padding: 11px 70px;
-      font-size: 16px;
-      line-height: 135%;
-      border-radius: 56px;
       width: 100%;
+      &:last-child {
+        display: none;
+      }
     }
   }
   

@@ -1,4 +1,5 @@
 import image from '../../images/remained-question__image.png';
+import { Button } from '../Button/Button';
 import cls from './RemainedQuestion.module.scss';
 
 export const RemainedQuestion = ({ setIsOpen }) => {
@@ -14,9 +15,9 @@ export const RemainedQuestion = ({ setIsOpen }) => {
           определиться, исходя из вашего уровня подготовки и пожеланий.
         </p>
         <div className={cls.btnWrapper}>
-          <button onClick={() => setIsOpen(true)} className={cls.btn} type="button">
+          <Button onClick={() => setIsOpen(true)} decoration="white" className="fill" type="button">
             Заказать обратный звонок
-          </button>
+          </Button>
           <div className={cls.btnBorder} />
         </div>
         <div className={cls.imgWrapper}>

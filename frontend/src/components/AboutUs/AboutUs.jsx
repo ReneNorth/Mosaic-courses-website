@@ -1,6 +1,7 @@
 import imageTwo from '../../images/about-us_img-two.png';
 import imageOne from '../../images/about-us__img-rectangle.png';
 import cls from './AboutUs.module.scss';
+import { Button } from '../Button/Button';
 
 export const AboutUs = ({ setIsOpen }) => {
   return (
@@ -28,9 +29,9 @@ export const AboutUs = ({ setIsOpen }) => {
             Преподаватель училась в московской школе Сад Гранат и
             итальянской Mosaic Art School by Luciana Notturni в Равенне.
           </p>
-          <button type="button" className={cls.btn} onClick={() => setIsOpen(true)}>
+          <Button type="button" className="outline" onClick={() => setIsOpen(true)}>
             Узнать подробнее
-          </button>
+          </Button>
         </div>
       </div>
     </section>

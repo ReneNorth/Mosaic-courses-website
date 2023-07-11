@@ -1,3 +1,4 @@
+import { Button } from '../Button/Button';
 import cls from './CourseCard.module.scss';
 
 export const CourseCard = ({
@@ -6,7 +7,7 @@ export const CourseCard = ({
   return (
     <>
       <div className={cls.imgWrapper}>
-        <img className={`${cls.img}`} src={item.img} alt={item.title} />
+        <img className={cls.img} src={item.img} alt={item.title} />
         {type === 'all' && (
           <div className={cls.start}>
             <span>Ближайший старт</span>
@@ -40,17 +41,14 @@ export const CourseCard = ({
         </div>
         <div className={cls.btnGroup}>
           {type !== 'article' && (
-            <button
-              className={cls.btnBlack}
-              type="button"
+            <Button
+              className="fill"
               onClick={handleEnroll}
             >
               Записаться
-            </button>
+            </Button>
           )}
-          <button className={cls.btnWhite} type="button" onClick={handleGetMore}>
-            Узнать подробнее
-          </button>
+          <Button className="outline" onClick={handleGetMore}>Узнать подробнее</Button>
         </div>
       </div>
     </>

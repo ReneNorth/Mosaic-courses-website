@@ -1,0 +1,109 @@
+@use "../../utils/variables/global.scss";
+
+.button {
+  transition: all .6s ease;
+  padding: 10px 40px;
+  border-radius: 56px;
+  font-family: var(--font-primary);
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  height: 56px;
+  line-height: 135%;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  &.outline {
+    border: 1.5px solid #247251;
+    color: #247251;
+    background-color: transparent;
+
+    &:hover {
+      background-color: #247251;
+      color: #fff;
+    }
+
+    &:active {
+      background-color: transparent;
+      border: 1.5px solid #185F41;
+      color: #185F41;
+    }
+  }
+
+  &.fill {
+    border: none;
+    background-color: #247251;
+    color: #fff;
+
+    &:hover {
+      background-color: #299D6D;
+    }
+
+    &:active {
+      background: #185F41;
+      color: #BFC8BF;
+    }
+
+    &:disabled {
+      background-color: #819286;
+      color: #BFC8BF;
+    }
+  }
+
+  &.decoration {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      padding: 10px 40px;
+      height: 56px;
+      box-sizing: border-box;
+      width: 100%;
+      top: 8px;
+      left: 8px;
+      content: '';
+      border-radius: 56px;
+      border: 1px solid #000;
+      z-index: -1;
+    }
+  }
+
+  &.decorationWhite {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      padding: 10px 40px;
+      height: 56px;
+      box-sizing: border-box;
+      width: 100%;
+      top: 8px;
+      left: 8px;
+      content: '';
+      border-radius: 56px;
+      border: 1px solid #fff;
+      z-index: -1;
+    }
+  }
+}
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .button {
+    font-family: var(--font-primary);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 135%;
+    height: 44px;
+
+    &.decoration {
+      &::before {
+        height: 44px;
+      }
+    }
+    &.decorationWhite {
+      &::before {
+        height: 44px;
+      }
+    }
+  }
+}

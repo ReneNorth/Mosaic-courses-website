@@ -1,5 +1,6 @@
 import cls from './CertificateSection.module.scss';
 import useFormValidation from '../../hooks/useFormValidation';
+import { Button } from '../Button/Button';
 
 export const CertificateSection = () => {
   const {
@@ -88,9 +89,9 @@ export const CertificateSection = () => {
               ? <span className={cls.margin}>Введите число</span>
               : <p className={cls.margin}>Минимальная сумма 1500р</p>}
             <div className={cls.btnWrapper}>
-              <button className={cls.submit} type="submit" disabled={!isValid}>
+              <Button className="fill" decoration="black" type="submit" disabled={!isValid}>
                 Купить сертификат
-              </button>
+              </Button>
               <div className={cls.btnBorder} />
             </div>
           </div>
