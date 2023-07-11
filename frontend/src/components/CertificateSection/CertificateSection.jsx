@@ -18,10 +18,8 @@ export const CertificateSection = () => {
       email_recipient: values.email,
     };
 
-    await api.postGiftCertificate(data)
-      .then(() => {
-        resetForm();
-      });
+    await api.postGiftCertificate(data);
+    resetForm();
   };
   return (
 

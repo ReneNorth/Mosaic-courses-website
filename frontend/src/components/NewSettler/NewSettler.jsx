@@ -20,13 +20,13 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
       contact_consent: true,
     };
 
-    await api.postCallbackNumber(data)
-      .then(() => {
-        setIsResponse('success');
-        resetForm();
-      }).catch(() => {
-        setIsResponse('fail');
-      });
+    try {
+      await api.postCallbackNumber(data);
+      setIsResponse('success');
+      resetForm();
+    } catch {
+      setIsResponse('fail');
+    }
   };
 
   return (

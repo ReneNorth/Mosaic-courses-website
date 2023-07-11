@@ -13,11 +13,9 @@ export const MailingForm = () => {
     e.preventDefault();
 
     if (values.email !== '' || !errors) {
-      await api.postSubscriptionEmail(values.email)
-        .then(() => {
-          resetForm();
-          setIsSuccess(true);
-        });
+      await api.postSubscriptionEmail(values.email);
+      resetForm();
+      setIsSuccess(true);
     }
   };
 

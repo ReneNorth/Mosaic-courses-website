@@ -52,10 +52,8 @@ const Slider = () => {
   const [sliderIndex, setSliderIndex] = useState(1);
 
   const fetchSliders = async () => {
-    await api.getMainCarouselSliders()
-      .then((data) => {
-        setSliders(data);
-      });
+    const data = await api.getMainCarouselSliders();
+    setSliders(data);
   };
 
   useEffect(() => {
