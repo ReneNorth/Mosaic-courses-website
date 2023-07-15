@@ -1,3 +1,4 @@
+import { Button } from '../Button/Button';
 import cls from './PromoSection.module.scss';
 
 export const PromoSection = (
@@ -13,11 +14,13 @@ export const PromoSection = (
             imgBg && <img className={cls.bg} src={imgBg} alt="" />
           }
           {children}
-          {isBtn && (
-            <button onClick={() => setIsOpen(true)} className={cls.button} type="button">
-              {btnText}
-            </button>
-          )}
+          <div className={cls.btnGroup}>
+            {isBtn && (
+              <Button onClick={() => setIsOpen(true)} className="fill" decoration="black">
+                {btnText}
+              </Button>
+            )}
+          </div>
         </div>
         <div className={cls.wrapper}>
           <img className={cls.image} src={img} alt="Промо картинка" />

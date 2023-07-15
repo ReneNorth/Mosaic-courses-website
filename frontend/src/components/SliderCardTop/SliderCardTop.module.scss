@@ -1,3 +1,5 @@
+@use "../../utils/variables/global.scss";
+
 .sliderCard {
   min-width: 1280px;
   display: flex;
@@ -51,21 +53,42 @@
       line-height: 135%;
       opacity: .8;
     }
-
-    button {
-      padding: 10px 40px;
-      font-family: 'Raleway', sans-serif;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 17px;
-      line-height: 135%;
-      color: #fff;
-      background-color: #247251;
-      border-radius: 56px;
-      border: none;
-      opacity: .9;
-      cursor: pointer;
-    }
   }
 
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+
+  .sliderCard {
+    min-width: calc(100vw - 40px);
+
+    &:before {
+      border-radius: 16px;
+    }
+
+    img {
+      height: 370px;
+      border-radius: 16px;
+    }
+
+    & > div {
+      top: 40px;
+      left: 24px;
+      width: calc(100% - 48px);
+  
+      h2 {
+        width: 100%;
+        margin-bottom: 12px;
+        font-size: 20px;
+      }
+  
+      p {
+        width: 100%;
+        margin-bottom: 20px;
+        font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
 }

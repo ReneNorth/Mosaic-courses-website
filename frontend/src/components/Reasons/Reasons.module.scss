@@ -1,3 +1,5 @@
+@use "../../utils/variables/global.scss";
+
 .section {
   margin-top: 140px;
   max-width: 1280px;
@@ -14,6 +16,7 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--text-color);
+  font-feature-settings: 'pnum' on, 'lnum' on;
 }
 
 .title {
@@ -82,4 +85,61 @@
   font-size: 17px;
   line-height: 135%;
   color: var(--text-color);
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .section {
+    margin-top: 58px;
+    padding-left: 20px;
+  }
+
+  .subtitle {
+    font-size: 10px;
+    letter-spacing: 0.02em;
+  }
+
+  .title {
+    font-size: 26px;
+
+    span {
+      font-size: 28px;
+    }
+  }
+
+  .list {
+    margin-top: 20px;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    gap: 16px;
+  }
+
+  .list::-webkit-scrollbar {
+    display: none;
+}
+
+  .list::-webkit-scrollbar-thumb {
+    display: none; 
+  }
+
+  .item {
+    flex: 0 0 253px;
+  }
+
+  .ellipse {
+    margin-top: 16px;
+    width: 87px;
+    height: 68px;
+    font-size: 44px; 
+    background-size: 90%;
+  }
+
+  .cardTitle {
+    margin-top: 26px;
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
 }
