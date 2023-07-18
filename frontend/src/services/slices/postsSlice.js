@@ -22,6 +22,14 @@ const getPostById = createAsyncThunk('posts/getPostById', async (id) => {
   }
 });
 
+const getPostsWithTags = createAsyncThunk('posts/getPostsWithTags', async (tags) => {
+  try {
+    return api.getPostsWithTags(tags);
+  } catch (err) {
+    return err;
+  }
+});
+
 export const postsSlice = createSlice({
   name: 'posts',
   initialState,
@@ -45,5 +53,5 @@ const { setCurrentPost } = postsSlice.actions;
 const postSliceReducer = postsSlice.reducer;
 
 export {
-  setCurrentPost, postSliceReducer, getAllPosts, getPostById,
+  setCurrentPost, postSliceReducer, getAllPosts, getPostById, getPostsWithTags,
 };

@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { Button } from '../UI/Button/Button';
+import { Button } from '../Button/Button';
 
 import { setCurrentPost } from '../../services/slices/postsSlice';
 import cls from './PostCard.module.scss';
@@ -51,7 +51,7 @@ export const PostCard = ({ props }) => {
             dispatch(setCurrentPost(props));
             navigate(`/blog/${id}`);
           }}
-          styleType="outline"
+          className="outline"
         >
           Узнать подробнее
         </Button>

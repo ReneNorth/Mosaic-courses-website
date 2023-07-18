@@ -10,10 +10,12 @@ export const CardMoreContent = ({
   return (
     <article className={cls.card}>
       <img className={cls.img} src={srcImage} alt={`Картинка для каторчки ${title}`} />
-      <h3 className={cls.title}>{title}</h3>
-      <span className={cls.other}>{other}</span>
-      <p>{text}</p>
-      {button}
+      <div className={cls.container}>
+        <h3 className={cls.title}>{title}</h3>
+        <span className={cls.other}>{other}</span>
+        <p className={cls.text}>{text}</p>
+        {button}
+      </div>
     </article>
   );
 };

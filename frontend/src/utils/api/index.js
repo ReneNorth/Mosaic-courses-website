@@ -25,6 +25,11 @@ class Api {
     const res = await fetch(`${this._url}/tags/${id}`);
     return this.constructor._checkResponse(res);
   }
+
+  async getPostsWithTags(tags) {
+    const res = await fetch(`${this._url}/blog/posts/?${tags}`);
+    return this.constructor._checkResponse(res);
+  }
 }
 
 export const api = new Api('http://localhost:8000/api/v1');

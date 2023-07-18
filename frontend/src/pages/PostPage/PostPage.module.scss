@@ -62,23 +62,81 @@
   padding: 64px 290px 90px;
   background-color: #fff;
   border-radius: 20px;
+  min-width: 1280px;
+  box-sizing: border-box;
 
   .reactMarkdown {
     display: flex;
     flex-direction: column;
+    color: #000;
+    font-family: var(--font-primary);
 
-    h1,
+    h1 {
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 135%;
+    }
     h2 {
-      @include h2_font;
-      margin-bottom: 44px;
+      font-size: 28px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 135%;
+    }
+
+    h3 {
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 135%
+    }
+
+    h4 {
+      font-size: 23px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 135%;
+      padding: 0;
+    }
+
+    h5 {
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 135%;
+    }
+
+    h6 {
+      margin: 0;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 135%;
     }
 
     p {
-      color: #000;
+      padding: 10px 0;
       font-size: 17px;
-      font-family: var(--font-primary);
+      font-style: normal;
+      font-weight: 400;
       line-height: 135%;
-      margin-bottom: 40px;
+    }
+
+    ul {
+      list-style: disc;
+      padding-left: 20px;
+      font-size: 17px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 135%;
+    }
+
+    ol {
+      padding-left: 20px;
+      font-size: 17px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 135%;
     }
 
     img {
@@ -111,5 +169,32 @@
 
   .title {
     @include h2_font;
+  }
+}
+
+.list {
+  margin-top: 16px;
+  display: flex;
+  gap: 40px;
+}
+
+.readingTime {
+  margin: 0 0 40px;
+  font-family: var(--font-primary);
+  color: var(--text-color);
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 135%;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: "";
+    width: 32px;
+    height: 32px;
+    background-image: url(../../images/time.svg);
+    background-position: center;
+    background-size: 26px 26px;
+    background-repeat: no-repeat;
   }
 }
