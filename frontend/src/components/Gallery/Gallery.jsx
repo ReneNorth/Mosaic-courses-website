@@ -8,16 +8,6 @@ import imageTwo from '../../images/gallery_slider_2.png';
 import imageFour from '../../images/gallery_slider_4.png';
 import imageFive from '../../images/gallery_slider_5.png';
 import imageSix from '../../images/gallery_slider_6.png';
-import imagetru from '../../images/gallery_slider_6.png';
-import imagehru from '../../images/gallery_slider_6.png';
-// import imageOne from '../../images/digit1.jpg';
-// import imageTwo from '../../images/digit2.jpg';
-// import imageFour from '../../images/digit3.jpg';
-// import imageFive from '../../images/digit4.jpg';
-// import imageSix from '../../images/digit5.jpg';
-// import imageSeven from '../../images/digit6.jpg';
-// import imagetru from '../../images/digit7.jpg';
-// import imagehru from '../../images/gallery_slider_6.png';
 import cls from './Gallery.module.scss';
 
 export const data = [
