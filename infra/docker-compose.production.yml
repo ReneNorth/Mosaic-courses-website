@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13.0-alpine
+    volumes:
+      - mosaic:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+  web:
+    image: yurydenorth/mosaic_backend:latest
+    restart: always
+    volumes:
+      - static:/backend_static
+      - media_value:/app/media
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+
+  frontend:
+    image: yurydenorth/mosaic_frontend:latest
+    volumes:
+      - static:/frontend_static/
+
+  gateway:
+    image: yurydenorth/mosaic_gateway:latest
+    ports:
+      - "8000:80"
+    volumes:
+      - static:/staticfiles
+      - media_value:/app/media
+    depends_on:
+      - web
+
+volumes:
+  static:
+  media_value:
+  mosaic:
