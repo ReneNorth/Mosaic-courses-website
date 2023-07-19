@@ -2,9 +2,11 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
+from django.utils.log import DEFAULT_LOGGING
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
-LOCAL_DEV = False
+LOCAL_DEV = True
 
 
 KEY_ENV = os.getenv('SECRET_KEY')
@@ -173,3 +175,36 @@ SIMPLE_JWT = {
 }
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+
+LOGLEVEL = 'DEBUG'
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+        'django.server': DEFAULT_LOGGING['formatters']['django.server'],
+    },
+    'handlers': {
+        'console': {
+            'level': f'{LOGLEVEL}',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+        'django.server': DEFAULT_LOGGING['handlers']['django.server'],
+    },
+    'loggers': {
+        '': {
+            'level': LOGLEVEL,
+            'handlers': ['console', ],
+        },
+        'django.server': DEFAULT_LOGGING['loggers']['django.server'],
+    }
+}
