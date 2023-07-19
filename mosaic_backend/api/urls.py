@@ -1,11 +1,11 @@
 from django.urls import include, path
 from rest_framework import routers
 
-from .views import (CertificatePostPatchViewSet, EmailCreateOnlyViewSet,
-                    MainCarouselReadOnlyViewSet, MasterclassReadOnlyViewset,
-                    MasterclassTypeReadOnlyViewSet, PostViewSet,
-                    RequestCreateOnlyViewSet, SchoolReadOnlyViewSet,
-                    ArtworkReadOnlyViewSet, TagReadOnlyViewSet)
+from .views import (ArtworkReadOnlyViewSet, CertificatePostPatchViewSet,
+                    EmailCreateOnlyViewSet, MainCarouselReadOnlyViewSet,
+                    MasterclassReadOnlyViewset, MasterclassTypeReadOnlyViewSet,
+                    PostViewSet, RequestCreateOnlyViewSet,
+                    SchoolReadOnlyViewSet, TagReadOnlyViewSet)
 
 router1 = routers.SimpleRouter()
 

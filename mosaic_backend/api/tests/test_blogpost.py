@@ -2,6 +2,7 @@
 
 from django.test import Client, TestCase
 from rest_framework.test import APIRequestFactory
+
 from mosaic.business_logic import BusinessLogic
 
 
