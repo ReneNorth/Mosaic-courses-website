@@ -1,5 +1,6 @@
-from carousel.models import MainCarouselItem
 from django.contrib import admin
+
+from carousel.models import MainCarouselItem
 
 
 @admin.register(MainCarouselItem)

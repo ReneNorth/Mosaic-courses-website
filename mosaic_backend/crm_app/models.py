@@ -1,5 +1,6 @@
 from django.core.validators import MinValueValidator
 from django.db import models
+
 from mosaic.business_logic import BusinessLogic
 
 

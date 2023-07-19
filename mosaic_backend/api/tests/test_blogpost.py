@@ -1,8 +1,9 @@
 # test if an author's name is not empty
 
 from django.test import Client, TestCase
-from mosaic.business_logic import BusinessLogic
 from rest_framework.test import APIRequestFactory
+
+from mosaic.business_logic import BusinessLogic
 
 
 class FeedbackTest(TestCase):
