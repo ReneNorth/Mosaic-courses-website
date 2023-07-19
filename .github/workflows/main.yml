@@ -43,7 +43,7 @@ jobs:
           DJANGO_KEY: ${{ secrets.DOCKER_PASSWORD }}
         run: |
           python -m flake8 mosaic_backend/
-          cd mosaic_backend/mosaic
+          cd mosaic_backend/
           python manage.py test
 
   build_backend_and_push_to_docker_hub:
