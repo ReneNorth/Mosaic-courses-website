@@ -1,5 +1,3 @@
-# test if an author's name is not empty
-
 from django.test import Client, TestCase
 from rest_framework.test import APIRequestFactory
 
