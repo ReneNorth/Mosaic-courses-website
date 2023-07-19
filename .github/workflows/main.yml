@@ -1,4 +1,5 @@
 name: Mosaic-app workflow
+
 on:
   push:
     branches:
