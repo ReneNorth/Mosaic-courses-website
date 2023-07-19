@@ -1,16 +1,16 @@
 name: Mosaic-app workflow
-on: 
+on:
   push:
-    branches: 
+    branches:
       - main
       - dev
       - cicd
-      - 'backend/**'
-      - 'frontend/**'
+      - "backend/**"
+      - "frontend/**"
       - test-workflow
 jobs:
   tests:
-      runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     services:
       postgres:
         image: postgres:13.10
