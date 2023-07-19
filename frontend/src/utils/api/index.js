@@ -12,7 +12,7 @@ class Api {
   }
 
   async getPosts() {
-    const res = await fetch(`${this._url}/blog/posts`);
+    const res = await fetch(`${this._url}/blog/posts/`);
     return this.constructor._checkResponse(res);
   }
 

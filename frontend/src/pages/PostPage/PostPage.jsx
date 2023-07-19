@@ -8,13 +8,13 @@ import { Button } from '../../components/Button/Button';
 import { PromoSection } from '../../components/PromoSection/PromoSection';
 
 import { getPostById, getPostsWithTags, setCurrentPost } from '../../services/slices/postsSlice';
-import image from '../../images/blog-deckor.png';
 import cls from './PostPage.module.scss';
 
 export const PostPage = () => {
   const { currentPost } = useSelector((state) => state.posts);
   const [isLoading, toggleLoading] = useState(true);
   const [readMorePosts, setReadMorePosts] = useState([]);
+  const [image, setImage] = useState();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ export const PostPage = () => {
   return (
     <>
       <section className={cls.post}>
-        <PromoSection img={image} isBtn={false}>
+        <PromoSection img={`${window.location.origin}/images/blog-decor.png`} isBtn={false}>
           <h1 className={cls.title}>{currentPost.title}</h1>
           <p className={cls.previewText}>{currentPost.preview_text}</p>
           <p className={cls.readingTime}>

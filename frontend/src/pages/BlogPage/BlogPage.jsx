@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { PostCard } from '../../components/PostCard/PostCard';
 import { PromoSection } from '../../components/PromoSection/PromoSection';
 
-import image from '../../images/all-post-deckor.png';
+import image from '../../images/all-post-decor.png';
 import { getAllPosts } from '../../services/slices/postsSlice';
 import cls from './BlogPage.module.scss';
 
