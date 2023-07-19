@@ -19,7 +19,6 @@ User = get_user_model()
 
 logging.basicConfig(format='%(message)s')
 log = logging.getLogger(__name__)
-logger = logging.getLogger(__name__)
 
 
 class Base64ImageField(serializers.ImageField):
