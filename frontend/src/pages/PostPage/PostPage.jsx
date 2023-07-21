@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -14,11 +14,17 @@ export const PostPage = () => {
   const { currentPost } = useSelector((state) => state.posts);
   const [isLoading, toggleLoading] = useState(true);
   const [readMorePosts, setReadMorePosts] = useState([]);
-  const [image, setImage] = useState();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const id = useLocation().pathname.replace('/blog/', '');
+
+  // eslint-disable-next-line consistent-return
+  const validImage = useMemo(() => {
+    if (currentPost.image) {
+      return currentPost.image.replace('http://web:8000', 'http://localhost/');
+    }
+  }, [currentPost]);
 
   useEffect(() => {
     window.scrollTo({
@@ -55,7 +61,7 @@ export const PostPage = () => {
   return (
     <>
       <section className={cls.post}>
-        <PromoSection img={`${window.location.origin}/images/blog-decor.png`} isBtn={false}>
+        <PromoSection img={validImage} isBtn={false}>
           <h1 className={cls.title}>{currentPost.title}</h1>
           <p className={cls.previewText}>{currentPost.preview_text}</p>
           <p className={cls.readingTime}>
