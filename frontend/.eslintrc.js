@@ -25,7 +25,7 @@ module.exports = {
       2,
       { extensions: ['.js', '.jsx', '.tsx'] },
     ],
-    // 'import/no-unresolved': 'off',
+    'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',
     'no-unused-vars': 'off',
     // '@typescript-eslint/no-unused-vars': 'off',
@@ -46,5 +46,6 @@ module.exports = {
     'no-param-reassign': 'off',
     // 'no-undef': 'off',
     'react/prop-types': 'off',
+    'class-methods-use-this': 'off',
   },
 };

@@ -14,6 +14,7 @@ import './App.scss';
 import { Certificates } from '../../pages/Certificates/Certificates';
 import { AboutUs } from '../AboutUs/AboutUs';
 import { AboutStudio } from '../../pages/AboutStudio/AboutStudio';
+import { PostPage } from '../../pages/PostPage/PostPage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/" element={<MaingPage />} />
             <Route path="/course" element={<CoursePage />} />
             <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:slug" element={<PostPage />} />
             <Route path="/notfound" element={<NotFound />} />
             <Route path="/courses" element={<AllCourses />} />
             <Route path="/certificates" element={<Certificates />} />

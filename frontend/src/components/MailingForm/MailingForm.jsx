@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import cls from './MailingForm.module.scss';
-import useFormValidation from '../../hooks/useFormValidation';
+
 import { Button } from '../Button/Button';
 import { api } from '../../utils/api';
+
+import useFormValidation from '../../hooks/useFormValidation';
+import cls from './MailingForm.module.scss';
 
 export const MailingForm = () => {
   const [isSuccess, setIsSuccess] = useState(false);

@@ -12,7 +12,7 @@ class Api {
   }
 
   async getPosts() {
-    const res = await fetch(`${this._url}/blog/posts`);
+    const res = await fetch(`${this._url}/blog/posts/`);
     return this.constructor._checkResponse(res);
   }
 
@@ -28,6 +28,11 @@ class Api {
 
   async getMainCarouselSliders() {
     const res = await fetch(`${this._url}/main_carousel/`);
+    return this.constructor._checkResponse(res);
+  }
+
+  async getPostsWithTags(tags) {
+    const res = await fetch(`${this._url}/blog/posts/?${tags}`);
     return this.constructor._checkResponse(res);
   }
 

@@ -10,7 +10,9 @@ export const PromoSection = (
     <section className={cls.section}>
       <div className={cls.block}>
         <div className={cls.textContainer}>
-          <img className={cls.bg} src={imgBg} alt="" />
+          {
+            imgBg && <img className={cls.bg} src={imgBg} alt="" />
+          }
           {children}
           <div className={cls.btnGroup}>
             {isBtn && (

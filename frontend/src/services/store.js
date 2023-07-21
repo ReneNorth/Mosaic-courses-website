@@ -1,11 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { postsApi } from './Api/postsApi/postsApi';
-import { postsSlice } from './slices/postsSlice';
+import { postSliceReducer } from './slices/postsSlice';
 
 export const store = configureStore({
   reducer: {
-    [postsApi.reducerPath]: postsApi.reducer,
-    posts: postsSlice,
+    posts: postSliceReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(postsApi.middleware),
 });
