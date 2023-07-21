@@ -43,6 +43,7 @@ export const Gallery = () => {
   } = useSpringCarousel({
     itemsPerSlide: 5,
     withLoop: true,
+    gutter: 40,
     items: data.map((image, index) => ({
       id: image.id,
       renderItem: (
