@@ -63,7 +63,7 @@ jobs:
       - name: Push to DockerHub
         uses: docker/build-push-action@v4
         with:
-          context: ./backend/
+          context: ./mosaic_backend/
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/mosaic_backend:latest
 
