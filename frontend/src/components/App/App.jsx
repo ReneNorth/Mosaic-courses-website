@@ -20,7 +20,6 @@ function App() {
     <div className="App">
       <YMaps>
         <Header />
-        TEST
         <main>
           <Routes>
             <Route path="/" element={<MaingPage />} />
