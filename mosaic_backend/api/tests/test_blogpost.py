@@ -17,4 +17,4 @@ class FeedbackTest(TestCase):
     def test_business_logic_available(self):
         is_longer_than_0 = len(BusinessLogic.ADMIN_NAME) > 0
         self.assertTrue(is_longer_than_0,
-                        'The admin name from business logic is empty')
+                        "The admin name from business logic is empty")
