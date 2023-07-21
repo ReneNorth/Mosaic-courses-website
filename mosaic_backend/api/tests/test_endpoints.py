@@ -1,10 +1,9 @@
 import logging
 
-from django.test import Client, TestCase
-from rest_framework.test import APIRequestFactory
-
 from carousel.models import MainCarouselItem
 from crm_app.models import EmailMainForm, FeedbackRequest
+from django.test import Client, TestCase
+from rest_framework.test import APIRequestFactory
 
 from .data_tests import link
 
