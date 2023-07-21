@@ -26,8 +26,49 @@ class Api {
     return this.constructor._checkResponse(res);
   }
 
+  async getMainCarouselSliders() {
+    const res = await fetch(`${this._url}/main_carousel/`);
+    return this.constructor._checkResponse(res);
+  }
+
   async getPostsWithTags(tags) {
     const res = await fetch(`${this._url}/blog/posts/?${tags}`);
+    return this.constructor._checkResponse(res);
+  }
+
+  async postSubscriptionEmail(email) {
+    const data = {
+      email,
+    };
+    const res = await fetch(`${this._url}/email_form/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    return this.constructor._checkResponse(res);
+  }
+
+  async postGiftCertificate(data) {
+    const res = await fetch(`${this._url}/certificate/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    return this.constructor._checkResponse(res);
+  }
+
+  async postCallbackNumber(data) {
+    const res = await fetch(`${this._url}/feedback/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
     return this.constructor._checkResponse(res);
   }
 }

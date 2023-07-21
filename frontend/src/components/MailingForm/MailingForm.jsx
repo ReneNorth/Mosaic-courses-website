@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { Button } from '../Button/Button';
+import { api } from '../../utils/api';
 
 import useFormValidation from '../../hooks/useFormValidation';
 import cls from './MailingForm.module.scss';
@@ -14,21 +15,10 @@ export const MailingForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = {
-      email: values.email,
-    };
-
     if (values.email !== '' || !errors) {
-      await fetch('http://127.0.0.1/api/v1/email_form/', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      }).then(() => {
-        resetForm();
-        setIsSuccess(true);
-      });
+      await api.postSubscriptionEmail(values.email);
+      resetForm();
+      setIsSuccess(true);
     }
   };
 
