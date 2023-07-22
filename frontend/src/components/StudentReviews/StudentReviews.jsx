@@ -1,5 +1,4 @@
 // eslint-disable-next-line import/no-unresolved
-import 'swiper/css';
 import React, { useEffect, useState } from 'react';
 import cls from './StudentReviews.module.scss';
 import SliderCardBottom from '../SliderCardBottom/SliderCardBottom';
