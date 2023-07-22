@@ -1,0 +1,25 @@
+docker-compose -f docker-compose.production.yml up -d --build
+
+docker-compose -f docker-compose.production.yml down
+
+nano /etc/nginx/sites-available/default
+
+sudo netstat -tulpn
+
+
+systemctl restart nginx
+docker logs food_infra_web_1
+
+
+docker-compose -f docker-compose.yml down
+docker-compose -f docker-compose.yml up -d --build
+
+nano ../backend/foodgram/foodgram/settings.py
+
+docker-compose -f docker-compose.yml down && docker-compose -f docker-compose.yml up -d --build
+docker-compose -f docker-compose.production.yml down && docker-compose -f docker-compose.production.yml up -d --build
+
+docker exec -it infra-web-1 bash
+
+
+git add . && git commit -m "change gihub workflow, add push images to docker hub" && git push origin cicd

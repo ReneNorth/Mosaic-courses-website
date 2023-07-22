@@ -8,25 +8,24 @@ from crm_app.models import EmailMainForm, FeedbackRequest, GiftCert
 from django.contrib.auth import get_user_model
 from django.core.files.base import ContentFile
 from django.shortcuts import get_object_or_404
+from marketplace.models import Artwork, ArtworkMainPage
 from masterclass.models import Masterclass, MasterclassType
 from mosaic.business_logic import BusinessLogic
 from rest_framework import serializers
 from school.models import Advatage, Approach, Question, Review, School
-from marketplace.models import Artwork, ArtworkMainPage
 
 User = get_user_model()
 
-logging.basicConfig(format='%(message)s')
+logging.basicConfig(format="%(message)s")
 log = logging.getLogger(__name__)
-logger = logging.getLogger(__name__)
 
 
 class Base64ImageField(serializers.ImageField):
     def to_internal_value(self, data):
-        if isinstance(data, str) and data.startswith('data:image'):
-            format, imgstr = data.split(';base64,')
-            ext = format.split('/')[-1]
-            data = ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
+        if isinstance(data, str) and data.startswith("data:image"):
+            format, imgstr = data.split(";base64,")
+            ext = format.split("/")[-1]
+            data = ContentFile(base64.b64decode(imgstr), name="temp." + ext)
 
         return super().to_internal_value(data)
 
@@ -34,16 +33,21 @@ class Base64ImageField(serializers.ImageField):
 class RequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = FeedbackRequest
-        fields = ['name', 'phone_num', 'comment', 'contact_consent']
-        extra_kwargs = {
-            'contact_consent': {'required': True}
-        }
+        fields = ["name", "phone_num", "comment", "contact_consent"]
+        extra_kwargs = {"contact_consent": {"required": True}}
 
 
 class MainCarouselSerializer(serializers.ModelSerializer):
     class Meta:
         model = MainCarouselItem
-        fields = ['link', 'title', 'text', 'button', 'order', 'image', ]
+        fields = [
+            "link",
+            "title",
+            "text",
+            "button",
+            "order",
+            "image",
+        ]
 
 
 class GiftCertSerializer(serializers.ModelSerializer):
@@ -52,10 +56,16 @@ class GiftCertSerializer(serializers.ModelSerializer):
     Generates a 6-symbols (digits and letters) code as the ID and sets status
     to issued.
     """
+
     class Meta:
         model = GiftCert
-        fields = ['amount', 'name_sender', 'email_sender',
-                  'name_recepient', 'email_recipient']
+        fields = [
+            "amount",
+            "name_sender",
+            "email_sender",
+            "name_recepient",
+            "email_recipient",
+        ]
 
 
 class ArtworkSerializer(serializers.ModelSerializer):
@@ -64,9 +74,17 @@ class ArtworkSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Artwork
-        fields = ['id', 'title', 'author', 'author_type',
-                  'is_on_main', 'is_for_sale', 'price', 'description',
-                  'custom_ordering']
+        fields = [
+            "id",
+            "title",
+            "author",
+            "author_type",
+            "is_on_main",
+            "is_for_sale",
+            "price",
+            "description",
+            "custom_ordering",
+        ]
 
     def get_custom_ordering(self, artwork: Artwork) -> int:
         try:
@@ -87,7 +105,7 @@ class ArtworkSerializer(serializers.ModelSerializer):
 class EmailMainSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmailMainForm
-        fields = ['email']
+        fields = ["email"]
 
 
 class MasterclassSerializer(serializers.ModelSerializer):
@@ -95,14 +113,21 @@ class MasterclassSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Masterclass
-        fields = ['id', 'title', 'price', 'currency',
-                  #   'time_begin', 'time_end',
-                  'num_of_guests',
-                  ]
-        read_only_fields = ['title', 'price', 'time_begin',
-                            'time_end',
-                            'num_of_guests',
-                            ]
+        fields = [
+            "id",
+            "title",
+            "price",
+            "currency",
+            #   'time_begin', 'time_end',
+            "num_of_guests",
+        ]
+        read_only_fields = [
+            "title",
+            "price",
+            "time_begin",
+            "time_end",
+            "num_of_guests",
+        ]
 
 
 class MasterclassTypeSerializer(serializers.ModelSerializer):
@@ -110,23 +135,38 @@ class MasterclassTypeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MasterclassType
-        fields = ['id', 'type', 'slug', 'max_guests', 'duration',
-                  'short_description', 'full_description', 'masterclasses']
-        read_only_fields = ['id', 'type', 'slug', 'max_guests', 'duration',
-                            'short_description', 'full_description',
-                            'masterclasses']
+        fields = [
+            "id",
+            "type",
+            "slug",
+            "max_guests",
+            "duration",
+            "short_description",
+            "full_description",
+            "masterclasses",
+        ]
+        read_only_fields = [
+            "id",
+            "type",
+            "slug",
+            "max_guests",
+            "duration",
+            "short_description",
+            "full_description",
+            "masterclasses",
+        ]
 
 
 class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
-        fields = ['guest', 'attending']
+        fields = ["guest", "attending"]
 
 
 class TagReadOnlySerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
-        fields = ['id', 'title', 'slug']
+        fields = ["id", "title", "slug"]
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -136,46 +176,54 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id', 'slug', 'title', 'read_time', 'preview_text',
-                  'text', 'pub_date', 'author', 'image', 'tags']
-        lookup_field = 'slug'
-        read_only_fields = ['id', 'pub_date', 'author']
-        extra_kwargs = {
-            'text': {'required': True},
-            'url': {'lookup_field': 'slug'}
-        }
+        fields = [
+            "id",
+            "slug",
+            "title",
+            "read_time",
+            "preview_text",
+            "text",
+            "pub_date",
+            "author",
+            "image",
+            "tags",
+        ]
+        lookup_field = "slug"
+        read_only_fields = ["id", "pub_date", "author"]
+        extra_kwargs = {"text": {"required": True},
+                        "url": {"lookup_field": "slug"}}
 
     def get_author(self, post: Post) -> str:
         author = get_object_or_404(User, id=post.author.id)
         if not (author.first_name or author.last_name):
             return BusinessLogic.ADMIN_NAME
         if author.last_name:
-            return f'{author.first_name} {author.last_name}'
+            return f"{author.first_name} {author.last_name}"
         return author.first_name
 
 
 class AdvantagesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Advatage
-        fields = ['id', 'title', 'description']
+        fields = ["id", "title", "description"]
 
 
 class QuestionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = ['id', 'question', 'answer']
+        fields = ["id", "question", "answer"]
 
 
 class ApproachSerializer(serializers.ModelSerializer):
     class Meta:
         model = Approach
-        fields = ['id', 'title', 'description']
+        fields = ["id", "title", "description"]
 
 
 class ReviewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = ['id', 'student_name', 'photo', 'review', 'pub_date']
+        fields = ["id", "student_name", "photo", "review", "pub_date"]
 
 
 class SchoolSerializer(serializers.ModelSerializer):
@@ -186,12 +234,21 @@ class SchoolSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = School
-        fields = ['name', 'logo', 'full_description', 'short_description',
-                  'address_text', 'address_link', 'working_hours',
-                  'phone', 'email', 'facebook_link', 'tg_link',
-                  'instagram_link',
-                  'advantages',
-                  'questions',
-                  'approach',
-                  'reviews',
-                  ]
+        fields = [
+            "name",
+            "logo",
+            "full_description",
+            "short_description",
+            "address_text",
+            "address_link",
+            "working_hours",
+            "phone",
+            "email",
+            "facebook_link",
+            "tg_link",
+            "instagram_link",
+            "advantages",
+            "questions",
+            "approach",
+            "reviews",
+        ]
