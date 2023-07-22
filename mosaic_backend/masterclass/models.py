@@ -1,4 +1,4 @@
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils import timezone
 
@@ -46,7 +46,6 @@ class Masterclass(models.Model):
                                 default='тенге')
     time_begin = models.DateTimeField(default=timezone.now)
     time_end = models.DateTimeField(default=timezone.now)
-
 
     class Meta:
         verbose_name = 'Masterclass'

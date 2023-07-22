@@ -1,8 +1,7 @@
 from django.contrib.auth import get_user_model
-from django.db import models
 from django.core.validators import MinValueValidator
+from django.db import models
 from mdeditor.fields import MDTextField
-
 
 User = get_user_model()
 

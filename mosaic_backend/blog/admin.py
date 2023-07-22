@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from blog.models import Post, Tag, PostTag
+from blog.models import Post, PostTag, Tag
 
 
 @admin.register(Post, Tag, PostTag)

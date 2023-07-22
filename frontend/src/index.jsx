@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import App from './components/App/App';
 import './index.scss';
-import { store } from './services/srore';
+import { store } from './services/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

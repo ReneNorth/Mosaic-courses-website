@@ -1,5 +1,6 @@
-import image from '../../images/remained-question__image.png';
 import { Button } from '../Button/Button';
+
+import image from '../../images/remained-question__image.png';
 import cls from './RemainedQuestion.module.scss';
 
 export const RemainedQuestion = ({ setIsOpen }) => {
