@@ -36,7 +36,7 @@ export const InfoFooter = () => {
               </Link>
             </li>
             <li className={cls.gallery}>
-              <Link to="/gallety" className={cls.navlink}>
+              <Link to="/gallery" className={cls.navlink}>
                 Галерея
               </Link>
             </li>

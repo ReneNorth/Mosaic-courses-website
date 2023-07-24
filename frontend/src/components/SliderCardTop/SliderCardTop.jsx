@@ -2,10 +2,15 @@ import React from 'react';
 import styles from './SliderCardTop.module.scss';
 import { Button } from '../Button/Button';
 
-const SliderCardTop = ({ button, link, text }) => {
+const SliderCardTop = ({
+  button,
+  link,
+  text,
+  image,
+}) => {
   return (
     <div className={styles.sliderCard}>
-      <img src={link} alt="Мозайка" />
+      <img src={image} alt="Мозайка" />
       <div>
         <h2>Курс по Римской мозаике однодневный</h2>
         <p>
