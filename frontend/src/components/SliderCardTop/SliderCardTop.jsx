@@ -1,18 +1,30 @@
 import React from 'react';
 import styles from './SliderCardTop.module.scss';
 import { Button } from '../Button/Button';
+import { classNames } from '../../helpers/classNames';
 
-const SliderCardTop = ({ button, link, text }) => {
+const SliderCardTop = ({
+  button,
+  text,
+  image,
+  title,
+}) => {
   return (
     <div className={styles.sliderCard}>
-      <img src={link} alt="Мозайка" />
-      <div>
-        <h2>Курс по Римской мозаике однодневный</h2>
-        <p>
+      <img src={image} alt="Мозайка" />
+      <div className={styles.wrapper}>
+        <h2 className={styles.title}>{title}</h2>
+        <p className={styles.paragraph}>
           {text}
         </p>
-        <Button className="fill" aria-label="Заказать" type="button">{button}</Button>
       </div>
+      <Button
+        className="fill"
+        aria-label="Заказать"
+        type="button"
+      >
+        {button}
+      </Button>
     </div>
   );
 };
