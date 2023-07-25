@@ -3,7 +3,6 @@ name: Mosaic-app workflow
 on:
   push:
     branches:
-      - main
       - dev
 jobs:
   tests:
