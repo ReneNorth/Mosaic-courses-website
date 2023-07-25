@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 import styles from './Slider.module.scss';
 import sliderImg from '../../images/top_slider.jpg';
 import SliderCardTop from '../SliderCardTop/SliderCardTop';
@@ -7,6 +9,8 @@ import { api } from '../../utils/api';
 const Slider = () => {
   const [sliders, setSliders] = useState([]);
   const [sliderIndex, setSliderIndex] = useState(1);
+
+  const navigate = useNavigate();
 
   const fetchSliders = async () => {
     const data = await api.getMainCarouselSliders();
@@ -47,7 +51,9 @@ const Slider = () => {
               className={`${styles.slider__item} ${sliderIndex === slide.order
                 ? `${styles.active}` : `${styles[position]}`}`}
             >
-              <SliderCardTop {...slide} />
+              <Link to={slide.link}>
+                <SliderCardTop {...slide} />
+              </Link>
             </li>
           );
         })}
