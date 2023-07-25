@@ -27,6 +27,7 @@ router1.register(r"masterclass_types",
                  basename="masterclasses")
 
 router1.register(r"blog/posts", PostViewSet, basename="posts")
+router1.register(r"blog/", PostViewSet, basename="posts")
 
 router1.register(r"certificate", CertificatePostPatchViewSet,
                  basename="certificate")

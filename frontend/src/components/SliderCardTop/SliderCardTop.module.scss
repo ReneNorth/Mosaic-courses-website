@@ -25,13 +25,13 @@
     border-radius: 20px;
   }
 
-  & > div {
+  .wrapper {
     position: absolute;
-    top: 25%;
-    left: 10%;
+    top: 100px;
+    left: 110px;
     color: #fff;
 
-    h2 {
+    .title {
       max-width: 660px;
       width: 100%;
       margin-bottom: 16px;
@@ -42,10 +42,9 @@
       line-height: 135%;
     }
 
-    p {
+    .paragraph {
       max-width: 660px;
       width: 100%;
-      margin-bottom: 40px;
       font-family: 'Raleway', sans-serif;
       font-style: normal;
       font-weight: 400;
@@ -53,6 +52,12 @@
       line-height: 135%;
       opacity: .8;
     }
+  }
+
+  & > button {
+    position: absolute;
+    bottom: 70px;
+    left: 110px;
   }
 
 }
@@ -71,24 +76,31 @@
       border-radius: 16px;
     }
 
-    & > div {
+    .wrapper {
       top: 40px;
       left: 24px;
       width: calc(100% - 48px);
   
-      h2 {
+      .title {
         width: 100%;
         margin-bottom: 12px;
         font-size: 20px;
       }
   
-      p {
+      .paragraph {
         width: 100%;
-        margin-bottom: 20px;
         font-size: 14px;
         overflow: hidden;
         text-overflow: ellipsis;
       }
+    }
+
+    & > button {
+      left: 0;
+      right: 0;
+      margin: auto;
+      bottom: 40px;
+      width: calc(100% - 48px);
     }
   }
 }
