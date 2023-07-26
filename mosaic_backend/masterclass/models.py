@@ -35,8 +35,7 @@ class Masterclass(models.Model):
                                     verbose_name='Выбор типа курса из '
                                     'предустановленных вариантов')
     title = models.CharField(max_length=50,
-                             verbose_name='Название',
-                             )
+                             verbose_name='Название')
     price = models.PositiveIntegerField(
         null=False,
         validators=[MinValueValidator(0, "Price can't be negative")]
@@ -54,4 +53,8 @@ class Masterclass(models.Model):
     # проверка дата окончания позже даты начала
 
     def __str__(self) -> str:
-        return f'{self.course_type} / {self.title} at {self.time_begin}'
+        return (
+            f'Курс {self.course_type} / {self.title} '
+            f'at {self.time_begin.strftime("%x")} '
+            f'(timezone {self.time_begin.tzinfo})'
+        )

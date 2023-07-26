@@ -4,5 +4,6 @@ from booking.models import Booking
 
 
 @admin.register(Booking)
-class Admin(admin.ModelAdmin):
-    pass
+class BookingAdmin(admin.ModelAdmin):
+    list_display = ['guest', 'attending', ]
+    list_filter = ['guest', 'attending', ]
