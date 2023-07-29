@@ -22,4 +22,3 @@ class PostTagAdmin(admin.ModelAdmin):
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     list_display = ['title', 'slug', ]
-    list_filter = ['title', 'slug', ]

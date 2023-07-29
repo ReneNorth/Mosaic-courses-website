@@ -1,9 +1,15 @@
 from django.contrib import admin
 
-from booking.models import Booking
+from booking.models import Booking, ReservationAdmin
 
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
     list_display = ['guest', 'attending', ]
     list_filter = ['guest', 'attending', ]
+
+
+@admin.register(ReservationAdmin)
+class AdminReservationAdmin(admin.ModelAdmin):
+    list_display = ['guest_name', 'guest_phone', 'attending', ]
+    list_filter = ['guest_name', 'guest_phone', 'attending', ]

@@ -22,4 +22,19 @@ class Booking(models.Model):
 
     class Meta:
         verbose_name = 'Booking by a registered user'
-        verbose_name_plural = 'Booking by registered users'
+        verbose_name_plural = 'Bookings by registered users'
+
+
+class ReservationAdmin(models.Model):
+    guest_name = models.CharField(max_length=30)
+    guest_phone = models.CharField(max_length=15)
+    attending = models.ForeignKey(
+        Masterclass,
+        on_delete=models.CASCADE,
+        related_name='admin_reservations',
+        verbose_name='course/masterclass',
+        help_text='the course this guests is going to attend')
+
+    class Meta:
+        verbose_name = 'A reservation made by an admin'
+        verbose_name_plural = 'Reservations made by admins'

@@ -32,8 +32,7 @@ class Masterclass(models.Model):
     course_type = models.ForeignKey(MasterclassType,
                                     on_delete=models.CASCADE,
                                     related_name='masterclasses',
-                                    verbose_name='Выбор типа курса из '
-                                    'предустановленных вариантов')
+                                    verbose_name='Basic course type')
     title = models.CharField(max_length=50,
                              verbose_name='Название')
     price = models.PositiveIntegerField(

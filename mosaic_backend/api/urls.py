@@ -10,19 +10,19 @@ from .views import (ArtworkReadOnlyViewSet, CertificatePostPatchViewSet,
 router1 = routers.SimpleRouter()
 
 
-router1.register("feedback", RequestCreateOnlyViewSet, basename="feedback")
+router1.register('feedback', RequestCreateOnlyViewSet, basename='feedback')
 
-router1.register("email_form", EmailCreateOnlyViewSet, basename="email_form")
+router1.register('email_form', EmailCreateOnlyViewSet, basename='email_form')
 
 
-router1.register("main_carousel", MainCarouselReadOnlyViewSet,
+router1.register('main_carousel', MainCarouselReadOnlyViewSet,
                  basename="main_carousel")
 
 
-router1.register(r"masterclasses", MasterclassReadOnlyViewset,
+router1.register(r'masterclasses', MasterclassReadOnlyViewset,
                  basename="masterclasses")
 
-router1.register(r"masterclass_types",
+router1.register(r'masterclass_types',
                  MasterclassTypeReadOnlyViewSet,
                  basename="masterclasses")
 
