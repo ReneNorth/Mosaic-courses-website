@@ -70,7 +70,7 @@ class MasterclassReadOnlyViewset(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         return Masterclass.objects.all().annotate(
             num_of_guests=(
-                Count('bookings__guest')+Count('admin_reservations')
+                Count('bookings__guest') + Count('admin_reservations')
             )
         )
 

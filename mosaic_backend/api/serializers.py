@@ -120,8 +120,12 @@ class MasterclassSerializer(serializers.ModelSerializer):
         ]
 
     def get_num_of_guests(self, masterclass) -> int:
-        return (sum((Booking.objects.filter(masterclass=masterclass).count(),
-                     ReservationAdmin.objects.filter(masterclass=masterclass).count())))
+        return (
+            sum((Booking.objects.filter(
+                masterclass=masterclass).count(),
+                ReservationAdmin.objects.filter(
+                masterclass=masterclass).count()))
+        )
 
 
 class MasterclassTypeSerializer(serializers.ModelSerializer):
@@ -155,7 +159,6 @@ class BookingSerializer(serializers.ModelSerializer):
             **validated_data, )
 
     def validate(self, data):
-        log.info(self.context['request'].data['masterclass'])
         if self.context['request'].method == 'POST':
             if Booking.objects.filter(
                 guest__id=self.context['user'].id,

@@ -19,7 +19,8 @@ class MasterclassAdmin(admin.ModelAdmin):
     search_fields = ('course_type', 'title',)
 
     def max_guests(self, masterclass) -> str:
-        return MasterclassType.objects.get(masterclasses=masterclass).max_guests
+        return MasterclassType.objects.get(
+            masterclasses=masterclass).max_guests
 
     def bookings(self, masterclass) -> int:
         return Booking.objects.filter(attending=masterclass).count()
