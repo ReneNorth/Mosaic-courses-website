@@ -23,13 +23,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
     path(r'mdeditor/', include('mdeditor.urls')),
+    path('api-auth', include('rest_framework.urls')),
 ]
 
 urlpatterns += [
-    re_path(r'^swagger(?P<format>\.json|\.yaml)$',
+    re_path(r'api/docs/swagger(?P<format>\.json|\.yaml)$',
             schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0),
+    re_path(r'api/docs/swagger/$',
+            schema_view.with_ui('swagger', cache_timeout=0),
             name='schema-swagger-ui'),
-    re_path(r'^api/redoc/$', schema_view.with_ui('redoc', cache_timeout=0),
+    re_path(r'api/docs/redoc/$',
+            schema_view.with_ui('redoc', cache_timeout=0),
             name='schema-redoc'),
 ]

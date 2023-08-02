@@ -7,13 +7,13 @@ from booking.models import Booking, ReservationAdmin
 @admin.register(MasterclassType)
 class MasterclassTypeAdmin(admin.ModelAdmin):
 
-    list_display = ['type', 'slug', 'max_guests', ]
+    list_display = ['id', 'type', 'slug', 'max_guests', ]
     search_fields = ('type', 'slug',)
 
 
 @admin.register(Masterclass)
 class MasterclassAdmin(admin.ModelAdmin):
-    list_display = ['course_type', 'title', 'time_begin', 'time_end',
+    list_display = ['id', 'course_type', 'title', 'time_begin', 'time_end',
                     'max_guests', 'bookings', 'reservations']
     list_filter = ['time_begin', ]
     search_fields = ('course_type', 'title',)

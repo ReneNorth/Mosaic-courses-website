@@ -32,7 +32,10 @@ class Post(models.Model):
                                       'accesible at blog/mosaic')
     preview_text = models.TextField(max_length=400)
     text = MDTextField()
-    pub_date = models.DateTimeField('Publication date', auto_now_add=True)
+    pub_date = models.DateTimeField(verbose_name='Publication date',
+                                    auto_now_add=True)
+    upd_date = models.DateTimeField(verbose_name='Update date',
+                                    auto_now_add=True)
     image = models.ImageField(
         upload_to='blog/posts/', blank=True, default=None)
     read_time = models.SmallIntegerField(

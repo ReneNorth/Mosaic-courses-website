@@ -1,5 +1,6 @@
 import random
 import string
+import logging
 
 from blog.models import Post, Tag
 from booking.models import Booking
@@ -14,6 +15,8 @@ from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from school.models import School
+from django.shortcuts import get_object_or_404
+from django.contrib.auth import get_user_model
 
 from api.filters import ArtworksFilter, PostsFilter
 from api.serializers import (ArtworkSerializer, BookingSerializer,
@@ -22,6 +25,10 @@ from api.serializers import (ArtworkSerializer, BookingSerializer,
                              MasterclassTypeSerializer, PostSerializer,
                              RequestSerializer, SchoolSerializer,
                              TagReadOnlySerializer)
+
+
+User = User = get_user_model()
+log = logging.getLogger(__name__)
 
 
 def generate_cert_id(size=6, chars=string.ascii_uppercase + string.digits):
@@ -42,7 +49,6 @@ class TagReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class ArtworkReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    # add get serializer class
     queryset = Artwork.objects.all()
     serializer_class = ArtworkSerializer
     pagination_class = LimitOffsetPagination
@@ -63,13 +69,18 @@ class MasterclassReadOnlyViewset(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         return Masterclass.objects.all().annotate(
-            num_of_guests=Count('bookings__guest'))
+            num_of_guests=(
+                Count('bookings__guest')+Count('admin_reservations')
+            )
+        )
 
 
-class MasterclassTypeReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+class MasterclassTypeReadOnlyViewSet(viewsets.ModelViewSet):
     serializer_class = MasterclassTypeSerializer
     queryset = MasterclassType.objects.all()
     permission_classes = [AllowAny, ]
+    filterset_fields = ['slug', ]
+    filter_backends = [DjangoFilterBackend, ]
 
 
 class AbstractView(
@@ -81,14 +92,24 @@ class AbstractView(
     pass
 
 
-class BookingViewSet(AbstractView):
+class BookingViewSet(viewsets.ModelViewSet):
     """Viewset for user profile and course/masterclass bookings
     that process get, post and delete requests.
     Only authorized user can book a course. For non-authorized users there is
     a redirect to the 'call me back' page (or it will be done if not yet."""
     queryset = Booking.objects.all()  # TODO после авторизации
     serializer_class = BookingSerializer
-    # permission_classes = TODO
+
+    def create(self, request) -> Response:
+        user = get_object_or_404(User, id=request.user.id)
+        serializer = self.get_serializer(
+            data=request.data,
+            context={'user': user, 'request': request},
+        )
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class PostViewSet(viewsets.ReadOnlyModelViewSet):

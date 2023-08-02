@@ -10,7 +10,7 @@ class Booking(models.Model):
     guest = models.ForeignKey(User,
                               on_delete=models.CASCADE,
                               related_name='bookings')
-    attending = models.ForeignKey(
+    masterclass = models.ForeignKey(
         Masterclass,
         on_delete=models.CASCADE,
         related_name='bookings',
@@ -18,7 +18,7 @@ class Booking(models.Model):
         help_text='the course this guests is going to attend')
 
     def __str__(self) -> str:
-        return f'{self.guest} attends {self.attending}'
+        return f'{self.guest} attends {self.masterclass}'
 
     class Meta:
         verbose_name = 'Booking by a registered user'
