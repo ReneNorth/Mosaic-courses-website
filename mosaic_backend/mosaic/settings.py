@@ -6,14 +6,12 @@ from django.utils.log import DEFAULT_LOGGING
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
-LOCAL_DEV = False
+LOCAL_DEV = True
 
 
 KEY_ENV = os.getenv('SECRET_KEY')
 SECRET_KEY = f'{KEY_ENV}'
-ALLOWED_HOSTS = ['*', 'web', '127.0.0.1', '127.0.0.1:8000', 'localhost',
-                 '[::1]', 'testserver',
-                 ]
+ALLOWED_HOSTS = ['web', '127.0.0.1', '127.0.0.1:8000', 'localhost', ]
 
 
 INSTALLED_APPS = [
@@ -56,18 +54,11 @@ MIDDLEWARE = [
 ]
 
 
-# CORS
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/api/.*$'
 CSRF_TRUSTED_ORIGINS = ['http://localhost',
                         'http://localhost:3000',
-                        'https://tessera.hopto.org',
-                        ]
-# CORS_ALLOWED_ORIGINS = [
-#     'http://localhost',
-#     'http://localhost:3000',
-#     'http://localhost:8000',
-# ]
+                        'https://tessera.hopto.org', ]
 
 
 ROOT_URLCONF = 'mosaic.urls'
@@ -139,7 +130,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+
+TIME_ZONE = 'Asia/Almaty'
 
 USE_I18N = True
 
@@ -161,11 +153,12 @@ AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ],
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication'
     ],
 }
 

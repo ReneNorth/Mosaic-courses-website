@@ -4,5 +4,6 @@ from carousel.models import MainCarouselItem
 
 
 @admin.register(MainCarouselItem)
-class Admin(admin.ModelAdmin):
-    pass
+class MainCarouselItemAdmin(admin.ModelAdmin):
+    list_display = ['title', 'button', 'order']
+    list_filter = ['order', ]

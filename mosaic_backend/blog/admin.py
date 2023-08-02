@@ -12,16 +12,13 @@ class MdPostModelAdmin(admin.ModelAdmin):
 
 admin.site.register(Post, MdPostModelAdmin)
 
-# @admin.register(Post)
-# class PostAdmin(admin.ModelAdmin):
-#     pass
-
 
 @admin.register(PostTag)
 class PostTagAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['post', 'tag', ]
+    list_filter = ['post', 'tag', ]
 
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['title', 'slug', ]

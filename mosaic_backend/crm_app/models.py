@@ -12,6 +12,7 @@ class FeedbackRequest(models.Model):
     phone_num = models.CharField(max_length=25)
     comment = models.TextField(max_length=150, blank=True)
     contact_consent = models.BooleanField(default=False)
+    date_created = models.DateField(auto_now_add=True)
 
     def __str__(self) -> str:
         """Returns contact + "оставил сообщение" as class str repr."""
