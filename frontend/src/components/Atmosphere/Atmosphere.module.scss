@@ -1,4 +1,6 @@
 
+@use "../../utils/variables/global.scss";
+
 .AtmosphereBox {
   max-width: 1280px;
   .title {
@@ -16,6 +18,11 @@
     line-height: 110%;
     color: var(--text-color-secondary);
   }
+  
+  .sliderContainer {
+    display: none;
+  }
+
   .container {
     margin-top: 40px;
     display: grid;
@@ -26,6 +33,9 @@
 
     .child1 {
       grid-area: 1 / 1 / 3 / 2;
+      width: 510px;
+      height: 370px;
+      border-radius: 400px 20px 20px 20px;
     }
 
     .child2 {
@@ -45,4 +55,78 @@
     }
   }
 
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .AtmosphereBox {
+    width: calc(100vw - 40px);
+
+    .title {
+      font-size: 26px;
+    }
+    .span {
+      font-size: 28px;
+    }
+    .container {
+      display: none;
+    }
+
+    .sliderContainer {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      overflow: hidden;
+      gap: 20.3px;
+    }
+  
+    .image {
+      width: 100%;
+      height: calc((100vw - 40px)*0.72);
+      max-height: 367px;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+  
+  
+  
+    .slider__dots {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 7.71px;
+      width: calc(100% - 40px);
+  
+      &_prev, &_next {
+        width: 79px;
+        height: 13.49px;
+        background-color: transparent;
+        color: #247251;
+        background-image: url(../../images/arrow_left.svg);
+        background-repeat: no-repeat;
+        background-position: center center;
+        cursor: pointer;
+      }
+  
+      &_next {
+        background-image: url(../../images/arrow_right.svg);
+      }
+    }
+  
+    .slider__dot {
+      width: 11.57px;
+      height: 11.57px;
+      border: 1px solid #247251;
+      border-radius: 10px;
+      cursor: pointer;
+  
+      &_active {
+        width: 19.28px;
+        height: 19.28px;
+        background-color: #247251;
+      }
+    }
+  
+  }
 }

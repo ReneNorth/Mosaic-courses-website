@@ -9,14 +9,15 @@ export const PromoSection = (
   return (
     <section className={cls.section}>
       <div className={cls.block}>
-        <img className={cls.imgBg} src={imgBg} alt="Фоновая картинка" />
-        {children}
-        <div className={cls.btnGroup}>
-          {isBtn && (
-            <Button onClick={() => setIsOpen(true)} className="fill" decoration="black">
-              {btnText}
-            </Button>
-          )}
+        <div className={cls.textContainer}>
+          {children}
+          <div className={cls.btnGroup}>
+            {isBtn && (
+              <Button onClick={() => setIsOpen(true)} className="fill" decoration="black">
+                {btnText}
+              </Button>
+            )}
+          </div>
         </div>
         <div className={cls.wrapper}>
           <img className={cls.image} src={img} alt="Промо картинка" />

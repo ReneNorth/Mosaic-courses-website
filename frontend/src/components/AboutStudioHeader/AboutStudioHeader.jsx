@@ -25,7 +25,7 @@ export const AllStudioHeader = () => {
           дом оригинальными арт-объектами.
         </p>
       </PromoSection>
-      <div className={cls.route}>
+      {/* <div className={cls.route}>
         <ul className={cls.routeItems}>
           <li>
             <a href="!#" className={cls.routeItem}>
@@ -48,7 +48,7 @@ export const AllStudioHeader = () => {
             </a>
           </li>
         </ul>
-      </div>
+      </div> */}
     </>
   );
 };
