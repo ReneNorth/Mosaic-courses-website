@@ -31,7 +31,7 @@
     "start": " react-scripts start",
     "dev": "cross-env BROWSER=none react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test"
+    "test": "react-scripts test -- --config=jest.config.json"
   },
   "eslintConfig": {
     "extends": [
@@ -55,6 +55,7 @@
     "@babel/eslint-parser": "^7.19.1",
     "eslint": "^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-cypress": "^2.13.3",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",

@@ -1,0 +1,14 @@
+{
+    "verbose": true,
+    "moduleDirectories": ["node_modules", "<rootDir>/"],
+  "testEnvironment": "jest-environment-jsdom",
+  "moduleNameMapper": {
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+  },
+  "transform": {
+    "^.+\\.(js|jsx)$": "babel-jest"
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!react-markdown/)"
+  ]
+}
