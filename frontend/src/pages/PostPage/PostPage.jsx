@@ -7,11 +7,12 @@ import { CardMoreContent } from '../../components/CardMoreContent/CardMoreConten
 import { Button } from '../../components/Button/Button';
 import { PromoSection } from '../../components/PromoSection/PromoSection';
 
-import { getPostById, getPostsWithTags, setCurrentPost } from '../../services/slices/postsSlice';
+import { getPostById, setCurrentPost } from '../../services/slices/postsSlice';
 import cls from './PostPage.module.scss';
+import { api } from '../../utils/api';
 
 export const PostPage = () => {
-  const { currentPost } = useSelector((state) => state.posts);
+  const { currentPost, allPosts } = useSelector((state) => state.posts);
   const [isLoading, toggleLoading] = useState(true);
   const [readMorePosts, setReadMorePosts] = useState([]);
 
@@ -35,24 +36,21 @@ export const PostPage = () => {
   }, []);
 
   useEffect(() => {
-    if (Object.keys(currentPost).length) {
-      let tags = '';
+    api.getRelatedPosts(currentPost.slug).then((res) => {
+      setReadMorePosts(res.slice(0, 3));
 
-      currentPost.tags.forEach((tag) => {
-        tags = `${tags}&tags=${tag.slug}`;
-      });
+      if (readMorePosts.length === 0) {
+        setReadMorePosts(allPosts.filter((post) => post.slug !== currentPost.slug).slice(0, 3));
+      }
+    });
 
-      tags = tags.slice(1);
-
-      dispatch(getPostsWithTags(tags)).then((res) => {
-        setReadMorePosts(res.payload);
-      });
-    }
-  }, [dispatch, currentPost]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPost]);
 
   useEffect(() => {
     dispatch(getPostById(id)).finally(() => toggleLoading(false));
-  }, [dispatch, id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (isLoading) {
     return <>Loading</>;

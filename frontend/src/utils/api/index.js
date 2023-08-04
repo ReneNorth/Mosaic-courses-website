@@ -26,6 +26,11 @@ class Api {
     return this.constructor._checkResponse(res);
   }
 
+  async getRelatedPosts(slug) {
+    const res = await fetch(`${this._url}/blog/posts/${slug}/related_posts/`);
+    return this.constructor._checkResponse(res);
+  }
+
   async getMainCarouselSliders() {
     const res = await fetch(`${this._url}/main_carousel/`);
     return this.constructor._checkResponse(res);
