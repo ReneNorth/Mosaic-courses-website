@@ -17,6 +17,7 @@ from rest_framework.response import Response
 from school.models import School
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
+from rest_framework.decorators import action
 
 from api.filters import ArtworksFilter, PostsFilter
 from api.serializers import (ArtworkSerializer, BookingSerializer,
@@ -119,6 +120,18 @@ class PostViewSet(viewsets.ReadOnlyModelViewSet):
     pagination_class = LimitOffsetPagination
     filterset_class = PostsFilter
     filter_backends = [DjangoFilterBackend, ]
+    lookup_field = 'slug'
+
+    @action(detail=True, methods=['get', ])
+    def related_posts(self, request, slug) -> Response:
+
+        post = Post.objects.get(slug=slug)
+        tags = list(post.tags.all().values_list('slug', flat=True))
+        for tag in tags:
+            print(tag)
+
+        posts = Post.objects.filter(tags__slug__in=tags).exclude(id=post.id)
+        return Response(self.get_serializer(posts, many=True).data)
 
 
 class SchoolReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
