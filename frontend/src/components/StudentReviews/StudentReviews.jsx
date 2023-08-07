@@ -26,9 +26,9 @@ export const StudentReviews = () => {
   const [sliderIndex, setSliderIndex] = useState(1);
 
   useEffect(() => {
-    // const timer = setTimeout(() => {
-    //   setSliderIndex(sliderIndex + 1);
-    // }, 5000);
+    const timer = setTimeout(() => {
+      setSliderIndex(sliderIndex + 1);
+    }, 5000);
 
     const lastSliderIndex = sliderDataBottom.length;
     if (sliderIndex < 0) {
@@ -38,7 +38,7 @@ export const StudentReviews = () => {
       setSliderIndex(1);
     }
 
-    // return () => clearTimeout(timer);
+    return () => clearTimeout(timer);
   }, [sliderIndex]);
 
   return (
