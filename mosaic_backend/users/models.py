@@ -14,6 +14,19 @@ class UserManager(BaseUserManager):
 
 class User(AbstractUser):
     """Basic user class."""
+
+    USER: str = 'user'
+    ADMIN: str = 'admin'
+    TEACHER: str = 'teacher'
+
+    CHOICES = (
+        (USER, 'user'),
+        (ADMIN, 'admin'),
+        (TEACHER, 'teacher'),
+    )
+    role = models.CharField(choices=CHOICES,
+                            default='user',
+                            max_length=32)
     email = models.EmailField(unique=True)
     phone = PhoneNumberField(blank=True, unique=True)
     markcomm_agreement = models.BooleanField(
@@ -31,3 +44,6 @@ class User(AbstractUser):
             models.UniqueConstraint(fields=['username', 'email'],
                                     name='unique_user')
         ]
+
+    def __str__(self):
+        return self.email
