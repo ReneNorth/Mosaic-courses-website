@@ -1,30 +1,36 @@
 import cls from './AboutStudioHeader.module.scss';
 import indicator from '../../images/indicator.svg';
-import { PromoSection } from '../PromoSection/PromoSection';
+import { PromoSection } from '../PromoSection-new/PromoSection';
 import promoImg from '../../images/sboutStudioPromo.png';
 import imgBg from '../../images/aboutStudioDecor.png';
+import { Button } from '../Button/Button';
 
 export const AllStudioHeader = () => {
   return (
     <>
       <PromoSection
-        img={promoImg}
-        imgBg={imgBg}
-        btnText="Записаться на мастеркласс"
-      >
-        <h1 className={cls.title}>
-          О студии мозаики&nbsp;
-          <br />
-          <span className={cls.span}>Tessera</span>
-        </h1>
-        <p className={cls.description}>
-          Единственная в Казахстане студия римской мозаики.
-        </p>
-        <p className={cls.description}>
-          Научим создавать античные шедевры на мастер-классах и украсим ваш
-          дом оригинальными арт-объектами.
-        </p>
-      </PromoSection>
+        desktopImage={promoImg}
+        mobileImage={imgBg}
+        title={(
+          <>
+            О студии мозаики
+            <br />
+            <span>Tessera</span>
+          </>
+        )}
+        text={(
+          <>
+            Единственная в Казахстане студия римской мозаики.
+            <br />
+            <br />
+            Научим создавать античные шедевры на мастер-классах и украсим ваш
+            дом оригинальными арт-объектами.
+          </>
+        )}
+        otherElements={
+          <Button className="fill" decoration="black">Записаться на мастер-класс</Button>
+        }
+      />
       {/* <div className={cls.route}>
         <ul className={cls.routeItems}>
           <li>

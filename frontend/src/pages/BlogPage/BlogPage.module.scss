@@ -1,14 +1,17 @@
+@use "../../utils/variables/global.scss";
+
 .section {
-  padding-bottom: 200px;
-  max-width: 1280px;
+  padding: 0 320px 200px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   .paragraph {
     grid-column: 1;
     margin: 0;
     font-size: 20px;
     font-family: var(--font-primary);
-    width: 584px;
     font-style: normal;
     font-weight: 400;
     line-height: 135%;
@@ -32,7 +35,7 @@
     line-height: 110%;
     margin: 0 0 24px;
 
-    p {
+    .span {
       margin: 0;
       color: #6AAF12;
       font-size: 58px;
@@ -49,4 +52,64 @@
   display: flex;
   flex-direction: column;
   gap: 88px;
+}
+
+
+@media screen and (max-width: 1550px) {
+  .section {
+    padding: 0 160px 116px;
+
+    .decoration {
+      display: none;
+    }
+  }
+  
+}
+
+
+@media screen and (max-width: 1350px) {
+  .section {
+    padding: 0 80px 116px;
+  }
+  
+}
+
+@media screen and (max-width: 1190px) {
+  .section {
+    padding: 0 40px 116px;
+  }
+  
+}
+
+@media screen and (max-width: 950px) {
+  .section {
+    padding: 0 20px 116px;
+  }
+  
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .section{
+    max-width: 320px;
+    .title {
+      font-size: 26px;
+      box-sizing: border-box;
+
+      .span {
+        display: block;
+        font-size: 26px;
+      }
+    }
+
+    .paragraph {
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 135%;
+    }
+
+    .description {
+      font-size: 16px;
+    }
+  } 
 }
