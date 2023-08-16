@@ -1,15 +1,6 @@
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-
-
-# https://stackoverflow.com/questions/54233005/error-in-superuser-creation-not-null-constraint-failed
-# class UserManager(BaseUserManager):
-#     """Здесь будет переопределение метода создания суперюзера, чтобы
-#     обходить ограничение базы по consent_general = models.BooleanField(
-#     required=True)
-#     """
-#     pass
 
 
 class User(AbstractUser):

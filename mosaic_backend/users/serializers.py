@@ -5,8 +5,6 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from booking.models import Booking
-
 
 User = get_user_model()
 log = logging.getLogger(__name__)
