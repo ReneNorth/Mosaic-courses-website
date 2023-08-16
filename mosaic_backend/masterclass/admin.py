@@ -7,8 +7,8 @@ from booking.models import Booking, ReservationAdmin
 @admin.register(MasterclassType)
 class MasterclassTypeAdmin(admin.ModelAdmin):
 
-    list_display = ['id', 'type', 'slug', 'max_guests', ]
-    search_fields = ('type', 'slug',)
+    list_display = ['id', 'title', 'slug', 'max_guests', ]
+    search_fields = ('title', 'slug',)
 
 
 @admin.register(Masterclass)

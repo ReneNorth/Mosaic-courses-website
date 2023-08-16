@@ -27,7 +27,6 @@ from api.serializers import (ArtworkSerializer, BookingSerializer,
                              RequestSerializer, SchoolSerializer,
                              TagReadOnlySerializer)
 
-
 User = User = get_user_model()
 log = logging.getLogger(__name__)
 
@@ -124,12 +123,10 @@ class PostViewSet(viewsets.ReadOnlyModelViewSet):
 
     @action(detail=True, methods=['get', ])
     def related_posts(self, request, slug) -> Response:
-
+        # обработать 404
         post = Post.objects.get(slug=slug)
+        # обработать None
         tags = list(post.tags.all().values_list('slug', flat=True))
-        for tag in tags:
-            print(tag)
-
         posts = Post.objects.filter(tags__slug__in=tags).exclude(id=post.id)
         return Response(self.get_serializer(posts, many=True).data)
 
@@ -138,6 +135,7 @@ class SchoolReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = School.objects.all()
     serializer_class = SchoolSerializer
     permission_classes = [AllowAny, ]
+    pagination_class = None
 
 
 class MainCarouselReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):

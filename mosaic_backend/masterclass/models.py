@@ -22,7 +22,7 @@ def get_or_create_dummy_teacher():
 
 
 class MasterclassType(models.Model):
-    type = models.CharField(max_length=50, verbose_name='Name')
+    title = models.CharField(max_length=50, verbose_name='Title')
     slug = models.SlugField(max_length=15, verbose_name='Link')
     image = models.ImageField(upload_to='masterclasses/', blank=True)
     max_guests = models.PositiveSmallIntegerField(
@@ -42,7 +42,7 @@ class MasterclassType(models.Model):
         ordering = ['id']
 
     def __str__(self) -> str:
-        return self.type
+        return self.title
 
 
 class Masterclass(models.Model):
