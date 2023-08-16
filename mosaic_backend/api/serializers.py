@@ -108,13 +108,13 @@ class MasterclassSerializer(serializers.ModelSerializer):
     class Meta:
         model = Masterclass
         fields = [
-            'id', 'title', 'price', 'currency', 'time_begin', 'time_end',
+            'id', 'title', 'price', 'currency', 'time_start', 'time_end',
             'num_of_guests',
         ]
         read_only_fields = [
             'title',
             'price',
-            'time_begin',
+            'time_start',
             'time_end',
             'num_of_guests',
         ]
@@ -134,7 +134,7 @@ class MasterclassTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = MasterclassType
         fields = [
-            'id', 'type', 'slug', 'max_guests', 'duration',
+            'id', 'title', 'slug', 'max_guests', 'duration',
             'short_description', 'full_description', 'masterclasses',
         ]
         read_only_fields = [

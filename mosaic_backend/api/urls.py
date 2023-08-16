@@ -6,19 +6,15 @@ from .views import (ArtworkReadOnlyViewSet, CertificatePostPatchViewSet,
                     MasterclassReadOnlyViewset, MasterclassTypeReadOnlyViewSet,
                     PostViewSet, RequestCreateOnlyViewSet, BookingViewSet,
                     SchoolReadOnlyViewSet, TagReadOnlyViewSet)
+from users.views import CustomizedUserViewSet
 
 router1 = routers.SimpleRouter()
 
-
+router1.register('users', CustomizedUserViewSet)
 router1.register('feedback', RequestCreateOnlyViewSet, basename='feedback')
-
 router1.register('email_form', EmailCreateOnlyViewSet, basename='email_form')
-
-
 router1.register('main_carousel', MainCarouselReadOnlyViewSet,
                  basename='main_carousel')
-
-
 router1.register(r'masterclasses', MasterclassReadOnlyViewset,
                  basename='masterclasses')
 
@@ -30,7 +26,7 @@ router1.register(r'booking',
                  BookingViewSet,
                  basename='booking')
 
-router1.register(r'blog/posts', PostViewSet, basename='posts')
+# router1.register(r'blog/posts', PostViewSet, basename='posts')
 router1.register(r'blog', PostViewSet, basename='blog')
 
 router1.register(r'certificate', CertificatePostPatchViewSet,
