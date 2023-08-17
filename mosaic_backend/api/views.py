@@ -79,8 +79,16 @@ class MasterclassTypeReadOnlyViewSet(viewsets.ModelViewSet):
     serializer_class = MasterclassTypeSerializer
     queryset = MasterclassType.objects.all()
     permission_classes = [AllowAny, ]
-    filterset_fields = ['slug', ]
     filter_backends = [DjangoFilterBackend, ]
+    filterset_fields = ['slug', ]
+    lookup_field = 'slug'
+
+    @action(detail=True, methods=['get', ])
+    def related_masterclasses(self, request, slug) -> Response:
+        get_object_or_404(MasterclassType, slug=slug)
+        masterclass_types = MasterclassType.objects.all().exclude(slug=slug)
+        return Response(self.get_serializer(masterclass_types,
+                                            many=True).data)
 
 
 class AbstractView(
