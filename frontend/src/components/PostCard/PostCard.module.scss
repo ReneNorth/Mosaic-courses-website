@@ -1,12 +1,12 @@
 .container {
   display: flex;
-  justify-content: space-between;
+  gap: 110px;
 }
 
 .image {
   width: 550px;
   height: 360px;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   border-radius: 20px;
 }
@@ -14,6 +14,7 @@
 .titleWrapper {
   max-width: 620px;
   width: 100%;
+  box-sizing: border-box;
 
   .title {
     margin-bottom: 20px;
@@ -80,4 +81,61 @@
     font-size: 32px;
     line-height: 135%;
   }
+}
+
+@media screen and (max-width: 1310px) {
+  .container {
+    flex-direction: column;
+    width: 550px;
+    gap: 25px;
+  }
+
+  .titleWrapper {
+    padding: 0 24px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .container {
+    flex-direction: column;
+    width: 100%;
+    gap: 25px;
+    padding: 0 20px;
+  }
+
+  .image {
+    width: 320px;
+    height: 210px;
+  }
+
+  .titleWrapper {
+    width: 272px;
+    box-sizing: content-box;
+
+    .title {
+      font-size: 20px;
+      line-height: 135%;
+    }
+
+    .info {
+      gap: 0;
+      justify-content: space-between;
+  
+      .readingTime {
+        font-size: 16px;
+        line-height: 135%;
+  
+        &::before {
+          width: 26px;
+          height: 26px;
+        }
+      }
+
+      .publishDate {
+        font-size: 16px;
+        line-height: 135%;
+      }
+    }
+  }
+
 }

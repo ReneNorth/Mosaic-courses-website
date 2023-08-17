@@ -5,9 +5,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { CardMoreContent } from '../../components/CardMoreContent/CardMoreContent';
 import { Button } from '../../components/Button/Button';
-import { PromoSection } from '../../components/PromoSection/PromoSection';
+import { PromoSection } from '../../components/PromoSection-new/PromoSection';
 
-import { getPostById, setCurrentPost } from '../../services/slices/postsSlice';
+import { getAllPosts, getPostById, setCurrentPost } from '../../services/slices/postsSlice';
 import cls from './PostPage.module.scss';
 import { api } from '../../utils/api';
 
@@ -18,7 +18,7 @@ export const PostPage = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const id = useLocation().pathname.replace('/blog/', '');
+  const slug = useLocation().pathname.replace('/blog/', '');
 
   // eslint-disable-next-line consistent-return
   const validImage = useMemo(() => {
@@ -36,19 +36,14 @@ export const PostPage = () => {
   }, []);
 
   useEffect(() => {
-    api.getRelatedPosts(currentPost.slug).then((res) => {
-      setReadMorePosts(res.slice(0, 3));
-
-      if (readMorePosts.length === 0) {
-        setReadMorePosts(allPosts.filter((post) => post.slug !== currentPost.slug).slice(0, 3));
+    dispatch(getPostById(slug)).then((res) => {
+      if (res.meta.requestStatus === 'fulfilled') {
+        api.getRelatedPosts(slug).then((res) => {
+          setReadMorePosts(res.slice(0, 3));
+          toggleLoading(false);
+        });
       }
     });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPost]);
-
-  useEffect(() => {
-    dispatch(getPostById(id)).finally(() => toggleLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -58,23 +53,29 @@ export const PostPage = () => {
 
   return (
     <>
+      <PromoSection
+        desktopImage={validImage}
+        mobileImage={validImage}
+        title={currentPost.title}
+        text={currentPost.preview_text}
+        otherElements={(
+          <>
+            <p className={cls.readingTime}>
+              Время прочтения
+              {' '}
+              {currentPost.read_time}
+              {' '}
+              минут
+            </p>
+            <p className={cls.publishDate}>
+              Опубликовано
+              {' '}
+              {currentPost.pub_date.toLocaleString().slice(0, 10)}
+            </p>
+          </>
+        )}
+      />
       <section className={cls.post}>
-        <PromoSection img={validImage} isBtn={false}>
-          <h1 className={cls.title}>{currentPost.title}</h1>
-          <p className={cls.previewText}>{currentPost.preview_text}</p>
-          <p className={cls.readingTime}>
-            Время прочтения
-            {' '}
-            {currentPost.read_time}
-            {' '}
-            минут
-          </p>
-          <p className={cls.publishDate}>
-            Опубликовано
-            {' '}
-            {currentPost.pub_date.toLocaleString().slice(0, 10)}
-          </p>
-        </PromoSection>
         <div className={cls['markdown-container']}>
           <ReactMarkdown className={cls.reactMarkdown}>{currentPost.text}</ReactMarkdown>
           <ul className={cls.tags}>
@@ -94,6 +95,9 @@ export const PostPage = () => {
         <ul className={cls.list}>
           {
             readMorePosts.map((post) => {
+              if (post.slug === slug) {
+                return null;
+              }
               return (
                 <li key={post.id}>
                   <CardMoreContent
@@ -113,7 +117,7 @@ export const PostPage = () => {
                       <Button
                         onClick={() => {
                           dispatch(setCurrentPost(post));
-                          navigate(`/blog/${post.id}`);
+                          navigate(`/blog/${post.slug}`);
                           window.scrollTo({
                             top: 0,
                             left: 0,
