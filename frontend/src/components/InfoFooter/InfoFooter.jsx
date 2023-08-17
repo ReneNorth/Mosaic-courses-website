@@ -23,34 +23,34 @@ export const InfoFooter = () => {
             </li>
           </ul>
         </div>
-        <nav>
+        <nav className={cls.navigation}>
           <ul className={cls.navList}>
-            <li>
+            <li className={cls.about}>
               <Link to="/about" className={cls.navlink}>
                 О студии
               </Link>
             </li>
-            <li>
+            <li className={cls.shop}>
               <Link to="/shop" className={cls.navlink}>
                 Магазин
               </Link>
             </li>
-            <li>
-              <Link to="/gallety" className={cls.navlink}>
+            <li className={cls.gallery}>
+              <Link to="/gallery" className={cls.navlink}>
                 Галерея
               </Link>
             </li>
-            <li>
+            <li className={cls.certificates}>
               <Link to="/certificates" className={cls.navlink}>
                 Сертификаты
               </Link>
             </li>
-            <li>
+            <li className={cls.courses}>
               <Link to="/courses" className={cls.navlink}>
                 Курсы
               </Link>
             </li>
-            <li>
+            <li className={cls.blog}>
               <Link to="/blog" className={cls.navlink}>
                 Блог
               </Link>

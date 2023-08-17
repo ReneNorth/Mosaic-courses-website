@@ -1,0 +1,30 @@
+@use "../../utils/variables/global.scss";
+
+.menu {
+    max-width: global.$breakpoint-mobile;
+    margin: 0;
+    box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.6);
+    border-radius: 20px;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+}
+
+.menu_heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px 20px 36px 20px;
+}
+
+.button {
+    background-image: url('../../images/close_mobile.svg');
+    background-repeat: no-repeat;
+    background-color: transparent;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+}

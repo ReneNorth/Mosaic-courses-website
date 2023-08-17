@@ -2,10 +2,7 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
-from django.conf import settings
-from django.conf.urls.static import static
 from django.utils.log import DEFAULT_LOGGING
-from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
@@ -14,9 +11,7 @@ LOCAL_DEV = False
 
 KEY_ENV = os.getenv('SECRET_KEY')
 SECRET_KEY = f'{KEY_ENV}'
-ALLOWED_HOSTS = ['*', 'web', '127.0.0.1', '127.0.0.1:8000', 'localhost',
-                 '[::1]', 'testserver',
-                 ]
+ALLOWED_HOSTS = ['web', '127.0.0.1', '127.0.0.1:8000', 'localhost', ]
 
 
 INSTALLED_APPS = [
@@ -40,8 +35,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework',
     'djoser',
-    # 'mdeditor',
-    # 'martor',
+    'django_filters',
+    'mdeditor',
     'corsheaders',
     'drf_api_logger',
 ]
@@ -59,18 +54,11 @@ MIDDLEWARE = [
 ]
 
 
-# CORS
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/api/.*$'
 CSRF_TRUSTED_ORIGINS = ['http://localhost',
                         'http://localhost:3000',
-                        'https://tessera.hopto.org',
-                        ]
-# CORS_ALLOWED_ORIGINS = [
-#     'http://localhost',
-#     'http://localhost:3000',
-#     'http://localhost:8000',
-# ]
+                        'https://tessera.hopto.org', ]
 
 
 ROOT_URLCONF = 'mosaic.urls'
@@ -142,7 +130,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+
+TIME_ZONE = 'Asia/Almaty'
 
 USE_I18N = True
 
@@ -151,8 +140,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-# STATIC_URL = '/django_static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'django_static')
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'collected_static'
 
@@ -163,32 +150,42 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
 
-# urlpatterns = [
-# ... the rest of your URLconf goes here ...
-# ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ],
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication'
     ],
-    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    # 'PAGE_SIZE': 10,
+
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 6,
 }
+
+DJOSER = {
+    'LOGIN_FIELD': 'email',
+    'HIDE_USERS': True,
+    'SERIALIZERS': {
+        'user_create': 'users.serializers.CustomUserSerializer',
+        'user': 'users.serializers.CustomUserSerializer',
+    },
+    'PERMISSIONS': {
+        'user': ['rest_framework.permissions.AllowAny'],
+        'user_list': ['rest_framework.permissions.AllowAny'],
+    }
+}
+
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=15),
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-# Markdown editor settings
-# repo https://github.com/pylixm/django-mdeditor
-
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
 
 MDEDITOR_CONFIGS = {
     'default': {
@@ -222,15 +219,11 @@ MDEDITOR_CONFIGS = {
 }
 
 
-# LOGGING_CONFIG = None
-# LOGLEVEL = os.getenv('DJ_LOGLEVEL', 'info').upper()
-DRF_API_LOGGER_DATABASE = True
 LOGLEVEL = 'DEBUG'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
-        # Use JSON formatter as default
         'verbose': {
             'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
             'style': '{',
@@ -242,27 +235,18 @@ LOGGING = {
         'django.server': DEFAULT_LOGGING['formatters']['django.server'],
     },
     'handlers': {
-        # Route console logs to stdout
         'console': {
             'level': f'{LOGLEVEL}',
             'class': 'logging.StreamHandler',
             'formatter': 'simple',
         },
-        'docker_log': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'formatter': 'verbose',
-            'filename': f'{BASE_DIR}/logs/logs_main.log'
-        },
         'django.server': DEFAULT_LOGGING['handlers']['django.server'],
     },
     'loggers': {
-        # Default logger for all modules
         '': {
             'level': LOGLEVEL,
-            'handlers': ['console', 'docker_log'],
+            'handlers': ['console', ],
         },
-        # Default runserver request logging
         'django.server': DEFAULT_LOGGING['loggers']['django.server'],
     }
 }

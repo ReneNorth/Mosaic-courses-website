@@ -1,8 +1,9 @@
+@use "../../utils/variables/global.scss";
 
 .slider {
   max-width: 1920px;
   width: 100%;
-  margin: 140px 0 0 370px;
+  margin: 216px 0 0 370px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -67,5 +68,39 @@
     font-size: 36px;
     line-height: 46px;
     color: #247251;
+  }
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .slider {
+    width: calc(100vw - 40px);
+    margin: 80px auto 0;
+
+    &__top {
+      height: 370px;
+      position: relative;
+    }
+
+    &__item {
+      justify-content: flex-start;
+    }
+
+    &__dots {
+      width: unset;
+      margin: 44px 0 0 0;
+      align-self: flex-end;
+    }
+
+    &__dot {
+      width: 80px;
+    }
+
+    &__counter {
+      width: 67px;
+      margin: 16px 0 0 auto;
+      justify-content: flex-start;
+      font-size: 24px;
+      line-height: 31px;
+    }
   }
 }

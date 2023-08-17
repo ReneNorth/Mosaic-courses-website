@@ -1,25 +1,67 @@
 .container {
   display: flex;
-  justify-content: space-between;
+  gap: 110px;
 }
 
 .image {
-  max-width: 550px;
-  width: 100%;
+  width: 550px;
+  height: 360px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 20px;
 }
 
 .titleWrapper {
   max-width: 620px;
   width: 100%;
-}
+  box-sizing: border-box;
 
-.title {
-  font-family: var(--font-primary);
-  font-style: normal;
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 38px;
-  color: var(--text-color)
+  .title {
+    margin-bottom: 20px;
+    font-family: var(--font-primary);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+    color: var(--text-color)
+  }
+
+  .info {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+
+    .readingTime {
+      margin: 0;
+      font-family: var(--font-primary);
+      color: var(--text-color);
+      font-weight: 500;
+      font-size: 17px;
+      line-height: 135%;
+      display: flex;
+      align-items: center;
+
+      &::before {
+        content: "";
+        width: 32px;
+        height: 32px;
+        background-image: url(../../images/time.svg);
+        background-position: center;
+        background-size: 26px 26px;
+        background-repeat: no-repeat;
+      }
+    }
+
+    .publishDate {
+      margin: 0;
+      font-family: var(--font-primary);
+      color: var(--text-color);
+      font-weight: 500;
+      font-size: 17px;
+      line-height: 135%;
+      margin: 0;
+    }
+  }
 }
 
 .description {
@@ -29,5 +71,71 @@
   font-weight: 400;
   font-size: 17px;
   line-height: 20px;
-  color: var(--text-color)
+  color: var(--text-color);
+  margin-bottom: 39px;
+}
+
+.reactMarkdown {
+  h1 {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 135%;
+  }
+}
+
+@media screen and (max-width: 1310px) {
+  .container {
+    flex-direction: column;
+    width: 550px;
+    gap: 25px;
+  }
+
+  .titleWrapper {
+    padding: 0 24px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .container {
+    flex-direction: column;
+    width: 100%;
+    gap: 25px;
+    padding: 0 20px;
+  }
+
+  .image {
+    width: 320px;
+    height: 210px;
+  }
+
+  .titleWrapper {
+    width: 272px;
+    box-sizing: content-box;
+
+    .title {
+      font-size: 20px;
+      line-height: 135%;
+    }
+
+    .info {
+      gap: 0;
+      justify-content: space-between;
+  
+      .readingTime {
+        font-size: 16px;
+        line-height: 135%;
+  
+        &::before {
+          width: 26px;
+          height: 26px;
+        }
+      }
+
+      .publishDate {
+        font-size: 16px;
+        line-height: 135%;
+      }
+    }
+  }
+
 }

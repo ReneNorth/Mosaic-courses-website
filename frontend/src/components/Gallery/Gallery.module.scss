@@ -1,3 +1,5 @@
+@use "../../utils/variables/global.scss";
+
 .sectiongallery {
   margin-top: 140px;
   max-width: 1280px;
@@ -45,139 +47,115 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 40px;
+    max-width: 1280px;
+    overflow: hidden;
+    gap: 32px;
+  }
 
-    .active {
-      opacity: 1;
-      width: 100%;
-      transform: translateX(0);
-
-      img {
-        width: 400px;
-        height: 570px;
-        object-fit: cover;
-        border-radius: 300px 300px 0px 0px;
-      }
-    }
-
-    .next {
-      transform: translateX(700%);
-    }
-
-    .next2 {
-      transform: translateX(850%);
-    }
-
-    .last {
-      transform: translateX(200%);
-    }
-
-    .last2 {
-      transform: translateX(50%);
-    }
+  .image {
+    width: 290px;
+    height: 419px;
+    object-fit: cover;
+  }
 
 
-    &__top {
-      max-width: 1280px;
-      width: 100%;
-      height: 570px;
-      display: flex;
-      align-items: center;
-      gap: 40px;
-      position: relative;
-      overflow: hidden;
-      text-align: center;
 
-      li {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+  .slider__dots {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
 
-        img {
-          width: 180px;
-          height: 260px;
-          object-fit: cover;
-          transition: .5s;
-        }
-      }
-    }
-
-    &__item {
-      position: absolute;
-      top: 0;
-      width: 10%;
-      height: 100%;
-      transition: .5s;
-
-      &_start {
-        &:nth-last-child(1) {
-          transform: translateX(200%);
-        }
-
-        &:nth-last-child(2) {
-          transform: translateX(50%);
-        }
-      }
-
-      &_end {
-        &:nth-child(1) {
-          transform: translateX(700%);
-        }
-
-        &:nth-child(2) {
-          transform: translateX(850%);
-        }
-      }
-
-    }
-
-    &__dots {
-      width: 80%;
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-
-      &_prev, &_next {
-        width: 82px;
-        height: 14px;
-        background-color: transparent;
-        color: #247251;
-        background-image: url(../../images/arrow_left.svg);
-        background-repeat: no-repeat;
-        background-position: center center;
-        cursor: pointer;
-      }
-
-      &_next {
-        background-image: url(../../images/arrow_right.svg);
-      }
-    }
-
-    &__dot {
-      width: 12px;
-      height: 12px;
-      border: 1.5px solid #247251;
-      border-radius: 10px;
-      cursor: pointer;
-
-      &_active {
-        width: 20px;
-        height: 20px;
-        background-color: #247251;
-      }
-    }
-
-    &__counter {
-      width: 18%;
-      margin-top: 20px;
-      display: flex;
-      justify-content: flex-end;
-      font-family: 'Lora', serif;
-      font-style: italic;
-      font-weight: 600;
-      font-size: 36px;
-      line-height: 46px;
+    &_prev, &_next {
+      width: 82px;
+      height: 14px;
+      background-color: transparent;
       color: #247251;
+      background-image: url(../../images/arrow_left.svg);
+      background-repeat: no-repeat;
+      background-position: center center;
+      cursor: pointer;
     }
+
+    &_next {
+      background-image: url(../../images/arrow_right.svg);
+    }
+  }
+
+  .slider__dot {
+    width: 12px;
+    height: 12px;
+    border: 1.5px solid #247251;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &_active {
+      width: 20px;
+      height: 20px;
+      background-color: #247251;
+    }
+  }
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .sectiongallery {
+    margin-top: 80px;
+
+    .titlewrapper {
+      margin: 0 0 40px 20px;
+    }
+  
+    .titlewrapper__description {
+      font-size: 10px;
+      letter-spacing: 0.02em;
+    }
+  
+    .titlewrapper__title {
+      font-size: 26px;
+  
+      span {
+        font-size: 28px;
+      }
+    }
+
+    .slider {
+      gap: 36px;
+  
+      .active {
+        z-index: 100;
+      }
+
+      .image {
+        width: 252px;
+        height: 361px;
+      }
+  
+      &__dots {
+        gap: 7.71px;
+        width: calc(100% - 40px);
+  
+        &_prev, &_next {
+          width: 79px;
+          height: 13.49px;
+        }
+      }
+  
+      &__dot {
+        width: 11.57px;
+        height: 11.57px;
+        border: 1px solid #247251;
+  
+        &_active {
+          width: 19.28px;
+          height: 19.28px;
+        }
+      }
+    }
+  }
+
+  .slider > div > div {
+    justify-content: center;
+    // gap: 36px;
   }
 }

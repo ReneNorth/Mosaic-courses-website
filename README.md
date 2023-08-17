@@ -1,6 +1,8 @@
 # Mosaic Courses Website
 ![Mosaic workflow](https://github.com/ReneNorth/Mosaic-courses-website/actions/workflows/main.yml/badge.svg)
 
+![yamdb CI CD](https://github.com/ReneNorth/CI_CD-yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
+
 Website for Mosaic Courses that utilizes React and Django. It allows users to view available courses, book them, and access various other features.
 
 ### Tech stack
@@ -56,6 +58,7 @@ python manage.py createsuperuser
 ```
 
 then execute the commands to collect and move statics
+
 ```console
 python manage.py collectstatic
 cp -r /app/collected_static/. /backend_static/static/
@@ -67,4 +70,5 @@ http://localhost:8000/admin
 (the specific port is subject to change, so the docs might not reflex the current one)
 
 ### API docs
+
 The docs are available at http://localhost:8000/api/redoc

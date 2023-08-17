@@ -1,6 +1,10 @@
 import { useState } from 'react';
-import cls from './MailingForm.module.scss';
+
+import { Button } from '../Button/Button';
+import { api } from '../../utils/api';
+
 import useFormValidation from '../../hooks/useFormValidation';
+import cls from './MailingForm.module.scss';
 
 export const MailingForm = () => {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -11,30 +15,19 @@ export const MailingForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = {
-      email: values.email,
-    };
-
     if (values.email !== '' || !errors) {
-      await fetch('http://127.0.0.1/api/v1/email_form/', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      }).then(() => {
-        resetForm();
-        setIsSuccess(true);
-      });
+      await api.postSubscriptionEmail(values.email);
+      resetForm();
+      setIsSuccess(true);
     }
   };
 
   return (
     <div className={cls.formWrapper}>
-      <h4 className={cls.formTitle}>
+      <h3 className={cls.formTitle}>
         {isSuccess ? 'Вы успешно подписаны на рассылку!'
           : 'Будь в курсе новостей студии и получи скидку 10% на первое зянятие'}
-      </h4>
+      </h3>
       {!isSuccess && (
         <form onSubmit={handleSubmit} className={cls.form} noValidate>
           <div className={cls.label}>
@@ -54,10 +47,9 @@ export const MailingForm = () => {
             </span>
           </div>
           <div className={cls.btnWrapper}>
-            <button className={cls.submit} type="submit" disabled={!isValid}>
+            <Button className="fill" decoration="black" type="submit" disabled={!isValid}>
               Подписаться на рассылку
-            </button>
-            <div className={cls.btnBorder} />
+            </Button>
           </div>
         </form>
       )}

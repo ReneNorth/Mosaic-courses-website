@@ -1,3 +1,5 @@
+@use "../../utils/variables/global.scss";
+
 .container {
   max-width: 834px;
   width: 100%;
@@ -19,4 +21,26 @@
   line-height: 23px;
   font-size: 20px;
   color: var(--text-color);
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .container {
+    display: none;
+  }
+
+  .container_mobile {
+    display: block;
+  }
+
+  .list{
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 0 44px 20px;
+  }
+
+  .link {
+    font-weight: 500;
+    line-height: 22px;
+    font-size: 16px;
+  }
 }

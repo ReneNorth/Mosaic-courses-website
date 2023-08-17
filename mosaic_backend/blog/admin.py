@@ -1,8 +1,24 @@
 from django.contrib import admin
+from django.db import models
+from blog.models import Post, PostTag, Tag
+from mdeditor.widgets import MDEditorWidget
 
-from blog.models import Post
+
+class MdPostModelAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        models.TextField: {'widget': MDEditorWidget}
+    }
 
 
-@admin.register(Post)
-class Admin(admin.ModelAdmin):
-    pass
+admin.site.register(Post, MdPostModelAdmin)
+
+
+@admin.register(PostTag)
+class PostTagAdmin(admin.ModelAdmin):
+    list_display = ['post', 'tag', ]
+    list_filter = ['post', 'tag', ]
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ['title', 'slug', ]

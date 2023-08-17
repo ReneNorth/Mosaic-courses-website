@@ -1,3 +1,5 @@
+@use "../../utils/variables/global.scss";
+
 .section {
   max-width: 1280px;
   width: 100%;
@@ -37,4 +39,22 @@
   font-weight: 400;
   font-size: 17px;
   line-height: 20px;
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .section {
+    margin-top: 80px;
+  }
+
+  .titleWrapper {
+    margin-left: 20px;
+  }
+
+  .title {
+    font-size: 26px;
+
+    span {
+      font-size: 28px;
+    }
+  }
 }

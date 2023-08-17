@@ -1,4 +1,8 @@
+@use "../../utils/variables/global.scss";
+
 .title {
+  grid-column: 1;
+  grid-row: 1;
   font-family: var(--font-primary);
   font-style: normal;
   font-weight: 700;
@@ -7,6 +11,7 @@
 }
 
 .description {
+  grid-column: 1;
   margin-top: 28px;
   max-width: 584px;
   font-family: var(--font-primary);
@@ -14,6 +19,14 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 135%;
+
+  &:nth-of-type(1) {
+    grid-row: 2;
+  }
+
+  &:nth-of-type(2) {
+    grid-row: 3;
+  }
 
   &:last-of-type {
     margin-top: 10px;
@@ -27,4 +40,18 @@
   font-size: 58px;
   line-height: 110%;
   color: var(--text-color-secondary);
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .title {
+    font-size: 26px;
+  }
+
+  .span {
+    font-size: 28px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
 }

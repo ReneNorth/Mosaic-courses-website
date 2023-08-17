@@ -1,5 +1,7 @@
 import cls from './CertificateSection.module.scss';
 import useFormValidation from '../../hooks/useFormValidation';
+import { Button } from '../Button/Button';
+import { api } from '../../utils/api';
 
 export const CertificateSection = () => {
   const {
@@ -10,22 +12,15 @@ export const CertificateSection = () => {
     e.preventDefault();
 
     const data = {
-      nameGiver: values.nameGiver,
-      nameGive: values.nameGive,
-      number: values.number,
-      email: values.email,
-      contact_consent: false,
+      name_sender: values.nameGiver,
+      name_recepient: values.nameGive,
+      amount: values.number,
+      email_sender: values.email,
+      email_recipient: values.email,
     };
 
-    await fetch('http://127.0.0.1/api/v1/certificate/', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    }).then(() => {
-      resetForm();
-    });
+    await api.postGiftCertificate(data);
+    resetForm();
   };
   return (
 
@@ -88,9 +83,9 @@ export const CertificateSection = () => {
               ? <span className={cls.margin}>Введите число</span>
               : <p className={cls.margin}>Минимальная сумма 1500р</p>}
             <div className={cls.btnWrapper}>
-              <button className={cls.submit} type="submit" disabled={!isValid}>
+              <Button className="fill" decoration="black" type="submit" disabled={!isValid}>
                 Купить сертификат
-              </button>
+              </Button>
               <div className={cls.btnBorder} />
             </div>
           </div>

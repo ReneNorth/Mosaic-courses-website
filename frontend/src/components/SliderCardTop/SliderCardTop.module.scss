@@ -1,3 +1,5 @@
+@use "../../utils/variables/global.scss";
+
 .sliderCard {
   min-width: 1280px;
   display: flex;
@@ -23,13 +25,13 @@
     border-radius: 20px;
   }
 
-  & > div {
+  .wrapper {
     position: absolute;
-    top: 25%;
-    left: 10%;
+    top: 100px;
+    left: 110px;
     color: #fff;
 
-    h2 {
+    .title {
       max-width: 660px;
       width: 100%;
       margin-bottom: 16px;
@@ -40,10 +42,9 @@
       line-height: 135%;
     }
 
-    p {
+    .paragraph {
       max-width: 660px;
       width: 100%;
-      margin-bottom: 40px;
       font-family: 'Raleway', sans-serif;
       font-style: normal;
       font-weight: 400;
@@ -51,21 +52,55 @@
       line-height: 135%;
       opacity: .8;
     }
-
-    button {
-      padding: 10px 40px;
-      font-family: 'Raleway', sans-serif;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 17px;
-      line-height: 135%;
-      color: #fff;
-      background-color: #247251;
-      border-radius: 56px;
-      border: none;
-      opacity: .9;
-      cursor: pointer;
-    }
   }
 
+  & > button {
+    position: absolute;
+    bottom: 70px;
+    left: 110px;
+  }
+
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+
+  .sliderCard {
+    min-width: calc(100vw - 40px);
+
+    &:before {
+      border-radius: 16px;
+    }
+
+    img {
+      height: 370px;
+      border-radius: 16px;
+    }
+
+    .wrapper {
+      top: 40px;
+      left: 24px;
+      width: calc(100% - 48px);
+  
+      .title {
+        width: 100%;
+        margin-bottom: 12px;
+        font-size: 20px;
+      }
+  
+      .paragraph {
+        width: 100%;
+        font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    & > button {
+      left: 0;
+      right: 0;
+      margin: auto;
+      bottom: 40px;
+      width: calc(100% - 48px);
+    }
+  }
 }
