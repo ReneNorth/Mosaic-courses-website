@@ -124,7 +124,7 @@ class MasterclassSerializer(serializers.ModelSerializer):
             sum((Booking.objects.filter(
                 masterclass=masterclass).count(),
                 ReservationAdmin.objects.filter(
-                masterclass=masterclass).count()))
+                attending=masterclass).count()))
         )
 
 
