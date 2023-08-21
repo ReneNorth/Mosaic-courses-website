@@ -84,11 +84,3 @@ class CarouselItemAPITest(TestCase):
             "/api/v1/main_carousel/", content_type="application/json"
         )
         self.assertEqual(response.status_code, 200)
-
-
-class BlogTest(TestCase):
-    """Creates and requests a blog post from API"""
-
-    @classmethod
-    def foo():
-        pass
