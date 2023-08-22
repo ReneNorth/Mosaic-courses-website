@@ -58,7 +58,6 @@ class UserCreateApiTest(TestCase):
             {"email": "testmail11@mail.com",
              "password": "testpass11"},
             'application/json')
-        # log.info(response_get_jwt.content)
         self.assertEqual(response_get_jwt.status_code, 200)
 
     def test_refresh_jwt_token(self):
@@ -72,7 +71,6 @@ class UserCreateApiTest(TestCase):
             {"email": "testmail11@mail.com",
              "password": "testpass11"},
             'application/json')
-        # log.info(response_get_jwt.content)
         self.assertEqual(response_get_jwt.status_code, 200)
         tokens = literal_eval(bytes.decode(
             response_get_jwt.content))
@@ -85,7 +83,6 @@ class UserCreateApiTest(TestCase):
             'application/json')
 
         self.assertEqual(response_refresh_jwt.status_code, 200)
-        log.info(f'new token: {response_refresh_jwt.content}')
         new_jwt_access = literal_eval(bytes.decode(
             response_refresh_jwt.content)).get('access')
         self.assertNotEqual(jwt_access, new_jwt_access)

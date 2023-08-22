@@ -26,7 +26,6 @@ router1.register(r'booking',
                  BookingViewSet,
                  basename='booking')
 
-# router1.register(r'blog/posts', PostViewSet, basename='posts')
 router1.register(r'blog', PostViewSet, basename='blog')
 
 router1.register(r'certificate', CertificatePostPatchViewSet,
