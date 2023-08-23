@@ -1,13 +1,19 @@
 import logging
+import json
 
-from carousel.models import MainCarouselItem
-from crm_app.models import EmailMainForm, FeedbackRequest
+from ast import literal_eval
 from django.test import Client, TestCase
+from django.contrib.auth import get_user_model
 from rest_framework.test import APIRequestFactory
 
 from .data_tests import link
+from blog.models import Tag, PostTag, Post
+from carousel.models import MainCarouselItem
+from crm_app.models import EmailMainForm, FeedbackRequest
+
 
 log = logging.getLogger(__name__)
+User = get_user_model()
 
 
 class FeedbackTest(TestCase):
@@ -86,9 +92,66 @@ class CarouselItemAPITest(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
+tag1_args = {'slug': 'glass', 'title': 'glass'}
+tag2_args = {'slug': 'rome', 'title': 'rome'}
+
+post1_args = {'title': 'test_title', 'slug': 'test_slug',
+              'preview_text': 'Some preview text!',
+              'text': 'Some post text', 'read_time': 10, }
+post2_args = {'title': 'test_title2', 'slug': 'test_slug2',
+              'preview_text': 'Some preview text! 2',
+              'text': 'Some post text 2', 'read_time': 15, }
+
+
+author1_args = {"email": "testmail11@mai.com",
+                "phone": "+77778888922",
+                "password": "asd@111mai11.com",
+                "first_name": "test1",
+                "last_name": "test1",
+                "general_agreement": "True",
+                "markcomm_agreement": "False"}
+
+
 class BlogTest(TestCase):
-    """Creates and requests a blog post from API"""
+    """Creates and test post and tag objects."""
+    @classmethod
+    def setUpClass(cls) -> None:
+        super().setUpClass()
+        cls.guest_client = Client()
+        cls.author = User.objects.create(**author1_args)
+        cls.tag1 = Tag.objects.create(**tag1_args)
+        cls.tag2 = Tag.objects.create(**tag2_args)
+
+        cls.post1 = Post.objects.create(author=cls.author, **post1_args)
+        cls.post1_tag1 = PostTag.objects.create(post=cls.post1, tag=cls.tag1)
+
+        cls.post2 = Post.objects.create(author=cls.author, **post2_args)
+        cls.post2_tag1 = PostTag.objects.create(post=cls.post2, tag=cls.tag1)
+        cls.post2_tag2 = PostTag.objects.create(post=cls.post2, tag=cls.tag2)
 
     @classmethod
-    def foo():
-        pass
+    def tearDownClass(cls):
+        super().tearDownClass()
+
+    def test_api_get_2_posts(self):
+        response = self.client.get(
+            path="/api/v1/blog/",
+            extra="application/json",
+        )
+
+        self.assertEqual(response.status_code, 200)
+        posts_count = json.loads(bytes.decode(
+            response.content)).get('count')
+        self.assertEqual(posts_count, 2)
+
+    def test_api_related_posts(self):
+        response = self.client.get(
+            path=f"/api/v1/blog/{self.post1.slug}/related_posts/",
+            content_type="application/json",
+        )
+
+        self.assertEqual(response.status_code, 200)
+        posts = json.loads(bytes.decode(
+            response.content))
+        slug = posts[0].get('slug')
+        self.assertEqual(slug, self.post2.slug)
