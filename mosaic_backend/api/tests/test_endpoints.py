@@ -1,7 +1,6 @@
 import logging
 import json
 
-from ast import literal_eval
 from django.test import Client, TestCase
 from django.contrib.auth import get_user_model
 from rest_framework.test import APIRequestFactory
@@ -10,7 +9,6 @@ from .data_tests import link
 from blog.models import Tag, PostTag, Post
 from carousel.models import MainCarouselItem
 from crm_app.models import EmailMainForm, FeedbackRequest
-
 
 log = logging.getLogger(__name__)
 User = get_user_model()
@@ -75,7 +73,7 @@ class CarouselItemAPITest(TestCase):
             text="test text for the abanner",
             button="Subscribe!",
             order=1,
-            image="/image",
+            image="/imagetest",
         )
 
     @classmethod
@@ -90,6 +88,18 @@ class CarouselItemAPITest(TestCase):
             "/api/v1/main_carousel/", content_type="application/json"
         )
         self.assertEqual(response.status_code, 200)
+
+    def test_carousel_image_available(self):
+        """
+        Tests if the test image is available in the response and equals
+        the expected value.
+        """
+        self.assertEqual(MainCarouselItem.objects.all().count(), 1)
+        response = self.guest_client.get(
+            "/api/v1/main_carousel/", content_type="application/json"
+        )
+        self.assertTrue(json.loads(response.content).get('results')
+                        [0].get('image').endswith('imagetest'))
 
 
 tag1_args = {'slug': 'glass', 'title': 'glass'}
