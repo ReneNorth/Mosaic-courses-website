@@ -15,15 +15,35 @@ Website for Mosaic Courses that utilizes React and Django. It allows users to vi
 
 ### Installation
 
-Clone the repository.
-Rename dev.env to .env and change the constants to ones
+First, you'll need to install Docker and Docker Compose, if thay are not already
+installed on the system where the containers will run.
+
+Then clone the repository.
+Rename dev.env to .env and change the constants to the ones
 you need to run the project.
-Install Docker and Docker Compose.
-Run the following command to build the project's Docker containers:
+
+There are two ways to build the project:
+
+1. Option 1. Build the containers from the source code and public images locally | docker-compose.yml
+2. Option 2. Pull the already built containers (except for the gateway, it's still build from a public image) from dockerhub | docker-compose.production
+
+You may choose whatever approach suites best for you.
+The main difference is that the second option will work much faster on Windows.
+
+Option 1.
+All commands must be executed from /infra directory
 
 ```console
 cd infra/
 docker-compose up --build -d
+```
+
+Option 2.
+All commands must be executed from /infra directory
+
+```console
+cd infra/
+docker-compose up -r docker-compose.production.yml -d --build
 ```
 
 A successful containers launch is followed by a similar output
@@ -50,7 +70,8 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-Run the following command to create a superuser and follow the prompts:
+If you didn't previously create superuser or you deleted the volumes,  
+run the following command and follow the prompts to create a superuser:
 
 ```console
 python manage.py createsuperuser
@@ -70,4 +91,5 @@ http://localhost:8000/admin
 
 ### API docs
 
-The docs are available at http://localhost:8000/api/redoc
+The docs are available at http://localhost:8000/api/docs/redoc/
+The docs are available at http://localhost:8000/api/docs/swagger/
