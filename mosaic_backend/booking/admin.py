@@ -11,5 +11,5 @@ class BookingAdmin(admin.ModelAdmin):
 
 @admin.register(ReservationAdmin)
 class AdminReservationAdmin(admin.ModelAdmin):
-    list_display = ['guest_name', 'guest_phone', 'attending', ]
+    list_display = ['id', 'guest_name', 'guest_phone', 'attending', ]
     list_filter = ['guest_name', 'guest_phone', 'attending', ]

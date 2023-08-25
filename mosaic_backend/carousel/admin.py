@@ -5,5 +5,5 @@ from carousel.models import MainCarouselItem
 
 @admin.register(MainCarouselItem)
 class MainCarouselItemAdmin(admin.ModelAdmin):
-    list_display = ['title', 'button', 'order']
+    list_display = ['id', 'title', 'button', 'order']
     list_filter = ['order', ]

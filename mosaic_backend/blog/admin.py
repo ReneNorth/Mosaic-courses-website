@@ -15,7 +15,7 @@ admin.site.register(Post, MdPostModelAdmin)
 
 @admin.register(PostTag)
 class PostTagAdmin(admin.ModelAdmin):
-    list_display = ['post', 'tag', ]
+    list_display = ['id', 'post', 'tag', ]
     list_filter = ['post', 'tag', ]
 
 
