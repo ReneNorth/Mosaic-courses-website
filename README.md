@@ -57,32 +57,16 @@ A successful containers launch is followed by a similar output
  ⠿ Container infra-nginx-1     Started
 ```
 
-Once the containers are ready, enter the web container's CLI
+If you didn't previously create superuser or you deleted the volumes,  
+once the containers are ready, enter the web container's CLI.
+Then run the following command and follow the prompts to create a superuser:
 
 ```console
 docker exec -it infra-web-1 bash
-```
-
-Run the following command to make migrations:
-
-```console
-python manage.py makemigrations
-python manage.py migrate
-```
-
-If you didn't previously create superuser or you deleted the volumes,  
-run the following command and follow the prompts to create a superuser:
-
-```console
 python manage.py createsuperuser
 ```
 
 then execute the commands to collect and move statics
-
-```console
-python manage.py collectstatic
-cp -r /app/collected_static/. /backend_static/static/
-```
 
 Access the application at http://localhost:8000 or http://127.0.0.1:8000
 Use the credentials of the superuser you created in the previous step to access
