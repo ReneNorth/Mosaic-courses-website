@@ -78,4 +78,4 @@ class Api {
   }
 }
 
-export const api = new Api('http://localhost:8000/api/v1');
+export const api = new Api('http://web:8000/api/v1');
