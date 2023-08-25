@@ -16,15 +16,35 @@ Website for Mosaic Courses that utilizes React and Django. It allows users to vi
 
 ### Installation
 
-Clone the repository.
-Rename dev.env to .env and change the constants to ones
+First, you'll need to install Docker and Docker Compose, if thay are not already
+installed on the system where the containers will run.
+
+Then clone the repository.
+Rename dev.env to .env and change the constants to the ones
 you need to run the project.
-Install Docker and Docker Compose.
-Run the following command to build the project's Docker containers:
+
+There are two ways to build the project:
+
+1. Option 1. Build the containers from the source code and public images locally | docker-compose.yml
+2. Option 2. Pull the already built containers (except for the gateway, it's still build from a public image) from dockerhub | docker-compose.production
+
+You may choose whatever approach suites best for you.
+The main difference is that the second option will work much faster on Windows.
+
+Option 1.
+All commands must be executed from /infra directory
 
 ```console
 cd infra/
 docker-compose up --build -d
+```
+
+Option 2.
+All commands must be executed from /infra directory
+
+```console
+cd infra/
+docker-compose up -r docker-compose.production.yml -d --build
 ```
 
 A successful containers launch is followed by a similar output
@@ -38,31 +58,16 @@ A successful containers launch is followed by a similar output
  ⠿ Container infra-nginx-1     Started
 ```
 
-Once the containers are ready, enter the web container's CLI
+If you didn't previously create superuser or you deleted the volumes,  
+once the containers are ready, enter the web container's CLI.
+Then run the following command and follow the prompts to create a superuser:
 
 ```console
 docker exec -it infra-web-1 bash
-```
-
-Run the following command to make migrations:
-
-```console
-python manage.py makemigrations
-python manage.py migrate
-```
-
-Run the following command to create a superuser and follow the prompts:
-
-```console
 python manage.py createsuperuser
 ```
 
 then execute the commands to collect and move statics
-
-```console
-python manage.py collectstatic
-cp -r /app/collected_static/. /backend_static/static/
-```
 
 Access the application at http://localhost:8000 or http://127.0.0.1:8000
 Use the credentials of the superuser you created in the previous step to access
@@ -71,4 +76,5 @@ http://localhost:8000/admin
 
 ### API docs
 
-The docs are available at http://localhost:8000/api/redoc
+The docs are available at http://localhost:8000/api/docs/redoc/
+The docs are available at http://localhost:8000/api/docs/swagger/

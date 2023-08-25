@@ -14,7 +14,7 @@ const Slider = () => {
 
   const fetchSliders = async () => {
     const data = await api.getMainCarouselSliders();
-    setSliders(data);
+    setSliders(data.results);
   };
 
   useEffect(() => {

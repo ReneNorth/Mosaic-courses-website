@@ -27,6 +27,7 @@ class User(AbstractUser):
         blank=False, default=True)
     tg_nickname = models.CharField(blank=True, max_length=32)
     confirmation_code = models.CharField(max_length=30, blank=True)
+    times_postponed = models.SmallIntegerField(default=0)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['phone', ]
