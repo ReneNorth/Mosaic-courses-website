@@ -62,5 +62,5 @@
     "eslint-webpack-plugin": "^4.0.0",
     "sass": "^1.58.3"
   },
-  "proxy": "http://127.0.1.:8000"
+  "proxy": "http://web:8000/"
 }

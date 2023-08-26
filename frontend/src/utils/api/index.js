@@ -78,4 +78,4 @@ class Api {
   }
 }
 
-export const api = new Api('https://tessera.hopto.org/api/v1');
+export default new Api(process.env.API_URL || 'http://localhost', { 'content-type': 'application/json' })
