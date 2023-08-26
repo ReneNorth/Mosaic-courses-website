@@ -12,32 +12,32 @@ class Api {
   }
 
   async getPosts() {
-    const res = await fetch(`${this._url}/blog/posts/`);
+    const res = await fetch(`${this._url}/api/v1/blog/`);
     return this.constructor._checkResponse(res);
   }
 
   async getPostWithSlug(slug) {
-    const res = await fetch(`${this._url}/blog/posts/${slug}`);
+    const res = await fetch(`${this._url}/api/v1/blog/${slug}`);
     return this.constructor._checkResponse(res);
   }
 
   async getTagsPost(id) {
-    const res = await fetch(`${this._url}/tags/${id}`);
+    const res = await fetch(`${this._url}/api/v1/tags/${id}`);
     return this.constructor._checkResponse(res);
   }
 
   async getRelatedPosts(slug) {
-    const res = await fetch(`${this._url}/blog/posts/${slug}/related_posts/`);
+    const res = await fetch(`${this._url}/api/v1/blog/posts/${slug}/related_posts/`);
     return this.constructor._checkResponse(res);
   }
 
   async getMainCarouselSliders() {
-    const res = await fetch(`${this._url}/main_carousel/`);
+    const res = await fetch(`${this._url}/api/v1/main_carousel/`);
     return this.constructor._checkResponse(res);
   }
 
   async getPostsWithTags(tags) {
-    const res = await fetch(`${this._url}/blog/posts/?${tags}`);
+    const res = await fetch(`${this._url}/api/v1/blog/posts/?${tags}`);
     return this.constructor._checkResponse(res);
   }
 
@@ -45,7 +45,7 @@ class Api {
     const data = {
       email,
     };
-    const res = await fetch(`${this._url}/email_form/`, {
+    const res = await fetch(`${this._url}/api/v1/email_form/`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -56,7 +56,7 @@ class Api {
   }
 
   async postGiftCertificate(data) {
-    const res = await fetch(`${this._url}/certificate/`, {
+    const res = await fetch(`${this._url}/api/v1/certificate/`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -67,7 +67,7 @@ class Api {
   }
 
   async postCallbackNumber(data) {
-    const res = await fetch(`${this._url}/feedback/`, {
+    const res = await fetch(`${this._url}/api/v1/feedback/`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -78,4 +78,4 @@ class Api {
   }
 }
 
-export default new Api(process.env.API_URL || 'http://localhost', { 'content-type': 'application/json' })
+export const api = new Api(process.env.API_URL || 'http://localhost', { 'content-type': 'application/json' });
