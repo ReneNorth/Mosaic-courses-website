@@ -27,7 +27,7 @@ class Api {
   }
 
   async getRelatedPosts(slug) {
-    const res = await fetch(`${this._url}/api/v1/blog/posts/${slug}/related_posts/`);
+    const res = await fetch(`${this._url}/api/v1/blog/${slug}/related_posts/`);
     return this.constructor._checkResponse(res);
   }
 
@@ -37,7 +37,7 @@ class Api {
   }
 
   async getPostsWithTags(tags) {
-    const res = await fetch(`${this._url}/api/v1/blog/posts/?${tags}`);
+    const res = await fetch(`${this._url}/api/v1/blog/?${tags}`);
     return this.constructor._checkResponse(res);
   }
 
