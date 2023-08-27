@@ -27,7 +27,6 @@ class Base64ImageField(serializers.ImageField):
             format, imgstr = data.split(';base64,')
             ext = format.split('/')[-1]
             data = ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
-
         return super().to_internal_value(data)
 
 
@@ -39,9 +38,16 @@ class RequestSerializer(serializers.ModelSerializer):
 
 
 class MainCarouselSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
     class Meta:
         model = MainCarouselItem
         fields = ['link', 'title', 'text', 'button', 'order', 'image', ]
+
+    def get_image(self, carousel_item: MainCarouselItem) -> str:
+        return (
+            self.context['request'].build_absolute_uri(carousel_item.image.url)
+        )
 
 
 class GiftCertSerializer(serializers.ModelSerializer):
