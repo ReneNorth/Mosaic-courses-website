@@ -39,19 +39,19 @@ class RequestSerializer(serializers.ModelSerializer):
 
 
 class MainCarouselSerializer(serializers.ModelSerializer):
-    image = serializers.SerializerMethodField()
+    # image = serializers.SerializerMethodField()
 
     class Meta:
         model = MainCarouselItem
         fields = ['link', 'title', 'text', 'button', 'order', 'image', ]
 
-    def get_image(self, carousel_item: MainCarouselItem) -> str:
+    # def get_image(self, carousel_item: MainCarouselItem) -> str:
 
-        domain = get_current_site(self.context['request'])
-        log.info(domain)
-        return (
-            f'{carousel_item.image.url}'
-        )
+    #     domain = get_current_site(self.context['request'])
+    #     log.info(domain)
+    #     return (
+    #         f'{carousel_item.image.url}'
+    #     )
 
 
 class GiftCertSerializer(serializers.ModelSerializer):
