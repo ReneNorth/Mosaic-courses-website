@@ -46,9 +46,11 @@ class MainCarouselSerializer(serializers.ModelSerializer):
         fields = ['link', 'title', 'text', 'button', 'order', 'image', ]
 
     def get_image(self, carousel_item: MainCarouselItem) -> str:
+
         domain = get_current_site(self.context['request'])
+        log.info(domain)
         return (
-            f'{domain}{carousel_item.image.url}'
+            f'{carousel_item.image.url}'
         )
 
 
