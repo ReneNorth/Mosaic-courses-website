@@ -6,7 +6,7 @@ from booking.models import Booking, ReservationAdmin
 from carousel.models import MainCarouselItem
 from crm_app.models import EmailMainForm, FeedbackRequest, GiftCert
 from django.contrib.auth import get_user_model
-from django.contrib.sites.shortcuts import get_current_site
+# from django.contrib.sites.shortcuts import get_current_site
 from django.core.files.base import ContentFile
 from django.shortcuts import get_object_or_404
 from marketplace.models import Artwork, ArtworkMainPage
