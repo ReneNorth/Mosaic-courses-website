@@ -49,7 +49,8 @@ class MainCarouselSerializer(serializers.ModelSerializer):
         domain = get_current_site(self.context['request'])
         log.info(domain)
         return (
-            f'https://tessera.hopto.org/{carousel_item.image.url}'
+            f'https://tessera.hopto.org{carousel_item.image.url},'
+            f'{domain}{carousel_item.image.url}'
         )
 
 
