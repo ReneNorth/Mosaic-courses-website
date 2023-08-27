@@ -6,6 +6,7 @@ from booking.models import Booking, ReservationAdmin
 from carousel.models import MainCarouselItem
 from crm_app.models import EmailMainForm, FeedbackRequest, GiftCert
 from django.contrib.auth import get_user_model
+from django.contrib.sites.shortcuts import get_current_site
 from django.core.files.base import ContentFile
 from django.shortcuts import get_object_or_404
 from marketplace.models import Artwork, ArtworkMainPage
@@ -45,8 +46,9 @@ class MainCarouselSerializer(serializers.ModelSerializer):
         fields = ['link', 'title', 'text', 'button', 'order', 'image', ]
 
     def get_image(self, carousel_item: MainCarouselItem) -> str:
+        domain = get_current_site(self.context['request'])
         return (
-            self.context['request'].build_absolute_uri(carousel_item.image.url)
+            f'{domain}{carousel_item.image.url}'
         )
 
 
