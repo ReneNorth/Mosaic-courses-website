@@ -131,9 +131,7 @@ class PostViewSet(viewsets.ReadOnlyModelViewSet):
 
     @action(detail=True, methods=['get', ])
     def related_posts(self, request, slug) -> Response:
-        # обработать 404
         post = Post.objects.get(slug=slug)
-        # обработать None
         tags = list(post.tags.all().values_list('slug', flat=True))
         posts = Post.objects.filter(tags__slug__in=tags).exclude(id=post.id)
         return Response(self.get_serializer(posts, many=True).data)

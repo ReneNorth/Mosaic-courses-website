@@ -26,6 +26,7 @@ class Post(models.Model):
     title = models.CharField(max_length=80,
                              help_text='Post`s title')
     slug = models.CharField(max_length=80,
+                            unique=True,
                             help_text='defines an address where users can '
                                       'acess this post, for instance, if'
                                       'the slug is <mosaic>, the post will be'
