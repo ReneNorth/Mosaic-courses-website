@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'blog.apps.BlogConfig',
     'booking.apps.BookingConfig',
+    'gallery.apps.GalleryConfig',
     'crm_app.apps.CrmAppConfig',
     'marketplace.apps.MarketplaceConfig',
     'carousel.apps.CarouselConfig',

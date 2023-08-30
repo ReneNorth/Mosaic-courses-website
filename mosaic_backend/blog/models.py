@@ -38,7 +38,7 @@ class Post(models.Model):
     upd_date = models.DateTimeField(verbose_name='Update date',
                                     auto_now_add=True)
     image = models.ImageField(
-        upload_to='blog/posts/', blank=True, default=None)
+        upload_to='blog/', default=None)
     read_time = models.SmallIntegerField(
         blank=True,
         validators=[MinValueValidator(1)],
