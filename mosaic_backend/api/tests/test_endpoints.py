@@ -107,10 +107,10 @@ tag2_args = {'slug': 'rome', 'title': 'rome'}
 
 post1_args = {'title': 'test_title', 'slug': 'test_slug',
               'preview_text': 'Some preview text!',
-              'text': 'Some post text', 'read_time': 10, }
+              'text': 'Some post text', 'read_time': 10, 'image': '/image'}
 post2_args = {'title': 'test_title2', 'slug': 'test_slug2',
               'preview_text': 'Some preview text! 2',
-              'text': 'Some post text 2', 'read_time': 15, }
+              'text': 'Some post text 2', 'read_time': 15, 'image': '/image'}
 
 
 author1_args = {"email": "testmail11@mai.com",
@@ -150,9 +150,10 @@ class BlogTest(TestCase):
         )
 
         self.assertEqual(response.status_code, 200)
-        posts_count = json.loads(bytes.decode(
-            response.content)).get('count')
-        self.assertEqual(posts_count, 2)
+        # posts_count = json.loads(bytes.decode(
+        # response.content)).get('count') # for pagination
+        self.assertEqual(len(json.loads(bytes.decode(
+            response.content))), 2)
 
     def test_api_related_posts(self):
         response = self.client.get(

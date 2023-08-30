@@ -45,7 +45,7 @@ class MainCarouselSerializer(serializers.ModelSerializer):
         fields = ['link', 'title', 'text', 'button', 'order', 'image', ]
 
     def get_image(self, carousel_item: MainCarouselItem) -> str:
-        return f'https://tessera.hopto.org{carousel_item.image.url}'
+        return f'{carousel_item.image.url}'
 
 
 class GiftCertSerializer(serializers.ModelSerializer):
@@ -181,7 +181,7 @@ class TagReadOnlySerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     author = serializers.SerializerMethodField()
-    image = Base64ImageField(required=False, allow_null=True)
+    image = serializers.SerializerMethodField()
     tags = TagReadOnlySerializer(many=True)
 
     class Meta:
@@ -200,6 +200,9 @@ class PostSerializer(serializers.ModelSerializer):
         if author.last_name:
             return f'{author.first_name} {author.last_name}'
         return author.first_name
+
+    def get_image(self, post: Post) -> str:
+        return f'{post.image.url}'
 
 
 class AdvantagesSerializer(serializers.ModelSerializer):

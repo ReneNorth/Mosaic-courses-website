@@ -124,7 +124,7 @@ class PostViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [AllowAny, ]
-    pagination_class = LimitOffsetPagination
+    pagination_class = None
     filterset_class = PostsFilter
     filter_backends = [DjangoFilterBackend, ]
     lookup_field = 'slug'
