@@ -5,7 +5,7 @@ import promoImg from '../../images/sboutStudioPromo.png';
 import imgBg from '../../images/aboutStudioDecor.png';
 import { Button } from '../Button/Button';
 
-export const AllStudioHeader = () => {
+export const AllStudioHeader = ({ setIsOpen }) => {
   return (
     <>
       <PromoSection
@@ -27,9 +27,15 @@ export const AllStudioHeader = () => {
             дом оригинальными арт-объектами.
           </>
         )}
-        otherElements={
-          <Button className="fill" decoration="black">Записаться на мастер-класс</Button>
-        }
+        otherElements={(
+          <Button
+            className="fill"
+            decoration="black"
+            onClick={() => setIsOpen(true)}
+          >
+            Записаться на мастер-класс
+          </Button>
+        )}
       />
       {/* <div className={cls.route}>
         <ul className={cls.routeItems}>

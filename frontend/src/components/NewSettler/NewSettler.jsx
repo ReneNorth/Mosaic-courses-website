@@ -60,6 +60,8 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
                 onChange={handleChange}
                 type="text"
                 name="name"
+                maxLength="25"
+                minLength="2"
                 placeholder="ВАШЕ ИМЯ*"
                 required
                 pattern="[a-zA-Zа-яА-Я0-9ё\-\s]{2,}"
@@ -92,6 +94,7 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
               <p className={styles.comment_heading}>КОММЕНТАРИЙ</p>
               <textarea
                 name="comment"
+                maxLength="150"
                 value={values.comment || ''}
                 onChange={handleChange}
                 className={styles.textarea}
