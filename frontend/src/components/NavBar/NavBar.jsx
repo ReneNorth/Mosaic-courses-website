@@ -21,7 +21,7 @@ export const NavBar = ({ isMobile = false, handleClick }) => {
             Курсы
           </NavLink>
         </li>
-        <li className={classNames(cls.item, {}, [])}>
+        {/* <li className={classNames(cls.item, {}, [])}>
           <NavLink to="/gallery" className={classNames(cls.link, {}, [])} onClick={handleClick || (() => {})}>
             Галерея
           </NavLink>
@@ -30,7 +30,7 @@ export const NavBar = ({ isMobile = false, handleClick }) => {
           <NavLink to="/shop" className={classNames(cls.link, {}, [])} onClick={handleClick || (() => {})}>
             Магазин
           </NavLink>
-        </li>
+        </li> */}
         <li className={classNames(cls.item, {}, [])}>
           <NavLink to="/blog" className={classNames(cls.link, {}, [])} onClick={handleClick || (() => {})}>
             Блог
