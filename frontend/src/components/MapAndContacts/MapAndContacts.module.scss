@@ -9,7 +9,7 @@
 
 .topContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   padding-bottom: 88px;
   width: 80vw;
 }
@@ -19,6 +19,7 @@
   height: 360px;
   border-radius: 20px;
   overflow: hidden;
+  margin-right: 10%;
 }
 
 .contactsWrapper {
@@ -26,6 +27,7 @@
   flex-direction: column;
   gap: 36px;
   justify-content: center;
+  white-space: pre-wrap;
 }
 
 .contactsTitle {

@@ -18,15 +18,20 @@ export const MapAndContacts = () => {
             <span> г. Алматы, Казыбек би, 40</span>
           </p>
           <p className={cls.contactsTitle}>
-            Часы работы:
-            <span> с 12–22, без выходных</span>
+            <text>Часы работы: </text>
+            <text>
+              свяжитесь с нами,
+              {'\u000A'}
+              чтобы узнать расписание занятий
+            </text>
           </p>
-          <p className={cls.contactsTitle}>
+          {/* temporary disabled */}
+          {/* <p className={cls.contactsTitle}>
             Телефон:
             <span> +7 499 955-42-62</span>
-          </p>
+          </p> */}
           <p className={cls.contactsTitle}>
-            Email:
+            E-mail:
             <span> info@mosaic.com</span>
           </p>
         </div>
