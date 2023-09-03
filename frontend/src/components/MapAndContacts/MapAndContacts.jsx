@@ -18,12 +18,8 @@ export const MapAndContacts = () => {
             <span> г. Алматы, Казыбек би, 40</span>
           </p>
           <p className={cls.contactsTitle}>
-            <text>Часы работы: </text>
-            <text>
-              свяжитесь с нами,
-              {'\u000A'}
-              чтобы узнать расписание занятий
-            </text>
+            Часы работы:
+            <span> Cвяжитесь с нами, чтобы узнать расписание занятий</span>
           </p>
           {/* temporary disabled */}
           {/* <p className={cls.contactsTitle}>
