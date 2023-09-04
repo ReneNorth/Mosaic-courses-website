@@ -134,18 +134,24 @@ class MasterclassSerializer(serializers.ModelSerializer):
 
 class MasterclassTypeSerializer(serializers.ModelSerializer):
     masterclasses = MasterclassSerializer(many=True, read_only=True)
+    image = serializers.SerializerMethodField()
 
     class Meta:
         model = MasterclassType
         fields = [
             'id', 'title', 'slug', 'max_guests', 'duration',
-            'short_description', 'full_description', 'masterclasses',
+            'short_description', 'full_description', 'image',
+            'masterclasses',
+
         ]
         read_only_fields = [
             'id', 'type', 'slug', 'max_guests',
             'duration', 'short_description', 'full_description',
             'masterclasses',
         ]
+
+    def get_image(self, masterclas_type_item: MasterclassType) -> str:
+        return f'{masterclas_type_item.image.url}'
 
 
 class BookingSerializer(serializers.ModelSerializer):
