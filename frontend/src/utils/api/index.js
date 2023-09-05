@@ -41,6 +41,16 @@ class Api {
     return this.constructor._checkResponse(res);
   }
 
+  async getCourses() {
+    const res = await fetch(`${this._url}/api/v1/masterclass_types/`);
+    return this.constructor._checkResponse(res);
+  }
+
+  async getCourseWithSlug(slug) {
+    const res = await fetch(`${this._url}/api/v1/masterclass_types/${slug}`);
+    return this.constructor._checkResponse(res);
+  }
+
   async postSubscriptionEmail(email) {
     const data = {
       email,
@@ -78,4 +88,4 @@ class Api {
   }
 }
 
-export const api = new Api(process.env.API_URL || 'http://localhost', { 'content-type': 'application/json' });
+export const api = new Api(process.env.API_URL || 'http://localhost:8000', { 'content-type': 'application/json' });
