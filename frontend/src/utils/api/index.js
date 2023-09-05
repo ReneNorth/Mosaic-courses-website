@@ -43,7 +43,16 @@ class Api {
 
   async getCourses() {
     const res = await fetch(`${this._url}/api/v1/masterclass_types/`);
-    return this.constructor._checkResponse(res);
+    const data = await this.constructor._checkResponse(res);
+    if (res.ok) {
+      data.results.forEach((course) => {
+        const newImgLink = `${this._url}${course.image}`;
+        course.image = newImgLink;
+      });
+    } else {
+      return Promise.reject(new Error(`${res.status}`));
+    }
+    return data;
   }
 
   async getCourseWithSlug(slug) {
