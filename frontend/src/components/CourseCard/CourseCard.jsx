@@ -8,12 +8,13 @@ export const CourseCard = ({
     <>
       <div className={cls.imgWrapper}>
         <img className={cls.img} src={item.img} alt={item.title} />
-        {type === 'all' && (
+        {/* temporary disabled until the data will be taken from the api response */}
+        {/* {type === 'all' && (
           <div className={cls.start}>
             <span>Ближайший старт</span>
             <span>{item.date}</span>
           </div>
-        )}
+        )} */}
       </div>
       <div className={cls.contentWrapper}>
         <h3 className={cls.contentTitle}>
