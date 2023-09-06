@@ -19,14 +19,15 @@ export const MapAndContacts = () => {
           </p>
           <p className={cls.contactsTitle}>
             Часы работы:
-            <span> с 12–22, без выходных</span>
+            <span> Cвяжитесь с нами, чтобы узнать расписание занятий</span>
           </p>
-          <p className={cls.contactsTitle}>
+          {/* temporary disabled */}
+          {/* <p className={cls.contactsTitle}>
             Телефон:
             <span> +7 499 955-42-62</span>
-          </p>
+          </p> */}
           <p className={cls.contactsTitle}>
-            Email:
+            E-mail:
             <span> info@mosaic.com</span>
           </p>
         </div>

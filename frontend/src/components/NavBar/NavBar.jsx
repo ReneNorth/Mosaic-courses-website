@@ -21,6 +21,7 @@ export const NavBar = ({ isMobile = false, handleClick }) => {
             Курсы
           </NavLink>
         </li>
+        {/* temporary disabled until the features will be delivered */}
         {/* <li className={classNames(cls.item, {}, [])}>
           <NavLink to="/gallery" className={classNames(cls.link, {}, [])} onClick={handleClick || (() => {})}>
             Галерея
