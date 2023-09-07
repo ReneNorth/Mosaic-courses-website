@@ -1,6 +1,5 @@
 # Mosaic Courses Website
-
-![yamdb CI CD](https://github.com/ReneNorth/CI_CD-yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
+![Mosaic workflow](https://github.com/ReneNorth/Mosaic-courses-website/actions/workflows/main.yml/badge.svg)
 
 Website for Mosaic Courses that utilizes React and Django. It allows users to view available courses, book them, and access various other features.
 
