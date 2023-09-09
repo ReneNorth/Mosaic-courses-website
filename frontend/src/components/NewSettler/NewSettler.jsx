@@ -79,14 +79,15 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
                 onChange={handleChange}
                 type="tel"
                 name="phone"
+                maxLength="20"
                 placeholder="ТЕЛЕФОН*"
                 required
-                pattern="(\+)([\d]){5,16}$"
+                pattern="(\+)([\s\(\)\-\d]){10,20}$"
                 className={classNames(styles.input, {}, [errors.name ? styles.invalid : ''])}
               />
               <span className={styles.error}>
                 {errors.phone
-                  ? 'Номер должен начинаться со знака "+" иметь от 5 до 16 символов'
+                  ? 'Номер должен начинаться со знака "+" иметь от 10 до 15 символов'
                   : ''}
               </span>
             </div>

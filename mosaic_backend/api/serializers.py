@@ -232,14 +232,13 @@ class ApproachSerializer(serializers.ModelSerializer):
 class ReviewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = ['id', 'student_name', 'photo', 'review', 'pub_date']
+        fields = ['id', 'student_name', 'photo', 'title', 'review', 'pub_date']
 
 
 class SchoolSerializer(serializers.ModelSerializer):
     advantages = AdvantagesSerializer(many=True)
     questions = QuestionsSerializer(many=True)
     approach = ApproachSerializer(many=True)
-    reviews = ReviewsSerializer(many=True)
 
     class Meta:
         model = School
@@ -259,5 +258,4 @@ class SchoolSerializer(serializers.ModelSerializer):
             'advantages',
             'questions',
             'approach',
-            'reviews',
         ]

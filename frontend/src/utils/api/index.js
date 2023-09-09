@@ -13,12 +13,28 @@ class Api {
 
   async getPosts() {
     const res = await fetch(`${this._url}/api/v1/blog/`);
-    return this.constructor._checkResponse(res);
+    const data = await this.constructor._checkResponse(res);
+    if (res.ok) {
+      data.forEach((post) => {
+        const newImgLink = `${this._url}${post.image}`;
+        post.image = newImgLink;
+      });
+    } else {
+      return Promise.reject(new Error(`${res.status}`));
+    }
+    return data;
   }
 
   async getPostWithSlug(slug) {
     const res = await fetch(`${this._url}/api/v1/blog/${slug}`);
-    return this.constructor._checkResponse(res);
+    const post = await this.constructor._checkResponse(res);
+    if (res.ok) {
+      const newImgLink = `${this._url}${post.image}`;
+      post.image = newImgLink;
+    } else {
+      return Promise.reject(new Error(`${res.status}`));
+    }
+    return post;
   }
 
   async getTagsPost(id) {
@@ -28,7 +44,16 @@ class Api {
 
   async getRelatedPosts(slug) {
     const res = await fetch(`${this._url}/api/v1/blog/${slug}/related_posts/`);
-    return this.constructor._checkResponse(res);
+    const data = await this.constructor._checkResponse(res);
+    if (res.ok) {
+      data.forEach((post) => {
+        const newImgLink = `${this._url}${post.image}`;
+        post.image = newImgLink;
+      });
+    } else {
+      return Promise.reject(new Error(`${res.status}`));
+    }
+    return data;
   }
 
   async getMainCarouselSliders() {
@@ -38,6 +63,25 @@ class Api {
 
   async getPostsWithTags(tags) {
     const res = await fetch(`${this._url}/api/v1/blog/?${tags}`);
+    return this.constructor._checkResponse(res);
+  }
+
+  async getCourses() {
+    const res = await fetch(`${this._url}/api/v1/masterclass_types/`);
+    const data = await this.constructor._checkResponse(res);
+    if (res.ok) {
+      data.results.forEach((course) => {
+        const newImgLink = `${this._url}${course.image}`;
+        course.image = newImgLink;
+      });
+    } else {
+      return Promise.reject(new Error(`${res.status}`));
+    }
+    return data;
+  }
+
+  async getCourseWithSlug(slug) {
+    const res = await fetch(`${this._url}/api/v1/masterclass_types/${slug}`);
     return this.constructor._checkResponse(res);
   }
 
@@ -78,4 +122,4 @@ class Api {
   }
 }
 
-export const api = new Api(process.env.API_URL || 'http://localhost', { 'content-type': 'application/json' });
+export const api = new Api(process.env.API_URL || 'http://localhost:8000', { 'content-type': 'application/json' });

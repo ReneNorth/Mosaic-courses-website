@@ -15,6 +15,7 @@ import { Certificates } from '../../pages/Certificates/Certificates';
 import { AboutUs } from '../AboutUs/AboutUs';
 import { AboutStudio } from '../../pages/AboutStudio/AboutStudio';
 import { PostPage } from '../../pages/PostPage/PostPage';
+import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 function App() {
   return (

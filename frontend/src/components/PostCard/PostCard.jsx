@@ -19,15 +19,15 @@ export const PostCard = ({ props }) => {
   date.setTime(Date.parse(pubDate));
 
   // eslint-disable-next-line consistent-return
-  const validImage = useMemo(() => {
-    if (image) {
-      return image.replace('http://web:8000', 'http://localhost/');
-    }
-  }, [image]);
+  // const validImage = useMemo(() => {
+  //   if (image) {
+  //     return image.replace('http://web:8000', 'http://localhost/');
+  //   }
+  // }, [image]);
 
   return (
     <li className={cls.container}>
-      <img className={cls.image} src={validImage} alt="картинка" />
+      <img className={cls.image} src={image} alt="картинка" />
       <div className={cls.titleWrapper}>
         <h3 className={cls.title}>{title}</h3>
         <div className={cls.info}>
