@@ -21,11 +21,11 @@ export const PostPage = () => {
   const slug = useLocation().pathname.replace('/blog/', '');
 
   // eslint-disable-next-line consistent-return
-  const validImage = useMemo(() => {
-    if (currentPost.image) {
-      return currentPost.image.replace('http://web:8000', 'http://localhost/');
-    }
-  }, [currentPost]);
+  // const validImage = useMemo(() => {
+  //   if (currentPost.image) {
+  //     return currentPost.image.replace('http://web:8000', 'http://localhost/');
+  //   }
+  // }, [currentPost]);
 
   useEffect(() => {
     window.scrollTo({
@@ -44,8 +44,7 @@ export const PostPage = () => {
         });
       }
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch, slug]);
 
   if (isLoading) {
     return <>Loading</>;
@@ -54,8 +53,8 @@ export const PostPage = () => {
   return (
     <>
       <PromoSection
-        desktopImage={validImage}
-        mobileImage={validImage}
+        desktopImage={currentPost.image}
+        mobileImage={currentPost.image}
         title={currentPost.title}
         text={currentPost.preview_text}
         otherElements={(
@@ -101,6 +100,15 @@ export const PostPage = () => {
               return (
                 <li key={post.id}>
                   <CardMoreContent
+                    onClick={() => {
+                      dispatch(setCurrentPost(post));
+                      navigate(`/blog/${post.slug}`);
+                      window.scrollTo({
+                        top: 0,
+                        left: 0,
+                        behavior: 'smooth',
+                      });
+                    }}
                     srcImage={post.image}
                     title={post.title}
                     text={post.preview_text}
@@ -115,15 +123,6 @@ export const PostPage = () => {
                     )}
                     button={(
                       <Button
-                        onClick={() => {
-                          dispatch(setCurrentPost(post));
-                          navigate(`/blog/${post.slug}`);
-                          window.scrollTo({
-                            top: 0,
-                            left: 0,
-                            behavior: 'smooth',
-                          });
-                        }}
                         className="outline"
                       >
                         Узнать подробнее

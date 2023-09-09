@@ -13,12 +13,28 @@ class Api {
 
   async getPosts() {
     const res = await fetch(`${this._url}/api/v1/blog/`);
-    return this.constructor._checkResponse(res);
+    const data = await this.constructor._checkResponse(res);
+    if (res.ok) {
+      data.forEach((post) => {
+        const newImgLink = `${this._url}${post.image}`;
+        post.image = newImgLink;
+      });
+    } else {
+      return Promise.reject(new Error(`${res.status}`));
+    }
+    return data;
   }
 
   async getPostWithSlug(slug) {
     const res = await fetch(`${this._url}/api/v1/blog/${slug}`);
-    return this.constructor._checkResponse(res);
+    const post = await this.constructor._checkResponse(res);
+    if (res.ok) {
+      const newImgLink = `${this._url}${post.image}`;
+      post.image = newImgLink;
+    } else {
+      return Promise.reject(new Error(`${res.status}`));
+    }
+    return post;
   }
 
   async getTagsPost(id) {
@@ -28,7 +44,16 @@ class Api {
 
   async getRelatedPosts(slug) {
     const res = await fetch(`${this._url}/api/v1/blog/${slug}/related_posts/`);
-    return this.constructor._checkResponse(res);
+    const data = await this.constructor._checkResponse(res);
+    if (res.ok) {
+      data.forEach((post) => {
+        const newImgLink = `${this._url}${post.image}`;
+        post.image = newImgLink;
+      });
+    } else {
+      return Promise.reject(new Error(`${res.status}`));
+    }
+    return data;
   }
 
   async getMainCarouselSliders() {

@@ -4,8 +4,7 @@ import { AllCoursesHeader } from '../../components/AllCoursesHeader/AllCoursesHe
 import { MainCardsList } from '../../components/MainCardsList/MainCardsList';
 import { RemainedQuestion } from '../../components/RemainedQuestion/RemainedQuestion';
 import NewSettler from '../../components/NewSettler/NewSettler';
-
-import './AllCourses.module.scss';
+import cls from './AllCourses.module.scss';
 
 export const AllCourses = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -13,7 +12,9 @@ export const AllCourses = () => {
     <>
       <NewSettler setIsOpen={setIsOpen} />
       <AllCoursesHeader />
+      <div className={cls.courses__wrapper}>
       <MainCardsList type="all" />
+      </div>
       <RemainedQuestion isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );
