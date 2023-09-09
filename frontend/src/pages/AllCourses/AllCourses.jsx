@@ -13,7 +13,7 @@ export const AllCourses = () => {
       <NewSettler setIsOpen={setIsOpen} />
       <AllCoursesHeader />
       <div className={cls.courses__wrapper}>
-      <MainCardsList type="all" />
+        <MainCardsList type="all" />
       </div>
       <RemainedQuestion isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
