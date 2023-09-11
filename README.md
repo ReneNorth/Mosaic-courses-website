@@ -1,6 +1,7 @@
 # Mosaic Courses Website
 ![Mosaic workflow](https://github.com/ReneNorth/Mosaic-courses-website/actions/workflows/main.yml/badge.svg)
 
+
 Website for Mosaic Courses that utilizes React and Django. It allows users to view available courses, book them, and access various other features.
 
 ### Tech stack
