@@ -27,7 +27,6 @@ class Base64ImageField(serializers.ImageField):
             format, imgstr = data.split(';base64,')
             ext = format.split('/')[-1]
             data = ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
-
         return super().to_internal_value(data)
 
 
@@ -39,9 +38,14 @@ class RequestSerializer(serializers.ModelSerializer):
 
 
 class MainCarouselSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
     class Meta:
         model = MainCarouselItem
         fields = ['link', 'title', 'text', 'button', 'order', 'image', ]
+
+    def get_image(self, carousel_item: MainCarouselItem) -> str:
+        return f'{carousel_item.image.url}'
 
 
 class GiftCertSerializer(serializers.ModelSerializer):
@@ -130,18 +134,24 @@ class MasterclassSerializer(serializers.ModelSerializer):
 
 class MasterclassTypeSerializer(serializers.ModelSerializer):
     masterclasses = MasterclassSerializer(many=True, read_only=True)
+    image = serializers.SerializerMethodField()
 
     class Meta:
         model = MasterclassType
         fields = [
             'id', 'title', 'slug', 'max_guests', 'duration',
-            'short_description', 'full_description', 'masterclasses',
+            'short_description', 'full_description', 'image',
+            'masterclasses',
+
         ]
         read_only_fields = [
             'id', 'type', 'slug', 'max_guests',
             'duration', 'short_description', 'full_description',
             'masterclasses',
         ]
+
+    def get_image(self, masterclas_type_item: MasterclassType) -> str:
+        return f'{masterclas_type_item.image.url}'
 
 
 class BookingSerializer(serializers.ModelSerializer):
@@ -177,7 +187,7 @@ class TagReadOnlySerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     author = serializers.SerializerMethodField()
-    image = Base64ImageField(required=False, allow_null=True)
+    image = serializers.SerializerMethodField()
     tags = TagReadOnlySerializer(many=True)
 
     class Meta:
@@ -196,6 +206,9 @@ class PostSerializer(serializers.ModelSerializer):
         if author.last_name:
             return f'{author.first_name} {author.last_name}'
         return author.first_name
+
+    def get_image(self, post: Post) -> str:
+        return f'{post.image.url}'
 
 
 class AdvantagesSerializer(serializers.ModelSerializer):
@@ -219,14 +232,13 @@ class ApproachSerializer(serializers.ModelSerializer):
 class ReviewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = ['id', 'student_name', 'photo', 'review', 'pub_date']
+        fields = ['id', 'student_name', 'photo', 'title', 'review', 'pub_date']
 
 
 class SchoolSerializer(serializers.ModelSerializer):
     advantages = AdvantagesSerializer(many=True)
     questions = QuestionsSerializer(many=True)
     approach = ApproachSerializer(many=True)
-    reviews = ReviewsSerializer(many=True)
 
     class Meta:
         model = School
@@ -246,5 +258,4 @@ class SchoolSerializer(serializers.ModelSerializer):
             'advantages',
             'questions',
             'approach',
-            'reviews',
         ]

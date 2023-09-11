@@ -60,6 +60,8 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
                 onChange={handleChange}
                 type="text"
                 name="name"
+                maxLength="25"
+                minLength="2"
                 placeholder="ВАШЕ ИМЯ*"
                 required
                 pattern="[a-zA-Zа-яА-Я0-9ё\-\s]{2,}"
@@ -77,14 +79,15 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
                 onChange={handleChange}
                 type="tel"
                 name="phone"
+                maxLength="20"
                 placeholder="ТЕЛЕФОН*"
                 required
-                pattern="(\+)([\d]){5,16}$"
+                pattern="(\+)([\s\(\)\-\d]){10,20}$"
                 className={classNames(styles.input, {}, [errors.name ? styles.invalid : ''])}
               />
               <span className={styles.error}>
                 {errors.phone
-                  ? 'Номер должен начинаться со знака "+" иметь от 5 до 16 символов'
+                  ? 'Номер должен начинаться со знака "+" иметь от 10 до 15 символов'
                   : ''}
               </span>
             </div>
@@ -92,6 +95,7 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
               <p className={styles.comment_heading}>КОММЕНТАРИЙ</p>
               <textarea
                 name="comment"
+                maxLength="150"
                 value={values.comment || ''}
                 onChange={handleChange}
                 className={styles.textarea}

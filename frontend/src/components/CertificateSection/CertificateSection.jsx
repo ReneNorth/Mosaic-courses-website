@@ -1,9 +1,10 @@
+import { forwardRef } from 'react';
 import cls from './CertificateSection.module.scss';
 import useFormValidation from '../../hooks/useFormValidation';
 import { Button } from '../Button/Button';
 import { api } from '../../utils/api';
 
-export const CertificateSection = () => {
+export const CertificateSection = forwardRef((props, ref) => {
   const {
     errors, isValid, handleChange, resetForm, values,
   } = useFormValidation();
@@ -24,17 +25,17 @@ export const CertificateSection = () => {
   };
   return (
 
-    <div className={cls.container}>
+    <div ref={ref} className={cls.container}>
       <div className={cls.titleWrapper}>
-        <h3 className={cls.title}>О сертификате</h3>
+        {/* <h3 className={cls.title}>О сертификате</h3> */}
         {/* eslint-disable max-len */}
-        <p className={cls.description}>Мы проводим мастер-классы по живописи и гончарному делу для деток и взрослых. Мы делаем рисование доступным с помощью пошаговой программы и вовлечённых преподавателей. Мы делаем рисование доступным с помощью пошаговой программы. Мы проводим мастер-классы по живописи и гончарному делу для деток и взрослых. Мы проводим мастер-классы по живописи.</p>
+        {/* <p className={cls.description}>Мы проводим мастер-классы по живописи и гончарному делу для деток и взрослых. Мы делаем рисование доступным с помощью пошаговой программы и вовлечённых преподавателей. Мы делаем рисование доступным с помощью пошаговой программы. Мы проводим мастер-классы по живописи и гончарному делу для деток и взрослых. Мы проводим мастер-классы по живописи.</p> */}
       </div>
       <div className={cls.certificateWrapper}>
         <h2 className={cls.titleCertificate}>
-          Подарочный
+          <span className={cls.span}>Сертификат</span>
           <br />
-          <span className={cls.span}>сертификат</span>
+          на занятия в студии
         </h2>
         <form onSubmit={handleSubmit} className={cls.form} noValidate>
           <div className={cls.wrapper}>
@@ -111,11 +112,11 @@ export const CertificateSection = () => {
                 <span />
                 <p>Нужен напечатанный сертификат</p>
               </label>
-              <p>Забрать сертификат можно будет в студии в рабочее время спустя 2 дня</p>
+              <p>Забрать сертификат можно будет в студии по договорённости с администратором или получить курьером</p>
             </div>
           </div>
         </form>
       </div>
     </div>
   );
-};
+});

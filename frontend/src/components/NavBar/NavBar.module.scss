@@ -10,8 +10,10 @@
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
+  justify-content: right;
   list-style-type: none;
+  column-gap: 55px;
 }
 
 .link {

@@ -15,6 +15,7 @@ import { Certificates } from '../../pages/Certificates/Certificates';
 import { AboutUs } from '../AboutUs/AboutUs';
 import { AboutStudio } from '../../pages/AboutStudio/AboutStudio';
 import { PostPage } from '../../pages/PostPage/PostPage';
+import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 function App() {
   return (
@@ -27,10 +28,10 @@ function App() {
             <Route path="/course" element={<CoursePage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:slug" element={<PostPage />} />
-            <Route path="/notfound" element={<NotFound />} />
             <Route path="/courses" element={<AllCourses />} />
             <Route path="/certificates" element={<Certificates />} />
             <Route path="/about" element={<AboutStudio />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <Footer />

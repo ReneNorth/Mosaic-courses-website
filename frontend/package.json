@@ -28,7 +28,7 @@
     "ymaps": "^0.2.1"
   },
   "scripts": {
-    "start": " react-scripts start",
+    "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
     "dev": "cross-env BROWSER=none react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test"
@@ -53,8 +53,10 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
+    "cypress": "^12.17.3",
     "eslint": "^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-cypress": "^2.13.3",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
@@ -62,5 +64,5 @@
     "eslint-webpack-plugin": "^4.0.0",
     "sass": "^1.58.3"
   },
-  "proxy": "http://127.0.1.:8000"
+  "proxy": "http://web:8000/"
 }

@@ -8,6 +8,7 @@ from rest_framework.test import APIRequestFactory
 from .data_tests import link
 from blog.models import Tag, PostTag, Post
 from carousel.models import MainCarouselItem
+from school.models import Review
 from crm_app.models import EmailMainForm, FeedbackRequest
 
 log = logging.getLogger(__name__)
@@ -26,7 +27,7 @@ class FeedbackTest(TestCase):
         super().tearDownClass()
 
     def test_feedback_api(self):
-        """Checks 201 response for api/v1/school get request."""
+        """Checks feedback endpoint."""
         response = self.client.post(
             "/api/v1/feedback/",
             {
@@ -107,10 +108,10 @@ tag2_args = {'slug': 'rome', 'title': 'rome'}
 
 post1_args = {'title': 'test_title', 'slug': 'test_slug',
               'preview_text': 'Some preview text!',
-              'text': 'Some post text', 'read_time': 10, }
+              'text': 'Some post text', 'read_time': 10, 'image': '/image'}
 post2_args = {'title': 'test_title2', 'slug': 'test_slug2',
               'preview_text': 'Some preview text! 2',
-              'text': 'Some post text 2', 'read_time': 15, }
+              'text': 'Some post text 2', 'read_time': 15, 'image': '/image'}
 
 
 author1_args = {"email": "testmail11@mai.com",
@@ -150,9 +151,10 @@ class BlogTest(TestCase):
         )
 
         self.assertEqual(response.status_code, 200)
-        posts_count = json.loads(bytes.decode(
-            response.content)).get('count')
-        self.assertEqual(posts_count, 2)
+        # posts_count = json.loads(bytes.decode(
+        # response.content)).get('count') # for pagination
+        self.assertEqual(len(json.loads(bytes.decode(
+            response.content))), 2)
 
     def test_api_related_posts(self):
         response = self.client.get(
@@ -165,3 +167,36 @@ class BlogTest(TestCase):
             response.content))
         slug = posts[0].get('slug')
         self.assertEqual(slug, self.post2.slug)
+
+
+review1_args = {"student_name": "test",
+                "title": "test title 1",
+                "review": "It is the review", }
+
+
+class ReviewsTest(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.guest_client = Client()
+        cls.review1 = Review.objects.create(student_name="test",
+                                            photo='/test',
+                                            title="test title 1",
+                                            review="It is the review",
+                                            pub_date='2023-01-01')
+
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
+
+    def test_feedback_api(self):
+        """Checks reviews endpoint."""
+        response = self.client.get(
+            path="/api/v1/reviews/",
+            extra="application/json"
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(Review.objects.count(), 1)
+        self.assertEqual(Review.objects.get(
+            title=review1_args.get('title')).title, review1_args.get('title')
+        )

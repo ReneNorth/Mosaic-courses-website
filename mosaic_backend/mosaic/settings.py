@@ -11,7 +11,8 @@ LOCAL_DEV = False
 
 KEY_ENV = os.getenv('SECRET_KEY')
 SECRET_KEY = f'{KEY_ENV}'
-ALLOWED_HOSTS = ['web', '127.0.0.1', '127.0.0.1:8000', 'localhost', ]
+ALLOWED_HOSTS = ['web', '127.0.0.1', '127.0.0.1:8000', 'localhost',
+                 'tessera.hopto.org']
 
 
 INSTALLED_APPS = [
@@ -24,6 +25,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'blog.apps.BlogConfig',
     'booking.apps.BookingConfig',
+    'gallery.apps.GalleryConfig',
     'crm_app.apps.CrmAppConfig',
     'marketplace.apps.MarketplaceConfig',
     'carousel.apps.CarouselConfig',

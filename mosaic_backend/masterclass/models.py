@@ -24,7 +24,7 @@ def get_or_create_dummy_teacher():
 class MasterclassType(models.Model):
     title = models.CharField(max_length=50, verbose_name='Title')
     slug = models.SlugField(max_length=15, verbose_name='Link')
-    image = models.ImageField(upload_to='masterclasses/', blank=True)
+    image = models.ImageField(upload_to='masterclasses/')
     max_guests = models.PositiveSmallIntegerField(
         verbose_name='Max number of guests'
     )

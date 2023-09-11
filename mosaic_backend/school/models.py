@@ -62,14 +62,30 @@ class Approach(models.Model):
 
 
 class Review(models.Model):
-    """Отзывы учеников."""
+    """
+    Model for student reviews.
 
-    school = models.ForeignKey(School, on_delete=models.CASCADE,
-                               related_name='reviews', default=1)
+    This model represents reviews submitted by students.
+    It includes information such as the student's name,
+    a photo (optional), a title (optional), the review text,
+    and the publication date.
+
+    Attributes:
+        student_name (CharField): The name of the student (max 20 characters).
+        photo (ImageField): Photo of the review (optional).
+        title (TextField): Title of the review (max 100 characters, optional).
+        review (TextField): The review text (maximum 450 characters).
+        pub_date (DateField): The date of review publication.
+
+    Methods:
+        __str__(): Returns a string representation of the review object.
+
+    """
     student_name = models.CharField(max_length=20)
     photo = models.ImageField(blank=True)
+    title = models.TextField(max_length=100, blank=True)
     review = models.TextField(max_length=450)
     pub_date = models.DateField(auto_now=False, auto_now_add=False)
 
     def __str__(self) -> str:
-        return f'Отзыв от {self.student_name}'
+        return f'Review by {self.student_name}'

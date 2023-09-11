@@ -2,22 +2,23 @@ import random
 import string
 import logging
 
-from blog.models import Post, Tag
-from booking.models import Booking
-from carousel.models import MainCarouselItem
-from crm_app.models import GiftCert
 from django.db.models import Count
 from django_filters.rest_framework import DjangoFilterBackend
-from marketplace.models import Artwork
-from masterclass.models import Masterclass, MasterclassType
 from rest_framework import filters, mixins, status, viewsets
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from school.models import School
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
 from rest_framework.decorators import action
+
+from marketplace.models import Artwork
+from masterclass.models import Masterclass, MasterclassType
+from school.models import School, Review
+from blog.models import Post, Tag
+from booking.models import Booking
+from carousel.models import MainCarouselItem
+from crm_app.models import GiftCert
 
 from api.filters import ArtworksFilter, PostsFilter
 from api.serializers import (ArtworkSerializer, BookingSerializer,
@@ -25,7 +26,7 @@ from api.serializers import (ArtworkSerializer, BookingSerializer,
                              MainCarouselSerializer, MasterclassSerializer,
                              MasterclassTypeSerializer, PostSerializer,
                              RequestSerializer, SchoolSerializer,
-                             TagReadOnlySerializer)
+                             TagReadOnlySerializer, ReviewsSerializer)
 
 User = User = get_user_model()
 log = logging.getLogger(__name__)
@@ -34,6 +35,15 @@ log = logging.getLogger(__name__)
 def generate_cert_id(size=6, chars=string.ascii_uppercase + string.digits):
     """generates an unique 6 letters/digits code"""
     return ''.join(random.choice(chars) for _ in range(size))
+
+
+class AbstractView(
+    viewsets.GenericViewSet,
+    mixins.DestroyModelMixin,
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin
+):
+    pass
 
 
 class RequestCreateOnlyViewSet(mixins.CreateModelMixin,
@@ -91,15 +101,6 @@ class MasterclassTypeReadOnlyViewSet(viewsets.ModelViewSet):
                                             many=True).data)
 
 
-class AbstractView(
-    viewsets.GenericViewSet,
-    mixins.DestroyModelMixin,
-    mixins.ListModelMixin,
-    mixins.CreateModelMixin
-):
-    pass
-
-
 class BookingViewSet(viewsets.ModelViewSet):
     """Viewset for user profile and course/masterclass bookings
     that process get, post and delete requests.
@@ -124,16 +125,14 @@ class PostViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [AllowAny, ]
-    pagination_class = LimitOffsetPagination
+    pagination_class = None
     filterset_class = PostsFilter
     filter_backends = [DjangoFilterBackend, ]
     lookup_field = 'slug'
 
     @action(detail=True, methods=['get', ])
     def related_posts(self, request, slug) -> Response:
-        # обработать 404
         post = Post.objects.get(slug=slug)
-        # обработать None
         tags = list(post.tags.all().values_list('slug', flat=True))
         posts = Post.objects.filter(tags__slug__in=tags).exclude(id=post.id)
         return Response(self.get_serializer(posts, many=True).data)
@@ -179,3 +178,12 @@ class CertificatePostPatchViewSet(viewsets.GenericViewSet,
                             headers=headers)
         return Response(serializer.errors,
                         status=status.HTTP_400_BAD_REQUEST)
+
+
+class StudentReviewsReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Review.objects.all()
+    serializer_class = ReviewsSerializer
+    permission_classes = [AllowAny, ]
+    pagination_class = LimitOffsetPagination
+    ordering_fields = ['pub_date']
+    ordering = ['pub_date']

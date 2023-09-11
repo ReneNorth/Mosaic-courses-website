@@ -47,6 +47,15 @@
   background-image: url('../../images/icon_telegram.svg');
 }
 
+.linkInstagram {
+  display: block;
+  width: 32px;
+  height: 32px;
+  background-repeat: no-repeat;
+  background-image: url('../../images/icon_instagram.svg');
+}
+
+
 .navList {
   display: grid;
   grid-template-columns: 1fr 1fr; 
