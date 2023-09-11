@@ -9,6 +9,7 @@ import { PromoSection } from '../../components/PromoSection-new/PromoSection';
 
 import { getAllPosts, getPostById, setCurrentPost } from '../../services/slices/postsSlice';
 import cls from './PostPage.module.scss';
+import { getNoun } from '../../helpers/getNoun';
 import { api } from '../../utils/api';
 
 export const PostPage = () => {
@@ -64,7 +65,7 @@ export const PostPage = () => {
               {' '}
               {currentPost.read_time}
               {' '}
-              минут
+              {getNoun(currentPost.read_time, 'минута', 'минуты', 'минут')}
             </p>
             <p className={cls.publishDate}>
               Опубликовано
@@ -118,7 +119,7 @@ export const PostPage = () => {
                         {' '}
                         {post.read_time}
                         {' '}
-                        минут
+                        {getNoun(post.read_time, 'минута', 'минуты', 'минут')}
                       </p>
                     )}
                     button={(
