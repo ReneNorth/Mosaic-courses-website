@@ -7,6 +7,7 @@ import { Button } from '../Button/Button';
 import { useResize } from '../../hooks/useResize';
 import { setCurrentPost } from '../../services/slices/postsSlice';
 import cls from './PostCard.module.scss';
+import { getNoun } from '../../helpers/getNoun';
 
 export const PostCard = ({ props }) => {
   const {
@@ -38,7 +39,7 @@ export const PostCard = ({ props }) => {
             {' '}
             {readTime}
             {' '}
-            минут
+            {getNoun(readTime, 'минута', 'минуты', 'минут')}
           </p>
           <p className={cls.publishDate}>
             {
