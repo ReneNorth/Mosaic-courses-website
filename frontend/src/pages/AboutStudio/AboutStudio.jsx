@@ -16,7 +16,7 @@ export const AboutStudio = () => {
       <GetToKnowUs />
       <Atmosphere />
       <CreateWithLove />
-      <RemainedQuestion />
+      <RemainedQuestion setIsOpen={setIsOpen} />
       <StudentReviews />
     </>
   );

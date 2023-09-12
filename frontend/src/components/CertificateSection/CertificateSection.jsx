@@ -50,10 +50,10 @@ export const CertificateSection = forwardRef((props, ref) => {
                 pattern="[a-zA-Zа-яА-Я0-9ё\-\s]{2,}"
                 required
               />
-              <span className={cls.margin}>
+              <span className={cls.errorText}>
                 {errors.nameGiver
                   ? 'Имя должно быть не менее 2-х символов'
-                  : 'ᅟ'}
+                  : ''}
               </span>
               <input
                 value={values.nameGive || ''}
@@ -65,10 +65,10 @@ export const CertificateSection = forwardRef((props, ref) => {
                 pattern="[a-zA-Zа-яА-Я0-9ё\-\s]{2,}"
                 required
               />
-              <span className={cls.margin}>
+              <span className={cls.errorText}>
                 {errors.nameGive
                   ? 'Имя должно быть не менее 2-х символов'
-                  : 'ᅟ'}
+                  : ''}
               </span>
               <input
                 className={cls.input}
