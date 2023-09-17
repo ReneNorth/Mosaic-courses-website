@@ -5,6 +5,7 @@ import logging
 from django.db.models import Count
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, mixins, status, viewsets
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -14,6 +15,7 @@ from rest_framework.decorators import action
 
 from marketplace.models import Artwork
 from masterclass.models import Masterclass, MasterclassType
+from users.permissions import BookingPermission
 from school.models import School, Review
 from blog.models import Post, Tag
 from booking.models import Booking
@@ -106,19 +108,45 @@ class BookingViewSet(viewsets.ModelViewSet):
     that process get, post and delete requests.
     Only authorized user can book a course. For non-authorized users there is
     a redirect to the 'call me back' page (or it will be done if not yet."""
-    queryset = Booking.objects.all()  # TODO после авторизации
+    queryset = Booking.objects.all()
     serializer_class = BookingSerializer
+    permission_classes = (BookingPermission, )
 
     def create(self, request) -> Response:
-        user = get_object_or_404(User, id=request.user.id)
+        log.info('working here')
+        log.info(request)
+        log.info(request.user)
+        # user = get_object_or_404(User, id=request.user.id)
+        # user = request.user
+
         serializer = self.get_serializer(
             data=request.data,
-            context={'user': user, 'request': request},
+            context={
+                # 'user': user,
+                'user': request.user,
+                'request': request},
         )
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            # serializer.data['custom message'] = 'sucess'
+            # log.info(serializer.data)
+            # log.info(serializer.data)
+            return Response(serializer.data,
+                            status=status.HTTP_201_CREATED)
+        return Response(serializer.errors,
+                        status=status.HTTP_400_BAD_REQUEST)
+
+    # def destroy(self, request, *args, **kwargs):
+    #     log.info('in del')
+    #     instance = self.get_object()
+    #     if self.check_object_permissions(self.request, instance):
+    #         self.perform_destroy(instance)
+    #         return Response(status=status.HTTP_204_NO_CONTENT)
+    #     return Response('nope', status=status.HTTP_401_UNAUTHORIZED)
+
+    # def perform_destroy(self, instance):
+    #     log.info('just in case')
+    #     instance.delete()
 
 
 class PostViewSet(viewsets.ReadOnlyModelViewSet):

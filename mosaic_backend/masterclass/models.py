@@ -8,7 +8,12 @@ from django.core.exceptions import ValidationError
 User = get_user_model()
 
 
-def get_or_create_dummy_teacher():
+def get_or_create_dummy_teacher() -> User:
+    """Method creates a dummy teacher instance to populate masterclasses
+
+    Returns:
+        User: an instance of a User with a role set to a Teacher
+    """
     return get_user_model().objects.get_or_create(
         username=DummyTeacher.username,
         first_name=DummyTeacher.first_name,
@@ -81,7 +86,6 @@ class Masterclass(models.Model):
 
     def __str__(self) -> str:
         return (
-            f'Курс {self.course_type} / {self.title} '
+            f'Course {self.title} (id {self.id}) '
             f'at {self.time_start.strftime("%x")} '
-            f'(timezone {self.time_start.tzinfo})'
         )

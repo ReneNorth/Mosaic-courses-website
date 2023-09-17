@@ -73,13 +73,8 @@ class ArtworkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Artwork
         fields = [
-            'id',
-            'title',
-            'author',
-            'author_type',
-            'is_on_main',
-            'is_for_sale',
-            'price',
+            'id', 'title', 'author', 'author_type', 'is_on_main',
+            'is_for_sale', 'price',
             'description',
             'custom_ordering',
         ]
@@ -157,25 +152,24 @@ class MasterclassTypeSerializer(serializers.ModelSerializer):
 class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
-        fields = ['guest', 'masterclass']
+        fields = ['masterclass']
         extra_kwargs = {
-            'guest': {'required': False},
-            'masterclass': {'required': False},
+            'masterclass': {'required': True},
         }
 
     def create(self, validated_data) -> Booking:
         return Booking.objects.create(
             guest=self.context['user'],
-            **validated_data, )
+            masterclass=validated_data.get('masterclass'))
 
     def validate(self, data):
+        masterclass = get_object_or_404(
+            Masterclass,
+            id=self.context['request'].data['masterclass'])
         if self.context['request'].method == 'POST':
-            if Booking.objects.filter(
-                guest__id=self.context['user'].id,
-                masterclass__id=self.context['request'].data['masterclass']
-            ).exists():
-                raise ValidationError(
-                    'You cannot book the same masterclass')
+            if Booking.objects.filter(guest__id=self.context['user'].id,
+                                      masterclass=masterclass).exists():
+                raise ValidationError('You cannot book the same masterclass')
         return data
 
 
@@ -243,19 +237,8 @@ class SchoolSerializer(serializers.ModelSerializer):
     class Meta:
         model = School
         fields = [
-            'name',
-            'logo',
-            'full_description',
-            'short_description',
-            'address_text',
-            'address_link',
-            'working_hours',
-            'phone',
-            'email',
-            'facebook_link',
-            'tg_link',
-            'instagram_link',
-            'advantages',
-            'questions',
-            'approach',
+            'name', 'logo', 'full_description', 'short_description',
+            'address_text', 'address_link', 'working_hours',
+            'phone', 'email', 'facebook_link', 'tg_link', 'instagram_link',
+            'advantages', 'questions', 'approach',
         ]

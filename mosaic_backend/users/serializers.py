@@ -1,3 +1,6 @@
+from djoser.serializers import TokenCreateSerializer
+from djoser.conf import settings
+from django.contrib.auth import authenticate, get_user_model
 import logging
 
 from django.shortcuts import get_object_or_404
@@ -14,7 +17,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email', 'id', 'username', 'first_name',
+        fields = ['email', 'id', 'first_name',
                   'last_name', ]
 
     def validate_role(self, value):
@@ -35,7 +38,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email', 'id', 'username', 'first_name',
+        fields = ['email', 'id', 'first_name',
                   'last_name', 'password', 'phone', 'general_agreement',
                   'markcomm_agreement']
         lookup_field = 'username'
@@ -44,13 +47,22 @@ class CustomUserSerializer(serializers.ModelSerializer):
                         'markcomm_agreement': {'required': True}}
 
     def create(self, validated_data):
-        user = User(email=validated_data['email'],
-                    first_name=validated_data['first_name'],
-                    last_name=validated_data['last_name'],
-                    phone=validated_data['phone'],
-                    general_agreement=validated_data['general_agreement'],
-                    markcomm_agreement=validated_data['markcomm_agreement'],
-                    password=make_password(validated_data['password']))
-        user.set_password(validated_data['password'])
-        user.save()
+        validated_data['password'] = make_password(validated_data['password'])
+        user = super().create(validated_data)
         return user
+
+
+# class CustomTokenCreateSerializer(TokenCreateSerializer):
+#     def validate(self, attrs):
+#         password = attrs.get("password")
+#         params = {settings.LOGIN_FIELD: attrs.get(settings.LOGIN_FIELD)}
+#         self.user = authenticate(
+#             request=self.context.get("request"), **params, password=password
+#         )
+#         if not self.user:
+#             self.user = User.objects.filter(**params).first()
+#             if self.user and not self.user.check_password(password):
+#                 self.fail("invalid_credentials")
+#         if self.user:
+#             return attrs
+#         self.fail("invalid_credentials")
