@@ -29,7 +29,7 @@ export const UserBar = () => {
         <li>
           <Link className={classNames(cls.link, {}, [cls.cart])} to="/cart" />
         </li>
-        <li>
+        <li className={cls.hamburgerMenuButton}>
           <button
             className={cls.button}
             type="button"
