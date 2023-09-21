@@ -5,7 +5,7 @@ from booking.models import Booking, ReservationAdmin
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ['guest', 'masterclass', ]
+    list_display = ['id', 'guest', 'masterclass', ]
     list_filter = ['guest', 'masterclass', ]
 
 

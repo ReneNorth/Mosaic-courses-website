@@ -152,10 +152,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
 
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+SITE_NAME = 'Tessera Mosaic'
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')  # directory for emails
+
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        'rest_framework.permissions.AllowAny',
     ],
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -167,24 +171,34 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 6,
 }
 
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=15),
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
 DJOSER = {
     'LOGIN_FIELD': 'email',
     'HIDE_USERS': True,
+    'SEND_ACTIVATION_EMAIL': True,
+    'SEND_CONFIRMATION_EMAIL': True,
+    'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
+    'PASSWORD_RESET_CONFIRM_URL': 'password-reset/{uid}/{token}',
+    'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': True,
+    "ACTIVATION_URL": "activate/{uid}/{token}",
     'SERIALIZERS': {
         'user_create': 'users.serializers.CustomUserSerializer',
         'user': 'users.serializers.CustomUserSerializer',
     },
+    # change the email templates later
+    # 'EMAIL': {
+    #     'activation': 'djoser.email.ActivationEmail',
+    # },
     'PERMISSIONS': {
         'user': ['rest_framework.permissions.AllowAny'],
         'user_list': ['rest_framework.permissions.AllowAny'],
     }
 }
 
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=15),
-    'AUTH_HEADER_TYPES': ('Bearer',),
-}
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 

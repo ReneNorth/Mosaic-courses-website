@@ -14,6 +14,7 @@ from rest_framework.decorators import action
 
 from marketplace.models import Artwork
 from masterclass.models import Masterclass, MasterclassType
+from users.permissions import BookingPermission
 from school.models import School, Review
 from blog.models import Post, Tag
 from booking.models import Booking
@@ -106,19 +107,23 @@ class BookingViewSet(viewsets.ModelViewSet):
     that process get, post and delete requests.
     Only authorized user can book a course. For non-authorized users there is
     a redirect to the 'call me back' page (or it will be done if not yet."""
-    queryset = Booking.objects.all()  # TODO после авторизации
+    queryset = Booking.objects.all()
     serializer_class = BookingSerializer
+    permission_classes = (BookingPermission, )
 
     def create(self, request) -> Response:
-        user = get_object_or_404(User, id=request.user.id)
         serializer = self.get_serializer(
             data=request.data,
-            context={'user': user, 'request': request},
+            context={
+                'user': request.user,
+                'request': request},
         )
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.data,
+                            status=status.HTTP_201_CREATED)
+        return Response(serializer.errors,
+                        status=status.HTTP_400_BAD_REQUEST)
 
 
 class PostViewSet(viewsets.ReadOnlyModelViewSet):

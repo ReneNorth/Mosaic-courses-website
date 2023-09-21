@@ -8,6 +8,6 @@ class UserAdmin(admin.ModelAdmin):
                'last_login', 'is_staff', 'date_joined',
                'confirmation_code')
 
-    list_display = ['id', 'first_name', 'email', 'phone']
+    list_display = ['id', 'first_name', 'email', 'phone', 'is_active']
     list_filter = ['email', ]
     search_fields = ('email', 'phone', )

@@ -53,6 +53,8 @@ class UserCreateApiTest(TestCase):
         self.assertEqual(User.objects.all().count(), 1)
         user = get_object_or_404(User, email='testmail11@mail.com')
         self.assertEqual(user.email, 'testmail11@mail.com')
+        user.is_active = True
+        user.save(update_fields=['is_active'])
         response_get_jwt = self.client.post(
             '/api/auth/jwt/create/',
             {"email": "testmail11@mail.com",
@@ -66,6 +68,8 @@ class UserCreateApiTest(TestCase):
         self.assertEqual(User.objects.all().count(), 1)
         user = get_object_or_404(User, email='testmail11@mail.com')
         self.assertEqual(user.email, 'testmail11@mail.com')
+        user.is_active = True
+        user.save(update_fields=['is_active'])
         response_get_jwt = self.client.post(
             '/api/auth/jwt/create/',
             {"email": "testmail11@mail.com",
