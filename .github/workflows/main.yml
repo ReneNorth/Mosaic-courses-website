@@ -104,12 +104,12 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Test if var is ok
         env:
-          API_URL: ${{ vars.API_URL }}
-        run: echo "$REACT_APP_API_URL URL IS HERE"
+          REACT_APP_API_URL: ${{ vars.API_URL }}
+        run: echo "$API_URL1 URL IS HERE"
       - name: Push to DockerHub
-        uses: docker/build-push-action@v4
         env:
-          API_URL: ${{ vars.API_URL }}
+          REACT_APP_API_URL: ${{ vars.API_URL }}
+        uses: docker/build-push-action@v4
         with:
           context: ./frontend/
           push: true
