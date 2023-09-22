@@ -122,4 +122,7 @@ class Api {
   }
 }
 
-export const api = new Api(process.env.API_URL || 'http://localhost:8000', { 'content-type': 'application/json' });
+export const api = new Api(
+  process.env.REACT_APP_API_URL || 'http://localhost:8000',
+  { 'content-type': 'application/json' },
+);
