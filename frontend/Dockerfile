@@ -3,7 +3,8 @@ FROM node:16-alpine as build
 
 WORKDIR /app
 COPY package*.json ./
-ENV REACT_APP_API_URL=https://tessera.hopto.org/
+ARG REACT_APP_API_URL
+RUN echo "The ARG variable value is $REACT_APP_API_URL"
 RUN npm ci
 COPY . ./
 RUN npm run build
