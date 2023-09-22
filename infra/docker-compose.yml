@@ -21,6 +21,9 @@ services:
 
   frontend:
     env_file: .env
+    # environment:
+    #   - REACT_APP_API_URL="https://tessera.hopto.org/"
+    
     build: ../frontend/ 
     command: cp -r /app/build/. /frontend_static/
     volumes:
