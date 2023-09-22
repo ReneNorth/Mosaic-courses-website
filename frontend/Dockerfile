@@ -3,8 +3,7 @@ FROM node:16-alpine as build
 
 WORKDIR /app
 COPY package*.json ./
-ARG REACT_APP_API_URL
-RUN echo "The ARG variable value is $REACT_APP_API_URL"
+ENV REACT_APP_API_URL=$REACT_APP_API_URL
 RUN npm ci
 COPY . ./
 RUN npm run build

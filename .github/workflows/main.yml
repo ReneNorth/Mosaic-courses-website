@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - dev
-      - ci/workflow-with-url-var
+      - ci*/workflow-with-url-var
 
 jobs:
   tests:
@@ -90,8 +90,7 @@ jobs:
     name: Push frontend Docker image to DockerHub
     needs: build_backend_and_push_to_docker_hub
     runs-on: ubuntu-latest
-    env:
-      REACT_APP_API_URL: https://tessera.hopto.org/
+    
     # needs: frontend_tests
     steps:
       - name: Check out the repo
@@ -105,6 +104,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push to DockerHub
         uses: docker/build-push-action@v4
+        env: REACT_APP_API_URL: ${{ env.API_URL }}
         with:
           context: ./frontend/
           push: true
