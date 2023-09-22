@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { courses } from '../../utils/consts/mockData.js';
 import { CourseCard } from '../CourseCard/CourseCard.jsx';
 import cls from './MainCardsList.module.scss';
-import { getAllCourses } from '../../services/slices/coursesSlide.js';
+import { getAllCourses } from '../../services/slices/coursesSlice.js';
 
 export const MainCardsList = ({ setIsOpen, type }) => {
   const handleEnroll = () => {

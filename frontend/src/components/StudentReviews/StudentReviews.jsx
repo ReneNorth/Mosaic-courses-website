@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import cls from './StudentReviews.module.scss';
 import SliderCardBottom from '../SliderCardBottom/SliderCardBottom';
 import { mockSliderDataBottom } from '../../utils/consts/mockData';
-import { getAllReviews } from '../../services/slices/reviewsSlide.js';
+import { getAllReviews } from '../../services/slices/reviewsSlice.js';
 
 export const StudentReviews = () => {
   const { allReviews } = useSelector((state) => state.reviews);
