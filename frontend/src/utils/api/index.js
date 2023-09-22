@@ -143,12 +143,6 @@ class Api {
   async getReviewWithSlug(slug) {
     const res = await fetch(`${this._url}/api/v1/reviews/${slug}`);
     const review = await this.constructor._checkResponse(res);
-    if (res.ok) {
-      const newImgLink = `${this._url}${review.photo}`;
-      review.photo = newImgLink;
-    } else {
-      return Promise.reject(new Error(`${res.status}`));
-    }
     return review;
   }
 }
