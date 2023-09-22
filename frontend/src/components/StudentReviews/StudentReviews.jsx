@@ -1,28 +1,19 @@
 // eslint-disable-next-line import/no-unresolved
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import cls from './StudentReviews.module.scss';
 import SliderCardBottom from '../SliderCardBottom/SliderCardBottom';
-import imageSrc from '../../images/students-review_image-card.png';
-
-const sliderDataBottom = [
-  {
-    id: 1,
-  },
-  {
-    id: 2,
-  },
-  {
-    id: 3,
-  },
-  {
-    id: 4,
-  },
-  {
-    id: 5,
-  },
-];
+import { mockSliderDataBottom } from '../../utils/consts/mockData';
+import { getAllReviews } from '../../services/slices/reviewsSlide.js';
 
 export const StudentReviews = () => {
+  const { allReviews } = useSelector((state) => state.reviews);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllReviews());
+  }, [dispatch]);
+
   const [sliderIndex, setSliderIndex] = useState(1);
 
   useEffect(() => {
@@ -30,7 +21,7 @@ export const StudentReviews = () => {
       setSliderIndex(sliderIndex + 1);
     }, 5000);
 
-    const lastSliderIndex = sliderDataBottom.length;
+    const lastSliderIndex = allReviews.length;
     if (sliderIndex < 0) {
       setSliderIndex(lastSliderIndex);
     }
@@ -39,6 +30,7 @@ export const StudentReviews = () => {
     }
 
     return () => clearTimeout(timer);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sliderIndex]);
 
   return (
@@ -58,7 +50,7 @@ export const StudentReviews = () => {
 
       <div className={cls.slider}>
         <ul className={cls.slider__top}>
-          {sliderDataBottom.map((slide) => {
+          {allReviews.map((slide) => {
             let position = 'next';
             if (slide.id === sliderIndex) {
               position = 'active';
@@ -68,24 +60,20 @@ export const StudentReviews = () => {
                 key={slide.id}
                 className={`${cls.slider__item} ${sliderIndex === slide.id
                   ? `${cls.active}` : `${cls[position]}`}`}
-
               >
                 <SliderCardBottom
-                  image={imageSrc}
-                  title="Удивительная вещь!"
-                  text="Сегодня мы делали мозайку, и мне очень сильно она понравилась,
-                  потому что она развивает моторику, терпение, также мы узнаем свой внутренний мир тем,
-                  как мы это показываем на картине. Это очень помогает учится держать себя в руках,
-                  легко снимает стресс и вообще это очень удивительная вещь!"
-                  name="Анеля"
-                  date="29.06.2023"
+                  image={slide.photo}
+                  title={slide.title}
+                  text={slide.review}
+                  name={slide.student_name}
+                  date={slide.pub_date}
                 />
               </li>
             );
           })}
         </ul>
         <ul className={cls.slider__dots}>
-          {sliderDataBottom.map((slide) => (
+          {allReviews.map((slide) => (
             <li key={slide.id}>
               <button
                 onClick={() => setSliderIndex(slide.id)}

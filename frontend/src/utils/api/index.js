@@ -1,3 +1,5 @@
+import { mockSliderDataBottom } from '../consts/mockData';
+
 class Api {
   constructor(url) {
     this._url = url;
@@ -119,6 +121,35 @@ class Api {
       body: JSON.stringify(data),
     });
     return this.constructor._checkResponse(res);
+  }
+
+  async getReviews() {
+    const res = await fetch(`${this._url}/api/v1/reviews/`);
+    const data = await this.constructor._checkResponse(res);
+    if (res.ok) {
+      if (data.count === 0) { data.results = mockSliderDataBottom; } else {
+        let firstId = 1;
+        data.results.forEach((review) => {
+          review.id = firstId;
+          firstId += 1;
+        });
+      }
+    } else {
+      return Promise.reject(new Error(`${res.status}`));
+    }
+    return data.results;
+  }
+
+  async getReviewWithSlug(slug) {
+    const res = await fetch(`${this._url}/api/v1/reviews/${slug}`);
+    const review = await this.constructor._checkResponse(res);
+    if (res.ok) {
+      const newImgLink = `${this._url}${review.photo}`;
+      review.photo = newImgLink;
+    } else {
+      return Promise.reject(new Error(`${res.status}`));
+    }
+    return review;
   }
 }
 
