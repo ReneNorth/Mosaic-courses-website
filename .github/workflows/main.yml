@@ -111,6 +111,8 @@ jobs:
           TEST: ${{ vars.TEST }}
         uses: docker/build-push-action@v4
         with:
+          docker_build_args: |
+            TEST
           context: ./frontend/
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/mosaic_frontend:latest
