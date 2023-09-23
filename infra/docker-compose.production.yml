@@ -1,3 +1,5 @@
+# for deploy, pulls images from dockerhub 
+
 version: '3.8'
 services:
   db:
