@@ -1,3 +1,6 @@
+# for local development 
+# build all images and runs all containers locally
+
 version: '3.8'
 
 services:
@@ -20,7 +23,9 @@ services:
       - ./.env
 
   frontend:
-    build: ../frontend/ 
+    build:
+      context: ../frontend/ 
+      dockerfile: Dockerfile.local
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static:/frontend_static/
