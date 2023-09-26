@@ -54,9 +54,11 @@ jobs:
         with:
           context: ./frontend/
           node-version: 16
+          cache-dependency-path: fronend/package-lock.json
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
+          cache-dependency-path: fronend/package-lock.json
           context: ./frontend/
           build: npm run build
           start: npm start
