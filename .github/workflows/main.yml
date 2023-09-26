@@ -45,7 +45,6 @@ jobs:
           cd mosaic_backend/
           python manage.py test
 
-
   frontend_tests:
     runs-on: ubuntu-latest
     steps:
@@ -63,7 +62,7 @@ jobs:
           start: npm start
 
     build_backend_and_push_to_docker_hub:
-    name: Push backend Docker image to DockerHub
+      name: Push backend Docker image to DockerHub
       runs-on: ubuntu-latest
       needs: [backend_tests, frontend_tests]
       steps:
@@ -107,7 +106,11 @@ jobs:
 
   build_gateway_and_push_to_docker_hub:
     name: Push gateway Docker image to DockerHub
-    needs: [build_backend_and_push_to_docker_hub, build_frontend_and_push_to_docker_hub]
+    needs:
+      [
+        build_backend_and_push_to_docker_hub,
+        build_frontend_and_push_to_docker_hub,
+      ]
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
