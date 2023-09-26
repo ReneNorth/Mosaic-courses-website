@@ -55,7 +55,6 @@ jobs:
         with:
           context: ./frontend/
           node-version: 16
-
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
