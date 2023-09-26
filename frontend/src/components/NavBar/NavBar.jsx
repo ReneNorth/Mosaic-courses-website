@@ -13,7 +13,7 @@ export const NavBar = ({ isMobile = false, handleClick }) => {
         </li>
         <li className={classNames(cls.item, {}, [])}>
           <NavLink to="/certificates" className={classNames(cls.link, {}, [])} onClick={handleClick || (() => {})}>
-            Подарочные сертификаты
+            Подарочный сертификат
           </NavLink>
         </li>
         <li className={classNames(cls.item, {}, [])}>
