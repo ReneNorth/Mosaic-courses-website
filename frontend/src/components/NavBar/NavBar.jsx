@@ -7,17 +7,29 @@ export const NavBar = ({ isMobile = false, handleClick }) => {
     <nav className={classNames(cls.container, {}, [isMobile ? cls.container_mobile : ''])}>
       <ul className={classNames(cls.list, {}, [])}>
         <li className={classNames(cls.item, {}, [])}>
-          <NavLink to="/about" className={classNames(cls.link, {}, [])} onClick={handleClick || (() => {})}>
+          <NavLink
+            to="/about"
+            className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
+            onClick={handleClick || (() => { })}
+          >
             О студии
           </NavLink>
         </li>
         <li className={classNames(cls.item, {}, [])}>
-          <NavLink to="/certificates" className={classNames(cls.link, {}, [])} onClick={handleClick || (() => {})}>
+          <NavLink
+            to="/certificates"
+            className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
+            onClick={handleClick || (() => { })}
+          >
             Подарочный сертификат
           </NavLink>
         </li>
         <li className={classNames(cls.item, {}, [])}>
-          <NavLink to="/courses" className={classNames(cls.link, {}, [])} onClick={handleClick || (() => {})}>
+          <NavLink
+            to="/courses"
+            className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
+            onClick={handleClick || (() => { })}
+          >
             Курсы
           </NavLink>
         </li>
@@ -33,7 +45,11 @@ export const NavBar = ({ isMobile = false, handleClick }) => {
           </NavLink>
         </li> */}
         <li className={classNames(cls.item, {}, [])}>
-          <NavLink to="/blog" className={classNames(cls.link, {}, [])} onClick={handleClick || (() => {})}>
+          <NavLink
+            to="/blog"
+            className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
+            onClick={handleClick || (() => { })}
+          >
             Блог
           </NavLink>
         </li>
