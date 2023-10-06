@@ -9,7 +9,7 @@ class Api {
     if (res.ok) {
       return res.json();
     }
-
+    console.log(res);
     return Promise.reject(new Error(`${res.status}`));
   }
 
@@ -144,6 +144,32 @@ class Api {
     const res = await fetch(`${this._url}/api/v1/reviews/${slug}`);
     const review = await this.constructor._checkResponse(res);
     return review;
+  }
+
+  async postRegisterUser(data) {
+    const res = await fetch(`${this._url}/api/v1/users/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    return this.constructor._checkResponse(res);
+
+    // const res = await fetch(`${this._url}/api/v1/reviews/`);
+    // const data = await this.constructor._checkResponse(res);
+    // if (res.ok) {
+    //   if (data.count === 0) { data.results = mockSliderDataBottom; } else {
+    //     let firstId = 1;
+    //     data.results.forEach((review) => {
+    //       review.id = firstId;
+    //       firstId += 1;
+    //     });
+    //   }
+    // } else {
+    //   return Promise.reject(new Error(`${res.status}`));
+    // }
+    // return data.results;
   }
 }
 

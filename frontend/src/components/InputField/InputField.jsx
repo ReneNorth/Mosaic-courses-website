@@ -30,7 +30,7 @@ export const InputField = ({
       name: 'name',
       placeholder: 'ИМЯ',
       pattern: '[ a-zA-Z\u0400-\u04ff]{2,}',
-      errorText: 'Имя должно быть не менее 2-х символов',
+      errorText: 'Имя должно быть не менее 2-x символов',
       maxLength: '25',
       minLength: '2',
     },
@@ -42,6 +42,22 @@ export const InputField = ({
       errorText: 'Номер должен начинаться со знака "+" иметь от 10 до 15 символов',
       maxLength: '20',
       minLength: '2',
+    },
+    password: {
+      type: 'password',
+      name: 'password',
+      placeholder: 'Пароль',
+      errorText: 'Пароль должен быть не менее 8 символов',
+      maxLength: '20',
+      minLength: '8',
+    },
+    repeatPassword: {
+      type: 'password',
+      name: 'repeatPassword',
+      placeholder: 'Повторите пароль',
+      errorText: 'Пароли должны совпадать',
+      maxLength: '20',
+      minLength: '8',
     },
   };
   return (
@@ -55,7 +71,7 @@ export const InputField = ({
         minLength={inputSettings[type].minLength || ''}
         placeholder={placeholder || inputSettings[type].placeholder}
         required
-        pattern={inputSettings[type].pattern}
+        pattern={inputSettings[type].pattern || null}
         className={classNames(cls.input, {}, [errors[inputSettings[type].name] ? cls.invalid : ''])}
       />
       <span className={cls.error}>
