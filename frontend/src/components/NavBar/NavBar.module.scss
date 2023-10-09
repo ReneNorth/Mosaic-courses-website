@@ -26,11 +26,11 @@
 }
 
 .linkActive {
-  color: var(--btn-color);
+  color: var(--color-green-accent);
 }
 
 .link:hover {
-  color: var(--btn-color);
+  color: var(--color-green-accent);
 }
 
 @media screen and (max-width: global.$breakpoint-mobile) {
