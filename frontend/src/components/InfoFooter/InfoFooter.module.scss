@@ -58,7 +58,7 @@
 
 .navList {
   display: grid;
-  grid-template-columns: 1fr 1fr; 
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   gap: 40px 56px;
 }
@@ -71,13 +71,18 @@
   font-size: 17px;
   line-height: 135%;
   color: var(--text-color);
+  transition: all .3s linear;
+}
+
+.navlink:hover {
+  color: var(--color-green-accent);
 }
 
 @media screen and (max-width: global.$breakpoint-mobile) {
   .block {
     padding-bottom: 44px;
   }
-  
+
   .otherContainer {
     margin: 40px auto 0;
     flex-direction: column;
@@ -91,7 +96,7 @@
     justify-content: space-between;
     margin-top: 48px;
   }
-  
+
   .linkList {
     margin-top: 15px;
     max-width: 115px;
@@ -102,14 +107,14 @@
     order: 3;
     margin-top: 32px;
   }
-  
+
   .navList {
     display: grid;
-    grid-template-rows: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 32px;
   }
-  
+
   .navlink {
     font-weight: 400;
     font-size: 14px;
