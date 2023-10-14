@@ -1,4 +1,5 @@
-import { mockSliderDataBottom } from '../consts/mockData';
+import { hash, compare } from 'bcryptjs';
+import { mockSliderDataBottom, SALT } from '../consts/mockData';
 
 class Api {
   constructor(url) {
@@ -147,6 +148,8 @@ class Api {
   }
 
   async postRegisterUser(data) {
+    const hashedPassword = await hash(data.password, SALT);
+    data = { ...data, password: hashedPassword };
     const res = await fetch(`${this._url}/api/v1/users/`, {
       method: 'POST',
       headers: {

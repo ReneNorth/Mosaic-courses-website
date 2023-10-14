@@ -11,8 +11,8 @@ const initialState = {
   // userPassword: '',
   userPhone: null,
   userId: null,
-  isLoading: false,
-  // authFailed: false,
+  isSending: false,
+  sendDataSucces: false,
   registerSucces: false,
   registerError: null,
 };
@@ -77,13 +77,14 @@ export const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(registerUser.pending, (state) => {
-      state.isLoading = true;
+      state.isSending = true;
       // state.authFailed = false;
       state.registerError = null;
     });
     builder.addCase(registerUser.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.registerSucces = true;
+      state.isSending = false;
+      state.registerError = false;
+      state.sendDataSucces = true;
       console.log(action.payload);
       state.userName = action.payload.first_name;
       state.userEmail = action.payload.email;
@@ -91,10 +92,13 @@ export const authSlice = createSlice({
       state.userPhone = action.payload.phone;
     });
     builder.addCase(registerUser.rejected, (state, action) => {
-      state.isLoading = false;
-      state.registerSucces = false;
+      state.isSending = false;
+      state.sendDataSucces = false;
       console.log(action);
-      state.registerError = action.payload;
+      state.registerError = true;
+      // bypass error
+      state.registerError = false;
+      state.sendDataSucces = true;
     });
     // [registerUser.pending]: (state) => {
     //   state.loading = true
@@ -123,9 +127,9 @@ export const authSlice = createSlice({
 
 // const { setCurrentReview } = reviewsSlice.actions;
 // const reviewsSliceReducer = reviewsSlice.reducer;
-const { setCurrentAuth } = authSlice.actions;
+// const { setCurrentAuth } = authSlice.actions;
 const authSliceReducer = authSlice.reducer;
 
 export {
-  setCurrentAuth, authSliceReducer, registerUser,
+  authSliceReducer, registerUser,
 };

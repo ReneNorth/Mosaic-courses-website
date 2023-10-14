@@ -18,9 +18,9 @@ export function RegisterPage() {
     handleChange, handleBlur, handleChangeInRealTime, resetForm, values,
   } = useFormValidation();
 
-  // const {
-  //   userName, userEmail, userPhone, userId, isLoading, registerSucces, registerError,
-  // } = useSelector((state) => state.auth);
+  const {
+    userName, userEmail, userPhone, userId, isSending, sendDataSucces, registerSucces, registerError,
+  } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   // useEffect(() => {
@@ -32,6 +32,7 @@ export function RegisterPage() {
   // const [formTitle, setTitle] = useState('Придумайте пароль');
   // const [stepIndex, setStepIndex] = useState('2');
   const [dataEntryStep, setDataEntryStep] = useState(true);
+  const [dataResponseStep, setDataResponseStep] = useState(false);
   const nextStep = (e) => {
     e.preventDefault();
     setIsValid(false);
@@ -40,6 +41,24 @@ export function RegisterPage() {
   };
 
   const sendData = (e) => {
+    e.preventDefault();
+    const sendData = {
+      email: values.email,
+      first_name: values.name,
+      password: values.password,
+      phone: values.phone,
+      general_agreement: !!values.agree,
+      markcomm_agreement: !!values.mailing,
+    };
+    console.log(sendData);
+    dispatch(registerUser(sendData));
+    setDataEntryStep(false);
+    setDataResponseStep(true);
+    setStepIndex('3');
+    setTitle('Что-то пошло не так');
+  };
+
+  const onClickErrorButton = (e) => {
     e.preventDefault();
     const sendData = {
       email: values.email,
@@ -139,15 +158,66 @@ export function RegisterPage() {
               <>
                 <ul className={classNames(cls.list, {}, [])}>
                   <SignHeaderLinks />
-                  <li className={classNames(cls.step, {}, [])}>
+                  <div className={classNames(cls.step, {}, [])}>
                     {stepIndex}
                     /4
-                  </li>
+                  </div>
                 </ul>
                 <h3 className={cls.title}>{formTitle}</h3>
                 {subStepsDataEntry(stepIndex)}
               </>
             )}
+          { dataResponseStep && (
+            <div className={cls.responseStep}>
+              <div className={classNames(cls.list, {}, [])}>
+                <div className={classNames(cls.step, {}, [])}>
+                  {stepIndex}
+                  /4
+                </div>
+              </div>
+              {registerError && (
+                <>
+                  <h3 className={cls.titleError}>{formTitle}</h3>
+                  <p className={cls.text}>
+                    Во время отправки данных возникла ошибка. Попробуйте отправить данные ещё раз.
+                  </p>
+                  <div className={cls.errorButtonWrapper}>
+                    <Button
+                      type="button"
+                      onClick={(e) => onClickErrorButton(e)}
+                      disabled={!isValid}
+                      className="fill"
+                      decoration="black"
+                    >
+                      Отправить заново
+                    </Button>
+                  </div>
+                </>
+              )}
+              {sendDataSucces && (
+                <>
+                  <p className={classNames(cls.text, {}, [cls.textSendData])}>
+                    Мы отправили ссылку на указанную почту
+                    {' '}
+                    {values.email}
+                    .
+                    Перейдите по ссылке из письма для подтверждения своего аккаунта.
+                  </p>
+                  <div className={cls.errorButtonWrapper}>
+                    <Button
+                      type="button"
+                      onClick={(e) => onClickErrorButton(e)}
+                      disabled={!isValid}
+                      className="fill"
+                      decoration="black"
+                    >
+                      Отправить заново
+                    </Button>
+                  </div>
+                </>
+              )}
+            </div>
+          ) }
         </form>
         <div className={cls.imgContainer}>
           <div className={cls.wrapper}>
