@@ -1,10 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../utils/api';
 
-// const initialState = {
-//   allReviews: [],
-//   currentReview: {},
-// };
 const initialState = {
   userName: null,
   userEmail: null,
@@ -16,52 +12,6 @@ const initialState = {
   registerSucces: false,
   registerError: null,
 };
-
-// const getAllReviews = createAsyncThunk('reviews/getAllReviews', async () => {
-//   try {
-//     return api.getReviews();
-//   } catch (err) {
-//     return err;
-//   }
-// });
-
-// const getReviewById = createAsyncThunk('reviews/getReviewById', async (id) => {
-//   try {
-//     return api.getReviewWithSlug(id);
-//   } catch (err) {
-//     return err;
-//   }
-// });
-
-// export const postRegister: AppThunk = (form: TUser) => {
-//   return function (dispatch: AppDispatch) {
-//     dispatch(authRequest());
-//     fetch(`${baseUrl}auth/register`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(form),
-//     })
-//       .then(checkResponse)
-//       .then((res) => {
-//         if (res && res.success) {
-//           localStorage.setItem("refreshToken", res.refreshToken);
-//           let authToken = res.accessToken.split("Bearer ")[1];
-//           if (authToken) {
-//             setCookie("token", authToken);
-//           }
-//           dispatch(getUserSuccess(res.user.name, res.user.email, res.success));
-//           dispatch(postRegisterSuccess());
-//         } else {
-//           dispatch(authFailed());
-//         }
-//       })
-//       .catch((err) => {
-//         dispatch(authFailed());
-//       });
-//   };
-// };
 
 const registerUser = createAsyncThunk('auth/registerUser', async (data) => {
   try {
@@ -97,8 +47,8 @@ export const authSlice = createSlice({
       console.log(action);
       state.registerError = true;
       // bypass error
-      state.registerError = false;
-      state.sendDataSucces = true;
+      // state.registerError = false;
+      // state.sendDataSucces = true;
     });
     // [registerUser.pending]: (state) => {
     //   state.loading = true
@@ -125,9 +75,6 @@ export const authSlice = createSlice({
   },
 });
 
-// const { setCurrentReview } = reviewsSlice.actions;
-// const reviewsSliceReducer = reviewsSlice.reducer;
-// const { setCurrentAuth } = authSlice.actions;
 const authSliceReducer = authSlice.reducer;
 
 export {

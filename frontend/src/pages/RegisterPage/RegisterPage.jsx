@@ -11,6 +11,7 @@ import { CheckBoxField } from '../../components/CheckBoxField/CheckBoxField';
 import { SignHeaderLinks } from '../../components/SignHeaderLinks/SignHeaderLinks';
 import useFormValidation from '../../hooks/useFormValidation';
 import { registerUser } from '../../services/slices/authSlice';
+import { ButtonCounter } from '../../components/ButtonCounter/ButtonCounter';
 
 export function RegisterPage() {
   const {
@@ -212,6 +213,7 @@ export function RegisterPage() {
                       decoration="black"
                     >
                       Отправить заново
+                      <ButtonCounter />
                     </Button>
                   </div>
                 </>
