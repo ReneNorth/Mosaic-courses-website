@@ -1,9 +1,15 @@
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import imageTwo from '../../images/about-us_img-two.png';
 import imageOne from '../../images/about-us__img-rectangle.png';
 import cls from './AboutUs.module.scss';
 import { Button } from '../Button/Button';
 
-export const AboutUs = ({ setIsOpen }) => {
+export const AboutUs = () => {
+  const navigate = useNavigate();
+  const hadleClick = () => {
+    navigate('/about');
+  };
   return (
     <section className={cls.section}>
       <div className={cls.block}>
@@ -29,7 +35,7 @@ export const AboutUs = ({ setIsOpen }) => {
             Преподаватель училась в московской школе Сад Гранат и
             итальянской Mosaic Art School by Luciana Notturni в Равенне.
           </p>
-          <Button type="button" className="outline" onClick={() => setIsOpen(true)}>
+          <Button type="button" className="outline" onClick={hadleClick}>
             Узнать подробнее
           </Button>
         </div>
