@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 import imageTwo from '../../images/about-us_img-two.png';
 import imageOne from '../../images/about-us__img-rectangle.png';
 import cls from './AboutUs.module.scss';
