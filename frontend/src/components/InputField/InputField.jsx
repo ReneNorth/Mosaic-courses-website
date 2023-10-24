@@ -12,8 +12,6 @@ export const InputField = ({
   isValid,
   handleChange,
   values,
-  // className = '',
-  ...props
 }) => {
   const inputSettings = {
     email: {

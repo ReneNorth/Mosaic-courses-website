@@ -10,7 +10,7 @@ import { InputField } from '../../components/InputField/InputField';
 import { CheckBoxField } from '../../components/CheckBoxField/CheckBoxField';
 import { SignHeaderLinks } from '../../components/SignHeaderLinks/SignHeaderLinks';
 import useFormValidation from '../../hooks/useFormValidation';
-import { registerUser } from '../../services/slices/authSlice';
+import { registerUser, resendActivationEmail } from '../../services/slices/authSlice';
 import { ButtonCounter } from '../../components/ButtonCounter/ButtonCounter';
 
 export function RegisterPage() {
@@ -24,16 +24,14 @@ export function RegisterPage() {
   } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(registerUser());
-  // }, [dispatch]);
-
   const [formTitle, setTitle] = useState('Зарегистрируйте аккаунт');
   const [stepIndex, setStepIndex] = useState('1');
   // const [formTitle, setTitle] = useState('Придумайте пароль');
   // const [stepIndex, setStepIndex] = useState('2');
+  const [disabledButtonCounter, setDisabledButtonCounter] = useState(true);
   const [dataEntryStep, setDataEntryStep] = useState(true);
   const [dataResponseStep, setDataResponseStep] = useState(false);
+  const [counter, setCounter] = useState(30);
   const nextStep = (e) => {
     e.preventDefault();
     setIsValid(false);
@@ -71,6 +69,17 @@ export function RegisterPage() {
     };
     console.log(sendData);
     dispatch(registerUser(sendData));
+  };
+
+  const onClickResendActivation = (e) => {
+    e.preventDefault();
+    const sendData = {
+      email: values.email,
+    };
+    console.log(sendData);
+    dispatch(resendActivationEmail(sendData));
+    setCounter(30);
+    setDisabledButtonCounter(true);
   };
 
   const subStepsDataEntry = (step) => {
@@ -207,13 +216,16 @@ export function RegisterPage() {
                   <div className={cls.errorButtonWrapper}>
                     <Button
                       type="button"
-                      onClick={(e) => onClickErrorButton(e)}
-                      disabled={!isValid}
+                      onClick={(e) => onClickResendActivation(e)}
+                      disabled={disabledButtonCounter}
                       className="fill"
                       decoration="black"
                     >
-                      Отправить заново
-                      <ButtonCounter />
+                      <ButtonCounter
+                        counter={counter}
+                        setCounter={setCounter}
+                        changeStatus={setDisabledButtonCounter}
+                      />
                     </Button>
                   </div>
                 </>

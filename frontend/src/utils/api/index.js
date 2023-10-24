@@ -1,5 +1,6 @@
 import { hash, compare } from 'bcryptjs';
 import { mockSliderDataBottom, SALT } from '../consts/mockData';
+import { getCookie } from '../../helpers/getCookie';
 
 class Api {
   constructor(url) {
@@ -148,12 +149,14 @@ class Api {
   }
 
   async postRegisterUser(data) {
+    const csrftoken = getCookie('csrftoken');
     const hashedPassword = await hash(data.password, SALT);
     data = { ...data, password: hashedPassword };
     const res = await fetch(`${this._url}/api/v1/users/`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
       },
       body: JSON.stringify(data),
     });
@@ -173,6 +176,34 @@ class Api {
     //   return Promise.reject(new Error(`${res.status}`));
     // }
     // return data.results;
+  }
+
+  async postActivateUser(data) {
+    console.log('api', data);
+    const csrftoken = getCookie('csrftoken');
+    const res = await fetch(`${this._url}/api/v1/users/activation/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify(data),
+    });
+    return res;
+  }
+
+  async resendActivation(data) {
+    console.log('resend', data);
+    const csrftoken = getCookie('csrftoken');
+    const res = await fetch(`${this._url}/api/v1/users/resend_activation/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify(data),
+    });
+    return res;
   }
 }
 

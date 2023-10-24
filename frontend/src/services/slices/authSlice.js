@@ -11,11 +11,30 @@ const initialState = {
   sendDataSucces: false,
   registerSucces: false,
   registerError: null,
+  activateSucces: false,
+  activateError: null,
 };
 
 const registerUser = createAsyncThunk('auth/registerUser', async (data) => {
   try {
     return api.postRegisterUser(data);
+  } catch (err) {
+    return err;
+  }
+});
+
+const resendActivationEmail = createAsyncThunk('auth/resendActivation', async (data) => {
+  try {
+    return api.resendActivation(data);
+  } catch (err) {
+    return err;
+  }
+});
+
+const activateUser = createAsyncThunk('auth/activateUser', async (data) => {
+  try {
+    console.log('slice', data);
+    return api.postActivateUser(data);
   } catch (err) {
     return err;
   }
@@ -50,6 +69,16 @@ export const authSlice = createSlice({
       // state.registerError = false;
       // state.sendDataSucces = true;
     });
+    builder.addCase(activateUser.fulfilled, (state, action) => {
+      console.log('активация прошла успешно', action);
+      state.activateSucces = true;
+      state.activateError = false;
+    });
+    builder.addCase(activateUser.rejected, (state, action) => {
+      console.log('активация не прошла', action);
+      state.activateSucces = false;
+      state.activateError = true;
+    });
     // [registerUser.pending]: (state) => {
     //   state.loading = true
     //   state.error = null
@@ -78,5 +107,5 @@ export const authSlice = createSlice({
 const authSliceReducer = authSlice.reducer;
 
 export {
-  authSliceReducer, registerUser,
+  authSliceReducer, registerUser, activateUser, resendActivationEmail,
 };
