@@ -1,3 +1,6 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable no-irregular-whitespace */
+/* eslint-disable max-len */
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { courses } from '../../utils/consts/mockData.js';
@@ -16,26 +19,20 @@ export const MainCardsList = ({ setIsOpen, type }) => {
     dispatch(getAllCourses());
   }, [dispatch]);
 
-  // eslint-disable-next-line consistent-return, array-callback-return
-  const coursesToRender = allCourses.map((course, index) => {
-    if (index <= 3) {
-      return (
-        <li className={cls.item} key={course.id}>
-          <CourseCard
-            item={course}
-            handleEnroll={handleEnroll}
-            handleGetMore={handleEnroll}
-            type={type}
-          />
-        </li>
-      );
-    }
-  });
-
   return (
     <section className={cls.section}>
       <ul className={cls.list}>
-        {coursesToRender}
+        {allCourses.map((course) => {
+          const {
+            // eslint-disable-next-line camelcase
+            masterclasses, duration, image, full_description,
+          } = course;
+          // eslint-disable-next-line no-console, no-undef
+          return (
+            // eslint-disable-next-line camelcase
+            <CourseCard masterclasses={masterclasses} duration={duration} image={image} full_description={full_description} />
+          );
+        })}
       </ul>
     </section>
   );

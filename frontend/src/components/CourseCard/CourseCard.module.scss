@@ -1,5 +1,10 @@
 @use "../../utils/variables/global.scss";
 
+.courseCard {
+  display: flex;
+  justify-content: space-between;
+}
+
 .imgWrapper {
   position: relative;
 }
@@ -44,9 +49,9 @@
   align-self: center;
   font-family: var(--font-primary);
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 17px;
-  line-height: 20px;
+  line-height: 23px;
 }
 
 .timeIcon {
@@ -100,6 +105,24 @@
   line-height: 140%;
 }
 
+.duration {
+  width: fit-content;
+  position: absolute;
+  box-sizing: border-box;
+  background-color: transparent;
+  font-family: var(--font-primary);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 23px;
+  color: var(--text-color-black);
+  text-align: center;
+  top: -33px;
+  left: 40px;
+  border-radius: 0px 40px 0px 0px;
+  display: flex;
+  flex-direction: column;
+}
+
 @media screen and (max-width: global.$breakpoint-mobile) {
   .imgWrapper {
     width: 100%;
@@ -113,62 +136,63 @@
     width: 100%;
     object-fit: cover;
   }
-  
+
   .contentWrapper {
     max-width: calc(global.$breakpoint-mobile - 40px);
     width: 100%;
   }
-  
+
   .contentTitle {
     font-size: 20px;
     margin-top: 20px;
     padding: 0 24px;
   }
-  
+
   .atributContainer {
     margin-top: 17px;
     padding: 0 24px;
   }
-  
+
   .wrapperAtribut {
     margin-bottom: 16px;
     gap: 50px;
   }
-  
+
   .info {
     font-size: 16px;
     line-height: 135%;
     margin-left: 8px;
   }
-  
+
   .timeIcon {
     width: 24px;
     height: 24px;
   }
-  
+
   .priceIcon {
     width: 24px;
     height: 24px;
   }
-  
+
   .description {
     font-size: 14px;
   }
-  
+
   .btnGroup {
     margin-top: 16px;
     gap: 0;
     padding: 0 24px 40px 24px;
     justify-content: center;
-  
+
     button {
       width: 100%;
+
       &:last-child {
         display: none;
       }
     }
   }
-  
+
   .btnWhite {
     display: none;
   }
