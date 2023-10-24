@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { CSSTransition } from 'react-transition-group';
 import { RemainedQuestion } from '../../components/RemainedQuestion/RemainedQuestion';
 import { StudentReviews } from '../../components/StudentReviews/StudentReviews';
 import { AllStudioHeader } from '../../components/AboutStudioHeader/AboutStudioHeader';
@@ -10,7 +9,7 @@ import NewSettler from '../../components/NewSettler/NewSettler';
 
 export const AboutStudio = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  
   return (
     <>
       <NewSettler isOpen={isOpen} setIsOpen={setIsOpen} />
