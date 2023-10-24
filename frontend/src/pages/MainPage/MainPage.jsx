@@ -18,7 +18,7 @@ export const MaingPage = () => {
       <NewSettler isOpen={isOpen} setIsOpen={setIsOpen} />
       <MainPromo setIsOpen={setIsOpen} />
       <Slider />
-      <AboutUs setIsOpen={setIsOpen} />
+      <AboutUs />
       <Reasons />
       <Gallery />
       <ChooseCourseFinal setIsOpen={setIsOpen} />
