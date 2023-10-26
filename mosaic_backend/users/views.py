@@ -2,10 +2,12 @@ import logging
 
 from django.contrib.auth import get_user_model
 from djoser.views import UserViewSet
-from rest_framework import filters
+from djoser.serializers import UidAndTokenSerializer
+from rest_framework import filters, status
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
 from users.serializers import CustomUserSerializer
 
 from api.serializers import BookingSerializer
@@ -32,3 +34,17 @@ class CustomizedUserViewSet(UserViewSet):
         pagination = self.paginate_queryset(bookings)
         serializer = self.get_serializer(pagination, many=True)
         return self.get_paginated_response(serializer.data)
+
+    @action(url_path='uid',
+            serializer_class=UidAndTokenSerializer,
+            detail=False)
+    def get_user_by_uid(self, request):
+        """Returns an user instance by uid."""
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            user = serializer.user
+            log.info(user)
+            return Response(CustomUserSerializer(user).data,
+                            status=status.HTTP_200_OK)
+        return Response(serializer.errors,
+                        status=status.HTTP_400_BAD_REQUEST)
