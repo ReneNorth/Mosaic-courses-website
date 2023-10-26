@@ -17,6 +17,7 @@ import { AboutStudio } from '../../pages/AboutStudio/AboutStudio';
 import { PostPage } from '../../pages/PostPage/PostPage';
 import { RegisterPage } from '../../pages/RegisterPage/RegisterPage';
 import { ActivatePage } from '../../pages/ActivatePage/ActivatePage';
+import { SignInPage } from '../../pages/SignInPage/SignInPage';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
             <Route path="/about" element={<AboutStudio />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/activate/:uid/:token" element={<ActivatePage />} />
+            <Route path="/sign-in" element={<SignInPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

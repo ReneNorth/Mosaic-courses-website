@@ -11,7 +11,6 @@ class Api {
     if (res.ok) {
       return res.json();
     }
-    console.log(res);
     return Promise.reject(new Error(`${res.status}`));
   }
 
@@ -189,10 +188,14 @@ class Api {
       },
       body: JSON.stringify(data),
     });
-    return res;
+    console.log('response', res);
+    if (res.ok) {
+      return res;
+    }
+    return Promise.reject(new Error(`${res.status}`));
   }
 
-  async resendActivation(data) {
+  async postResendActivation(data) {
     console.log('resend', data);
     const csrftoken = getCookie('csrftoken');
     const res = await fetch(`${this._url}/api/v1/users/resend_activation/`, {
@@ -203,7 +206,23 @@ class Api {
       },
       body: JSON.stringify(data),
     });
-    return res;
+    return this.constructor._checkResponse(res);
+  }
+
+  async postLoginUser(data) {
+    console.log('login', data);
+    const hashedPassword = await hash(data.password, SALT);
+    data = { ...data, password: hashedPassword };
+    const csrftoken = getCookie('csrftoken');
+    const res = await fetch(`${this._url}/api/auth/jwt/create/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify(data),
+    });
+    return this.constructor._checkResponse(res);
   }
 }
 

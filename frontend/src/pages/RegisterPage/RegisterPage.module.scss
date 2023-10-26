@@ -55,34 +55,20 @@
   list-style-type: none;
 }
 
-.link {
-  text-decoration: none;
-  font-family: var(--font-primary);
-  font-weight: 400;
-  padding: 14px;
-  line-height: 47px;
-  font-size: 17px;
-  color: var(--color-green-grey);
-}
+// .link {
+//   text-decoration: none;
+//   font-family: var(--font-primary);
+//   font-weight: 400;
+//   padding: 14px;
+//   line-height: 47px;
+//   font-size: 17px;
+//   color: var(--color-green-grey);
+// }
 
-.active {
-  color: var(--text-color);
-  border-bottom: 1px solid var(--color-green-accent);
-}
-
-.decoration {
-  width: 361px;
-  height: 444px;
-  position: absolute;
-  top: 0;
-  right: calc((100vw - 1280px)/2 - 141px);
-  z-index: -1;
-  background-color: var(--color-green-primary);
-
-  @media screen and (min-width: 1921px) {
-    right: 179px
-  }
-}
+// .active {
+//   color: var(--text-color);
+//   border-bottom: 1px solid var(--color-green-accent);
+// }
 
 .step {
   text-decoration: none;
@@ -94,43 +80,43 @@
   margin-left: auto
 }
 
-.imgContainer {
-  position: relative;
-  min-width: 500px;
-}
+// .imgContainer {
+//   position: relative;
+//   min-width: 500px;
+// }
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 760px;
-  justify-content: space-between;
-  align-items: flex-start;
-}
+// .wrapper {
+//   display: flex;
+//   flex-direction: column;
+//   min-height: 760px;
+//   justify-content: space-between;
+//   align-items: flex-start;
+// }
 
-.figureWrapper {
-  position: absolute;
-  z-index: 2;
-  display: flex;
-  left: 210px;
-}
+// .figureWrapper {
+//   position: absolute;
+//   z-index: 2;
+//   display: flex;
+//   left: 210px;
+// }
 
-.figure {
-  display: block;
-  max-width: 340px;
-  margin-left: auto;
-  margin-right: 0;
-  z-index: 2;
-}
+// .figure {
+//   display: block;
+//   max-width: 340px;
+//   margin-left: auto;
+//   margin-right: 0;
+//   z-index: 2;
+// }
 
-.figureBorder {
-  position: absolute;
-  right: 7px;
-  width: 350px;
-  height: 347px;
-  border: 1px solid #121210;
-  border-radius: 200px 50px 50px 50px;
-  z-index: -1;
-}
+// .figureBorder {
+//   position: absolute;
+//   right: 7px;
+//   width: 350px;
+//   height: 347px;
+//   border: 1px solid #121210;
+//   border-radius: 200px 50px 50px 50px;
+//   z-index: -1;
+// }
 
 .text {
   width: 510px;

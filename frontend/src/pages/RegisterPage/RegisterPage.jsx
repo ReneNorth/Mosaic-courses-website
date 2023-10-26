@@ -1,8 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import imageTwo from '../../images/register_img-two.png';
-import imageOne from '../../images/register_img-one.png';
 import cls from './RegisterPage.module.scss';
 import { Button } from '../../components/Button/Button';
 import { classNames } from '../../helpers/classNames';
@@ -12,6 +10,8 @@ import { SignHeaderLinks } from '../../components/SignHeaderLinks/SignHeaderLink
 import useFormValidation from '../../hooks/useFormValidation';
 import { registerUser, resendActivationEmail } from '../../services/slices/authSlice';
 import { ButtonCounter } from '../../components/ButtonCounter/ButtonCounter';
+import { LogInPageDecoration } from '../../components/LogInPageDecoration/LogInPageDecoration';
+import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/LogInPageDecorationImg';
 
 export function RegisterPage() {
   const {
@@ -26,8 +26,6 @@ export function RegisterPage() {
 
   const [formTitle, setTitle] = useState('Зарегистрируйте аккаунт');
   const [stepIndex, setStepIndex] = useState('1');
-  // const [formTitle, setTitle] = useState('Придумайте пароль');
-  // const [stepIndex, setStepIndex] = useState('2');
   const [disabledButtonCounter, setDisabledButtonCounter] = useState(true);
   const [dataEntryStep, setDataEntryStep] = useState(true);
   const [dataResponseStep, setDataResponseStep] = useState(false);
@@ -160,7 +158,7 @@ export function RegisterPage() {
 
   return (
     <section className={cls.section}>
-      <div className={cls.decoration} />
+      <LogInPageDecoration />
       <div className={cls.block}>
         <form className={cls.formContainer} noValidate>
           { dataEntryStep
@@ -233,16 +231,7 @@ export function RegisterPage() {
             </div>
           ) }
         </form>
-        <div className={cls.imgContainer}>
-          <div className={cls.wrapper}>
-            <div className={cls.plug} />
-            <div className={cls.figureWrapper}>
-              <img className={cls.figure} src={imageTwo} alt="картинка" />
-              <div className={cls.figureBorder} />
-            </div>
-            <img className={cls.image} src={imageOne} alt="картинка" />
-          </div>
-        </div>
+        <LogInPageDecorationImg />
       </div>
     </section>
   );
