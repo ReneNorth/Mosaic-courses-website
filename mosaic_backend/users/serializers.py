@@ -6,6 +6,8 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
+from djoser.serializers import UidAndTokenSerializer
+
 
 User = get_user_model()
 log = logging.getLogger(__name__)
@@ -50,17 +52,9 @@ class CustomUserSerializer(serializers.ModelSerializer):
         return user
 
 
-# class CustomTokenCreateSerializer(TokenCreateSerializer):
-#     def validate(self, attrs):
-#         password = attrs.get("password")
-#         params = {settings.LOGIN_FIELD: attrs.get(settings.LOGIN_FIELD)}
-#         self.user = authenticate(
-#             request=self.context.get("request"), **params, password=password
-#         )
-#         if not self.user:
-#             self.user = User.objects.filter(**params).first()
-#             if self.user and not self.user.check_password(password):
-#                 self.fail("invalid_credentials")
-#         if self.user:
-#             return attrs
-#         self.fail("invalid_credentials")
+class EmailbyUidUserSerializer(serializers.ModelSerializer):
+    """Returns just a user's email."""
+
+    class Meta:
+        model = User
+        fields = ['email', ]
