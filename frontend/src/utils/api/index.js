@@ -1,5 +1,4 @@
-import { hash, compare } from 'bcryptjs';
-import { mockSliderDataBottom, SALT } from '../consts/mockData';
+import { mockSliderDataBottom } from '../consts/mockData';
 import { getCookie } from '../../helpers/getCookie';
 
 class Api {
@@ -149,8 +148,7 @@ class Api {
 
   async postRegisterUser(data) {
     const csrftoken = getCookie('csrftoken');
-    const hashedPassword = await hash(data.password, SALT);
-    data = { ...data, password: hashedPassword };
+    console.log('register', data);
     const res = await fetch(`${this._url}/api/v1/users/`, {
       method: 'POST',
       headers: {
@@ -160,21 +158,6 @@ class Api {
       body: JSON.stringify(data),
     });
     return this.constructor._checkResponse(res);
-
-    // const res = await fetch(`${this._url}/api/v1/reviews/`);
-    // const data = await this.constructor._checkResponse(res);
-    // if (res.ok) {
-    //   if (data.count === 0) { data.results = mockSliderDataBottom; } else {
-    //     let firstId = 1;
-    //     data.results.forEach((review) => {
-    //       review.id = firstId;
-    //       firstId += 1;
-    //     });
-    //   }
-    // } else {
-    //   return Promise.reject(new Error(`${res.status}`));
-    // }
-    // return data.results;
   }
 
   async postActivateUser(data) {
@@ -211,10 +194,22 @@ class Api {
 
   async postLoginUser(data) {
     console.log('login', data);
-    const hashedPassword = await hash(data.password, SALT);
-    data = { ...data, password: hashedPassword };
     const csrftoken = getCookie('csrftoken');
     const res = await fetch(`${this._url}/api/auth/jwt/create/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify(data),
+    });
+    return this.constructor._checkResponse(res);
+  }
+
+  async postPasswordReset(data) {
+    console.log('passwordReset', data);
+    const csrftoken = getCookie('csrftoken');
+    const res = await fetch(`${this._url}/api/v1/users/reset_password/`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

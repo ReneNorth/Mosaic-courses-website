@@ -17,7 +17,7 @@ export const courses = [
     овладеете инструментами для колки камня, а также создадите собственную работу 15 на 15 см.`,
     price: 13000,
     hours: 5,
-    // date: '28 февраля',
+    date: '28 февраля',
     img: imageOne,
   },
   {
@@ -108,5 +108,3 @@ export const mockSliderDataBottom = [
     pub_date: '11.09.2023',
   },
 ];
-
-export const SALT = 10;

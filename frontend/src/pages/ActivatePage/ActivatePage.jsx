@@ -34,7 +34,7 @@ export function ActivatePage() {
       navigate('/sign-in');
     }
     if (activateError) {
-      // navigate('/sign-in');
+      console.log('add to authSlice backend metod to get & resend activation by UID');
     }
   };
 
@@ -76,32 +76,6 @@ export function ActivatePage() {
                 {buttonText}
               </Button>
             </div>
-            {/* {sendDataSucces && (
-                <>
-                  <p className={classNames(cls.text, {}, [cls.textSendData])}>
-                    Мы отправили ссылку на указанную почту
-                    {' '}
-                    {values.email}
-                    .
-                    Перейдите по ссылке из письма для подтверждения своего аккаунта.
-                  </p>
-                  <div className={cls.errorButtonWrapper}>
-                    <Button
-                      type="button"
-                      onClick={(e) => onClickResendActivation(e)}
-                      disabled={disabledButtonCounter}
-                      className="fill"
-                      decoration="black"
-                    >
-                      <ButtonCounter
-                        counter={counter}
-                        setCounter={setCounter}
-                        changeStatus={setDisabledButtonCounter}
-                      />
-                    </Button>
-                  </div>
-                </>
-              )} */}
           </div>
         </div>
         <LogInPageDecorationImg />

@@ -1,22 +1,25 @@
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import cls from './SignInPage.module.scss';
+import cls from './PasswordResetPage.module.scss';
 import { Button } from '../../components/Button/Button';
 import { classNames } from '../../helpers/classNames';
 import { InputField } from '../../components/InputField/InputField';
 import { SignHeaderLinks } from '../../components/SignHeaderLinks/SignHeaderLinks';
 import useFormValidation from '../../hooks/useFormValidation';
-import { loginUser } from '../../services/slices/authSlice';
+import { passwordReset } from '../../services/slices/authSlice';
 import { LogInPageDecoration } from '../../components/LogInPageDecoration/LogInPageDecoration';
 import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/LogInPageDecorationImg';
 
-export function SignInPage() {
+export function PasswordResetPage() {
   const {
     errors, isValid, handleSecondPasswordChange, setIsValid,
     handleChange, handleBlur, handleChangeInRealTime, resetForm, values,
   } = useFormValidation();
 
+  const [title, setTitle] = useState('Восстановление пароля');
+  const [text, setText] = useState('Мы пришлём ссылку для сброса пароля');
+  const [buttonText, setButtonText] = useState('Найти мой аккаунт');
   const navigate = useNavigate();
 
   const {
@@ -29,10 +32,9 @@ export function SignInPage() {
     e.preventDefault();
     const sendData = {
       email: values.email,
-      password: values.password,
     };
     console.log(sendData);
-    dispatch(loginUser(sendData));
+    dispatch(passwordReset(sendData));
   };
 
   useEffect(() => {
@@ -49,7 +51,10 @@ export function SignInPage() {
           <ul className={classNames(cls.list, {}, [])}>
             <SignHeaderLinks />
           </ul>
-          <h3 className={cls.title}>Войдите в свой профиль</h3>
+          <h3 className={cls.title}>{title}</h3>
+          <p className={cls.text}>
+            {text}
+          </p>
           <div className={cls.inputsWrapper}>
             <InputField
               type="email"
@@ -59,17 +64,6 @@ export function SignInPage() {
               handleChange={handleChange}
               values={values}
             />
-            <InputField
-              type="password"
-              placeholder="Пароль*"
-              errors={errors}
-              isValid={isValid}
-              handleChange={handleChange}
-              values={values}
-            />
-            <Link to="/password-reset">
-              <p className={cls.text}>Не помню пароль</p>
-            </Link>
           </div>
           <div className={cls.buttonWrapper}>
             <Button
@@ -79,10 +73,9 @@ export function SignInPage() {
               className="fill"
               decoration="black"
             >
-              Войти в профиль
+              {buttonText}
             </Button>
           </div>
-          {loginError && (<span className={cls.errorMessage}>Неверный логин или пароль</span>)}
         </form>
         <LogInPageDecorationImg />
       </div>

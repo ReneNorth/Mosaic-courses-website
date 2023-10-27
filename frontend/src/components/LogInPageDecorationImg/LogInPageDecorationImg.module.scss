@@ -15,7 +15,7 @@
 
 .figureWrapper {
   position: absolute;
-  z-index: 2;
+  // z-index: 2;
   display: flex;
   left: 210px;
 }
@@ -25,7 +25,7 @@
   max-width: 340px;
   margin-left: auto;
   margin-right: 0;
-  z-index: 2;
+  // z-index: 2;
 }
 
 .figureBorder {
@@ -33,7 +33,7 @@
   right: 7px;
   width: 350px;
   height: 347px;
-  border: 1px solid #121210;
+  border: 1px solid var(--color-black);
   border-radius: 200px 50px 50px 50px;
-  z-index: -1;
+  z-index: global.$layer-under-content;
 }

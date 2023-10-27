@@ -6,7 +6,7 @@
   position: absolute;
   top: 0;
   right: calc((100vw - 1280px)/2 - 141px);
-  z-index: -1;
+  z-index: global.$layer-under-content;
   background-color: var(--color-green-primary);
   
   @media screen and (min-width: 1921px) {
