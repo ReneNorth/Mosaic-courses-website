@@ -51,7 +51,7 @@ class MasterclassType(models.Model):
 
 
 class Masterclass(models.Model):
-    CURRENCY_CHIOCE = [('тенге', 'тенге'), ('руб.', 'руб.'), ('eur', 'eur')]
+    CURRENCY_CHIOCE = [('₸', 'тенге'), ('₽', 'рубли'), ('€', 'евро')]
     course_type = models.ForeignKey(MasterclassType,
                                     on_delete=models.CASCADE,
                                     related_name='masterclasses',
