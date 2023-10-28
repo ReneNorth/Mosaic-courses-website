@@ -19,6 +19,7 @@
   --color-white: #FFFFFF;
   --color-black: #121210;
   --color-red: #BF0000;
+  --color-background-of-the-error-message: rgba(191, 0, 0, 0.15);
 }
 
 button {
@@ -42,3 +43,7 @@ $breakpoint-mobile: 550px;
 //   // width: 400px;
 //   transform: scale(1.2) !important;
 // }
+
+$base-layer: 0;
+$layer-of-decoration: 1;
+$layer-under-content: -1;

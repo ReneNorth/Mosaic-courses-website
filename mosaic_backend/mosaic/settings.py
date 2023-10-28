@@ -6,7 +6,7 @@ from django.utils.log import DEFAULT_LOGGING
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
-LOCAL_DEV = False
+LOCAL_DEV = True
 
 
 KEY_ENV = os.getenv('SECRET_KEY')
@@ -61,6 +61,8 @@ CORS_URLS_REGEX = r'^/api/.*$'
 CSRF_TRUSTED_ORIGINS = ['http://localhost',
                         'http://localhost:3000',
                         'http://localhost:8000',
+                        'http://localhost:8000',
+                        'http://localhost:8000/register',
                         'https://tessera.hopto.org', ]
 
 
