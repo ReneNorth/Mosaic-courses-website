@@ -1,45 +1,10 @@
 import logging
-import json
-
-from django.test import Client, TestCase
 
 from django.core import mail
 from rest_framework import status
 from rest_framework.test import APITestCase
 
 log = logging.getLogger(__name__)
-
-
-user_data = {"email": "testmail11@mai.com",
-             "phone": "+77778888922",
-             "password": "asd@111mai11.com",
-             "first_name": "test1",
-             "last_name": "test1",
-             "general_agreement": "True",
-             "markcomm_agreement": "False"}
-
-user_data2 = {"email": "2testmail11@mai.com",
-              "phone": "+77778888222",
-              "password": "asd2@111mai11.com",
-              "first_name": "test2",
-              "last_name": "test2",
-              "general_agreement": "True",
-              "markcomm_agreement": "False"}
-
-
-class FeedbackTest(TestCase):
-    register_url = "/api/v1/users/"
-    email_by_id_url = "/api/v1/users/email/"
-    user_data = user_data2
-
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.client = Client()
-
-    @classmethod
-    def tearDownClass(cls):
-        super().tearDownClass()
 
 
 class EmailVerificationTest(APITestCase):
@@ -49,11 +14,15 @@ class EmailVerificationTest(APITestCase):
     activate_url = "/api/v1/users/activation/"
     login_url = "/api/v1/token/login/"
     user_details_url = "/api/v1/users/"
-
     # user infofmation
 
-    user_data = user_data
-
+    user_data = {"email": "testmail11@mai.com",
+                 "phone": "+77778888922",
+                 "password": "asd@111mai11.com",
+                 "first_name": "test1",
+                 "last_name": "test1",
+                 "general_agreement": "True",
+                 "markcomm_agreement": "False"}
     login_data = {
         "email": "test@example.com",
         "password": "verysecret"
@@ -70,10 +39,9 @@ class EmailVerificationTest(APITestCase):
             link for link in email_lines if "/activate/" in link][0]
         uid, token = activation_link.split("/")[-2:]
 
-        data_uid = {"uid": uid, "token": token}
-
         # verify email
-        response = self.client.post(self.activate_url, data_uid, format="json")
+        data = {"uid": uid, "token": token}
+        response = self.client.post(self.activate_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_register_resend_verification(self):
