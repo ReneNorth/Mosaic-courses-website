@@ -20,13 +20,14 @@
   border: none;
   border-bottom: 1px solid var(--color-black);
 
+  &:valid {
+    border-bottom-color: var(--color-green-valid);
+  }
   &.invalid {
     border-bottom-color: var(--color-red);
   }
 
-  &:valid {
-    border-bottom-color: var(--color-green-valid);
-  }
+
 }
 
 .error {
@@ -50,14 +51,13 @@
     font-size: 15px;
     line-height: 20.25px;
     letter-spacing: 0.6px;
-
+    &:valid {
+      border-bottom-color: var(--color-green-valid);
+    }
     &.invalid {
       border-bottom-color: var(--color-red);
     }
 
-    &:valid {
-      border-bottom-color: var(--color-green-valid);
-    }
   }
 
   .error {
