@@ -61,8 +61,6 @@ CORS_URLS_REGEX = r'^/api/.*$'
 CSRF_TRUSTED_ORIGINS = ['http://localhost',
                         'http://localhost:3000',
                         'http://localhost:8000',
-                        'http://localhost:8000',
-                        'http://localhost:8000/register',
                         'https://tessera.hopto.org', ]
 
 

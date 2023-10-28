@@ -16,9 +16,6 @@ import { AboutUs } from '../AboutUs/AboutUs';
 import { AboutStudio } from '../../pages/AboutStudio/AboutStudio';
 import { PostPage } from '../../pages/PostPage/PostPage';
 import { RegisterPage } from '../../pages/RegisterPage/RegisterPage';
-import { ActivatePage } from '../../pages/ActivatePage/ActivatePage';
-import { SignInPage } from '../../pages/SignInPage/SignInPage';
-import { PasswordResetPage } from '../../pages/PasswordResetPage/PasswordResetPage';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 function App() {
@@ -36,9 +33,6 @@ function App() {
             <Route path="/certificates" element={<Certificates />} />
             <Route path="/about" element={<AboutStudio />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/activate/:uid/:token" element={<ActivatePage />} />
-            <Route path="/sign-in" element={<SignInPage />} />
-            <Route path="/password-reset" element={<PasswordResetPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

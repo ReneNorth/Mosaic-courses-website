@@ -1,5 +1,4 @@
 import { mockSliderDataBottom } from '../consts/mockData';
-import { getCookie } from '../../helpers/getCookie';
 
 class Api {
   constructor(url) {
@@ -10,6 +9,7 @@ class Api {
     if (res.ok) {
       return res.json();
     }
+
     return Promise.reject(new Error(`${res.status}`));
   }
 
@@ -144,80 +144,6 @@ class Api {
     const res = await fetch(`${this._url}/api/v1/reviews/${slug}`);
     const review = await this.constructor._checkResponse(res);
     return review;
-  }
-
-  async postRegisterUser(data) {
-    const csrftoken = getCookie('csrftoken');
-    console.log('register', data);
-    const res = await fetch(`${this._url}/api/v1/users/`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-        'X-CSRFToken': csrftoken,
-      },
-      body: JSON.stringify(data),
-    });
-    return this.constructor._checkResponse(res);
-  }
-
-  async postActivateUser(data) {
-    console.log('api', data);
-    const csrftoken = getCookie('csrftoken');
-    const res = await fetch(`${this._url}/api/v1/users/activation/`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-        'X-CSRFToken': csrftoken,
-      },
-      body: JSON.stringify(data),
-    });
-    console.log('response', res);
-    if (res.ok) {
-      return res;
-    }
-    return Promise.reject(new Error(`${res.status}`));
-  }
-
-  async postResendActivation(data) {
-    console.log('resend', data);
-    const csrftoken = getCookie('csrftoken');
-    const res = await fetch(`${this._url}/api/v1/users/resend_activation/`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-        'X-CSRFToken': csrftoken,
-      },
-      body: JSON.stringify(data),
-    });
-    return this.constructor._checkResponse(res);
-  }
-
-  async postLoginUser(data) {
-    console.log('login', data);
-    const csrftoken = getCookie('csrftoken');
-    const res = await fetch(`${this._url}/api/auth/jwt/create/`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-        'X-CSRFToken': csrftoken,
-      },
-      body: JSON.stringify(data),
-    });
-    return this.constructor._checkResponse(res);
-  }
-
-  async postPasswordReset(data) {
-    console.log('passwordReset', data);
-    const csrftoken = getCookie('csrftoken');
-    const res = await fetch(`${this._url}/api/v1/users/reset_password/`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-        'X-CSRFToken': csrftoken,
-      },
-      body: JSON.stringify(data),
-    });
-    return this.constructor._checkResponse(res);
   }
 }
 
