@@ -1,6 +1,4 @@
 import logging
-import json
-
 from django.test import Client, TestCase
 
 from django.core import mail
