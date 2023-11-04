@@ -1,0 +1,15 @@
+@use "../../utils/variables/global.scss";
+
+.decoration {
+  width: 361px;
+  height: 444px;
+  position: absolute;
+  top: 0;
+  right: calc((100vw - 1280px)/2 - 141px);
+  z-index: global.$layer-under-content;
+  background-color: var(--color-green-primary);
+  
+  @media screen and (min-width: 1921px) {
+    right: 179px
+  }
+}

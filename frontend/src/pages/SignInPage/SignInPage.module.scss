@@ -17,6 +17,7 @@
 }
 
 .formContainer {
+  position: relative;
   width: 620px;
   height: 760px;
   border-radius: 20px;
@@ -32,7 +33,7 @@
 }
 
 .buttonWrapper {
-  padding-top: 43px;
+  padding-top: 47px;
 }
 
 .title {
@@ -55,51 +56,43 @@
   list-style-type: none;
 }
 
-.step {
+.link {
   text-decoration: none;
   font-family: var(--font-primary);
   font-weight: 400;
+  padding: 14px;
   line-height: 47px;
   font-size: 17px;
   color: var(--color-green-grey);
-  margin-left: auto
 }
 
 .text {
   width: 510px;
-  height: 54px;
+  height: 23px;
   font-family: var(--font-primary);
-  font-size: 20px;
+  font-size: 17px;
   font-style: normal;
   font-weight: 400;
   line-height: 135%;
-  color: var(--text-color);
-  text-align: center;
+  color: var(--color-green-accent);
+  text-align: right;
+  letter-spacing: 0.68px;
 }
 
-.responseStep {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.titleError {
-  text-align: center;
+.errorMessage {
+  box-sizing: border-box;
+  position: absolute;
+  top: 134px;
+  left: 55px;
+  width: 510px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background-color: var(--color-background-of-the-error-message);
   font-family: var(--font-primary);
+  font-size: 14px;
   font-style: normal;
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 135%;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: 0.56px;
   color: var(--text-color);
-  padding: 105px 55px 20px 55px;
-}
-
-.errorButtonWrapper {
-  padding-top: 63px;
-}
-
-.textSendData {
-padding-top: 137px;
-margin-bottom: 3px;
 }
