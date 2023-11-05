@@ -15,6 +15,7 @@
   --color-green-accent: #247251;
   --color-green-grey: #819286;
   --color-green-valid: #1E8E0B;
+  --color-green-active: #185F41;
   --color-white: #FFFFFF;
   --color-black: #121210;
   --color-red: #BF0000;
@@ -24,6 +25,7 @@
 button {
   border: none;
 }
+
 @mixin h2_font {
   font-size: 32px;
   font-family: var(--font-primary);

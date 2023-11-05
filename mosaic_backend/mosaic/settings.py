@@ -12,7 +12,7 @@ LOCAL_DEV = False
 KEY_ENV = os.getenv('SECRET_KEY')
 SECRET_KEY = f'{KEY_ENV}'
 ALLOWED_HOSTS = ['web', '127.0.0.1', '127.0.0.1:8000', 'localhost',
-                 'tessera.hopto.org']
+                 'tessera.hopto.org', 'localhost:8000', ]
 
 
 INSTALLED_APPS = [
@@ -60,6 +60,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/api/.*$'
 CSRF_TRUSTED_ORIGINS = ['http://localhost',
                         'http://localhost:3000',
+                        'http://localhost:8000',
                         'http://localhost:8000',
                         'http://localhost:8000/register',
                         'https://tessera.hopto.org', ]

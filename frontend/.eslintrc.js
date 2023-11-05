@@ -19,6 +19,7 @@ module.exports = {
   },
   plugins: ['react', 'react-hooks', 'cypress', 'jest'],
   rules: {
+    'no-console': 'off',
     'linebreak-style': 0,
     'arrow-body-style': ['off'],
     'react/jsx-indent': [2, 2],

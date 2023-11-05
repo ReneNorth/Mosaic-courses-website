@@ -148,6 +148,7 @@ mosaic_frontend/node_modules/
 bower_components
 content/
 mosaic/media/
+storage_old/
 
 my_temp_practicum.py
 

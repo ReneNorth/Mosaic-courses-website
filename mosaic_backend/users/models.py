@@ -30,16 +30,16 @@ class CustomUserManager(BaseUserManager):
         extra_fields.setdefault('general_agreement', True)
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('role', 'user')
         return self._create_user(email, password, **extra_fields)
 
     def create_superuser(self, email, password, phone, **extra_fields):
-        user = self.create_user(email=email, phone=phone, password=password)
         extra_fields.setdefault('general_agreement', True)
         extra_fields.setdefault('is_active', True)
-        user.is_superuser = True
-        user.is_staff = True
-        user.save(using=self._db)
-        return user
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('role', 'admin')
+        return self._create_user(email, password, phone, **extra_fields)
 
 
 class User(AbstractUser):
