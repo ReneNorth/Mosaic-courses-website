@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../helpers/classNames';
 import cls from './ActivatePage.module.scss';
-import { activateUser } from '../../services/slices/authSlice';
+import { activateUser, getEmailByUID } from '../../services/slices/authSlice';
 import { LogInPageDecoration } from '../../components/LogInPageDecoration/LogInPageDecoration';
 import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/LogInPageDecorationImg';
 import { Button } from '../../components/Button/Button';
@@ -22,7 +22,7 @@ export function ActivatePage() {
 
   useEffect(() => {
     const data = {
-      uid,
+      // uid,
       token,
     };
     dispatch(activateUser(data));
@@ -34,7 +34,12 @@ export function ActivatePage() {
       navigate('/sign-in');
     }
     if (activateError) {
-      console.log('add to authSlice backend metod to get & resend activation by UID');
+      const data = {
+        uid,
+        token,
+      };
+      dispatch(getEmailByUID(data));
+      console.log('полученик почты по UID');
     }
   };
 

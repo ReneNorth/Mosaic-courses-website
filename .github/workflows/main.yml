@@ -48,21 +48,40 @@ jobs:
   frontend_tests:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
       - uses: actions/checkout@v3
-      - name: Set up nodeJS
+
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          context: ./frontend/
           node-version: 16
-          cache-dependency-path: fronend/package-lock.json
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          working-directory: ./frontend
-          cache-dependency-path: fronend/package-lock.json
-          context: ./frontend/
-          build: npm run build
-          start: npm start
+
+      - name: Install frontend project dependencies
+        working-directory: ./frontend
+        run: npm install
+
+      - name: Run Jest tests
+        working-directory: ./frontend
+        run: npm test
+
+  # frontend_tests:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Set up nodeJS
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         context: ./frontend/
+  #         node-version: 16
+  #         cache-dependency-path: fronend/package-lock.json
+  #     - name: Cypress run
+  #       uses: cypress-io/github-action@v6
+  #       with:
+  #         working-directory: ./frontend
+  #         cache-dependency-path: fronend/package-lock.json
+  #         context: ./frontend/
+  #         build: npm run build
+  #         start: npm start
 
   build_backend_and_push_to_docker_hub:
     name: Push backend Docker image to DockerHub

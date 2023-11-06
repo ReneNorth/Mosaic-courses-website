@@ -219,6 +219,18 @@ class Api {
     });
     return this.constructor._checkResponse(res);
   }
+
+  async getEmailByUID(data) {
+    console.log('getEmailByUID', data);
+    const res = await fetch(`${this._url}/api/v1/users/email?uid=[${data.uid}]&token=[${data.token}]`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      // body: JSON.stringify(data),
+    });
+    return this.constructor._checkResponse(res);
+  }
 }
 
 export const api = new Api(

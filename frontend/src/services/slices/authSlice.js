@@ -59,6 +59,15 @@ const passwordReset = createAsyncThunk('auth/passwordReset', async (data) => {
   }
 });
 
+const getEmailByUID = createAsyncThunk('auth/getEmailByUID', async (data) => {
+  try {
+    console.log('getEmailByUID slice', data);
+    return api.getEmailByUID(data);
+  } catch (err) {
+    return err;
+  }
+});
+
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -104,6 +113,12 @@ export const authSlice = createSlice({
       state.loginSucces = false;
       state.loginError = true;
     });
+    builder.addCase(getEmailByUID.fulfilled, (state, action) => {
+      console.log('getEmailByUID прошла успешно', action);
+    });
+    builder.addCase(getEmailByUID.rejected, (state, action) => {
+      console.log('getEmailByUID не прошла успешно', action);
+    });
     builder.addCase(passwordReset.fulfilled, (state, action) => {
       console.log('passwordReset прошла успешно', action);
     });
@@ -128,5 +143,5 @@ export const authSlice = createSlice({
 const authSliceReducer = authSlice.reducer;
 
 export {
-  authSliceReducer, registerUser, activateUser, resendActivationEmail, loginUser, passwordReset,
+  authSliceReducer, registerUser, activateUser, resendActivationEmail, loginUser, passwordReset, getEmailByUID,
 };
