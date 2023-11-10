@@ -7,6 +7,7 @@ class Api {
   }
 
   static _checkResponse(res) {
+    console.log(res);
     if (res.ok) {
       return res.json();
     }
@@ -221,13 +222,15 @@ class Api {
   }
 
   async getEmailByUID(data) {
+    const csrftoken = getCookie('csrftoken');
     console.log('getEmailByUID', data);
-    const res = await fetch(`${this._url}/api/v1/users/email?uid=[${data.uid}]&token=[${data.token}]`, {
-      method: 'GET',
+    const res = await fetch(`${this._url}/api/v1/users/email/`, {
+      method: 'POST',
       headers: {
         'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
       },
-      // body: JSON.stringify(data),
+      body: JSON.stringify(data),
     });
     return this.constructor._checkResponse(res);
   }

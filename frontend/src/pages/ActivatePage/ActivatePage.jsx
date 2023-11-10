@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../helpers/classNames';
 import cls from './ActivatePage.module.scss';
-import { activateUser, getEmailByUID } from '../../services/slices/authSlice';
+import { activateUser, getEmailByUID, resendActivationEmail } from '../../services/slices/authSlice';
 import { LogInPageDecoration } from '../../components/LogInPageDecoration/LogInPageDecoration';
 import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/LogInPageDecorationImg';
 import { Button } from '../../components/Button/Button';
@@ -14,7 +14,10 @@ export function ActivatePage() {
   const {
     activateSucces,
     activateError,
+    getEmailByUIDSucces,
+    emailByUID,
   } = useSelector((state) => state.auth);
+  const [disabledButton, setDisabledButton] = useState(false);
   const [title, setTitle] = useState('');
   const [text, setText] = useState('Готово!');
   const [buttonText, setButtonText] = useState('Готово!');
@@ -22,7 +25,7 @@ export function ActivatePage() {
 
   useEffect(() => {
     const data = {
-      // uid,
+      uid,
       token,
     };
     dispatch(activateUser(data));
@@ -39,7 +42,7 @@ export function ActivatePage() {
         token,
       };
       dispatch(getEmailByUID(data));
-      console.log('полученик почты по UID');
+      console.log('получениe почты по UID');
     }
   };
 
@@ -54,7 +57,18 @@ export function ActivatePage() {
       setText('Почта не подтверждена. Попробуйте отправить ссылку ещё раз.');
       setButtonText('Отправить заново');
     }
-  }, [activateSucces, activateError]);
+    if (getEmailByUIDSucces) {
+      setTitle('');
+      setText(`Мы отправили ссылку на указанную почту ${emailByUID}. 
+      Перейдите по ссылке из письма для подтверждения своего аккаунта.`);
+      setButtonText('Отправить заново');
+      setDisabledButton(true);
+      const sendData = {
+        email: emailByUID,
+      };
+      dispatch(resendActivationEmail(sendData));
+    }
+  }, [activateSucces, activateError, getEmailByUIDSucces, emailByUID, dispatch]);
 
   return (
     <section className={cls.section}>
@@ -77,6 +91,7 @@ export function ActivatePage() {
                 onClick={(e) => goToLogin(e)}
                 className="fill"
                 decoration="black"
+                disabled={disabledButton}
               >
                 {buttonText}
               </Button>

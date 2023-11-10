@@ -14,6 +14,8 @@ const initialState = {
   activateError: null,
   loginSucces: false,
   loginError: null,
+  getEmailByUIDSucces: false,
+  emailByUID: null,
 };
 
 const registerUser = createAsyncThunk('auth/registerUser', async (data) => {
@@ -114,7 +116,9 @@ export const authSlice = createSlice({
       state.loginError = true;
     });
     builder.addCase(getEmailByUID.fulfilled, (state, action) => {
-      console.log('getEmailByUID прошла успешно', action);
+      state.getEmailByUIDSucces = true;
+      state.emailByUID = action.payload.email;
+      state.activateError = false;
     });
     builder.addCase(getEmailByUID.rejected, (state, action) => {
       console.log('getEmailByUID не прошла успешно', action);

@@ -21,6 +21,7 @@
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
     "react-spring-carousel": "^2.0.19",
+    "react-text-mask": "^5.5.0",
     "redux": "^4.2.1",
     "remark-gfm": "^3.0.1",
     "swiper": "^9.1.0",

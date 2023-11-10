@@ -1,7 +1,5 @@
-/* eslint-disable no-useless-escape */
-import React, {
-  useCallback, useMemo, useRef, useState,
-} from 'react';
+import React from 'react';
+import MaskedInput from 'react-text-mask';
 import { classNames } from '../../helpers/classNames';
 import cls from './InputField.module.scss';
 
@@ -9,9 +7,9 @@ export const InputField = ({
   type,
   placeholder,
   errors,
-  isValid,
   handleChange,
   values,
+  ...props
 }) => {
   const inputSettings = {
     email: {
@@ -37,7 +35,7 @@ export const InputField = ({
       name: 'phone',
       placeholder: 'Телефон*',
       pattern: '(\\+)([\\s\\(\\)\\-\\d]){10,20}$',
-      errorText: 'Номер должен начинаться со знака "+" иметь от 10 до 15 символов',
+      errorText: 'Номер должен начинаться со знака "+" иметь от 10 до 20 символов',
       maxLength: '20',
       minLength: '2',
     },
@@ -60,18 +58,38 @@ export const InputField = ({
   };
   return (
     <div className={cls.label}>
-      <input
-        value={values[inputSettings[type].name] || ''}
-        onChange={handleChange}
-        type={inputSettings[type].type}
-        name={inputSettings[type].name}
-        maxLength={inputSettings[type].maxLength || ''}
-        minLength={inputSettings[type].minLength || ''}
-        placeholder={placeholder || inputSettings[type].placeholder}
-        required
-        pattern={inputSettings[type].pattern || null}
-        className={classNames(cls.input, {}, [errors[inputSettings[type].name] ? cls.invalid : ''])}
-      />
+      {type !== 'tel'
+        ? (
+          <input
+            value={values[inputSettings[type].name] || ''}
+            onChange={handleChange}
+            type={inputSettings[type].type}
+            name={inputSettings[type].name}
+            maxLength={inputSettings[type].maxLength || ''}
+            minLength={inputSettings[type].minLength || ''}
+            placeholder={placeholder || inputSettings[type].placeholder}
+            required
+            pattern={inputSettings[type].pattern || null}
+            className={classNames(cls.input, {}, [errors[inputSettings[type].name] ? cls.invalid : ''])}
+            {...props}
+          />
+        ) : (
+          <MaskedInput
+            mask={['+',
+              /[1-9]/, '(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/]}
+            value={values[inputSettings[type].name] || ''}
+            onChange={handleChange}
+            type={inputSettings[type].type}
+            name={inputSettings[type].name}
+            maxLength={inputSettings[type].maxLength || ''}
+            minLength={inputSettings[type].minLength || ''}
+            placeholder={placeholder || inputSettings[type].placeholder}
+            required
+            pattern={inputSettings[type].pattern || null}
+            className={classNames(cls.input, {}, [errors[inputSettings[type].name] ? cls.invalid : ''])}
+            {...props}
+          />
+        )}
       <span className={cls.error}>
         {errors[inputSettings[type].name]
           ? `${inputSettings[type].errorText}`
