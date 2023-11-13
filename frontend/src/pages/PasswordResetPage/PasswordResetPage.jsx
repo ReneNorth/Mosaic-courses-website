@@ -1,4 +1,4 @@
-import { NavLink, Link, useNavigate } from 'react-router-dom';
+// import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cls from './PasswordResetPage.module.scss';
@@ -10,6 +10,7 @@ import useFormValidation from '../../hooks/useFormValidation';
 import { passwordReset } from '../../services/slices/authSlice';
 import { LogInPageDecoration } from '../../components/LogInPageDecoration/LogInPageDecoration';
 import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/LogInPageDecorationImg';
+import { ButtonCounter } from '../../components/ButtonCounter/ButtonCounter';
 
 export function PasswordResetPage() {
   const {
@@ -20,28 +21,34 @@ export function PasswordResetPage() {
   const [title, setTitle] = useState('Восстановление пароля');
   const [text, setText] = useState('Мы пришлём ссылку для сброса пароля');
   const [buttonText, setButtonText] = useState('Найти мой аккаунт');
-  const navigate = useNavigate();
+  const [disabledButtonCounter, setDisabledButtonCounter] = useState(true);
+  const [counter, setCounter] = useState(30);
+  // const navigate = useNavigate();
 
   const {
-    userName, userEmail, userPhone, userId, isSending, sendDataSucces, registerSucces, registerError, loginSucces,
+    userName, userEmail, userPhone, userId, isSending, sendDataSucces,
+    registerSucces, passwordResetError, passwordResetSucces,
     loginError,
   } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  const login = (e) => {
+  const onClickPasswordReset = (e) => {
     e.preventDefault();
     const sendData = {
       email: values.email,
     };
     console.log(sendData);
     dispatch(passwordReset(sendData));
+    setCounter(30);
+    setDisabledButtonCounter(true);
   };
 
   useEffect(() => {
-    if (loginSucces) {
-      navigate('/profile');
+    if (passwordResetSucces) {
+      setText(`Мы отправили ссылку на создание нового пароля на ${values.email}`);
+      setButtonText('');
     }
-  }, [loginSucces, navigate]);
+  }, [passwordResetSucces, values.email]);
 
   return (
     <section className={cls.section}>
@@ -66,16 +73,34 @@ export function PasswordResetPage() {
             />
           </div>
           <div className={cls.buttonWrapper}>
-            <Button
-              type="button"
-              onClick={(e) => login(e)}
-              disabled={!isValid}
-              className="fill"
-              decoration="black"
-            >
-              {buttonText}
-            </Button>
+            {!passwordResetSucces && (
+              <Button
+                type="button"
+                onClick={(e) => onClickPasswordReset(e)}
+                disabled={!isValid}
+                className="fill"
+                decoration="black"
+              >
+                {buttonText}
+              </Button>
+            )}
+            {passwordResetSucces && (
+              <Button
+                type="button"
+                onClick={(e) => onClickPasswordReset(e)}
+                disabled={disabledButtonCounter}
+                className="fill"
+                decoration="black"
+              >
+                <ButtonCounter
+                  counter={counter}
+                  setCounter={setCounter}
+                  changeStatus={setDisabledButtonCounter}
+                />
+              </Button>
+            )}
           </div>
+          {passwordResetError && (<span className={cls.errorMessage}>Аккаунт не найден</span>)}
         </form>
         <LogInPageDecorationImg />
       </div>

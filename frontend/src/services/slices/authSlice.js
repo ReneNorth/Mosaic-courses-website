@@ -16,6 +16,9 @@ const initialState = {
   loginError: null,
   getEmailByUIDSucces: false,
   emailByUID: null,
+  passwordResetSucces: false,
+  passwordResetError: null,
+  passwordResetConfirm: false,
 };
 
 const registerUser = createAsyncThunk('auth/registerUser', async (data) => {
@@ -65,6 +68,15 @@ const getEmailByUID = createAsyncThunk('auth/getEmailByUID', async (data) => {
   try {
     console.log('getEmailByUID slice', data);
     return api.getEmailByUID(data);
+  } catch (err) {
+    return err;
+  }
+});
+
+const resetPassword = createAsyncThunk('auth/resetPassword', async (data) => {
+  try {
+    console.log('resetPassword slice', data);
+    return api.postResetPassword(data);
   } catch (err) {
     return err;
   }
@@ -124,10 +136,18 @@ export const authSlice = createSlice({
       console.log('getEmailByUID не прошла успешно', action);
     });
     builder.addCase(passwordReset.fulfilled, (state, action) => {
+      state.passwordResetSucces = true;
+      state.passwordResetError = false;
       console.log('passwordReset прошла успешно', action);
     });
     builder.addCase(passwordReset.rejected, (state, action) => {
+      state.passwordResetSucces = false;
+      state.passwordResetError = true;
       console.log('passwordReset не прошла', action);
+    });
+    builder.addCase(resetPassword.fulfilled, (state, action) => {
+      state.passwordResetConfirm = true;
+      console.log('passwordResetCofirm прошла успешно', action);
     });
     // [registerUser.pending]: (state) => {
     //   state.loading = true
@@ -147,5 +167,6 @@ export const authSlice = createSlice({
 const authSliceReducer = authSlice.reducer;
 
 export {
-  authSliceReducer, registerUser, activateUser, resendActivationEmail, loginUser, passwordReset, getEmailByUID,
+  authSliceReducer, registerUser, activateUser, resendActivationEmail,
+  loginUser, passwordReset, getEmailByUID, resetPassword,
 };

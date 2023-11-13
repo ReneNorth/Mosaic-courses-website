@@ -218,7 +218,11 @@ class Api {
       },
       body: JSON.stringify(data),
     });
-    return this.constructor._checkResponse(res);
+    console.log('response', res);
+    if (res.ok) {
+      return res;
+    }
+    return Promise.reject(new Error(`${res.status}`));
   }
 
   async getEmailByUID(data) {
@@ -233,6 +237,23 @@ class Api {
       body: JSON.stringify(data),
     });
     return this.constructor._checkResponse(res);
+  }
+
+  async postResetPassword(data) {
+    const csrftoken = getCookie('csrftoken');
+    console.log('postResetPassword', data);
+    const res = await fetch(`${this._url}/api/v1/users/reset_password_confirm/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify(data),
+    });
+    if (res.ok) {
+      return res;
+    }
+    return Promise.reject(new Error(`${res.status}`));
   }
 }
 
