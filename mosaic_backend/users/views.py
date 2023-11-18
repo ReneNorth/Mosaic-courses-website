@@ -1,17 +1,17 @@
 import logging
 
 from django.contrib.auth import get_user_model
-from djoser.views import UserViewSet
 from djoser.serializers import UidAndTokenSerializer
+from djoser.views import UserViewSet
 from rest_framework import filters, status
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from users.serializers import CustomUserSerializer, EmailbyUidUserSerializer
 
 from api.serializers import BookingSerializer
 from booking.models import Booking
+from users.serializers import CustomUserSerializer, EmailbyUidUserSerializer
 
 User = get_user_model()
 log = logging.getLogger(__name__)

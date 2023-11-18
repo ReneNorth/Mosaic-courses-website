@@ -1,12 +1,13 @@
 import json
 import logging
 
-from blog.models import Post, PostTag, Tag
-from carousel.models import MainCarouselItem
-from crm_app.models import EmailMainForm, FeedbackRequest
 from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 from rest_framework.test import APIRequestFactory
+
+from blog.models import Post, PostTag, Tag
+from carousel.models import MainCarouselItem
+from crm_app.models import EmailMainForm, FeedbackRequest
 from school.models import Review
 
 from .data_tests import link

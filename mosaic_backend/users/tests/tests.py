@@ -1,9 +1,8 @@
 import logging
-
 from ast import literal_eval
+
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
-from django.test import TestCase
 from django.test import Client, TestCase
 
 log = logging.getLogger(__name__)
