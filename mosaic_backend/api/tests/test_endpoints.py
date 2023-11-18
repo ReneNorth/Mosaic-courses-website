@@ -1,15 +1,15 @@
-import logging
 import json
+import logging
 
-from django.test import Client, TestCase
+from blog.models import Post, PostTag, Tag
+from carousel.models import MainCarouselItem
+from crm_app.models import EmailMainForm, FeedbackRequest
 from django.contrib.auth import get_user_model
+from django.test import Client, TestCase
 from rest_framework.test import APIRequestFactory
+from school.models import Review
 
 from .data_tests import link
-from blog.models import Tag, PostTag, Post
-from carousel.models import MainCarouselItem
-from school.models import Review
-from crm_app.models import EmailMainForm, FeedbackRequest
 
 log = logging.getLogger(__name__)
 User = get_user_model()

@@ -1,7 +1,7 @@
 import logging
-from django.test import Client, TestCase
 
 from django.core import mail
+from django.test import Client, TestCase
 from rest_framework import status
 from rest_framework.test import APITestCase
 
