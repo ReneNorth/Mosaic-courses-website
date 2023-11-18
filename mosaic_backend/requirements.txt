@@ -75,6 +75,5 @@ urllib3==1.25.11
 wcwidth==0.2.5
 webcolors==1.11.1
 webencodings==0.5.1
-webrtcvad==2.0.10
 yarg==0.1.9
 zipp==3.8.0
