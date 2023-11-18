@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'mdeditor',
     'corsheaders',
     'drf_api_logger',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -268,4 +269,10 @@ LOGGING = {
         },
         'django.server': DEFAULT_LOGGING['loggers']['django.server'],
     }
+}
+
+
+GRAPH_MODELS = {
+    'all_applications': True,
+    'group_models': True,
 }
