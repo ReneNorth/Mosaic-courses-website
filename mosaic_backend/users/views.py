@@ -36,6 +36,7 @@ class CustomizedUserViewSet(UserViewSet):
         return self.get_paginated_response(serializer.data)
 
     @action(url_path='email',
+            methods=['post'],
             serializer_class=UidAndTokenSerializer,
             detail=False)
     def get_user_by_uid(self, request):
