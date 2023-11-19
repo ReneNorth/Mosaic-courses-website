@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../helpers/classNames';
 import cls from './PasswordResetConfirm.module.scss';
-import { resetPassword } from '../../services/slices/authSlice';
+import { resetPasswordConfirm } from '../../services/slices/authSlice';
 import { LogInPageDecoration } from '../../components/LogInPageDecoration/LogInPageDecoration';
 import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/LogInPageDecorationImg';
 import { Button } from '../../components/Button/Button';
@@ -12,15 +12,13 @@ import { InputField } from '../../components/InputField/InputField';
 
 export function PasswordResetConfirm() {
   const {
-    errors, isValid, handleSecondPasswordChange, setIsValid,
-    handleChange, resetForm, values,
+    errors, isValid, handleSecondPasswordChange, handleChange, values,
   } = useFormValidation();
   const { uid, token } = useParams();
   const navigate = useNavigate();
   const {
     passwordResetConfirm,
   } = useSelector((state) => state.auth);
-  const [disabledButton, setDisabledButton] = useState(false);
   const [title, setTitle] = useState('Придумайте новый пароль');
   const [text, setText] = useState('');
   const [buttonText, setButtonText] = useState('Дальше');
@@ -35,7 +33,7 @@ export function PasswordResetConfirm() {
     };
     console.log(sendData);
     if (!passwordResetConfirm) {
-      dispatch(resetPassword(sendData));
+      dispatch(resetPasswordConfirm(sendData));
     }
     if (passwordResetConfirm) {
       navigate('/sign-in');

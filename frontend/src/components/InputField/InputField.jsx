@@ -15,7 +15,7 @@ export const InputField = ({
     email: {
       type: 'email',
       name: 'email',
-      placeholder: 'E-MAIL*',
+      placeholder: 'Email*',
       pattern: '([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-]+)(\\.[a-zA-Z]{2,5}){1,2}',
       errorText: 'Введите корректный email',
       maxLength: '64',
@@ -24,7 +24,7 @@ export const InputField = ({
     name: {
       type: 'text',
       name: 'name',
-      placeholder: 'ИМЯ',
+      placeholder: 'Имя*',
       pattern: '[ a-zA-Z\u0400-\u04ff]{2,}',
       errorText: 'Имя должно быть не менее 2-x символов',
       maxLength: '25',

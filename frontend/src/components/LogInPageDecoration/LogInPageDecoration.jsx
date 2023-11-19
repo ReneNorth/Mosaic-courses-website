@@ -1,7 +1,7 @@
 import cls from './LogInPageDecoration.module.scss';
 
-export const LogInPageDecoration = () => {
+export const LogInPageDecoration = ({ ...props }) => {
   return (
-    <div className={cls.decoration} />
+    <div className={cls.decoration} {...props} />
   );
 };

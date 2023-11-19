@@ -73,10 +73,10 @@ const getEmailByUID = createAsyncThunk('auth/getEmailByUID', async (data) => {
   }
 });
 
-const resetPassword = createAsyncThunk('auth/resetPassword', async (data) => {
+const resetPasswordConfirm = createAsyncThunk('auth/resetPasswordConfirm', async (data) => {
   try {
-    console.log('resetPassword slice', data);
-    return api.postResetPassword(data);
+    console.log('resetPasswordConfirm slice', data);
+    return api.postResetPasswordConfirm(data);
   } catch (err) {
     return err;
   }
@@ -95,7 +95,7 @@ export const authSlice = createSlice({
       state.isSending = false;
       state.registerError = false;
       state.sendDataSucces = true;
-      console.log(action.payload);
+      // console.log(action.payload);
       state.userName = action.payload.first_name;
       state.userEmail = action.payload.email;
       state.userId = action.payload.id;
@@ -104,26 +104,26 @@ export const authSlice = createSlice({
     builder.addCase(registerUser.rejected, (state, action) => {
       state.isSending = false;
       state.sendDataSucces = false;
-      console.log(action);
+      // console.log(action);
       state.registerError = true;
     });
     builder.addCase(activateUser.fulfilled, (state, action) => {
-      console.log('активация прошла успешно', action);
+      // console.log('активация прошла успешно', action);
       state.activateSucces = true;
       state.activateError = false;
     });
     builder.addCase(activateUser.rejected, (state, action) => {
-      console.log('активация не прошла', action);
+      // console.log('активация не прошла', action);
       state.activateSucces = false;
       state.activateError = true;
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
-      console.log('login прошла успешно', action);
+      // console.log('login прошла успешно', action);
       state.loginSucces = true;
       state.loginError = false;
     });
     builder.addCase(loginUser.rejected, (state, action) => {
-      console.log('login не прошла', action);
+      // console.log('login не прошла', action);
       state.loginSucces = false;
       state.loginError = true;
     });
@@ -133,21 +133,21 @@ export const authSlice = createSlice({
       state.activateError = false;
     });
     builder.addCase(getEmailByUID.rejected, (state, action) => {
-      console.log('getEmailByUID не прошла успешно', action);
+      // console.log('getEmailByUID не прошла успешно', action);
     });
     builder.addCase(passwordReset.fulfilled, (state, action) => {
       state.passwordResetSucces = true;
       state.passwordResetError = false;
-      console.log('passwordReset прошла успешно', action);
+      // console.log('passwordReset прошла успешно', action);
     });
     builder.addCase(passwordReset.rejected, (state, action) => {
       state.passwordResetSucces = false;
       state.passwordResetError = true;
-      console.log('passwordReset не прошла', action);
+      // console.log('passwordReset не прошла', action);
     });
-    builder.addCase(resetPassword.fulfilled, (state, action) => {
+    builder.addCase(resetPasswordConfirm.fulfilled, (state, action) => {
       state.passwordResetConfirm = true;
-      console.log('passwordResetCofirm прошла успешно', action);
+      // console.log('passwordResetCofirm прошла успешно', action);
     });
     // [registerUser.pending]: (state) => {
     //   state.loading = true
@@ -168,5 +168,5 @@ const authSliceReducer = authSlice.reducer;
 
 export {
   authSliceReducer, registerUser, activateUser, resendActivationEmail,
-  loginUser, passwordReset, getEmailByUID, resetPassword,
+  loginUser, passwordReset, getEmailByUID, resetPasswordConfirm,
 };

@@ -1,4 +1,3 @@
-// import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cls from './PasswordResetPage.module.scss';
@@ -14,8 +13,7 @@ import { ButtonCounter } from '../../components/ButtonCounter/ButtonCounter';
 
 export function PasswordResetPage() {
   const {
-    errors, isValid, handleSecondPasswordChange, setIsValid,
-    handleChange, handleBlur, handleChangeInRealTime, resetForm, values,
+    errors, isValid, handleChange, values,
   } = useFormValidation();
 
   const [title, setTitle] = useState('Восстановление пароля');
@@ -23,12 +21,10 @@ export function PasswordResetPage() {
   const [buttonText, setButtonText] = useState('Найти мой аккаунт');
   const [disabledButtonCounter, setDisabledButtonCounter] = useState(true);
   const [counter, setCounter] = useState(30);
-  // const navigate = useNavigate();
 
   const {
-    userName, userEmail, userPhone, userId, isSending, sendDataSucces,
-    registerSucces, passwordResetError, passwordResetSucces,
-    loginError,
+    passwordResetError, passwordResetSucces,
+
   } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -65,7 +61,7 @@ export function PasswordResetPage() {
           <div className={cls.inputsWrapper}>
             <InputField
               type="email"
-              placeholder="Email*"
+              placeholder="Email"
               errors={errors}
               isValid={isValid}
               handleChange={handleChange}

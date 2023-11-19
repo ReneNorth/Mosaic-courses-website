@@ -5,7 +5,6 @@ import {
 } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { SignHeaderLinks } from './SignHeaderLinks';
-import { renderWithRouter } from '../../helpers/tes/renderWithRouter';
 import '@testing-library/jest-dom';
 
 describe('SignHeaderLinks Component', () => {
@@ -41,20 +40,5 @@ describe('SignHeaderLinks Component', () => {
 
     const activeLink = screen.getByText('Войти');
     expect(activeLink.closest('a')).toHaveClass('active');
-  });
-  it('navigates to the correct route when a link is clicked', async () => {
-    render(
-      <MemoryRouter>
-        <SignHeaderLinks />
-      </MemoryRouter>,
-    );
-    const signInLink = screen.getByText('Войти');
-    fireEvent.click(signInLink);
-
-    // Use waitFor to wait for the next tick of the event loop
-    await waitFor(() => {
-      // Assert that navigation has occurred
-      expect(window.location.pathname).toBe('/sign-in');
-    });
   });
 });

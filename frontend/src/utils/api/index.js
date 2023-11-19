@@ -239,7 +239,7 @@ class Api {
     return this.constructor._checkResponse(res);
   }
 
-  async postResetPassword(data) {
+  async postResetPasswordConfirm(data) {
     const csrftoken = getCookie('csrftoken');
     console.log('postResetPassword', data);
     const res = await fetch(`${this._url}/api/v1/users/reset_password_confirm/`, {
