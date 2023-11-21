@@ -30,7 +30,6 @@ export function SignInPage() {
       email: values.email,
       password: values.password,
     };
-    console.log(sendData);
     dispatch(loginUser(sendData));
   };
 
@@ -48,7 +47,8 @@ export function SignInPage() {
           <ul className={classNames(cls.list, {}, [])}>
             <SignHeaderLinks />
           </ul>
-          <h3 className={cls.title}>Войдите в свой профиль</h3>
+          {loginError && (<span className={cls.errorMessage}>Неверный логин или пароль</span>)}
+          <h3 className={classNames(cls.title, { [cls.titleError]: loginError }, [])}>Войдите в свой профиль</h3>
           <div className={cls.inputsWrapper}>
             <InputField
               type="email"
@@ -67,7 +67,7 @@ export function SignInPage() {
               values={values}
             />
             <Link to="/password-reset">
-              <p className={cls.text}>Не помню пароль</p>
+              <p className={cls.linkText}>Не помню пароль</p>
             </Link>
           </div>
           <div className={cls.buttonWrapper}>
@@ -81,7 +81,6 @@ export function SignInPage() {
               Войти в профиль
             </Button>
           </div>
-          {loginError && (<span className={cls.errorMessage}>Неверный логин или пароль</span>)}
         </form>
         <LogInPageDecorationImg />
       </div>

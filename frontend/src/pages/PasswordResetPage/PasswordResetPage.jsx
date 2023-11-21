@@ -33,7 +33,6 @@ export function PasswordResetPage() {
     const sendData = {
       email: values.email,
     };
-    console.log(sendData);
     dispatch(passwordReset(sendData));
     setCounter(30);
     setDisabledButtonCounter(true);
@@ -54,20 +53,23 @@ export function PasswordResetPage() {
           <ul className={classNames(cls.list, {}, [])}>
             <SignHeaderLinks />
           </ul>
+          {passwordResetError && (<span className={cls.errorMessage}>Аккаунт не найден</span>)}
           <h3 className={cls.title}>{title}</h3>
           <p className={cls.text}>
             {text}
           </p>
-          <div className={cls.inputsWrapper}>
-            <InputField
-              type="email"
-              placeholder="Email"
-              errors={errors}
-              isValid={isValid}
-              handleChange={handleChange}
-              values={values}
-            />
-          </div>
+          {!passwordResetSucces && (
+            <div className={cls.inputsWrapper}>
+              <InputField
+                type="email"
+                placeholder="Email"
+                errors={errors}
+                isValid={isValid}
+                handleChange={handleChange}
+                values={values}
+              />
+            </div>
+          )}
           <div className={cls.buttonWrapper}>
             {!passwordResetSucces && (
               <Button
@@ -96,7 +98,6 @@ export function PasswordResetPage() {
               </Button>
             )}
           </div>
-          {passwordResetError && (<span className={cls.errorMessage}>Аккаунт не найден</span>)}
         </form>
         <LogInPageDecorationImg />
       </div>

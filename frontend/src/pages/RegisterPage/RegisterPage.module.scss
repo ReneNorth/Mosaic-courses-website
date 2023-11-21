@@ -19,6 +19,7 @@
 .formContainer {
   width: 620px;
   height: 760px;
+  box-sizing: border-box;
   border-radius: 20px;
   background-color: var(--bg-color-white);
   display: flex;
@@ -97,9 +98,91 @@
 
 .errorButtonWrapper {
   padding-top: 63px;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .textSendData {
 padding-top: 137px;
 margin-bottom: 3px;
+}
+
+.inputsFieldMargin {
+margin: 0;
+}
+
+.textError {
+  padding-top: 0;
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+
+  .step {
+    font-size: 14px;
+    line-height: 140%;
+    letter-spacing: 0.56px;
+  }
+
+  .formContainer {
+    margin: 0 20px;
+    width: 100%;
+    height: 100%;
+    padding: 40px 20px;
+  }
+
+  .list {
+    min-width: 100%;
+    padding: 0;
+    padding-top: 8px;
+  }
+
+  .inputsWrapper {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 20px;
+    padding: 43px 0 30px 0;
+  }
+
+  .inputsFieldMargin {
+    margin-bottom: 25px;
+  }
+
+  .buttonWrapper {
+    padding-top: 19px;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .text {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    line-height: 145%;
+    text-align: left;
+  }
+
+  .textSendData {
+    padding-top: 55px;
+    margin-bottom: 0;
+    }
+
+    .errorButtonWrapper {
+      padding-top: 35px;
+      width: 100%;
+      padding-bottom: 10px;
+    }
+
+    .titleError {
+      font-size: 20px;
+      padding: 0;
+    }
+
+    .textError {
+      text-align: center;
+      padding-top: 17px;
+    }
 }

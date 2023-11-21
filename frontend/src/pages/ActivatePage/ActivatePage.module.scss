@@ -25,6 +25,7 @@
     flex-direction: column;
     align-items: center;
     z-index: global.$base-layer;
+    box-sizing: border-box;
 }
 
 .responseStep {
@@ -79,4 +80,48 @@
 
 .activateButtonWrapper {
     padding-top: 63px;
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+
+    .step {
+        font-size: 14px;
+        line-height: 140%;
+        letter-spacing: 0.56px;
+    }
+
+    .formContainer {
+        margin: 0 20px;
+        width: 100%;
+        height: 100%;
+        padding: 31px 20px;
+    }
+
+    .list {
+        min-width: 100%;
+        padding: 0;
+        padding-top: 8px;
+    }
+
+    .titleActivate {
+        font-size: 20px;
+        padding: 38px 0 20px 0;
+        
+    }
+
+    .activateButtonWrapper {
+        padding-top: 19px;
+        width: 280px;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 12px;
+    }
+
+    .text {
+        width: 100%;
+        height: 100%;
+        font-size: 16px;
+        padding-bottom: 18px;
+    }
+
 }

@@ -31,7 +31,6 @@ export function PasswordResetConfirm() {
       token,
       new_password: values.password,
     };
-    console.log(sendData);
     if (!passwordResetConfirm) {
       dispatch(resetPasswordConfirm(sendData));
     }
