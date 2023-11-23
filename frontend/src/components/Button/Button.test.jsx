@@ -17,13 +17,13 @@ describe('Button component', () => {
     expect(buttonElement).toHaveClass('custom-class');
   });
 
-  it('applies the decoration class for "black" decoration', () => {
+  it('applies the decoration class for adding a black border', () => {
     render(<Button data-testid="button" decoration="black">Click me</Button>);
     const buttonElement = screen.getByTestId('button');
     expect(buttonElement).toHaveClass('decoration');
   });
 
-  it('applies the decorationWhite class for "white" decoration', () => {
+  it('applies the decorationWhite class for adding a white border', () => {
     render(<Button data-testid="button" decoration="white">Click me</Button>);
     const buttonElement = screen.getByTestId('button');
     expect(buttonElement).toHaveClass('decorationWhite');

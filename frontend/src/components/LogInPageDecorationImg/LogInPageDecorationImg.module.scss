@@ -37,3 +37,9 @@
   border-radius: 200px 50px 50px 50px;
   z-index: global.$layer-under-content;
 }
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .imgContainer {
+    display: none;
+  }
+}

@@ -4,6 +4,7 @@
   display: flex;
   position: relative;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 .input {
@@ -23,11 +24,10 @@
   &:valid {
     border-bottom-color: var(--color-green-valid);
   }
+
   &.invalid {
     border-bottom-color: var(--color-red);
   }
-
-
 }
 
 .error {
@@ -47,21 +47,28 @@
 @media screen and (max-width: global.$breakpoint-mobile) {
 
   .input {
-    margin-bottom: 12px;
+    margin: 0;
+    padding: 6px 0;
     font-size: 15px;
-    line-height: 20.25px;
+    line-height: 135%;
     letter-spacing: 0.6px;
+
     &:valid {
       border-bottom-color: var(--color-green-valid);
     }
+
     &.invalid {
       border-bottom-color: var(--color-red);
     }
-
   }
 
   .error {
     position: static;
+  }
+
+  .label {
+    margin-bottom: 19px;
+
   }
 
 }

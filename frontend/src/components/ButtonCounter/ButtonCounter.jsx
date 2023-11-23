@@ -1,13 +1,12 @@
-import { useState, useEffect } from 'react';
-import { classNames } from '../../helpers/classNames';
-import cls from './ButtonCounter.module.scss';
+import { useEffect } from 'react';
 
-export const ButtonCounter = ({ counter, setCounter, changeStatus }) => {
-  // const [counter, setCounter] = useState(30);
-
+export const ButtonCounter = ({
+  counter, setCounter, changeStatus, ...props
+}) => {
   useEffect(() => {
-    // eslint-disable-next-line no-unused-expressions
-    counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+    if (counter > 0) {
+      setTimeout(() => setCounter(counter - 1), 1000);
+    }
     const checkCounter = () => {
       if (counter === 0) {
         changeStatus(false);
@@ -16,7 +15,7 @@ export const ButtonCounter = ({ counter, setCounter, changeStatus }) => {
     checkCounter();
   }, [changeStatus, counter, setCounter]);
   return (
-    <>
+    <div {...props}>
       Отправить заново
       {' '}
       { counter !== 0 && (
@@ -25,6 +24,6 @@ export const ButtonCounter = ({ counter, setCounter, changeStatus }) => {
           {counter < 10 ? `0${counter}` : counter}
         </>
       )}
-    </>
+    </div>
   );
 };

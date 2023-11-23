@@ -1,4 +1,3 @@
-import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cls from './PasswordResetPage.module.scss';
@@ -10,38 +9,41 @@ import useFormValidation from '../../hooks/useFormValidation';
 import { passwordReset } from '../../services/slices/authSlice';
 import { LogInPageDecoration } from '../../components/LogInPageDecoration/LogInPageDecoration';
 import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/LogInPageDecorationImg';
+import { ButtonCounter } from '../../components/ButtonCounter/ButtonCounter';
 
 export function PasswordResetPage() {
   const {
-    errors, isValid, handleSecondPasswordChange, setIsValid,
-    handleChange, handleBlur, handleChangeInRealTime, resetForm, values,
+    errors, isValid, handleChange, values,
   } = useFormValidation();
 
   const [title, setTitle] = useState('Восстановление пароля');
   const [text, setText] = useState('Мы пришлём ссылку для сброса пароля');
   const [buttonText, setButtonText] = useState('Найти мой аккаунт');
-  const navigate = useNavigate();
+  const [disabledButtonCounter, setDisabledButtonCounter] = useState(true);
+  const [counter, setCounter] = useState(30);
 
   const {
-    userName, userEmail, userPhone, userId, isSending, sendDataSucces, registerSucces, registerError, loginSucces,
-    loginError,
+    passwordResetError, passwordResetSucces,
+
   } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  const login = (e) => {
+  const onClickPasswordReset = (e) => {
     e.preventDefault();
     const sendData = {
       email: values.email,
     };
-    console.log(sendData);
     dispatch(passwordReset(sendData));
+    setCounter(30);
+    setDisabledButtonCounter(true);
   };
 
   useEffect(() => {
-    if (loginSucces) {
-      navigate('/profile');
+    if (passwordResetSucces) {
+      setText(`Мы отправили ссылку на создание нового пароля на ${values.email}`);
+      setButtonText('');
     }
-  }, [loginSucces, navigate]);
+  }, [passwordResetSucces, values.email]);
 
   return (
     <section className={cls.section}>
@@ -51,30 +53,50 @@ export function PasswordResetPage() {
           <ul className={classNames(cls.list, {}, [])}>
             <SignHeaderLinks />
           </ul>
+          {passwordResetError && (<span className={cls.errorMessage}>Аккаунт не найден</span>)}
           <h3 className={cls.title}>{title}</h3>
           <p className={cls.text}>
             {text}
           </p>
-          <div className={cls.inputsWrapper}>
-            <InputField
-              type="email"
-              placeholder="Email*"
-              errors={errors}
-              isValid={isValid}
-              handleChange={handleChange}
-              values={values}
-            />
-          </div>
+          {!passwordResetSucces && (
+            <div className={cls.inputsWrapper}>
+              <InputField
+                type="email"
+                placeholder="Email"
+                errors={errors}
+                isValid={isValid}
+                handleChange={handleChange}
+                values={values}
+              />
+            </div>
+          )}
           <div className={cls.buttonWrapper}>
-            <Button
-              type="button"
-              onClick={(e) => login(e)}
-              disabled={!isValid}
-              className="fill"
-              decoration="black"
-            >
-              {buttonText}
-            </Button>
+            {!passwordResetSucces && (
+              <Button
+                type="button"
+                onClick={(e) => onClickPasswordReset(e)}
+                disabled={!isValid}
+                className="fill"
+                decoration="black"
+              >
+                {buttonText}
+              </Button>
+            )}
+            {passwordResetSucces && (
+              <Button
+                type="button"
+                onClick={(e) => onClickPasswordReset(e)}
+                disabled={disabledButtonCounter}
+                className="fill"
+                decoration="black"
+              >
+                <ButtonCounter
+                  counter={counter}
+                  setCounter={setCounter}
+                  changeStatus={setDisabledButtonCounter}
+                />
+              </Button>
+            )}
           </div>
         </form>
         <LogInPageDecorationImg />

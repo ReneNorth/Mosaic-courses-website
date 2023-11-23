@@ -1,5 +1,5 @@
-import { NavLink, Link, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cls from './SignInPage.module.scss';
 import { Button } from '../../components/Button/Button';
@@ -13,14 +13,13 @@ import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/
 
 export function SignInPage() {
   const {
-    errors, isValid, handleSecondPasswordChange, setIsValid,
-    handleChange, handleBlur, handleChangeInRealTime, resetForm, values,
+    errors, isValid, handleChange, values,
   } = useFormValidation();
 
   const navigate = useNavigate();
 
   const {
-    userName, userEmail, userPhone, userId, isSending, sendDataSucces, registerSucces, registerError, loginSucces,
+    loginSucces,
     loginError,
   } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -31,7 +30,6 @@ export function SignInPage() {
       email: values.email,
       password: values.password,
     };
-    console.log(sendData);
     dispatch(loginUser(sendData));
   };
 
@@ -49,7 +47,8 @@ export function SignInPage() {
           <ul className={classNames(cls.list, {}, [])}>
             <SignHeaderLinks />
           </ul>
-          <h3 className={cls.title}>Войдите в свой профиль</h3>
+          {loginError && (<span className={cls.errorMessage}>Неверный логин или пароль</span>)}
+          <h3 className={classNames(cls.title, { [cls.titleError]: loginError }, [])}>Войдите в свой профиль</h3>
           <div className={cls.inputsWrapper}>
             <InputField
               type="email"
@@ -68,7 +67,7 @@ export function SignInPage() {
               values={values}
             />
             <Link to="/password-reset">
-              <p className={cls.text}>Не помню пароль</p>
+              <p className={cls.linkText}>Не помню пароль</p>
             </Link>
           </div>
           <div className={cls.buttonWrapper}>
@@ -82,7 +81,6 @@ export function SignInPage() {
               Войти в профиль
             </Button>
           </div>
-          {loginError && (<span className={cls.errorMessage}>Неверный логин или пароль</span>)}
         </form>
         <LogInPageDecorationImg />
       </div>

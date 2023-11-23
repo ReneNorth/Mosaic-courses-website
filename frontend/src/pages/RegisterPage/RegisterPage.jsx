@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cls from './RegisterPage.module.scss';
@@ -47,7 +46,6 @@ export function RegisterPage() {
       general_agreement: !!values.agree,
       markcomm_agreement: !!values.mailing,
     };
-    console.log(sendData);
     dispatch(registerUser(sendData));
     setDataEntryStep(false);
     setDataResponseStep(true);
@@ -65,7 +63,6 @@ export function RegisterPage() {
       general_agreement: !!values.agree,
       markcomm_agreement: !!values.mailing,
     };
-    console.log(sendData);
     dispatch(registerUser(sendData));
   };
 
@@ -74,7 +71,6 @@ export function RegisterPage() {
     const sendData = {
       email: values.email,
     };
-    console.log(sendData);
     dispatch(resendActivationEmail(sendData));
     setCounter(30);
     setDisabledButtonCounter(true);
@@ -117,27 +113,29 @@ export function RegisterPage() {
     return (
       <>
         <div className={cls.inputsWrapper}>
-          <InputField
-            type="name"
-            errors={errors}
-            isValid={isValid}
-            handleChange={handleChange}
-            values={values}
-          />
-          <InputField
-            type="email"
-            errors={errors}
-            isValid={isValid}
-            handleChange={handleChange}
-            values={values}
-          />
-          <InputField
-            type="tel"
-            errors={errors}
-            isValid={isValid}
-            handleChange={handleChange}
-            values={values}
-          />
+          <div className={cls.inputsFieldMargin}>
+            <InputField
+              type="name"
+              errors={errors}
+              isValid={isValid}
+              handleChange={handleChange}
+              values={values}
+            />
+            <InputField
+              type="email"
+              errors={errors}
+              isValid={isValid}
+              handleChange={handleChange}
+              values={values}
+            />
+            <InputField
+              type="tel"
+              errors={errors}
+              isValid={isValid}
+              handleChange={handleChange}
+              values={values}
+            />
+          </div>
           <CheckBoxField type="agreement" handleChange={handleChange} />
           <CheckBoxField type="mailing" handleChange={handleChange} />
         </div>
@@ -186,7 +184,7 @@ export function RegisterPage() {
               {registerError && (
                 <>
                   <h3 className={cls.titleError}>{formTitle}</h3>
-                  <p className={cls.text}>
+                  <p className={classNames(cls.text, { [cls.textError]: registerError }, [])}>
                     Во время отправки данных возникла ошибка. Попробуйте отправить данные ещё раз.
                   </p>
                   <div className={cls.errorButtonWrapper}>

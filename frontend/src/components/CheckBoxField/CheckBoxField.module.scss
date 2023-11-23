@@ -32,9 +32,25 @@
     clip: rect(0 0 0 0);
   }
 
-  input[type="checkbox"]:checked + span {
+  input[type="checkbox"]:checked+span {
     background-image: url(../../images/Ellipse_1211.svg);
     background-repeat: no-repeat;
     background-position: center center;
+  }
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .checkbox {
+    min-width: 20px;
+  }
+
+  .textMain {
+    font-size: 14px;
+    line-height: 135%;
+  }
+
+  .content__checkbox {
+    gap: 12px;
+    margin-bottom: 16px;
   }
 }

@@ -7,7 +7,6 @@ class Api {
   }
 
   static _checkResponse(res) {
-    console.log(res);
     if (res.ok) {
       return res.json();
     }
@@ -149,7 +148,6 @@ class Api {
 
   async postRegisterUser(data) {
     const csrftoken = getCookie('csrftoken');
-    console.log('register', data);
     const res = await fetch(`${this._url}/api/v1/users/`, {
       method: 'POST',
       headers: {
@@ -162,7 +160,6 @@ class Api {
   }
 
   async postActivateUser(data) {
-    console.log('api', data);
     const csrftoken = getCookie('csrftoken');
     const res = await fetch(`${this._url}/api/v1/users/activation/`, {
       method: 'POST',
@@ -172,7 +169,6 @@ class Api {
       },
       body: JSON.stringify(data),
     });
-    console.log('response', res);
     if (res.ok) {
       return res;
     }
@@ -180,7 +176,6 @@ class Api {
   }
 
   async postResendActivation(data) {
-    console.log('resend', data);
     const csrftoken = getCookie('csrftoken');
     const res = await fetch(`${this._url}/api/v1/users/resend_activation/`, {
       method: 'POST',
@@ -194,7 +189,6 @@ class Api {
   }
 
   async postLoginUser(data) {
-    console.log('login', data);
     const csrftoken = getCookie('csrftoken');
     const res = await fetch(`${this._url}/api/auth/jwt/create/`, {
       method: 'POST',
@@ -208,9 +202,24 @@ class Api {
   }
 
   async postPasswordReset(data) {
-    console.log('passwordReset', data);
     const csrftoken = getCookie('csrftoken');
     const res = await fetch(`${this._url}/api/v1/users/reset_password/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify(data),
+    });
+    if (res.ok) {
+      return res;
+    }
+    return Promise.reject(new Error(`${res.status}`));
+  }
+
+  async getEmailByUID(data) {
+    const csrftoken = getCookie('csrftoken');
+    const res = await fetch(`${this._url}/api/v1/users/email/`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -221,10 +230,9 @@ class Api {
     return this.constructor._checkResponse(res);
   }
 
-  async getEmailByUID(data) {
+  async postResetPasswordConfirm(data) {
     const csrftoken = getCookie('csrftoken');
-    console.log('getEmailByUID', data);
-    const res = await fetch(`${this._url}/api/v1/users/email/`, {
+    const res = await fetch(`${this._url}/api/v1/users/reset_password_confirm/`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -232,7 +240,10 @@ class Api {
       },
       body: JSON.stringify(data),
     });
-    return this.constructor._checkResponse(res);
+    if (res.ok) {
+      return res;
+    }
+    return Promise.reject(new Error(`${res.status}`));
   }
 }
 

@@ -42,7 +42,6 @@ export function ActivatePage() {
         token,
       };
       dispatch(getEmailByUID(data));
-      console.log('получениe почты по UID');
     }
   };
 

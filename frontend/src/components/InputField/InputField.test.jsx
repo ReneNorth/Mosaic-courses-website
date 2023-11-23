@@ -22,7 +22,7 @@ describe('InputField component', () => {
     expect(inputElement).toBeInTheDocument();
     expect(inputElement).toHaveAttribute('type', 'email');
     expect(inputElement).toHaveAttribute('name', 'email');
-    expect(inputElement).toHaveAttribute('placeholder', 'E-MAIL*');
+    expect(inputElement).toHaveAttribute('placeholder', 'Email*');
 
     // Simulate user input and check if handleChange is called
     fireEvent.change(inputElement, { target: { value: 'test@example.com' } });

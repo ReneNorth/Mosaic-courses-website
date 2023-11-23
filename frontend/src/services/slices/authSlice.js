@@ -16,6 +16,9 @@ const initialState = {
   loginError: null,
   getEmailByUIDSucces: false,
   emailByUID: null,
+  passwordResetSucces: false,
+  passwordResetError: null,
+  passwordResetConfirm: false,
 };
 
 const registerUser = createAsyncThunk('auth/registerUser', async (data) => {
@@ -36,7 +39,6 @@ const resendActivationEmail = createAsyncThunk('auth/resendActivation', async (d
 
 const activateUser = createAsyncThunk('auth/activateUser', async (data) => {
   try {
-    console.log('activate slice', data);
     return api.postActivateUser(data);
   } catch (err) {
     return err;
@@ -45,7 +47,6 @@ const activateUser = createAsyncThunk('auth/activateUser', async (data) => {
 
 const loginUser = createAsyncThunk('auth/loginUser', async (data) => {
   try {
-    console.log('login slice', data);
     return api.postLoginUser(data);
   } catch (err) {
     return err;
@@ -54,7 +55,6 @@ const loginUser = createAsyncThunk('auth/loginUser', async (data) => {
 
 const passwordReset = createAsyncThunk('auth/passwordReset', async (data) => {
   try {
-    console.log('passwordReset slice', data);
     return api.postPasswordReset(data);
   } catch (err) {
     return err;
@@ -63,8 +63,15 @@ const passwordReset = createAsyncThunk('auth/passwordReset', async (data) => {
 
 const getEmailByUID = createAsyncThunk('auth/getEmailByUID', async (data) => {
   try {
-    console.log('getEmailByUID slice', data);
     return api.getEmailByUID(data);
+  } catch (err) {
+    return err;
+  }
+});
+
+const resetPasswordConfirm = createAsyncThunk('auth/resetPasswordConfirm', async (data) => {
+  try {
+    return api.postResetPasswordConfirm(data);
   } catch (err) {
     return err;
   }
@@ -83,7 +90,6 @@ export const authSlice = createSlice({
       state.isSending = false;
       state.registerError = false;
       state.sendDataSucces = true;
-      console.log(action.payload);
       state.userName = action.payload.first_name;
       state.userEmail = action.payload.email;
       state.userId = action.payload.id;
@@ -92,26 +98,21 @@ export const authSlice = createSlice({
     builder.addCase(registerUser.rejected, (state, action) => {
       state.isSending = false;
       state.sendDataSucces = false;
-      console.log(action);
       state.registerError = true;
     });
     builder.addCase(activateUser.fulfilled, (state, action) => {
-      console.log('активация прошла успешно', action);
       state.activateSucces = true;
       state.activateError = false;
     });
     builder.addCase(activateUser.rejected, (state, action) => {
-      console.log('активация не прошла', action);
       state.activateSucces = false;
       state.activateError = true;
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
-      console.log('login прошла успешно', action);
       state.loginSucces = true;
       state.loginError = false;
     });
     builder.addCase(loginUser.rejected, (state, action) => {
-      console.log('login не прошла', action);
       state.loginSucces = false;
       state.loginError = true;
     });
@@ -121,13 +122,17 @@ export const authSlice = createSlice({
       state.activateError = false;
     });
     builder.addCase(getEmailByUID.rejected, (state, action) => {
-      console.log('getEmailByUID не прошла успешно', action);
     });
     builder.addCase(passwordReset.fulfilled, (state, action) => {
-      console.log('passwordReset прошла успешно', action);
+      state.passwordResetSucces = true;
+      state.passwordResetError = false;
     });
     builder.addCase(passwordReset.rejected, (state, action) => {
-      console.log('passwordReset не прошла', action);
+      state.passwordResetSucces = false;
+      state.passwordResetError = true;
+    });
+    builder.addCase(resetPasswordConfirm.fulfilled, (state, action) => {
+      state.passwordResetConfirm = true;
     });
     // [registerUser.pending]: (state) => {
     //   state.loading = true
@@ -147,5 +152,6 @@ export const authSlice = createSlice({
 const authSliceReducer = authSlice.reducer;
 
 export {
-  authSliceReducer, registerUser, activateUser, resendActivationEmail, loginUser, passwordReset, getEmailByUID,
+  authSliceReducer, registerUser, activateUser, resendActivationEmail,
+  loginUser, passwordReset, getEmailByUID, resetPasswordConfirm,
 };
