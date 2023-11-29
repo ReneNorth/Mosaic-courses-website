@@ -1,5 +1,3 @@
-import React from 'react';
-import MaskedInput from 'react-text-mask';
 import { classNames } from '../../helpers/classNames';
 import cls from './InputField.module.scss';
 
@@ -9,6 +7,8 @@ export const InputField = ({
   errors,
   handleChange,
   values,
+  onChange,
+  handlePhoneValidation,
   ...props
 }) => {
   const inputSettings = {
@@ -56,40 +56,22 @@ export const InputField = ({
       minLength: '8',
     },
   };
+
   return (
     <div className={cls.label}>
-      {type !== 'tel'
-        ? (
-          <input
-            value={values[inputSettings[type].name] || ''}
-            onChange={handleChange}
-            type={inputSettings[type].type}
-            name={inputSettings[type].name}
-            maxLength={inputSettings[type].maxLength || ''}
-            minLength={inputSettings[type].minLength || ''}
-            placeholder={placeholder || inputSettings[type].placeholder}
-            required
-            pattern={inputSettings[type].pattern || null}
-            className={classNames(cls.input, {}, [errors[inputSettings[type].name] ? cls.invalid : ''])}
-            {...props}
-          />
-        ) : (
-          <MaskedInput
-            mask={['+',
-              /[1-9]/, '(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/]}
-            value={values[inputSettings[type].name] || ''}
-            onChange={handleChange}
-            type={inputSettings[type].type}
-            name={inputSettings[type].name}
-            maxLength={inputSettings[type].maxLength || ''}
-            minLength={inputSettings[type].minLength || ''}
-            placeholder={placeholder || inputSettings[type].placeholder}
-            required
-            pattern={inputSettings[type].pattern || null}
-            className={classNames(cls.input, {}, [errors[inputSettings[type].name] ? cls.invalid : ''])}
-            {...props}
-          />
-        )}
+      <input
+        value={values[inputSettings[type].name] || ''}
+        onChange={handleChange}
+        type={inputSettings[type].type}
+        name={inputSettings[type].name}
+        maxLength={inputSettings[type].maxLength || ''}
+        minLength={inputSettings[type].minLength || ''}
+        placeholder={placeholder || inputSettings[type].placeholder}
+        required
+        pattern={inputSettings[type].pattern || null}
+        className={classNames(cls.input, {}, [errors[inputSettings[type].name] ? cls.invalid : ''])}
+        {...props}
+      />
       <span className={cls.error}>
         {errors[inputSettings[type].name]
           ? `${inputSettings[type].errorText}`

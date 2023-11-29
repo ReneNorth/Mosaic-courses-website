@@ -4,6 +4,7 @@ import cls from './RegisterPage.module.scss';
 import { Button } from '../../components/Button/Button';
 import { classNames } from '../../helpers/classNames';
 import { InputField } from '../../components/InputField/InputField';
+import { InputFieldPhone } from '../../components/InputFieldPhone/InputFieldPhone';
 import { CheckBoxField } from '../../components/CheckBoxField/CheckBoxField';
 import { SignHeaderLinks } from '../../components/SignHeaderLinks/SignHeaderLinks';
 import useFormValidation from '../../hooks/useFormValidation';
@@ -15,7 +16,7 @@ import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/
 export function RegisterPage() {
   const {
     errors, isValid, handleSecondPasswordChange, setIsValid,
-    handleChange, handleBlur, handleChangeInRealTime, resetForm, values,
+    handleChange, handleBlur, handlePhoneChange, handleChangeInRealTime, resetForm, values, handlePhoneValidation,
   } = useFormValidation();
 
   const {
@@ -128,11 +129,11 @@ export function RegisterPage() {
               handleChange={handleChange}
               values={values}
             />
-            <InputField
-              type="tel"
+            <InputFieldPhone
               errors={errors}
               isValid={isValid}
-              handleChange={handleChange}
+              handleChange={handlePhoneChange}
+              handlePhoneValidation={handlePhoneValidation}
               values={values}
             />
           </div>
