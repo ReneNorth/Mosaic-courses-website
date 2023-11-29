@@ -15,7 +15,6 @@ export const InputFieldPhone = ({
   const ref = useRef(null);
 
   useEffect(() => {
-    console.log('useeffeect1');
     const error = values.phone && isValidPhoneNumber(values.phone);
     handlePhoneValidation(error, ref.current);
   // eslint-disable-next-line react-hooks/exhaustive-deps
