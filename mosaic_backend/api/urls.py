@@ -12,7 +12,7 @@ from .views import (ArtworkReadOnlyViewSet, BookingViewSet,
 
 router1 = routers.SimpleRouter()
 
-router1.register('users', CustomizedUserViewSet)
+router1.register('users', CustomizedUserViewSet, basename='users')
 router1.register('feedback', RequestCreateOnlyViewSet, basename='feedback')
 router1.register('email_form', EmailCreateOnlyViewSet, basename='email_form')
 router1.register('main_carousel', MainCarouselReadOnlyViewSet,
