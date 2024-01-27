@@ -25,7 +25,7 @@ class ArtworksFilter(django_filters.FilterSet):
         ]
 
 
-class PostsFilter(django_filters.FilterSet):
+class PostsFilter(django_filters.rest_framework.FilterSet):
     tags = django_filters.filters.AllValuesMultipleFilter(
         field_name="tags__slug")
 

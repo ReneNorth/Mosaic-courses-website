@@ -146,6 +146,7 @@ class BlogTest(TestCase):
         super().tearDownClass()
 
     def test_api_get_2_posts(self):
+        # упавший тест
         response = self.client.get(
             path="/api/v1/blog/",
             extra="application/json",
@@ -168,6 +169,14 @@ class BlogTest(TestCase):
             response.content))
         slug = posts[0].get('slug')
         self.assertEqual(slug, self.post2.slug)
+
+    # def test_api_related_posts_nonexistent_slug(self):
+    #     response = self.client.get(
+    #         path="/api/v1/blog/nonexistent_slug/related_posts/",
+    #         content_type="application/json",
+    #     )
+
+    #     self.assertEqual(response.status_code, 404)
 
 
 review1_args = {"student_name": "test",

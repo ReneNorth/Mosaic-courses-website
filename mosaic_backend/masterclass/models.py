@@ -2,7 +2,6 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
 from django.db import models
-from django.utils import timezone
 
 from mosaic.business_logic import DummyTeacher
 
@@ -66,8 +65,8 @@ class Masterclass(models.Model):
     currency = models.CharField(choices=CURRENCY_CHIOCE,
                                 max_length=20,
                                 default='тенге')
-    time_start = models.DateTimeField(default=timezone.now)
-    time_end = models.DateTimeField(default=timezone.now)
+    time_start = models.DateTimeField()
+    time_end = models.DateTimeField()
     teacher = models.ForeignKey(User,
                                 related_name='masterclasses',
                                 on_delete=models.SET(
