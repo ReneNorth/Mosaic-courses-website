@@ -59,14 +59,14 @@ export default {
   },
 };
 
-export const fieldButtonWithoutDecoration = {
+export const FieldButtonWithoutDecoration = {
   args: {
     children: 'Нажми на меня',
     className: 'fill',
   },
 };
 
-export const fieldButtonWithDecoration = {
+export const FieldButtonWithDecoration = {
   args: {
     children: 'Нажми на меня',
     className: 'fill',
@@ -74,14 +74,14 @@ export const fieldButtonWithDecoration = {
   },
 };
 
-export const outlineButton = {
+export const OutlineButton = {
   args: {
     children: 'Нажми на меня',
     className: 'outline',
   },
 };
 
-export const disabledButton = {
+export const DisabledButton = {
   args: {
     children: 'Нажми на меня',
     className: 'fill',

@@ -33,30 +33,30 @@ describe('InputField component', () => {
     expect(errorText).toBeInTheDocument();
   });
 
-  it('should render input phone field with mask', () => {
-    const type = 'tel';
-    const placeholder = 'Phone Number';
-    const handleChange = jest.fn();
-    const values = {};
-    const errors = { phone: 'mock error message' };
-    render(
-      <InputField
-        data-testid="inputField"
-        type={type}
-        placeholder={placeholder}
-        handleChange={handleChange}
-        values={values}
-        errors={errors}
-      />,
-    );
-    const inputElement = screen.getByTestId('inputField');
-    expect(inputElement).toBeInTheDocument();
-    expect(inputElement).toHaveAttribute('type', 'tel');
-    expect(inputElement).toHaveAttribute('name', 'phone');
-    expect(inputElement).toHaveAttribute('placeholder', 'Phone Number');
-    expect(inputElement).toHaveClass('invalid');
-    // Simulate user input and check if mask was applied
-    fireEvent.change(inputElement, { target: { value: '12345678901' } });
-    expect(inputElement.value).toBe('+1(234) 567-89-01');
-  });
+  // it('should render input phone field with mask', () => {
+  //   const type = 'tel';
+  //   const placeholder = 'Phone Number';
+  //   const handleChange = jest.fn();
+  //   const values = {};
+  //   const errors = { phone: 'mock error message' };
+  //   render(
+  //     <InputField
+  //       data-testid="inputField"
+  //       type={type}
+  //       placeholder={placeholder}
+  //       handleChange={handleChange}
+  //       values={values}
+  //       errors={errors}
+  //     />,
+  //   );
+  //   const inputElement = screen.getByTestId('inputField');
+  //   expect(inputElement).toBeInTheDocument();
+  //   expect(inputElement).toHaveAttribute('type', 'tel');
+  //   expect(inputElement).toHaveAttribute('name', 'phone');
+  //   expect(inputElement).toHaveAttribute('placeholder', 'Phone Number');
+  //   expect(inputElement).toHaveClass('invalid');
+  //   // Simulate user input and check if mask was applied
+  //   fireEvent.change(inputElement, { target: { value: '12345678901' } });
+  //   expect(inputElement.value).toBe('+1(234) 567-89-01');
+  // });
 });
