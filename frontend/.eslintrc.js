@@ -4,12 +4,8 @@ module.exports = {
     es2021: true,
     jest: true,
   },
-  extends: [
-    'plugin:react/recommended',
-    'airbnb',
-    'plugin:cypress/recommended',
-    'plugin:jest/recommended',
-  ],
+  extends: ['plugin:react/recommended',
+    'airbnb', 'plugin:cypress/recommended', 'plugin:jest/recommended', 'plugin:storybook/recommended'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
