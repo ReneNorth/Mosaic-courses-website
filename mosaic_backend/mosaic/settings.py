@@ -65,7 +65,9 @@ CSRF_TRUSTED_ORIGINS = ['http://localhost',
                         'http://localhost:8000',
                         'http://localhost:8000',
                         'http://localhost:8000/register',
-                        'https://tessera.hopto.org', ]
+                        'https://tessera.hopto.org',
+                        'https://tesseramosaic.art',
+                        ]
 
 
 ROOT_URLCONF = 'mosaic.urls'
