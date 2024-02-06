@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 LOCAL_DEV = False
 
-
+# latest change validation
 KEY_ENV = os.getenv('SECRET_KEY')
 SECRET_KEY = f'{KEY_ENV}'
 ALLOWED_HOSTS = ['web', '127.0.0.1', '127.0.0.1:8000', 'localhost',
@@ -62,7 +62,6 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/api/.*$'
 CSRF_TRUSTED_ORIGINS = ['http://localhost',
                         'http://localhost:3000',
-                        'http://localhost:8000',
                         'http://localhost:8000',
                         'http://localhost:8000/register',
                         'https://tessera.hopto.org',
