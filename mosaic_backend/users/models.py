@@ -1,8 +1,9 @@
-from django.contrib.auth.models import AbstractUser, AbstractUser
+import logging
+
 from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-import logging
 
 log = logging.getLogger(__name__)
 
@@ -14,8 +15,6 @@ class CustomUserManager(BaseUserManager):
     use_in_migrations = True
 
     def _create_user(self, email, password, phone, **extra_fields):
-        print('123')
-        log.info('test123')
         if not email:
             raise ValueError('The given email must be set')
         if not phone:
@@ -30,18 +29,16 @@ class CustomUserManager(BaseUserManager):
         extra_fields.setdefault('general_agreement', True)
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('role', 'user')
         return self._create_user(email, password, **extra_fields)
 
     def create_superuser(self, email, password, phone, **extra_fields):
-        log.info('test123')
-        log.info(email)
-        log.info(phone)
-        user = self.create_user(email=email, phone=phone, password=password)
         extra_fields.setdefault('general_agreement', True)
-        user.is_superuser = True
-        user.is_staff = True
-        user.save(using=self._db)
-        return user
+        extra_fields.setdefault('is_active', True)
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('role', 'admin')
+        return self._create_user(email, password, phone, **extra_fields)
 
 
 class User(AbstractUser):
@@ -69,6 +66,14 @@ class User(AbstractUser):
     tg_nickname = models.CharField(blank=True, max_length=32)
     confirmation_code = models.CharField(max_length=30, blank=True)
     times_postponed = models.SmallIntegerField(default=0)
+    is_active = models.BooleanField(
+        ("active"),
+        default=False,
+        help_text=(
+            "Designates whether this user should be treated as active. "
+            "Unselect this instead of deleting accounts."
+        ),
+    )
 
     objects = CustomUserManager()
 
@@ -85,4 +90,16 @@ class User(AbstractUser):
         ]
 
     def __str__(self):
-        return self.email
+        return f'{self.email} (id {self.id})'
+
+    @property
+    def is_user(self):
+        return self.role == self.USER
+
+    @property
+    def is_admin(self):
+        return self.role == self.ADMIN
+
+    @property
+    def is_teacher(self):
+        return self.role == self.TEACHER

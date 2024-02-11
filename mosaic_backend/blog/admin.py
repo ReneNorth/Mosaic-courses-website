@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.db import models
-from blog.models import Post, PostTag, Tag
 from mdeditor.widgets import MDEditorWidget
+
+from blog.models import Post, PostTag, Tag
 
 
 class MdPostModelAdmin(admin.ModelAdmin):

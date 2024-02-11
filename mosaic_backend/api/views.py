@@ -1,32 +1,32 @@
+import logging
 import random
 import string
-import logging
 
+from django.contrib.auth import get_user_model
 from django.db.models import Count
+from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, mixins, status, viewsets
+from rest_framework.decorators import action
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from django.shortcuts import get_object_or_404
-from django.contrib.auth import get_user_model
-from rest_framework.decorators import action
-
-from marketplace.models import Artwork
-from masterclass.models import Masterclass, MasterclassType
-from school.models import School, Review
-from blog.models import Post, Tag
-from booking.models import Booking
-from carousel.models import MainCarouselItem
-from crm_app.models import GiftCert
 
 from api.filters import ArtworksFilter, PostsFilter
 from api.serializers import (ArtworkSerializer, BookingSerializer,
                              EmailMainSerializer, GiftCertSerializer,
                              MainCarouselSerializer, MasterclassSerializer,
                              MasterclassTypeSerializer, PostSerializer,
-                             RequestSerializer, SchoolSerializer,
-                             TagReadOnlySerializer, ReviewsSerializer)
+                             RequestSerializer, ReviewsSerializer,
+                             SchoolSerializer, TagReadOnlySerializer)
+from blog.models import Post, Tag
+from booking.models import Booking
+from carousel.models import MainCarouselItem
+from crm_app.models import GiftCert
+from marketplace.models import Artwork
+from masterclass.models import Masterclass, MasterclassType
+from school.models import Review, School
+from users.permissions import BookingPermission
 
 User = User = get_user_model()
 log = logging.getLogger(__name__)
@@ -106,19 +106,23 @@ class BookingViewSet(viewsets.ModelViewSet):
     that process get, post and delete requests.
     Only authorized user can book a course. For non-authorized users there is
     a redirect to the 'call me back' page (or it will be done if not yet."""
-    queryset = Booking.objects.all()  # TODO после авторизации
+    queryset = Booking.objects.all()
     serializer_class = BookingSerializer
+    permission_classes = (BookingPermission, )
 
     def create(self, request) -> Response:
-        user = get_object_or_404(User, id=request.user.id)
         serializer = self.get_serializer(
             data=request.data,
-            context={'user': user, 'request': request},
+            context={
+                'user': request.user,
+                'request': request},
         )
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.data,
+                            status=status.HTTP_201_CREATED)
+        return Response(serializer.errors,
+                        status=status.HTTP_400_BAD_REQUEST)
 
 
 class PostViewSet(viewsets.ReadOnlyModelViewSet):

@@ -2,12 +2,10 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    jest: true,
   },
-  extends: [
-    // 'plugin:react/recommended',
-    'airbnb',
-    'plugin:cypress/recommended',
-  ],
+  extends: ['plugin:react/recommended',
+    'airbnb', 'plugin:cypress/recommended', 'plugin:jest/recommended', 'plugin:storybook/recommended'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -15,8 +13,9 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', 'react-hooks', 'cypress'],
+  plugins: ['react', 'react-hooks', 'cypress', 'jest'],
   rules: {
+    'no-console': 'off',
     'linebreak-style': 0,
     'arrow-body-style': ['off'],
     'react/jsx-indent': [2, 2],

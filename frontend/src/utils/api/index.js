@@ -1,3 +1,6 @@
+import { mockSliderDataBottom } from '../consts/mockData';
+import { getCookie } from '../../helpers/getCookie';
+
 class Api {
   constructor(url) {
     this._url = url;
@@ -7,7 +10,6 @@ class Api {
     if (res.ok) {
       return res.json();
     }
-
     return Promise.reject(new Error(`${res.status}`));
   }
 
@@ -120,6 +122,134 @@ class Api {
     });
     return this.constructor._checkResponse(res);
   }
+
+  async getReviews() {
+    const res = await fetch(`${this._url}/api/v1/reviews/`);
+    const data = await this.constructor._checkResponse(res);
+    if (res.ok) {
+      if (data.count === 0) { data.results = mockSliderDataBottom; } else {
+        let firstId = 1;
+        data.results.forEach((review) => {
+          review.id = firstId;
+          firstId += 1;
+        });
+      }
+    } else {
+      return Promise.reject(new Error(`${res.status}`));
+    }
+    return data.results;
+  }
+
+  async getReviewWithSlug(slug) {
+    const res = await fetch(`${this._url}/api/v1/reviews/${slug}`);
+    const review = await this.constructor._checkResponse(res);
+    return review;
+  }
+
+  async postRegisterUser(data) {
+    const csrftoken = getCookie('csrftoken');
+    const res = await fetch(`${this._url}/api/v1/users/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify(data),
+    });
+    return this.constructor._checkResponse(res);
+  }
+
+  async postActivateUser(data) {
+    const csrftoken = getCookie('csrftoken');
+    const res = await fetch(`${this._url}/api/v1/users/activation/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify(data),
+    });
+    if (res.ok) {
+      return res;
+    }
+    return Promise.reject(new Error(`${res.status}`));
+  }
+
+  async postResendActivation(data) {
+    const csrftoken = getCookie('csrftoken');
+    const res = await fetch(`${this._url}/api/v1/users/resend_activation/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify(data),
+    });
+    return this.constructor._checkResponse(res);
+  }
+
+  async postLoginUser(data) {
+    const csrftoken = getCookie('csrftoken');
+    const res = await fetch(`${this._url}/api/auth/jwt/create/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify(data),
+    });
+    return this.constructor._checkResponse(res);
+  }
+
+  async postPasswordReset(data) {
+    const csrftoken = getCookie('csrftoken');
+    const res = await fetch(`${this._url}/api/v1/users/reset_password/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify(data),
+    });
+    if (res.ok) {
+      return res;
+    }
+    return Promise.reject(new Error(`${res.status}`));
+  }
+
+  async getEmailByUID(data) {
+    const csrftoken = getCookie('csrftoken');
+    const res = await fetch(`${this._url}/api/v1/users/email/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify(data),
+    });
+    return this.constructor._checkResponse(res);
+  }
+
+  async postResetPasswordConfirm(data) {
+    const csrftoken = getCookie('csrftoken');
+    const res = await fetch(`${this._url}/api/v1/users/reset_password_confirm/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify(data),
+    });
+    if (res.ok) {
+      return res;
+    }
+    return Promise.reject(new Error(`${res.status}`));
+  }
 }
 
-export const api = new Api(process.env.API_URL || 'http://localhost:8000', { 'content-type': 'application/json' });
+console.log(process.env.REACT_APP_API_URL);
+
+export const api = new Api(
+  process.env.REACT_APP_API_URL || 'http://localhost:8000',
+  { 'content-type': 'application/json' },
+);

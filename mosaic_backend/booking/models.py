@@ -18,7 +18,8 @@ class Booking(models.Model):
         help_text='the course this guests is going to attend')
 
     def __str__(self) -> str:
-        return f'{self.guest} attends {self.masterclass}'
+        return (f'{self.guest} attends '
+                f'{self.masterclass} ({self.masterclass.id})')
 
     class Meta:
         verbose_name = 'Booking by a registered user'

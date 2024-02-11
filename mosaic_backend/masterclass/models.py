@@ -1,14 +1,19 @@
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
 from django.db import models
-from django.utils import timezone
-from django.contrib.auth import get_user_model
+
 from mosaic.business_logic import DummyTeacher
-from django.core.exceptions import ValidationError
 
 User = get_user_model()
 
 
-def get_or_create_dummy_teacher():
+def get_or_create_dummy_teacher() -> User:
+    """Method creates a dummy teacher instance to populate masterclasses
+
+    Returns:
+        User: an instance of a User with a role set to a Teacher
+    """
     return get_user_model().objects.get_or_create(
         username=DummyTeacher.username,
         first_name=DummyTeacher.first_name,
@@ -46,7 +51,7 @@ class MasterclassType(models.Model):
 
 
 class Masterclass(models.Model):
-    CURRENCY_CHIOCE = [('тенге', 'тенге'), ('руб.', 'руб.'), ('eur', 'eur')]
+    CURRENCY_CHIOCE = [('₸', 'тенге'), ('₽', 'рубли'), ('€', 'евро')]
     course_type = models.ForeignKey(MasterclassType,
                                     on_delete=models.CASCADE,
                                     related_name='masterclasses',
@@ -60,8 +65,8 @@ class Masterclass(models.Model):
     currency = models.CharField(choices=CURRENCY_CHIOCE,
                                 max_length=20,
                                 default='тенге')
-    time_start = models.DateTimeField(default=timezone.now)
-    time_end = models.DateTimeField(default=timezone.now)
+    time_start = models.DateTimeField()
+    time_end = models.DateTimeField()
     teacher = models.ForeignKey(User,
                                 related_name='masterclasses',
                                 on_delete=models.SET(
@@ -81,7 +86,6 @@ class Masterclass(models.Model):
 
     def __str__(self) -> str:
         return (
-            f'Курс {self.course_type} / {self.title} '
+            f'Course {self.title} (id {self.id}) '
             f'at {self.time_start.strftime("%x")} '
-            f'(timezone {self.time_start.tzinfo})'
         )

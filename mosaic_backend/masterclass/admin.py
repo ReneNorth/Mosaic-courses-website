@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from masterclass.models import Masterclass, MasterclassType
 from booking.models import Booking, ReservationAdmin
+from masterclass.models import Masterclass, MasterclassType
 
 
 @admin.register(MasterclassType)

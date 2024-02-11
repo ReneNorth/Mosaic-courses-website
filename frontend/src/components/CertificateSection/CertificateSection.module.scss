@@ -141,6 +141,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
 
     input[type="checkbox"] {
       position: absolute;
@@ -196,6 +197,12 @@ p {
   font-size: 14px;
   line-height: 19.6px;
 }
-.margin{
+
+.margin {
   margin-top: 5px;
+}
+
+.errorText {
+  margin-top: 5px;
+  min-height: 20px;
 }

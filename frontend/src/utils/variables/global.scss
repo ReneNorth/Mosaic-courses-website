@@ -9,12 +9,23 @@
   --btn-color: #247251;
 
   --bg-green-primary: #CCDAC6;
+  --bg-color-white: #FFF;
 
+  --color-green-primary: #CCDAC6;
+  --color-green-accent: #247251;
+  --color-green-grey: #819286;
+  --color-green-valid: #1E8E0B;
+  --color-green-active: #185F41;
+  --color-white: #FFFFFF;
+  --color-black: #121210;
+  --color-red: #BF0000;
+  --color-background-of-the-error-message: rgba(191, 0, 0, 0.15);
 }
 
 button {
   border: none;
 }
+
 @mixin h2_font {
   font-size: 32px;
   font-family: var(--font-primary);
@@ -32,3 +43,7 @@ $breakpoint-mobile: 550px;
 //   // width: 400px;
 //   transform: scale(1.2) !important;
 // }
+
+$base-layer: 0;
+$layer-of-decoration: 1;
+$layer-under-content: -1;

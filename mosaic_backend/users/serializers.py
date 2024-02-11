@@ -1,10 +1,9 @@
 import logging
 
-from django.shortcuts import get_object_or_404
-from django.contrib.auth.hashers import make_password
 from django.contrib.auth import get_user_model
+from django.contrib.auth.hashers import make_password
+from django.shortcuts import get_object_or_404
 from rest_framework import serializers
-
 
 User = get_user_model()
 log = logging.getLogger(__name__)
@@ -14,7 +13,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email', 'id', 'username', 'first_name',
+        fields = ['email', 'id', 'first_name',
                   'last_name', ]
 
     def validate_role(self, value):
@@ -35,7 +34,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email', 'id', 'username', 'first_name',
+        fields = ['email', 'id', 'first_name',
                   'last_name', 'password', 'phone', 'general_agreement',
                   'markcomm_agreement']
         lookup_field = 'username'
@@ -44,13 +43,14 @@ class CustomUserSerializer(serializers.ModelSerializer):
                         'markcomm_agreement': {'required': True}}
 
     def create(self, validated_data):
-        user = User(email=validated_data['email'],
-                    first_name=validated_data['first_name'],
-                    last_name=validated_data['last_name'],
-                    phone=validated_data['phone'],
-                    general_agreement=validated_data['general_agreement'],
-                    markcomm_agreement=validated_data['markcomm_agreement'],
-                    password=make_password(validated_data['password']))
-        user.set_password(validated_data['password'])
-        user.save()
+        validated_data['password'] = make_password(validated_data['password'])
+        user = super().create(validated_data)
         return user
+
+
+class EmailbyUidUserSerializer(serializers.ModelSerializer):
+    """Returns just a user's email."""
+
+    class Meta:
+        model = User
+        fields = ['email', ]

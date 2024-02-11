@@ -1,0 +1,127 @@
+@use "../../utils/variables/global.scss";
+
+.section {
+    padding-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.block {
+    padding: 0;
+    max-width: 1280px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 110px;
+}
+
+.formContainer {
+    width: 620px;
+    height: 760px;
+    border-radius: 20px;
+    background-color: var(--bg-color-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: global.$base-layer;
+    box-sizing: border-box;
+}
+
+.responseStep {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.list {
+    padding: 55px;
+    min-width: 510px;
+    margin: 0;
+    display: flex;
+    justify-content: left;
+    align-items: baseline;
+    list-style-type: none;
+}
+
+.step {
+    text-decoration: none;
+    font-family: var(--font-primary);
+    font-weight: 400;
+    line-height: 47px;
+    font-size: 17px;
+    color: var(--color-green-grey);
+    margin-left: auto
+}
+
+.titleActivate {
+    text-align: center;
+    font-family: var(--font-primary);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 135%;
+    color: var(--text-color);
+    padding: 105px 55px 20px 55px;
+}
+
+.text {
+    width: 510px;
+    height: 54px;
+    font-family: var(--font-primary);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 135%;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.activateButtonWrapper {
+    padding-top: 63px;
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+
+    .step {
+        font-size: 14px;
+        line-height: 140%;
+        letter-spacing: 0.56px;
+    }
+
+    .formContainer {
+        margin: 0 20px;
+        width: 100%;
+        height: 100%;
+        padding: 31px 20px;
+    }
+
+    .list {
+        min-width: 100%;
+        padding: 0;
+        padding-top: 8px;
+    }
+
+    .titleActivate {
+        font-size: 20px;
+        padding: 38px 0 20px 0;
+        
+    }
+
+    .activateButtonWrapper {
+        padding-top: 19px;
+        width: 280px;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 12px;
+    }
+
+    .text {
+        width: 100%;
+        height: 100%;
+        font-size: 16px;
+        padding-bottom: 18px;
+    }
+
+}

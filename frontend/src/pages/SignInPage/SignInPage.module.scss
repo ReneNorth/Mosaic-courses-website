@@ -1,0 +1,154 @@
+@use "../../utils/variables/global.scss";
+
+.section {
+  padding-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.block {
+  padding: 0;
+  max-width: 1280px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 110px;
+}
+
+.formContainer {
+  position: relative;
+  width: 620px;
+  height: 760px;
+  border-radius: 20px;
+  background-color: var(--bg-color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: global.$base-layer;
+  box-sizing: border-box;
+}
+
+.inputsWrapper {
+  width: 510px;
+}
+
+.buttonWrapper {
+  padding-top: 47px;
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 135%;
+  color: var(--text-color);
+  padding: 44px 55px 64px 55px;
+}
+
+.list {
+  padding: 55px;
+  min-width: 510px;
+  margin: 0;
+  display: flex;
+  justify-content: left;
+  align-items: baseline;
+  list-style-type: none;
+}
+
+.link {
+  text-decoration: none;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  padding: 14px;
+  line-height: 47px;
+  font-size: 17px;
+  color: var(--color-green-grey);
+}
+
+.linkText {
+  width: 510px;
+  height: 23px;
+  font-family: var(--font-primary);
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 135%;
+  color: var(--color-green-accent);
+  text-align: right;
+  letter-spacing: 0.68px;
+}
+
+.errorMessage {
+  box-sizing: border-box;
+  position: absolute;
+  top: 134px;
+  left: 55px;
+  width: 510px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background-color: var(--color-background-of-the-error-message);
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: 0.56px;
+  color: var(--text-color);
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+
+  .formContainer {
+    margin: 0 20px;
+    width: 100%;
+    height: 100%;
+    padding: 40px 20px;
+  }
+
+  .list {
+    min-width: 100%;
+    padding: 0;
+    padding-top: 8px;
+  }
+
+  .inputsWrapper {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 20px;
+    padding: 46px 0 30px 0;
+  }
+
+  .buttonWrapper {
+    padding-top: 48px;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .linkText {
+    width: 100%;
+    height: 100%;
+    font-size: 15px;
+    line-height: 135%;
+    text-align: right;
+    letter-spacing: 0.6px;
+    padding-right: 10px;
+    box-sizing: border-box;
+  }
+
+  .errorMessage {
+    position: static;
+    line-height: 135%;
+    width: 100%;
+    margin-top: 45px;
+    letter-spacing: unset;
+  }
+
+  .titleError {
+    padding-top: 32px;
+  }
+}

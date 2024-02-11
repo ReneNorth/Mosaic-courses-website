@@ -8,11 +8,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 LOCAL_DEV = False
 
-
+# latest change validation
 KEY_ENV = os.getenv('SECRET_KEY')
 SECRET_KEY = f'{KEY_ENV}'
 ALLOWED_HOSTS = ['web', '127.0.0.1', '127.0.0.1:8000', 'localhost',
-                 'tessera.hopto.org']
+                 'tessera.hopto.org', 'localhost:8000', ]
 
 
 INSTALLED_APPS = [
@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'mdeditor',
     'corsheaders',
     'drf_api_logger',
+    'django_extensions',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +62,11 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/api/.*$'
 CSRF_TRUSTED_ORIGINS = ['http://localhost',
                         'http://localhost:3000',
-                        'https://tessera.hopto.org', ]
+                        'http://localhost:8000',
+                        'http://localhost:8000/register',
+                        'https://tessera.hopto.org',
+                        'https://tesseramosaic.art',
+                        ]
 
 
 ROOT_URLCONF = 'mosaic.urls'
@@ -121,12 +127,12 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    # },
 ]
 
 
@@ -152,10 +158,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
 
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+SITE_NAME = 'Tessera Mosaic'
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')  # directory for emails
+
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        'rest_framework.permissions.AllowAny',
     ],
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -165,19 +175,15 @@ REST_FRAMEWORK = {
 
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 6,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
-DJOSER = {
-    'LOGIN_FIELD': 'email',
-    'HIDE_USERS': True,
-    'SERIALIZERS': {
-        'user_create': 'users.serializers.CustomUserSerializer',
-        'user': 'users.serializers.CustomUserSerializer',
-    },
-    'PERMISSIONS': {
-        'user': ['rest_framework.permissions.AllowAny'],
-        'user_list': ['rest_framework.permissions.AllowAny'],
-    }
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Tessera Mosaic',
+    'DESCRIPTION': 'Website for a mosaic school',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
 }
 
 
@@ -185,6 +191,29 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=15),
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
+DJOSER = {
+    'LOGIN_FIELD': 'email',
+    'HIDE_USERS': True,
+    'SEND_ACTIVATION_EMAIL': True,
+    'SEND_CONFIRMATION_EMAIL': True,
+    'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
+    'PASSWORD_RESET_CONFIRM_URL': 'password-reset/{uid}/{token}',
+    'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': True,
+    "ACTIVATION_URL": "activate/{uid}/{token}",
+    'SERIALIZERS': {
+        'user_create': 'users.serializers.CustomUserSerializer',
+        'user': 'users.serializers.CustomUserSerializer',
+    },
+    # change the email templates later
+    # 'EMAIL': {
+    #     'activation': 'djoser.email.ActivationEmail',
+    # },
+    'PERMISSIONS': {
+        'user': ['rest_framework.permissions.AllowAny'],
+        'user_list': ['rest_framework.permissions.AllowAny'],
+    }
+}
+
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
@@ -251,4 +280,10 @@ LOGGING = {
         },
         'django.server': DEFAULT_LOGGING['loggers']['django.server'],
     }
+}
+
+
+GRAPH_MODELS = {
+    'all_applications': True,
+    'group_models': True,
 }

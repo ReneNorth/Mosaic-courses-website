@@ -1,0 +1,45 @@
+@use "../../utils/variables/global.scss";
+
+.imgContainer {
+  position: relative;
+  min-width: 500px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 760px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.figureWrapper {
+  position: absolute;
+  // z-index: 2;
+  display: flex;
+  left: 210px;
+}
+
+.figure {
+  display: block;
+  max-width: 340px;
+  margin-left: auto;
+  margin-right: 0;
+  // z-index: 2;
+}
+
+.figureBorder {
+  position: absolute;
+  right: 7px;
+  width: 350px;
+  height: 347px;
+  border: 1px solid var(--color-black);
+  border-radius: 200px 50px 50px 50px;
+  z-index: global.$layer-under-content;
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .imgContainer {
+    display: none;
+  }
+}

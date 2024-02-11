@@ -55,7 +55,7 @@ class GiftCert(models.Model):
     status = models.CharField(max_length=10,
                               choices=STATUS_MODEL,
                               default=ISSUED)
-    date_created = models.DateField(auto_now_add=True)
+    date_issued = models.DateField(auto_now_add=True)
 
     def __str__(self) -> str:
         """Returns gift cert as class str repr."""
