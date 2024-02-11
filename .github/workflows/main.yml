@@ -3,10 +3,7 @@ name: Mosaic-app workflow
 on:
   push:
     branches:
-      - main
-      - dev
-      - ci/**
-
+      - "**"
 jobs:
   backend_tests:
     runs-on: ubuntu-latest
