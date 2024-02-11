@@ -30,7 +30,7 @@ jobs:
           pip install flake8==6.0.0
           pip install -r ./mosaic_backend/requirements.txt
         # run: python manage.py migrate
-        #
+        # #
       # - name: Run migrations
       - name: Test with flake8 and django tests
         env:
