@@ -3,7 +3,7 @@ name: Mosaic-app workflow
 on:
   push:
     branches:
-      - *
+      - "*"
 
 jobs:
   backend_tests:
