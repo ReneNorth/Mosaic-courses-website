@@ -3,8 +3,6 @@ import django_filters
 from blog.models import Post
 from marketplace.models import Artwork
 
-# some random test change
-
 
 class ArtworksFilter(django_filters.FilterSet):
     author = django_filters.CharFilter(field_name="author")
