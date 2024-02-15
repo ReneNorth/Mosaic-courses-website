@@ -8,14 +8,13 @@ from mosaic.business_logic import DummyTeacher
 User = get_user_model()
 
 
-def get_or_create_dummy_teacher() -> User:
+def get_or_create_dummy_teacher():
     """Method creates a dummy teacher instance to populate masterclasses
 
     Returns:
         User: an instance of a User with a role set to a Teacher
     """
-    return get_user_model().objects.get_or_create(
-        username=DummyTeacher.username,
+    return User.objects.get_or_create(
         first_name=DummyTeacher.first_name,
         last_name=DummyTeacher.last_name,
         is_staff=DummyTeacher.is_staff,
@@ -48,6 +47,18 @@ class MasterclassType(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=50, unique=True, verbose_name='Tag')
+    slug = models.SlugField(max_length=50, unique=True, verbose_name='Slug')
+
+    class Meta:
+        ordering = ['-id']
+
+    def __str__(self) -> str:
+        """Return the name field of the model."""
+        return self.name
 
 
 class Masterclass(models.Model):
@@ -89,3 +100,18 @@ class Masterclass(models.Model):
             f'Course {self.title} (id {self.id}) '
             f'at {self.time_start.strftime("%x")} '
         )
+
+
+class MasterclassTypeCategory(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,
+                                 related_name='tags')
+    masterclass_type = models.ForeignKey(Masterclass, on_delete=models.CASCADE)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['category', 'masterclass_type'],
+                                    name='unique category-masterclass pair')
+        ]
+
+    def __str__(self):
+        return f'{self.category} -> {self.masterclass_type}'
