@@ -32,32 +32,6 @@ const config = {
               }
             ],
           },
-          {
-            test: /\.css$/,
-            use: [
-              'style-loader',
-              {
-                loader: 'css-loader',
-                options: { importLoaders: 1 }
-              },
-              {
-                // Gets options from `postcss.config.js` in your project root
-                loader: 'postcss-loader',
-                options: { implementation: require.resolve('postcss') }
-              }
-            ],
-          },
-          {
-            test: /\.s[ac]ss$/i,
-            use: [
-              "style-loader",
-              "css-loader",
-              {
-                loader: "sass-loader",
-                options: { implementation: require.resolve("sass") }
-              },
-            ],
-          },
         ]
       }
     },

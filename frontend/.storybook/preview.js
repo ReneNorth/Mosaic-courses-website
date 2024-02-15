@@ -15,7 +15,7 @@ const preview = {
       values: [
         {
           name: 'main',
-          value: '#f0ece2',
+          value: '#f5f4f1',
         },
       ],
     },

@@ -14,12 +14,9 @@ describe('LogInPageDecorationImg Component', () => {
     expect(decorationElement).toHaveClass('imgContainer');
   });
   test('renders the correct images', () => {
-    render(<LogInPageDecorationImg data-testid="pageDecorationImg" />);
-    const imageOneElement = screen.getByAltText('фоновая картинка №1');
-    expect(imageOneElement).toHaveAttribute('src', 'register_img-one.png');
-
-    const imageTwoElement = screen.getByAltText('фоновая картинка №2');
-    expect(imageTwoElement).toHaveAttribute('src', 'register_img-two.png');
+    const { container } = render(<LogInPageDecorationImg data-testid="pageDecorationImg" />);
+    expect(container.getElementsByClassName('image')[0]).toHaveAttribute('src', 'register_img-one.png');
+    expect(container.getElementsByClassName('figure')[0]).toHaveAttribute('src', 'register_img-two.png');
   });
   test('applies the correct CSS classes to nested elements', () => {
     render(<LogInPageDecorationImg data-testid="pageDecorationImg" />);

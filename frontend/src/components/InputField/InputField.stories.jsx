@@ -1,12 +1,14 @@
 import React from 'react';
 import { InputField } from './InputField';
 import { Button } from '../Button/Button';
-import useFormValidation from '../../hooks/useFormValidation';
+import { useFormValidation } from '../../hooks/useFormValidation';
 import cls from './InputField.module.scss';
 
 /**
- * Для использования поля ввода данных, компонент `InputField` помещается в форму и подключается через `props` к функции `useFormValidation`. Данная функция осуществляет валидацию поля ввода с выводом булевого значения в переменную `isValid` которую можно подключить к кнопке, что и показанно в данных историях .
- */
+ * Для использования поля ввода данных, компонент `InputField` помещается в форму и подключается через `props` к функции `useFormValidation`.
+ *  Данная функция осуществляет валидацию поля ввода с выводом булевого значения в переменную `isValid` которую можно подключить к кнопке,
+ *  что и показанно в данных историях .
+*/
 export default {
   title: 'UI-kit/InputField',
   component: InputField,
@@ -151,7 +153,9 @@ PasswordInputField.args = {
 };
 
 /**
- * В форме регистрации используется двойное поле ввода пароля которое осуществляет проверку точности ввода пароля пользователем. Для данной реализации необходимо первое поле пароля вывести стандартным способом, а во второй компонент `InputField` передать `props` с типом: `type=”repeatPassword”`.
+ * В форме регистрации используется двойное поле ввода пароля которое осуществляет проверку точности ввода пароля пользователем.
+ *  Для данной реализации необходимо первое поле пароля вывести стандартным способом, а во второй компонент `InputField` передать `props` с типом:
+ *  `type=”repeatPassword”`.
  */
 export function DoublePasswordInputField(args) {
   const {

@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import cls from './CertificateSection.module.scss';
-import useFormValidation from '../../hooks/useFormValidation';
+import { useFormValidation } from '../../hooks/useFormValidation';
 import { Button } from '../Button/Button';
 import { api } from '../../utils/api';
 

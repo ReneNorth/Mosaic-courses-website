@@ -8,10 +8,10 @@ export const LogInPageDecorationImg = ({ ...props }) => {
       <div className={cls.wrapper}>
         <div className={cls.plug} />
         <div className={cls.figureWrapper}>
-          <img className={cls.figure} src={imageTwo} alt="фоновая картинка №2" />
+          <img className={cls.figure} src={imageTwo} alt="" />
           <div className={cls.figureBorder} />
         </div>
-        <img className={cls.image} src={imageOne} alt="фоновая картинка №1" />
+        <img className={cls.image} src={imageOne} alt="" />
       </div>
     </div>
   );

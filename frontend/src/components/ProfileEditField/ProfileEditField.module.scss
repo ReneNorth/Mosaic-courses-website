@@ -1,0 +1,91 @@
+@use "../../utils/variables/global.scss";
+
+.line {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 0;
+  border-top: 1px solid var(--color-green-grey);
+
+  &:last-child {
+    border-bottom: 1px solid var(--color-green-grey);
+  }
+}
+
+.lineTitle {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-primary);
+  color: var(--text-color);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 135%;
+  padding-bottom: 16px;
+}
+
+.fieldPlaceholder {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-primary);
+  color: var(--text-color);
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 135%;
+}
+
+.editButton {
+  all: unset;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-primary);
+  color: var(--color-green-accent);
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 135%;
+  transition: .3s;
+
+  &:hover {
+    color: var(--color-green-secondary);
+  }
+}
+
+.editButtonActive {
+  position: relative;
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .line {
+    padding: 24px 0px;
+  }
+
+  .lineTitle {
+    font-size: 16px;
+    padding-bottom: 12px;
+
+  }
+
+  .fieldPlaceholder {
+    font-size: 16px;
+  }
+
+  .editButton {
+    font-size: 16px;
+  }
+
+  .editButtonActive {
+    position: absolute;
+    top: 33px;
+    right: 0;
+  }
+
+  .lineTitleActive{
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+}

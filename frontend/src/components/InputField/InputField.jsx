@@ -30,6 +30,15 @@ export const InputField = ({
       maxLength: '25',
       minLength: '2',
     },
+    surname: {
+      type: 'text',
+      name: 'surname',
+      placeholder: 'Фамилия*',
+      pattern: '[ a-zA-Z\u0400-\u04ff]{2,}',
+      errorText: 'Фамилия должна быть не менее 2-x символов',
+      maxLength: '25',
+      minLength: '2',
+    },
     tel: {
       type: 'tel',
       name: 'phone',

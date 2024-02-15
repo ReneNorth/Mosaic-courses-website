@@ -7,10 +7,10 @@ import { InputField } from '../../components/InputField/InputField';
 import { InputFieldPhone } from '../../components/InputFieldPhone/InputFieldPhone';
 import { CheckBoxField } from '../../components/CheckBoxField/CheckBoxField';
 import { SignHeaderLinks } from '../../components/SignHeaderLinks/SignHeaderLinks';
-import useFormValidation from '../../hooks/useFormValidation';
+import { useFormValidation } from '../../hooks/useFormValidation';
 import { registerUser, resendActivationEmail } from '../../services/slices/authSlice';
 import { ButtonCounter } from '../../components/ButtonCounter/ButtonCounter';
-import { LogInPageDecoration } from '../../components/LogInPageDecoration/LogInPageDecoration';
+import { RectangularPageDecoration } from '../../components/RectangularPageDecoration/RectangularPageDecoration';
 import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/LogInPageDecorationImg';
 
 export function RegisterPage() {
@@ -157,7 +157,7 @@ export function RegisterPage() {
 
   return (
     <section className={cls.section}>
-      <LogInPageDecoration />
+      <RectangularPageDecoration />
       <div className={cls.block}>
         <form className={cls.formContainer} noValidate>
           { dataEntryStep

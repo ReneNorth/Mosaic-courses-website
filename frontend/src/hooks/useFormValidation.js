@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
-const useFormValidation = () => {
+export const useFormValidation = () => {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
@@ -73,5 +73,3 @@ const useFormValidation = () => {
     handlePhoneValidation,
   };
 };
-
-export default useFormValidation;

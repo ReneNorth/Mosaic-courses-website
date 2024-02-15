@@ -1,0 +1,137 @@
+@use "../../utils/variables/global.scss";
+
+.section {
+    padding-top: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.block {
+    padding: 0;
+    max-width: 1280px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 840px;
+}
+
+.title {
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-primary);
+    color: var(--text-color);
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 135%;
+}
+
+.subTitle {
+    padding: 0 0 48px 0;
+    margin: 0;
+    font-family: var(--font-primary);
+    color: var(--text-color);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 135%;
+}
+
+.line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 0;
+    border-top: 1px solid var(--color-green-grey);
+
+    &:last-child {
+        border-bottom: 1px solid var(--color-green-grey);
+    }
+}
+
+.lineTitle {
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-primary);
+    color: var(--text-color);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 135%;
+}
+
+.titleWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    padding: 0;
+    padding-bottom: 24px;
+    align-items: center;
+}
+
+.backButton {
+    width: 44px;
+    height: 44px;
+    all: unset;
+    cursor: pointer;
+    display: none;
+}
+
+@media screen and (max-width: global.$breakpoint-small-laptop) {
+    .section {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+@media screen and (max-width: global.$breakpoint-xsmall-laptop) {
+    .backButton {
+        display: flex;
+    }
+
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+    .section {
+        padding-top: 18px;
+    }
+
+    .title {
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .titleWrapper {
+        padding-bottom: 20px;
+    }
+
+    .subTitle {
+        font-size: 16px;
+        padding: 0 0 28px 0;
+    }
+
+    .formContainer {
+        width: 320px;
+
+        button {
+            width: 100%;
+        }
+    }
+
+    .lineTitle {
+        font-size: 16px;
+    }
+
+}

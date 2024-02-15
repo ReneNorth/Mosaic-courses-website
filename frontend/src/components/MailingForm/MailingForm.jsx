@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button } from '../Button/Button';
 import { api } from '../../utils/api';
 
-import useFormValidation from '../../hooks/useFormValidation';
+import { useFormValidation } from '../../hooks/useFormValidation';
 import cls from './MailingForm.module.scss';
 
 export const MailingForm = () => {

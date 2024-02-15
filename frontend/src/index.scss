@@ -2,7 +2,9 @@ body {
   margin: 0 auto;
   max-width: 1920px;
   width: 100%;
-  background-color: #F0ECE2;
+  background-color: var(--color-background-color);
   overflow-x: hidden;
   position: relative;
+  overflow-y: auto !important;
+  padding: 0 !important;
 }
