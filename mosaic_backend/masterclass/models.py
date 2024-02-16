@@ -1,11 +1,15 @@
+import logging
+
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.db import IntegrityError
 
 from mosaic.business_logic import DummyTeacher
 
 User = get_user_model()
+log = logging.getLogger(__name__)
 
 
 def get_or_create_dummy_teacher():
@@ -14,15 +18,25 @@ def get_or_create_dummy_teacher():
     Returns:
         User: an instance of a User with a role set to a Teacher
     """
-    return User.objects.get_or_create(
-        first_name=DummyTeacher.first_name,
-        last_name=DummyTeacher.last_name,
-        is_staff=DummyTeacher.is_staff,
-        general_agreement=DummyTeacher.general_agreement,
-        role=DummyTeacher.role,
-        email=DummyTeacher.email,
-        phone=DummyTeacher.phone
-    )[0]
+    try:
+        dummy_teacher = User.objects.get_or_create(
+            first_name=DummyTeacher.first_name,
+            last_name=DummyTeacher.last_name,
+            is_staff=DummyTeacher.is_staff,
+            general_agreement=DummyTeacher.general_agreement,
+            role=DummyTeacher.role,
+            email=DummyTeacher.email,
+            phone=DummyTeacher.phone)[0]
+        return dummy_teacher
+    except IntegrityError as e:
+        log.error(
+            'Got DB integrity error while'
+            f'creating or assigning dummy teacher: {e}')
+        raise
+    except Exception as e:
+        log.error(
+            f"Other errors while creating or assigning dummy teacher: {e}")
+        raise
 
 
 class MasterclassType(models.Model):
