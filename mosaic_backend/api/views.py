@@ -12,7 +12,7 @@ from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
-from api.filters import ArtworksFilter, PostsFilter
+from api.filters import ArtworksFilter, PostsFilter, MasterclassTypeFilter
 from api.serializers import (ArtworkSerializer, BookingSerializer,
                              EmailMainSerializer, GiftCertSerializer,
                              MainCarouselSerializer, MasterclassSerializer,
@@ -90,8 +90,9 @@ class MasterclassTypeReadOnlyViewSet(viewsets.ModelViewSet):
     queryset = MasterclassType.objects.all()
     permission_classes = [AllowAny, ]
     filter_backends = [DjangoFilterBackend, ]
-    filterset_fields = ['slug', ]
-    lookup_field = 'slug'
+    filterset_class = MasterclassTypeFilter
+    # filterset_fields = ['slug', ]
+    # lookup_field = 'slug'
 
     @action(detail=True, methods=['get', ])
     def related_masterclasses(self, request, slug) -> Response:

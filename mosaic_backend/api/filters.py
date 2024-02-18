@@ -2,6 +2,7 @@ import django_filters
 
 from blog.models import Post
 from marketplace.models import Artwork
+from masterclass.models import MasterclassType
 
 
 class ArtworksFilter(django_filters.FilterSet):
@@ -34,3 +35,12 @@ class PostsFilter(django_filters.rest_framework.FilterSet):
         fields = [
             "tags",
         ]
+
+
+class MasterclassTypeFilter(django_filters.FilterSet):
+    category = django_filters.filters.AllValuesMultipleFilter(
+        field_name='category__slug')
+
+    class Meta:
+        model = MasterclassType
+        fields = ['category']

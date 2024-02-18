@@ -35,14 +35,40 @@ def get_or_create_dummy_teacher():
         raise
     except Exception as e:
         log.error(
-            f"Other errors while creating or assigning dummy teacher: {e}")
+            'Got Non-DB integrity errors'
+            f'while creating or assigning dummy teacher: {e}')
         raise
+
+
+class Category(models.Model):
+    CATEGORY_FILTER_CHOICES = {
+        'FOR_WHOM': "For whom ths course",
+        'LENGTH': "Length",
+        'EXP': "Required or recommended experience",
+        'STYLE': "Style of mosaic",
+    }
+    name = models.CharField(max_length=50, unique=True, verbose_name='Name')
+    slug = models.SlugField(max_length=50, unique=True, verbose_name='Slug')
+    category_filter = models.CharField(
+        max_length=20,
+        choices=CATEGORY_FILTER_CHOICES
+    )
+
+    class Meta:
+        ordering = ['-id']
+        verbose_name_plural = 'Categories'
+
+    def __str__(self) -> str:
+        """Return the name field of the model."""
+        return self.name
 
 
 class MasterclassType(models.Model):
     title = models.CharField(max_length=50, verbose_name='Title')
     slug = models.SlugField(max_length=15, verbose_name='Link')
     image = models.ImageField(upload_to='masterclasses/')
+    category = models.ManyToManyField(
+        Category, through='MasterclassTypeCategory')
     max_guests = models.PositiveSmallIntegerField(
         verbose_name='Max number of guests'
     )
@@ -61,18 +87,6 @@ class MasterclassType(models.Model):
 
     def __str__(self) -> str:
         return self.title
-
-
-class Category(models.Model):
-    name = models.CharField(max_length=50, unique=True, verbose_name='Tag')
-    slug = models.SlugField(max_length=50, unique=True, verbose_name='Slug')
-
-    class Meta:
-        ordering = ['-id']
-
-    def __str__(self) -> str:
-        """Return the name field of the model."""
-        return self.name
 
 
 class Masterclass(models.Model):
@@ -118,14 +132,18 @@ class Masterclass(models.Model):
 
 class MasterclassTypeCategory(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
-                                 related_name='tags')
-    masterclass_type = models.ForeignKey(Masterclass, on_delete=models.CASCADE)
+                                 related_name='categories')
+    masterclass_type = models.ForeignKey(
+        MasterclassType, on_delete=models.CASCADE,
+        related_name='masterclass_type_categories')
 
     class Meta:
         constraints = [
             models.UniqueConstraint(fields=['category', 'masterclass_type'],
                                     name='unique category-masterclass pair')
         ]
+        verbose_name_plural = 'Masterclass Type Categories'
 
     def __str__(self):
-        return f'{self.category} -> {self.masterclass_type}'
+        return (f'Masterclass Type: {self.masterclass_type.title},'
+                f'Category: {self.category.name}')
