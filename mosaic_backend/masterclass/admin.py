@@ -40,3 +40,4 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(MasterclassTypeCategory)
 class MasterclassTypeCategoryAdmin(admin.ModelAdmin):
     list_display = ['category', 'masterclass_type', ]
+    list_filter = ['category', 'masterclass_type', ]

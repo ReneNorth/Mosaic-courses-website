@@ -6,12 +6,12 @@ from masterclass.models import MasterclassType
 
 
 class ArtworksFilter(django_filters.FilterSet):
-    author = django_filters.CharFilter(field_name="author")
+    author = django_filters.CharFilter(field_name='author')
     author_type = django_filters.filters.AllValuesMultipleFilter(
-        field_name="author_type"
+        field_name='author_type'
     )
     is_on_main = django_filters.BooleanFilter(
-        field_name="is_on_main", method="filter_is_on_main"
+        field_name='is_on_main', method='filter_is_on_main'
     )
 
     def filter_is_on_main(self, queryset, *args):
@@ -20,26 +20,27 @@ class ArtworksFilter(django_filters.FilterSet):
     class Meta:
         model = Artwork
         fields = [
-            "author",
-            "author_type",
-            "is_on_main",
+            'author',
+            'author_type',
+            'is_on_main',
         ]
 
 
 class PostsFilter(django_filters.rest_framework.FilterSet):
     tags = django_filters.filters.AllValuesMultipleFilter(
-        field_name="tags__slug")
+        field_name='tags__slug')
 
     class Meta:
         model = Post
         fields = [
-            "tags",
+            'tags',
         ]
 
 
 class MasterclassTypeFilter(django_filters.FilterSet):
     category = django_filters.filters.AllValuesMultipleFilter(
-        field_name='category__slug')
+        field_name='category__slug',
+        conjoined=True)
 
     class Meta:
         model = MasterclassType
