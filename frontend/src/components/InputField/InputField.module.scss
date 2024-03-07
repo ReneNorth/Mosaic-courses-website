@@ -80,3 +80,28 @@ border: none;
   }
 
 }
+
+// Styles for Storybook
+.formContainer {
+  width: 500px;
+  height: 120px;
+  box-sizing: border-box;
+  // background-color: var(--bg-color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: global.$base-layer;
+}
+
+.doublePassword {
+  height: 200px;
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .formContainer {
+    margin: 0 20px;
+    width: 100%;
+    height: 100%;
+    padding: 40px 20px;
+  }
+}

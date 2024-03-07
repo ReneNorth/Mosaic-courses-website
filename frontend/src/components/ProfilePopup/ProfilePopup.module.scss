@@ -1,0 +1,145 @@
+@use "../../utils/variables/global.scss";
+
+.popup {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  background: var(--color-overlay);
+  transition: .5s;
+  z-index: global.$layer-of-popup;
+
+  &_open {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: global.$layer-under-content;
+}
+
+.contentWrapper {
+  padding: 48px 75px 102px;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonClose {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: transparent;
+  cursor: pointer;
+  transition: .5s;
+
+  &:hover {
+    opacity: .7;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--color-white);
+  }
+}
+
+.cancelIcon {
+  display: block;
+}
+
+.content {
+  width: 660px;
+  border-radius: 20px;
+  background-color: var(--color-white);
+  position: relative;
+  z-index: global.$layer-of-popup;
+}
+
+.image {
+  width: 100%;
+  height: 200px;
+  display: block;
+  object-fit: cover;
+  border-radius: 20px 20px 0 0;
+}
+
+.title {
+  margin-bottom: 52px;
+  font-family: 'Raleway', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 43px;
+  text-align: center;
+}
+
+.buttonWrapper {
+  width: 263px;
+  button {
+    width: 100%;
+  }
+}
+
+.linksWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+
+  .popup {
+    align-items: flex-start;
+  }
+
+  .image {
+    height: 97px;
+  }
+
+  .title {
+    margin-bottom: 23px;
+    font-size: 20px;
+    line-height: 27px;
+  }
+
+  .content {
+    width: 100%;
+    border-radius: 20px 20px 20px 20px;
+    margin: 100px 20px 0 20px;
+
+    .buttonClose {
+      top: 10px;
+      right: 10px;
+    }
+  }
+
+  .contentWrapper {
+    padding: 25px 20px 45px 20px;
+  }
+
+  .linksWrapper {
+    gap: 15px;
+  }
+
+  .buttonWrapper {
+    width: 280px;
+  }
+
+}

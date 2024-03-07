@@ -1,0 +1,216 @@
+@use "../../utils/variables/global.scss";
+
+.section {
+    padding-top: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.block {
+    padding: 0;
+    max-width: 1280px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 840px;
+}
+
+.title {
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-primary);
+    color: var(--text-color);
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 135%;
+}
+
+.subTitle {
+    padding: 0 0 48px 0;
+    margin: 0;
+    font-family: var(--font-primary);
+    color: var(--text-color);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 135%;
+}
+
+.line {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 0;
+    border-top: 1px solid var(--color-green-grey);
+
+    &:last-child {
+        border-bottom: 1px solid var(--color-green-grey);
+    }
+}
+
+.lineTitle {
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-primary);
+    color: var(--text-color);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 135%;
+}
+
+.childrenContentWrapper {
+    button {
+        height: unset;
+    }
+}
+
+.childrenContentParagraf {
+    margin: 0;
+    padding: 16px 0;
+    font-family: var(--font-primary);
+    color: var(--text-color);
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 135%;
+    width: 100%;
+    max-width: 510px;
+}
+
+.buttonWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.editButton {
+    all: unset;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-primary);
+    color: var(--color-green-accent);
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 135%;
+
+    &:hover {
+        color: var(--color-green-secondary);
+    }
+}
+
+.backButton {
+    width: 44px;
+    height: 44px;
+    all: unset;
+    cursor: pointer;
+    display: none;
+}
+
+.titleWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    padding: 0;
+    padding-bottom: 24px;
+    align-items: center;
+}
+
+@media screen and (max-width: global.$breakpoint-small-laptop) {
+    .section {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+@media screen and (max-width: global.$breakpoint-xsmall-laptop) {
+    .backButton {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+    .section {
+        padding-top: 18px;
+    }
+
+    .title {
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .titleWrapper {
+        padding-bottom: 20px;
+    }
+
+    .subTitle {
+        font-size: 16px;
+        padding: 0 0 28px 0;
+    }
+
+    .childrenContentWrapper {
+        width: calc(100vw - 60px);
+        button {
+            white-space: nowrap;
+            height: 44px;
+            width: 100%;
+            padding: 10px 0;
+        }
+    }
+
+    .line {
+        padding: 33px 0px;
+
+    }
+    .lineActive {
+        padding-bottom: 24px;
+    }
+
+    .lineTitle {
+        font-size: 16px;
+        // padding-bottom: 12px;
+
+    }
+
+    //   .fieldPlaceholder {
+    //     font-size: 16px;
+    //   }
+
+    .editButton {
+        font-size: 16px;
+    }
+
+    .editButtonActive {
+        position: absolute;
+        top: 33px;
+        right: 0;
+    }
+
+    // .lineTitleActive {
+    //     padding-top: 10px;
+    //     padding-bottom: 20px;
+    // }
+
+    .childrenContentParagraf {
+        max-width: 320px;
+        padding-bottom: 25px;
+        padding-top: 21px;
+        font-size: 16px;
+    }
+}

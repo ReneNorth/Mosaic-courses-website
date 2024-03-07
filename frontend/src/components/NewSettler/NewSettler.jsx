@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import styles from './NewSettler.module.scss';
 import formImg from '../../images/form_header.png';
-import CancelIcon from '../../images/CancelIcon';
-import CancelIconMobile from '../../images/CancelIconMobile';
+import { CancelIcon } from '../../images/CancelIcon';
+import { CancelIconMobile } from '../../images/CancelIconMobile';
 import { Button } from '../Button/Button';
-import useFormValidation from '../../hooks/useFormValidation';
+import { useFormValidation } from '../../hooks/useFormValidation';
 import { classNames } from '../../helpers/classNames';
 import { api } from '../../utils/api';
 

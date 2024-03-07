@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../helpers/classNames';
 import cls from './PasswordResetConfirm.module.scss';
 import { resetPasswordConfirm } from '../../services/slices/authSlice';
-import { LogInPageDecoration } from '../../components/LogInPageDecoration/LogInPageDecoration';
+import { RectangularPageDecoration } from '../../components/RectangularPageDecoration/RectangularPageDecoration';
 import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/LogInPageDecorationImg';
 import { Button } from '../../components/Button/Button';
-import useFormValidation from '../../hooks/useFormValidation';
+import { useFormValidation } from '../../hooks/useFormValidation';
 import { InputField } from '../../components/InputField/InputField';
 
 export function PasswordResetConfirm() {
@@ -49,7 +49,7 @@ export function PasswordResetConfirm() {
 
   return (
     <section className={cls.section}>
-      <LogInPageDecoration />
+      <RectangularPageDecoration />
       <div className={cls.block}>
         <form className={cls.formContainer} noValidate>
           <div className={classNames(cls.responseStep, { activeResponseStep: passwordResetConfirm }, [])}>

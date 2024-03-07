@@ -1,15 +1,15 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { LogInPageDecoration } from './LogInPageDecoration';
+import { RectangularPageDecoration } from './RectangularPageDecoration';
 import '@testing-library/jest-dom';
 
-describe('LogInPageDecoration Component', () => {
-  test('renders LogInPageDecoration component', () => {
-    render(<LogInPageDecoration data-testid="pageDecoration" />);
+describe('RectangularPageDecoration Component', () => {
+  test('renders RectangularPageDecoration component', () => {
+    render(<RectangularPageDecoration data-testid="pageDecoration" />);
     expect(screen.getByTestId('pageDecoration')).toBeInTheDocument();
   });
   test('applies the correct CSS class', () => {
-    render(<LogInPageDecoration data-testid="pageDecoration" />);
+    render(<RectangularPageDecoration data-testid="pageDecoration" />);
     const decorationElement = screen.getByTestId('pageDecoration');
     expect(decorationElement).toHaveClass('decoration');
   });

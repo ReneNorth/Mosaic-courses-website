@@ -5,9 +5,9 @@ import { Button } from '../../components/Button/Button';
 import { classNames } from '../../helpers/classNames';
 import { InputField } from '../../components/InputField/InputField';
 import { SignHeaderLinks } from '../../components/SignHeaderLinks/SignHeaderLinks';
-import useFormValidation from '../../hooks/useFormValidation';
+import { useFormValidation } from '../../hooks/useFormValidation';
 import { passwordReset } from '../../services/slices/authSlice';
-import { LogInPageDecoration } from '../../components/LogInPageDecoration/LogInPageDecoration';
+import { RectangularPageDecoration } from '../../components/RectangularPageDecoration/RectangularPageDecoration';
 import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/LogInPageDecorationImg';
 import { ButtonCounter } from '../../components/ButtonCounter/ButtonCounter';
 
@@ -47,7 +47,7 @@ export function PasswordResetPage() {
 
   return (
     <section className={cls.section}>
-      <LogInPageDecoration />
+      <RectangularPageDecoration />
       <div className={cls.block}>
         <form className={cls.formContainer} noValidate>
           <ul className={classNames(cls.list, {}, [])}>

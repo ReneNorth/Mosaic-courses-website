@@ -1,72 +1,91 @@
+@use "../../utils/variables/global.scss";
+
+.section {
+  max-width: 1280px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.block {
+  padding-top: 85px;
+  padding-bottom: 324px;
+  display: flex;
+  flex-direction: column;
+}
+
 .title {
-  grid-column: 1;
-  grid-row: 1;
   font-family: var(--font-primary);
   font-style: normal;
   font-weight: 700;
   font-size: 56px;
   line-height: 110%;
+  width: 100%;
+  max-width: 757px;
+}
+
+.span {
+  display: inline-block;
+  padding: 0;
+  font-family: var(--font-secondary);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 58px;
+  line-height: 125%;
+  color: var(--text-color-secondary);
 }
 
 .description {
-  grid-column: 1;
-  margin-top: 28px;
-  max-width: 584px;
+  padding-top: 21px;
+  max-width: 560px;
   font-family: var(--font-primary);
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 135%;
+}
 
-  &:nth-of-type(1) {
-    grid-row: 2;
+.descriptionText {
+  padding-top: 8px;
+}
+
+.decorationWrapper {
+  padding-top: 39px;
+}
+
+@media screen and (max-width: global.$breakpoint-xsmall-laptop) {
+  .section {
+    padding: 0 24px;
   }
 
-  &:nth-of-type(2) {
-    grid-row: 3;
+  .block {
+    padding-bottom: 88px;
   }
 
-  &:last-of-type {
-    margin-top: 10px;
+  .title {
+    font-size: 32px;
+    // line-height: 110%;
+    max-width: 433px;
   }
-}
 
-.span {
-  font-family: var(--font-secondary);
-  font-style: italic;
-  font-weight: 600;
-  font-size: 58px;
-  line-height: 110%;
-  color: var(--text-color-secondary);
-}
+  .span {
+    padding-top: 7px;
+    font-size: 32px;
+    line-height: 110%;
+  }
 
-.route {
-  width: 1280px;
-  display: flex;
-  margin: 244px 0 88px;
-  font-family: var(--font-primary);
-}
+  .description {
+    padding-top: 31px;
+    font-size: 16px;
+    max-width: 310px;
+  }
+  .descriptionText {
+    padding-top: 8px;
+  }
 
-.routeItems {
-  display: flex;
-  gap: 20px;
-}
-
-.routeItem {
-  text-decoration: none;
-  color: #819286;
-  justify-content: center;
-  align-content: center;
-}
-
-.routeItemGreen {
-  text-decoration: none;
-  color: #6aaf12;
-  justify-content: center;
-  align-content: center;
-}
-
-.indicator {
-  text-align: center;
-  margin-top: 5px;
+  .decorationWrapper {
+    padding-top: 63px;
+  }
 }
