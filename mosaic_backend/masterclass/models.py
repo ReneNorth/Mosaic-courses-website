@@ -41,11 +41,12 @@ def get_or_create_dummy_teacher():
 
 class Category(models.Model):
     CATEGORY_FILTER_CHOICES = {
-        'FOR_WHOM': 'For whom ths course',
-        'LENGTH': 'Length',
+        'ORDER': 'Specific fields for ordering queryset results',
         'EXP': 'Required or recommended experience',
+        'DURATION': 'Duration of the masterclass: daily, multiple days, etc.',
+        'TARGET_AUDIENCE': 'Target audience of the course',
         'STYLE': 'Style of mosaic',
-        'ORDER': 'Fields for ordering queryset results',
+
     }
     name = models.CharField(max_length=50, unique=True, verbose_name='Name')
     slug = models.SlugField(max_length=50, unique=True, verbose_name='Slug')
