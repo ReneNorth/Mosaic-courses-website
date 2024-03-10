@@ -3,8 +3,7 @@ import logging
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
-from django.db import models
-from django.db import IntegrityError
+from django.db import IntegrityError, models
 
 from mosaic.business_logic import DummyTeacher
 
@@ -13,11 +12,11 @@ log = logging.getLogger(__name__)
 
 
 def get_or_create_dummy_teacher():
-    """Method creates a dummy teacher instance to populate masterclasses
+    '''Method creates a dummy teacher instance to populate masterclasses
 
     Returns:
         User: an instance of a User with a role set to a Teacher
-    """
+    '''
     try:
         dummy_teacher = User.objects.get_or_create(
             first_name=DummyTeacher.first_name,
@@ -42,10 +41,11 @@ def get_or_create_dummy_teacher():
 
 class Category(models.Model):
     CATEGORY_FILTER_CHOICES = {
-        'FOR_WHOM': "For whom ths course",
-        'LENGTH': "Length",
-        'EXP': "Required or recommended experience",
-        'STYLE': "Style of mosaic",
+        'FOR_WHOM': 'For whom ths course',
+        'LENGTH': 'Length',
+        'EXP': 'Required or recommended experience',
+        'STYLE': 'Style of mosaic',
+        'ORDER': 'Fields for ordering queryset results',
     }
     name = models.CharField(max_length=50, unique=True, verbose_name='Name')
     slug = models.SlugField(max_length=50, unique=True, verbose_name='Slug')
@@ -59,7 +59,7 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
 
     def __str__(self) -> str:
-        """Return the name field of the model."""
+        '''Return the name field of the model.'''
         return self.name
 
 

@@ -1,8 +1,8 @@
 from django.contrib import admin
 
 from booking.models import Booking, ReservationAdmin
-from masterclass.models import (Masterclass, MasterclassType,
-                                Category, MasterclassTypeCategory)
+from masterclass.models import (Category, Masterclass, MasterclassType,
+                                MasterclassTypeCategory)
 
 
 @admin.register(MasterclassType)
@@ -14,8 +14,8 @@ class MasterclassTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Masterclass)
 class MasterclassAdmin(admin.ModelAdmin):
-    list_display = ['id', 'course_type', 'title', 'time_start', 'time_end',
-                    'max_guests', 'bookings', 'reservations']
+    list_display = ['id', 'course_type', 'title', 'price', 'time_start',
+                    'time_end', 'max_guests', 'bookings', 'reservations']
     list_filter = ['time_start', ]
     search_fields = ('course_type', 'title', )
 

@@ -3,7 +3,7 @@ import random
 import string
 
 from django.contrib.auth import get_user_model
-from django.db.models import Count
+from django.db.models import Count, Min
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, mixins, status, viewsets
@@ -12,7 +12,7 @@ from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
-from api.filters import ArtworksFilter, PostsFilter, MasterclassTypeFilter
+from api.filters import ArtworksFilter, MasterclassTypeFilter, PostsFilter
 from api.serializers import (ArtworkSerializer, BookingSerializer,
                              EmailMainSerializer, GiftCertSerializer,
                              MainCarouselSerializer, MasterclassSerializer,
@@ -100,6 +100,12 @@ class MasterclassTypeReadOnlyViewSet(viewsets.ModelViewSet):
         masterclass_types = MasterclassType.objects.all().exclude(slug=slug)
         return Response(self.get_serializer(masterclass_types,
                                             many=True).data)
+
+    # def get_queryset(self):
+    #     return MasterclassType.objects.annotate(
+    #         min_price=Min('masterclasses__price'),
+    #         min_date=Min('masterclasses__date')  # Add this line
+    #     ).order_by('min_price', 'min_date')  # Add 'min_date' here
 
 
 class BookingViewSet(viewsets.ModelViewSet):
