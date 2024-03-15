@@ -13,10 +13,14 @@ export const InfoFooter = () => {
         <Logo />
         <ul className={cls.linkList}>
           <li>
-            <Link className={cls.linkTg} to="https://t.me/debobrova" />
+            <Link className={cls.linkVk} to="https://www.vk.com/tessera_mosaic_art/" />
           </li>
           <li>
-            <Link className={cls.linkInstagram} to="https://www.instagram.com/tessera_mosaic_art/" />
+            <Link className={cls.linkTg} to="https://t.me/debobrova" />
+          </li>
+          
+          <li>
+            <Link className={cls.linkFb} to="https://www.facebook.com/tessera_mosaic_art/" />
           </li>
         </ul>
         {/* </div> */}
@@ -27,17 +31,16 @@ export const InfoFooter = () => {
                 О студии
               </Link>
             </li>
-            {/* temporary disabled */}
-            {/* <li className={cls.shop}>
+            <li className={cls.shop}>
               <Link to="/shop" className={cls.navlink}>
                 Магазин
               </Link>
-            </li> */}
-            {/* <li className={cls.gallery}>
+            </li> 
+            <li className={cls.gallery}>
               <Link to="/gallery" className={cls.navlink}>
                 Галерея
               </Link>
-            </li> */}
+            </li>
             <li className={cls.certificates}>
               <Link to="/certificates" className={cls.navlink}>
                 Сертификаты

@@ -38,7 +38,7 @@ export const MailingForm = () => {
               type="email"
               name="email"
               maxLength="256"
-              placeholder="E-MAIL"
+              placeholder="email"
               pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-]+)(\.[a-zA-Z]{2,5}){1,2}$"
             />
             <span>
