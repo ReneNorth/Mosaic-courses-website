@@ -15,7 +15,7 @@ export const MapAndContacts = () => {
         <div className={cls.contactsWrapper}>
           <p className={cls.contactsTitle}>
             Адрес:{' '}
-            <span> г. Москва, м. Менделеевская, ул. Лесная, д. 30, 3 этаж</span>
+            <span> г. Алматы, Казыбек би, 40</span>
           </p>
           <p className={cls.contactsTitle}>
             Часы работы:{' '}
