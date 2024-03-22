@@ -1,16 +1,12 @@
 import { useState } from 'react';
 import * as React from 'react';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import ListItemText from '@mui/material/ListItemText';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Checkbox from '@mui/material/Checkbox';
-import SvgIcon from '@mui/material/SvgIcon';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { classNames } from '../../helpers/classNames';
-import cls from './SelectField.module.scss';
+import SvgIcon from '@mui/material/SvgIcon';
+import { Sorting } from '../../images/Sorting';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -38,18 +34,14 @@ function CustomSvgIcon() {
   );
 }
 
-export const SelectField = ({ placeholder, valuesArray }) => {
+export const SelectFieldSingle = ({ placeholder, valuesArray }) => {
+  const [selectValue, setSelectValue] = useState('');
   const matches = useMediaQuery('(min-width:1100px)');
-  const [selectValue, setSelectValue] = useState([]);
+
   const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setSelectValue(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
+    setSelectValue(event.target.value);
   };
+
   return (
     <FormControl
       sx={{
@@ -60,18 +52,21 @@ export const SelectField = ({ placeholder, valuesArray }) => {
     >
       <InputLabel
         sx={{
+          top: '-4px',
           '&.MuiInputLabel-root': {
             fontFamily: 'var(--font-primary)',
             fontWeight: '500',
             fontSize: '17px',
             lineHeight: '135%',
             color: 'var(--color-black)',
-            marginLeft: '-3px',
           },
         }}
-        id="demo-multiple-checkbox-label"
+        id="demo-simple-select-label"
       >
-        {placeholder}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+          <Sorting />
+          <div>{placeholder}</div>
+        </div>
       </InputLabel>
       <Select
         sx={{
@@ -86,7 +81,7 @@ export const SelectField = ({ placeholder, valuesArray }) => {
             fontSize: '17px',
           },
           '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: 'yellow',
+            // borderColor: 'yellow',
             border: '2px solid var(--color-green-accent)',
           },
           '&:hover .MuiOutlinedInput-input': {
@@ -102,24 +97,20 @@ export const SelectField = ({ placeholder, valuesArray }) => {
             rotate: '180deg',
           },
         }}
-        className={cls.globalSelect}
-        labelId="demo-multiple-checkbox-label"
-        id="demo-multiple-checkbox"
-        multiple
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
         value={selectValue}
+        label={(
+          <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <Sorting />
+            <div>{placeholder}</div>
+          </div>
+        )}
         onChange={handleChange}
         IconComponent={CustomSvgIcon}
-        input={(
-          <OutlinedInput
-            sx={{
-            }}
-            label={placeholder}
-          />
-        )}
-        renderValue={(selected) => selected.join(', ')}
         MenuProps={MenuProps}
       >
-        {valuesArray.map((name) => (
+        {valuesArray.map((element) => (
           <MenuItem
             sx={{
               '&.Mui-selected': {
@@ -132,22 +123,10 @@ export const SelectField = ({ placeholder, valuesArray }) => {
                 backgroundColor: 'var(--color-green-grey-light)',
               },
             }}
-            key={name}
-            value={name}
+            key={element.value}
+            value={element.value}
           >
-            <Checkbox
-              sx={{
-                color: 'var(--color-green-accent)',
-                '&.Mui-checked': {
-                  color: 'var(--color-green-accent)',
-                },
-                '&:hover': {
-                  backgroundColor: 'var(--color-green-grey-light)',
-                },
-              }}
-              checked={selectValue.indexOf(name) > -1}
-            />
-            <ListItemText primary={name} />
+            {element.name}
           </MenuItem>
         ))}
       </Select>

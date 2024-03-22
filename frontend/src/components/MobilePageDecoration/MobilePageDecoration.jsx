@@ -1,6 +1,6 @@
-import cls from './ArcPageDecoration.module.scss';
+import cls from './MobilePageDecoration.module.scss';
 
-export const ArcPageDecoration = ({ decorationImage }) => {
+export const MobilePageDecoration = ({ decorationImage }) => {
   return (
     <div className={cls.container}>
       <img src={`${decorationImage}`} alt="" className={cls.image} />

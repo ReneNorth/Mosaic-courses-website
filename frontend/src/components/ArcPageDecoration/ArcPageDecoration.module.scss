@@ -1,6 +1,6 @@
 @use "../../utils/variables/global.scss";
 
-.right {
+.container {
   border: 1px solid #000;
   box-sizing: border-box;
   width: 426px;
@@ -10,7 +10,7 @@
   top: 16px;
   right: 16px;
 
-  .desktopImage {
+  .image {
     object-fit: cover;
     border-radius: 600px 600px 0px 0px;
     position: relative;
@@ -22,16 +22,23 @@
 }
 
 @media screen and (max-width: global.$breakpoint-xsmall-laptop) {
-  .right {
+  .container {
     width: 220px;
     height: 308px;
+    top: 10px;
+    right: -5px;
   
-    .desktopImage {
+    .image {
       top: 4px;
       left: 8px;
       width: 220px;
       height: 308px;
     }
   }
+}
 
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .container {
+    display: none;
+    }
 }

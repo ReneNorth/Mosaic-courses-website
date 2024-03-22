@@ -69,7 +69,7 @@ class Api {
   }
 
   async getCourses() {
-    const res = await fetch(`${this._url}/api/v1/masterclass_types/`);
+    const res = await fetch(`${this._url}/api/v1/masterclass_types/?limit=4&offset=0`);
     const data = await this.constructor._checkResponse(res);
     if (res.ok) {
       data.results.forEach((course) => {

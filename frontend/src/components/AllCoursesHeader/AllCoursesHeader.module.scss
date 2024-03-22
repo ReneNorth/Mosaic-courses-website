@@ -61,12 +61,12 @@
   }
 
   .block {
+    padding-top: 16px;
     padding-bottom: 88px;
   }
 
   .title {
     font-size: 32px;
-    // line-height: 110%;
     max-width: 433px;
   }
 
@@ -81,11 +81,45 @@
     font-size: 16px;
     max-width: 310px;
   }
+
   .descriptionText {
     padding-top: 8px;
   }
 
   .decorationWrapper {
-    padding-top: 63px;
+    padding-top: 0;
   }
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .section {
+    padding: 0;
+    width: calc(100vw - 40px);
+    justify-content: center;
+  }
+
+  .title {
+    padding-bottom: 20px;
+    font-size: 26px;
+    max-width: 250px;
+  }
+
+  .span {
+    padding-top: 3px;
+    font-size: 28px;
+    line-height: 110%;
+  }
+
+  .description {
+    padding-top: 0;
+    &:first-of-type {
+      padding-top: 20px;
+    }
+  }
+
+  .block {
+    padding-top: 18px;
+    padding-bottom: 80px;
+  }
+
 }

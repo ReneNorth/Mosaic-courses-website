@@ -1,22 +1,43 @@
 @use "../../utils/variables/global.scss";
 
+.mainContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 110px;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 1280px;
+
+  &:hover{
+    box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.6);
+  }
+}
+
 .imgWrapper {
   position: relative;
 }
 
 .img {
+  padding: 2px 2px 0 2px;
   width: 550px;
-  border-radius: 20px;
+  border-radius: 22px;
   max-height: 360px;
   object-fit: cover;
   object-position: center;
 }
 
 .contentWrapper {
-  width: 620px;
+  padding-right: 24px;
+  width: 616px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
 }
 
 .contentTitle {
+  margin: 0;
+  padding: 0;
   font-family: var(--font-primary);
   font-style: normal;
   font-weight: 700;
@@ -30,17 +51,22 @@
 }
 
 .wrapperAtribut {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   display: flex;
-  gap: 81px;
+  gap: 40px;
 }
 
 .priceContainer {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .info {
-  margin-left: 16px;
+  margin: 0;
+  padding: 0;
+  padding-left: 15px;
+  // padding-bottom: 15px;
   align-self: center;
   font-family: var(--font-primary);
   font-style: normal;
@@ -51,8 +77,8 @@
 
 .timeIcon {
   align-self: center;
-  width: 36px;
-  height: 36px;
+  width: 26px;
+  height: 26px;
   background-image: url('../../images/time.svg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -60,26 +86,32 @@
 
 .priceIcon {
   align-self: center;
-  width: 36px;
-  height: 36px;
+  width: 26px;
+  height: 26px;
   background-image: url('../../images/Ic_money.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .description {
+  margin: 0;
+  padding: 0;
   font-family: var(--font-primary);
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
   line-height: 135%;
   color: var(--text-color);
+  max-width: 600px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .btnGroup {
   display: flex;
-  margin-top: 42px;
-  gap: 32px;
+  padding-top: 41px;
+  padding-bottom: 5px;
+  gap: 20px;
 }
 
 .start {
@@ -89,87 +121,172 @@
   padding: 13px 16px;
   background-color: var(--bg-green-primary);
   font-family: var(--font-primary);
-  font-size: 0.875rem;
+  font-size: 14px;
   color: var(--text-color);
   text-align: center;
-  top: -33px;
-  right: -70px;
-  border-radius: 0px 40px 0px 0px;
+  top: 2px;
+  left: 2px;
+  border-radius: 20px 0px 40px 0px;
   display: flex;
   flex-direction: column;
   line-height: 140%;
+  letter-spacing: 0.04em;
 }
 
-@media screen and (max-width: global.$breakpoint-mobile) {
+.buttonWrapper {
+  width: 100%;
+}
+
+@media screen and (max-width: global.$breakpoint-card-curses) {
+
+  .contentWrapper {
+    width: 394px;
+    padding-right: 0;
+  }
+
+  .mainContainer {
+    justify-content: center;
+    max-width: 696px;
+    gap: 20px;
+    &:hover{
+      box-shadow: unset;
+    }
+    
+  }
+
+  .contentTitle {
+    font-size: 20px;
+    max-width: 370px;
+  }
+
+  .info {
+    font-size: 16px;
+        padding-left: 7px;
+    padding-bottom: 0;
+  }
+
+  .description {
+    font-size: 16px;
+    max-width: 396px;
+    height: 130px;
+  }
+
+  .img {
+    width: 278px;
+    height: 310px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .atributContainer {
+    margin-top: 18px;
+  }
+
+  .wrapperAtribut {
+    margin-bottom: 17px;
+    display: flex;
+    gap: 45px;
+  }
+
+  .btnGroup {
+    padding-top: 23px;
+    gap: 20px;
+  }
+
+}
+
+@media screen and (max-width: global.$breakpoint-ipad-mini) {
+  .mainContainer { 
+    padding:0 24px ;
+  }
+}
+
+@media screen and (max-width: global.$breakpoint-pre-mobile) {
+  .mainContainer {
+    flex-direction: column;
+    border-radius: 20px;
+    width: calc(100dvw - 40px);
+    align-items: center;
+    padding: 0;
+    gap: 16px;
+    border: 1px solid var(--color-green-primary);
+  }
+
   .imgWrapper {
     width: 100%;
   }
 
+  .start {
+    width: 174px;
+  }
+
   .img {
-    max-width: calc(global.$breakpoint-mobile - 40px);
-    max-height: 57vw;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    max-width: calc(100dvw - 44px);
+    max-height: calc((100dvw - 44px) * 210 / 320);
+    border-radius: 22px 22px 0 0;
     width: 100%;
     object-fit: cover;
   }
-  
+
   .contentWrapper {
-    max-width: calc(global.$breakpoint-mobile - 40px);
+    max-width: calc(100dvw - 40px);
     width: 100%;
   }
-  
+
   .contentTitle {
     font-size: 20px;
-    margin-top: 20px;
-    padding: 0 24px;
+    margin-top: 0;
+    padding: 0 24px 20px;
   }
-  
+
   .atributContainer {
-    margin-top: 17px;
+    margin-top: 0;
     padding: 0 24px;
   }
-  
+
   .wrapperAtribut {
-    margin-bottom: 16px;
+    margin: 0;
+    padding-bottom: 17px;
     gap: 50px;
+    justify-content: space-between;
   }
-  
+
   .info {
     font-size: 16px;
     line-height: 135%;
-    margin-left: 8px;
+    margin-left: 0;
+    padding-left: 7px;
   }
-  
+
   .timeIcon {
     width: 24px;
     height: 24px;
   }
-  
+
   .priceIcon {
-    width: 24px;
+    width: 26px;
     height: 24px;
   }
-  
+
   .description {
-    font-size: 14px;
+    font-size: 17px;
+    height: 100%;
+    max-height: 187px;
   }
-  
+
   .btnGroup {
-    margin-top: 16px;
-    gap: 0;
-    padding: 0 24px 40px 24px;
+    gap: 16px;
+    padding: 20px 24px 20px 24px;
     justify-content: center;
-  
+    flex-direction: column;
+
     button {
       width: 100%;
-      &:last-child {
-        display: none;
-      }
     }
   }
-  
+
   .btnWhite {
     display: none;
   }
+
 }

@@ -1,7 +1,9 @@
 import cls from './AllCoursesHeader.module.scss';
 import { classNames } from '../../helpers/classNames';
 import { ArcPageDecoration } from '../ArcPageDecoration/ArcPageDecoration';
+import { MobilePageDecoration } from '../MobilePageDecoration/MobilePageDecoration';
 import promoImg from '../../images/AllCoursesPromo.png';
+import promoImgMobile from '../../images/AllCoursesPromoMobile.png';
 
 export const AllCoursesHeader = () => {
   return (
@@ -12,6 +14,7 @@ export const AllCoursesHeader = () => {
           {' '}
           <span className={cls.span}>«Под горой»</span>
         </h1>
+        <MobilePageDecoration decorationImage={promoImgMobile} />
         <p className={cls.description}>
           Единственная в Казахстане студия римской мозаики.
         </p>
