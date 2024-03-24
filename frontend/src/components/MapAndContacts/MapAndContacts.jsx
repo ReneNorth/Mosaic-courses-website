@@ -14,18 +14,18 @@ export const MapAndContacts = () => {
         </div>
         <div className={cls.contactsWrapper}>
           <p className={cls.contactsTitle}>
-            Адрес:
+            Адрес:{' '}
             <span> г. Алматы, Казыбек би, 40</span>
           </p>
           <p className={cls.contactsTitle}>
-            Часы работы:
-            <span> Cвяжитесь с нами, чтобы узнать расписание занятий</span>
+            Часы работы:{' '}
+            <span> с 12-22, без выходных</span>
           </p>
-          {/* temporary disabled */}
-          {/* <p className={cls.contactsTitle}>
-            Телефон:
+          
+          <p className={cls.contactsTitle}>
+            Телефон:{' '}
             <span> +7 499 955-42-62</span>
-          </p> */}
+          </p>
           <p className={cls.contactsTitle}>
             E-mail:
             <span> info@mosaic.com</span>

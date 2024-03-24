@@ -3,8 +3,11 @@
 .formWrapper {
   max-width: 510px;
   width: 100%;
+  height: 200px;
   display: flex;
   flex-direction: column;
+  grid-column: 3;
+  grid-row: 1 / 2;
   z-index: 1;
 }
 
@@ -51,6 +54,12 @@
   outline: none;
   border: none;
   border-bottom: 1px solid #121210;;
+}
+
+.input::placeholder {
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 135%;
 }
 
 .btnWrapper {
