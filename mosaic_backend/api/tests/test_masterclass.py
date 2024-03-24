@@ -1,12 +1,11 @@
-from api.views import MasterclassTypeReadOnlyViewSet
-from masterclass.models import MasterclassType
-from django.test import RequestFactory, TestCase
-from .data_tests import masterclass_type
 import logging
 
 from django.test import Client, TestCase
 from rest_framework.test import APIRequestFactory
 
+from masterclass.models import MasterclassType
+
+from .data_tests import masterclass_type
 
 log = logging.getLogger(__name__)
 
@@ -25,7 +24,6 @@ class MasterclassEndpointsTest(TestCase):
         super().tearDownClass()
 
     def test_get_all_masterclass_types(self):
-        # Arrange
         self.assertEqual(MasterclassType.objects.count(), 1)
         response = self.client.get('/api/v1/masterclass_types/')
         self.assertEqual(response.status_code, 200)
