@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable jsx-a11y/anchor-has-content */
 import { Link } from 'react-router-dom';
 import { Logo } from '../Logo/Logo';
 import { MailingForm } from '../MailingForm/MailingForm';
@@ -9,7 +7,6 @@ export const InfoFooter = () => {
   return (
     <div className={cls.block}>
       <div className={cls.otherContainer}>
-        {/* <div className={cls.logoContainer}> */}
         <Logo />
         <ul className={cls.linkList}>
           <li>
@@ -18,12 +15,10 @@ export const InfoFooter = () => {
           <li>
             <Link className={cls.linkTg} to="https://t.me/debobrova" />
           </li>
-          
           <li>
             <Link className={cls.linkFb} to="https://www.facebook.com/tessera_mosaic_art/" />
           </li>
         </ul>
-        {/* </div> */}
         <nav className={cls.navigation}>
           <ul className={cls.navList}>
             <li className={cls.about}>
@@ -35,7 +30,7 @@ export const InfoFooter = () => {
               <Link to="/shop" className={cls.navlink}>
                 Магазин
               </Link>
-            </li> 
+            </li>
             <li className={cls.gallery}>
               <Link to="/gallery" className={cls.navlink}>
                 Галерея

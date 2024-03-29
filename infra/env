@@ -1,7 +1,0 @@
-SECRET_KEY = 'django-insecure-jh20!-*y)b^76a16=4o4ax*^d(*bm8zr#u88t!@vmj3e-d*gx_'
-DB_ENGINE='django.db.backends.postgresql'
-DB_NAME='postgres'
-POSTGRES_USER='postgres'
-POSTGRES_PASSWORD='mosaic_admin'
-DB_HOST='db'
-DB_PORT=5432

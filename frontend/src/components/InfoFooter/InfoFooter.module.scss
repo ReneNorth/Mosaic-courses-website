@@ -57,7 +57,6 @@
   background-image: url('../../images/icon_instagram.svg');
 }
 
-
 .navList {
   display: grid;
   padding-right: 20px;
@@ -69,7 +68,6 @@
 }
 
 .navlink {
-  // padding-right: 15px;
   text-decoration: none;
   font-family: var(--font-primary);
   font-style: normal;
@@ -113,21 +111,7 @@
     order: 3;
     margin-top: 32px;
   }
-  /* // 61 строка
-  .navList {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 32px;
-  }
-  */
-  /* // 70 строка
-  .navlink {
-    font-weight: 400;
-    font-size: 14px;
-  }
-  */
-  
+
   .about {
     grid-row: 1;
     grid-column: 1;
