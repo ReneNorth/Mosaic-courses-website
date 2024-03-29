@@ -89,6 +89,10 @@
   text-align: center;
 }
 
+.paginationWrapper {
+  padding-top: 80px;
+}
+
 @media screen and (max-width: global.$breakpoint-small-laptop) {
 
   .list {

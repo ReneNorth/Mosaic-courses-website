@@ -52,7 +52,7 @@ export const AllCourses = () => {
         </div>
       </div>
       <div className={cls.coursesWrapper}>
-        <MainCardsList />
+        <MainCardsList PageSize={4} />
       </div>
       <RemainedQuestion isOpen={isOpen} setIsOpen={setIsOpen} />
     </>

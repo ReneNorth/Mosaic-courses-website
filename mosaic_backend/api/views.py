@@ -92,7 +92,8 @@ class MasterclassTypeReadOnlyViewSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny, ]
     filter_backends = [DjangoFilterBackend, ]
     filterset_fields = ['slug', ]
-    lookup_field = 'slug'
+    # lookup_field = 'slug'
+    pagination_class = LimitOffsetPagination
 
     @action(detail=True, methods=['get', ])
     def related_masterclasses(self, request, slug) -> Response:

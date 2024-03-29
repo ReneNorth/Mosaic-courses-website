@@ -1,4 +1,3 @@
-import React from 'react';
 import { CourseCard } from './CourseCard';
 import ImageSample from '../../images/dali_storybook.png';
 import cls from './CourseCard.module.scss';
