@@ -20,6 +20,10 @@ import { ActivatePage } from '../../pages/ActivatePage/ActivatePage';
 import { SignInPage } from '../../pages/SignInPage/SignInPage';
 import { PasswordResetPage } from '../../pages/PasswordResetPage/PasswordResetPage';
 import { PasswordResetConfirm } from '../../pages/PasswordResetConfirm/PasswordResetConfirm';
+import { ProfilePage } from '../../pages/ProfilePage/ProfilePage';
+import { ProfilePersonalDataPage } from '../../pages/ProfilePersonalDataPage/ProfilePersonalDataPage';
+import { ProfileSecurityPage } from '../../pages/ProfileSecurityPage/ProfileSecurityPage';
+import { ProfileAlertPage } from '../../pages/ProfileAlertPage/ProfileAlertPage';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 function App() {
@@ -41,6 +45,10 @@ function App() {
             <Route path="/sign-in" element={<SignInPage />} />
             <Route path="/password-reset" element={<PasswordResetPage />} />
             <Route path="/password-reset/:uid/:token" element={<PasswordResetConfirm />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/profile/personal-data" element={<ProfilePersonalDataPage />} />
+            <Route path="/profile/security" element={<ProfileSecurityPage />} />
+            <Route path="/profile/alert" element={<ProfileAlertPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

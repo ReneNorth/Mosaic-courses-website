@@ -5,7 +5,7 @@
   height: 444px;
   position: absolute;
   top: 0;
-  right: calc((100vw - 1280px)/2 - 141px);
+  right: calc((100dvw - 1280px)/2 - 141px);
   z-index: global.$layer-under-content;
   background-color: var(--color-green-primary);
   

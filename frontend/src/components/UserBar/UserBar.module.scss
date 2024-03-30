@@ -25,10 +25,28 @@
   width: 32px;
   height: 32px;
   background-repeat: no-repeat;
+  position: relative;
+  &  svg {
+    cursor: pointer;
+    path {
+      stroke: var(--color-black);
+      transition: .5s;
+    }
+  }
+&:hover  svg {
+  cursor: pointer;
+    path {
+      stroke: var(--color-green-accent);
+      transition: .5s;
+    }
+  }
 }
 
-.profile {
-  background-image: url('../../images/Ic_profile.svg');
+.active  svg {
+  cursor: pointer;
+  path {
+    stroke: var(--color-green-accent);
+  }
 }
 
 .cart {
@@ -77,13 +95,13 @@
     height: 24px;
     background-size: 24px 24px;
   }
-  
+
   .profile {
     width: 24px;
     height: 24px;
     background-size: 24px 24px;
   }
-  
+
   .cart {
     width: 24px;
     height: 24px;

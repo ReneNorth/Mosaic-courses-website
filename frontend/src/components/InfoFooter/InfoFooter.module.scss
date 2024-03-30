@@ -11,16 +11,18 @@
   margin: 88px auto 0;
   max-width: 1280px;
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-rows: 112px 88px;
   justify-content: space-between;
 }
 
 .linkList {
-  margin-top: 15px;
   max-width: 128px;
   display: flex;
   height: 32px;
-  gap: 16px;
+  column-gap: 28px;
+  grid-column: 1;
+  grid-row: 2;
 }
 
 .linkVk {
@@ -55,12 +57,14 @@
   background-image: url('../../images/icon_instagram.svg');
 }
 
-
 .navList {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  padding-right: 20px;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(3, 1fr);
   gap: 40px 56px;
+  grid-column: 2;
+  grid-row: 1 / 2;
 }
 
 .navlink {
@@ -106,18 +110,6 @@
   .navigation {
     order: 3;
     margin-top: 32px;
-  }
-
-  .navList {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 32px;
-  }
-
-  .navlink {
-    font-weight: 400;
-    font-size: 14px;
   }
 
   .about {

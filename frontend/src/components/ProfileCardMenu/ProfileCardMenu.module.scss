@@ -1,0 +1,60 @@
+@use "../../utils/variables/global.scss";
+
+.cardWrapper {
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 20px;
+  border: 1px solid var(--color-beige-secondary);
+  background-color: var(--color-background-color);
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  line-height: 135%;
+  font-size: 20px;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+.cardText {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 135%;
+  font-style: normal;
+  font-size: 17px;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+.storyWrapper {
+  width: 400px;
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .cardWrapper {
+    padding: 16px;
+  }
+  .title {
+    font-size: 16px;
+  }
+  .cardText {
+    font-size: 16px;
+  }
+
+}

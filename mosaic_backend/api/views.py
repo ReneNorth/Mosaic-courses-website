@@ -88,6 +88,7 @@ class MasterclassReadOnlyViewset(viewsets.ReadOnlyModelViewSet):
 class MasterclassTypeReadOnlyViewSet(viewsets.ModelViewSet):
     serializer_class = MasterclassTypeSerializer
     queryset = MasterclassType.objects.all()
+    pagination_class = LimitOffsetPagination
     permission_classes = [AllowAny, ]
     filter_backends = [DjangoFilterBackend, ]
     filterset_fields = ['slug', ]

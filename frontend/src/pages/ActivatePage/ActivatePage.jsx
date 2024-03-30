@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../helpers/classNames';
 import cls from './ActivatePage.module.scss';
 import { activateUser, getEmailByUID, resendActivationEmail } from '../../services/slices/authSlice';
-import { LogInPageDecoration } from '../../components/LogInPageDecoration/LogInPageDecoration';
+import { RectangularPageDecoration } from '../../components/RectangularPageDecoration/RectangularPageDecoration';
 import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/LogInPageDecorationImg';
 import { Button } from '../../components/Button/Button';
 
@@ -71,7 +71,7 @@ export function ActivatePage() {
 
   return (
     <section className={cls.section}>
-      <LogInPageDecoration />
+      <RectangularPageDecoration />
       <div className={cls.block}>
         <div className={cls.formContainer}>
           <div className={cls.responseStep}>

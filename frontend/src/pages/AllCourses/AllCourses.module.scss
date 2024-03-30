@@ -1,5 +1,44 @@
-.courses__wrapper {
-    margin-top: 214px;
+@use "../../utils/variables/global.scss";
+
+.coursesWrapper {
+    padding-top: 80px;
     width: 100%;
     max-width: 1280px;
 }
+
+.globalSelect {
+    border-radius: 12px;
+}
+
+.MuiSelect-outlined{
+    border-color: var(--color-green-accent);
+}
+
+.filterWrapper {
+    padding-top: 100px;
+    max-width: 1280px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.filterBlock {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 24px;
+    gap: 12px;
+}
+
+@media screen and (max-width: global.$breakpoint-xsmall-laptop) {
+    .filterWrapper {
+        padding-top: 60px;
+    }
+
+    .coursesWrapper {
+        padding-top: 0;
+    }
+  }

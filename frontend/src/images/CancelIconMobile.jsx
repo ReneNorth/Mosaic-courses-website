@@ -1,6 +1,7 @@
-const CancelIconMobile = () => {
+export const CancelIconMobile = () => {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <title id="buttonTitle">Close button</title>
       <g id="Frame 149286676">
         <rect width="24" height="24" rx="12" fill="white" />
         <path
@@ -24,5 +25,3 @@ const CancelIconMobile = () => {
     </svg>
   );
 };
-
-export default CancelIconMobile;

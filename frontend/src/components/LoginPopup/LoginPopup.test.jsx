@@ -20,7 +20,7 @@ describe('LoginPopup Component', () => {
     );
     // Check that the component is rendered
     expect(screen.getByLabelText('close')).toBeInTheDocument();
-    expect(screen.getByAltText('form header')).toBeInTheDocument();
+    expect(screen.getByRole('img')).toBeInTheDocument();
     expect(screen.getByText('Войти или зарегистрироваться')).toBeInTheDocument();
     expect(screen.getByText('Войдите в свой аккаунт или создайте новый')).toBeInTheDocument();
     expect(screen.getByText('Зарегистрироваться')).toBeInTheDocument();

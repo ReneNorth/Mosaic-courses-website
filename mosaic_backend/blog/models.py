@@ -23,9 +23,9 @@ class Tag(models.Model):
 class Post(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='author')
-    title = models.CharField(max_length=80,
+    title = models.CharField(max_length=100,
                              help_text='Post`s title')
-    slug = models.CharField(max_length=80,
+    slug = models.CharField(max_length=90,
                             unique=True,
                             help_text='defines an address where users can '
                                       'acess this post, for instance, if'

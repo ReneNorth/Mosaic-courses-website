@@ -1,3 +1,5 @@
+import '../src/vendor/fonts/stylesheet.scss';
+import '../src/utils/variables/global.scss';
 /** @type { import('@storybook/react').Preview } */
 const preview = {
   parameters: {
@@ -13,7 +15,7 @@ const preview = {
       values: [
         {
           name: 'main',
-          value: '#f0ece2',
+          value: '#f5f4f1',
         },
       ],
     },
