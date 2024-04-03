@@ -11,6 +11,8 @@
   height: 56px;
   line-height: 135%;
   box-sizing: border-box;
+  width: 308px;
+  margin: auto;
   cursor: pointer;
 
   &.outline {
@@ -58,7 +60,7 @@
       padding: 10px 40px;
       height: 56px;
       box-sizing: border-box;
-      width: 100%;
+      width: 308px;
       top: 8px;
       left: 8px;
       content: '';

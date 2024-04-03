@@ -31,7 +31,8 @@
 }
 
 .content__wrapper {
-  padding: 48px 75px;
+  padding: 0 75px;
+  margin: 48px 0;
   display: flex;
   flex-direction: column;
 
@@ -74,8 +75,8 @@
 .checkbox {
   display: inline-block;
   vertical-align: middle;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border: 1.5px solid #247251;
   border-radius: 4px;
 }
@@ -161,8 +162,8 @@
 }
 
 .textarea {
-  width: 100%;
-  min-height: 100px;
+  width: 99%;
+  min-height: 98px;
   margin-bottom: 24px;
   background-color: #CCDAC6;
   border-bottom: 1px solid #121210;
@@ -171,7 +172,6 @@
 
 .input {
   width: 100%;
-  padding-bottom: 6px;
   margin-bottom: 24px;
   font-family: 'Raleway', sans-serif;
   font-style: normal;

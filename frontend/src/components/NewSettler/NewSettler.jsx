@@ -58,7 +58,7 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
                 name="name"
                 maxLength="25"
                 minLength="2"
-                placeholder="ВАШЕ ИМЯ*"
+                placeholder="Имя"
                 required
                 pattern="[a-zA-Zа-яА-Я0-9ё\-\s]{2,}"
                 className={classNames(styles.input, {}, [errors.name ? styles.invalid : ''])}
@@ -76,7 +76,7 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
                 type="tel"
                 name="phone"
                 maxLength="20"
-                placeholder="ТЕЛЕФОН*"
+                placeholder="Телефон*"
                 required
                 pattern="(\+)([\s\(\)\-\d]){10,20}$"
                 className={classNames(styles.input, {}, [errors.name ? styles.invalid : ''])}
