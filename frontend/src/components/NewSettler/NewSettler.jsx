@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import styles from './NewSettler.module.scss';
 import formImg from '../../images/form_header.png';
-import { CancelIcon } from '../../images/CancelIcon';
-import { CancelIconMobile } from '../../images/CancelIconMobile';
 import { Button } from '../Button/Button';
 import { useFormValidation } from '../../hooks/useFormValidation';
 import { classNames } from '../../helpers/classNames';
 import { api } from '../../utils/api';
+import CloseIcon from '../../images/CloseIcon';
 
 const NewSettler = ({ isOpen, setIsOpen }) => {
   const {
@@ -44,10 +43,7 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
             className={styles.button__close}
           >
             <div className={styles.cancel_icon}>
-              <CancelIcon />
-            </div>
-            <div className={styles.cancel_icon_mobile}>
-              <CancelIconMobile />
+              <CloseIcon />
             </div>
           </button>
           <img className={styles.image} src={formImg} alt="form header" />
@@ -129,12 +125,8 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
               className={styles.button__close}
             >
               <div className={styles.cancel_icon}>
-                <CancelIcon />
+                <CloseIcon />
               </div>
-              <div className={styles.cancel_icon_mobile}>
-                <CancelIconMobile />
-              </div>
-
             </button>
             <img className={styles.image} src={formImg} alt="form header" />
             <div className={styles.content__wrapper}>
@@ -162,10 +154,7 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
             className={styles.button__close}
           >
             <div className={styles.cancel_icon}>
-              <CancelIcon />
-            </div>
-            <div className={styles.cancel_icon_mobile}>
-              <CancelIconMobile />
+              <CloseIcon />
             </div>
           </button>
           <img className={styles.image} src={formImg} alt="form header" />
