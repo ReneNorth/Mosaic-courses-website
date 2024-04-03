@@ -88,18 +88,37 @@
     }
   }
 }
+
+@media screen and (max-width: 744px) {
+  .button {
+    width: 291px;
+    height: 44px;
+    padding: 11px 40px;
+    font-size: 16px;
+
+    &.decoration, &.decorationWhite {
+      &::before {
+        width: 291px;
+        height: 44px;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: global.$breakpoint-mobile) {
   .button {
     font-family: var(--font-primary);
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
-    line-height: 135%;
+    line-height: 90%;
     height: 44px;
+    width: 252px;
 
     &.decoration {
       &::before {
         height: 44px;
+        width: 252px;
       }
     }
     &.decorationWhite {
@@ -109,3 +128,4 @@
     }
   }
 }
+

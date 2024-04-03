@@ -88,7 +88,7 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
               </span>
             </div>
             <div className={styles.content__comment}>
-              <p className={styles.comment_heading}>КОММЕНТАРИЙ</p>
+              <p className={styles.comment_heading}>Комментарий</p>
               <textarea
                 name="comment"
                 maxLength="150"
