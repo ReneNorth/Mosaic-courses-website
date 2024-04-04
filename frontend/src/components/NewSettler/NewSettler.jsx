@@ -6,6 +6,7 @@ import { useFormValidation } from '../../hooks/useFormValidation';
 import { classNames } from '../../helpers/classNames';
 import { api } from '../../utils/api';
 import CloseIcon from '../../images/CloseIcon';
+import { InputField } from '../InputField/InputField';
 
 const NewSettler = ({ isOpen, setIsOpen }) => {
   const {
@@ -31,6 +32,8 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
     }
   };
 
+  console.log(values);
+
   return (
     <div className={`${styles.popup} ${isOpen ? `${styles.popup_open}` : ''}`}>
       <div className={styles.overlay} onClick={() => setIsOpen(!isOpen)} />
@@ -50,43 +53,20 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
           <div className={styles.content__wrapper}>
             <h2 className={styles.title}>Закажите обратный звонок</h2>
             <p className={styles.description}>Заполните поля формы</p>
-            <div className={styles.label}>
-              <input
-                value={values.name || ''}
-                onChange={handleChange}
-                type="text"
-                name="name"
-                maxLength="25"
-                minLength="2"
-                placeholder="Имя"
-                required
-                pattern="[a-zA-Zа-яА-Я0-9ё\-\s]{2,}"
-                className={classNames(styles.input, {}, [errors.name ? styles.invalid : ''])}
-              />
-              <span className={styles.error}>
-                {errors.name
-                  ? 'Имя должно быть не менее 2-х символов'
-                  : ''}
-              </span>
-            </div>
-            <div className={styles.label}>
-              <input
-                value={values.phone || ''}
-                onChange={handleChange}
-                type="tel"
-                name="phone"
-                maxLength="20"
-                placeholder="Телефон*"
-                required
-                pattern="(\+)([\s\(\)\-\d]){10,20}$"
-                className={classNames(styles.input, {}, [errors.name ? styles.invalid : ''])}
-              />
-              <span className={styles.error}>
-                {errors.phone
-                  ? 'Номер должен начинаться со знака "+" иметь от 10 до 15 символов'
-                  : ''}
-              </span>
-            </div>
+            <InputField
+              type="name"
+              placeholder="Имя"
+              errors={errors}
+              handleChange={handleChange}
+              values={values}
+            />
+            <InputField
+              type="tel"
+              placeholder="Телефон*"
+              errors={errors}
+              handleChange={handleChange}
+              values={values}
+            />
             <div className={styles.content__comment}>
               <p className={styles.comment_heading}>Комментарий</p>
               <textarea
