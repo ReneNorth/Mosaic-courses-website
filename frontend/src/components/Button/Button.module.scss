@@ -11,8 +11,6 @@
   height: 56px;
   line-height: 135%;
   box-sizing: border-box;
-  width: 308px;
-  margin: auto;
   cursor: pointer;
 
   &.outline {
@@ -52,6 +50,10 @@
     }
   }
 
+  &.no-padding {
+    padding: 0;
+  }
+
   &.decoration {
     position: relative;
 
@@ -60,7 +62,7 @@
       padding: 10px 40px;
       height: 56px;
       box-sizing: border-box;
-      width: 308px;
+      width: 100%;
       top: 8px;
       left: 8px;
       content: '';
@@ -88,37 +90,18 @@
     }
   }
 }
-
-@media screen and (max-width: 744px) {
-  .button {
-    width: 291px;
-    height: 44px;
-    padding: 11px 40px;
-    font-size: 16px;
-
-    &.decoration, &.decorationWhite {
-      &::before {
-        width: 291px;
-        height: 44px;
-      }
-    }
-  }
-}
-
 @media screen and (max-width: global.$breakpoint-mobile) {
   .button {
     font-family: var(--font-primary);
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
-    line-height: 90%;
+    line-height: 135%;
     height: 44px;
-    width: 252px;
 
     &.decoration {
       &::before {
         height: 44px;
-        width: 252px;
       }
     }
     &.decorationWhite {
@@ -128,4 +111,3 @@
     }
   }
 }
-

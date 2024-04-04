@@ -104,14 +104,16 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
               <span className={styles.checkbox} />
               <p className={styles.consent}>Даю согласие на обработку персональных данных</p>
             </label>
-            <Button
-              type="submit"
-              disabled={!isValid}
-              className="fill"
-              decoration="black"
-            >
-              Заказать обратный звонок
-            </Button>
+            <div className={styles.button__container}>
+              <Button
+                type="submit"
+                disabled={!isValid}
+                className="fill"
+                decoration="black"
+              >
+                Заказать&nbsp;обратный&nbsp;звонок
+              </Button>
+            </div>
           </div>
         </form>
       ) }
@@ -136,7 +138,9 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
                 <br />
                 Спасибо за внимание к нашей студии!
               </p>
-              <Button type="button" className="fill" onClick={() => setIsOpen(!isOpen)}>Вернуться на главную</Button>
+              <div className={styles.button__container}>
+                <Button type="button" className="fill" onClick={() => setIsOpen(!isOpen)}>Вернуться на главную</Button>
+              </div>
               <p className={styles.hours}>
                 Рабочее время студии:
                 <br />
@@ -165,7 +169,9 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
               <br />
               Попробуйте повторить отправку позднее или позвоните нам
             </p>
-            <Button type="button" className="fill" onClick={() => setIsOpen(!isOpen)}>Вернуться на главную</Button>
+            <div className={styles.button__container}>
+              <Button type="button" className="fill" onClick={() => setIsOpen(!isOpen)}>Вернуться на главную</Button>
+            </div>
             <p className={styles.hours}>
               Рабочее время студии:
               <br />

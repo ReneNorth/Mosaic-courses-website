@@ -91,6 +91,10 @@
   color: #000;
 }
 
+.button__container {
+  margin: 0 auto;
+}
+
 .content__checkbox {
   margin-bottom: 24px;
   display: flex;
@@ -238,6 +242,7 @@
   .comment_heading {
     text-transform: none;
   }
+
 }
 
 @media screen and (max-width: global.$breakpoint-mobile) {
