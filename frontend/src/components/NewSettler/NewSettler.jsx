@@ -7,6 +7,7 @@ import { classNames } from '../../helpers/classNames';
 import { api } from '../../utils/api';
 import CloseIcon from '../../images/CloseIcon';
 import { InputField } from '../InputField/InputField';
+import { CheckBoxField } from '../CheckBoxField/CheckBoxField';
 
 const NewSettler = ({ isOpen, setIsOpen }) => {
   const {
@@ -76,12 +77,7 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
               />
             </div>
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label className={styles.content__checkbox}>
-              <input onChange={handleChange} type="checkbox" name="agree" required />
-
-              <span className={styles.checkbox} />
-              <p className={styles.consent}>Даю согласие на обработку персональных данных</p>
-            </label>
+            <CheckBoxField type="agreement" handleChange={handleChange} />
             <div className={styles.button__container}>
               <Button
                 type="submit"
