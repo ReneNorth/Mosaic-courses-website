@@ -32,8 +32,6 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
     }
   };
 
-  console.log(values);
-
   return (
     <div className={`${styles.popup} ${isOpen ? `${styles.popup_open}` : ''}`}>
       <div className={styles.overlay} onClick={() => setIsOpen(!isOpen)} />
