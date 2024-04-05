@@ -3,7 +3,6 @@ import styles from './NewSettler.module.scss';
 import formImg from '../../images/form_header.png';
 import { Button } from '../Button/Button';
 import { useFormValidation } from '../../hooks/useFormValidation';
-import { classNames } from '../../helpers/classNames';
 import { api } from '../../utils/api';
 import CloseIcon from '../../images/CloseIcon';
 import { InputField } from '../InputField/InputField';
