@@ -43,13 +43,16 @@
 .list {
   display: flex;
   flex-direction: column;
-    gap: 115px;
+  gap: 78px;
 }
 
-.item{
+.item {
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 1;
+  visibility: visible;
+  transition: all .5s ease;
 }
 
 .notFoundWrapper {
@@ -91,6 +94,11 @@
 
 .paginationWrapper {
   padding-top: 80px;
+}
+
+.hideCards {
+  opacity: 0;
+  visibility: hidden;
 }
 
 @media screen and (max-width: global.$breakpoint-small-laptop) {

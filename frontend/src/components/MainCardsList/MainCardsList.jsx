@@ -10,11 +10,12 @@ import Pagination from '../Pagination/Pagination.jsx';
 export const MainCardsList = ({ setIsOpen, PageSize }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentPageOffset, setCurrentPageOffset] = useState(0);
+  const [hideCards, sethideCards] = useState(true);
 
   const handleEnroll = () => {
     setIsOpen(true);
   };
-  const { allCourses, totalCount } = useSelector((state) => state.courses);
+  const { allCourses, totalCount, sending } = useSelector((state) => state.courses);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,13 +23,31 @@ export const MainCardsList = ({ setIsOpen, PageSize }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, currentPageOffset]);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }, [currentPage]);
+
+  useEffect(() => {
+    if (sending) {
+      sethideCards(true);
+    } else {
+      setTimeout(() => {
+        sethideCards(false);
+      }, 400);
+    }
+  }, [sending]);
+
   console.log(allCourses, currentPageOffset);
   const nullArray = [];
 
   // eslint-disable-next-line consistent-return, array-callback-return
   const coursesToRender = allCourses.map((course) => {
     return (
-      <li className={cls.item} key={course.id}>
+      <li className={`${cls.item} ${hideCards ? cls.hideCards : ''}`} key={course.id}>
         <CourseCard
           item={course}
           handleEnroll={handleEnroll}

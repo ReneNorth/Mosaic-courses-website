@@ -8,7 +8,7 @@
   width: 100%;
   max-width: 1280px;
 
-  &:hover{
+  &:hover {
     box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.6);
   }
 }
@@ -148,10 +148,11 @@
     justify-content: center;
     max-width: 696px;
     gap: 20px;
-    &:hover{
+
+    &:hover {
       box-shadow: unset;
     }
-    
+
   }
 
   .contentTitle {
@@ -161,7 +162,7 @@
 
   .info {
     font-size: 16px;
-        padding-left: 7px;
+    padding-left: 7px;
     padding-bottom: 0;
   }
 
@@ -196,8 +197,8 @@
 }
 
 @media screen and (max-width: global.$breakpoint-ipad-mini) {
-  .mainContainer { 
-    padding:0 24px ;
+  .mainContainer {
+    padding: 0 24px;
   }
 }
 

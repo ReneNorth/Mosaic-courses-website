@@ -14,17 +14,17 @@ export const AllCoursesHeader = () => {
           {' '}
           <span className={cls.span}>«Под горой»</span>
         </h1>
-        <MobilePageDecoration decorationImage={promoImgMobile} />
+        {/* <MobilePageDecoration decorationImage={promoImgMobile} />
         <p className={cls.description}>
           Единственная в Казахстане студия римской мозаики.
         </p>
         <p className={classNames(cls.description, {}, [cls.descriptionText])}>
           Научим создавать античные шедевры на мастер-классах и украсим ваш дом оригинальными арт-объектами.
-        </p>
+        </p> */}
       </div>
-      <div className={cls.decorationWrapper}>
+      {/* <div className={cls.decorationWrapper}>
         <ArcPageDecoration decorationImage={promoImg} />
-      </div>
+      </div> */}
     </section>
   );
 };
