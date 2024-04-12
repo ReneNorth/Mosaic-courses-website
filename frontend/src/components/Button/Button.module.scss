@@ -50,6 +50,16 @@
     }
   }
 
+  &.wide {
+    width: 320px;
+    height: 44px;
+
+    &.decoration::before,
+    &.decorationWhite::before {
+      height: 44px;
+    }
+  }
+
   &.decoration {
     position: relative;
 
@@ -86,6 +96,7 @@
     }
   }
 }
+
 @media screen and (max-width: global.$breakpoint-mobile) {
   .button {
     font-family: var(--font-primary);

@@ -11,6 +11,11 @@
   z-index: 1;
 }
 
+.wide {
+  width: 94vw;
+  max-width: 696px;
+}
+
 .formTitle {
   font-family: var(--font-primary);
   font-style: normal;
@@ -31,6 +36,13 @@
   max-width: 293px;
   margin-top: 16px;
   position: relative;
+}
+
+@media screen and (max-width: 876px) {
+  .btnWrapper {
+    max-width: 325px;
+    width: 44vw;
+  }
 }
 
 @media screen and (max-width: global.$breakpoint-mobile) {

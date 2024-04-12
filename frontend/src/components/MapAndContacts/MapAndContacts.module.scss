@@ -44,6 +44,33 @@
   }
 }
 
+@media screen and (max-width: 876px) {
+  .block {
+    margin: 100px auto 0;
+    padding: 0 24px;
+    flex-direction: column;
+    border: none;
+  }
+
+  .topContainer {
+    padding-bottom: 48px;
+    width: 94vw;
+  }
+
+  .mapWrapper {
+    width: 338px;
+    height: 194px;
+    margin: 0;
+  }
+
+  .contactsWrapper {
+    height: 194px;
+    margin: 0;
+    gap: 24px;
+    padding-left: 24px;
+  }
+}
+
 @media screen and (max-width: global.$breakpoint-mobile) {
   .block {
     margin: 60px auto 0;

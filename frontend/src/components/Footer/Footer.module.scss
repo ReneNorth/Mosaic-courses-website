@@ -13,6 +13,12 @@
   width: 100%;
 }
 
+@media screen and (max-width: 876px) {
+  .footer {
+    border-radius: 0px 200px 0px 0px;
+  }
+}
+
 @media screen and (max-width: global.$breakpoint-mobile) {
   .footer {
     margin-top: 100px;

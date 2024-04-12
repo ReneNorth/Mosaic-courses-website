@@ -82,13 +82,74 @@
   color: var(--color-green-accent);
 }
 
+@media screen and (max-width: 876px) {
+  .block {
+    border: none;
+  }
+
+  .otherContainer {
+    margin: 35px auto 0 24px;
+    grid-template-rows: none;
+    grid-template-areas: 
+      "logo navigation"
+      "linkList navigation";
+    width: 88vw;
+    max-width: 655px;
+    column-gap: 80px;
+    row-gap: 5px;
+  }
+
+  .linkList {
+    grid-area: linkList;
+  }
+
+  .navigation {
+    grid-area: navigation;
+    align-self: center;
+  }
+
+  .navList {
+    grid-template-columns: repeat(3, 112px);
+    grid-template-rows: repeat(2, 23px);
+    grid-template-areas: 
+      "about gallery courses"
+      "shop certificates blog";
+    gap: 40px 32px;
+    padding: 0;
+  }
+
+  .about {
+    grid-area: about;
+  }
+
+  .gallery {
+    grid-area: gallery;
+  }
+
+  .courses {
+    grid-area: courses;
+  }
+
+  .shop {
+    grid-area: shop;
+  }
+
+  .certificates {
+    grid-area: certificates;
+  }
+
+  .blog {
+    grid-area: blog;
+  }
+}
+
 @media screen and (max-width: global.$breakpoint-mobile) {
   .block {
     padding-bottom: 44px;
   }
 
   .otherContainer {
-    margin: 40px auto 0;
+    margin: 40px 0 0;
     flex-direction: column;
     width: calc(100% - 40px);
   }
