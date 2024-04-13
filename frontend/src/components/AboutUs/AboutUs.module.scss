@@ -46,7 +46,7 @@
   height: 349px;
   border: 1px solid #121210;
   border-radius: 200px 50px 50px 50px;
-  z-index: -1;
+  z-index: global.$layer-under-content;
 }
 
 .wrapper {

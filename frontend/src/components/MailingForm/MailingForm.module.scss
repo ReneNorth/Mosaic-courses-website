@@ -11,11 +11,6 @@
   z-index: 1;
 }
 
-.wide {
-  width: 94vw;
-  max-width: 696px;
-}
-
 .formTitle {
   font-family: var(--font-primary);
   font-style: normal;
@@ -42,6 +37,11 @@
   .btnWrapper {
     max-width: 325px;
     width: 44vw;
+  }
+
+  .wide {
+    width: 94vw;
+    max-width: 696px;
   }
 }
 

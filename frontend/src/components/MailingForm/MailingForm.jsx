@@ -25,7 +25,7 @@ export const MailingForm = () => {
 
   return (
     <div className={cls.formWrapper}>
-      <h3 className={`${cls.formTitle} ${width <= 876 ? cls.wide : ''}`}>
+      <h3 className={`${cls.formTitle} ${cls.wide}`}>
         {isSuccess ? 'Вы успешно подписаны на рассылку!'
           : 'Будь в курсе новостей студии и получи скидку 10% на первое зянятие'}
       </h3>

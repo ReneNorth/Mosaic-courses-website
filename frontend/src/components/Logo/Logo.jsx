@@ -5,7 +5,7 @@ import cls from './Logo.module.scss';
 export const Logo = ({ handleClick }) => {
   return (
     <Link to="/" className={cls.link} onClick={handleClick || (() => {})}>
-      <img src={logo} alt="Логотип" className={cls.logo} />
+      <img src={logo} alt="На главную" className={cls.logo} />
     </Link>
   );
 };
