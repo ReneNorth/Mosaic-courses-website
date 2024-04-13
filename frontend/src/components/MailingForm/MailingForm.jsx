@@ -40,7 +40,7 @@ export const MailingForm = () => {
           />
           <div className={cls.btnWrapper}>
             <Button
-              className={`fill ${width <= 876 ? 'wide' : ''}`}
+              className="fill"
               decoration="black"
               type="submit"
               disabled={!isValid}

@@ -50,16 +50,6 @@
     }
   }
 
-  &.wide {
-    width: 320px;
-    height: 44px;
-
-    &.decoration::before,
-    &.decorationWhite::before {
-      height: 44px;
-    }
-  }
-
   &.decoration {
     position: relative;
 
