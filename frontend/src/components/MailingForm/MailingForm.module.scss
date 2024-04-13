@@ -40,20 +40,26 @@
   }
 
   .wide {
-    width: 94vw;
+    width: 93vw;
     max-width: 696px;
   }
 }
 
-@media screen and (max-width: global.$breakpoint-mobile) {
+@media screen and (max-width: 696px) {
+  .formWrapper {
+    width: 100%;
+    border-top: 1px solid #819286;
+    padding: 0 20px;
+  }
+
   .formTitle {
     line-height: 135%;
+    margin-top: 40px;
   }
 
   .btnWrapper {
     width: 325px;
     max-width: 400px;
-    margin-top: 20px;
 
     .submit {
       width: calc(100% - 10px);
@@ -72,5 +78,10 @@
       top: 5px;
       border-radius: 56px;
     }
+  }
+
+  .form {
+    margin-top: 12px;
+    width: 83vw;
   }
 }

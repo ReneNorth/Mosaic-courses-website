@@ -20,9 +20,8 @@
   }
 }
 
-@media screen and (max-width: global.$breakpoint-mobile) {
+@media screen and (max-width: 696px) {
   .footer {
-    margin-top: 100px;
     border-radius: 0px 100px 0px 0px;
   }
 }

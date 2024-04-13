@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Map } from '@pbe/react-yandex-maps';
 import cls from './MapAndContacts.module.scss';
 import { useResize } from '../../hooks/useResize';
@@ -5,12 +6,22 @@ import { MailingForm } from '../MailingForm/MailingForm';
 
 export const MapAndContacts = () => {
   const { width } = useResize();
+
+  let mapWidth;
+  if (width > 876) {
+    mapWidth = '100%';
+  } else if (width > 696) {
+    mapWidth = '338px';
+  } else {
+    mapWidth = '89vw';
+  }
+
   return (
     <div className={cls.block}>
       <div className={cls.topContainer}>
         <div className={cls.mapWrapper}>
           <Map
-            width={`${width > 876 ? '100%' : '338px'}`}
+            width={mapWidth}
             height="100%"
             defaultState={{ center: [43.256561, 76.949076], zoom: 15 }}
           />
