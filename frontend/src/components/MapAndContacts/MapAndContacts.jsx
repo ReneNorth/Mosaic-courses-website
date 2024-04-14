@@ -1,10 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Map } from '@pbe/react-yandex-maps';
 import cls from './MapAndContacts.module.scss';
 import { useResize } from '../../hooks/useResize';
 import { MailingForm } from '../MailingForm/MailingForm';
+import { api } from '../../utils/api';
 
 export const MapAndContacts = () => {
+  const [schoolInfo, setSchoolInfo] = useState([{}]);
+
   const { width } = useResize();
 
   let mapWidth;
@@ -15,6 +18,15 @@ export const MapAndContacts = () => {
   } else {
     mapWidth = '89vw';
   }
+
+  useEffect(() => {
+    api.getSchoolInfo()
+      .then((data) => {
+        console.log(data);
+        setSchoolInfo(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className={cls.block}>
@@ -30,21 +42,33 @@ export const MapAndContacts = () => {
           <p className={cls.contactsTitle}>
             Адрес:
             {' '}
-            <span> г. Алматы, Казыбек би, 40</span>
+            <span>
+              {' '}
+              {schoolInfo[0]?.address_text}
+            </span>
           </p>
           <p className={cls.contactsTitle}>
             Часы работы:
             {' '}
-            <span> с 12-22, без выходных</span>
+            <span>
+              {' '}
+              {schoolInfo[0]?.working_hours}
+            </span>
           </p>
           <p className={cls.contactsTitle}>
             Телефон:
             {' '}
-            <span> +7 499 955-42-62</span>
+            <span>
+              {' '}
+              {schoolInfo[0]?.phone}
+            </span>
           </p>
           <p className={cls.contactsTitle}>
             E-mail:
-            <span> info@mosaic.com</span>
+            <span>
+              {' '}
+              {schoolInfo[0]?.email}
+            </span>
           </p>
         </div>
       </div>
