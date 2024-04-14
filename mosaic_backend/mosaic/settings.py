@@ -163,6 +163,9 @@ SITE_NAME = 'Tessera Mosaic'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')  # directory for emails
 
 EMAIL_HOST = 'smtp-relay.brevo.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'zharikovyuri@gmail.com'
+EMAIL_HOST_PASSWORD = 'AzZ2408xt5mn9EYk'
 
 
 REST_FRAMEWORK = {
