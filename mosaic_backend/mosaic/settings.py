@@ -162,6 +162,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 SITE_NAME = 'Tessera Mosaic'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')  # directory for emails
 
+EMAIL_HOST = 'smtp-relay.brevo.com'
+
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
