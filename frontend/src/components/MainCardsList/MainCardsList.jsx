@@ -35,9 +35,7 @@ export const MainCardsList = ({ setIsOpen, PageSize }) => {
     if (sending) {
       sethideCards(true);
     } else {
-      setTimeout(() => {
-        sethideCards(false);
-      }, 400);
+      sethideCards(false);
     }
   }, [sending]);
 

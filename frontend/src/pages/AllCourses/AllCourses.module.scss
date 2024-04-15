@@ -32,6 +32,16 @@
     gap: 16px;
 }
 
+.filterBlockMobile {
+    display: none;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0 20px;
+}
+
 @media screen and (max-width: global.$breakpoint-small-laptop) {
     .filterBlock {
       justify-content: center;
@@ -53,6 +63,16 @@
 
     .coursesWrapper {
         padding-top: 40px;
+    }
+  }
+
+  @media screen and (max-width: global.$breakpoint-pre-mobile) {
+    .filterBlock {
+        display: none;
+    }
+
+    .filterBlockMobile {
+        display: flex;
     }
   }
 

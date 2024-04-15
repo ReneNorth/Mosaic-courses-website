@@ -9,6 +9,8 @@ import cls from './AllCourses.module.scss';
 import { SelectField } from '../../components/SelectField/SelectField';
 import { ButtonReset } from '../../components/ButtonReset/ButtonReset';
 import { SelectFieldSingle } from '../../components/SelectFieldSingle/SelectFieldSingle';
+import { Chip } from '../../components/Chip/Chip';
+import { Arrows } from '../../images/Arrows';
 
 export const AllCourses = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,6 +51,14 @@ export const AllCourses = () => {
           <SelectField placeholder="Тип занятий " valuesArray={names} />
           <SelectField placeholder="Тип мозаики " valuesArray={type} />
           <ButtonReset placeholder="Очистить " disabled />
+        </div>
+        <div className={cls.filterBlockMobile}>
+          <Chip fill>
+            <Arrows />
+            {' '}
+            Сортировка
+          </Chip>
+          <Chip fill>Фильтры</Chip>
         </div>
       </div>
       <div className={cls.coursesWrapper}>
