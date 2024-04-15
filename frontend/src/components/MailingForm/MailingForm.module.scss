@@ -33,6 +33,18 @@
   position: relative;
 }
 
+@media screen and (max-width: 876px) {
+  .btnWrapper {
+    max-width: 325px;
+    width: 44vw;
+  }
+
+  .wide {
+    width: 94vw;
+    max-width: 696px;
+  }
+}
+
 @media screen and (max-width: global.$breakpoint-mobile) {
   .formTitle {
     line-height: 135%;
