@@ -108,3 +108,12 @@ export const mockSliderDataBottom = [
     pub_date: '11.09.2023',
   },
 ];
+
+export const schoolContacts = [
+  {
+    address_text: 'г. Алматы, Казыбек би, 40',
+    working_hours: 'с 12-22, без выходных',
+    phone: '+7 499 955-42-62',
+    email: 'info@mosaic.com',
+  },
+];
