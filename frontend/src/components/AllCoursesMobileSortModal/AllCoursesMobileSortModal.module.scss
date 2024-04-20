@@ -1,0 +1,95 @@
+@use "../../utils/variables/global.scss";
+
+.popup {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: .5s;
+  z-index: global.$layer-of-popup;
+
+  &Open {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: global.$layer-of-popup;
+  opacity: 0;
+  visibility: hidden;
+  transition: .5s;
+
+  &Open {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.contentWrapper {
+  width: 320px;
+  height: 156px;
+  border-radius: 12px;
+  border: 1px solid var(--color-green-accent);
+  box-sizing: border-box;
+  background-color: var(--bg-color-white);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  // gap: 4px;
+  // box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.60);
+}
+
+.button {
+  all: unset;
+  cursor: pointer;
+  height: 52px;
+  box-sizing: border-box;
+  font-family: var(--font-primary), sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 135%;
+  
+  color: var(--text-color);
+  padding: 10px 20px 10px 24px;
+  border-bottom: 1px solid var(--color-green-accent);
+  background-color: var(--color-background-color);
+  transition: all .3s ease;
+
+  &:last-child {
+    border-bottom: unset;
+  }
+
+  &:hover {
+    color: var(--color-green-accent);
+    background-color: var(--color-green-grey-light);
+  }
+}
+
+  .active {
+    color: var(--color-background-color);
+    background-color: var(--color-green-accent);
+  }
+
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  // .contentWrapper {
+  //   width: 320px;
+  //   max-width: unset;
+  //   padding: 20px 0;
+  // }
+
+  .popup {
+    // top: 46px;
+    // right: -103px;
+  }
+
+}

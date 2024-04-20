@@ -10,7 +10,7 @@ import Pagination from '../Pagination/Pagination.jsx';
 export const MainCardsList = ({ setIsOpen, PageSize }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentPageOffset, setCurrentPageOffset] = useState(0);
-  const [hideCards, sethideCards] = useState(true);
+  const [hideCards, setHideCards] = useState(true);
 
   const handleEnroll = () => {
     setIsOpen(true);
@@ -33,9 +33,9 @@ export const MainCardsList = ({ setIsOpen, PageSize }) => {
 
   useEffect(() => {
     if (sending) {
-      sethideCards(true);
+      setHideCards(true);
     } else {
-      sethideCards(false);
+      setHideCards(false);
     }
   }, [sending]);
 

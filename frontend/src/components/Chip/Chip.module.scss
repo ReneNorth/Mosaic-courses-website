@@ -56,6 +56,10 @@
   background-color: var(--color-green-accent);
   color: var(--color-background-color);
   height: 51px;
+
+  svg path {
+    fill: var(--color-background-color);
+  }
 }
 
 .fill {

@@ -10,7 +10,7 @@
 }
 
 .block {
-  padding-top: 85px;
+  padding-top: 75px;
   display: flex;
   flex-direction: column;
 }
@@ -56,12 +56,12 @@
 
 @media screen and (max-width: global.$breakpoint-xsmall-laptop) {
   .section {
-    padding: 0 24px;
+    max-width: 696px;
   }
 
   .block {
-    padding-top: 16px;
-    padding-bottom: 88px;
+    padding-top: 35px;
+    padding-bottom: 0;
   }
 
   .title {
@@ -100,7 +100,7 @@
   .title {
     padding-bottom: 20px;
     font-size: 26px;
-    max-width: 250px;
+    max-width: 100%;
   }
 
   .span {
@@ -118,7 +118,7 @@
 
   .block {
     padding-top: 18px;
-    padding-bottom: 80px;
+    padding-bottom: 20px;
   }
 
 }

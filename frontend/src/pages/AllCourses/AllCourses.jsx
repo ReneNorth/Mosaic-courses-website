@@ -11,9 +11,15 @@ import { ButtonReset } from '../../components/ButtonReset/ButtonReset';
 import { SelectFieldSingle } from '../../components/SelectFieldSingle/SelectFieldSingle';
 import { Chip } from '../../components/Chip/Chip';
 import { Arrows } from '../../images/Arrows';
+import { AllCoursesMobileSortModal } from '../../components/AllCoursesMobileSortModal/AllCoursesMobileSortModal';
 
 export const AllCourses = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const [sortMobileButtonActive, setSortMobileButton] = useState(false);
+  const [sortMobileButtonOpen, setSortMobileButtonOpen] = useState(false);
+  const [sortingStatus, setSortingStatus] = useState('default');
+  const [filterMobileButtonActive, setFilterMobileButton] = useState(false);
 
   const forWho = [
     'Группа',
@@ -38,6 +44,27 @@ export const AllCourses = () => {
     { name: 'По умолчанию', value: 'default' },
   ];
 
+  const handlerSortMobileButton = (e) => {
+    e.preventDefault();
+    setSortMobileButtonOpen(true);
+    // const sendData = {
+    //   email: values.email,
+    // };
+    // dispatch(resendActivationEmail(sendData));
+    // setCounter(30);
+    // setDisabledButtonCounter(true);
+  };
+
+  const handlerFilterMobileButton = (e) => {
+    e.preventDefault();
+    // const sendData = {
+    //   email: values.email,
+    // };
+    // dispatch(resendActivationEmail(sendData));
+    // setCounter(30);
+    // setDisabledButtonCounter(true);
+  };
+
   return (
     <>
       <RectangularPageDecoration />
@@ -53,13 +80,29 @@ export const AllCourses = () => {
           <ButtonReset placeholder="Очистить " disabled />
         </div>
         <div className={cls.filterBlockMobile}>
-          <Chip fill>
+          <Chip
+            active={sortingStatus !== 'default'}
+            onClick={(e) => handlerSortMobileButton(e)}
+            fill
+          >
             <Arrows />
             {' '}
             Сортировка
           </Chip>
-          <Chip fill>Фильтры</Chip>
+          <Chip
+            active={filterMobileButtonActive}
+            onClick={(e) => handlerFilterMobileButton(e)}
+            fill
+          >
+            Фильтры
+          </Chip>
         </div>
+        <AllCoursesMobileSortModal
+          isOpen={sortMobileButtonOpen}
+          setIsOpen={setSortMobileButtonOpen}
+          sortingStatus={sortingStatus}
+          setSortingStatus={setSortingStatus}
+        />
       </div>
       <div className={cls.coursesWrapper}>
         <MainCardsList PageSize={4} />
