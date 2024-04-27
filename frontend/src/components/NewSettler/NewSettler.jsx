@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import styles from './NewSettler.module.scss';
 import formImg from '../../images/form_header.png';
-import { CancelIcon } from '../../images/CancelIcon';
-import { CancelIconMobile } from '../../images/CancelIconMobile';
 import { Button } from '../Button/Button';
 import { useFormValidation } from '../../hooks/useFormValidation';
-import { classNames } from '../../helpers/classNames';
 import { api } from '../../utils/api';
+import CloseIcon from '../../images/CloseIcon';
+import { InputField } from '../InputField/InputField';
+import { CheckBoxField } from '../CheckBoxField/CheckBoxField';
 
 const NewSettler = ({ isOpen, setIsOpen }) => {
   const {
@@ -44,55 +44,29 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
             className={styles.button__close}
           >
             <div className={styles.cancel_icon}>
-              <CancelIcon />
-            </div>
-            <div className={styles.cancel_icon_mobile}>
-              <CancelIconMobile />
+              <CloseIcon />
             </div>
           </button>
           <img className={styles.image} src={formImg} alt="form header" />
           <div className={styles.content__wrapper}>
             <h2 className={styles.title}>Закажите обратный звонок</h2>
             <p className={styles.description}>Заполните поля формы</p>
-            <div className={styles.label}>
-              <input
-                value={values.name || ''}
-                onChange={handleChange}
-                type="text"
-                name="name"
-                maxLength="25"
-                minLength="2"
-                placeholder="ВАШЕ ИМЯ*"
-                required
-                pattern="[a-zA-Zа-яА-Я0-9ё\-\s]{2,}"
-                className={classNames(styles.input, {}, [errors.name ? styles.invalid : ''])}
-              />
-              <span className={styles.error}>
-                {errors.name
-                  ? 'Имя должно быть не менее 2-х символов'
-                  : ''}
-              </span>
-            </div>
-            <div className={styles.label}>
-              <input
-                value={values.phone || ''}
-                onChange={handleChange}
-                type="tel"
-                name="phone"
-                maxLength="20"
-                placeholder="ТЕЛЕФОН*"
-                required
-                pattern="(\+)([\s\(\)\-\d]){10,20}$"
-                className={classNames(styles.input, {}, [errors.name ? styles.invalid : ''])}
-              />
-              <span className={styles.error}>
-                {errors.phone
-                  ? 'Номер должен начинаться со знака "+" иметь от 10 до 15 символов'
-                  : ''}
-              </span>
-            </div>
+            <InputField
+              type="name"
+              placeholder="Имя"
+              errors={errors}
+              handleChange={handleChange}
+              values={values}
+            />
+            <InputField
+              type="tel"
+              placeholder="Телефон*"
+              errors={errors}
+              handleChange={handleChange}
+              values={values}
+            />
             <div className={styles.content__comment}>
-              <p className={styles.comment_heading}>КОММЕНТАРИЙ</p>
+              <p className={styles.comment_heading}>Комментарий</p>
               <textarea
                 name="comment"
                 maxLength="150"
@@ -102,20 +76,17 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
               />
             </div>
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label className={styles.content__checkbox}>
-              <input onChange={handleChange} type="checkbox" name="agree" required />
-
-              <span className={styles.checkbox} />
-              <p className={styles.consent}>Даю согласие на обработку персональных данных</p>
-            </label>
-            <Button
-              type="submit"
-              disabled={!isValid}
-              className="fill"
-              decoration="black"
-            >
-              Заказать обратный звонок
-            </Button>
+            <CheckBoxField type="agreement" handleChange={handleChange} />
+            <div className={styles.button__container}>
+              <Button
+                type="submit"
+                disabled={!isValid}
+                className="fill"
+                decoration="black"
+              >
+                Заказать&nbsp;обратный&nbsp;звонок
+              </Button>
+            </div>
           </div>
         </form>
       ) }
@@ -129,12 +100,8 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
               className={styles.button__close}
             >
               <div className={styles.cancel_icon}>
-                <CancelIcon />
+                <CloseIcon />
               </div>
-              <div className={styles.cancel_icon_mobile}>
-                <CancelIconMobile />
-              </div>
-
             </button>
             <img className={styles.image} src={formImg} alt="form header" />
             <div className={styles.content__wrapper}>
@@ -144,7 +111,9 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
                 <br />
                 Спасибо за внимание к нашей студии!
               </p>
-              <Button type="button" className="fill" onClick={() => setIsOpen(!isOpen)}>Вернуться на главную</Button>
+              <div className={styles.button__container}>
+                <Button type="button" className="fill" onClick={() => setIsOpen(!isOpen)}>Вернуться на главную</Button>
+              </div>
               <p className={styles.hours}>
                 Рабочее время студии:
                 <br />
@@ -162,10 +131,7 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
             className={styles.button__close}
           >
             <div className={styles.cancel_icon}>
-              <CancelIcon />
-            </div>
-            <div className={styles.cancel_icon_mobile}>
-              <CancelIconMobile />
+              <CloseIcon />
             </div>
           </button>
           <img className={styles.image} src={formImg} alt="form header" />
@@ -176,7 +142,9 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
               <br />
               Попробуйте повторить отправку позднее или позвоните нам
             </p>
-            <Button type="button" className="fill" onClick={() => setIsOpen(!isOpen)}>Вернуться на главную</Button>
+            <div className={styles.button__container}>
+              <Button type="button" className="fill" onClick={() => setIsOpen(!isOpen)}>Вернуться на главную</Button>
+            </div>
             <p className={styles.hours}>
               Рабочее время студии:
               <br />

@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import cls from './LoginPopup.module.scss';
 import formImg from '../../images/form_header.png';
-import { CancelIconMobile } from '../../images/CancelIconMobile';
 import { Button } from '../Button/Button';
 import { classNames } from '../../helpers/classNames';
+import CloseIcon from '../../images/CloseIcon';
 
 export const LoginPopup = ({ isOpen, setIsOpen }) => {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ export const LoginPopup = ({ isOpen, setIsOpen }) => {
           className={cls.button__close}
         >
           <div className={cls.cancel_icon}>
-            <CancelIconMobile />
+            <CloseIcon />
           </div>
         </button>
         <img className={cls.image} src={formImg} alt="" />

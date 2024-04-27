@@ -44,6 +44,11 @@ class Api {
     return this.constructor._checkResponse(res);
   }
 
+  async getSchoolInfo() {
+    const res = await fetch(`${this._url}/api/v1/school/`);
+    return this.constructor._checkResponse(res);
+  }
+
   async getRelatedPosts(slug) {
     const res = await fetch(`${this._url}/api/v1/blog/${slug}/related_posts/`);
     const data = await this.constructor._checkResponse(res);

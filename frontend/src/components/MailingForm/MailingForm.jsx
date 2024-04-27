@@ -4,8 +4,10 @@ import { api } from '../../utils/api';
 import { useFormValidation } from '../../hooks/useFormValidation';
 import { InputField } from '../InputField/InputField';
 import cls from './MailingForm.module.scss';
+import { useResize } from '../../hooks/useResize';
 
 export const MailingForm = () => {
+  const { width } = useResize();
   const [isSuccess, setIsSuccess] = useState(false);
 
   const {
@@ -23,7 +25,7 @@ export const MailingForm = () => {
 
   return (
     <div className={cls.formWrapper}>
-      <h3 className={cls.formTitle}>
+      <h3 className={`${cls.formTitle} ${cls.wide}`}>
         {isSuccess ? 'Вы успешно подписаны на рассылку!'
           : 'Будь в курсе новостей студии и получи скидку 10% на первое зянятие'}
       </h3>
@@ -37,7 +39,12 @@ export const MailingForm = () => {
             values={values}
           />
           <div className={cls.btnWrapper}>
-            <Button className="fill" decoration="black" type="submit" disabled={!isValid}>
+            <Button
+              className="fill"
+              decoration="black"
+              type="submit"
+              disabled={!isValid}
+            >
               Подписаться на рассылку
             </Button>
           </div>

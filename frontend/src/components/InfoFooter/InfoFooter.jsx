@@ -2,8 +2,10 @@ import { Link } from 'react-router-dom';
 import { Logo } from '../Logo/Logo';
 import { MailingForm } from '../MailingForm/MailingForm';
 import cls from './InfoFooter.module.scss';
+import { useResize } from '../../hooks/useResize';
 
 export const InfoFooter = () => {
+  const { width } = useResize();
   return (
     <div className={cls.block}>
       <div className={cls.otherContainer}>
@@ -53,7 +55,7 @@ export const InfoFooter = () => {
             </li>
           </ul>
         </nav>
-        <MailingForm />
+        {width > 876 && <MailingForm />}
       </div>
     </div>
   );

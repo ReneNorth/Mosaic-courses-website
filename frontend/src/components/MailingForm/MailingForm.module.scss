@@ -33,15 +33,34 @@
   position: relative;
 }
 
-@media screen and (max-width: global.$breakpoint-mobile) {
+@media screen and (max-width: 876px) {
+  .btnWrapper {
+    max-width: 325px;
+    width: 44vw;
+  }
+
+  .wide {
+    width: 93vw;
+    max-width: 696px;
+  }
+}
+
+@media screen and (max-width: 696px) {
+  .formWrapper {
+    width: 100%;
+    border-top: 1px solid #819286;
+    padding: 0 20px;
+  }
+
   .formTitle {
     line-height: 135%;
+    margin-top: 40px;
   }
 
   .btnWrapper {
-    width: 325px;
+    width: fit-content;
     max-width: 400px;
-    margin-top: 20px;
+    margin-top: 3px;
 
     .submit {
       width: calc(100% - 10px);
@@ -60,5 +79,11 @@
       top: 5px;
       border-radius: 56px;
     }
+  }
+
+  .form {
+    margin-top: 12px;
+    width: 83vw;
+    align-items: center;
   }
 }

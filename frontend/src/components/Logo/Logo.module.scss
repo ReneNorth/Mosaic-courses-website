@@ -6,6 +6,12 @@
   height: 72px;
 }
 
+@media screen and (max-width: 876px) {
+  .logo {
+    grid-area: logo;
+  }
+}
+
 @media screen and (max-width: global.$breakpoint-mobile) {
   .logo {
     max-width: 115.5px;
