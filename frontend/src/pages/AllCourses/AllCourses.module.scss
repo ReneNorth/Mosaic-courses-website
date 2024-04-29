@@ -79,9 +79,7 @@
     .filterBlockMobile {
         display: flex;
     }
-  }
 
-  @media screen and (max-width: global.$breakpoint-mobile) {
     .filterWrapper {
         padding-top:0;
     }

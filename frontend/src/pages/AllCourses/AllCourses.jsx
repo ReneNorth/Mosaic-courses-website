@@ -12,32 +12,32 @@ import { SelectFieldSingle } from '../../components/SelectFieldSingle/SelectFiel
 import { Chip } from '../../components/Chip/Chip';
 import { Arrows } from '../../images/Arrows';
 import { AllCoursesMobileSortModal } from '../../components/AllCoursesMobileSortModal/AllCoursesMobileSortModal';
+import { AllCoursesMobileFilterModal } from '../../components/AllCoursesMobileFilterModal/AllCoursesMobileFilterModal';
 
 export const AllCourses = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const [sortMobileButtonActive, setSortMobileButton] = useState(false);
-  const [sortMobileButtonOpen, setSortMobileButtonOpen] = useState(false);
+  const [sortMobileModalOpen, setSortMobileModalOpen] = useState(false);
   const [sortingStatus, setSortingStatus] = useState('default');
-  const [filterMobileButtonActive, setFilterMobileButton] = useState(false);
+  const [filterMobileModalOpen, setFilterMobileModalOpen] = useState(false);
+  const [filterStatus, setFilterStatus] = useState([]);
+  const [saveFilterStatus, setSaveFilterStatus] = useState([]);
 
-  const forWho = [
-    'Группа',
-    'Индивидуально',
-    'Общий набор',
-  ];
-  const time = [
-    'Будни',
-    'Выходные',
-  ];
-  const names = [
-    'Начинающий',
-    'Продолжающий',
-  ];
-  const type = [
-    'Современная',
-    'Классическая',
-  ];
+  const filters = {
+    forWho: [
+      'Группа',
+      'Индивидуально',
+      'Общий набор'],
+    time: [
+      'Будни',
+      'Выходные'],
+    names: [
+      'Начинающий',
+      'Продолжающий'],
+    type: [
+      'Современная',
+      'Классическая'],
+  };
   const sortSingle = [
     { name: 'Без фильтра', value: '' },
     { name: 'Для начинающих', value: 'for novice' },
@@ -46,7 +46,7 @@ export const AllCourses = () => {
 
   const handlerSortMobileButton = (e) => {
     e.preventDefault();
-    setSortMobileButtonOpen(true);
+    setSortMobileModalOpen(true);
     // const sendData = {
     //   email: values.email,
     // };
@@ -57,6 +57,8 @@ export const AllCourses = () => {
 
   const handlerFilterMobileButton = (e) => {
     e.preventDefault();
+    setFilterMobileModalOpen(true);
+    setSaveFilterStatus(filterStatus);
     // const sendData = {
     //   email: values.email,
     // };
@@ -73,24 +75,29 @@ export const AllCourses = () => {
       <div className={cls.filterWrapper}>
         <div className={cls.filterBlock}>
           <SelectFieldSingle placeholder="Сортировка" valuesArray={sortSingle} />
-          <SelectField placeholder="Для кого " valuesArray={forWho} />
-          <SelectField placeholder="По времени " valuesArray={time} />
-          <SelectField placeholder="Тип занятий " valuesArray={names} />
-          <SelectField placeholder="Тип мозаики " valuesArray={type} />
+          <SelectField placeholder="Для кого " valuesArray={filters.forWho} />
+          <SelectField placeholder="По времени " valuesArray={filters.time} />
+          <SelectField placeholder="Тип занятий " valuesArray={filters.names} />
+          <SelectField placeholder="Тип мозаики " valuesArray={filters.type} />
           <ButtonReset placeholder="Очистить " disabled />
         </div>
         <div className={cls.filterBlockMobile}>
           <Chip
+            border
             active={sortingStatus !== 'default'}
             onClick={(e) => handlerSortMobileButton(e)}
             fill
           >
             <Arrows />
             {' '}
-            Сортировка
+            {sortingStatus === 'default' ? 'Сортировка' : ''}
+            {sortingStatus === 'recommended' ? 'Рекомендованные' : ''}
+            {sortingStatus === 'forBeginners' ? 'Для начинающих' : ''}
           </Chip>
           <Chip
-            active={filterMobileButtonActive}
+            border
+            number={filterStatus.length}
+            active={filterStatus.length}
             onClick={(e) => handlerFilterMobileButton(e)}
             fill
           >
@@ -98,10 +105,18 @@ export const AllCourses = () => {
           </Chip>
         </div>
         <AllCoursesMobileSortModal
-          isOpen={sortMobileButtonOpen}
-          setIsOpen={setSortMobileButtonOpen}
+          isOpen={sortMobileModalOpen}
+          setIsOpen={setSortMobileModalOpen}
           sortingStatus={sortingStatus}
           setSortingStatus={setSortingStatus}
+        />
+        <AllCoursesMobileFilterModal
+          isOpen={filterMobileModalOpen}
+          setIsOpen={setFilterMobileModalOpen}
+          filters={filters}
+          filterStatus={filterStatus}
+          setFilterStatus={setFilterStatus}
+          saveFilterStatus={saveFilterStatus}
         />
       </div>
       <div className={cls.coursesWrapper}>

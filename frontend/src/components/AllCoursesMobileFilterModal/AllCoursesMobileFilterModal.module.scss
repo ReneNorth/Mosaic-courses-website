@@ -1,14 +1,23 @@
 @use "../../utils/variables/global.scss";
 
 .popup {
+  background: var(--color-background-color);
   position: fixed;
-  top: calc(( 100dvh - 156px ) / 2);
-  left: calc(( 100dvw - 320px ) / 2);
+  padding: 16px 20px 20px 20px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
   opacity: 0;
   visibility: hidden;
-  transition: all .3s ease;
+  transition: .5s;
   z-index: global.$layer-of-popup;
   pointer-events: none;
+  box-sizing: border-box;
 
   &Open {
     opacity: 1;
@@ -17,36 +26,30 @@
   }
 }
 
-.overlay {
-  background: var(--color-overlay);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: global.$layer-of-popup;
-  opacity: 0;
-  visibility: hidden;
-  transition: all .3s ease;
-
-  &Open {
-    opacity: 1;
-    visibility: visible;
-  }
+.closeButton {
+  all: unset;
+  cursor: pointer;
 }
 
 .contentWrapper {
-  width: 320px;
-  height: 156px;
-  border-radius: 12px;
-  border: 1px solid var(--color-green-accent);
-  box-sizing: border-box;
-  background-color: var(--bg-color-white);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  // gap: 4px;
-  // box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.60);
+}
+
+.filterTitle {
+  font-family: var(--font-primary), sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 135%;
+  color: var(--text-color);
+}
+
+.filtersWrapper {
+  padding-top: 16px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .button {
@@ -58,7 +61,7 @@
   font-weight: 500;
   font-size: 17px;
   line-height: 135%;
-  
+
   color: var(--text-color);
   padding: 10px 20px 10px 24px;
   border-bottom: 1px solid var(--color-green-accent);
@@ -75,12 +78,17 @@
   }
 }
 
-  .active {
-    color: var(--color-background-color);
-    background-color: var(--color-green-accent);
-  }
-
-
-@media screen and (max-width: global.$breakpoint-mobile) {
-
+.active {
+  color: var(--color-background-color);
+  background-color: var(--color-green-accent);
 }
+
+.buttonsWrapper {
+  width: calc( 100dvw - 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+
+@media screen and (max-width: global.$breakpoint-mobile) {}

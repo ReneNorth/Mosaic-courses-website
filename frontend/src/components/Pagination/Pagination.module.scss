@@ -1,15 +1,17 @@
-.pagination_bar {
+@use "../../utils/variables/global.scss";
+
+.paginationBar {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.pagination_container {
+.paginationContainer {
   display: flex;
   list-style-type: none;
   gap: 8px;
 
-  .pagination_item {
+  .paginationItem {
     font-family: var(--font-primary), sans-serif;
     font-weight: 400;
     font-size: 17px;
@@ -82,4 +84,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .paginationBar {
+   display: none;
+}
 }

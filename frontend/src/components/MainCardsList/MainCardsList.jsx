@@ -6,6 +6,8 @@ import cls from './MainCardsList.module.scss';
 import { getAllCourses } from '../../services/slices/coursesSlice.js';
 import imageNotFound from '../../images/dali.png';
 import Pagination from '../Pagination/Pagination.jsx';
+import { checkPosition } from '../../helpers/checkPosition.js';
+import { useThrottle } from '../../hooks/useThrottle.jsx';
 
 export const MainCardsList = ({ setIsOpen, PageSize }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -39,7 +41,7 @@ export const MainCardsList = ({ setIsOpen, PageSize }) => {
     }
   }, [sending]);
 
-  console.log(allCourses, currentPageOffset);
+  // console.log(allCourses, currentPageOffset);
   const nullArray = [];
 
   // eslint-disable-next-line consistent-return, array-callback-return
@@ -55,7 +57,27 @@ export const MainCardsList = ({ setIsOpen, PageSize }) => {
     );
   });
 
-  console.log(coursesToRender);
+  // const LogingFunction = () => {
+  //   return console.log('log');
+  // };
+
+  // const handleScroll = () => {
+  //   // eslint-disable-next-line react-hooks/rules-of-hooks
+  //   useThrottle(checkPosition(LogingFunction), 250);
+  // };
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+  // (() => {
+  //   window.addEventListener('scroll', useThrottle(checkPosition(LogingFunction), 250));
+  //   window.addEventListener('resize', throttle(checkPosition(LogingFunction), 250));
+  // })();
+
+  // console.log(coursesToRender);
   return (
     <section className={cls.section}>
       {coursesToRender.length ? (

@@ -13,3 +13,9 @@
     right: 179px
   }
 }
+
+@media screen and (max-width: global.$breakpoint-xsmall-laptop) {
+  .decoration {
+    display: none;
+  }
+}

@@ -47,10 +47,10 @@ const Pagination = (props) => {
   const lastPage = paginationRange[paginationRange.length - 1];
   return (
     <ul
-      className={classNames(cls.pagination_container, {}, [cls.pagination_bar])}
+      className={classNames(cls.paginationContainer, {}, [cls.paginationBar])}
     >
       <li
-        className={classNames(cls.pagination_item, { }, [currentPage === 1 ? cls.disabled : ''])}
+        className={classNames(cls.paginationItem, { }, [currentPage === 1 ? cls.disabled : ''])}
         onClick={onPrevious}
       >
         <div className={`${cls.arrow} ${cls.left}`}>
@@ -60,13 +60,13 @@ const Pagination = (props) => {
       </li>
       {paginationRange.map((pageNumber) => {
         if (pageNumber === DOTS) {
-          return <li key={crypto.randomUUID()} className={`${cls.pagination_item} ${cls.dots}`}>...</li>;
+          return <li key={crypto.randomUUID()} className={`${cls.paginationItem} ${cls.dots}`}>...</li>;
         }
 
         return (
           <li
             key={crypto.randomUUID()}
-            className={classNames(cls.pagination_item, { }, [pageNumber === currentPage ? cls.selected : ''])}
+            className={classNames(cls.paginationItem, { }, [pageNumber === currentPage ? cls.selected : ''])}
             onClick={onPageClick}
           >
             {pageNumber}
@@ -74,7 +74,7 @@ const Pagination = (props) => {
         );
       })}
       <li
-        className={classNames(cls.pagination_item, { }, [currentPage === lastPage ? cls.disabled : ''])}
+        className={classNames(cls.paginationItem, { }, [currentPage === lastPage ? cls.disabled : ''])}
         onClick={onNext}
       >
         <div className={`${cls.arrow} ${cls.right}`}>

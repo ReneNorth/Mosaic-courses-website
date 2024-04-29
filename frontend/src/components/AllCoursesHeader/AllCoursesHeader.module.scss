@@ -90,23 +90,25 @@
   // }
 }
 
-@media screen and (max-width: global.$breakpoint-mobile) {
+@media screen and (max-width: global.$breakpoint-pre-mobile) {
   .section {
     padding: 0;
     width: calc(100vw - 40px);
-    justify-content: center;
+    justify-content: start;
   }
 
   .title {
     padding-bottom: 20px;
     font-size: 26px;
-    max-width: 100%;
+    max-width: 400px;
   }
 
   .span {
     padding-top: 3px;
     font-size: 28px;
     line-height: 110%;
+    text-align: left;
+    width: 250px;
   }
 
   // .description {
