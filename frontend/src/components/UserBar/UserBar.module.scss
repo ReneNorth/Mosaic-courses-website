@@ -1,78 +1,73 @@
-@use "../../utils/variables/global.scss";
+@use '../../utils/variables/global.scss';
 
 .list {
-  padding: 0;
-  margin: 0;
-  min-width: 192px;
+  // padding: 0;
+  // margin: 0;
+  // min-width: 192px;
   display: flex;
   justify-content: space-between;
-  gap: 20px;
-  align-items: center;
-  list-style-type: none;
+  gap: 23px;
+  padding: 44px 0 36px;
+  // align-items: center;
+  // list-style-type: none;
 }
 
-.search {
-  width: 32px;
+.item,
+.item__profile {
   height: 32px;
-  background-image: url('../../images/Ic_search.svg');
-  background-repeat: no-repeat;
-  background-color: transparent;
-  border: none;
 }
 
-.link {
-  display: block;
-  width: 32px;
-  height: 32px;
-  background-repeat: no-repeat;
+.item__profile {
   position: relative;
-  &  svg {
-    cursor: pointer;
-    path {
-      stroke: var(--color-black);
-      transition: .5s;
-    }
-  }
-&:hover  svg {
-  cursor: pointer;
+  &:hover svg {
     path {
       stroke: var(--color-green-accent);
-      transition: .5s;
+      transition: 0.5s;
     }
   }
 }
 
-.active  svg {
-  cursor: pointer;
+.active svg {
   path {
     stroke: var(--color-green-accent);
   }
+}
+
+.search {
+  background-image: url('../../images/Ic_search.svg');
+}
+
+.heart {
+  background-image: url('../../images/heart.svg');
 }
 
 .cart {
   background-image: url('../../images/Ic_shopping_bag.svg');
 }
 
-.button {
-  // display: none;
-  height: 24px;
-  width: 24px;
+.hamburger {
   background-image: url('../../images/hamburger_menu.svg');
+}
+
+.link,
+.button {
+  width: 32px;
+  height: 32px;
   background-repeat: no-repeat;
+  background-position: center;
+}
+
+.link {
+  display: block;
+}
+
+.button {
   background-color: transparent;
+  padding: 0;
   cursor: pointer;
 }
 
-.hamburgerMenuButton {
-  display: none;
-}
-
 @media screen and (max-width: global.$breakpoint-mobile) {
-
-  .hamburgerMenuButton {
-    display: block;
-  }
-
   .list {
     background-color: var(--bg-green-primary);
     padding: 31px 0 45px 0;
@@ -81,34 +76,10 @@
     max-width: 140px;
   }
 
-  .item {
-    display: none;
-    flex: 0 0 100%;
-  }
-
-  // .search {
-  //   display: none;
-  // }
-
-  .link {
+  .link,
+  .button {
     width: 24px;
     height: 24px;
     background-size: 24px 24px;
   }
-
-  .profile {
-    width: 24px;
-    height: 24px;
-    background-size: 24px 24px;
-  }
-
-  .cart {
-    width: 24px;
-    height: 24px;
-    background-size: 24px 24px;
-  }
-
-  // .button {
-  //   display: block;
-  // }
 }

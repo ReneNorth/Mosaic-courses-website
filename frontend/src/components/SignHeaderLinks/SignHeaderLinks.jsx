@@ -1,17 +1,18 @@
 import { NavLink } from 'react-router-dom';
 import { classNames } from '../../helpers/classNames';
 import cls from './SignHeaderLinks.module.scss';
+import { ENDPOINTS } from '../../utils/consts/constants';
 
 export const SignHeaderLinks = () => {
   const headerLinks = [
     {
       id: '1',
-      link: '/sign-in',
+      link: ENDPOINTS.SIGN_IN,
       title: 'Войти',
     },
     {
       id: '2',
-      link: '/register',
+      link: ENDPOINTS.REGISTER,
       title: 'Зарегистрироваться',
     },
   ];

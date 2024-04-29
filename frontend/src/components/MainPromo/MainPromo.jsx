@@ -14,9 +14,7 @@ export const MainPromo = ({ setIsOpen }) => {
           Мастер-классы
           <br />
           по
-          {' '}
-          <span>римской</span>
-          {' '}
+          <span>&nbsp;римской&nbsp;</span>
           мозаике
         </>
       )}
