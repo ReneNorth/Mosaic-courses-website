@@ -1,10 +1,14 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
 import { classNames } from '../../helpers/classNames';
 import cls from './UserBar.module.scss';
 import { HamburgerMenu } from '../HamburgerMenu/HamburgerMenu';
 import { ProfileModal } from '../ProfileModal/ProfileModal';
-import IconProfile from '../../images/UserbarProfile.jsx';
+import { ReactComponent as SearcLogo } from '../../images/Ic_search.svg';
+import { ReactComponent as ProfileLogo } from '../../images/profile.svg';
+import { ReactComponent as HeartLogo } from '../../images/heart.svg';
+import { ReactComponent as CartLogo } from '../../images/Ic_shopping_bag.svg';
+import { ReactComponent as HamburgerLogo } from '../../images/hamburger_menu.svg';
 import { useResize } from '../../hooks/useResize.js';
 import { ENDPOINTS } from '../../utils/consts/constants.js';
 
@@ -29,50 +33,49 @@ export const UserBar = () => {
     <>
       {hamburgerMenuOpen && <HamburgerMenu handleClick={closeHamburgerMenu} />}
       <ul className={cls.list}>
+        <div className={cls.decoration} />
         <li className={cls.item}>
-          <button
-            className={classNames(cls.button, {}, [cls.search])}
-            type="button"
-            aria-label="Поиск"
-          />
+          <button className={cls.button} type="button" aria-label="Поиск">
+            <SearcLogo className={cls.icon} />
+          </button>
         </li>
-        <li
-          className={classNames(
-            cls.item__profile,
-            { [cls.active]: pathname.startsWith('/profile') },
-            [],
-          )}
-        >
+        <li className={cls.item}>
           <button
             type="button"
             aria-label="Открыть профиль"
             onClick={openProfileModal}
             className={cls.button}
           >
-            <IconProfile />
+            <ProfileLogo
+              className={classNames(
+                cls.icon,
+                { [cls.active]: pathname.startsWith(ENDPOINTS.PROFILE) },
+                [],
+              )}
+            />
           </button>
           <ProfileModal isOpen={isOpen} setIsOpen={setIsOpen} />
         </li>
         <li className={cls.item}>
-          <Link
-            className={classNames(cls.link, {}, [cls.heart])}
-            to={ENDPOINTS.FAVOURITES_PAGE}
-          />
+          <NavLink to={ENDPOINTS.FAVOURITES_PAGE} className={cls.link}>
+            <HeartLogo className={cls.icon} />
+          </NavLink>
         </li>
         <li className={cls.item}>
-          <Link
-            className={classNames(cls.link, {}, [cls.cart])}
-            to={ENDPOINTS.CART}
-          />
+          <NavLink to={ENDPOINTS.CART} className={cls.link}>
+            <CartLogo className={cls.icon} />
+          </NavLink>
         </li>
         {!isDesktopWidth && (
           <li className={cls.item}>
             <button
-              className={classNames(cls.button, {}, [cls.hamburger])}
+              className={cls.button}
               type="button"
               onClick={openHamburgerMenu}
               aria-label="Открыть меню навигации"
-            />
+            >
+              <HamburgerLogo className={cls.icon} />
+            </button>
           </li>
         )}
       </ul>

@@ -1,64 +1,30 @@
 @use '../../utils/variables/global.scss';
 
 .list {
-  // padding: 0;
-  // margin: 0;
-  // min-width: 192px;
   display: flex;
   justify-content: space-between;
   gap: 23px;
   padding: 44px 0 36px;
-  // align-items: center;
-  // list-style-type: none;
+  position: relative;
+}
+
+.item {
+  // после переноса модалки нужно убрать position
+  position: relative;
+  &:hover svg {
+    stroke: var(--text-color-secondary);
+    transition: 0.5s;
+  }
 }
 
 .item,
-.item__profile {
-  height: 32px;
-}
-
-.item__profile {
-  position: relative;
-  &:hover svg {
-    path {
-      stroke: var(--color-green-accent);
-      transition: 0.5s;
-    }
-  }
-}
-
-.active svg {
-  path {
-    stroke: var(--color-green-accent);
-  }
-}
-
-.search {
-  background-image: url('../../images/Ic_search.svg');
-}
-
-.heart {
-  background-image: url('../../images/heart.svg');
-}
-
-.cart {
-  background-image: url('../../images/Ic_shopping_bag.svg');
-}
-
-.hamburger {
-  background-image: url('../../images/hamburger_menu.svg');
-}
-
-.link,
-.button {
-  width: 32px;
-  height: 32px;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
+.button,
 .link {
-  display: block;
+  height: 32px;
+}
+
+.active {
+  stroke: var(--color-green-accent);
 }
 
 .button {
@@ -67,19 +33,46 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: global.$breakpoint-mobile) {
+.decoration {
+  width: 360px;
+  height: 444px;
+  position: absolute;
+  top: 0;
+  right: -140px;
+  z-index: -1;
+  background-color: var(--bg-green-primary);
+}
+
+@media screen and (max-width: global.$breakpoint-tablet) {
   .list {
-    background-color: var(--bg-green-primary);
-    padding: 31px 0 45px 0;
-    gap: 16px;
-    justify-content: center;
-    max-width: 140px;
+    padding: 31px 24px 45px 26px;
+    gap: 12px;
   }
 
+  .decoration {
+    right: 0;
+    width: 302px;
+    height: 222px;
+  }
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .list {
+    padding: 31px 20px 56px 11px;
+    gap: 12px;
+  }
+
+  .item,
+  .button,
   .link,
-  .button {
+  .icon {
     width: 24px;
     height: 24px;
-    background-size: 24px 24px;
+  }
+
+  .decoration {
+    right: 0;
+    width: 199px;
+    height: 111px;
   }
 }

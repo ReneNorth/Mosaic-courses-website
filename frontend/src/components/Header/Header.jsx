@@ -10,9 +10,7 @@ export const Header = () => {
 
   return (
     <header className={classNames(cls.section, {}, [])}>
-      {/* <div className={cls.logoWrapper}> */}
       <Logo />
-      {/* </div> */}
       {isDesktopWidth && <NavBar />}
       <UserBar />
     </header>

@@ -1,21 +1,8 @@
-@use "../../utils/variables/global.scss";
+@use '../../utils/variables/global.scss';
 
 .section {
   max-width: 1280px;
   width: 100%;
   display: flex;
   justify-content: space-between;
-}
-
-@media screen and (max-width: global.$breakpoint-mobile) {
-  // .section {
-    // margin-top: 0;
-    // height: 100px;
-    // align-items:flex-start;
-  // }
-
-  // .logoWrapper {
-  //   margin-left: 20px;
-  //   margin-top: 16px;
-  // }
 }

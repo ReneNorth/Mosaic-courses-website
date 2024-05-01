@@ -1,4 +1,4 @@
-import { PromoSection } from '../PromoSection-new/PromoSection';
+import { PromoSection } from '../PromoSection/PromoSection';
 import promoImg from '../../images/CertificatesPromo.png';
 import imgBg from '../../images/CertificatesDecor.png';
 import { Button } from '../Button/Button';

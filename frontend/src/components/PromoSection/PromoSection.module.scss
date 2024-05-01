@@ -1,106 +1,137 @@
-@use "../../utils/variables/global.scss";
+@use '../../utils/variables/global.scss';
 
 .section {
-  max-width: 1280px;
   width: 100%;
-  position: relative;
+  box-sizing: border-box;
+  padding: 0 320px 116px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 31px;
 
-}
+  .left {
+    .mobileImage {
+      display: none;
+    }
 
-.block {
-  margin-top: 85px;
-  height: 600px;
-  display: grid;
-  grid-template-rows: min-content min-content min-content min-content;
-  grid-template-columns: 584px auto;
-  gap: 0 270px;
-}
+    .title {
+      font-family: Raleway;
+      font-size: 56px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 110%;
+      color: #121210;
+      margin-bottom: 24px;
 
-.imgBg {
-  display: none;
-}
+      span {
+        font-family: Lora;
+        font-size: 58px;
+        font-style: italic;
+        font-weight: 600;
+        line-height: 110%;
+        color: #6aaf12;
+      }
+    }
 
-.wrapper {
-  grid-column: 2;
-  grid-row: span 4;
-  position: relative;
-  max-height: 1px;
-  // z-index: 10;
-}
+    .paragraph {
+      margin: 0;
+      color: #121210;
+      font-family: Raleway;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 135%;
+      width: 584px;
+    }
 
-.image {
-  width: 426px;
-  height: 596px;
-  z-index: 100;
-  border-radius: 600px 600px 0 0;
-  object-fit: cover;
-  object-position: center;
-}
-
-.radius {
-  width: 440px;
-  height: 605px;
-  position: absolute;
-  top: 11px;
-  right: 0;
-  border: 1px solid #000000;
-  border-radius: 600px 600px 0px 0px;
-  z-index: -1;
-}
-
-.rectangle {
-  display: block;
-  max-width: 326px;
-  width: 100%;
-  height: 444px;
-  background-color: var(--bg-green-primary);
-  position: absolute;
-  top: -143px;
-  right: -141px;
-  z-index: -1;
-}
-
-
-.btnGroup {
-  margin-top: 40px;
-  grid-row: 4;
-  grid-column: 1;
-}
-
-@media screen and (max-width: global.$breakpoint-mobile) {
-
-  .btnGroup {
-    margin-top: 36px;
-    grid-row: 5;
+    .otherElements {
+      margin-top: 40px;
+    }
   }
 
-  .block {
-    margin: 20px 20px 0;
-    display: flex;
-    flex-direction: column;
+  .right {
+    border: 1px solid #000;
     box-sizing: border-box;
-  }
+    width: 426px;
+    height: 596px;
+    border-radius: 600px 600px 0px 0px;
+    position: relative;
+    top: 16px;
+    right: 16px;
 
-  .imgBg {
-    display:block;
-    margin: 20px 0;
-    grid-row: 2;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 20px 20px 300px 20px;
+    .desktopImage {
+      object-fit: cover;
+      border-radius: 600px 600px 0px 0px;
+      position: relative;
+      bottom: 16px;
+      left: 16px;
+      width: 426px;
+      height: 596px;
+    }
   }
-  
-  .textContainer {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-  }
+}
 
-  .bg {
-    display: none;
+@media screen and (max-width: 1550px) {
+  .section {
+    padding: 0 160px 116px;
   }
+}
 
-  .wrapper {
-    display: none;
+@media screen and (max-width: 1350px) {
+  .section {
+    padding: 0 80px 116px;
+  }
+}
+
+@media screen and (max-width: 1190px) {
+  .section {
+    padding: 0 40px 116px;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .section {
+    padding: 0 20px 116px;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .section {
+    padding: 0 20px 20px;
+
+    .left {
+      .mobileImage {
+        display: block;
+        object-fit: cover;
+        border-radius: 20px 20px 300px 20px;
+        width: 320px;
+        height: 179px;
+        margin-bottom: 20px;
+      }
+
+      .title {
+        font-family: Raleway;
+        font-size: 26px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 110%;
+
+        span {
+          font-family: Lora;
+          font-size: 28px;
+          font-style: italic;
+          font-weight: 600;
+          line-height: 110%;
+        }
+      }
+
+      .paragraph {
+        font-family: Raleway;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 135%;
+        width: 315px;
+      }
+    }
   }
 }

@@ -1,6 +1,6 @@
 import cls from './AboutStudioHeader.module.scss';
 import indicator from '../../images/indicator.svg';
-import { PromoSection } from '../PromoSection-new/PromoSection';
+import { PromoSection } from '../PromoSection/PromoSection';
 import promoImg from '../../images/sboutStudioPromo.png';
 import imgBg from '../../images/aboutStudioDecor.png';
 import { Button } from '../Button/Button';

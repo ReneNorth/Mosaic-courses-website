@@ -6,8 +6,8 @@ import { ENDPOINTS } from '../../utils/consts/constants';
 export const NavBar = ({ handleClick }) => {
   return (
     <nav className={cls.container}>
-      <ul className={classNames(cls.list, {}, [])}>
-        <li className={classNames(cls.item, {}, [])}>
+      <ul className={cls.list}>
+        <li className={cls.item}>
           <NavLink
             to={ENDPOINTS.ABOUT}
             className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
@@ -16,7 +16,7 @@ export const NavBar = ({ handleClick }) => {
             О студии
           </NavLink>
         </li>
-        <li className={classNames(cls.item, {}, [])}>
+        <li className={cls.item}>
           <NavLink
             to={ENDPOINTS.CERTIFICATES}
             className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
@@ -25,7 +25,7 @@ export const NavBar = ({ handleClick }) => {
             Подарочный сертификат
           </NavLink>
         </li>
-        <li className={classNames(cls.item, {}, [])}>
+        <li className={cls.item}>
           <NavLink
             to={ENDPOINTS.COURSES}
             className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
@@ -34,16 +34,16 @@ export const NavBar = ({ handleClick }) => {
             Курсы
           </NavLink>
         </li>
-        <li className={classNames(cls.item, {}, [])}>
+        <li className={cls.item}>
           <NavLink
             to={ENDPOINTS.GALLERY}
-            className={classNames(cls.link, {}, [])}
+            className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
             onClick={handleClick}
           >
             Галерея
           </NavLink>
         </li>
-        <li className={classNames(cls.item, {}, [])}>
+        <li className={cls.item}>
           <NavLink
             to={ENDPOINTS.BLOG}
             className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
@@ -52,10 +52,10 @@ export const NavBar = ({ handleClick }) => {
             Блог
           </NavLink>
         </li>
-        <li className={classNames(cls.item, {}, [])}>
+        <li className={cls.item}>
           <NavLink
             to={ENDPOINTS.SHOP}
-            className={classNames(cls.link, {}, [])}
+            className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
             onClick={handleClick}
           >
             Магазин

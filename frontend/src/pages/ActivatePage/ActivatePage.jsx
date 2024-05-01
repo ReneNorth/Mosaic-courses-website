@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../helpers/classNames';
 import cls from './ActivatePage.module.scss';
 import { activateUser, getEmailByUID, resendActivationEmail } from '../../services/slices/authSlice';
-import { RectangularPageDecoration } from '../../components/RectangularPageDecoration/RectangularPageDecoration';
 import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/LogInPageDecorationImg';
 import { Button } from '../../components/Button/Button';
+import { ENDPOINTS } from '../../utils/consts/constants';
 
 export function ActivatePage() {
   const { uid, token } = useParams();
@@ -34,7 +34,7 @@ export function ActivatePage() {
   const goToLogin = (e) => {
     e.preventDefault();
     if (activateSucces) {
-      navigate('/sign-in');
+      navigate(ENDPOINTS.SIGN_IN);
     }
     if (activateError) {
       const data = {
@@ -71,7 +71,6 @@ export function ActivatePage() {
 
   return (
     <section className={cls.section}>
-      <RectangularPageDecoration />
       <div className={cls.block}>
         <div className={cls.formContainer}>
           <div className={cls.responseStep}>
