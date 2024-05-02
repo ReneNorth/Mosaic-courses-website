@@ -12,9 +12,13 @@
   // после переноса модалки нужно убрать position
   position: relative;
   &:hover svg {
-    stroke: var(--text-color-secondary);
+    stroke: var(--color-green-accent);
     transition: 0.5s;
   }
+}
+
+.link {
+  display: block;
 }
 
 .item,

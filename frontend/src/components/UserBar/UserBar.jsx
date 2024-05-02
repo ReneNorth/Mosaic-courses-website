@@ -67,7 +67,7 @@ export const UserBar = () => {
           </NavLink>
         </li>
         {!isDesktopWidth && (
-          <li className={cls.item}>
+          <li>
             <button
               className={cls.button}
               type="button"
