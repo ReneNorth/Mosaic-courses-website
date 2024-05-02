@@ -4,9 +4,6 @@ import imgBg from '../../images/CertificatesDecor.png';
 import { Button } from '../Button/Button';
 
 export const GiftCertificatesHeader = ({ scrollFunction }) => {
-  const handleClick = () => {
-    scrollFunction();
-  };
   return (
     <PromoSection
       desktopImage={promoImg}
@@ -22,7 +19,7 @@ export const GiftCertificatesHeader = ({ scrollFunction }) => {
       text="Если вы хотите подарить новый опыт и приятные впечатления
       - выберите сертификат на занятия в Студии мозаики Tessera"
       otherElements={
-        <Button className="fill" decoration="black" onClick={handleClick}>Купить сертификат</Button>
+        <Button className="fill" decoration="black" onClick={scrollFunction}>Купить сертификат</Button>
       }
     />
   );

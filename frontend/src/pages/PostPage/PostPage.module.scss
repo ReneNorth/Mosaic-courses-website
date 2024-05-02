@@ -35,7 +35,7 @@
     align-items: center;
 
     &::before {
-      content: "";
+      content: '';
       width: 32px;
       height: 32px;
       background-image: url(../../images/time.svg);
@@ -57,7 +57,7 @@
   }
 }
 
-.markdown-container {
+.markdown__container {
   margin-top: 119px;
   padding: 64px 290px 90px;
   background-color: #fff;
@@ -71,46 +71,10 @@
     color: #000;
     font-family: var(--font-primary);
 
-    h1 {
-      font-size: 32px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 135%;
-    }
     h2 {
       font-size: 28px;
       font-style: normal;
       font-weight: 700;
-      line-height: 135%;
-    }
-
-    h3 {
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 135%
-    }
-
-    h4 {
-      font-size: 23px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 135%;
-      padding: 0;
-    }
-
-    h5 {
-      font-size: 22px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 135%;
-    }
-
-    h6 {
-      margin: 0;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 600;
       line-height: 135%;
     }
 
@@ -161,8 +125,7 @@
   }
 }
 
-
-.more-posts {
+.more__posts {
   padding: 76px 320px;
   width: 100%;
   box-sizing: border-box;
@@ -180,32 +143,10 @@
 
   &::-webkit-scrollbar {
     display: none;
-}
-
-  &::-webkit-scrollbar-thumb {
-    display: none; 
   }
 
-}
-
-.readingTime {
-  margin: 0 0 40px;
-  font-family: var(--font-primary);
-  color: var(--text-color);
-  font-weight: 500;
-  font-size: 17px;
-  line-height: 135%;
-  display: flex;
-  align-items: center;
-
-  &::before {
-    content: "";
-    width: 32px;
-    height: 32px;
-    background-image: url(../../images/time.svg);
-    background-position: center;
-    background-size: 26px 26px;
-    background-repeat: no-repeat;
+  &::-webkit-scrollbar-thumb {
+    display: none;
   }
 }
 
@@ -216,7 +157,7 @@
     box-sizing: content-box;
   }
 
-  .markdown-container {
+  .markdown__container {
     padding: 0 20px;
     box-sizing: border-box;
     background-color: transparent;
@@ -224,14 +165,14 @@
     width: 100%;
   }
 
-  .more-posts {
+  .more__posts {
     .title {
       font-size: 26px;
       font-style: normal;
       font-weight: 700;
       line-height: 110%;
     }
-    
+
     padding: 80px 0 0;
     width: 320px;
   }

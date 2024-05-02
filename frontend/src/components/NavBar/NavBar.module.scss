@@ -28,7 +28,7 @@
   color: var(--color-green-active);
 }
 
-@media screen and (max-width: global.$breakpoint-mobile) {
+@media (max-width: global.$breakpoint-small-laptop) {
   .container {
     margin: 0;
   }

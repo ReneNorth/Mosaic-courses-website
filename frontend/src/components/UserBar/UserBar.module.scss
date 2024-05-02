@@ -43,10 +43,9 @@
   background-color: var(--bg-green-primary);
 }
 
-@media screen and (max-width: global.$breakpoint-tablet) {
+@media (max-width: global.$breakpoint-small-laptop) {
   .list {
     padding: 31px 24px 45px 26px;
-    gap: 12px;
   }
 
   .decoration {
@@ -56,7 +55,7 @@
   }
 }
 
-@media screen and (max-width: global.$breakpoint-mobile) {
+@media (max-width: global.$breakpoint-tablet) {
   .list {
     padding: 31px 20px 56px 11px;
     gap: 12px;

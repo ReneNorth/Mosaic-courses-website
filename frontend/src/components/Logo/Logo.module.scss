@@ -9,15 +9,20 @@
   max-height: 112px;
 }
 
-@media screen and (max-width: global.$breakpoint-tablet) {
+@media (max-width: global.$breakpoint-small-laptop) {
   .logo {
     padding: 24px 0 16px 24px;
   }
 }
 
-@media screen and (max-width: global.$breakpoint-mobile) {
+@media (max-width: global.$breakpoint-tablet) {
   .logo {
     width: 116px;
+    height: 54px;
     padding: 16px 25px 0px 20px;
+  }
+
+  .link {
+    max-height: 70px;
   }
 }
