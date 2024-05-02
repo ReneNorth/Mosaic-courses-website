@@ -22,8 +22,15 @@
   background-repeat: no-repeat;
   background-color: transparent;
   cursor: pointer;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   margin: 31px 20px 0 0;
   padding: 0;
+}
+
+@media (max-width: global.$breakpoint-tablet) {
+  .button {
+    width: 24px;
+    height: 24px;
+  }
 }
