@@ -1,6 +1,7 @@
 import logging
 
 from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
 from djoser.serializers import UidAndTokenSerializer
 from djoser.views import UserViewSet
 from rest_framework import filters, status
@@ -21,7 +22,17 @@ class CustomizedUserViewSet(UserViewSet):
     queryset = User.objects.all()
     serializer_class = CustomUserSerializer
     filter_backends = (filters.SearchFilter, )
-    search_fields = ('username', )
+    search_fields = ('email', )
+
+    @action(detail=False,
+            methods=['GET', ],
+            permission_classes=[IsAuthenticated, ],
+            url_path='me',)
+    def get_me(self, request):
+        """Custom method to override default djoser endpoint."""
+        user = get_object_or_404(User, pk=request.user.pk)
+        serializer = self.get_serializer(user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     @action(detail=False,
             url_path='my_masterclasses',

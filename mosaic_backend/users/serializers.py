@@ -34,11 +34,13 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email', 'id', 'first_name',
+        fields = ['email', 'first_name',
                   'last_name', 'password', 'phone', 'general_agreement',
                   'markcomm_agreement']
-        lookup_field = 'username'
+        lookup_field = 'email'
         extra_kwargs = {'password': {'write_only': True},
+                        'first_name': {'required': True},
+                        'last_name': {'required': True},
                         'general_agreement': {'required': True},
                         'markcomm_agreement': {'required': True}}
 

@@ -86,3 +86,4 @@ webencodings==0.5.1
 yarg==0.1.9
 zipp==3.8.0
 docutils==0.20.1
+django-anymail==10.3

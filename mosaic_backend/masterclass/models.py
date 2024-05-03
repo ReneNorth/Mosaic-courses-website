@@ -15,7 +15,6 @@ def get_or_create_dummy_teacher() -> User:
         User: an instance of a User with a role set to a Teacher
     """
     return get_user_model().objects.get_or_create(
-        username=DummyTeacher.username,
         first_name=DummyTeacher.first_name,
         last_name=DummyTeacher.last_name,
         is_staff=DummyTeacher.is_staff,

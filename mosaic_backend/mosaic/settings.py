@@ -1,17 +1,19 @@
 import os
 from datetime import timedelta
 from pathlib import Path
+from dotenv import load_dotenv
 
 from django.utils.log import DEFAULT_LOGGING
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
-LOCAL_DEV = False
+LOCAL_DEV = True
 
-KEY_ENV = os.getenv('SECRET_KEY')
-SECRET_KEY = f'{KEY_ENV}'
+load_dotenv(os.path.join(BASE_DIR.parent, 'infra/.env'))
+SECRET_KEY = f'{os.getenv("SECRET_KEY")}'
+
 ALLOWED_HOSTS = ['web', '127.0.0.1', '127.0.0.1:8000', 'localhost',
-                 'tessera.hopto.org', 'localhost:8000', ]
+                 'tesseramosaic.art', 'localhost:8000', ]
 
 
 INSTALLED_APPS = [
@@ -35,6 +37,7 @@ INSTALLED_APPS = [
     'custom_auth.apps.CustomAuthConfig',
     'teachers.apps.TeachersConfig',
     'drf_yasg',
+    'anymail',
     'rest_framework',
     'djoser',
     'django_filters',
@@ -102,6 +105,23 @@ if LOCAL_DEV is False:
             'PORT': os.getenv('DB_PORT', default='5432')
         }
     }
+    EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+
+    ANYMAIL = {
+        'MAILGUN_API_KEY': os.getenv('MAILGUN_KEY'),
+        'MAILGUN_SENDER_DOMAIN': os.getenv('MAILGUN_SENDER')
+    }
+    SITE_NAME = 'Tessera Mosaic'
+
+    # if you don't already have this in settings
+    DEFAULT_FROM_EMAIL = "you@example.com"
+    # ditto (default from-email for Django errors)
+    SERVER_EMAIL = "your-server@example.com"
+
+    # when emails as local files are okay
+    # EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+    # SITE_NAME = 'Tessera Mosaic'
+    # EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')  # directory for emails
 
 
 if LOCAL_DEV is True:
@@ -115,10 +135,16 @@ if LOCAL_DEV is True:
             'PORT': '5432'
         }
     }
+    print(os.getenv('MAILGUN_KEY'))
+    EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+    # EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+    ANYMAIL = {
+        'MAILGUN_API_KEY': os.getenv('MAILGUN_KEY'),
+        'MAILGUN_SENDER_DOMAIN': os.getenv('MAILGUN_SENDER')
+    }
+    DEFAULT_FROM_EMAIL = "mosaic.school.tessera@gmail.com"
+    SERVER_EMAIL = "mosaic.school.tessera@gmail.com"
 
-
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -140,11 +166,8 @@ LANGUAGE_CODE = 'en-us'
 
 
 TIME_ZONE = 'Asia/Almaty'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
@@ -157,15 +180,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
-
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-SITE_NAME = 'Tessera Mosaic'
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')  # directory for emails
-
-EMAIL_HOST = 'smtp-relay.brevo.com'
-EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'zharikovyuri@gmail.com'
-EMAIL_HOST_PASSWORD = 'AzZ2408xt5mn9EYk'
 
 
 REST_FRAMEWORK = {
@@ -188,7 +202,6 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'Website for a mosaic school',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
-    # OTHER SETTINGS
 }
 
 
@@ -292,3 +305,8 @@ GRAPH_MODELS = {
     'all_applications': True,
     'group_models': True,
 }
+
+
+# uncategorized settings
+
+FIRST_DAY_OF_WEEK = 1

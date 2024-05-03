@@ -28,7 +28,7 @@ from masterclass.models import Masterclass, MasterclassType
 from school.models import Review, School
 from users.permissions import BookingPermission
 
-User = User = get_user_model()
+User = get_user_model()
 log = logging.getLogger(__name__)
 
 

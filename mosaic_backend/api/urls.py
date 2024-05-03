@@ -10,9 +10,12 @@ from .views import (ArtworkReadOnlyViewSet, BookingViewSet,
                     RequestCreateOnlyViewSet, SchoolReadOnlyViewSet,
                     StudentReviewsReadOnlyViewSet, TagReadOnlyViewSet)
 
+from emailing.views import SendTestMail, send_test_email
+
 router1 = routers.SimpleRouter()
 
 router1.register('users', CustomizedUserViewSet, basename='users')
+# router1.register('email', SendTestMail.as_view(), basename='email')
 router1.register('feedback', RequestCreateOnlyViewSet, basename='feedback')
 router1.register('email_form', EmailCreateOnlyViewSet, basename='email_form')
 router1.register('main_carousel', MainCarouselReadOnlyViewSet,
@@ -33,6 +36,7 @@ router1.register(r'tags', TagReadOnlyViewSet, basename='tags')
 router1.register(r'reviews', StudentReviewsReadOnlyViewSet, basename='reviews')
 
 urlpatterns = [
+    path('v1/send_email/', send_test_email, name='send-email'),
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('v1/', include(router1.urls)),
     path('v1/school/', SchoolReadOnlyViewSet.as_view({'get': 'list'})),
