@@ -7,13 +7,14 @@ export function checkPosition(startFunction) {
   const scrolled = window.scrollY;
 
   // Порог
-  const threshold = height - screenHeight / 4;
+  const threshold = height - screenHeight / 2;
 
   // Низ экрана относительно страницы
   const position = scrolled + screenHeight;
 
   if (position >= threshold) {
     // Вызываем действие
+    console.log('Вызов функции на обновление');
     startFunction();
   }
 }

@@ -86,7 +86,7 @@
   align-items: center;
 }
 
-@media screen and (max-width: global.$breakpoint-mobile) {
+@media screen and (max-width: global.$breakpoint-pre-mobile) {
   .paginationBar {
    display: none;
 }

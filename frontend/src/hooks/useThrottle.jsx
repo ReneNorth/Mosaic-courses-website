@@ -1,22 +1,12 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
-export const useThrottle = (callback, delay = 200) => {
-  const lastRan = useRef(Date.now());
+export function useThrottle(cb, limit) {
+  const lastRun = useRef(Date.now());
 
-  useEffect(
-    () => {
-      const handler = setTimeout(() => {
-        if (Date.now() - lastRan.current >= delay) {
-          callback();
-          lastRan.current = Date.now();
-        }
-      }, delay - (Date.now() - lastRan.current));
-
-      return () => {
-        clearTimeout(handler);
-      };
-    },
-    [delay],
-  );
-};
+  return function () {
+    if (Date.now() - lastRun.current >= limit) {
+      cb();
+      lastRun.current = Date.now();
+    }
+  };
+}
