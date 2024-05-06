@@ -34,7 +34,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<MaingPage />} />
-            <Route path="/course" element={<CoursePage />} />
+            <Route path="/course/:slug" element={<CoursePage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:slug" element={<PostPage />} />
             <Route path="/courses" element={<AllCourses />} />
