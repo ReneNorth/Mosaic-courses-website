@@ -1,7 +1,6 @@
 import cls from './SectionInfo.module.scss';
 
 import { OtherCourses } from '../OtherCourses/OtherCourses';
-import { Route } from '../Route/Route';
 import { TeacherSection } from '../TeacherSection/TeacherSection';
 import { ToggleLearnMore } from '../ToggleLearnMore/ToggleLearnMore';
 
@@ -10,8 +9,6 @@ export const SectionInfo = () => {
     <div className={cls.infoBlock}>
       <div className={cls.sectionContainer}>
         <div>
-          <Route />
-
           <h3 className={cls.containerHeading}>Чему вы научитесь?</h3>
           <div className={cls.containerInfo}>
             <ul className={cls.listFirst}>
