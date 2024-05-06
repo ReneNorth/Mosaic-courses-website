@@ -1,3 +1,4 @@
+import { Button } from '../Button/Button';
 import giftIcon from '../../images/gift-outline.svg';
 import share from '../../images/share.png';
 
@@ -13,14 +14,11 @@ export const StickySidebar = () => {
 
         <div className={cls.innerBlock}>
           <h3 className={cls.title}> Курс по римской мозайке однодевный</h3>
-          <p className={cls.coursePrice}> 4000₽ </p>
+          <h2 className={cls.coursePrice}>от 4 000₽</h2>
           <p className={cls.duration}> Продолжительность: 6 часов</p>
 
           <button className={cls.button} type="button">
             Записаться на курс
-          </button>
-          <button className={cls.buttonOutline} type="button">
-            Забронировать курс
           </button>
           <div className={cls.giftContainer}>
             <img className={cls.giftIcon} src={giftIcon} alt="подарок" />

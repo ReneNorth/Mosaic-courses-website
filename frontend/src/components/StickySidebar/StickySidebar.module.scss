@@ -4,23 +4,10 @@
   -webkit-position: sticky;
   box-sizing: border-box;
   top: 0;
-  max-width: 400px;
+  width: 400px;
   height: 580px;
   background-color: #ccdac6;
   border-radius: 20px;
-
-  ::after {
-    content: '';
-    width: 400px;
-    height: 580px;
-    border: 1px solid #000;
-    top: 16px;
-    left: -16px;
-    position: absolute;
-    border-radius: 20px;
-    z-index: -1;
-    overflow: visible;
-  }
 }
 
 .share {
@@ -33,8 +20,7 @@
   height: 580px;
   justify-content: center;
   text-align: center;
-
-  padding: 173px 77px 38px 77px;
+  padding: 170px 77px 43px 77px;
   font-family: var(--font-primary);
 }
 .title {
@@ -45,7 +31,11 @@
 }
 .coursePrice {
   margin-top: 8px;
+  font-family: "Raleway", sans-serif;
   font-size: 32px;
+  line-height: 135%;
+  font-weight: 700;
+  letter-spacing: 2px;
 }
 .duration {
   margin-top: 16px;
@@ -56,7 +46,7 @@
   margin-top: 40px;
   background-color: #247251;
   border-radius: 60px;
-  padding: 8px 28px;
+  padding: 17px 40px;
   color: var(--text-color-invert);
   font-family: var(--font-primary);
   font-style: normal;
@@ -66,7 +56,6 @@
 
   white-space: nowrap;
   cursor: pointer;
-  white-space: nowrap;
 }
 .buttonOutline {
   margin-top: 24px;
@@ -86,14 +75,21 @@
 }
 
 .giftContainer {
-  margin-top: 69px;
+  margin-top: 106px;
   display: flex;
-  gap: 12px;
+  gap: 5px;
   justify-content: center;
   align-content: center;
   align-items: center;
 }
 .giftIcon {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
+}
+
+.gift {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 135%
 }
