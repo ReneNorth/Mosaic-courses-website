@@ -1,88 +1,130 @@
-.sectionContainer {
+.container {
   display: flex;
-  gap: 40px;
-  margin-top: 118px;
+  margin-top: 104px;
 }
 
-.containerHeading {
-  font-size: 32px;
+.containerInfo {
+  display: flex;
+  flex-direction: column;
   font-family: var(--font-primary);
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: 32px;
   font-weight: 700;
-  margin-bottom: 20px;
-  margin-top: 88px;
+  margin-bottom: 16px;
   margin-left: 0px;
 }
-.containerInfo {
-  grid-column: 1 / 2;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
+
+.listFirst {
+  padding-left: 24px;
+  padding-bottom: 86px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  position: relative;
 }
 
-.listFirst,
-.listSecond,
-.text {
-  justify-self: center;
-  font-family: var(--font-primary);
-  font-style: normal;
+.listFirst li {
   font-weight: 400;
   font-size: 17px;
   line-height: 135%;
 }
-.listFirst li,
-.listSecond li {
-  margin-bottom: 10px;
-  list-style-type: disc;
+
+.listFirst li::before {
+  content: "•";
+  position: absolute;
+  left: 9px;
+  font-size: 19px;
+  color: black;
 }
 
-::marker {
-  color: #000;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.text p {
-  margin-top: 10px;
-}
-
-.btn {
-  padding: 0;
-  width: 32px;
-  height: 32px;
-  background-image: url('../../images/button-learn_more.svg');
-  background-color: transparent;
-  background-size: cover;
-  cursor: pointer;
-}
-
-///
-.sidebar {
-  top: 0px;
+.listSecond {
   display: flex;
-  position: sticky;
-  -webkit-position: sticky;
-  max-width: 400px;
-  height: 580px;
-  background-color: #ccdac6;
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 248px;
 }
-.innerBlock {
-  justify-content: center;
-}
-.title {
-}
-.coursePrice {
-}
-.button {
-  margin-top: 40px;
-  background-color: #247251;
-  border-radius: 60px;
-  padding: 18px 40px;
-  color: var(--text-color-invert);
-  font-family: var(--font-primary);
-  font-style: normal;
+
+.listSecond li {
   font-weight: 400;
   font-size: 17px;
-  line-height: 20px;
-  position: relative;
-  cursor: pointer;
+  line-height: 135%;
 }
+// .listFirst,
+// .listSecond,
+// .text {
+//   justify-self: center;
+//   font-family: var(--font-primary);
+//   font-style: normal;
+//   font-weight: 400;
+//   font-size: 17px;
+//   line-height: 135%;
+//   padding-left: 24px;
+//   list-style: none;
+// }
+// .listFirst li::before {
+//   content: "•";
+//   position: absolute;
+//   left: 0;
+//   color: black;
+//   font-size: 2px;
+// }
+// .listFirst li,
+// .listSecond li {
+//   margin-bottom: 10px;
+//   list-style-type: disc;
+// }
+
+// ::marker {
+//   color: #000;
+//   display: inline-block;
+//   vertical-align: middle;
+// }
+
+// .text p {
+//   margin-top: 10px;
+// }
+
+// .btn {
+//   padding: 0;
+//   width: 32px;
+//   height: 32px;
+//   background-image: url('../../images/button-learn_more.svg');
+//   background-color: transparent;
+//   background-size: cover;
+//   cursor: pointer;
+// }
+
+// ///
+// .sidebar {
+//   top: 0px;
+//   display: flex;
+//   position: sticky;
+//   -webkit-position: sticky;
+//   max-width: 400px;
+//   height: 580px;
+//   background-color: #ccdac6;
+// }
+// .innerBlock {
+//   justify-content: center;
+// }
+// .title {
+// }
+// .coursePrice {
+// }
+// .button {
+//   margin-top: 40px;
+//   background-color: #247251;
+//   border-radius: 60px;
+//   padding: 18px 40px;
+//   color: var(--text-color-invert);
+//   font-family: var(--font-primary);
+//   font-style: normal;
+//   font-weight: 400;
+//   font-size: 17px;
+//   line-height: 20px;
+//   position: relative;
+//   cursor: pointer;
+// }
