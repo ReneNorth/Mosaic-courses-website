@@ -7,7 +7,7 @@ import coursePageFinalStyles from './CoursePageFinal.module.scss';
 export const CoursePageFinal = () => {
   return (
     <div className={coursePageFinalStyles.page}>
-      <div>
+      <div className={coursePageFinalStyles.container}>
         <CoursePageInfo />
         <SectionInfo />
       </div>

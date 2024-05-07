@@ -10,21 +10,21 @@ export const OtherCourses = () => {
       <div className={cls.containerInfo}>
         <OtherCourse
           imagePath={courseImgOne}
-          title="недельный Курс по мозаике из стекла"
+          title="Недельный курс по мозаике из стекла"
           price="4000 рублей"
           duration="3 часа"
           description="Мы делаем рисование доступным с помощью пошаговой программы и вовлечённых преподавателей."
         />
         <OtherCourse
           imagePath={courseImgTwo}
-          title="недельный Курс по мозаике из стекла"
+          title="Недельный курс по мозаике из стекла"
           price="4000 рублей"
           duration="3 часа"
           description="Мы делаем рисование доступным с помощью пошаговой программы и вовлечённых преподавателей."
         />
         <OtherCourse
           imagePath={courseImgThree}
-          title="недельный Курс по мозаике из стекла"
+          title="Недельный курс по мозаике из стекла"
           price="4000 рублей"
           duration="3 часа"
           description="Мы делаем рисование доступным с помощью пошаговой программы и вовлечённых преподавателей."

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { CoursePageFinal } from '../../components/CoursePageFinal/CoursePageFinal';
 
 import './CoursePage.module.scss';
-import { getCourseById, setCurrentCourse } from '../../services/slices/coursesSlice';
+import { getCourseById } from '../../services/slices/coursesSlice';
 
 export const CoursePage = () => {
   const dispatch = useDispatch();

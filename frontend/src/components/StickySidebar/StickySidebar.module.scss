@@ -1,11 +1,13 @@
 .sidebar {
   display: block;
   box-sizing: border-box;
-  top: 0;
   width: 400px;
   height: 580px;
   background-color: #ccdac6;
   border-radius: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .share {
@@ -18,7 +20,7 @@
   height: 580px;
   justify-content: center;
   text-align: center;
-  padding: 170px 77px 43px 77px;
+  padding: 178px 77px 43px 77px;
   font-family: var(--font-primary);
 }
 .title {
@@ -90,4 +92,47 @@
   font-weight: 500;
   font-size: 17px;
   line-height: 135%
+}
+
+@media screen and (max-width: 1340px) {
+  .sidebar {
+    width: 298px;
+    height: 399px;
+  }
+
+  .innerBlock {
+    padding: 68px 26px 40px;
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 135%;
+  }
+
+  .share {
+    top: 16px;
+    right: 14px;
+  }
+
+  .coursePrice {
+    font-size: 20px;
+    margin-top: 16px;
+    letter-spacing: 1px;
+  }
+
+  .duration {
+    font-size: 16px;
+    line-height: 135%;
+  }
+
+  .button {
+    padding: 12px 45px;
+    font-size: 16px;
+    margin-top: 70px;
+  }
+
+  .giftContainer {
+    margin-top: 19px;
+  }
 }

@@ -1,3 +1,8 @@
+.section {
+  width: 100%;
+  display: flex;
+}
+
 .containerInfo {
   display: flex;
   gap: 40px;
@@ -10,6 +15,17 @@
 
 .iconContainer {
   align-self: center;
+}
+
+@media screen and (max-width: 1340px) {
+  .section {
+    justify-content: center;
+  }
+  
+  .containerInfo {
+    gap: 20px;
+    max-width: 700px;
+  }
 }
 
 

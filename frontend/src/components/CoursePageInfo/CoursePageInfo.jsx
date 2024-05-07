@@ -9,14 +9,11 @@ export const CoursePageInfo = () => {
       <div className={cls.block}>
         <div className={cls.headerTitle}>
           <h1 className={cls.headerName}>Курс по римской мозаике</h1>
-          <p className={cls.courseName}>{currentCourse?.title}</p>
+          <p className={cls.courseName}>однодневный</p>
           <div className={cls.text}>
-            <p className={cls.paragraph}>{`${currentCourse?.short_description?.split('. ')[0]}.`}</p>
+            <p className={cls.paragraph}>Подходит для начинающих.</p>
             <p className={cls.paragraph}>
-              {(
-                `${currentCourse?.short_description?.split('. ')[1]}.`
-                + ` ${currentCourse?.short_description?.split('. ')[2]}.`
-              )}
+              Все материалы входят в стоимость. Опыт создания мозаики не требуется.
             </p>
           </div>
         </div>
