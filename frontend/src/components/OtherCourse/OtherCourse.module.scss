@@ -1,0 +1,96 @@
+.image {
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  margin-bottom: 0px;
+  display: block;
+  box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.6);
+}
+
+.courseBox {
+  padding: 40px 40px 30px 40px;
+  background-color: #dad5c9;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: #dad5c9;
+  box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.6);
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 130%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.wrapperAtribut {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  gap: 50px;
+}
+
+.wrapperAtribut {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  gap: 50px;
+}
+
+.priceContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  align-items: center;
+  gap: 10px;
+
+  p {
+    align-items: center;
+    font-family: var(--font-primary);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 20px;
+  }
+}
+
+.timeIcon {
+  width: 26px;
+  height: 26px;
+  background-image: url('../../images/time.svg');
+  background-repeat: no-repeat;
+}
+
+.rubleIcon {
+  align-self: center;
+  width: 26px;
+  height: 26px;
+  background-image: url('../../images/choise_icon-tenge.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.description {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 135%;
+}
+
+.btn {
+  background-color: transparent;
+  border: 1.50px solid #247251;
+  border-radius: 56px;
+  padding: 10px 40px;
+  width: 320px;
+  height: 56px;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 135%;
+  color: #247251;
+  margin-top: 60px;
+}
+
