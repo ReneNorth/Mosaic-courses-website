@@ -3,10 +3,20 @@ from datetime import timedelta
 from pathlib import Path
 
 from django.utils.log import DEFAULT_LOGGING
+import logging
+from dotenv import load_dotenv
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
-LOCAL_DEV = False
+
+load_dotenv(os.path.join(BASE_DIR, '.env'))
+
+log_file = os.path.join(BASE_DIR, 'logs.txt')
+logging.basicConfig(filename=log_file, level=logging.DEBUG,
+                    format='%(asctime)s %(levelname)s %(message)s')
+
+log = logging.getLogger(__name__)
 
 KEY_ENV = os.getenv('SECRET_KEY')
 SECRET_KEY = f'{KEY_ENV}'
@@ -91,30 +101,16 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mosaic.wsgi.application'
 
 
-if LOCAL_DEV is False:
-    DATABASES = {
-        'default': {
-            'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
-            'NAME': os.getenv('DB_NAME', default='postgres'),
-            'USER': os.getenv('POSTGRES_USER', default='postgres'),
-            'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='mosaic_admin'),
-            'HOST': os.getenv('DB_HOST', default='db'),
-            'PORT': os.getenv('DB_PORT', default='5432')
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': os.getenv('DB_ENGINE'),
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT')
     }
-
-
-if LOCAL_DEV is True:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'mosaic',
-            'USER': 'mosaic_admin',
-            'PASSWORD': 'mosaic_admin',
-            'HOST': 'localhost',
-            'PORT': '5432'
-        }
-    }
+}
 
 
 # Password validation
@@ -287,3 +283,5 @@ GRAPH_MODELS = {
     'all_applications': True,
     'group_models': True,
 }
+
+# FILE_UPLOAD_MAX_MEMORY_SIZE
