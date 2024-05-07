@@ -9,7 +9,7 @@ export const NavBar = ({ handleClick }) => {
       <ul className={cls.list}>
         <li className={cls.item}>
           <NavLink
-            to={ENDPOINTS.ABOUT}
+            to={ENDPOINTS.about}
             className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
             onClick={handleClick}
           >
@@ -18,16 +18,16 @@ export const NavBar = ({ handleClick }) => {
         </li>
         <li className={cls.item}>
           <NavLink
-            to={ENDPOINTS.CERTIFICATES}
+            to={ENDPOINTS.certificetes}
             className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
             onClick={handleClick}
           >
-            Подарочный сертификат
+            Подарочные сертификаты
           </NavLink>
         </li>
         <li className={cls.item}>
           <NavLink
-            to={ENDPOINTS.COURSES}
+            to={ENDPOINTS.courses}
             className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
             onClick={handleClick}
           >
@@ -36,7 +36,7 @@ export const NavBar = ({ handleClick }) => {
         </li>
         <li className={cls.item}>
           <NavLink
-            to={ENDPOINTS.GALLERY}
+            to={ENDPOINTS.gallery}
             className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
             onClick={handleClick}
           >
@@ -45,7 +45,7 @@ export const NavBar = ({ handleClick }) => {
         </li>
         <li className={cls.item}>
           <NavLink
-            to={ENDPOINTS.BLOG}
+            to={ENDPOINTS.blog}
             className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
             onClick={handleClick}
           >
@@ -54,7 +54,7 @@ export const NavBar = ({ handleClick }) => {
         </li>
         <li className={cls.item}>
           <NavLink
-            to={ENDPOINTS.SHOP}
+            to={ENDPOINTS.shop}
             className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
             onClick={handleClick}
           >

@@ -34,7 +34,7 @@ export function ActivatePage() {
   const goToLogin = (e) => {
     e.preventDefault();
     if (activateSucces) {
-      navigate(ENDPOINTS.SIGN_IN);
+      navigate(ENDPOINTS.signIn);
     }
     if (activateError) {
       const data = {

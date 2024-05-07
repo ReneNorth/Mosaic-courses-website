@@ -11,7 +11,7 @@ export const ProfilePopup = ({ isOpen, setIsOpen }) => {
 
   const goToMain = (e) => {
     e.preventDefault();
-    navigate(ENDPOINTS.MAIN);
+    navigate(ENDPOINTS.main);
   };
 
   return (

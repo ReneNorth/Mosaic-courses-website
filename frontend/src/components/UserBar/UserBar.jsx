@@ -49,7 +49,7 @@ export const UserBar = () => {
             <ProfileLogo
               className={classNames(
                 cls.icon,
-                { [cls.active]: pathname.startsWith(ENDPOINTS.PROFILE) },
+                { [cls.active]: pathname.startsWith(ENDPOINTS.profile) },
                 [],
               )}
             />
@@ -57,12 +57,12 @@ export const UserBar = () => {
           <ProfileModal isOpen={isOpen} setIsOpen={setIsOpen} />
         </li>
         <li className={cls.item}>
-          <NavLink to={ENDPOINTS.FAVOURITES_PAGE} className={cls.link}>
+          <NavLink to={ENDPOINTS.favourites} className={cls.link}>
             <HeartLogo className={cls.icon} />
           </NavLink>
         </li>
         <li className={cls.item}>
-          <NavLink to={ENDPOINTS.CART} className={cls.link}>
+          <NavLink to={ENDPOINTS.cart} className={cls.link}>
             <CartLogo className={cls.icon} />
           </NavLink>
         </li>

@@ -33,41 +33,41 @@ function App() {
         <Header />
         <main>
           <Routes>
-            <Route path={ENDPOINTS.MAIN} element={<MaingPage />} />
-            <Route path={ENDPOINTS.COURSE} element={<CoursePage />} />
-            <Route path={ENDPOINTS.BLOG} element={<BlogPage />} />
-            <Route path={`${ENDPOINTS.BLOG}/:slug`} element={<PostPage />} />
-            <Route path={ENDPOINTS.COURSES} element={<AllCourses />} />
-            <Route path={ENDPOINTS.CERTIFICATES} element={<Certificates />} />
-            <Route path={ENDPOINTS.ABOUT} element={<AboutStudio />} />
-            <Route path={ENDPOINTS.REGISTER} element={<RegisterPage />} />
+            <Route path={ENDPOINTS.main} element={<MaingPage />} />
+            <Route path={ENDPOINTS.course} element={<CoursePage />} />
+            <Route path={ENDPOINTS.blog} element={<BlogPage />} />
+            <Route path={`${ENDPOINTS.blog}/:slug`} element={<PostPage />} />
+            <Route path={ENDPOINTS.courses} element={<AllCourses />} />
+            <Route path={ENDPOINTS.certificates} element={<Certificates />} />
+            <Route path={ENDPOINTS.about} element={<AboutStudio />} />
+            <Route path={ENDPOINTS.register} element={<RegisterPage />} />
             <Route
-              path={`${ENDPOINTS.ACTIVATE}/:uid/:token`}
+              path={`${ENDPOINTS.activate}/:uid/:token`}
               element={<ActivatePage />}
             />
-            <Route path={ENDPOINTS.SIGN_IN} element={<SignInPage />} />
+            <Route path={ENDPOINTS.signIn} element={<SignInPage />} />
             <Route
-              path={ENDPOINTS.PASSWORD_RESET}
+              path={ENDPOINTS.passwordReset}
               element={<PasswordResetPage />}
             />
             <Route
-              path={`${ENDPOINTS.PASSWORD_RESET}/:uid/:token`}
+              path={`${ENDPOINTS.passwordReset}/:uid/:token`}
               element={<PasswordResetConfirm />}
             />
-            <Route path={ENDPOINTS.PROFILE} element={<ProfilePage />} />
+            <Route path={ENDPOINTS.profile} element={<ProfilePage />} />
             <Route
-              path={ENDPOINTS.PROFILE_PERSONAL_DATA}
+              path={ENDPOINTS.profilePersonalData}
               element={<ProfilePersonalDataPage />}
             />
             <Route
-              path={ENDPOINTS.PROFILE_SECURITY}
+              path={ENDPOINTS.profileSecurity}
               element={<ProfileSecurityPage />}
             />
             <Route
-              path={ENDPOINTS.PROFILE_ALERT}
+              path={ENDPOINTS.profileAlert}
               element={<ProfileAlertPage />}
             />
-            <Route path={ENDPOINTS.NOT_FOUND} element={<NotFound />} />
+            <Route path={ENDPOINTS.notFound} element={<NotFound />} />
           </Routes>
         </main>
         <Footer />

@@ -7,12 +7,12 @@ export const SignHeaderLinks = () => {
   const headerLinks = [
     {
       id: '1',
-      link: ENDPOINTS.SIGN_IN,
+      link: ENDPOINTS.signIn,
       title: 'Войти',
     },
     {
       id: '2',
-      link: ENDPOINTS.REGISTER,
+      link: ENDPOINTS.register,
       title: 'Зарегистрироваться',
     },
   ];

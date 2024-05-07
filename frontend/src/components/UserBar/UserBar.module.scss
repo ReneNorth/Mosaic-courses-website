@@ -9,7 +9,6 @@
 }
 
 .item {
-  // после переноса модалки нужно убрать position
   position: relative;
   &:hover svg {
     stroke: var(--color-green-accent);
@@ -49,7 +48,7 @@
 
 @media (max-width: global.$breakpoint-small-laptop) {
   .list {
-    padding: 31px 24px 45px 26px;
+    padding: 45px 24px 31px 26px;
   }
 
   .decoration {

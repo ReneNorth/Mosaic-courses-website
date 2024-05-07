@@ -8,7 +8,7 @@ import { ENDPOINTS } from '../../utils/consts/constants';
 export const AboutUs = () => {
   const navigate = useNavigate();
   const hadleClick = () => {
-    navigate(ENDPOINTS.ABOUT);
+    navigate(ENDPOINTS.about);
   };
   return (
     <section className={cls.section}>

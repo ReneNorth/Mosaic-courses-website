@@ -53,7 +53,7 @@ export const PostCard = ({ props }) => {
           style={width < 550 ? { width: '100%' } : {}}
           onClick={() => {
             dispatch(setCurrentPost(props));
-            navigate(`${ENDPOINTS.BLOG}/${slug}`);
+            navigate(`${ENDPOINTS.blog}/${slug}`);
           }}
           className="outline"
         >

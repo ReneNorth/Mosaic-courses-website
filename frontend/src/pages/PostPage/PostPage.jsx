@@ -24,7 +24,7 @@ export const PostPage = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const slug = useLocation().pathname.replace(ENDPOINTS.BLOG, '');
+  const slug = useLocation().pathname.replace(ENDPOINTS.blog, '');
 
   // eslint-disable-next-line consistent-return
   // const validImage = useMemo(() => {
@@ -106,7 +106,7 @@ export const PostPage = () => {
                 <CardMoreContent
                   onClick={() => {
                     dispatch(setCurrentPost(post));
-                    navigate(`${ENDPOINTS.BLOG}/${post.slug}`);
+                    navigate(`${ENDPOINTS.blog}/${post.slug}`);
                     window.scrollTo({
                       top: 0,
                       left: 0,

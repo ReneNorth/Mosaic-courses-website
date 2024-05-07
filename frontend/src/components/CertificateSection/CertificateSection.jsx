@@ -25,11 +25,7 @@ export const CertificateSection = forwardRef((props, ref) => {
   };
   return (
     <div ref={ref} className={cls.container}>
-      <div className={cls.titleWrapper}>
-        {/* <h3 className={cls.title}>О сертификате</h3> */}
-        {/* eslint-disable max-len */}
-        {/* <p className={cls.description}>Мы проводим мастер-классы по живописи и гончарному делу для деток и взрослых. Мы делаем рисование доступным с помощью пошаговой программы и вовлечённых преподавателей. Мы делаем рисование доступным с помощью пошаговой программы. Мы проводим мастер-классы по живописи и гончарному делу для деток и взрослых. Мы проводим мастер-классы по живописи.</p> */}
-      </div>
+      <div className={cls.titleWrapper} />
       <div className={cls.certificateWrapper}>
         <h2 className={cls.titleCertificate}>
           <span className={cls.span}>Сертификат</span>
