@@ -31,7 +31,7 @@ export const SectionInfo = () => {
           </li>
         </ul>
       </div>
-      <h3 className={sectionInfoStyles.title}>Также покупают</h3>
+      <h3 className={`${sectionInfoStyles.title} ${sectionInfoStyles.lastTitle}`}>Также покупают</h3>
       <OtherCourses />
     </div>
   );

@@ -1,11 +1,36 @@
+@use "../../utils/variables/global.scss";
+
 .container {
   margin-top: 104px;
+
+  @media screen and (max-width: 1340px) {
+    margin-top: 28px;
+    width: 93vw;
+  }
+
+  @media screen and (max-width: global.$breakpoint-tablet) {
+    margin-top: 515px;
+  }
 }
 
 .containerInfo {
   display: flex;
   flex-direction: column;
   font-family: var(--font-primary);
+
+  @media screen and (max-width: global.$breakpoint-tablet) {
+    width: 89%;
+
+    &:first-of-type {
+      width: 89%;
+    }
+  }
+
+  @media screen and (max-width: 1340px) {
+    &:first-of-type {
+      width: 51vw;
+    }
+  }
 }
 
 .title {
@@ -14,6 +39,17 @@
   font-weight: 700;
   margin-bottom: 16px;
   margin-left: 0px;
+
+  @media screen and (max-width: 1340px) {
+    font-size: 20px;
+    margin-bottom: 22px;
+  }
+
+  @media screen and (max-width: global.$breakpoint-tablet) {
+    &.lastTitle {
+      font-size: 26px;
+    }
+  }
 }
 
 .listFirst {
@@ -23,20 +59,29 @@
   flex-direction: column;
   gap: 9px;
   position: relative;
-}
 
-.listFirst li {
-  font-weight: 400;
-  font-size: 17px;
-  line-height: 135%;
-}
+  li {
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 135%;
 
-.listFirst li::before {
-  content: "•";
-  position: absolute;
-  left: 9px;
-  font-size: 19px;
-  color: black;
+    @media screen and (max-width: 1340px) {
+      font-size: 16px;
+    }
+
+    &::before {
+      content: "•";
+      position: absolute;
+      left: 9px;
+      font-size: 19px;
+      color: black;
+    }
+  }
+
+  @media screen and (max-width: 1340px) {
+    gap: 0;
+    padding-bottom: 28px;
+  }
 }
 
 .listSecond {
@@ -44,40 +89,19 @@
   flex-direction: column;
   gap: 9px;
   margin-bottom: 248px;
-}
 
-.listSecond li {
-  font-weight: 400;
-  font-size: 17px;
-  line-height: 135%;
-}
-
-@media screen and (max-width: 1340px) {
-  .container {
-    margin-top: 28px;
-    width: 93vw;
+  li {
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 135%;
   }
 
-  .title {
-    font-size: 20px;
-    margin-bottom: 22px;
-  }
-
-  .listFirst {
-    gap: 0;
-    padding-bottom: 28px;
-  }
-
-  .listFirst li {
-    font-size: 16px;
-  }
-
-  .containerInfo:first-of-type {
-    width: 51vw;
-  }
-
-  .listSecond {
+  @media screen and (max-width: 1340px) {
     gap: 2px;
     margin-bottom: 160px;
+  }
+
+  @media screen and (max-width: global.$breakpoint-tablet) {
+    margin-bottom: 78px;
   }
 }

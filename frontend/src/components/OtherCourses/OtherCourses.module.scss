@@ -1,12 +1,35 @@
+@use "../../utils/variables/global.scss";
+
 .section {
   width: 100%;
   display: flex;
+
+  @media screen and (max-width: 1340px) {
+    justify-content: center;
+  }
 }
 
 .containerInfo {
   display: flex;
   gap: 40px;
   max-width: 840px;
+
+  @media screen and (max-width: 1340px) {
+    gap: 20px;
+    max-width: 700px;
+  }
+
+  @media screen and (max-width: global.$breakpoint-tablet) {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    max-width: 984px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }
 
 .atributContainer {
@@ -16,17 +39,3 @@
 .iconContainer {
   align-self: center;
 }
-
-@media screen and (max-width: 1340px) {
-  .section {
-    justify-content: center;
-  }
-  
-  .containerInfo {
-    gap: 20px;
-    max-width: 700px;
-  }
-}
-
-
-
