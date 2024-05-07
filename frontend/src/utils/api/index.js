@@ -1,4 +1,4 @@
-import { mockSliderDataBottom } from '../consts/mockData';
+import { SLIDER_CONFIG } from '../consts/mockData';
 import { getCookie } from '../../helpers/getCookie';
 
 class Api {
@@ -132,7 +132,7 @@ class Api {
     const res = await fetch(`${this._url}/api/v1/reviews/`);
     const data = await this.constructor._checkResponse(res);
     if (res.ok) {
-      if (data.count === 0) { data.results = mockSliderDataBottom; } else {
+      if (data.count === 0) { data.results = SLIDER_CONFIG; } else {
         let firstId = 1;
         data.results.forEach((review) => {
           review.id = firstId;

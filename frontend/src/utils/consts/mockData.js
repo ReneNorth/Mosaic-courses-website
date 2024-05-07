@@ -8,7 +8,7 @@ import photoDmitri from '../../images/students-review_image-card_Dmitri.png';
 import photoJanara from '../../images/students-review_image-card_Janara.png';
 import photoGulnara from '../../images/students-review_image-card_Gulnara.png';
 
-export const courses = [
+const COURSES_CONFIG = [
   {
     id: '1',
     title: 'Вводный мастер-класс по римской мозаике',
@@ -45,7 +45,7 @@ export const courses = [
   },
 ];
 
-export const mockSliderDataBottom = [
+export const SLIDER_CONFIG = [
   {
     id: 1,
     student_name: 'Валерия',
@@ -109,7 +109,7 @@ export const mockSliderDataBottom = [
   },
 ];
 
-export const schoolContacts = [
+export const CONTACTS = [
   {
     address_text: 'г. Алматы, Казыбек би, 40',
     working_hours: 'с 12-22, без выходных',

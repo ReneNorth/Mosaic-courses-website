@@ -24,7 +24,7 @@ export const ENDPOINTS = {
   notFound: '*',
 };
 
-export const cardInfo = [
+export const CARD_CONFIG = [
   {
     cardId: 1,
     cardRoute: ENDPOINTS.profilePersonalData,

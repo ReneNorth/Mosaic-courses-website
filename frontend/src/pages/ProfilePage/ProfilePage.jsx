@@ -5,7 +5,7 @@ import { classNames } from '../../helpers/classNames';
 import cls from './ProfilePage.module.scss';
 import { activateUser, getEmailByUID, resendActivationEmail } from '../../services/slices/authSlice';
 import { ProfileCardMenu } from '../../components/ProfileCardMenu/ProfileCardMenu';
-import { cardInfo } from '../../utils/consts/constants';
+import { CARD_CONFIG } from '../../utils/consts/constants';
 
 export function ProfilePage() {
   return (
@@ -16,7 +16,7 @@ export function ProfilePage() {
           <h2 className={cls.profileName}>Иван Петров</h2>
         </div>
         <ul className={cls.cardsWrapper}>
-          {cardInfo.map((card) => (
+          {CARD_CONFIG.map((card) => (
             <li className={cls.item} key={card.cardId}>
               <Link to={card.cardRoute}>
                 <ProfileCardMenu
