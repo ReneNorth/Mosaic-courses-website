@@ -6,7 +6,6 @@ import { classNames } from '../../helpers/classNames';
 import cls from './ProfileAlertPage.module.scss';
 import { activateUser, getEmailByUID, resendActivationEmail } from '../../services/slices/authSlice';
 import { ProfileCardMenu } from '../../components/ProfileCardMenu/ProfileCardMenu';
-import { cardInfo } from '../../utils/consts/constants';
 import { ProfileNavMenu } from '../../components/ProfileNavMenu/ProfileNavMenu';
 import { ProfileEditField } from '../../components/ProfileEditField/ProfileEditField';
 import { InputField } from '../../components/InputField/InputField';

@@ -1,30 +1,37 @@
-@use "../../utils/variables/global.scss";
+@use '../../utils/variables/global.scss';
 
 .menu {
-    max-width: global.$breakpoint-mobile;
-    margin: 0;
-    box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.6);
-    border-radius: 20px;
-    background-color: white;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
+  box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.6);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: white;
+  position: absolute;
+  width: 100vw;
+  z-index: global.$layer-of-popup;
 }
 
 .menu_heading {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin: 16px 20px 36px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 36px;
 }
 
 .button {
-    background-image: url('../../images/close_mobile.svg');
-    background-repeat: no-repeat;
-    background-color: transparent;
-    cursor: pointer;
+  background-image: url('../../images/close_mobile.svg');
+  background-repeat: no-repeat;
+  background-color: transparent;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  margin: 31px 24px 0 0;
+  padding: 0;
+}
+
+@media (max-width: global.$breakpoint-tablet) {
+  .button {
     width: 24px;
     height: 24px;
+    margin: 31px 20px 0 0;
+  }
 }

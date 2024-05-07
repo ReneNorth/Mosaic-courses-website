@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cls from './RegisterPage.module.scss';
 import { Button } from '../../components/Button/Button';
@@ -8,19 +8,37 @@ import { InputFieldPhone } from '../../components/InputFieldPhone/InputFieldPhon
 import { CheckBoxField } from '../../components/CheckBoxField/CheckBoxField';
 import { SignHeaderLinks } from '../../components/SignHeaderLinks/SignHeaderLinks';
 import { useFormValidation } from '../../hooks/useFormValidation';
-import { registerUser, resendActivationEmail } from '../../services/slices/authSlice';
+import {
+  registerUser,
+  resendActivationEmail,
+} from '../../services/slices/authSlice';
 import { ButtonCounter } from '../../components/ButtonCounter/ButtonCounter';
-import { RectangularPageDecoration } from '../../components/RectangularPageDecoration/RectangularPageDecoration';
 import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/LogInPageDecorationImg';
 
 export function RegisterPage() {
   const {
-    errors, isValid, handleSecondPasswordChange, setIsValid,
-    handleChange, handleBlur, handlePhoneChange, handleChangeInRealTime, resetForm, values, handlePhoneValidation,
+    errors,
+    isValid,
+    handleSecondPasswordChange,
+    setIsValid,
+    handleChange,
+    handleBlur,
+    handlePhoneChange,
+    handleChangeInRealTime,
+    resetForm,
+    values,
+    handlePhoneValidation,
   } = useFormValidation();
 
   const {
-    userName, userEmail, userPhone, userId, isSending, sendDataSucces, registerSucces, registerError,
+    userName,
+    userEmail,
+    userPhone,
+    userId,
+    isSending,
+    sendDataSucces,
+    registerSucces,
+    registerError,
   } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -157,24 +175,22 @@ export function RegisterPage() {
 
   return (
     <section className={cls.section}>
-      <RectangularPageDecoration />
       <div className={cls.block}>
         <form className={cls.formContainer} noValidate>
-          { dataEntryStep
-            && (
-              <>
-                <ul className={classNames(cls.list, {}, [])}>
-                  <SignHeaderLinks />
-                  <div className={classNames(cls.step, {}, [])}>
-                    {stepIndex}
-                    /4
-                  </div>
-                </ul>
-                <h3 className={cls.title}>{formTitle}</h3>
-                {subStepsDataEntry(stepIndex)}
-              </>
-            )}
-          { dataResponseStep && (
+          {dataEntryStep && (
+            <>
+              <ul className={classNames(cls.list, {}, [])}>
+                <SignHeaderLinks />
+                <div className={classNames(cls.step, {}, [])}>
+                  {stepIndex}
+                  /4
+                </div>
+              </ul>
+              <h3 className={cls.title}>{formTitle}</h3>
+              {subStepsDataEntry(stepIndex)}
+            </>
+          )}
+          {dataResponseStep && (
             <div className={cls.responseStep}>
               <div className={classNames(cls.list, {}, [])}>
                 <div className={classNames(cls.step, {}, [])}>
@@ -185,8 +201,15 @@ export function RegisterPage() {
               {registerError && (
                 <>
                   <h3 className={cls.titleError}>{formTitle}</h3>
-                  <p className={classNames(cls.text, { [cls.textError]: registerError }, [])}>
-                    Во время отправки данных возникла ошибка. Попробуйте отправить данные ещё раз.
+                  <p
+                    className={classNames(
+                      cls.text,
+                      { [cls.textError]: registerError },
+                      [],
+                    )}
+                  >
+                    Во время отправки данных возникла ошибка. Попробуйте
+                    отправить данные ещё раз.
                   </p>
                   <div className={cls.errorButtonWrapper}>
                     <Button
@@ -205,10 +228,9 @@ export function RegisterPage() {
                 <>
                   <p className={classNames(cls.text, {}, [cls.textSendData])}>
                     Мы отправили ссылку на указанную почту
-                    {' '}
                     {values.email}
-                    .
-                    Перейдите по ссылке из письма для подтверждения своего аккаунта.
+                    .Перейдите по ссылке из письма для подтверждения своего
+                    аккаунта.
                   </p>
                   <div className={cls.errorButtonWrapper}>
                     <Button
@@ -228,7 +250,7 @@ export function RegisterPage() {
                 </>
               )}
             </div>
-          ) }
+          )}
         </form>
         <LogInPageDecorationImg />
       </div>

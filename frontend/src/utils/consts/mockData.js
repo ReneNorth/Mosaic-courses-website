@@ -8,44 +8,7 @@ import photoDmitri from '../../images/students-review_image-card_Dmitri.png';
 import photoJanara from '../../images/students-review_image-card_Janara.png';
 import photoGulnara from '../../images/students-review_image-card_Gulnara.png';
 
-export const courses = [
-  {
-    id: '1',
-    title: 'Вводный мастер-класс по римской мозаике',
-    description: `На мастер классе вы научитесь основам римской мозаики, которые были
-    заложены мастерами античности. За день вы погрузитесь в процесс от создания эскиза до монтажа,
-    овладеете инструментами для колки камня, а также создадите собственную работу 15 на 15 см.`,
-    price: 13000,
-    hours: 5,
-    date: '28 февраля',
-    img: imageOne,
-  },
-  {
-    id: '2',
-    title: 'Курс античной римской мозаики',
-    description: `На мастер-классе вы создадите работу размером 15 на 15 см,
-    используя различные фрагменты камня и смальты для создания изображения.
-    Благодаря разнообразной текстуре метариалов, вы сможете изобразить животное,
-    натюрморт или портрет человека в абстрактном стиле. `,
-    price: 15000,
-    hours: 5,
-    date: '28 февраля',
-    img: imageTwo,
-  },
-  {
-    id: '3',
-    title: 'Курс портретной мозаики',
-    description: `За одну неделю вы сможете создать качественную работу размером 30 на 30 см.
-    Это включает в себя создание эскиза, разработку цветовой палитры и монтаж для более крупных проектов.
-    За курс вы приобретете навыки, достаточные для самостоятельного создания своих собственных работ.`,
-    price: 70000,
-    hours: 30,
-    date: '28 февраля',
-    img: imageThree,
-  },
-];
-
-export const mockSliderDataBottom = [
+export const SLIDER_CONFIG = [
   {
     id: 1,
     student_name: 'Валерия',
@@ -109,7 +72,7 @@ export const mockSliderDataBottom = [
   },
 ];
 
-export const schoolContacts = [
+export const CONTACTS = [
   {
     address_text: 'г. Алматы, Казыбек би, 40',
     working_hours: 'с 12-22, без выходных',

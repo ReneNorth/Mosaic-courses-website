@@ -5,12 +5,21 @@ import cls from './CardMoreContent.module.scss';
   Пример  где используется: Связанные статьи, страница  404,  Также покупают
 */
 export const CardMoreContent = ({
-  srcImage, title, other, text, button, onClick,
+  srcImage,
+  title,
+  other,
+  text,
+  button,
+  onClick,
 }) => {
   return (
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+    // eslint-disable-next-line
     <article className={cls.card} onClick={onClick}>
-      <img className={cls.img} src={srcImage} alt={`Картинка для карточки ${title}`} />
+      <img
+        className={cls.img}
+        src={srcImage}
+        alt={`Картинка для карточки ${title}`}
+      />
       <div className={cls.container}>
         <h3 className={cls.title}>{title}</h3>
         <span className={cls.other}>{other}</span>
