@@ -10,12 +10,12 @@ export const LoginPopup = ({ isOpen, setIsOpen }) => {
   const navigate = useNavigate();
   const goToLogin = (e) => {
     e.preventDefault();
-    navigate(ENDPOINTS.SIGN_IN);
+    navigate(ENDPOINTS.signIn);
   };
 
   const goToRegistration = (e) => {
     e.preventDefault();
-    navigate(ENDPOINTS.REGISTER);
+    navigate(ENDPOINTS.register);
   };
 
   return (
