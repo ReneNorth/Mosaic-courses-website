@@ -120,7 +120,7 @@ export const AllCourses = () => {
         />
       </div>
       <div className={cls.coursesWrapper}>
-        <MainCardsList PageSize={4} />
+        <MainCardsList PageSize={4} infiniteScroll showPagination />
       </div>
       <RemainedQuestion isOpen={isOpen} setIsOpen={setIsOpen} />
     </>

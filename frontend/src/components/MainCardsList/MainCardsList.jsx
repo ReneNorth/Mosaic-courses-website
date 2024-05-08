@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { courses } from '../../utils/consts/mockData.js';
 import { CourseCard } from '../CourseCard/CourseCard.jsx';
 import cls from './MainCardsList.module.scss';
 import { getAllCourses } from '../../services/slices/coursesSlice.js';
 import imageNotFound from '../../images/dali.png';
 import Pagination from '../Pagination/Pagination.jsx';
-import { checkPosition } from '../../helpers/checkPosition.js';
 import { useThrottle } from '../../hooks/useThrottle.jsx';
 import { useResize } from '../../hooks/useResize.js';
+import { checkID } from '../../helpers/checkId.js';
 
-export const MainCardsList = ({ setIsOpen, PageSize }) => {
+export const MainCardsList = ({
+  setIsOpen, PageSize, infiniteScroll, showPagination,
+}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentPageOffset, setCurrentPageOffset] = useState(0);
   const [hideCards, setHideCards] = useState(true);
@@ -26,13 +27,12 @@ export const MainCardsList = ({ setIsOpen, PageSize }) => {
 
   useEffect(() => {
     dispatch(getAllCourses({ limit: PageSize, offset: currentPageOffset }));
-    console.log('coursesForMobile', coursesForMobile);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, currentPageOffset]);
 
   useEffect(() => {
-    setCoursesForMobile([...coursesForMobile, ...allCourses]);
-    console.log('coursesForMobile', coursesForMobile);
+    setCoursesForMobile([...coursesForMobile, ...checkID(coursesForMobile, allCourses)]);
+    console.log('coursesForMobile', coursesForMobile, allCourses);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allCourses]);
 
@@ -54,8 +54,6 @@ export const MainCardsList = ({ setIsOpen, PageSize }) => {
       setHideCards(false);
     }
   }, [sending]);
-
-  // eslint-disable-next-line consistent-return, array-callback-return
 
   const coursesToRender = allCourses.map((course) => {
     return (
@@ -93,7 +91,7 @@ export const MainCardsList = ({ setIsOpen, PageSize }) => {
   }
 
   useEffect(() => {
-    if ((width <= 670) && (position > 40) && (totalCount >= currentPageOffset)) {
+    if ((width <= 670) && (position > 40) && (totalCount >= currentPageOffset) && infiniteScroll) {
       setCurrentPageOffset(currentPageOffset + PageSize);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -131,17 +129,20 @@ export const MainCardsList = ({ setIsOpen, PageSize }) => {
       {(coursesToRender.length || mobileCoursesToRender.length) ? (
         <>
           <ul className={cls.list}>
-            {width > 670 ? coursesToRender : mobileCoursesToRender}
+            {(infiniteScroll && width <= 670) ? mobileCoursesToRender : coursesToRender}
           </ul>
           <div className={cls.paginationWrapper}>
-            <Pagination
-              currentPage={currentPage}
-              totalCount={totalCount}
-              pageSize={PageSize}
-              onPageChange={setCurrentPage}
-              currentPageOffset={currentPageOffset}
-              onPageChangeOffset={setCurrentPageOffset}
-            />
+            {showPagination
+            && (
+              <Pagination
+                currentPage={currentPage}
+                totalCount={totalCount}
+                pageSize={PageSize}
+                onPageChange={setCurrentPage}
+                currentPageOffset={currentPageOffset}
+                onPageChangeOffset={setCurrentPageOffset}
+              />
+            )}
           </div>
         </>
       )
