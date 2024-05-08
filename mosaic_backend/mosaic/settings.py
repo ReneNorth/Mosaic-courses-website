@@ -6,17 +6,16 @@ from django.utils.log import DEFAULT_LOGGING
 import logging
 from dotenv import load_dotenv
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 
-load_dotenv(os.path.join(BASE_DIR, '.env'))
-
+load_dotenv(os.path.join(BASE_DIR.parent, 'infra', '.env'))
 log_file = os.path.join(BASE_DIR, 'logs.txt')
 logging.basicConfig(filename=log_file, level=logging.DEBUG,
                     format='%(asctime)s %(levelname)s %(message)s')
 
 log = logging.getLogger(__name__)
+
 
 KEY_ENV = os.getenv('SECRET_KEY')
 SECRET_KEY = f'{KEY_ENV}'
@@ -108,28 +107,9 @@ DATABASES = {
         'USER': os.getenv('POSTGRES_USER'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
         'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT')
+        'PORT': os.getenv('DB_PORT'),
     }
 }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    # },
-]
 
 
 LANGUAGE_CODE = 'en-us'
