@@ -29,6 +29,11 @@ jobs:
           python -m pip install --upgrade pip 
           pip install flake8==6.0.0
           pip install -r ./mosaic_backend/requirements.txt
+          echo "POSTGRES_USER=django_user" >> $GITHUB_ENV
+          echo "POSTGRES_PASSWORD=django_password" >> $GITHUB_ENV
+          echo "POSTGRES_DB=django_db"  >> $GITHUB_ENV
+          echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
+          echo "DB_PORT=5432" >> $GITHUB_ENV
         # run: python manage.py migrate
       # - name: Run migrations
       - name: Test with flake8 and django tests
@@ -40,11 +45,7 @@ jobs:
           #   DB_PORT: 5432
           DJANGO_KEY: ${{ secrets.DOCKER_PASSWORD }}
         run: |
-          echo "POSTGRES_USER=django_user" >> $GITHUB_ENV
-          echo "POSTGRES_PASSWORD=django_password" >> $GITHUB_ENV
-          echo "POSTGRES_DB=django_db"  >> $GITHUB_ENV
-          echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
-          echo "DB_PORT=5432" >> $GITHUB_ENV
+
           python -m flake8 mosaic_backend/
           cd mosaic_backend/
           python manage.py test
