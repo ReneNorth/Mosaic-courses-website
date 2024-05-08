@@ -6,7 +6,7 @@ import { ProfileNavMenu } from './ProfileNavMenu';
 
 // Mock the cardInfo data
 jest.mock('../../utils/consts/constants', () => ({
-  cardInfo: [
+  CARD_CONFIG: [
     {
       cardId: 1, cardRoute: '/route1', cardIcon: 'icon1', cardTitle: 'Title 1',
     },

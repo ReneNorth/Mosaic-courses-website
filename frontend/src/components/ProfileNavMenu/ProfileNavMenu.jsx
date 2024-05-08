@@ -7,7 +7,7 @@ export const ProfileNavMenu = () => {
   return (
     <nav className={cls.block}>
       <ul className={cls.list}>
-        {CARD_CONFIG.map((element) => (
+        {CARD_CONFIG?.map((element) => (
           <li className={cls.item} key={element.cardId}>
             <NavLink
               to={element.cardRoute}
