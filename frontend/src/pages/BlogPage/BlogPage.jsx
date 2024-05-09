@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 import { PostCard } from '../../components/PostCard/PostCard';
-import { PromoSection } from '../../components/PromoSection-new/PromoSection';
+import { PromoSection } from '../../components/PromoSection/PromoSection';
 
 import desktopImage from '../../images/all-post-decor.png';
 import mobileImage from '../../images/blogDecor.png';

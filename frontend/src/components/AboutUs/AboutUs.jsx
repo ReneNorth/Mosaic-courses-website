@@ -3,11 +3,12 @@ import imageTwo from '../../images/about-us_img-two.png';
 import imageOne from '../../images/about-us__img-rectangle.png';
 import cls from './AboutUs.module.scss';
 import { Button } from '../Button/Button';
+import { ENDPOINTS } from '../../utils/consts/constants';
 
 export const AboutUs = () => {
   const navigate = useNavigate();
   const hadleClick = () => {
-    navigate('/about');
+    navigate(ENDPOINTS.about);
   };
   return (
     <section className={cls.section}>
@@ -27,12 +28,12 @@ export const AboutUs = () => {
             <span> Tessera</span>
           </h2>
           <p className={cls.description}>
-            Наша студия расположена в самом центре Алматы в 3 минутах от
-            Парка 28 Панфиловцев, по адресу Казыбек би, 40.
+            Наша студия расположена в самом центре Алматы в 3 минутах от Парка
+            28 Панфиловцев, по адресу Казыбек би, 40.
           </p>
           <p className={cls.description}>
-            Преподаватель училась в московской школе Сад Гранат и
-            итальянской Mosaic Art School by Luciana Notturni в Равенне.
+            Преподаватель училась в московской школе Сад Гранат и итальянской
+            Mosaic Art School by Luciana Notturni в Равенне.
           </p>
           <Button type="button" className="outline" onClick={hadleClick}>
             Узнать подробнее

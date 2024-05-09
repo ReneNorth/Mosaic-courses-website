@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import * as React from 'react';
 import NewSettler from '../../components/NewSettler/NewSettler';
 import { RemainedQuestion } from '../../components/RemainedQuestion/RemainedQuestion';
 import { MainCardsList } from '../../components/MainCardsList/MainCardsList';
 import { AllCoursesHeader } from '../../components/AllCoursesHeader/AllCoursesHeader';
-import { RectangularPageDecoration } from '../../components/RectangularPageDecoration/RectangularPageDecoration';
 import cls from './AllCourses.module.scss';
 import { SelectField } from '../../components/SelectField/SelectField';
 
@@ -34,7 +32,6 @@ export const AllCourses = () => {
 
   return (
     <>
-      <RectangularPageDecoration />
       <NewSettler setIsOpen={setIsOpen} />
       <AllCoursesHeader />
       <div className={cls.filterWrapper}>

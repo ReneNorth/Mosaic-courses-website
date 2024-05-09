@@ -1,56 +1,64 @@
 import { NavLink } from 'react-router-dom';
 import { classNames } from '../../helpers/classNames';
 import cls from './NavBar.module.scss';
+import { ENDPOINTS } from '../../utils/consts/constants';
 
-export const NavBar = ({ isMobile = false, handleClick }) => {
+export const NavBar = ({ handleClick }) => {
   return (
-    <nav className={classNames(cls.container, {}, [isMobile ? cls.container_mobile : ''])}>
-      <ul className={classNames(cls.list, {}, [])}>
-        <li className={classNames(cls.item, {}, [])}>
+    <nav className={cls.container}>
+      <ul className={cls.list}>
+        <li className={cls.item}>
           <NavLink
-            to="/about"
+            to={ENDPOINTS.about}
             className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
-            onClick={handleClick || (() => { })}
+            onClick={handleClick}
           >
             О студии
           </NavLink>
         </li>
-        <li className={classNames(cls.item, {}, [])}>
+        <li className={cls.item}>
           <NavLink
-            to="/certificates"
+            to={ENDPOINTS.certificetes}
             className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
-            onClick={handleClick || (() => { })}
+            onClick={handleClick}
           >
-            Подарочный сертификат
+            Подарочные сертификаты
           </NavLink>
         </li>
-        <li className={classNames(cls.item, {}, [])}>
+        <li className={cls.item}>
           <NavLink
-            to="/courses"
+            to={ENDPOINTS.courses}
             className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
-            onClick={handleClick || (() => { })}
+            onClick={handleClick}
           >
             Курсы
           </NavLink>
         </li>
-        {/* temporary disabled until the features will be delivered */}
-        {/* <li className={classNames(cls.item, {}, [])}>
-          <NavLink to="/gallery" className={classNames(cls.link, {}, [])} onClick={handleClick || (() => {})}>
+        <li className={cls.item}>
+          <NavLink
+            to={ENDPOINTS.gallery}
+            className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
+            onClick={handleClick}
+          >
             Галерея
           </NavLink>
         </li>
-        <li className={classNames(cls.item, {}, [])}>
-          <NavLink to="/shop" className={classNames(cls.link, {}, [])} onClick={handleClick || (() => {})}>
-            Магазин
-          </NavLink>
-        </li> */}
-        <li className={classNames(cls.item, {}, [])}>
+        <li className={cls.item}>
           <NavLink
-            to="/blog"
+            to={ENDPOINTS.blog}
             className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
-            onClick={handleClick || (() => { })}
+            onClick={handleClick}
           >
             Блог
+          </NavLink>
+        </li>
+        <li className={cls.item}>
+          <NavLink
+            to={ENDPOINTS.shop}
+            className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
+            onClick={handleClick}
+          >
+            Магазин
           </NavLink>
         </li>
       </ul>
