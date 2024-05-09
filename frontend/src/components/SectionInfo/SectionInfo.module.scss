@@ -2,6 +2,7 @@
 
 .container {
   margin-top: 104px;
+  max-width: 843px;
 
   @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
     margin-top: 28px;
