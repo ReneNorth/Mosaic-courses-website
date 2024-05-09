@@ -7,7 +7,7 @@
   display: block;
   box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.6);
 
-  @media screen and (max-width: 1340px) {
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
     height: 136px;
   }
 
@@ -24,7 +24,7 @@
   border-bottom-right-radius: 20px;
   box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.6);
 
-  @media screen and (max-width: 1340px) {
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
     padding: 20px 16px 32px;
   }
 
@@ -41,7 +41,7 @@
   text-transform: uppercase;
   letter-spacing: 1px;
 
-  @media screen and (max-width: 1340px) {
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
     font-weight: 600;
     font-size: 16px;
     line-height: 135%;
@@ -55,7 +55,7 @@
   display: flex;
   gap: 50px;
 
-  @media screen and (max-width: 1340px) {
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
     flex-direction: column;
     align-items: flex-start;
     gap: 7px;
@@ -96,7 +96,7 @@
   &.timeIcon {
     background-image: url('../../images/time.svg');
 
-    @media screen and (max-width: 1340px) {
+    @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
       background-image: url('../../images/time-small.svg');
     }
   }
@@ -104,7 +104,7 @@
   &.rubleIcon {
     background-image: url('../../images/choise_icon-tenge.svg');
 
-    @media screen and (max-width: 1340px) {
+    @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
       background-image: url('../../images/choise_icon-tenge-small.svg');
     }
   }
@@ -116,7 +116,7 @@
   font-size: 17px;
   line-height: 135%;
 
-  @media screen and (max-width: 1340px) {
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
     font-size: 16px;
   }
 }
@@ -135,7 +135,7 @@
   color: #247251;
   margin-top: 60px;
 
-  @media screen and (max-width: 1340px) {
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
     width: 188px;
     height: 44px;
     font-size: 16px;

@@ -1,4 +1,3 @@
-import { Button } from '../Button/Button';
 import giftIcon from '../../images/gift-outline.svg';
 import share from '../../images/share.png';
 

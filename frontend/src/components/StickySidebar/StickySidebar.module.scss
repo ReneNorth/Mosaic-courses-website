@@ -11,7 +11,7 @@
   top: 0;
   right: 0;
 
-  @media screen and (max-width: 1340px) {
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
     width: 298px;
     height: 399px;
   }
@@ -28,7 +28,7 @@
   top: 24px;
   right: 24px;
 
-  @media screen and (max-width: 1340px) {
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
     top: 16px;
     right: 14px;
   }
@@ -46,7 +46,7 @@
   padding: 178px 77px 43px 77px;
   font-family: var(--font-primary);
 
-  @media screen and (max-width: 1340px) {
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
     padding: 68px 26px 40px;
   }
 
@@ -64,7 +64,7 @@
   font-size: 20px;
   line-height: 120%;
 
-  @media screen and (max-width: 1340px) {
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
     font-weight: 600;
     font-size: 18px;
     line-height: 135%;
@@ -79,7 +79,7 @@
   font-weight: 700;
   letter-spacing: 2px;
 
-  @media screen and (max-width: 1340px) {
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
     font-size: 20px;
     margin-top: 16px;
     letter-spacing: 1px;
@@ -91,7 +91,7 @@
   font-size: 17px;
   white-space: nowrap;
 
-  @media screen and (max-width: 1340px) {
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
     font-size: 16px;
     line-height: 135%;
   }
@@ -111,7 +111,7 @@
   white-space: nowrap;
   cursor: pointer;
 
-  @media screen and (max-width: 1340px) {
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
     padding: 12px 45px;
     font-size: 16px;
     margin-top: 70px;
@@ -142,7 +142,7 @@
   align-content: center;
   align-items: center;
 
-  @media screen and (max-width: 1340px) {
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
     margin-top: 19px;
   }
 }
