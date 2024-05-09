@@ -34,7 +34,7 @@ function App() {
         <main>
           <Routes>
             <Route path={ENDPOINTS.main} element={<MaingPage />} />
-            <Route path={ENDPOINTS.course} element={<CoursePage />} />
+            <Route path={`${ENDPOINTS.course}/:slug`} element={<CoursePage />} />
             <Route path={ENDPOINTS.blog} element={<BlogPage />} />
             <Route path={`${ENDPOINTS.blog}/:slug`} element={<PostPage />} />
             <Route path={ENDPOINTS.courses} element={<AllCourses />} />
