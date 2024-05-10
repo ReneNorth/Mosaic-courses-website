@@ -1,0 +1,66 @@
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import calendarPopupStyles from './CalendarPopup.module.scss';
+import timeIconPath from '../../images/time.svg';
+import walletIconPath from '../../images/choise_icon-tenge.svg';
+import teacherIconPath from '../../images/teacher-icon.svg';
+
+const CalendarPopup = ({ isOpen, setIsOpen }) => {
+  const userName = useSelector((store) => store.auth.userName);
+
+  return (
+    <div className={calendarPopupStyles.overlay}>
+      <div className={calendarPopupStyles.popup}>
+        <h2 className={calendarPopupStyles.title}>Курс по Римской мозаике однодневный</h2>
+        <button
+          type="button"
+          className={calendarPopupStyles.closeButton}
+          aria-label="close"
+        />
+        <div className={calendarPopupStyles.container}>
+          {/* Тут будет календарь */}
+          <div className={calendarPopupStyles.info}>
+            <h3 className={calendarPopupStyles.infoTitle}>Информация о занятии</h3>
+            <div className={calendarPopupStyles.iconContainer}>
+              <img className={calendarPopupStyles.icon} src={walletIconPath} alt="Иконка кошелёк" />
+              <p className={calendarPopupStyles.iconLabel}>7 000 ₽</p>
+            </div>
+            <div className={calendarPopupStyles.iconContainer}>
+              <img className={calendarPopupStyles.icon} src={timeIconPath} alt="Иконка часы" />
+              <p className={calendarPopupStyles.iconLabel}>3 часа</p>
+            </div>
+            <div className={calendarPopupStyles.iconContainer}>
+              <img className={calendarPopupStyles.icon} src={teacherIconPath} alt="Иконка шапка" />
+              <p className={calendarPopupStyles.iconLabel}>Антон Цветов</p>
+            </div>
+            {!userName && (
+              <div className={calendarPopupStyles.notAuthorizedUserContainer}>
+                <div className={calendarPopupStyles.linkContainer}>
+                  <p className={calendarPopupStyles.linkText}>
+                    Чтобы запись появилась в личном кабинете, вы также можете
+                    <Link className={calendarPopupStyles.link} to="/login"> войти</Link>
+                    в аккаунт или
+                    <Link className={calendarPopupStyles.link} to="/login"> зарегистрироваться</Link>
+                  </p>
+                </div>
+                <input
+                  className={calendarPopupStyles.input}
+                  type="text"
+                  placeholder="Имя*"
+                />
+                <input
+                  className={calendarPopupStyles.input}
+                  type="tel"
+                  placeholder="Телефон*"
+                />
+              </div>
+            )}
+            <button className={calendarPopupStyles.submitButton} type="submit">Записаться</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default CalendarPopup;

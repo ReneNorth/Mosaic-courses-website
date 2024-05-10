@@ -1,4 +1,4 @@
-@use "../../utils/variables/global.scss";
+@use "../../utils/variables/global";
 
 .image {
   border-top-right-radius: 20px;
@@ -6,31 +6,14 @@
   margin-bottom: 0px;
   display: block;
   box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.6);
-
-  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
-    height: 136px;
-  }
-
-  @media screen and (max-width: global.$breakpoint-tablet) {
-    height: 198px;
-    width: 320px;
-  }
 }
 
 .courseBox {
-  padding: 40px 40px 30px;
+  padding: 40px 40px 30px 40px;
   background-color: #dad5c9;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.6);
-
-  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
-    padding: 20px 16px 32px;
-  }
-
-  @media screen and (max-width: global.$breakpoint-tablet) {
-    padding: 24px 24px 40px;
-  }
 }
 
 .title {
@@ -40,13 +23,6 @@
   line-height: 130%;
   text-transform: uppercase;
   letter-spacing: 1px;
-
-  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 135%;
-    text-transform: none;
-  }
 }
 
 .wrapperAtribut {
@@ -54,22 +30,9 @@
   margin-bottom: 24px;
   display: flex;
   gap: 50px;
-
-  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 7px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
-
-  @media screen and (max-width: global.$breakpoint-tablet) {
-    flex-direction: row;
-    gap: 20px;
-  }
 }
 
-.priceContainer {
+.iconContainer {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -86,28 +49,20 @@
   }
 }
 
-.iconContainer {
-  align-self: center;
+.timeIcon, .rubleIcon {
   width: 26px;
   height: 26px;
   background-repeat: no-repeat;
   background-position: center;
+}
 
-  &.timeIcon {
-    background-image: url('../../images/time.svg');
+.timeIcon {
+  background-image: url('../../images/time.svg');
+}
 
-    @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
-      background-image: url('../../images/time-small.svg');
-    }
-  }
-
-  &.rubleIcon {
-    background-image: url('../../images/choise_icon-tenge.svg');
-
-    @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
-      background-image: url('../../images/choise_icon-tenge-small.svg');
-    }
-  }
+.rubleIcon {
+  align-self: center;
+  background-image: url('../../images/choise_icon-tenge.svg');
 }
 
 .description {
@@ -115,10 +70,6 @@
   font-weight: 400;
   font-size: 17px;
   line-height: 135%;
-
-  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
-    font-size: 16px;
-  }
 }
 
 .btn {
@@ -134,16 +85,81 @@
   line-height: 135%;
   color: #247251;
   margin-top: 60px;
+}
 
-  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+@media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+  .container {
+    width: 220px;
+  }
+
+  .image {
+    height: 136px;
+  }
+
+  .courseBox {
+    padding: 20px 16px 32px;
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 135%;
+    text-transform: none;
+  }
+
+  .wrapperAtribut {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .timeIcon {
+    background-image: url('../../images/time-small.svg');
+  }
+
+  .rubleIcon {
+    background-image: url('../../images/choise_icon-tenge-small.svg');
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .btn {
     width: 188px;
     height: 44px;
     font-size: 16px;
     padding: 11px 21px;
     margin-top: 52px;
   }
+}
 
-  @media screen and (max-width: global.$breakpoint-tablet) {
+@media screen and (max-width: global.$breakpoint-tablet) {
+  .container {
+    width: 320px;
+  }
+
+  .image {
+    height: 198px;
+    width: 320px;
+  }
+
+  .courseBox {
+    padding: 24px 24px 40px;
+  }
+
+  .wrapperAtribut {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .timeIcon, .rubleIcon {
+    background-image: url('../../images/time.svg');
+  }
+
+  .btn {
     width: 272px;
   }
 }
