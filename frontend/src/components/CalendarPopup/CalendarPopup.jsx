@@ -1,18 +1,29 @@
-import { useSelector } from 'react-redux';
+import ReactDOM from 'react-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import calendarPopupStyles from './CalendarPopup.module.scss';
 import timeIconPath from '../../images/time.svg';
 import walletIconPath from '../../images/choise_icon-tenge.svg';
 import teacherIconPath from '../../images/teacher-icon.svg';
 import { ModalOverlay } from '../ModalOverlay/ModalOverlay';
+import { useModalClose } from '../../hooks/useModalClose';
+import { setIsCalendarPopupOpen } from '../../services/slices/popupSlice';
 
 const CalendarPopup = () => {
+  const dispatch = useDispatch();
+  const isOpen = useSelector((store) => store.popup.isCalendarPopupOpen);
   const userName = useSelector((store) => store.auth.userName);
+
+  function handleClose() {
+    dispatch(setIsCalendarPopupOpen(false));
+  }
+
+  useModalClose(handleClose);
 
   const modalRoot = document.getElementById('modal-root');
   if (!modalRoot) return null;
 
-  return (
+  return ReactDOM.createPortal(
     <ModalOverlay>
       <div className={calendarPopupStyles.popup}>
         <h2 className={calendarPopupStyles.title}>Курс по Римской мозаике однодневный</h2>
@@ -20,6 +31,7 @@ const CalendarPopup = () => {
           type="button"
           className={calendarPopupStyles.closeButton}
           aria-label="close"
+          onClick={handleClose}
         />
         <div className={calendarPopupStyles.container}>
           {/* Тут будет календарь */}
@@ -63,7 +75,8 @@ const CalendarPopup = () => {
           </div>
         </div>
       </div>
-    </ModalOverlay>
+    </ModalOverlay>,
+    modalRoot,
   );
 };
 
