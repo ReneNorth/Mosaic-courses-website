@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from booking.models import Booking, ReservationAdmin
-from masterclass.models import (Category, Masterclass, MasterclassType,
+from masterclass.models import (MasterclassCategory, Masterclass, MasterclassType,
                                 MasterclassTypeCategory)
 
 
@@ -32,7 +32,7 @@ class MasterclassAdmin(admin.ModelAdmin):
             attending__id=masterclass.id).count()
 
 
-@admin.register(Category)
+@admin.register(MasterclassCategory)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug', 'category_filter', ]
 

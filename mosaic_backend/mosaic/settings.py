@@ -6,7 +6,7 @@ from django.utils.log import DEFAULT_LOGGING
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
-LOCAL_DEV = False
+LOCAL_DEV = True
 
 # latest change validation
 KEY_ENV = os.getenv('SECRET_KEY')

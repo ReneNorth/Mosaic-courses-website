@@ -18,13 +18,15 @@ from api.serializers import (ArtworkSerializer, BookingSerializer,
                              MainCarouselSerializer, MasterclassSerializer,
                              MasterclassTypeSerializer, PostSerializer,
                              RequestSerializer, ReviewsSerializer,
-                             SchoolSerializer, TagReadOnlySerializer)
+                             SchoolSerializer, TagReadOnlySerializer,
+                             MasterclassCategoryFilterSerializer,
+                             )
 from blog.models import Post, Tag
 from booking.models import Booking
 from carousel.models import MainCarouselItem
 from crm_app.models import GiftCert
 from marketplace.models import Artwork
-from masterclass.models import Masterclass, MasterclassType
+from masterclass.models import Masterclass, MasterclassType, MasterclassCategory
 from school.models import Review, School
 from users.permissions import BookingPermission
 
@@ -70,6 +72,12 @@ class ArtworkReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
 class EmailCreateOnlyViewSet(mixins.CreateModelMixin,
                              viewsets.GenericViewSet):
     serializer_class = EmailMainSerializer
+    permission_classes = [AllowAny, ]
+
+
+class MasterclassCategoryFilterReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = MasterclassCategory.objects.all()
+    serializer_class = MasterclassCategoryFilterSerializer
     permission_classes = [AllowAny, ]
 
 
