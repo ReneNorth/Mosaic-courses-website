@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 LOCAL_DEV = False
 
-
+# latest change validation
 KEY_ENV = os.getenv('SECRET_KEY')
 SECRET_KEY = f'{KEY_ENV}'
 ALLOWED_HOSTS = ['web', '127.0.0.1', '127.0.0.1:8000', 'localhost',
@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'mdeditor',
     'corsheaders',
     'drf_api_logger',
+    'django_extensions',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -61,9 +63,10 @@ CORS_URLS_REGEX = r'^/api/.*$'
 CSRF_TRUSTED_ORIGINS = ['http://localhost',
                         'http://localhost:3000',
                         'http://localhost:8000',
-                        'http://localhost:8000',
                         'http://localhost:8000/register',
-                        'https://tessera.hopto.org', ]
+                        'https://tessera.hopto.org',
+                        'https://tesseramosaic.art',
+                        ]
 
 
 ROOT_URLCONF = 'mosaic.urls'
@@ -124,12 +127,12 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    # },
 ]
 
 
@@ -172,6 +175,15 @@ REST_FRAMEWORK = {
 
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 6,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Tessera Mosaic',
+    'DESCRIPTION': 'Website for a mosaic school',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
 }
 
 
@@ -268,4 +280,10 @@ LOGGING = {
         },
         'django.server': DEFAULT_LOGGING['loggers']['django.server'],
     }
+}
+
+
+GRAPH_MODELS = {
+    'all_applications': True,
+    'group_models': True,
 }

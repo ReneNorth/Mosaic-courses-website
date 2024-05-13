@@ -36,8 +36,10 @@ masterclass = {
     'title': 'title',
     'price': 100000,
     'currency': 'тенге',
-    'time_start': datetime.datetime.now() + datetime.timedelta(hours=1),
-    'time_end': datetime.datetime.now() + datetime.timedelta(hours=2),
+    'time_start': (datetime.datetime.now(tz=datetime.timezone.utc)
+                   + datetime.timedelta(hours=1)),
+    'time_end': (datetime.datetime.now(tz=datetime.timezone.utc)
+                 + datetime.timedelta(hours=2)),
     'teacher': 'short_description',
 }
 

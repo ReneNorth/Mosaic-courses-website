@@ -69,7 +69,9 @@ class Api {
   }
 
   async getCourses(dataReq) {
-    const res = await fetch(`${this._url}/api/v1/masterclass_types/?limit=${dataReq.limit}&offset=${dataReq.offset}`);
+    const res = await fetch(
+      `${this._url}/api/v1/masterclass_types/?limit=${dataReq.limit}&offset=${dataReq.offset}&ordering=`,
+    );
     const data = await this.constructor._checkResponse(res);
     if (res.ok) {
       data.results.forEach((course) => {
@@ -246,6 +248,8 @@ class Api {
     return Promise.reject(new Error(`${res.status}`));
   }
 }
+
+console.log(process.env.REACT_APP_API_URL);
 
 export const api = new Api(
   process.env.REACT_APP_API_URL || 'http://localhost:8000',

@@ -1,10 +1,10 @@
 import logging
 
 from django.contrib.auth import get_user_model
-
-from masterclass.models import MasterclassType
 from django.test import Client, TestCase
+
 from api.tests import data_tests as d
+from masterclass.models import MasterclassType
 
 log = logging.getLogger(__name__)
 User = get_user_model()

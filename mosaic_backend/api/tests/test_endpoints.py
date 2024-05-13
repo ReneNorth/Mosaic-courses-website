@@ -1,15 +1,16 @@
-import logging
 import json
+import logging
 
-from django.test import Client, TestCase
 from django.contrib.auth import get_user_model
+from django.test import Client, TestCase
 from rest_framework.test import APIRequestFactory
 
-from .data_tests import link
-from blog.models import Tag, PostTag, Post
+from blog.models import Post, PostTag, Tag
 from carousel.models import MainCarouselItem
-from school.models import Review
 from crm_app.models import EmailMainForm, FeedbackRequest
+from school.models import Review
+
+from .data_tests import link
 
 log = logging.getLogger(__name__)
 User = get_user_model()
@@ -145,6 +146,7 @@ class BlogTest(TestCase):
         super().tearDownClass()
 
     def test_api_get_2_posts(self):
+        # упавший тест
         response = self.client.get(
             path="/api/v1/blog/",
             extra="application/json",
@@ -167,6 +169,14 @@ class BlogTest(TestCase):
             response.content))
         slug = posts[0].get('slug')
         self.assertEqual(slug, self.post2.slug)
+
+    # def test_api_related_posts_nonexistent_slug(self):
+    #     response = self.client.get(
+    #         path="/api/v1/blog/nonexistent_slug/related_posts/",
+    #         content_type="application/json",
+    #     )
+
+    #     self.assertEqual(response.status_code, 404)
 
 
 review1_args = {"student_name": "test",
