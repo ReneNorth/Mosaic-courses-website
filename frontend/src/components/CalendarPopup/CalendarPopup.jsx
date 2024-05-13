@@ -4,12 +4,16 @@ import calendarPopupStyles from './CalendarPopup.module.scss';
 import timeIconPath from '../../images/time.svg';
 import walletIconPath from '../../images/choise_icon-tenge.svg';
 import teacherIconPath from '../../images/teacher-icon.svg';
+import { ModalOverlay } from '../ModalOverlay/ModalOverlay';
 
-const CalendarPopup = ({ isOpen, setIsOpen }) => {
+const CalendarPopup = () => {
   const userName = useSelector((store) => store.auth.userName);
 
+  const modalRoot = document.getElementById('modal-root');
+  if (!modalRoot) return null;
+
   return (
-    <div className={calendarPopupStyles.overlay}>
+    <ModalOverlay>
       <div className={calendarPopupStyles.popup}>
         <h2 className={calendarPopupStyles.title}>Курс по Римской мозаике однодневный</h2>
         <button
@@ -59,7 +63,7 @@ const CalendarPopup = ({ isOpen, setIsOpen }) => {
           </div>
         </div>
       </div>
-    </div>
+    </ModalOverlay>
   );
 };
 
