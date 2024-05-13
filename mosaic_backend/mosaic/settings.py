@@ -264,4 +264,4 @@ GRAPH_MODELS = {
     'group_models': True,
 }
 
-# FILE_UPLOAD_MAX_MEMORY_SIZE
+# FILE_UPLOAD_MAX_MEMORY_SIZE = 10

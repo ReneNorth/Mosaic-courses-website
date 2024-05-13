@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { courses } from '../../utils/consts/mockData.js';
 import { CourseCard } from '../CourseCard/CourseCard.jsx';
 import cls from './MainCardsList.module.scss';
 import { getAllCourses } from '../../services/slices/coursesSlice.js';

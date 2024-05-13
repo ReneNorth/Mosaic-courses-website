@@ -144,11 +144,7 @@
     cursor: pointer;
 
     input[type="checkbox"] {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      clip: rect(0 0 0 0);
+      display: none;
     }
 
     input[type="checkbox"]:checked + span {
@@ -158,11 +154,9 @@
     }
 
     span {
-      display: inline-block;
-      vertical-align: middle;
       width: 20px;
       height: 20px;
-      border: 1.5px solid #247251;
+      border: 1px solid #247251;
       border-radius: 4px;
     }
 
@@ -174,12 +168,8 @@
       font-size: 17px;
       line-height: 23px;
       color: #000;
+      max-width: 301px;
     }
-  }
-
-  p {
-
-    max-width: 301px;
   }
 
   .btnWrapper {

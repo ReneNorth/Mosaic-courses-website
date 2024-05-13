@@ -4,13 +4,14 @@ import formImg from '../../images/form_header.png';
 import { Button } from '../Button/Button';
 import { classNames } from '../../helpers/classNames';
 import CloseIcon from '../../images/CloseIcon';
+import { ENDPOINTS } from '../../utils/consts/constants';
 
 export const ProfilePopup = ({ isOpen, setIsOpen }) => {
   const navigate = useNavigate();
 
   const goToMain = (e) => {
     e.preventDefault();
-    navigate('/');
+    navigate(ENDPOINTS.main);
   };
 
   return (

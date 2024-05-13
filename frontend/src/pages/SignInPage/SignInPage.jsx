@@ -8,7 +8,6 @@ import { InputField } from '../../components/InputField/InputField';
 import { SignHeaderLinks } from '../../components/SignHeaderLinks/SignHeaderLinks';
 import { useFormValidation } from '../../hooks/useFormValidation';
 import { loginUser } from '../../services/slices/authSlice';
-import { RectangularPageDecoration } from '../../components/RectangularPageDecoration/RectangularPageDecoration';
 import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/LogInPageDecorationImg';
 
 export function SignInPage() {
@@ -41,7 +40,6 @@ export function SignInPage() {
 
   return (
     <section className={cls.section}>
-      <RectangularPageDecoration />
       <div className={cls.block}>
         <form className={cls.formContainer} noValidate>
           <ul className={classNames(cls.list, {}, [])}>
