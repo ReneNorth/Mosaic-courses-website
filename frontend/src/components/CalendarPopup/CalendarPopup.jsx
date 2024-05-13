@@ -38,8 +38,8 @@ const CalendarPopup = ({ isOpen, setIsOpen }) => {
                 <div className={calendarPopupStyles.linkContainer}>
                   <p className={calendarPopupStyles.linkText}>
                     Чтобы запись появилась в личном кабинете, вы также можете
-                    <Link className={calendarPopupStyles.link} to="/login"> войти</Link>
-                    в аккаунт или
+                    <Link className={calendarPopupStyles.link} to="/login"> войти в аккаунт</Link>
+                    или
                     <Link className={calendarPopupStyles.link} to="/login"> зарегистрироваться</Link>
                   </p>
                 </div>
