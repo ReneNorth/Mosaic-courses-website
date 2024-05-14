@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { CardMoreContent } from '../../components/CardMoreContent/CardMoreContent';
@@ -79,7 +80,10 @@ export const PostPage = () => {
       />
       <section className={cls.post}>
         <div className={cls.markdown__container}>
-          <ReactMarkdown className={cls.reactMarkdown}>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            className={cls.reactMarkdown}
+          >
             {currentPost.text}
           </ReactMarkdown>
           <ul className={cls.tags}>
