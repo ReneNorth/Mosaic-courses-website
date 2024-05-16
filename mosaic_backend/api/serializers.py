@@ -107,18 +107,6 @@ class MasterclassCategoryFilterSerializer(serializers.ModelSerializer):
     class Meta:
         model = MasterclassCategory
         fields = ['category_filter', 'name', 'slug']
-        # https://forum.djangoproject.com/t/modifying-serializer-response-in-django-rest-framework/18993/3
-
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
-        log.info(representation)
-        category_filter = representation.pop('category_filter')
-        representation['category'] = {
-            'filter': category_filter,
-            'name': representation.pop('name'),
-            'slug': representation.pop('slug')
-        }
-        return representation
 
 
 class MasterclassSerializer(serializers.ModelSerializer):

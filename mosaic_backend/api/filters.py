@@ -54,6 +54,8 @@ class CustomOrderingFilter(django_filters.OrderingFilter):
         super().__init__(*args, **kwargs)
 
     def filter(self, qs, value):
+        if not value:
+            return qs
         if any(v in ['recommended'] for v in value):
             if MasterclassCategory.objects.filter(slug='recommended').exists():
                 recommended = MasterclassCategory.objects.get(

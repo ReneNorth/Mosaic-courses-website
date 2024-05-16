@@ -3,6 +3,7 @@ import random
 import string
 
 from django.contrib.auth import get_user_model
+from collections import OrderedDict
 from django.db.models import Count, Min
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
@@ -76,9 +77,24 @@ class EmailCreateOnlyViewSet(mixins.CreateModelMixin,
 
 
 class MasterclassCategoryFilterReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    # leave only list view not retrieve
     queryset = MasterclassCategory.objects.all()
     serializer_class = MasterclassCategoryFilterSerializer
     permission_classes = [AllowAny, ]
+
+    def list(self, request, *args, **kwargs):
+        response = super().list(request, *args, **kwargs)
+        response_dict = OrderedDict(
+            {key: []
+             for key in MasterclassCategory.CATEGORY_FILTER_CHOICES.keys()}
+        )
+
+        for item in response.data['results']:
+            category_filter = item.pop('category_filter', None)
+            if category_filter in response_dict:
+                response_dict[category_filter].append(item)
+        response.data['results'] = response_dict
+        return response
 
 
 class MasterclassReadOnlyViewset(viewsets.ReadOnlyModelViewSet):
