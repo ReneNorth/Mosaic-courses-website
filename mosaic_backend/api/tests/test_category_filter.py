@@ -7,6 +7,13 @@ from masterclass.models import MasterclassCategory
 # class MasterclassCategoryFilterReadOnlyViewSetTests(APITestCase):
 #     def setUp(self):
 #         self.url = '/api/v1/filters/'
+#         # Create some MasterclassCategory objects for testing
+#         MasterclassCategory.objects.create(
+#             name='Category 1', category_filter='filter1')
+#         MasterclassCategory.objects.create(
+#             name='Category 2', category_filter='filter2')
+#         MasterclassCategory.objects.create(
+#             name='Category 3', category_filter='filter3')
 
 #     def test_list_categories(self):
 #         response = self.client.get(self.url)
