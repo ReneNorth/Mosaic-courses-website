@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import NewSettler from '../../components/NewSettler/NewSettler';
 import { RemainedQuestion } from '../../components/RemainedQuestion/RemainedQuestion';
 import { MainCardsList } from '../../components/MainCardsList/MainCardsList';
@@ -13,15 +14,24 @@ import { Chip } from '../../components/Chip/Chip';
 import { Arrows } from '../../images/Arrows';
 import { AllCoursesMobileSortModal } from '../../components/AllCoursesMobileSortModal/AllCoursesMobileSortModal';
 import { AllCoursesMobileFilterModal } from '../../components/AllCoursesMobileFilterModal/AllCoursesMobileFilterModal';
+import { getCurrentSorting, setCurrentSortingStatus } from '../../services/slices/coursesFiltersSlice.js';
 
 export const AllCourses = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const [sortSelectField, setSortSelectField] = useState('');
+
   const [sortMobileModalOpen, setSortMobileModalOpen] = useState(false);
-  const [sortingStatus, setSortingStatus] = useState('default');
   const [filterMobileModalOpen, setFilterMobileModalOpen] = useState(false);
   const [filterStatus, setFilterStatus] = useState([]);
   const [saveFilterStatus, setSaveFilterStatus] = useState([]);
+
+  const { sorting, activeSortingStatus } = useSelector((state) => state.coursesFilters);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCurrentSorting());
+  }, [dispatch]);
 
   const filters = {
     forWho: [
@@ -38,33 +48,16 @@ export const AllCourses = () => {
       'Современная',
       'Классическая'],
   };
-  const sortSingle = [
-    { name: 'Без фильтра', value: '' },
-    { name: 'Для начинающих', value: 'for novice' },
-    { name: 'По умолчанию', value: 'default' },
-  ];
 
   const handlerSortMobileButton = (e) => {
     e.preventDefault();
     setSortMobileModalOpen(true);
-    // const sendData = {
-    //   email: values.email,
-    // };
-    // dispatch(resendActivationEmail(sendData));
-    // setCounter(30);
-    // setDisabledButtonCounter(true);
   };
 
   const handlerFilterMobileButton = (e) => {
     e.preventDefault();
     setFilterMobileModalOpen(true);
     setSaveFilterStatus(filterStatus);
-    // const sendData = {
-    //   email: values.email,
-    // };
-    // dispatch(resendActivationEmail(sendData));
-    // setCounter(30);
-    // setDisabledButtonCounter(true);
   };
 
   return (
@@ -74,7 +67,12 @@ export const AllCourses = () => {
       <AllCoursesHeader />
       <div className={cls.filterWrapper}>
         <div className={cls.filterBlock}>
-          <SelectFieldSingle placeholder="Сортировка" valuesArray={sortSingle} />
+          <SelectFieldSingle
+            placeholder="Сортировка"
+            valuesArray={sorting}
+            selectValue={activeSortingStatus}
+            setSelectValue={setCurrentSortingStatus}
+          />
           <SelectField placeholder="Для кого " valuesArray={filters.forWho} />
           <SelectField placeholder="По времени " valuesArray={filters.time} />
           <SelectField placeholder="Тип занятий " valuesArray={filters.names} />
@@ -84,15 +82,16 @@ export const AllCourses = () => {
         <div className={cls.filterBlockMobile}>
           <Chip
             border
-            active={sortingStatus !== 'default'}
+            active={activeSortingStatus !== ''}
             onClick={(e) => handlerSortMobileButton(e)}
             fill
           >
             <Arrows />
             {' '}
-            {sortingStatus === 'default' ? 'Сортировка' : ''}
-            {sortingStatus === 'recommended' ? 'Рекомендованные' : ''}
-            {sortingStatus === 'forBeginners' ? 'Для начинающих' : ''}
+            {activeSortingStatus === '' && 'Сортировка'}
+            {activeSortingStatus === 'recommended' && 'Рекомендуемые'}
+            {activeSortingStatus === 'date' && 'Ближайшие' }
+            {activeSortingStatus === 'price' && 'По цене' }
           </Chip>
           <Chip
             border
@@ -107,8 +106,6 @@ export const AllCourses = () => {
         <AllCoursesMobileSortModal
           isOpen={sortMobileModalOpen}
           setIsOpen={setSortMobileModalOpen}
-          sortingStatus={sortingStatus}
-          setSortingStatus={setSortingStatus}
         />
         <AllCoursesMobileFilterModal
           isOpen={filterMobileModalOpen}

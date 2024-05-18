@@ -70,7 +70,8 @@ class Api {
 
   async getCourses(dataReq) {
     const res = await fetch(
-      `${this._url}/api/v1/masterclass_types/?limit=${dataReq.limit}&offset=${dataReq.offset}&ordering=`,
+      // eslint-disable-next-line max-len
+      `${this._url}/api/v1/masterclass_types/?limit=${dataReq.limit}&offset=${dataReq.offset}&ordering=${dataReq.order}`,
     );
     const data = await this.constructor._checkResponse(res);
     if (res.ok) {

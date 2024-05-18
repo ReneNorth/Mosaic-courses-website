@@ -23,12 +23,25 @@ export const MainCardsList = ({
     setIsOpen(true);
   };
   const { allCourses, totalCount, sending } = useSelector((state) => state.courses);
+  const { activeSortingStatus } = useSelector((state) => state.coursesFilters);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllCourses({ limit: PageSize, offset: currentPageOffset }));
+    dispatch(getAllCourses({ limit: PageSize, offset: currentPageOffset, order: activeSortingStatus }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, currentPageOffset]);
+  }, [dispatch, currentPageOffset, activeSortingStatus]);
+
+  useEffect(() => {
+    setCoursesForMobile([]);
+    setCurrentPageOffset(0);
+    setCurrentPage(1);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSortingStatus]);
 
   useEffect(() => {
     setCoursesForMobile([...coursesForMobile, ...checkID(coursesForMobile, allCourses)]);
@@ -96,32 +109,6 @@ export const MainCardsList = ({
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [position]);
-
-  // const handleScroll = () => {
-  //   // eslint-disable-next-line react-hooks/rules-of-hooks
-  //   useThrottle(checkPosition(LogingFunction), 250);
-  // };
-  // useEffect(() => {
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-  // (() => {
-  //   window.addEventListener('scroll', useThrottle(checkPosition(LogingFunction), 250));
-  //   window.addEventListener('resize', throttle(checkPosition(LogingFunction), 250));
-  // })();
-
-  // console.log(coursesToRender);
-
-  // useEffect(() => {
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
 
   window.addEventListener('scroll', useThrottle(handleScroll, 1000));
   return (

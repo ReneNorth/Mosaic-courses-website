@@ -1,24 +1,15 @@
+import { useDispatch, useSelector } from 'react-redux';
 import cls from './AllCoursesMobileSortModal.module.scss';
 import { classNames } from '../../helpers/classNames';
+import { setCurrentSortingStatus } from '../../services/slices/coursesFiltersSlice.js';
 
-export const AllCoursesMobileSortModal = ({
-  isOpen, setIsOpen, sortingStatus, setSortingStatus,
-}) => {
-  const handlerRecommended = (e) => {
-    e.preventDefault();
-    setSortingStatus('recommended');
-    setIsOpen(false);
-  };
+export const AllCoursesMobileSortModal = ({ isOpen, setIsOpen }) => {
+  const { activeSortingStatus } = useSelector((state) => state.coursesFilters);
+  const dispatch = useDispatch();
 
-  const handlerForBeginners = (e) => {
+  const handlerClick = (e, sort) => {
     e.preventDefault();
-    setSortingStatus('forBeginners');
-    setIsOpen(false);
-  };
-
-  const handlerDefault = (e) => {
-    e.preventDefault();
-    setSortingStatus('default');
+    dispatch(setCurrentSortingStatus(sort));
     setIsOpen(false);
   };
   return (
@@ -30,23 +21,30 @@ export const AllCoursesMobileSortModal = ({
       <div className={classNames(cls.popup, { [cls.popupOpen]: isOpen }, [])}>
         <div className={cls.contentWrapper}>
           <button
-            onClick={(e) => handlerRecommended(e)}
+            onClick={(e) => handlerClick(e, 'recommended')}
             type="button"
-            className={classNames(cls.button, {}, [sortingStatus === 'recommended' && cls.active])}
+            className={classNames(cls.button, {}, [activeSortingStatus === 'recommended' && cls.active])}
           >
-            Рекомендованные
+            Рекомендуемые
           </button>
           <button
-            onClick={(e) => handlerForBeginners(e)}
+            onClick={(e) => handlerClick(e, 'date')}
             type="button"
-            className={classNames(cls.button, {}, [sortingStatus === 'forBeginners' && cls.active])}
+            className={classNames(cls.button, {}, [activeSortingStatus === 'date' && cls.active])}
           >
-            Для начинающих
+            Ближайшие
           </button>
           <button
-            onClick={(e) => handlerDefault(e)}
+            onClick={(e) => handlerClick(e, 'price')}
             type="button"
-            className={classNames(cls.button, {}, [sortingStatus === 'default' && cls.active])}
+            className={classNames(cls.button, {}, [activeSortingStatus === 'price' && cls.active])}
+          >
+            По цене
+          </button>
+          <button
+            onClick={(e) => handlerClick(e, '')}
+            type="button"
+            className={classNames(cls.button, {}, [activeSortingStatus === '' && cls.active])}
           >
             По умолчанию
           </button>
