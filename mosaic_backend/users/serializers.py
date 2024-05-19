@@ -9,12 +9,13 @@ User = get_user_model()
 log = logging.getLogger(__name__)
 
 
-class UserCreateSerializer(serializers.ModelSerializer):
+class UserPersonalPageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email', 'id', 'first_name',
-                  'last_name', ]
+        fields = ['id', 'email', 'first_name',
+                  'last_name', 'phone']
+        read_only_fields = ['id', ]
 
     def validate_role(self, value):
         """
@@ -29,8 +30,8 @@ class UserCreateSerializer(serializers.ModelSerializer):
         return value
 
 
-class CustomUserSerializer(serializers.ModelSerializer):
-    """Customized user serialiser with redefined create method. """
+class CustomCreateUserSerializer(serializers.ModelSerializer):
+    """Customized user serializer with redefined create method."""
 
     class Meta:
         model = User
