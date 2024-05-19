@@ -39,7 +39,7 @@ def get_or_create_dummy_teacher():
         raise
 
 
-class Category(models.Model):
+class MasterclassCategory(models.Model):
     CATEGORY_FILTER_CHOICES = {
         'ORDER': 'Specific fields for ordering queryset results',
         'EXP': 'Required or recommended experience',
@@ -69,7 +69,7 @@ class MasterclassType(models.Model):
     slug = models.SlugField(max_length=15, verbose_name='Link')
     image = models.ImageField(upload_to='masterclasses/')
     category = models.ManyToManyField(
-        Category, through='MasterclassTypeCategory')
+        MasterclassCategory, through='MasterclassTypeCategory')
     max_guests = models.PositiveSmallIntegerField(
         verbose_name='Max number of guests'
     )
@@ -132,7 +132,7 @@ class Masterclass(models.Model):
 
 
 class MasterclassTypeCategory(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE,
+    category = models.ForeignKey(MasterclassCategory, on_delete=models.CASCADE,
                                  related_name='categories')
     masterclass_type = models.ForeignKey(
         MasterclassType, on_delete=models.CASCADE,

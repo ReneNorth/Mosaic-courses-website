@@ -3,12 +3,20 @@ from datetime import timedelta
 from pathlib import Path
 
 from django.utils.log import DEFAULT_LOGGING
+import logging
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
-LOCAL_DEV = False
 
-# latest change validation
+load_dotenv(os.path.join(BASE_DIR.parent, 'infra', '.env'))
+log_file = os.path.join(BASE_DIR, 'logs.txt')
+logging.basicConfig(filename=log_file, level=logging.DEBUG,
+                    format='%(asctime)s %(levelname)s %(message)s')
+
+log = logging.getLogger(__name__)
+
+
 KEY_ENV = os.getenv('SECRET_KEY')
 SECRET_KEY = f'{KEY_ENV}'
 ALLOWED_HOSTS = ['web', '127.0.0.1', '127.0.0.1:8000', 'localhost',
@@ -21,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.admindocs',
     'django.contrib.staticfiles',
     'api.apps.ApiConfig',
     'blog.apps.BlogConfig',
@@ -91,49 +100,16 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mosaic.wsgi.application'
 
 
-if LOCAL_DEV is False:
-    DATABASES = {
-        'default': {
-            'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
-            'NAME': os.getenv('DB_NAME', default='postgres'),
-            'USER': os.getenv('POSTGRES_USER', default='postgres'),
-            'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='mosaic_admin'),
-            'HOST': os.getenv('DB_HOST', default='db'),
-            'PORT': os.getenv('DB_PORT', default='5432')
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
+        'NAME': os.getenv('DB_NAME', 'django_db'),
+        'USER': os.getenv('POSTGRES_USER', 'django_user'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'django_password'),
+        'HOST': os.getenv('DB_HOST', '127.0.0.1'),
+        'PORT': os.getenv('DB_PORT', '5432'),
     }
-
-
-if LOCAL_DEV is True:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'mosaic',
-            'USER': 'mosaic_admin',
-            'PASSWORD': 'mosaic_admin',
-            'HOST': 'localhost',
-            'PORT': '5432'
-        }
-    }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    # },
-]
+}
 
 
 LANGUAGE_CODE = 'en-us'
@@ -287,3 +263,5 @@ GRAPH_MODELS = {
     'all_applications': True,
     'group_models': True,
 }
+
+# FILE_UPLOAD_MAX_MEMORY_SIZE = 10

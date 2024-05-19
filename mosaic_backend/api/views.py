@@ -3,6 +3,7 @@ import random
 import string
 
 from django.contrib.auth import get_user_model
+from collections import OrderedDict
 from django.db.models import Count, Min
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
@@ -18,13 +19,15 @@ from api.serializers import (ArtworkSerializer, BookingSerializer,
                              MainCarouselSerializer, MasterclassSerializer,
                              MasterclassTypeSerializer, PostSerializer,
                              RequestSerializer, ReviewsSerializer,
-                             SchoolSerializer, TagReadOnlySerializer)
+                             SchoolSerializer, TagReadOnlySerializer,
+                             MasterclassCategoryFilterSerializer,
+                             )
 from blog.models import Post, Tag
 from booking.models import Booking
 from carousel.models import MainCarouselItem
 from crm_app.models import GiftCert
 from marketplace.models import Artwork
-from masterclass.models import Masterclass, MasterclassType
+from masterclass.models import Masterclass, MasterclassType, MasterclassCategory
 from school.models import Review, School
 from users.permissions import BookingPermission
 
@@ -71,6 +74,27 @@ class EmailCreateOnlyViewSet(mixins.CreateModelMixin,
                              viewsets.GenericViewSet):
     serializer_class = EmailMainSerializer
     permission_classes = [AllowAny, ]
+
+
+class MasterclassCategoryFilterReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    # leave only list view not retrieve
+    queryset = MasterclassCategory.objects.all()
+    serializer_class = MasterclassCategoryFilterSerializer
+    permission_classes = [AllowAny, ]
+
+    def list(self, request, *args, **kwargs):
+        response = super().list(request, *args, **kwargs)
+        response_dict = OrderedDict(
+            {key: []
+             for key in MasterclassCategory.CATEGORY_FILTER_CHOICES.keys()}
+        )
+
+        for item in response.data['results']:
+            category_filter = item.pop('category_filter', None)
+            if category_filter in response_dict:
+                response_dict[category_filter].append(item)
+        response.data['results'] = response_dict
+        return response
 
 
 class MasterclassReadOnlyViewset(viewsets.ReadOnlyModelViewSet):

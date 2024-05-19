@@ -5,7 +5,7 @@ from django.db.models import Exists, Min, OuterRef
 
 from blog.models import Post
 from marketplace.models import Artwork
-from masterclass.models import Category, MasterclassType
+from masterclass.models import MasterclassCategory, MasterclassType
 
 log = logging.getLogger(__name__)
 
@@ -54,9 +54,12 @@ class CustomOrderingFilter(django_filters.OrderingFilter):
         super().__init__(*args, **kwargs)
 
     def filter(self, qs, value):
+        if not value:
+            return qs
         if any(v in ['recommended'] for v in value):
-            if Category.objects.filter(slug='recommended').exists():
-                recommended = Category.objects.get(slug='recommended')
+            if MasterclassCategory.objects.filter(slug='recommended').exists():
+                recommended = MasterclassCategory.objects.get(
+                    slug='recommended')
                 return qs.annotate(recommended=Exists(
                     MasterclassType.category.through.objects.filter(
                         masterclass_type_id=OuterRef('id'),
