@@ -17,10 +17,10 @@ const CalendarPopup = () => {
   const dispatch = useDispatch();
   const { width } = useResize();
 
-  // const userName = useSelector((store) => store.auth.userName);
-  // const userEmail = useSelector((store) => store.auth.userEmail);
-  const userName = true;
-  const userEmail = true;
+  const userName = useSelector((store) => store.auth.userName);
+  const userEmail = useSelector((store) => store.auth.userEmail);
+  // const userName = true;
+  // const userEmail = true;
 
   const [isHintVisible, setIsHintVisible] = useState(false);
 
@@ -57,38 +57,40 @@ const CalendarPopup = () => {
           <Calendar />
           <div className={calendarPopupStyles.info}>
             <h3 className={calendarPopupStyles.infoTitle}>Информация о занятии</h3>
-            <div className={calendarPopupStyles.iconContainer}>
-              <img className={calendarPopupStyles.icon} src={walletIconPath} alt="Иконка кошелёк" />
-              <p className={calendarPopupStyles.iconLabel}>7 000 ₽</p>
-              <button
-                type="button"
-                className={calendarPopupStyles.question}
-                aria-label="Иконка вопрос"
-                onClick={handleHintVisibility}
-              />
-              {isHintVisible && width > 1320
-                && (
-                  <div className={calendarPopupStyles.hintContainer}>
-                    <p className={calendarPopupStyles.hint}>
-                      Стоимость меняется в зависимости от курса и преподавателя
-                    </p>
-                  </div>
-                )}
-            </div>
-            {isHintVisible && width <= 1320 && (
-              <div className={calendarPopupStyles.hintContainer}>
-                <p className={calendarPopupStyles.hint}>
-                  Стоимость меняется в зависимости от курса и преподавателя
-                </p>
+            <div className={calendarPopupStyles.iconContainersWrapper}>
+              <div className={calendarPopupStyles.iconContainer}>
+                <img className={calendarPopupStyles.icon} src={walletIconPath} alt="Иконка кошелёк" />
+                <p className={calendarPopupStyles.iconLabel}>7 000 ₽</p>
+                <button
+                  type="button"
+                  className={calendarPopupStyles.question}
+                  aria-label="Иконка вопрос"
+                  onClick={handleHintVisibility}
+                />
+                {isHintVisible && width > 1320
+                  && (
+                    <div className={calendarPopupStyles.hintContainer}>
+                      <p className={calendarPopupStyles.hint}>
+                        Стоимость меняется в зависимости от курса и преподавателя
+                      </p>
+                    </div>
+                  )}
               </div>
-            )}
-            <div className={calendarPopupStyles.iconContainer}>
-              <img className={calendarPopupStyles.icon} src={timeIconPath} alt="Иконка часы" />
-              <p className={calendarPopupStyles.iconLabel}>3 часа</p>
-            </div>
-            <div className={calendarPopupStyles.iconContainer}>
-              <img className={calendarPopupStyles.icon} src={teacherIconPath} alt="Иконка шапка" />
-              <p className={calendarPopupStyles.iconLabel}>Антон Цветов</p>
+              {isHintVisible && width <= 1320 && (
+                <div className={calendarPopupStyles.hintContainer}>
+                  <p className={calendarPopupStyles.hint}>
+                    Стоимость меняется в зависимости от курса и преподавателя
+                  </p>
+                </div>
+              )}
+              <div className={calendarPopupStyles.iconContainer}>
+                <img className={calendarPopupStyles.icon} src={timeIconPath} alt="Иконка часы" />
+                <p className={calendarPopupStyles.iconLabel}>3 часа</p>
+              </div>
+              <div className={calendarPopupStyles.iconContainer}>
+                <img className={calendarPopupStyles.icon} src={teacherIconPath} alt="Иконка шапка" />
+                <p className={calendarPopupStyles.iconLabel}>Антон Цветов</p>
+              </div>
             </div>
             <form className={calendarPopupStyles.form}>
               {!userName && !userEmail && (
@@ -97,9 +99,9 @@ const CalendarPopup = () => {
                     <p className={calendarPopupStyles.linkText}>
                       Чтобы запись появилась в личном кабинете, вы также можете
                       <br />
-                      <Link className={calendarPopupStyles.link} to="/login"> войти в аккаунт </Link>
+                      <Link className={calendarPopupStyles.link} to="/sign-in"> войти в аккаунт </Link>
                       или
-                      <Link className={calendarPopupStyles.link} to="/login"> зарегистрироваться</Link>
+                      <Link className={calendarPopupStyles.link} to="/register"> зарегистрироваться</Link>
                     </p>
                   </div>
                   <InputField
@@ -118,7 +120,13 @@ const CalendarPopup = () => {
                   />
                 </div>
               )}
-              <button className={calendarPopupStyles.submitButton} type="submit">Записаться</button>
+              <button
+                className={calendarPopupStyles.submitButton}
+                type="submit"
+                style={(userName && userEmail && width >= 744 && width < 1320) ? { marginTop: 9 } : {}}
+              >
+                Записаться
+              </button>
             </form>
           </div>
         </div>

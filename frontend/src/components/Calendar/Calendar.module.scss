@@ -168,3 +168,24 @@
     grid-template-columns: repeat(4, 57px);
   }
 }
+
+@media screen and (max-width: 743px) {
+  .container {
+    box-shadow: none;
+  }
+  .menu {
+    width: 320px;
+  }
+
+  .days {
+    padding: 0 2px;
+  }
+
+  .time {
+    column-gap: 26px;
+  }
+
+  .timeAndPriceContainer {
+    gap: 4px;
+  }
+}

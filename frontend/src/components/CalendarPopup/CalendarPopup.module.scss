@@ -65,6 +65,10 @@
   margin-bottom: 28px;
 }
 
+.iconContainersWrapper {
+  margin-bottom: 24px;
+}
+
 .iconContainer {
   width: fit-content;
   display: flex;
@@ -120,7 +124,6 @@
 }
 
 .form {
-  margin-top: 24px;
   width: 100%;
 }
 
@@ -231,5 +234,63 @@
     width: 218px;
     padding: 11px 65px;
     font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 743px) {
+  .title {
+    align-self: flex-start;
+    margin: 25px 44px 0 20px;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 472px 1fr;
+    gap: 32px;
+    margin-top: 2px;
+  }
+
+  .info {
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .infoTitle {
+    margin-bottom: 23px;
+  }
+
+  .iconContainer {
+    margin-bottom: 19px;
+  }
+
+  .question {
+    width: 20px;
+    height: 20px;
+    background-image: url('../../images/question-icon-large.svg');
+    margin-left: 10px;
+  }
+
+  .hintContainer {
+    margin-top: -13px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .hint {
+    line-height: 135%;
+  }
+
+  .form {
+    margin-top: -10px;
+    width: 320px;
+  }
+
+  .linkContainer {
+    padding: 10px;
+  }
+
+  .submitButton {
+    margin-top: 5px;
+    width: 100%;
   }
 }
