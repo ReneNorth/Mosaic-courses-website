@@ -9,6 +9,10 @@
   margin-top: 88px;
   position: relative;
 
+  .popupContainer {
+    height: 516px;
+  }
+
   @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
     width: 94%;
     margin-top: 36px;
