@@ -172,7 +172,10 @@
 @media screen and (max-width: 743px) {
   .container {
     box-shadow: none;
+    width: 360px;
+    justify-self: center;
   }
+
   .menu {
     width: 320px;
   }

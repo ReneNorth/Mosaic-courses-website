@@ -8,6 +8,7 @@
   justify-content: center;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.65);
+  overflow-y: auto;
 }
 
 .popup {
@@ -168,17 +169,9 @@
 }
 
 @media screen and (max-width: 1320px) {
-  .overlay {
-    background: none;
-    position: absolute;
-    top: 112px;
-    height: fit-content;
-  }
-
   .popup {
-    width: 100%;
-    height: auto;
-    margin: auto;
+    width: 744px;
+    margin-top: 144px;
     box-shadow: none;
   }
 
@@ -238,8 +231,12 @@
 }
 
 @media screen and (max-width: 743px) {
+  .popup {
+    margin-top: 20px;
+    width: 360px;
+  }
+
   .title {
-    align-self: flex-start;
     margin: 25px 44px 0 20px;
   }
 
@@ -248,11 +245,12 @@
     grid-template-rows: 472px 1fr;
     gap: 32px;
     margin-top: 2px;
+    width: 100%;
   }
 
   .info {
     padding: 0 20px;
-    box-sizing: border-box;
+    width: 320px;
   }
 
   .infoTitle {
