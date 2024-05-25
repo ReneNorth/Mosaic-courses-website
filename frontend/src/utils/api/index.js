@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import { mockSliderDataBottom } from '../consts/mockData';
 import { getCookie } from '../../helpers/getCookie';
 
@@ -245,6 +246,45 @@ class Api {
     });
     if (res.ok) {
       return res;
+    }
+    return Promise.reject(new Error(`${res.status}`));
+  }
+
+  // Temporary function until a normal endpoint is made
+  mergeTwoObjects(objOne, objTwo) {
+    const resultObj = {};
+    for (const filter in objOne) {
+      if (objOne[filter].length > 0) {
+        resultObj[filter] = objOne[filter];
+      }
+    }
+    for (const filter in objTwo) {
+      if (objTwo[filter].length > 0) {
+        resultObj[filter] = objTwo[filter];
+      }
+    }
+
+    const sorting = [
+      { name: 'Ближайшие', slug: 'date' },
+      { name: 'По цене', slug: 'price' },
+      { name: 'По умолчанию', slug: '' },
+    ];
+
+    const sortingResponse = resultObj.ORDER;
+
+    resultObj.ORDER = [...sortingResponse, ...sorting];
+    return resultObj;
+  }
+
+  async getAllFilters() {
+    const res = await fetch(`${this._url}/api/v1/filters/`);
+    const data = await this.constructor._checkResponse(res);
+    const resSecond = await fetch(`${this._url}/api/v1/filters/?page=2`);
+    const dataSecond = await this.constructor._checkResponse(resSecond);
+    if (res.ok && resSecond.ok) {
+      const result = this.mergeTwoObjects(data.results, dataSecond.results);
+      console.log(result);
+      return result;
     }
     return Promise.reject(new Error(`${res.status}`));
   }

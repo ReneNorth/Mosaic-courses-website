@@ -14,7 +14,7 @@ import { Chip } from '../../components/Chip/Chip';
 import { Arrows } from '../../images/Arrows';
 import { AllCoursesMobileSortModal } from '../../components/AllCoursesMobileSortModal/AllCoursesMobileSortModal';
 import { AllCoursesMobileFilterModal } from '../../components/AllCoursesMobileFilterModal/AllCoursesMobileFilterModal';
-import { getCurrentSorting, setCurrentSortingStatus } from '../../services/slices/coursesFiltersSlice.js';
+import { setCurrentSortingStatus, getFilters } from '../../services/slices/coursesFiltersSlice.js';
 
 export const AllCourses = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,28 +26,12 @@ export const AllCourses = () => {
   const [filterStatus, setFilterStatus] = useState([]);
   const [saveFilterStatus, setSaveFilterStatus] = useState([]);
 
-  const { sorting, activeSortingStatus } = useSelector((state) => state.coursesFilters);
+  const { sorting, activeSortingStatus, filters } = useSelector((state) => state.coursesFilters);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCurrentSorting());
+    dispatch(getFilters());
   }, [dispatch]);
-
-  const filters = {
-    forWho: [
-      'Группа',
-      'Индивидуально',
-      'Общий набор'],
-    time: [
-      'Будни',
-      'Выходные'],
-    names: [
-      'Начинающий',
-      'Продолжающий'],
-    type: [
-      'Современная',
-      'Классическая'],
-  };
 
   const handlerSortMobileButton = (e) => {
     e.preventDefault();
@@ -73,10 +57,10 @@ export const AllCourses = () => {
             selectValue={activeSortingStatus}
             setSelectValue={setCurrentSortingStatus}
           />
-          <SelectField placeholder="Для кого " valuesArray={filters.forWho} />
-          <SelectField placeholder="По времени " valuesArray={filters.time} />
-          <SelectField placeholder="Тип занятий " valuesArray={filters.names} />
-          <SelectField placeholder="Тип мозаики " valuesArray={filters.type} />
+          <SelectField placeholder="Для кого " valuesArray={filters.EXP} />
+          <SelectField placeholder="По времени " valuesArray={filters.DURATION} />
+          <SelectField placeholder="Тип занятий " valuesArray={filters.TARGET_AUDIENCE} />
+          <SelectField placeholder="Тип мозаики " valuesArray={filters.STYLE} />
           <ButtonReset placeholder="Очистить " disabled />
         </div>
         <div className={cls.filterBlockMobile}>
@@ -107,14 +91,14 @@ export const AllCourses = () => {
           isOpen={sortMobileModalOpen}
           setIsOpen={setSortMobileModalOpen}
         />
-        <AllCoursesMobileFilterModal
+        {/* <AllCoursesMobileFilterModal
           isOpen={filterMobileModalOpen}
           setIsOpen={setFilterMobileModalOpen}
           filters={filters}
           filterStatus={filterStatus}
           setFilterStatus={setFilterStatus}
           saveFilterStatus={saveFilterStatus}
-        />
+        /> */}
       </div>
       <div className={cls.coursesWrapper}>
         <MainCardsList PageSize={4} infiniteScroll showPagination />

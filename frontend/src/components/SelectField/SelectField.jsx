@@ -119,7 +119,7 @@ export const SelectField = ({ placeholder, valuesArray }) => {
         renderValue={(selected) => selected.join(', ')}
         MenuProps={MenuProps}
       >
-        {valuesArray.map((name) => (
+        {valuesArray.map((element) => (
           <MenuItem
             sx={{
               '&.Mui-selected': {
@@ -132,8 +132,8 @@ export const SelectField = ({ placeholder, valuesArray }) => {
                 backgroundColor: 'var(--color-green-grey-light)',
               },
             }}
-            key={name}
-            value={name}
+            key={element.slug}
+            value={element.slug}
           >
             <Checkbox
               sx={{
@@ -145,9 +145,9 @@ export const SelectField = ({ placeholder, valuesArray }) => {
                   backgroundColor: 'var(--color-green-grey-light)',
                 },
               }}
-              checked={selectValue.indexOf(name) > -1}
+              checked={selectValue.indexOf(element.name) > -1}
             />
-            <ListItemText primary={name} />
+            <ListItemText primary={element.name} />
           </MenuItem>
         ))}
       </Select>

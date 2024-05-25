@@ -126,8 +126,8 @@ export const SelectFieldSingle = ({
                 backgroundColor: 'var(--color-green-grey-light)',
               },
             }}
-            key={element.value}
-            value={element.value}
+            key={element.slug}
+            value={element.slug}
           >
             {element.name}
           </MenuItem>

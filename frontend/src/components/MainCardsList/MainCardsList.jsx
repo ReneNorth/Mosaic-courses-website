@@ -45,7 +45,6 @@ export const MainCardsList = ({
 
   useEffect(() => {
     setCoursesForMobile([...coursesForMobile, ...checkID(coursesForMobile, allCourses)]);
-    console.log('coursesForMobile', coursesForMobile, allCourses);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allCourses]);
 
