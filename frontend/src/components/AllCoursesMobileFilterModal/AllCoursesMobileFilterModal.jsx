@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unstable-nested-components */
 import { useDispatch, useSelector } from 'react-redux';
 import cls from './AllCoursesMobileFilterModal.module.scss';
 import { classNames } from '../../helpers/classNames';

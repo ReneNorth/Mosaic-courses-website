@@ -1,4 +1,3 @@
-import { classNames } from '../../helpers/classNames';
 import cls from './ButtonReset.module.scss';
 
 export const ButtonReset = ({ placeholder, ...props }) => {

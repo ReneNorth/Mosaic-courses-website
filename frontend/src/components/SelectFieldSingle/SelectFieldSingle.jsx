@@ -2,7 +2,7 @@ import * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import SvgIcon from '@mui/material/SvgIcon';
 import { Sorting } from '../../images/Sorting';

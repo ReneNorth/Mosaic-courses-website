@@ -15,8 +15,6 @@ export const Chip = ({
             active && cls.active,
             fill && cls.fill,
             border && cls.border,
-            // decoration === 'white' && cls.decorationWhite,
-            // fill && cls.fillButton,
           ],
         )
       }

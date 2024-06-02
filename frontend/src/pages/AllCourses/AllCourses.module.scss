@@ -10,7 +10,7 @@
     border-radius: 12px;
 }
 
-.MuiSelect-outlined{
+.MuiSelect-outlined {
     border-color: var(--color-green-accent);
 }
 
@@ -44,9 +44,9 @@
 
 @media screen and (max-width: global.$breakpoint-small-laptop) {
     .filterBlock {
-      justify-content: center;
+        justify-content: center;
     }
-  }
+}
 
 @media screen and (max-width: global.$breakpoint-xsmall-laptop) {
     .filterWrapper {
@@ -54,7 +54,7 @@
         justify-content: center;
     }
 
-    .filterBlock{
+    .filterBlock {
         gap: 10px;
         padding: 0 24px;
         max-width: 696px;
@@ -64,9 +64,9 @@
     .coursesWrapper {
         padding-top: 40px;
     }
-  }
+}
 
-  @media screen and (max-width: global.$breakpoint-pre-mobile) {
+@media screen and (max-width: global.$breakpoint-pre-mobile) {
 
     .coursesWrapper {
         padding-top: 0;
@@ -81,6 +81,6 @@
     }
 
     .filterWrapper {
-        padding-top:0;
+        padding-top: 0;
     }
-  }
+}

@@ -1,9 +1,0 @@
-import cls from './ArcPageDecoration.module.scss';
-
-export const ArcPageDecoration = ({ decorationImage }) => {
-  return (
-    <div className={cls.container}>
-      <img src={`${decorationImage}`} alt="" className={cls.image} />
-    </div>
-  );
-};

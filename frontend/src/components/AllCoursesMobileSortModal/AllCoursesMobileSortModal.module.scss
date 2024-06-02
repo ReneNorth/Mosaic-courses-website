@@ -45,8 +45,6 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  // gap: 4px;
-  // box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.60);
 }
 
 .button {
@@ -79,8 +77,3 @@
     color: var(--color-background-color);
     background-color: var(--color-green-accent);
   }
-
-
-@media screen and (max-width: global.$breakpoint-mobile) {
-
-}
