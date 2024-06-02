@@ -45,17 +45,6 @@ export const coursesFiltersSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // builder.addCase(getAllCourses.pending, (state, action) => {
-    //   state.sending = true;
-    // });
-    // builder.addCase(getAllCourses.fulfilled, (state, action) => {
-    //   state.allCourses = action.payload.results;
-    //   state.totalCount = action.payload.count;
-    //   state.next = action.payload.next;
-    //   state.previous = action.payload.previous;
-    //   state.sending = false;
-    // });
-
     builder.addCase(getFilters.fulfilled, (state, action) => {
       Object.keys(action.payload).forEach((filter) => {
         if (filter !== 'ORDER') {

@@ -64,7 +64,7 @@
       content: '';
       border-radius: 56px;
       border: 1px solid var(--color-black);
-      z-index: -1;
+      z-index: global.$layer-under-content;
     }
   }
 
@@ -82,7 +82,7 @@
       content: '';
       border-radius: 56px;
       border: 1px solid var(--color-white);
-      z-index: -1;
+      z-index: global.$layer-under-content;
     }
   }
 }

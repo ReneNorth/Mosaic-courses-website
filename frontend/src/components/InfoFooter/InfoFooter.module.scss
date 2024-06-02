@@ -11,16 +11,18 @@
   margin: 88px auto 0;
   max-width: 1280px;
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-rows: 112px 88px;
   justify-content: space-between;
 }
 
 .linkList {
-  margin-top: 15px;
   max-width: 128px;
   display: flex;
   height: 32px;
-  gap: 16px;
+  column-gap: 28px;
+  grid-column: 1;
+  grid-row: 2;
 }
 
 .linkVk {
@@ -55,12 +57,14 @@
   background-image: url('../../images/icon_instagram.svg');
 }
 
-
 .navList {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  padding-right: 20px;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(3, 1fr);
   gap: 40px 56px;
+  grid-column: 2;
+  grid-row: 1 / 2;
 }
 
 .navlink {
@@ -78,15 +82,82 @@
   color: var(--color-green-accent);
 }
 
-@media screen and (max-width: global.$breakpoint-mobile) {
+@media screen and (max-width: 876px) {
   .block {
-    padding-bottom: 44px;
+    border: none;
   }
 
   .otherContainer {
-    margin: 40px auto 0;
+    margin: 35px auto 0 24px;
+    grid-template-rows: none;
+    grid-template-areas: 
+      "logo navigation"
+      "linkList navigation";
+    width: 88vw;
+    max-width: 655px;
+    column-gap: 80px;
+    row-gap: 5px;
+  }
+
+  .linkList {
+    grid-area: linkList;
+  }
+
+  .navigation {
+    grid-area: navigation;
+    align-self: center;
+  }
+
+  .navList {
+    grid-template-columns: repeat(3, 112px);
+    grid-template-rows: repeat(2, 23px);
+    grid-template-areas: 
+      "about gallery courses"
+      "shop certificates blog";
+    gap: 40px 32px;
+    padding: 0;
+  }
+
+  .about {
+    grid-area: about;
+  }
+
+  .gallery {
+    grid-area: gallery;
+  }
+
+  .courses {
+    grid-area: courses;
+  }
+
+  .shop {
+    grid-area: shop;
+  }
+
+  .certificates {
+    grid-area: certificates;
+  }
+
+  .blog {
+    grid-area: blog;
+  }
+}
+
+@media screen and (max-width: 696px) {
+  .block {
+    padding-bottom: 44px;
+    margin-top: 85px;
+  }
+
+  .otherContainer {
+    margin: 0;
+    padding: 0 20px;
     flex-direction: column;
     width: calc(100% - 40px);
+    grid-template-areas: 
+      "logo linkList"
+      "navigation navigation";
+    column-gap: 0;
   }
 
   .logoContainer {
@@ -98,26 +169,15 @@
   }
 
   .linkList {
-    margin-top: 15px;
+    margin-top: 10px;
     max-width: 115px;
     gap: 8px;
+    justify-self: center;
   }
 
   .navigation {
     order: 3;
-    margin-top: 32px;
-  }
-
-  .navList {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 32px;
-  }
-
-  .navlink {
-    font-weight: 400;
-    font-size: 14px;
+    margin-top: 22px;
   }
 
   .about {
@@ -148,5 +208,14 @@
   .blog {
     grid-row: 2;
     grid-column: 3;
+  }
+
+  .navlink {
+    font-size: 14px;
+  }
+
+  .navList {
+    grid-template-columns: repeat(3, 90px);
+    gap: 27px 32px;
   }
 }

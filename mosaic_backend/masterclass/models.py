@@ -76,7 +76,7 @@ class MasterclassType(models.Model):
     duration = models.PositiveSmallIntegerField(
         verbose_name='How many hours required to finish the masterclass'
     )
-    short_description = models.CharField(max_length=50,
+    short_description = models.CharField(max_length=230,
                                          verbose_name='Short description')
     full_description = models.TextField(blank=True,
                                         verbose_name='Full description')
