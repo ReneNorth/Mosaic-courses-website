@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -6,7 +5,6 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import SvgIcon from '@mui/material/SvgIcon';
-import { useDispatch } from 'react-redux';
 import { Sorting } from '../../images/Sorting';
 
 const ITEM_HEIGHT = 48;
@@ -38,11 +36,9 @@ function CustomSvgIcon() {
 export const SelectFieldSingle = ({
   placeholder, valuesArray, selectValue, setSelectValue,
 }) => {
-  // const [selectValue, setSelectValue] = useState('');
   const matches = useMediaQuery('(min-width:1100px)');
-  const dispatch = useDispatch();
   const handleChange = (event) => {
-    dispatch(setSelectValue(event.target.value));
+    setSelectValue(event.target.value);
   };
 
   return (

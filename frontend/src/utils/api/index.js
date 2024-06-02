@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import { mockSliderDataBottom } from '../consts/mockData';
 import { getCookie } from '../../helpers/getCookie';
 
@@ -72,7 +71,7 @@ class Api {
   async getCourses(dataReq) {
     const res = await fetch(
       // eslint-disable-next-line max-len
-      `${this._url}/api/v1/masterclass_types/?limit=${dataReq.limit}&offset=${dataReq.offset}&ordering=${dataReq.order}`,
+      `${this._url}/api/v1/masterclass_types/?limit=${dataReq.limit}&offset=${dataReq.offset}&ordering=${dataReq.order}${dataReq.filter}`,
     );
     const data = await this.constructor._checkResponse(res);
     if (res.ok) {
@@ -250,19 +249,19 @@ class Api {
     return Promise.reject(new Error(`${res.status}`));
   }
 
-  // Temporary function until a normal endpoint is made
+  // START Temporary function until a normal endpoint is made
   mergeTwoObjects(objOne, objTwo) {
     const resultObj = {};
-    for (const filter in objOne) {
+    Object.keys(objOne).forEach((filter) => {
       if (objOne[filter].length > 0) {
         resultObj[filter] = objOne[filter];
       }
-    }
-    for (const filter in objTwo) {
+    });
+    Object.keys(objTwo).forEach((filter) => {
       if (objTwo[filter].length > 0) {
         resultObj[filter] = objTwo[filter];
       }
-    }
+    });
 
     const sorting = [
       { name: 'Ближайшие', slug: 'date' },
@@ -275,6 +274,7 @@ class Api {
     resultObj.ORDER = [...sortingResponse, ...sorting];
     return resultObj;
   }
+  // END Temporary function until a normal endpoint is made
 
   async getAllFilters() {
     const res = await fetch(`${this._url}/api/v1/filters/`);
@@ -283,7 +283,6 @@ class Api {
     const dataSecond = await this.constructor._checkResponse(resSecond);
     if (res.ok && resSecond.ok) {
       const result = this.mergeTwoObjects(data.results, dataSecond.results);
-      console.log(result);
       return result;
     }
     return Promise.reject(new Error(`${res.status}`));

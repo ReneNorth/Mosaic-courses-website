@@ -23,13 +23,21 @@ export const MainCardsList = ({
     setIsOpen(true);
   };
   const { allCourses, totalCount, sending } = useSelector((state) => state.courses);
-  const { activeSortingStatus } = useSelector((state) => state.coursesFilters);
+  const { activeSortingStatus, activeFilters } = useSelector((state) => state.coursesFilters);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllCourses({ limit: PageSize, offset: currentPageOffset, order: activeSortingStatus }));
+    let filterString = '';
+    if (activeFilters.length) {
+      activeFilters.forEach((el) => {
+        filterString += `&category=${el}`;
+      });
+    }
+    dispatch(getAllCourses({
+      limit: PageSize, offset: currentPageOffset, order: activeSortingStatus, filter: filterString,
+    }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, currentPageOffset, activeSortingStatus]);
+  }, [dispatch, currentPageOffset, activeSortingStatus, activeFilters]);
 
   useEffect(() => {
     setCoursesForMobile([]);
@@ -41,7 +49,7 @@ export const MainCardsList = ({
       behavior: 'smooth',
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeSortingStatus]);
+  }, [activeSortingStatus, activeFilters]);
 
   useEffect(() => {
     setCoursesForMobile([...coursesForMobile, ...checkID(coursesForMobile, allCourses)]);

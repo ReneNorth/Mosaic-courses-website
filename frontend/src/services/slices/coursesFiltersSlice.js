@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../utils/api';
 
@@ -19,6 +18,8 @@ const initialState = {
       { name: 'По умолчанию', slug: '' },
     ],
   },
+  filtersSlugs: {},
+  activeFilters: [],
 };
 
 const getFilters = createAsyncThunk('coursesFilters/getFilters', async () => {
@@ -36,6 +37,12 @@ export const coursesFiltersSlice = createSlice({
     setCurrentSortingStatus(state, action) {
       state.activeSortingStatus = action.payload;
     },
+    setCurrentFilter(state, action) {
+      state.activeFilters = action.payload;
+    },
+    setfiltersSlugs(state, action) {
+      state.filtersSlugs = action.payload;
+    },
   },
   extraReducers: (builder) => {
     // builder.addCase(getAllCourses.pending, (state, action) => {
@@ -50,21 +57,28 @@ export const coursesFiltersSlice = createSlice({
     // });
 
     builder.addCase(getFilters.fulfilled, (state, action) => {
-      for (const filter in action.payload) {
+      Object.keys(action.payload).forEach((filter) => {
         if (filter !== 'ORDER') {
           state.filters[filter] = action.payload[filter];
+          action.payload[filter].forEach((el) => {
+            state.filtersSlugs[`${el.slug}`] = false;
+          });
         }
-      }
-
+      });
       state.sorting = action.payload.ORDER;
     });
   },
 });
 
-const { setCurrentSortingStatus } = coursesFiltersSlice.actions;
+const {
+  setCurrentSortingStatus,
+  setCurrentFilter, setfiltersSlugs,
+} = coursesFiltersSlice.actions;
 const coursesFiltersSliceReducer = coursesFiltersSlice.reducer;
 
 export {
+  setCurrentFilter,
+  setfiltersSlugs,
   setCurrentSortingStatus,
   getFilters,
   coursesFiltersSliceReducer,

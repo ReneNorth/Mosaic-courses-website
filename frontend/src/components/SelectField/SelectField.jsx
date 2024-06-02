@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as React from 'react';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -9,8 +9,6 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
 import SvgIcon from '@mui/material/SvgIcon';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { classNames } from '../../helpers/classNames';
-import cls from './SelectField.module.scss';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -38,18 +36,42 @@ function CustomSvgIcon() {
   );
 }
 
-export const SelectField = ({ placeholder, valuesArray }) => {
+export const SelectField = ({
+  placeholder,
+  valuesArray,
+  setActiveSelectors,
+  resetValue,
+}) => {
   const matches = useMediaQuery('(min-width:1100px)');
   const [selectValue, setSelectValue] = useState([]);
+
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
+
+    const slugArray = {};
+
+    valuesArray.forEach((filterElement) => {
+      slugArray[`${filterElement.slug}`] = false;
+      for (let i = 0; i < value.length; i += 1) {
+        if (filterElement.name === value[i]) {
+          slugArray[`${filterElement.slug}`] = true;
+        }
+      }
+    });
+
+    setActiveSelectors(slugArray);
     setSelectValue(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
   };
+
+  useEffect(() => {
+    setSelectValue([]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resetValue]);
   return (
     <FormControl
       sx={{
@@ -102,7 +124,6 @@ export const SelectField = ({ placeholder, valuesArray }) => {
             rotate: '180deg',
           },
         }}
-        className={cls.globalSelect}
         labelId="demo-multiple-checkbox-label"
         id="demo-multiple-checkbox"
         multiple
@@ -132,8 +153,8 @@ export const SelectField = ({ placeholder, valuesArray }) => {
                 backgroundColor: 'var(--color-green-grey-light)',
               },
             }}
-            key={element.slug}
-            value={element.slug}
+            key={element.name}
+            value={element.name}
           >
             <Checkbox
               sx={{
