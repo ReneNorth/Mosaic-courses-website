@@ -36,24 +36,6 @@
   color: var(--text-color-secondary);
 }
 
-// .description {
-//   padding-top: 21px;
-//   max-width: 560px;
-//   font-family: var(--font-primary);
-//   font-style: normal;
-//   font-weight: 400;
-//   font-size: 20px;
-//   line-height: 135%;
-// }
-
-// .descriptionText {
-//   padding-top: 8px;
-// }
-
-// .decorationWrapper {
-//   padding-top: 39px;
-// }
-
 @media screen and (max-width: global.$breakpoint-xsmall-laptop) {
   .section {
     max-width: 696px;
@@ -75,19 +57,6 @@
     line-height: 110%;
   }
 
-  // .description {
-  //   padding-top: 31px;
-  //   font-size: 16px;
-  //   max-width: 310px;
-  // }
-
-  // .descriptionText {
-  //   padding-top: 8px;
-  // }
-
-  // .decorationWrapper {
-  //   padding-top: 0;
-  // }
 }
 
 @media screen and (max-width: global.$breakpoint-pre-mobile) {
@@ -110,13 +79,6 @@
     text-align: left;
     width: 250px;
   }
-
-  // .description {
-  //   padding-top: 0;
-  //   &:first-of-type {
-  //     padding-top: 20px;
-  //   }
-  // }
 
   .block {
     padding-top: 18px;

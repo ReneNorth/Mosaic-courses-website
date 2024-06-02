@@ -8,10 +8,16 @@ import { useResize } from '../../hooks/useResize';
 import { setCurrentPost } from '../../services/slices/postsSlice';
 import cls from './PostCard.module.scss';
 import { getNoun } from '../../helpers/getNoun';
+import { ENDPOINTS } from '../../utils/consts/constants';
 
 export const PostCard = ({ props }) => {
   const {
-    title, image, preview_text: previewText, pub_date: pubDate, read_time: readTime, slug,
+    title,
+    image,
+    preview_text: previewText,
+    pub_date: pubDate,
+    read_time: readTime,
+    slug,
   } = props;
   const date = new Date();
   const navigate = useNavigate();
@@ -33,30 +39,21 @@ export const PostCard = ({ props }) => {
         <h3 className={cls.title}>{title}</h3>
         <div className={cls.info}>
           <p className={cls.readingTime}>
-            {
-              width > 550 && <>Время прочтения</>
-            }
-            {' '}
+            {width > 550 && <>Время прочтения</>}
             {readTime}
-            {' '}
             {getNoun(readTime, 'минута', 'минуты', 'минут')}
           </p>
           <p className={cls.publishDate}>
-            {
-              width > 550 && <>Опубликовано</>
-            }
-            {' '}
+            {width > 550 && <>Опубликовано</>}
             {date.toLocaleString().slice(0, 10)}
           </p>
         </div>
-        <p className={cls.description}>
-          {previewText}
-        </p>
+        <p className={cls.description}>{previewText}</p>
         <Button
           style={width < 550 ? { width: '100%' } : {}}
           onClick={() => {
             dispatch(setCurrentPost(props));
-            navigate(`/blog/${slug}`);
+            navigate(`${ENDPOINTS.blog}/${slug}`);
           }}
           className="outline"
         >

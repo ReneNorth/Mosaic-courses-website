@@ -5,7 +5,6 @@ import NewSettler from '../../components/NewSettler/NewSettler';
 import { RemainedQuestion } from '../../components/RemainedQuestion/RemainedQuestion';
 import { MainCardsList } from '../../components/MainCardsList/MainCardsList';
 import { AllCoursesHeader } from '../../components/AllCoursesHeader/AllCoursesHeader';
-import { RectangularPageDecoration } from '../../components/RectangularPageDecoration/RectangularPageDecoration';
 import cls from './AllCourses.module.scss';
 import { SelectField } from '../../components/SelectField/SelectField';
 import { ButtonReset } from '../../components/ButtonReset/ButtonReset';
@@ -96,8 +95,7 @@ export const AllCourses = () => {
 
   return (
     <>
-      <RectangularPageDecoration />
-      <NewSettler isOpen={isOpen} setIsOpen={setIsOpen} />
+      <NewSettler setIsOpen={setIsOpen} />
       <AllCoursesHeader />
       <div className={cls.filterWrapper}>
         <div className={cls.filterBlock}>

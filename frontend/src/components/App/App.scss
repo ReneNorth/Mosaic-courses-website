@@ -1,20 +1,9 @@
 @import '../../vendor/normalize.css';
 @import '../../vendor/fonts/stylesheet.scss';
 @import '../../utils/variables/global.scss';
-// @import '../../components/Header/Header.module.scss';
-// @import '../../components/NavBar/NavBar.module.scss';
-// @import '../../components/Logo/Logo.module.scss';
-// @import '../../components/MainPromo/MainPromo.module.scss';
-// @import '../../components/Button/Button.module.scss';
-// @import '../../components/Slider/Slider.module.scss';
-// @import '../../components/AboutUs/AboutUs.module.scss';
-// @import '../../components/Reasons/Reasons.module.scss';
-// @import '../../components/ChoiseCourse/ChoiseCourse.module.scss';
-// @import '../../components/AboutTeach/AboutTeach.module.scss';
-// @import '../../components/AnswersToQuestions/AnswersToQuestions.module.scss';
 
-
-.App {
+.App,
+main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,7 +11,4 @@
 
 main {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }

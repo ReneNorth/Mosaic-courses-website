@@ -1,25 +1,25 @@
+@use "../../utils/variables/global.scss";
+
 .sidebar {
   display: block;
-  position: sticky;
-  -webkit-position: sticky;
   box-sizing: border-box;
-  top: 0;
-  max-width: 400px;
+  width: 400px;
   height: 580px;
   background-color: #ccdac6;
   border-radius: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
 
-  ::after {
-    content: '';
-    width: 400px;
-    height: 580px;
-    border: 1px solid #000;
-    top: 16px;
-    left: -16px;
-    position: absolute;
-    border-radius: 20px;
-    z-index: -1;
-    overflow: visible;
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+    width: 298px;
+    height: 399px;
+  }
+
+  @media screen and (max-width: global.$breakpoint-tablet) {
+    top: 181px;
+    left: 0;
+    width: 320px;
   }
 }
 
@@ -27,47 +27,97 @@
   position: absolute;
   top: 24px;
   right: 24px;
+
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+    top: 16px;
+    right: 14px;
+  }
+
+  @media screen and (max-width: global.$breakpoint-tablet) {
+    right: 40px;
+  }
 }
+
 .innerBlock {
   max-width: 400px;
   height: 580px;
   justify-content: center;
   text-align: center;
-
-  padding: 173px 77px 38px 77px;
+  padding: 178px 77px 43px 77px;
   font-family: var(--font-primary);
+
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+    padding: 68px 26px 40px;
+  }
+
+  @media screen and (max-width: global.$breakpoint-tablet) {
+    height: fit-content;
+  }
 }
-.title {
+
+.title, .coursePrice, .duration, .button, .buttonOutline, .giftContainer, .giftIcon, .gift {
   text-align: center;
+}
+
+.title {
   font-weight: 700;
   font-size: 20px;
   line-height: 120%;
+
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 135%;
+  }
 }
+
 .coursePrice {
   margin-top: 8px;
+  font-family: "Raleway", sans-serif;
   font-size: 32px;
+  line-height: 135%;
+  font-weight: 700;
+  letter-spacing: 2px;
+
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+    font-size: 20px;
+    margin-top: 16px;
+    letter-spacing: 1px;
+  }
 }
+
 .duration {
   margin-top: 16px;
   font-size: 17px;
   white-space: nowrap;
+
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+    font-size: 16px;
+    line-height: 135%;
+  }
 }
+
 .button {
   margin-top: 40px;
   background-color: #247251;
   border-radius: 60px;
-  padding: 8px 28px;
+  padding: 17px 40px;
   color: var(--text-color-invert);
   font-family: var(--font-primary);
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
   line-height: 20px;
-
   white-space: nowrap;
   cursor: pointer;
-  white-space: nowrap;
+
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+    padding: 12px 45px;
+    font-size: 16px;
+    margin-top: 70px;
+  }
 }
+
 .buttonOutline {
   margin-top: 24px;
   background-color: transparent;
@@ -81,19 +131,30 @@
   font-size: 17px;
   white-space: nowrap;
   line-height: 20px;
-
   cursor: pointer;
 }
 
 .giftContainer {
-  margin-top: 69px;
+  margin-top: 106px;
   display: flex;
-  gap: 12px;
+  gap: 5px;
   justify-content: center;
   align-content: center;
   align-items: center;
+
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+    margin-top: 19px;
+  }
 }
+
 .giftIcon {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
+}
+
+.gift {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 135%;
 }

@@ -1,62 +1,38 @@
-import cls from './SectionInfo.module.scss';
+import sectionInfoStyles from './SectionInfo.module.scss';
 
 import { OtherCourses } from '../OtherCourses/OtherCourses';
-import { Route } from '../Route/Route';
-import { TeacherSection } from '../TeacherSection/TeacherSection';
-import { ToggleLearnMore } from '../ToggleLearnMore/ToggleLearnMore';
 
 export const SectionInfo = () => {
   return (
-    <div className={cls.infoBlock}>
-      <div className={cls.sectionContainer}>
-        <div>
-          <Route />
-
-          <h3 className={cls.containerHeading}>Чему вы научитесь?</h3>
-          <div className={cls.containerInfo}>
-            <ul className={cls.listFirst}>
-              <li> Изучите базовый синтаксис и структуры данных Python 3! </li>
-
-              <li> Изучите продвинутые возможности Python.</li>
-
-              <li>
-                {' '}
-                Научитесь использовать Объектно-Ориентированное
-                Программирование!
-              </li>
-
-              <li>Изучите сложные темы, например декораторы и генераторы</li>
-            </ul>
-            <ul className={cls.listSecond}>
-              <li>Изучите базовый синтаксис и структуры данных Python 3! </li>
-              <li>Изучите продвинутые возможности Python, такие как модуль</li>
-              <li>
-                Научитесь использовать Объектно-Ориентированное
-                Программирование!
-              </li>
-              <li>Изучите сложные темы, например декораторы и генераторы</li>
-            </ul>
-          </div>
-
-          <h3 className={cls.containerHeading}>Этот курс включает:</h3>
-
-          <div className={cls.containerInfo}>
-            <ul className={cls.listFirst}>
-              <li>Изучите базовый синтаксис и структуры данных Python 3! </li>
-              <li>Изучите продвинутые возможности Python.</li>
-            </ul>
-            <ul className={cls.listSecond}>
-              <li>Изучите базовый синтаксис и структуры данных Python 3!</li>
-              <li>Изучите продвинутые возможности Python, такие как модуль</li>
-            </ul>
-          </div>
-
-          <ToggleLearnMore />
-          <TeacherSection />
-          <h3 className={cls.containerHeading}>Также покупают</h3>
-          <OtherCourses />
-        </div>
+    <div className={sectionInfoStyles.container}>
+      <div className={sectionInfoStyles.containerInfo}>
+        <h3 className={sectionInfoStyles.title}>Чему вы научитесь?</h3>
+        <ul className={sectionInfoStyles.listFirst}>
+          <li>Изучите базовый синтаксис и структуры данных Python 3!</li>
+          <li>Изучите продвинутые возможности Python, такие как модуль «collections» и работа с timestamp!</li>
+          <li>Научитесь использовать Объектно-Ориентированное Программирование!</li>
+          <li>Изучите сложные темы, например декораторы и генераторы.</li>
+        </ul>
       </div>
+      <div className={sectionInfoStyles.containerInfo}>
+        <h3 className={sectionInfoStyles.title}>Этот курс включает:</h3>
+        <ul className={sectionInfoStyles.listFirst}>
+          <li>Изучите базовый синтаксис и структуры данных Python 3! </li>
+          <li>Изучите продвинутые возможности Python, такие как модуль «collections» и работа с timestamp!</li>
+        </ul>
+      </div>
+      <div className={sectionInfoStyles.containerInfo}>
+        <h3 className={sectionInfoStyles.title}>О курсе</h3>
+        <ul className={sectionInfoStyles.listSecond}>
+          <li>Мы проводим мастер-классы по живописи и гончарному делу для деток и взрослых.</li>
+          <li>
+            Мы делаем рисование доступным с помощью пошаговой программы и вовлечённых преподавателей.
+            Вы как ученик обязательно прочувствуете нашу дружескую и лёгкую атмосферу.
+          </li>
+        </ul>
+      </div>
+      <h3 className={`${sectionInfoStyles.title} ${sectionInfoStyles.lastTitle}`}>Также покупают</h3>
+      <OtherCourses />
     </div>
   );
 };

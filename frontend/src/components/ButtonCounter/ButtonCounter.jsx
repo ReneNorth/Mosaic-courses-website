@@ -17,7 +17,6 @@ export const ButtonCounter = ({
   return (
     <div {...props}>
       Отправить заново
-      {' '}
       { counter !== 0 && (
         <>
           00:

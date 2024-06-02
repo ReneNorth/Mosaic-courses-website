@@ -4,7 +4,7 @@ import cls from './MapAndContacts.module.scss';
 import { useResize } from '../../hooks/useResize';
 import { MailingForm } from '../MailingForm/MailingForm';
 import { api } from '../../utils/api';
-import { schoolContacts } from '../../utils/consts/mockData';
+import { CONTACTS } from '../../utils/consts/mockData';
 
 export const MapAndContacts = () => {
   const [schoolInfo, setSchoolInfo] = useState([{}]);
@@ -24,7 +24,7 @@ export const MapAndContacts = () => {
     api.getSchoolInfo()
       .then((data) => {
         if (data.length === 0) {
-          setSchoolInfo(schoolContacts);
+          setSchoolInfo(CONTACTS);
         } else {
           setSchoolInfo(data);
         }

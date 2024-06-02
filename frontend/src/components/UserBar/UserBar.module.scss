@@ -1,114 +1,80 @@
-@use "../../utils/variables/global.scss";
+@use '../../utils/variables/global.scss';
 
 .list {
-  padding: 0;
-  margin: 0;
-  min-width: 192px;
   display: flex;
   justify-content: space-between;
-  gap: 20px;
-  align-items: center;
-  list-style-type: none;
+  gap: 23px;
+  padding: 44px 0 36px;
+  position: relative;
 }
 
-.search {
-  width: 32px;
-  height: 32px;
-  background-image: url('../../images/Ic_search.svg');
-  background-repeat: no-repeat;
-  background-color: transparent;
-  border: none;
+.item {
+  position: relative;
+  &:hover svg {
+    stroke: var(--color-green-accent);
+    transition: 0.5s;
+  }
 }
 
 .link {
   display: block;
-  width: 32px;
+}
+
+.item,
+.button,
+.link {
   height: 32px;
-  background-repeat: no-repeat;
-  position: relative;
-  &  svg {
-    cursor: pointer;
-    path {
-      stroke: var(--color-black);
-      transition: .5s;
-    }
-  }
-&:hover  svg {
-  cursor: pointer;
-    path {
-      stroke: var(--color-green-accent);
-      transition: .5s;
-    }
-  }
 }
 
-.active  svg {
-  cursor: pointer;
-  path {
-    stroke: var(--color-green-accent);
-  }
-}
-
-.cart {
-  background-image: url('../../images/Ic_shopping_bag.svg');
+.active {
+  stroke: var(--color-green-accent);
 }
 
 .button {
-  // display: none;
-  height: 24px;
-  width: 24px;
-  background-image: url('../../images/hamburger_menu.svg');
-  background-repeat: no-repeat;
   background-color: transparent;
+  padding: 0;
   cursor: pointer;
 }
 
-.hamburgerMenuButton {
-  display: none;
+.decoration {
+  width: 360px;
+  height: 444px;
+  position: absolute;
+  top: 0;
+  right: -140px;
+  z-index: -1;
+  background-color: var(--bg-green-primary);
 }
 
-@media screen and (max-width: global.$breakpoint-mobile) {
-
-  .hamburgerMenuButton {
-    display: block;
-  }
-
+@media (max-width: global.$breakpoint-small-laptop) {
   .list {
-    background-color: var(--bg-green-primary);
-    padding: 31px 0 45px 0;
-    gap: 16px;
-    justify-content: center;
-    max-width: 140px;
+    padding: 45px 24px 31px 26px;
   }
 
-  .item {
-    display: none;
-    flex: 0 0 100%;
+  .decoration {
+    right: 0;
+    width: 302px;
+    height: 222px;
+  }
+}
+
+@media (max-width: global.$breakpoint-tablet) {
+  .list {
+    padding: 31px 20px 56px 11px;
+    gap: 12px;
   }
 
-  // .search {
-  //   display: none;
-  // }
-
-  .link {
+  .item,
+  .button,
+  .link,
+  .icon {
     width: 24px;
     height: 24px;
-    background-size: 24px 24px;
   }
 
-  .profile {
-    width: 24px;
-    height: 24px;
-    background-size: 24px 24px;
+  .decoration {
+    right: 0;
+    width: 199px;
+    height: 111px;
   }
-
-  .cart {
-    width: 24px;
-    height: 24px;
-    background-size: 24px 24px;
-  }
-
-  // .button {
-  //   display: block;
-  // }
 }
