@@ -7,7 +7,7 @@ import timeIconPath from '../../images/time.svg';
 import walletIconPath from '../../images/choise_icon-tenge.svg';
 import teacherIconPath from '../../images/teacher-icon.svg';
 import { useModalClose } from '../../hooks/useModalClose';
-import { setIsCalendarPopupOpen } from '../../services/slices/popupSlice';
+import { setIsCalendarPopupOpen, setIsRegistrationLessonPopupOpen } from '../../services/slices/popupSlice';
 import { InputField } from '../InputField/InputField';
 import { useFormValidation } from '../../hooks/useFormValidation';
 import Calendar from '../Calendar/Calendar';
@@ -24,26 +24,19 @@ const CalendarPopup = () => {
   // const userName = true;
   // const userEmail = true;
 
-  const [isHintVisible, setIsHintVisible] = useState(false);
-
   const {
     errors, handleChange, values,
   } = useFormValidation();
-
-  console.log('calendar values', values);
 
   const handleClose = useCallback(() => {
     dispatch(setIsCalendarPopupOpen(false));
   }, [dispatch]);
 
-  function handleHintVisibility() {
-    setIsHintVisible(!isHintVisible);
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
 
     dispatch(setIsCalendarPopupOpen(false));
+    dispatch(setIsRegistrationLessonPopupOpen(true));
   }
 
   useModalClose(handleClose);

@@ -2,7 +2,7 @@ import courseModalWrapperStyles from './CourseModalWrapper.module.scss';
 
 const CourseModalWrapper = ({ children, handleClose }) => {
   return (
-    <div className={courseModalWrapperStyles.overlay}>
+    <div className={courseModalWrapperStyles.overlay} id="overlay">
       <div className={courseModalWrapperStyles.popup}>
         <button
           type="button"

@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useCallback } from 'react';
 import CourseModalWrapper from '../CourseModalWrapper/CourseModalWrapper';
 import registrationLessonPopupStyles from './RegistrationLessonPopup.module.scss';
 import eyeImagePath from '../../images/eye-image.png';
@@ -7,15 +8,24 @@ import timeIconPath from '../../images/time.svg';
 import walletIconPath from '../../images/choise_icon-tenge.svg';
 import teacherIconPath from '../../images/teacher-icon.svg';
 import calendarIconPath from '../../images/calendar-icon.svg';
-import { useResize } from '../../hooks/useResize';
+import { setIsRegistrationLessonPopupOpen } from '../../services/slices/popupSlice';
+import { useModalClose } from '../../hooks/useModalClose';
 
 const RegistrationLessonPopup = () => {
-  const { width } = useResize();
-  const userName = useSelector((store) => store.auth.userName);
-  const userEmail = useSelector((store) => store.auth.userEmail);
+  const dispatch = useDispatch();
+  // const userName = useSelector((store) => store.auth.userName);
+  // const userEmail = useSelector((store) => store.auth.userEmail);
+  const userName = 'kdjvnsjv';
+  const userEmail = 'flvjnsl';
+
+  const handleClose = useCallback(() => {
+    dispatch(setIsRegistrationLessonPopupOpen(false));
+  }, [dispatch]);
+
+  useModalClose(handleClose);
 
   return (
-    <CourseModalWrapper>
+    <CourseModalWrapper handleClose={handleClose}>
       <h2 className={registrationLessonPopupStyles.title}>
         {userName && userEmail ? 'Мы записали вас на занятие' : 'Мы получили вашу заявку'}
       </h2>
@@ -58,22 +68,25 @@ const RegistrationLessonPopup = () => {
             text="Антон Цветов"
             needQuestion={false}
           />
-        </div>
-        <div className={registrationLessonPopupStyles.buttonContainer}>
-          {userName && userEmail && (
+          <div className={`${registrationLessonPopupStyles.buttonContainer} ${
+            !userEmail && !userName ? registrationLessonPopupStyles.right : ''
+          }`}
+          >
+            {userName && userEmail && (
+              <button
+                className={registrationLessonPopupStyles.button}
+                type="submit"
+              >
+                Забронировать
+              </button>
+            )}
             <button
               className={registrationLessonPopupStyles.button}
-              type="submit"
+              type="button"
             >
-              Забронировать
+              {userName && userEmail ? 'Перейти к оплате' : 'Вернуться на главную'}
             </button>
-          )}
-          <button
-            className={registrationLessonPopupStyles.button}
-            type="button"
-          >
-            {userName && userEmail ? 'Перейти к оплате' : 'вернуться на главную'}
-          </button>
+          </div>
         </div>
       </div>
     </CourseModalWrapper>

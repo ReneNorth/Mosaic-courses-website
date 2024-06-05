@@ -5,17 +5,19 @@ import { CoursePageInfo } from '../CoursePageInfo/CoursePageInfo';
 import { StickySidebar } from '../StickySidebar/StickySidebar';
 import coursePageFinalStyles from './CoursePageFinal.module.scss';
 import CalendarPopup from '../CalendarPopup/CalendarPopup';
+import RegistrationLessonPopup from '../RegistrationLessonPopup/RegistrationLessonPopup';
 
 export const CoursePageFinal = () => {
   const isCalendarPopupOpen = useSelector((store) => store.popup.isCalendarPopupOpen);
+  const isRegistrationLessonPopupOpen = useSelector((store) => store.popup.isRegistrationLessonPopupOpen);
 
   useEffect(() => {
-    if (isCalendarPopupOpen) {
+    if (isCalendarPopupOpen || isRegistrationLessonPopupOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
-  }, [isCalendarPopupOpen]);
+  }, [isCalendarPopupOpen, isRegistrationLessonPopupOpen]);
 
   return (
     <div className={coursePageFinalStyles.page}>
@@ -25,6 +27,7 @@ export const CoursePageFinal = () => {
       </div>
       <StickySidebar />
       {isCalendarPopupOpen && <CalendarPopup />}
+      {isRegistrationLessonPopupOpen && <RegistrationLessonPopup />}
     </div>
   );
 };

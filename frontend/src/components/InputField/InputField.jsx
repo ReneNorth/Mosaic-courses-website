@@ -65,7 +65,7 @@ export const InputField = ({
       minLength: '8',
     },
   };
-  console.log('type name', values[inputSettings[type].name]);
+
   return (
     <div className={cls.label}>
       <input
