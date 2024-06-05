@@ -21,7 +21,7 @@ export default {
       },
       required: true,
     },
-    valuesArray: {
+    values: {
       type: 'array',
       description: 'Массив данных выпадающего списка.',
       required: true,
@@ -37,7 +37,7 @@ export function SelectFieldSingleDefault(args) {
 
 SelectFieldSingleDefault.args = {
   placeholder: 'Placeholder',
-  valuesArray: [
+  values: [
     { name: 'Без фильтра', value: '' },
     { name: 'Select#1', value: 'Select#1' },
     { name: 'Select#2', value: 'Select#2' },

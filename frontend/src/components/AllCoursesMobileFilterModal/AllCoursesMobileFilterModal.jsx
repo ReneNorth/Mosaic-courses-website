@@ -27,7 +27,7 @@ export const AllCoursesMobileFilterModal = ({
 
   Object.keys(filters).forEach((filterArr) => {
     filtersButtons.push(
-      <div key={crypto.randomUUID()} className={cls.contentWrapper}>
+      <div key={`${filterArr}`} className={cls.contentWrapper}>
         <h2 className={cls.filterTitle}>
           { `${filterArr}` === 'EXP' && 'Для кого'}
           { `${filterArr}` === 'DURATION' && 'По времени'}

@@ -10,7 +10,7 @@ import { useResize } from '../../hooks/useResize.js';
 import { checkID } from '../../helpers/checkId.js';
 
 export const MainCardsList = ({
-  setIsOpen, PageSize, infiniteScroll, showPagination,
+  setIsOpen, pageSize, infiniteScroll, showPagination,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentPageOffset, setCurrentPageOffset] = useState(0);
@@ -34,7 +34,7 @@ export const MainCardsList = ({
       });
     }
     dispatch(getAllCourses({
-      limit: PageSize, offset: currentPageOffset, order: activeSortingStatus, filter: filterString,
+      limit: pageSize, offset: currentPageOffset, order: activeSortingStatus, filter: filterString,
     }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, currentPageOffset, activeSortingStatus, activeFilters]);
@@ -68,11 +68,7 @@ export const MainCardsList = ({
   }, [currentPage]);
 
   useEffect(() => {
-    if (sending) {
-      setHideCards(true);
-    } else {
-      setHideCards(false);
-    }
+    setHideCards(sending);
   }, [sending]);
 
   const coursesToRender = allCourses.map((course) => {
@@ -112,7 +108,7 @@ export const MainCardsList = ({
 
   useEffect(() => {
     if ((width <= 670) && (position > 40) && (totalCount >= currentPageOffset) && infiniteScroll) {
-      setCurrentPageOffset(currentPageOffset + PageSize);
+      setCurrentPageOffset(currentPageOffset + pageSize);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [position]);
@@ -131,7 +127,7 @@ export const MainCardsList = ({
               <Pagination
                 currentPage={currentPage}
                 totalCount={totalCount}
-                pageSize={PageSize}
+                pageSize={pageSize}
                 onPageChange={setCurrentPage}
                 currentPageOffset={currentPageOffset}
                 onPageChangeOffset={setCurrentPageOffset}

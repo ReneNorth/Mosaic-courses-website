@@ -30,6 +30,8 @@ const getFilters = createAsyncThunk('coursesFilters/getFilters', async () => {
   }
 });
 
+const ORDER = 'ORDER';
+
 export const coursesFiltersSlice = createSlice({
   name: 'coursesFilters',
   initialState,
@@ -47,7 +49,7 @@ export const coursesFiltersSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getFilters.fulfilled, (state, action) => {
       Object.keys(action.payload).forEach((filter) => {
-        if (filter !== 'ORDER') {
+        if (filter !== ORDER) {
           state.filters[filter] = action.payload[filter];
           action.payload[filter].forEach((el) => {
             state.filtersSlugs[`${el.slug}`] = false;

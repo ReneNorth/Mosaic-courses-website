@@ -38,7 +38,7 @@ function CustomSvgIcon() {
 
 export const SelectField = ({
   placeholder,
-  valuesArray,
+  values,
   setActiveSelectors,
   resetValue,
 }) => {
@@ -50,18 +50,18 @@ export const SelectField = ({
       target: { value },
     } = event;
 
-    const slugArray = {};
+    const slugs = {};
 
-    valuesArray.forEach((filterElement) => {
-      slugArray[`${filterElement.slug}`] = false;
+    values.forEach((filterElement) => {
+      slugs[`${filterElement.slug}`] = false;
       for (let i = 0; i < value.length; i += 1) {
         if (filterElement.name === value[i]) {
-          slugArray[`${filterElement.slug}`] = true;
+          slugs[`${filterElement.slug}`] = true;
         }
       }
     });
 
-    setActiveSelectors(slugArray);
+    setActiveSelectors(slugs);
     setSelectValue(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
@@ -140,7 +140,7 @@ export const SelectField = ({
         renderValue={(selected) => selected.join(', ')}
         MenuProps={MenuProps}
       >
-        {valuesArray.map((element) => (
+        {values.map((element) => (
           <MenuItem
             sx={{
               '&.Mui-selected': {

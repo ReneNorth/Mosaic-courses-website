@@ -34,7 +34,7 @@ function CustomSvgIcon() {
 }
 
 export const SelectFieldSingle = ({
-  placeholder, valuesArray, selectValue, setSelectValue,
+  placeholder, values, selectValue, setSelectValue,
 }) => {
   const matches = useMediaQuery('(min-width:1100px)');
   const handleChange = (event) => {
@@ -109,7 +109,7 @@ export const SelectFieldSingle = ({
         IconComponent={CustomSvgIcon}
         MenuProps={MenuProps}
       >
-        {valuesArray.map((element) => (
+        {values.map((element) => (
           <MenuItem
             sx={{
               '&.Mui-selected': {

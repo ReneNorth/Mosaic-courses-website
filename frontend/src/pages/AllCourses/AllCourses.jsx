@@ -77,15 +77,15 @@ export const AllCourses = () => {
   }, [activeSortingSelect]);
 
   useEffect(() => {
-    const filtersSlugsArray = { ...filtersSlugs };
+    const filtersSlugsCopy = { ...filtersSlugs };
     const filtersSending = [];
     Object.keys(activeFilterSelect).forEach((key) => {
-      filtersSlugsArray[key] = activeFilterSelect[key];
+      filtersSlugsCopy[key] = activeFilterSelect[key];
     });
 
-    dispatch(setfiltersSlugs(filtersSlugsArray));
-    Object.keys(filtersSlugsArray).forEach((key) => {
-      if (filtersSlugsArray[key]) {
+    dispatch(setfiltersSlugs(filtersSlugsCopy));
+    Object.keys(filtersSlugsCopy).forEach((key) => {
+      if (filtersSlugsCopy[key]) {
         filtersSending.push(key);
       }
     });
@@ -101,31 +101,31 @@ export const AllCourses = () => {
         <div className={cls.filterBlock}>
           <SelectFieldSingle
             placeholder="Сортировка"
-            valuesArray={sorting}
+            values={sorting}
             selectValue={activeSortingSelect}
             setSelectValue={setActiveSortingSelect}
           />
           <SelectField
             placeholder="Для кого "
             resetValue={resetFilterSelect}
-            valuesArray={filters.EXP}
+            values={filters.EXP}
             setActiveSelectors={setActiveFilterSelect}
           />
           <SelectField
             placeholder="По времени "
             resetValue={resetFilterSelect}
-            valuesArray={filters.DURATION}
+            values={filters.DURATION}
             setActiveSelectors={setActiveFilterSelect}
           />
           <SelectField
             placeholder="Тип занятий "
             resetValue={resetFilterSelect}
-            valuesArray={filters.TARGET_AUDIENCE}
+            values={filters.TARGET_AUDIENCE}
             setActiveSelectors={setActiveFilterSelect}
           />
           <SelectField
             placeholder="Тип мозаики "
-            valuesArray={filters.STYLE}
+            values={filters.STYLE}
             resetValue={resetFilterSelect}
             setActiveSelectors={setActiveFilterSelect}
           />
@@ -166,7 +166,7 @@ export const AllCourses = () => {
         />
       </div>
       <div className={cls.coursesWrapper}>
-        <MainCardsList PageSize={4} infiniteScroll showPagination />
+        <MainCardsList pageSize={4} infiniteScroll showPagination />
       </div>
       <RemainedQuestion isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
