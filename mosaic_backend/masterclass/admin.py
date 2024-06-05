@@ -1,8 +1,8 @@
 from django.contrib import admin
 
 from booking.models import Booking, ReservationAdmin
-from masterclass.models import (MasterclassCategory, Masterclass, MasterclassType,
-                                MasterclassTypeCategory)
+from masterclass.models import (Masterclass, MasterclassCategory,
+                                MasterclassType, MasterclassTypeCategory)
 
 
 @admin.register(MasterclassType)

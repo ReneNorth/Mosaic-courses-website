@@ -12,8 +12,8 @@ from booking.models import Booking, ReservationAdmin
 from carousel.models import MainCarouselItem
 from crm_app.models import EmailMainForm, FeedbackRequest, GiftCert
 from marketplace.models import Artwork, ArtworkMainPage
-from masterclass.models import (Masterclass, MasterclassType,
-                                MasterclassCategory)
+from masterclass.models import (Masterclass, MasterclassCategory,
+                                MasterclassType)
 from mosaic.business_logic import BusinessLogic
 from school.models import Advatage, Approach, Question, Review, School
 

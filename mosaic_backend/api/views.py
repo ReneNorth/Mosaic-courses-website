@@ -1,10 +1,10 @@
 import logging
 import random
 import string
+from collections import OrderedDict
 
 from django.contrib.auth import get_user_model
-from collections import OrderedDict
-from django.db.models import Count, Min
+from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, mixins, status, viewsets
@@ -16,18 +16,19 @@ from rest_framework.response import Response
 from api.filters import ArtworksFilter, MasterclassTypeFilter, PostsFilter
 from api.serializers import (ArtworkSerializer, BookingSerializer,
                              EmailMainSerializer, GiftCertSerializer,
-                             MainCarouselSerializer, MasterclassSerializer,
-                             MasterclassTypeSerializer, PostSerializer,
-                             RequestSerializer, ReviewsSerializer,
-                             SchoolSerializer, TagReadOnlySerializer,
+                             MainCarouselSerializer,
                              MasterclassCategoryFilterSerializer,
-                             )
+                             MasterclassSerializer, MasterclassTypeSerializer,
+                             PostSerializer, RequestSerializer,
+                             ReviewsSerializer, SchoolSerializer,
+                             TagReadOnlySerializer)
 from blog.models import Post, Tag
 from booking.models import Booking
 from carousel.models import MainCarouselItem
 from crm_app.models import GiftCert
 from marketplace.models import Artwork
-from masterclass.models import Masterclass, MasterclassType, MasterclassCategory
+from masterclass.models import (Masterclass, MasterclassCategory,
+                                MasterclassType)
 from school.models import Review, School
 from users.permissions import BookingPermission
 
