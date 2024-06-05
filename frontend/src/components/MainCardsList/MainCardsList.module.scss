@@ -43,28 +43,107 @@
 .list {
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
-  gap: 88px;
+  gap: 78px;
 }
 
 .item {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  visibility: visible;
+  transition: all .3s ease;
 }
 
-@media screen and (max-width: global.$breakpoint-mobile) {
+.notFoundWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.notFoundImage {
+  width: 100%;
+  max-width: 305px;
+}
+
+.notFoundTitle {
+  text-wrap: balance;
+  margin: 0;
+  padding: 40px 0 20px;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 135%;
+  color: var(--text-color);
+  text-align: center;
+}
+
+.notFoundText {
+  text-wrap: balance;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 135%;
+  color: var(--text-color);
+  text-align: center;
+}
+
+.paginationWrapper {
+  padding-top: 80px;
+}
+
+.hideCards {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media screen and (max-width: global.$breakpoint-small-laptop) {
+
+  .list {
+    gap: 35px;
+  }
+}
+
+@media screen and (max-width: global.$breakpoint-xsmall-laptop) {
+  .notFoundImage {
+    max-width: 218px;
+  }
+
+  .notFoundTitle {
+    font-size: 20px;
+    padding: 20px 0 12px;
+  }
+
+  .notFoundText {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: global.$breakpoint-pre-mobile) {
   .list {
     margin-top: 28px;
     gap: 20px;
     align-items: center;
   }
 
-  .item {
-    flex-direction: column;
-    box-shadow: 8px 8px 30px 6px rgba(214, 212, 209, 0.6);
-    border-radius: 20px;
-    width: calc(100% - 40px);
-    background: #fff;
-    align-items: center;
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .notFoundImage {
+    max-width: 159px;
+  }
+
+  .notFoundTitle {
+    font-size: 26px;
+    line-height: 110%;
+    padding: 12px 0 16px;
+  }
+
+  .notFoundText {
+    font-size: 17px;
   }
 }

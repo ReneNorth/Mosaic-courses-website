@@ -1,0 +1,93 @@
+@use "../../utils/variables/global.scss";
+
+.paginationBar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.paginationContainer {
+  display: flex;
+  list-style-type: none;
+  gap: 8px;
+
+  .paginationItem {
+    font-family: var(--font-primary), sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 135%;
+    color: var(--text-color);
+    padding: 10px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s ease;
+
+    &.dots:hover {
+      background-color: transparent;
+      cursor: default;
+    }
+    &:hover {
+      background-color: var(--bg-green-primary);
+      cursor: pointer;
+    }
+
+    &.selected {
+      background-color: var(--color-beige-secondary);
+    }
+
+    &:has(.arrow) {
+      &:hover {
+        background-color: transparent;
+
+        .arrow {
+          color: var(--color-green-accent);
+
+          svg path {
+            fill: var(--color-green-accent);
+          }
+        }
+      }
+    }
+
+    .arrow {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    &.disabled {
+      pointer-events: none;
+
+      .arrow {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      &:hover {
+        background-color: transparent;
+        cursor: default;
+      }
+    }
+  }
+}
+
+.tableStory {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: global.$breakpoint-pre-mobile) {
+  .paginationBar {
+    display: none;
+}
+}

@@ -3,18 +3,22 @@ import { api } from '../../utils/api';
 
 const initialState = {
   allCourses: [],
+  totalCount: 0,
+  next: null,
+  previous: null,
   currentCourse: {},
+  sending: false,
 };
 
-const getAllCourses = createAsyncThunk('courses/getAllCourses', async () => {
+const getAllCourses = createAsyncThunk('courses/getAllCourses', async (data) => {
   try {
-    return api.getCourses();
+    return api.getCourses(data);
   } catch (err) {
     return err;
   }
 });
 
-const getCourseById = createAsyncThunk('posts/getCourseById', async (id) => {
+const getCourseById = createAsyncThunk('courses/getCourseById', async (id) => {
   try {
     return api.getCourseWithSlug(id);
   } catch (err) {
@@ -31,8 +35,15 @@ export const coursesSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(getAllCourses.pending, (state, action) => {
+      state.sending = true;
+    });
     builder.addCase(getAllCourses.fulfilled, (state, action) => {
       state.allCourses = action.payload.results;
+      state.totalCount = action.payload.count;
+      state.next = action.payload.next;
+      state.previous = action.payload.previous;
+      state.sending = false;
     });
 
     builder.addCase(getCourseById.fulfilled, (state, action) => {

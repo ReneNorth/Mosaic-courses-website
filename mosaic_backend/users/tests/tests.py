@@ -1,9 +1,14 @@
 import logging
+import unittest
 from ast import literal_eval
 
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from django.test import Client, TestCase
+
+from api.serializers import User
+from masterclass.models import get_or_create_dummy_teacher
+from mosaic.business_logic import DummyTeacher
 
 log = logging.getLogger(__name__)
 
@@ -89,3 +94,44 @@ class UserCreateApiTest(TestCase):
         new_jwt_access = literal_eval(bytes.decode(
             response_refresh_jwt.content)).get('access')
         self.assertNotEqual(jwt_access, new_jwt_access)
+
+
+class TestGetOrCreateDummyTeacher(unittest.TestCase):
+
+    # Returns a User instance with the specified attributes
+    def test_returns_user_with_specified_attributes(self):
+        # Arrange
+        expected_first_name = DummyTeacher.first_name
+        expected_last_name = DummyTeacher.last_name
+        expected_is_staff = DummyTeacher.is_staff
+        expected_general_agreement = DummyTeacher.general_agreement
+        expected_role = DummyTeacher.role
+        expected_email = DummyTeacher.email
+        expected_phone = DummyTeacher.phone
+
+        # Act
+        user = get_or_create_dummy_teacher()
+
+        # Assert
+        self.assertEqual(user.first_name, expected_first_name)
+        self.assertEqual(user.last_name, expected_last_name)
+        self.assertEqual(user.is_staff, expected_is_staff)
+        self.assertEqual(user.general_agreement, expected_general_agreement)
+        self.assertEqual(user.role, expected_role)
+        self.assertEqual(user.email, expected_email)
+        self.assertEqual(user.phone, expected_phone)
+
+    def test_returns_existing_user_if_already_exists(self):
+        existing_user = User.objects.create(
+            first_name=DummyTeacher.first_name,
+            last_name=DummyTeacher.last_name,
+            is_staff=DummyTeacher.is_staff,
+            general_agreement=DummyTeacher.general_agreement,
+            role=DummyTeacher.role,
+            email=DummyTeacher.email,
+            phone=DummyTeacher.phone
+        )
+
+        existing_user = get_object_or_404(User, email=DummyTeacher.email)
+        user = get_or_create_dummy_teacher()
+        self.assertEqual(user, existing_user)

@@ -2,7 +2,7 @@ import { classNames } from '../../helpers/classNames';
 import cls from './Button.module.scss';
 
 export const Button = ({
-  children, className = '', decoration, ...props
+  children, className = '', decoration, fill, ...props
 }) => {
   return (
     <button
@@ -11,7 +11,10 @@ export const Button = ({
         classNames(
           cls.button,
           {},
-          [cls[className], decoration === 'black' && cls.decoration, decoration === 'white' && cls.decorationWhite],
+          [cls[className],
+            decoration === 'black' && cls.decoration,
+            decoration === 'white' && cls.decorationWhite,
+            fill && cls.fillButton],
         )
       }
       {...props}
