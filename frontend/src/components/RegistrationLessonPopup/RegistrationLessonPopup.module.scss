@@ -126,6 +126,10 @@
     text-align: left;
   }
 
+  .center {
+    text-align: center;
+  }
+
   .container {
     margin-top: 30px;
     margin-bottom: 0;
@@ -147,6 +151,12 @@
     position: static;
     flex-direction: column;
     gap: 20px;
+  }
+
+  .right {
+    .button {
+      width: 100%;
+    }
   }
 
   .button {

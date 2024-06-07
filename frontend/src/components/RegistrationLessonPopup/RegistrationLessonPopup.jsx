@@ -13,10 +13,10 @@ import { useModalClose } from '../../hooks/useModalClose';
 
 const RegistrationLessonPopup = () => {
   const dispatch = useDispatch();
-  // const userName = useSelector((store) => store.auth.userName);
-  // const userEmail = useSelector((store) => store.auth.userEmail);
-  const userName = 'kdjvnsjv';
-  const userEmail = 'flvjnsl';
+  const userName = useSelector((store) => store.auth.userName);
+  const userEmail = useSelector((store) => store.auth.userEmail);
+  // const userName = 'kdjvnsjv';
+  // const userEmail = 'flvjnsl';
 
   const handleClose = useCallback(() => {
     dispatch(setIsRegistrationLessonPopupOpen(false));
@@ -29,7 +29,10 @@ const RegistrationLessonPopup = () => {
       <h2 className={registrationLessonPopupStyles.title}>
         {userName && userEmail ? 'Мы записали вас на занятие' : 'Мы получили вашу заявку'}
       </h2>
-      <p className={registrationLessonPopupStyles.subtitle}>
+      <p className={`${registrationLessonPopupStyles.subtitle} ${
+        !userEmail && !userName ? registrationLessonPopupStyles.center : ''
+      }`}
+      >
         {userName && userEmail
           ? 'Вы можете сразу оплатить занятие онлайн или забронировать, и оплатить в студии наличными'
           : 'Оператор вам перезвонит для уточнения записи'}
