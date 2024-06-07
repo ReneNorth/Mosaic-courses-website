@@ -1,4 +1,5 @@
 import logging
+import datetime
 
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
@@ -11,10 +12,11 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from api.serializers import BookingSerializer
+from api.serializers import BookingSerializer, MasterclassSerializer
+from masterclass.models import Masterclass
 from booking.models import Booking
-from users.serializers import (CustomCreateUserSerializer, EmailbyUidUserSerializer,
-                               UserPersonalPageSerializer)
+from users.serializers import (CustomCreateUserSerializer,
+                               EmailbyUidUserSerializer)
 
 User = get_user_model()
 log = logging.getLogger(__name__)
@@ -39,15 +41,6 @@ class CustomizedUserViewSet(UserViewSet):
         serializer = self.get_serializer(pagination, many=True)
         return self.get_paginated_response(serializer.data)
 
-    # @action(detail=False,
-    #         methods=['GET', ],
-    #         permission_classes=[IsAuthenticated, ],
-    #         url_path='me',)
-    # def get_me(self, request):
-    #     user = get_object_or_404(User, pk=request.user.pk)
-    #     serializer = self.get_serializer(user)
-    #     return Response(serializer.data, status=status.HTTP_200_OK)
-
     @action(url_path='email',
             methods=['post'],
             serializer_class=UidAndTokenSerializer,
@@ -63,3 +56,25 @@ class CustomizedUserViewSet(UserViewSet):
                 status=status.HTTP_200_OK)
         return Response(serializer.errors,
                         status=status.HTTP_400_BAD_REQUEST)
+
+    @action(url_path='my_masterclasses/past',
+            methods=['get'],
+            serializer_class=MasterclassSerializer,
+            detail=False,)
+    def get_user_past_masterclasses(self, request, pk=None):
+        past_masterclasses = Masterclass.objects.filter(
+            bookings__guest=request.user,
+            time_end__lte=datetime.datetime.now())
+        serializer = self.get_serializer(past_masterclasses, many=True)
+        return Response(serializer.data)
+
+    @action(url_path='my_masterclasses/upcoming',
+            methods=['get'],
+            serializer_class=MasterclassSerializer,
+            detail=False,)
+    def get_user_upcoming_courses(self, request, pk=None):
+        past_masterclasses = Masterclass.objects.filter(
+            bookings__guest=request.user,
+            time_start__gt=datetime.datetime.now())
+        serializer = self.get_serializer(past_masterclasses, many=True)
+        return Response(serializer.data)

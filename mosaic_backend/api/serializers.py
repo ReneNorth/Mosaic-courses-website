@@ -104,12 +104,19 @@ class EmailMainSerializer(serializers.ModelSerializer):
 
 class MasterclassSerializer(serializers.ModelSerializer):
     num_of_guests = serializers.SerializerMethodField()
+    teacher_id = serializers.CharField(
+        source='teacher.id', read_only=True)
+    teacher_first_name = serializers.CharField(
+        source='teacher.first_name', read_only=True)
+    teacher_last_name = serializers.CharField(
+        source='teacher.last_name', read_only=True)
 
     class Meta:
         model = Masterclass
         fields = [
             'id', 'title', 'price', 'currency', 'time_start', 'time_end',
             'num_of_guests',
+            'teacher_id', 'teacher_first_name', 'teacher_last_name'
         ]
         read_only_fields = [
             'title',
