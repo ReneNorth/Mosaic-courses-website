@@ -1,3 +1,4 @@
+import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCallback } from 'react';
 import CourseModalWrapper from '../CourseModalWrapper/CourseModalWrapper';
@@ -8,23 +9,31 @@ import timeIconPath from '../../images/time.svg';
 import walletIconPath from '../../images/choise_icon-tenge.svg';
 import teacherIconPath from '../../images/teacher-icon.svg';
 import calendarIconPath from '../../images/calendar-icon.svg';
-import { setIsRegistrationLessonPopupOpen } from '../../services/slices/popupSlice';
+import { setIsApplicationAcceptedPopupOpen, setIsRegistrationLessonPopupOpen } from '../../services/slices/popupSlice';
 import { useModalClose } from '../../hooks/useModalClose';
 
 const RegistrationLessonPopup = () => {
   const dispatch = useDispatch();
-  const userName = useSelector((store) => store.auth.userName);
-  const userEmail = useSelector((store) => store.auth.userEmail);
-  // const userName = 'kdjvnsjv';
-  // const userEmail = 'flvjnsl';
+  // const userName = useSelector((store) => store.auth.userName);
+  // const userEmail = useSelector((store) => store.auth.userEmail);
+  const userName = 'kdjvnsjv';
+  const userEmail = 'flvjnsl';
 
   const handleClose = useCallback(() => {
     dispatch(setIsRegistrationLessonPopupOpen(false));
   }, [dispatch]);
 
+  function handleBookClick() {
+    dispatch(setIsRegistrationLessonPopupOpen(false));
+    dispatch(setIsApplicationAcceptedPopupOpen(true));
+  }
+
   useModalClose(handleClose);
 
-  return (
+  const modalRoot = document.getElementById('modal-root');
+  if (!modalRoot) return null;
+
+  return ReactDOM.createPortal(
     <CourseModalWrapper handleClose={handleClose}>
       <h2 className={registrationLessonPopupStyles.title}>
         {userName && userEmail ? 'Мы записали вас на занятие' : 'Мы получили вашу заявку'}
@@ -79,6 +88,7 @@ const RegistrationLessonPopup = () => {
               <button
                 className={registrationLessonPopupStyles.button}
                 type="submit"
+                onClick={handleBookClick}
               >
                 Забронировать
               </button>
@@ -92,7 +102,8 @@ const RegistrationLessonPopup = () => {
           </div>
         </div>
       </div>
-    </CourseModalWrapper>
+    </CourseModalWrapper>,
+    modalRoot,
   );
 };
 

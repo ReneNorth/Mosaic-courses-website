@@ -1,0 +1,104 @@
+@use "../../utils/variables/global.scss";
+
+.container {
+  width: 660px;
+  height: fit-content;
+  position: relative;
+  border-radius: 20px;
+  background-color: var(--color-white);
+  margin-top: 80px;
+  font-family: "Raleway", "Arial", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: -2;
+}
+
+.closeButton {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: transparent;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.7;
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+    }
+}
+
+.image {
+  border-radius: 20px 20px 0 0;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 135%;
+  margin-top: 48px;
+  margin-bottom: 28px;
+}
+
+.text {
+  max-width: 510px;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 135%;
+  margin-bottom: 11px;
+  text-align: center;
+}
+
+.text:nth-of-type(2) {
+  margin-bottom: 40px;
+}
+
+.workTime, .workTimeValue {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 135%;
+}
+
+.workTime {
+  margin-top: 57px;
+}
+
+.workTimeValue {
+  margin-bottom: 40px;
+}
+
+@media screen and (max-width: 664px) {
+  .container {
+    width: 360px;
+  }
+
+  .image {
+    width: 360px;
+  }
+
+  .title {
+    margin-top: 20px;
+    font-size: 26px;
+    line-height: 130%;
+    margin-bottom: 12px;
+  }
+
+  .text {
+    font-size: 16px;
+  }
+
+  .buttonContainer {
+    width: 320px;
+  }
+
+  .workTime {
+    margin-top: 24px;
+  }
+}

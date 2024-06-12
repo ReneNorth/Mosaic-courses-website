@@ -1,8 +1,9 @@
+import { ModalOverlay } from '../ModalOverlay/ModalOverlay';
 import courseModalWrapperStyles from './CourseModalWrapper.module.scss';
 
 const CourseModalWrapper = ({ children, handleClose }) => {
   return (
-    <div className={courseModalWrapperStyles.overlay} id="overlay">
+    <ModalOverlay>
       <div className={courseModalWrapperStyles.popup}>
         <button
           type="button"
@@ -12,7 +13,7 @@ const CourseModalWrapper = ({ children, handleClose }) => {
         />
         {children}
       </div>
-    </div>
+    </ModalOverlay>
   );
 };
 

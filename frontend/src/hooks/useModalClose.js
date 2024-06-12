@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 export const useModalClose = (closeModal) => {
   useEffect(() => {
     function handleOverlayClose(event) {
-      if (event.target instanceof HTMLElement && event.target.id === 'overlay') {
+      if (event.target instanceof HTMLElement && (event.target.id === 'overlay')) {
         closeModal();
       }
     }
