@@ -14,6 +14,7 @@ import Calendar from '../Calendar/Calendar';
 import { useResize } from '../../hooks/useResize';
 import CourseModalWrapper from '../CourseModalWrapper/CourseModalWrapper';
 import IconInfo from '../IconInfo/IconInfo';
+import { Button } from '../Button/Button';
 
 const CalendarPopup = () => {
   const dispatch = useDispatch();
@@ -99,13 +100,15 @@ const CalendarPopup = () => {
                 />
               </div>
             )}
-            <button
-              className={calendarPopupStyles.submitButton}
-              type="submit"
-              style={(userName && userEmail && width >= 744 && width < 1320) ? { marginTop: 9 } : {}}
-            >
-              Записаться
-            </button>
+            <div className={calendarPopupStyles.buttonContainer}>
+              <Button
+                className="fill"
+                fill
+                type="submit"
+              >
+                Записаться
+              </Button>
+            </div>
           </form>
         </div>
       </div>

@@ -24,10 +24,11 @@
   width: 24px;
   height: 24px;
   padding: 0;
-}
 
-.closeButton:hover {
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
 }
 
 @media screen and (max-width: 1320px) {

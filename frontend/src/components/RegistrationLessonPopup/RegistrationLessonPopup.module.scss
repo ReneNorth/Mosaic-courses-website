@@ -36,27 +36,6 @@
   gap: 24px;
 }
 
-.button {
-  width: 243px;
-  height: 56px;
-  border: 1.50px solid var(--color-green-accent);
-  background-color: transparent;
-  border-radius: 56px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  font-weight: 500;
-  font-size: 17px;
-  line-height: 135%;
-  color: var(--color-green-accent);
-}
-
-.button:last-of-type {
-  background-color: var(--color-green-accent);
-  color: var(--color-white);
-}
-
 @media screen and (max-width: 1320px) {
   .title {
     margin-top: 32px;
@@ -96,21 +75,12 @@
     margin: 0;
     bottom: -58px;
     left: 0;
+    width: 518px;
   }
 
   .right {
     left: 357px;
     bottom: -64px;
-
-    .button {
-      width: 265px;
-    }
-  }
-
-  .button {
-    width: 247px;
-    height: 44px;
-    font-size: 16px;
   }
 }
 
@@ -151,15 +121,6 @@
     position: static;
     flex-direction: column;
     gap: 20px;
-  }
-
-  .right {
-    .button {
-      width: 100%;
-    }
-  }
-
-  .button {
-    width: 100%;
+    width: 320px;
   }
 }

@@ -29,10 +29,11 @@ margin-bottom: 0;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-}
 
-.question:hover {
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
 }
 
 .hintContainer {

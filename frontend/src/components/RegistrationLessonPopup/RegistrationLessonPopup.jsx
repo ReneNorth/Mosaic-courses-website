@@ -11,6 +11,7 @@ import teacherIconPath from '../../images/teacher-icon.svg';
 import calendarIconPath from '../../images/calendar-icon.svg';
 import { setIsApplicationAcceptedPopupOpen, setIsRegistrationLessonPopupOpen } from '../../services/slices/popupSlice';
 import { useModalClose } from '../../hooks/useModalClose';
+import { Button } from '../Button/Button';
 
 const RegistrationLessonPopup = () => {
   const dispatch = useDispatch();
@@ -23,10 +24,10 @@ const RegistrationLessonPopup = () => {
     dispatch(setIsRegistrationLessonPopupOpen(false));
   }, [dispatch]);
 
-  function handleBookClick() {
+  const handleBookClick = useCallback(() => {
     dispatch(setIsRegistrationLessonPopupOpen(false));
     dispatch(setIsApplicationAcceptedPopupOpen(true));
-  }
+  }, [dispatch]);
 
   useModalClose(handleClose);
 
@@ -85,20 +86,33 @@ const RegistrationLessonPopup = () => {
           }`}
           >
             {userName && userEmail && (
-              <button
-                className={registrationLessonPopupStyles.button}
-                type="submit"
+              <Button
+                className="outline"
+                fill
                 onClick={handleBookClick}
               >
                 Забронировать
-              </button>
+              </Button>
+              // <button
+              //   className={registrationLessonPopupStyles.button}
+              //   type="submit"
+              //   onClick={handleBookClick}
+              // >
+              //   Забронировать
+              // </button>
             )}
-            <button
+            <Button
+              className="fill"
+              fill
+            >
+              {userName && userEmail ? 'Перейти к оплате' : 'Вернуться на главную'}
+            </Button>
+            {/* <button
               className={registrationLessonPopupStyles.button}
               type="button"
             >
               {userName && userEmail ? 'Перейти к оплате' : 'Вернуться на главную'}
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
