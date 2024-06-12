@@ -6,7 +6,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  background-color: #121210;
+  background-color: var(--color-black);
 }
 
 .container {
@@ -55,7 +55,7 @@
   margin-top: 16px;
   max-width: 298px;
   position: relative;
-  z-index: 2;
+  z-index: global.$layer-of-decoration;
 }
 
 .imgWrapper {
@@ -64,14 +64,14 @@
   max-width: 640px;
   width: 100%;
   position: relative;
-  z-index: 2;
+  z-index: global.$layer-of-decoration;
 }
 
 .image {
   max-width: 620px;
   width: 100%;
   height: auto;
-  z-index: 2;
+  z-index: global.$layer-of-decoration;
 }
 
 .imageBorder {
@@ -82,7 +82,7 @@
   left: 20px;
   width: 620px;
   height: 494px;
-  z-index: -1;
+  z-index: global.$layer-under-content;
 }
 
 @media screen and (max-width: global.$breakpoint-mobile) {

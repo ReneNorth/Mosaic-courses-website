@@ -5,10 +5,12 @@ from users.views import CustomizedUserViewSet
 
 from .views import (ArtworkReadOnlyViewSet, BookingViewSet,
                     CertificatePostPatchViewSet, EmailCreateOnlyViewSet,
-                    MainCarouselReadOnlyViewSet, MasterclassReadOnlyViewset,
-                    MasterclassTypeReadOnlyViewSet, PostViewSet,
-                    RequestCreateOnlyViewSet, SchoolReadOnlyViewSet,
-                    StudentReviewsReadOnlyViewSet, TagReadOnlyViewSet)
+                    MainCarouselReadOnlyViewSet,
+                    MasterclassCategoryFilterReadOnlyViewSet,
+                    MasterclassReadOnlyViewset, MasterclassTypeReadOnlyViewSet,
+                    PostViewSet, RequestCreateOnlyViewSet,
+                    SchoolReadOnlyViewSet, StudentReviewsReadOnlyViewSet,
+                    TagReadOnlyViewSet)
 
 router1 = routers.SimpleRouter()
 
@@ -22,6 +24,7 @@ router1.register(r'masterclasses', MasterclassReadOnlyViewset,
 router1.register(r'masterclass_types',
                  MasterclassTypeReadOnlyViewSet,
                  basename='masterclasses')
+router1.register(r'reviews', StudentReviewsReadOnlyViewSet, basename='reviews')
 router1.register(r'booking',
                  BookingViewSet,
                  basename='booking')
@@ -30,7 +33,8 @@ router1.register(r'certificate', CertificatePostPatchViewSet,
                  basename='certificate')
 router1.register(r'artworks', ArtworkReadOnlyViewSet, basename='artwork')
 router1.register(r'tags', TagReadOnlyViewSet, basename='tags')
-router1.register(r'reviews', StudentReviewsReadOnlyViewSet, basename='reviews')
+router1.register(r'filters', MasterclassCategoryFilterReadOnlyViewSet,
+                 basename='filters')
 
 urlpatterns = [
     path('admin/doc/', include('django.contrib.admindocs.urls')),
