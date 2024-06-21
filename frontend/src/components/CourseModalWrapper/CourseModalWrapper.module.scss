@@ -11,6 +11,17 @@
   align-items: center;
   position: relative;
   font-family: 'Raleway', 'Arial', sans-serif;
+
+  @media screen and (max-width: 1320px) {
+    width: 744px;
+    margin-top: 144px;
+    box-shadow: none;
+  }
+
+  @media screen and (max-width: 743px) {
+    margin-top: 20px;
+    width: 360px;
+  }
 }
 
 .closeButton {
@@ -28,20 +39,5 @@
   &:hover {
     cursor: pointer;
     opacity: 0.7;
-  }
-}
-
-@media screen and (max-width: 1320px) {
-  .popup {
-    width: 744px;
-    margin-top: 144px;
-    box-shadow: none;
-  }
-}
-
-@media screen and (max-width: 743px) {
-  .popup {
-    margin-top: 20px;
-    width: 360px;
   }
 }

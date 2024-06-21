@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { SectionInfo } from '../SectionInfo/SectionInfo';
 import { CoursePageInfo } from '../CoursePageInfo/CoursePageInfo';
 import { StickySidebar } from '../StickySidebar/StickySidebar';
@@ -7,8 +8,12 @@ import coursePageFinalStyles from './CoursePageFinal.module.scss';
 import CalendarPopup from '../CalendarPopup/CalendarPopup';
 import RegistrationLessonPopup from '../RegistrationLessonPopup/RegistrationLessonPopup';
 import ApplicationAcceptedPopup from '../ApplicationAcceptedPopup/ApplicationAcceptedPopup';
+import { getAllCourses, getCourseById } from '../../services/slices/coursesSlice';
 
 export const CoursePageFinal = () => {
+  const { slug } = useParams();
+  const dispatch = useDispatch();
+  const allCourses = useSelector((store) => store.courses.allCourses);
   const isCalendarPopupOpen = useSelector((store) => store.popup.isCalendarPopupOpen);
   const isRegistrationLessonPopupOpen = useSelector((store) => store.popup.isRegistrationLessonPopupOpen);
   const isApplicationAcceptedPopupOpen = useSelector((store) => store.popup.isApplicationAcceptedPopupOpen);
@@ -20,6 +25,19 @@ export const CoursePageFinal = () => {
       document.body.style.overflow = '';
     }
   }, [isCalendarPopupOpen, isRegistrationLessonPopupOpen, isApplicationAcceptedPopupOpen]);
+
+  useEffect(() => {
+    if (allCourses.length === 0) {
+      dispatch(getAllCourses());
+    }
+  }, [dispatch, allCourses]);
+
+  useEffect(() => {
+    const course = allCourses.find((course) => course.slug === slug);
+    if (course) {
+      dispatch(getCourseById(course.id));
+    }
+  }, [dispatch, allCourses, slug]);
 
   return (
     <div className={coursePageFinalStyles.page}>

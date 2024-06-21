@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { CourseCard } from '../CourseCard/CourseCard.jsx';
 import cls from './MainCardsList.module.scss';
-import { getAllCourses } from '../../services/slices/coursesSlice.js';
+import { getAllCourses, setCurrentCourse } from '../../services/slices/coursesSlice.js';
 import imageNotFound from '../../images/dali.png';
 import Pagination from '../Pagination/Pagination.jsx';
 import { useThrottle } from '../../hooks/useThrottle.jsx';
@@ -10,8 +11,11 @@ import { useResize } from '../../hooks/useResize.js';
 import { checkID } from '../../helpers/checkId.js';
 
 export const MainCardsList = ({
-  setIsOpen, pageSize, infiniteScroll, showPagination,
+  pageSize, infiniteScroll, showPagination,
 }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const currentCourse = useSelector((store) => store.courses.currentCourse);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentPageOffset, setCurrentPageOffset] = useState(0);
   const [hideCards, setHideCards] = useState(true);
@@ -19,12 +23,18 @@ export const MainCardsList = ({
   const [position, setPosition] = useState(0);
   const { width } = useResize();
 
-  const handleEnroll = () => {
-    setIsOpen(true);
+  const handleEnroll = (currentCourse) => {
+    dispatch(setCurrentCourse(currentCourse));
   };
   const { allCourses, totalCount, sending } = useSelector((state) => state.courses);
   const { activeSortingStatus, activeFilters } = useSelector((state) => state.coursesFilters);
-  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (Object.keys(currentCourse).length) {
+      console.log('navigate', currentCourse);
+      navigate(`/course/${currentCourse.slug}`);
+    }
+  }, [currentCourse, navigate]);
 
   useEffect(() => {
     let filterString = '';
@@ -71,6 +81,7 @@ export const MainCardsList = ({
     setHideCards(sending);
   }, [sending]);
 
+  console.log(allCourses);
   const coursesToRender = allCourses.map((course) => {
     return (
       <li className={`${cls.item} ${hideCards ? cls.hideCards : ''}`} key={course.id}>
@@ -112,7 +123,7 @@ export const MainCardsList = ({
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [position]);
-
+  console.log(infiniteScroll);
   window.addEventListener('scroll', useThrottle(handleScroll, 1000));
   return (
     <section className={cls.section}>

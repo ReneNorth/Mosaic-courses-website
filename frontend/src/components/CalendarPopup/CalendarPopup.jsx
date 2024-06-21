@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import calendarPopupStyles from './CalendarPopup.module.scss';
 import timeIconPath from '../../images/time.svg';
 import walletIconPath from '../../images/choise_icon-tenge.svg';
@@ -11,19 +11,18 @@ import { setIsCalendarPopupOpen, setIsRegistrationLessonPopupOpen } from '../../
 import { InputField } from '../InputField/InputField';
 import { useFormValidation } from '../../hooks/useFormValidation';
 import Calendar from '../Calendar/Calendar';
-import { useResize } from '../../hooks/useResize';
 import CourseModalWrapper from '../CourseModalWrapper/CourseModalWrapper';
 import IconInfo from '../IconInfo/IconInfo';
 import { Button } from '../Button/Button';
 
 const CalendarPopup = () => {
   const dispatch = useDispatch();
-  const { width } = useResize();
+  const currentCourse = useSelector((store) => store.courses.currentCourse);
 
-  const userName = useSelector((store) => store.auth.userName);
-  const userEmail = useSelector((store) => store.auth.userEmail);
-  // const userName = true;
-  // const userEmail = true;
+  // const userName = useSelector((store) => store.auth.userName);
+  // const userEmail = useSelector((store) => store.auth.userEmail);
+  const userName = true;
+  const userEmail = true;
 
   const {
     errors, handleChange, values,
@@ -47,7 +46,9 @@ const CalendarPopup = () => {
 
   return ReactDOM.createPortal(
     <CourseModalWrapper handleClose={handleClose}>
-      <h2 className={calendarPopupStyles.title}>Курс по Римской мозаике однодневный</h2>
+      <h2 className={calendarPopupStyles.title}>
+        {`Мастеркласс по Римской мозаике ${currentCourse.title.toLowerCase()}`}
+      </h2>
       <div className={calendarPopupStyles.container}>
         <Calendar />
         <div className={calendarPopupStyles.info}>
@@ -72,7 +73,7 @@ const CalendarPopup = () => {
               needQuestion={false}
             />
           </div>
-          <form className={calendarPopupStyles.form} onSubmit={handleSubmit}>
+          <form className={calendarPopupStyles.form} onSubmit={handleSubmit} noValidate>
             {!userName && !userEmail && (
               <div className={calendarPopupStyles.notAuthorizedUserContainer}>
                 <div className={calendarPopupStyles.linkContainer}>

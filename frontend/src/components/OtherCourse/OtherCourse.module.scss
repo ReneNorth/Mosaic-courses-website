@@ -74,7 +74,7 @@
 
 .btn {
   background-color: transparent;
-  border: 1.50px solid #247251;
+  border: 1.5px solid #247251;
   border-radius: 56px;
   padding: 10px 40px;
   width: 320px;
@@ -87,7 +87,7 @@
   margin-top: 60px;
 }
 
-@media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+@media screen and (max-width: #{global.$breakpoint-tablet-for-course-page}) {
   .container {
     width: 220px;
   }
@@ -136,7 +136,7 @@
   }
 }
 
-@media screen and (max-width: global.$breakpoint-tablet) {
+@media screen and (max-width: #{global.$breakpoint-tablet}) {
   .container {
     width: 320px;
   }

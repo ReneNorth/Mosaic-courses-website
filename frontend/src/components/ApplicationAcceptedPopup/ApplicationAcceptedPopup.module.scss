@@ -12,6 +12,10 @@
   flex-direction: column;
   align-items: center;
   z-index: -2;
+
+  @media screen and (max-width: 664px) {
+    width: 360px;
+  }
 }
 
 .closeButton {
@@ -23,20 +27,24 @@
   right: 18px;
   background: transparent;
 
-    &:hover {
-      cursor: pointer;
-      opacity: 0.7;
-    }
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
 
-    svg {
-      width: 24px;
-      height: 24px;
-      fill: #fff;
-    }
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: #fff;
+  }
 }
 
 .image {
   border-radius: 20px 20px 0 0;
+
+  @media screen and (max-width: 664px) {
+    width: 360px;
+  }
 }
 
 .title {
@@ -45,6 +53,13 @@
   line-height: 135%;
   margin-top: 48px;
   margin-bottom: 28px;
+
+  @media screen and (max-width: 664px) {
+    margin-top: 20px;
+    font-size: 26px;
+    line-height: 130%;
+    margin-bottom: 12px;
+  }
 }
 
 .text {
@@ -54,10 +69,14 @@
   line-height: 135%;
   margin-bottom: 11px;
   text-align: center;
-}
 
-.text:nth-of-type(2) {
-  margin-bottom: 40px;
+  &:nth-of-type(2) {
+    margin-bottom: 40px;
+  }
+
+  @media screen and (max-width: 664px) {
+    font-size: 16px;
+  }
 }
 
 .workTime, .workTimeValue {
@@ -68,37 +87,18 @@
 
 .workTime {
   margin-top: 57px;
+
+  @media screen and (max-width: 664px) {
+    margin-top: 24px;
+  }
 }
 
 .workTimeValue {
   margin-bottom: 40px;
 }
 
-@media screen and (max-width: 664px) {
-  .container {
-    width: 360px;
-  }
-
-  .image {
-    width: 360px;
-  }
-
-  .title {
-    margin-top: 20px;
-    font-size: 26px;
-    line-height: 130%;
-    margin-bottom: 12px;
-  }
-
-  .text {
-    font-size: 16px;
-  }
-
-  .buttonContainer {
+.buttonContainer {
+  @media screen and (max-width: 664px) {
     width: 320px;
-  }
-
-  .workTime {
-    margin-top: 24px;
   }
 }

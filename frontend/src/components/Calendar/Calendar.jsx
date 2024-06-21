@@ -1,12 +1,54 @@
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import TimeAndPrice from '../TimeAndPrice/TimeAndPrice';
 import calendarStyles from './Calendar.module.scss';
 
 const Calendar = () => {
+  const currentCourse = useSelector((store) => store.courses.currentCourse);
+  const [monthAndYear, setMonthAndYear] = useState('');
+  const [previousMonthDays, setPreviousMonthDays] = useState([]);
+  const [currentMonthDays, setCurrentMonthDays] = useState([]);
+  const [nextMonthDays, setNextMonthDays] = useState([]);
+
+  useEffect(() => {
+    const findNearestFutureDate = () => {
+      const now = new Date();
+      let nearestDate = null;
+
+      currentCourse.masterclasses.forEach((masterclass) => {
+        const startDate = new Date(masterclass.time_start);
+        if (startDate > now && (!nearestDate || startDate < nearestDate)) {
+          nearestDate = startDate;
+        }
+      });
+
+      if (nearestDate) {
+        const months = [
+          'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+          'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь',
+        ];
+        const month = months[nearestDate.getMonth()];
+        const year = nearestDate.getFullYear();
+        setMonthAndYear(`${month} ${year}`);
+      } else {
+        setMonthAndYear('Нет доступных дат');
+      }
+    };
+
+    if (currentCourse?.masterclasses) {
+      findNearestFutureDate();
+    }
+  }, [currentCourse]);
+
+  useEffect(() => {
+
+  }, []);
+
   return (
     <div className={calendarStyles.container}>
       <h3 className={calendarStyles.title}>Выберите дату и время занятия</h3>
       <div className={calendarStyles.menu}>
-        <p className={calendarStyles.currentDate}>Май 2024</p>
+        <p className={calendarStyles.currentDate}>{monthAndYear}</p>
         <div className={calendarStyles.buttonContainer}>
           <button className={calendarStyles.backwardButton} type="button" aria-label="Кнопка назад" />
           <button className={calendarStyles.forwardButton} type="button" aria-label="Кнопка вперёд" />

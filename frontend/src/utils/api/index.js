@@ -73,6 +73,11 @@ class Api {
     return this.constructor._checkResponse(res);
   }
 
+  async getAllcourses() {
+    const res = await fetch(`${this._url}/api/v1/masterclass_types`);
+    return this.constructor._checkResponse(res);
+  }
+
   async getCourses(dataReq) {
     const res = await fetch(
       // eslint-disable-next-line max-len
@@ -90,8 +95,8 @@ class Api {
     return data;
   }
 
-  async getCourseWithSlug(slug) {
-    const res = await fetch(`${this._url}/api/v1/masterclass_types/${slug}`);
+  async getCourseWithId(id) {
+    const res = await fetch(`${this._url}/api/v1/masterclass_types/${id}/`);
     return this.constructor._checkResponse(res);
   }
 
