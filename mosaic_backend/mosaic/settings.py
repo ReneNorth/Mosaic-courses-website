@@ -180,6 +180,7 @@ DJOSER = {
         'user_create': 'users.serializers.CustomCreateUserSerializer',
         'user': 'users.serializers.CustomCreateUserSerializer',
         'current_user': 'users.serializers.UserPersonalPageSerializer',
+        # 'user_delete': 'users.serializers.CustomCreateUserSerializer',
     },
     # change the email templates later
     # 'EMAIL': {

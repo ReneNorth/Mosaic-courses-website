@@ -77,3 +77,37 @@ class CustomizedUserViewSet(UserViewSet):
             time_start__gt=datetime.datetime.now())
         serializer = self.get_serializer(past_masterclasses, many=True)
         return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        # if instance == request.user: # this won't work
+        #     utils.logout_user(self.request)
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# copy-paste code for handling token logout
+# class BlackListedToken(models.Model):
+#     token = models.CharField(max_length=500)
+#     user = models.ForeignKey(User, related_name="token_user", on_delete=models.CASCADE)
+#     timestamp = models.DateTimeField(auto_now=True)
+
+#     class Meta:
+#         unique_together = ("token", "user")
+
+
+# class IsTokenValid(BasePermission):
+#     def has_permission(self, request, view):
+#         user_id = request.user.id
+#         is_allowed_user = True
+#         token = request.auth.decode("utf-8")
+#         try:
+#             is_blackListed = BlackListedToken.objects.get(user=user_id, token=token)
+#             if is_blackListed:
+#                 is_allowed_user = False
+#         except BlackListedToken.DoesNotExist:
+#             is_allowed_user = True
+#         return is_allowed_user
