@@ -47,7 +47,7 @@ const CalendarPopup = () => {
   return ReactDOM.createPortal(
     <CourseModalWrapper handleClose={handleClose}>
       <h2 className={calendarPopupStyles.title}>
-        {`Мастеркласс по Римской мозаике ${currentCourse.title.toLowerCase()}`}
+        {`Мастеркласс по Римской мозаике ${currentCourse?.title?.toLowerCase()}`}
       </h2>
       <div className={calendarPopupStyles.container}>
         <Calendar />

@@ -8,6 +8,7 @@ const initialState = {
   previous: null,
   currentCourse: {},
   sending: false,
+  selectedLesson: {},
 };
 
 const getCourses = createAsyncThunk('courses/getCourses', async (data) => {
@@ -41,6 +42,9 @@ export const coursesSlice = createSlice({
     setCurrentCourse(state, action) {
       state.currentCourse = action.payload;
     },
+    setSelectedLesson(state, action) {
+      state.selectedLesson = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getCourses.pending, (state, action) => {
@@ -63,9 +67,9 @@ export const coursesSlice = createSlice({
   },
 });
 
-const { setCurrentCourse } = coursesSlice.actions;
+const { setCurrentCourse, setSelectedLesson } = coursesSlice.actions;
 const courseSliceReducer = coursesSlice.reducer;
 
 export {
-  setCurrentCourse, courseSliceReducer, getCourses, getAllCourses, getCourseById,
+  setCurrentCourse, setSelectedLesson, courseSliceReducer, getCourses, getAllCourses, getCourseById,
 };

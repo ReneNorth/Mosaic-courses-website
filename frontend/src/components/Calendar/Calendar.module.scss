@@ -126,23 +126,6 @@
   row-gap: 4px;
   box-sizing: border-box;
 
-  li {
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 135%;
-    border-radius: 10px;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  li:hover {
-    cursor: pointer;
-    opacity: 0.7;
-  }
-
   @media screen and (max-width: 1320px) {
     width: 330px;
     column-gap: 3px;

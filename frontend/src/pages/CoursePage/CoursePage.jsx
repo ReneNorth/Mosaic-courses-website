@@ -20,7 +20,6 @@ export const CoursePage = () => {
     if (allCourses.length > 0) {
       const course = allCourses.find((course) => course.slug === slug);
       if (course) {
-        console.log(course);
         dispatch(getCourseById(course.id));
       }
     }
