@@ -111,7 +111,7 @@ class MasterclassCategoryFilterSerializer(serializers.ModelSerializer):
 
 class MasterclassSerializer(serializers.ModelSerializer):
     num_of_guests = serializers.SerializerMethodField()
-    teacher_id = serializers.CharField(
+    teacher_id = serializers.PrimaryKeyRelatedField(
         source='teacher.id', read_only=True)
     teacher_first_name = serializers.CharField(
         source='teacher.first_name', read_only=True)
