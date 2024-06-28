@@ -1,6 +1,7 @@
 import logging
 
-from django.test import TestCase, RequestFactory
+from django.test import RequestFactory, TestCase
+
 from api.views import MasterclassCategoryFilterReadOnlyViewSet
 from masterclass.models import MasterclassCategory
 
