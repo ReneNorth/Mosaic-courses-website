@@ -82,6 +82,7 @@ class MasterclassCategoryFilterReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = MasterclassCategory.objects.all()
     serializer_class = MasterclassCategoryFilterSerializer
     permission_classes = [AllowAny, ]
+    pagination_class = None
 
     def list(self, request, *args, **kwargs):
         response = super().list(request, *args, **kwargs)
@@ -89,12 +90,11 @@ class MasterclassCategoryFilterReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
             {key: []
              for key in MasterclassCategory.CATEGORY_FILTER_CHOICES.keys()}
         )
-
-        for item in response.data['results']:
+        for item in response.data:
             category_filter = item.pop('category_filter', None)
             if category_filter in response_dict:
                 response_dict[category_filter].append(item)
-        response.data['results'] = response_dict
+        response.data = response_dict
         return response
 
 
@@ -118,8 +118,6 @@ class MasterclassTypeReadOnlyViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, ]
     pagination_class = LimitOffsetPagination
     filterset_class = MasterclassTypeFilter
-    # filterset_fields = ['slug', ]
-    # lookup_field = 'slug'
 
     @action(detail=True, methods=['get', ])
     def related_masterclasses(self, request, slug) -> Response:
@@ -127,12 +125,6 @@ class MasterclassTypeReadOnlyViewSet(viewsets.ModelViewSet):
         masterclass_types = MasterclassType.objects.all().exclude(slug=slug)
         return Response(self.get_serializer(masterclass_types,
                                             many=True).data)
-
-    # def get_queryset(self):
-    #     return MasterclassType.objects.annotate(
-    #         min_price=Min('masterclasses__price'),
-    #         min_date=Min('masterclasses__date')  # Add this line
-    #     ).order_by('min_price', 'min_date')  # Add 'min_date' here
 
 
 class BookingViewSet(viewsets.ModelViewSet):
