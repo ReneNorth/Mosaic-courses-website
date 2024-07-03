@@ -18,11 +18,12 @@ import { Button } from '../Button/Button';
 const CalendarPopup = () => {
   const dispatch = useDispatch();
   const currentCourse = useSelector((store) => store.courses.currentCourse);
+  const selectedLesson = useSelector((store) => store.courses.selectedLesson);
 
-  // const userName = useSelector((store) => store.auth.userName);
-  // const userEmail = useSelector((store) => store.auth.userEmail);
-  const userName = true;
-  const userEmail = true;
+  const userName = useSelector((store) => store.auth.userName);
+  const userEmail = useSelector((store) => store.auth.userEmail);
+  // const userName = true;
+  // const userEmail = true;
 
   const {
     errors, handleChange, values,
@@ -38,6 +39,29 @@ const CalendarPopup = () => {
     dispatch(setIsCalendarPopupOpen(false));
     dispatch(setIsRegistrationLessonPopupOpen(true));
   }
+
+  const calculateLessonDuration = (timeStart, timeEnd) => {
+    const diffMs = new Date(timeEnd) - new Date(timeStart);
+
+    let diffHours = diffMs / (1000 * 60 * 60);
+
+    diffHours = Math.round(diffHours);
+
+    if (diffHours > 12) {
+      diffHours = 12;
+    }
+
+    let hoursWord;
+    if (diffHours === 1) {
+      hoursWord = 'час';
+    } else if (diffHours >= 2 && diffHours <= 4) {
+      hoursWord = 'часа';
+    } else {
+      hoursWord = 'часов';
+    }
+
+    return `${diffHours} ${hoursWord}`;
+  };
 
   useModalClose(handleClose);
 
@@ -57,19 +81,19 @@ const CalendarPopup = () => {
             <IconInfo
               iconPath={walletIconPath}
               alt="Иконка кошелёк"
-              text="7 000 ₽"
+              text={`${selectedLesson.price} ${selectedLesson.currency}`}
               needQuestion
             />
             <IconInfo
               iconPath={timeIconPath}
               alt="Иконка часы"
-              text="3 часа"
+              text={calculateLessonDuration(selectedLesson.time_start, selectedLesson.time_end)}
               needQuestion={false}
             />
             <IconInfo
               iconPath={teacherIconPath}
               alt="Иконка шапка"
-              text="Антон Цветов"
+              text={`${selectedLesson.teacher_first_name} ${selectedLesson.teacher_last_name}`}
               needQuestion={false}
             />
           </div>
