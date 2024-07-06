@@ -51,6 +51,7 @@ export const SelectFieldSingle = ({
     >
       <InputLabel
         sx={{
+          fontFamily: 'var(--font-primary), sans-serif',
           top: '-4px',
           '&.MuiInputLabel-root': {
             fontFamily: 'var(--font-primary)',
@@ -69,6 +70,7 @@ export const SelectFieldSingle = ({
       </InputLabel>
       <Select
         sx={{
+          fontFamily: 'var(--font-primary), sans-serif',
           backgroundColor: 'var(--color-background-color)',
           borderRadius: '14px',
           color: 'var(--text-color)',
@@ -112,6 +114,7 @@ export const SelectFieldSingle = ({
         {values.map((element) => (
           <MenuItem
             sx={{
+              fontFamily: 'var(--font-primary), sans-serif',
               '&.Mui-selected': {
                 backgroundColor: 'var(--color-background-color)',
                 '&:hover': {
