@@ -34,7 +34,7 @@ class Base64ImageField(serializers.ImageField):
 class RequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = FeedbackRequest
-        fields = ['first_name', 'last_name',
+        fields = ['name',
                   'phone_num', 'comment', 'contact_consent']
         extra_kwargs = {'contact_consent': {'required': True}}
 

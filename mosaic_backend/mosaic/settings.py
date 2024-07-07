@@ -1,9 +1,9 @@
+import logging
 import os
 from datetime import timedelta
 from pathlib import Path
 
 from django.utils.log import DEFAULT_LOGGING
-import logging
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
