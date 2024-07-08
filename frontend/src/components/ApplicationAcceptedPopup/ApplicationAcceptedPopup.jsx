@@ -1,5 +1,7 @@
+import { useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { ModalOverlay } from '../ModalOverlay/ModalOverlay';
 import applicationAcceptedPopupStyles from './ApplicationAcceptedPopup.module.scss';
 import mosaicHeartImage from '../../images/heart-mosaic.png';
@@ -8,14 +10,25 @@ import { setIsApplicationAcceptedPopupOpen } from '../../services/slices/popupSl
 import { useModalClose } from '../../hooks/useModalClose';
 import CloseIcon from '../../images/CloseIcon';
 import { useResize } from '../../hooks/useResize';
+import { ENDPOINTS } from '../../utils/consts/constants';
 
 const ApplicationAcceptedPopup = () => {
   const dispatch = useDispatch();
+  // const userName = useSelector((store) => store.auth.userName);
+  // const userEmail = useSelector((store) => store.auth.userEmail);
+  const userName = true;
+  const userEmail = true;
   const { width } = useResize();
+  const navigate = useNavigate();
 
   function handleClose() {
     dispatch(setIsApplicationAcceptedPopupOpen(false));
   }
+
+  const handleButtonClick = useCallback(() => {
+    navigate(ENDPOINTS.main);
+    dispatch(setIsApplicationAcceptedPopupOpen(false));
+  }, [navigate, dispatch]);
 
   useModalClose(handleClose);
 
@@ -38,16 +51,25 @@ const ApplicationAcceptedPopup = () => {
           alt="Сердечко из мозаики"
           className={applicationAcceptedPopupStyles.image}
         />
-        <h2 className={applicationAcceptedPopupStyles.title}>Ваша заявка принята</h2>
+        <h2 className={applicationAcceptedPopupStyles.title}>
+          {userEmail && userName
+            ? 'Мастер-класс забронирован'
+            : 'Мы получили запрос на бронирование мастер-класса'}
+        </h2>
         <p className={applicationAcceptedPopupStyles.text}>
-          Оператор свяжется с вами в ближайшее время, для подтверждение заявки.
+          {userEmail && userName
+            ? 'Вы забронировали мастер-класс. Оплату осуществляется в студии.'
+            + 'Оператор свяжется с вами в ближайшее время, для подтверждение заявки.'
+            : 'Для подтверждения наш оператор свяжется с вами в ближайшее время'}
         </p>
-        <p className={applicationAcceptedPopupStyles.text}>Спасибо за внимание к нашей студии!</p>
+        {userEmail && userName
+          && <p className={applicationAcceptedPopupStyles.text}>Спасибо за внимание к нашей студии!</p>}
         <div className={applicationAcceptedPopupStyles.buttonContainer}>
           <Button
             className="fill"
             {...(width > 664 ? { decoration: 'black' } : {})}
             fill
+            onClick={handleButtonClick}
           >
             Вернуться на главную
           </Button>

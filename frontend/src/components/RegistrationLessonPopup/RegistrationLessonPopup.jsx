@@ -12,6 +12,7 @@ import calendarIconPath from '../../images/calendar-icon.svg';
 import { setIsApplicationAcceptedPopupOpen, setIsRegistrationLessonPopupOpen } from '../../services/slices/popupSlice';
 import { useModalClose } from '../../hooks/useModalClose';
 import { Button } from '../Button/Button';
+import { calculateLessonDuration } from '../../utils/functions/timeFunctions';
 
 const RegistrationLessonPopup = () => {
   const dispatch = useDispatch();
@@ -81,13 +82,13 @@ const RegistrationLessonPopup = () => {
           <IconInfo
             iconPath={timeIconPath}
             alt="Иконка часы"
-            text="3 часа"
+            text={calculateLessonDuration(selectedLesson.time_start, selectedLesson.time_end)}
             needQuestion={false}
           />
           <IconInfo
             iconPath={teacherIconPath}
             alt="Иконка шапка"
-            text="Антон Цветов"
+            text={`${selectedLesson.teacher_first_name} ${selectedLesson.teacher_last_name}`}
             needQuestion={false}
           />
           <div className={registrationLessonPopupStyles.buttonContainer}>
@@ -96,7 +97,7 @@ const RegistrationLessonPopup = () => {
               fill
               onClick={handleBookClick}
             >
-              Забронировать
+              Продолжить
             </Button>
             <Button
               className="fill"
