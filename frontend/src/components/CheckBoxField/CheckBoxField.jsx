@@ -8,7 +8,7 @@ export const CheckBoxField = ({
   const CheckBoxSettings = {
     agreement: {
       name: 'agree',
-      text: 'Даю согласие на обработку персональных данных',
+      text: 'Я даю согласие на обработку персональных данных',
       required: true,
     },
     print: {

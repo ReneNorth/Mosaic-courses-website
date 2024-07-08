@@ -20,16 +20,17 @@ import {
   setIsRegistrationLessonPopupOpen,
 } from '../../services/slices/popupSlice';
 import { calculateLessonDuration } from '../../utils/functions/timeFunctions';
+import { CheckBoxField } from '../CheckBoxField/CheckBoxField';
 
 const CalendarPopup = () => {
   const dispatch = useDispatch();
   const currentCourse = useSelector((store) => store.courses.currentCourse);
   const selectedLesson = useSelector((store) => store.courses.selectedLesson);
 
-  // const userName = useSelector((store) => store.auth.userName);
-  // const userEmail = useSelector((store) => store.auth.userEmail);
-  const userName = true;
-  const userEmail = true;
+  const userName = useSelector((store) => store.auth.userName);
+  const userEmail = useSelector((store) => store.auth.userEmail);
+  // const userName = true;
+  // const userEmail = true;
 
   const {
     errors, handleChange, values,
@@ -119,6 +120,7 @@ const CalendarPopup = () => {
                   handleChange={handleChange}
                   values={values}
                 />
+                <CheckBoxField type="agreement" />
               </div>
             )}
             <div className={calendarPopupStyles.buttonContainer}>
