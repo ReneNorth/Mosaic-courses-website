@@ -14,6 +14,7 @@ import Calendar from '../Calendar/Calendar';
 import CourseModalWrapper from '../CourseModalWrapper/CourseModalWrapper';
 import IconInfo from '../IconInfo/IconInfo';
 import { Button } from '../Button/Button';
+import { bookMasterclass, bookMasterclassForUnauthorizedUser } from '../../services/slices/coursesSlice';
 
 const CalendarPopup = () => {
   const dispatch = useDispatch();
@@ -33,12 +34,23 @@ const CalendarPopup = () => {
     dispatch(setIsCalendarPopupOpen(false));
   }, [dispatch]);
 
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
+    if (userName && userEmail && selectedLesson?.id) {
+      dispatch(bookMasterclass(selectedLesson.id));
+    }
+    if (!userName && !userEmail && selectedLesson?.id) {
+      dispatch(bookMasterclassForUnauthorizedUser({
+        name: values.name,
+        phone_num: values.phone,
+        comment: String(selectedLesson.id),
+        contact_consent: true,
+      }));
+    }
     dispatch(setIsCalendarPopupOpen(false));
     dispatch(setIsRegistrationLessonPopupOpen(true));
-  }
+  };
 
   const calculateLessonDuration = (timeStart, timeEnd) => {
     const diffMs = new Date(timeEnd) - new Date(timeStart);

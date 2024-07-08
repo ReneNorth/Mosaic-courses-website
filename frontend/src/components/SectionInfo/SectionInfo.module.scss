@@ -1,7 +1,7 @@
 @use "../../utils/variables/global.scss";
 
 .container {
-  margin-top: 104px;
+  margin-top: 97px;
   max-width: 843px;
 
   .reactMarkdown {
@@ -14,7 +14,7 @@
       font-family: var(--font-primary);
       font-size: 32px;
       font-weight: 700;
-      margin-bottom: 16px;
+      margin-bottom: 24px;
       margin-left: 0px;
 
       @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
@@ -78,7 +78,7 @@
     }
 
     p {
-      margin-bottom: 248px;
+      margin-bottom: 276px;
       font-weight: 400;
       font-size: 17px;
       line-height: 135%;

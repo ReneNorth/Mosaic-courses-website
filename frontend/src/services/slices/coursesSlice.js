@@ -35,6 +35,25 @@ const getAllCourses = createAsyncThunk('courses/getAllCourses', async () => {
   }
 });
 
+const bookMasterclass = createAsyncThunk('courses/bookMasterclass', async (masterclassId) => {
+  try {
+    return api.bookMasterclass(masterclassId);
+  } catch (err) {
+    return err;
+  }
+});
+
+const bookMasterclassForUnauthorizedUser = createAsyncThunk(
+  'courses/bookMasterclassForUnauthorizedUser',
+  async (data) => {
+    try {
+      return api.bookMasterclassForUnauthorizedUser(data);
+    } catch (err) {
+      return err;
+    }
+  },
+);
+
 export const coursesSlice = createSlice({
   name: 'courses',
   initialState,
@@ -71,5 +90,12 @@ const { setCurrentCourse, setSelectedLesson } = coursesSlice.actions;
 const courseSliceReducer = coursesSlice.reducer;
 
 export {
-  setCurrentCourse, setSelectedLesson, courseSliceReducer, getCourses, getAllCourses, getCourseById,
+  setCurrentCourse,
+  setSelectedLesson,
+  courseSliceReducer,
+  getCourses,
+  getAllCourses,
+  getCourseById,
+  bookMasterclass,
+  bookMasterclassForUnauthorizedUser,
 };

@@ -43,11 +43,11 @@
   height: 580px;
   justify-content: center;
   text-align: center;
-  padding: 178px 77px 43px 77px;
+  padding: 178px 42.5px 43px 42.5px;
   font-family: var(--font-primary);
 
   @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
-    padding: 68px 26px 40px;
+    padding: 68px 18.5px 40px;
   }
 
   @media screen and (max-width: global.$breakpoint-tablet) {
@@ -99,9 +99,11 @@
 
 .buttonContainer {
   margin-top: 40px;
+  width: 315px;
 
   @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
     margin-top: 70px;
+    width: 261px;
   }
 }
 
@@ -128,4 +130,8 @@
   font-weight: 500;
   font-size: 17px;
   line-height: 135%;
+
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+    font-size: 16px;
+  }
 }

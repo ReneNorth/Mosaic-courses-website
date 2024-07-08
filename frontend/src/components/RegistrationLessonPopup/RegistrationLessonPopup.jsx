@@ -15,10 +15,10 @@ import { Button } from '../Button/Button';
 
 const RegistrationLessonPopup = () => {
   const dispatch = useDispatch();
-  // const userName = useSelector((store) => store.auth.userName);
-  // const userEmail = useSelector((store) => store.auth.userEmail);
-  const userName = 'kdjvnsjv';
-  const userEmail = 'flvjnsl';
+  const userName = useSelector((store) => store.auth.userName);
+  const userEmail = useSelector((store) => store.auth.userEmail);
+  // const userName = 'kdjvnsjv';
+  // const userEmail = 'flvjnsl';
 
   const handleClose = useCallback(() => {
     dispatch(setIsRegistrationLessonPopupOpen(false));

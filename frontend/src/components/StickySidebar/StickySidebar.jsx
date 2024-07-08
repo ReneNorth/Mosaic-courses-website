@@ -53,7 +53,8 @@ export const StickySidebar = () => {
 
         <div className={cls.innerBlock}>
           <h3 className={cls.title}>
-            {currentCourse?.title ? `Курс по римской мозайке ${currentCourse.title.toLowerCase()}` : 'Название курса'}
+            {currentCourse?.title
+              ? `Мастер-класс по римской мозайке ${currentCourse?.title?.toLowerCase()}` : ''}
           </h3>
           <h2 className={cls.coursePrice}>{`от ${minPrice}₽`}</h2>
           <p className={cls.duration}>{`Продолжительность ${duration}`}</p>
@@ -63,12 +64,12 @@ export const StickySidebar = () => {
               fill
               onClick={handlePopupOpen}
             >
-              Записаться на курс
+              Записаться на мастер-класс
             </Button>
           </div>
           <div className={cls.giftContainer}>
             <img className={cls.giftIcon} src={giftIcon} alt="подарок" />
-            <div className={cls.gift}>Подарить этот курс</div>
+            <p className={cls.gift}>Подарить этот мастер-класс</p>
           </div>
         </div>
       </div>
