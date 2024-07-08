@@ -8,6 +8,7 @@ const initialState = {
   previous: null,
   currentCourse: {},
   sending: false,
+  navigating: false,
   selectedLesson: {},
 };
 
@@ -64,6 +65,9 @@ export const coursesSlice = createSlice({
     setSelectedLesson(state, action) {
       state.selectedLesson = action.payload;
     },
+    setNavigating(state, action) {
+      state.navigating = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getCourses.pending, (state, action) => {
@@ -86,12 +90,13 @@ export const coursesSlice = createSlice({
   },
 });
 
-const { setCurrentCourse, setSelectedLesson } = coursesSlice.actions;
+const { setCurrentCourse, setSelectedLesson, setNavigating } = coursesSlice.actions;
 const courseSliceReducer = coursesSlice.reducer;
 
 export {
   setCurrentCourse,
   setSelectedLesson,
+  setNavigating,
   courseSliceReducer,
   getCourses,
   getAllCourses,

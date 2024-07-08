@@ -8,7 +8,7 @@ import coursePageFinalStyles from './CoursePageFinal.module.scss';
 import CalendarPopup from '../CalendarPopup/CalendarPopup';
 import RegistrationLessonPopup from '../RegistrationLessonPopup/RegistrationLessonPopup';
 import ApplicationAcceptedPopup from '../ApplicationAcceptedPopup/ApplicationAcceptedPopup';
-import { getAllCourses, getCourseById } from '../../services/slices/coursesSlice';
+import { getAllCourses, getCourseById, setCurrentCourse } from '../../services/slices/coursesSlice';
 
 export const CoursePageFinal = () => {
   const { slug } = useParams();

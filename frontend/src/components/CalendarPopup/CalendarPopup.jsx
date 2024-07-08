@@ -13,6 +13,7 @@ import Calendar from '../Calendar/Calendar';
 import CourseModalWrapper from '../CourseModalWrapper/CourseModalWrapper';
 import IconInfo from '../IconInfo/IconInfo';
 import { Button } from '../Button/Button';
+import { CheckBoxField } from '../CheckBoxField/CheckBoxField';
 import { bookMasterclass, bookMasterclassForUnauthorizedUser } from '../../services/slices/coursesSlice';
 import {
   setIsApplicationAcceptedPopupOpen,
@@ -26,13 +27,13 @@ const CalendarPopup = () => {
   const currentCourse = useSelector((store) => store.courses.currentCourse);
   const selectedLesson = useSelector((store) => store.courses.selectedLesson);
 
-  // const userName = useSelector((store) => store.auth.userName);
-  // const userEmail = useSelector((store) => store.auth.userEmail);
-  const userName = true;
-  const userEmail = true;
+  const userName = useSelector((store) => store.auth.userName);
+  const userEmail = useSelector((store) => store.auth.userEmail);
+  // const userName = true;
+  // const userEmail = true;
 
   const {
-    errors, handleChange, values,
+    errors, handleChange, values, isValid,
   } = useFormValidation();
 
   const handleClose = useCallback(() => {
@@ -119,6 +120,7 @@ const CalendarPopup = () => {
                   handleChange={handleChange}
                   values={values}
                 />
+                <CheckBoxField type="agreement" handleChange={handleChange} />
               </div>
             )}
             <div className={calendarPopupStyles.buttonContainer}>
@@ -126,6 +128,7 @@ const CalendarPopup = () => {
                 className="fill"
                 fill
                 type="submit"
+                disabled={!isValid}
               >
                 Записаться
               </Button>
