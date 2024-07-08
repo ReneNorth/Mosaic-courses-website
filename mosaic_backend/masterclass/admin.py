@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from booking.models import Booking, ReservationAdmin
+from booking.models import Booking, GuestReservation
 from masterclass.models import (Masterclass, MasterclassCategory,
                                 MasterclassType, MasterclassTypeCategory)
 
@@ -28,7 +28,7 @@ class MasterclassAdmin(admin.ModelAdmin):
             masterclass=masterclass).count()
 
     def reservations(self, masterclass) -> int:
-        return ReservationAdmin.objects.filter(
+        return GuestReservation.objects.filter(
             attending__id=masterclass.id).count()
 
 
