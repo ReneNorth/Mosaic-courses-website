@@ -15,10 +15,8 @@ import { Button } from '../Button/Button';
 
 const RegistrationLessonPopup = () => {
   const dispatch = useDispatch();
-  const userName = useSelector((store) => store.auth.userName);
-  const userEmail = useSelector((store) => store.auth.userEmail);
-  // const userName = 'kdjvnsjv';
-  // const userEmail = 'flvjnsl';
+  const currentCourse = useSelector((store) => store.courses.currentCourse);
+  const selectedLesson = useSelector((store) => store.courses.selectedLesson);
 
   const handleClose = useCallback(() => {
     dispatch(setIsRegistrationLessonPopupOpen(false));
@@ -29,6 +27,21 @@ const RegistrationLessonPopup = () => {
     dispatch(setIsApplicationAcceptedPopupOpen(true));
   }, [dispatch]);
 
+  const getFormattedDate = (dateString) => {
+    const date = new Date(dateString);
+    const months = [
+      'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+      'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря',
+    ];
+
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+
+    return `${day} ${month} ${hours}:${minutes}`;
+  };
+
   useModalClose(handleClose);
 
   const modalRoot = document.getElementById('modal-root');
@@ -37,15 +50,10 @@ const RegistrationLessonPopup = () => {
   return ReactDOM.createPortal(
     <CourseModalWrapper handleClose={handleClose}>
       <h2 className={registrationLessonPopupStyles.title}>
-        {userName && userEmail ? 'Мы записали вас на занятие' : 'Мы получили вашу заявку'}
+        Запись на мастер-класс
       </h2>
-      <p className={`${registrationLessonPopupStyles.subtitle} ${
-        !userEmail && !userName ? registrationLessonPopupStyles.center : ''
-      }`}
-      >
-        {userName && userEmail
-          ? 'Вы можете сразу оплатить занятие онлайн или забронировать, и оплатить в студии наличными'
-          : 'Оператор вам перезвонит для уточнения записи'}
+      <p className={registrationLessonPopupStyles.subtitle}>
+        Вы можете сразу оплатить мастер-класс онлайн или забронировать, и оплатить его в студии, наличными.
       </p>
       <div className={registrationLessonPopupStyles.container}>
         <img
@@ -55,18 +63,19 @@ const RegistrationLessonPopup = () => {
         />
         <div className={registrationLessonPopupStyles.info}>
           <h3 className={registrationLessonPopupStyles.infoTitle}>
-            Курс по Римской мозаике однодневный
+            Мастер-класс по Римской мозаике
+            <span>{` ${currentCourse?.title.toLowerCase()}`}</span>
           </h3>
           <IconInfo
             iconPath={walletIconPath}
             alt="Иконка кошелёк"
-            text="7 000 ₽"
+            text={`${selectedLesson?.price} ${selectedLesson?.currency}`}
             needQuestion={false}
           />
           <IconInfo
             iconPath={calendarIconPath}
             alt="Иконка календарь"
-            text="17 июня 12:00"
+            text={getFormattedDate(selectedLesson?.time_start)}
             needQuestion={false}
           />
           <IconInfo
@@ -81,38 +90,20 @@ const RegistrationLessonPopup = () => {
             text="Антон Цветов"
             needQuestion={false}
           />
-          <div className={`${registrationLessonPopupStyles.buttonContainer} ${
-            !userEmail && !userName ? registrationLessonPopupStyles.right : ''
-          }`}
-          >
-            {userName && userEmail && (
-              <Button
-                className="outline"
-                fill
-                onClick={handleBookClick}
-              >
-                Забронировать
-              </Button>
-              // <button
-              //   className={registrationLessonPopupStyles.button}
-              //   type="submit"
-              //   onClick={handleBookClick}
-              // >
-              //   Забронировать
-              // </button>
-            )}
+          <div className={registrationLessonPopupStyles.buttonContainer}>
+            <Button
+              className="outline"
+              fill
+              onClick={handleBookClick}
+            >
+              Забронировать
+            </Button>
             <Button
               className="fill"
               fill
             >
-              {userName && userEmail ? 'Перейти к оплате' : 'Вернуться на главную'}
+              Перейти к оплате
             </Button>
-            {/* <button
-              className={registrationLessonPopupStyles.button}
-              type="button"
-            >
-              {userName && userEmail ? 'Перейти к оплате' : 'Вернуться на главную'}
-            </button> */}
           </div>
         </div>
       </div>
