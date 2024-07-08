@@ -4,17 +4,12 @@ export const useFormValidation = () => {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setValues({ ...values, [name]: value });
-    setErrors({ ...errors, [name]: event.target.validationMessage });
-    setIsValid(event.target.closest('form').checkValidity());
-  };
-
-  const toggleCheckBox = () => {
-    setIsChecked(!isChecked);
+    setErrors({ ...errors, [name]: e.target.validationMessage });
+    setIsValid(e.target.closest('form').checkValidity());
   };
 
   const handlePhoneChange = (value) => {
@@ -33,27 +28,27 @@ export const useFormValidation = () => {
     }
   };
 
-  const handleSecondPasswordChange = (event) => {
-    const { name, value } = event.target;
+  const handleSecondPasswordChange = (e) => {
+    const { name, value } = e.target;
     setValues({ ...values, [name]: value });
-    setErrors({ ...errors, [name]: event.target.validationMessage });
-    setIsValid(event.target.closest('form').checkValidity());
+    setErrors({ ...errors, [name]: e.target.validationMessage });
+    setIsValid(e.target.closest('form').checkValidity());
     if (value !== values.password) {
       setErrors({ ...errors, [name]: 'Пароли не совпали' });
       setIsValid(false);
     }
   };
 
-  const handleBlur = (event) => {
-    const { name } = event.target;
-    setErrors({ ...errors, [name]: event.target.validationMessage });
+  const handleBlur = (e) => {
+    const { name } = e.target;
+    setErrors({ ...errors, [name]: e.target.validationMessage });
   };
 
-  const handleChangeInRealTime = (event) => {
-    const { name, value } = event.target;
+  const handleChangeInRealTime = (e) => {
+    const { name, value } = e.target;
     setValues({ ...values, [name]: value });
-    setIsValid(event.target.closest('form').checkValidity());
-    setErrors({ ...errors, [name]: event.target.validationMessage });
+    setIsValid(e.target.closest('form').checkValidity());
+    setErrors({ ...errors, [name]: e.target.validationMessage });
   };
 
   const resetForm = useCallback(() => {
@@ -66,9 +61,7 @@ export const useFormValidation = () => {
     values,
     errors,
     isValid,
-    isChecked,
     setValues,
-    setIsChecked,
     setIsValid,
     handleChange,
     setErrors,
