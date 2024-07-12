@@ -5,7 +5,6 @@ import styles from './Slider.module.scss';
 import sliderImg from '../../images/top_slider.jpg';
 import SliderCardTop from '../SliderCardTop/SliderCardTop';
 import { api } from '../../utils/api';
-import { mockSliderDataTop } from '../../utils/consts/mockData';
 
 const Slider = () => {
   const [sliders, setSliders] = useState([]);
@@ -15,11 +14,7 @@ const Slider = () => {
 
   const fetchSliders = async () => {
     const data = await api.getMainCarouselSliders();
-    if (data.results.length) {
-      setSliders(data.results);
-    } else {
-      setSliders(mockSliderDataTop);
-    }
+    setSliders(data.results);
   };
 
   useEffect(() => {
@@ -45,7 +40,7 @@ const Slider = () => {
   return (
     <section className={styles.slider}>
       <ul className={styles.slider__top}>
-        {sliders.map((slide) => {
+        {sliders.map((slide, index) => {
           let position = 'next';
           if (slide.order === sliderIndex) {
             position = 'active';

@@ -5,20 +5,18 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  background-color: #CCDAC6;
-  border-radius: 20px;
 
   &:before {
     content: "";
     position: absolute;
-    top: 8px;
-    left: -16px;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     border-radius: 20px;
-    border: 1px solid black;
+    background-color: #000;
     opacity: .7;
-    z-index: global.$layer-under-content;
+    z-index: 0;
   }
 
   img {
@@ -29,27 +27,19 @@
 
   .wrapper {
     position: absolute;
-    top: 78px;
-    right: 70px;
+    top: 100px;
+    left: 110px;
     color: #fff;
 
     .title {
       max-width: 660px;
       width: 100%;
-      margin-bottom: 32px;
+      margin-bottom: 16px;
       font-family: 'Raleway', sans-serif;
       font-style: normal;
       font-weight: 700;
-      font-size: 56px;
-      line-height: 110%;
-      color: black;
-    }
-
-    .span {
-      font-family: 'Lora', sans-serif;
-      font-style: italic;
-      font-size: 58px;
-      line-height: 110%;
+      font-size: 32px;
+      line-height: 135%;
     }
 
     .paragraph {
@@ -58,10 +48,9 @@
       font-family: 'Raleway', sans-serif;
       font-style: normal;
       font-weight: 400;
-      font-size: 20px;
+      font-size: 17px;
       line-height: 135%;
-      color: black;
-      margin-bottom: 63px;
+      opacity: .8;
     }
   }
 
