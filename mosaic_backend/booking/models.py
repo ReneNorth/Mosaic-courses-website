@@ -26,7 +26,7 @@ class Booking(models.Model):
         verbose_name_plural = 'Bookings by registered users'
 
 
-class ReservationAdmin(models.Model):
+class GuestReservation(models.Model):
     guest_name = models.CharField(max_length=30)
     guest_phone = models.CharField(max_length=15)
     attending = models.ForeignKey(
