@@ -23,7 +23,7 @@ export const AllCourses = () => {
 
   const [sortSelectFieldPlaceholder, setSortSelectFieldPlaceholder] = useState('Сортировка');
 
-  const [activeSortingSelect, setActiveSortingSelect] = useState('');
+  const [activeSortingSelect, setActiveSortingSelect] = useState('recommended');
   const [activeFilterSelect, setActiveFilterSelect] = useState([]);
 
   const [resetFilterSelect, setResetFilterSelect] = useState('reset');

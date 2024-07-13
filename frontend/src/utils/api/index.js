@@ -261,7 +261,6 @@ class Api {
       const sorting = [
         { name: 'Ближайшие', slug: 'date' },
         { name: 'По цене', slug: 'price' },
-        { name: 'По умолчанию', slug: '' },
       ];
       const result = data;
       result.ORDER = [...sorting, ...result.ORDER];
