@@ -9,9 +9,11 @@ export const ListOfCourses = () => {
         <h3 className={cls.notFoundText}>
           Страница не найдена или её не существует
         </h3>
-        <span className={cls.instruction}>
-          Изучи наши курсы или загляни на главную
-        </span>
+        <Link to={ENDPOINTS.courses}>
+          <h3 className={cls.instruction}>
+            Посмотри, какие мастерклассы мы проводим
+          </h3>
+        </Link>
         <Link to={ENDPOINTS.main}>
           <div className={cls.buttonContainer}>
             <button className={cls.btn} type="button">
