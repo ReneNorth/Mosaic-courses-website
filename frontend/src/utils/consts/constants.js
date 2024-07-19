@@ -7,7 +7,7 @@ export const ENDPOINTS = {
   course: '/course',
   blog: '/blog',
   courses: '/courses',
-  certificetes: '/certificates',
+  certificates: '/certificates',
   gallery: '/gallery',
   about: '/about',
   cart: '/cart',
