@@ -19,6 +19,7 @@ export const ButtonCounter = ({
       Отправить заново
       { counter !== 0 && (
         <>
+          {' '}
           00:
           {counter < 10 ? `0${counter}` : counter}
         </>
