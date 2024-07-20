@@ -228,9 +228,9 @@ export function RegisterPage() {
                 <>
                   <p className={classNames(cls.text, {}, [cls.textSendData])}>
                     Мы отправили ссылку на указанную почту
+                    {' '}
                     {values.email}
-                    .Перейдите по ссылке из письма для подтверждения своего
-                    аккаунта.
+                    . Перейдите по ссылке из письма для подтверждения своего аккаунта.
                   </p>
                   <div className={cls.errorButtonWrapper}>
                     <Button
