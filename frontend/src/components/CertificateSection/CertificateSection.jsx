@@ -72,9 +72,9 @@ export const CertificateSection = forwardRef((props, ref) => {
               />
             </div>
             {errors.number ? (
-              <span className={cls.margin}>Введите число</span>
+              <span className={cls.margin}>Введите сумму</span>
             ) : (
-              <p className={cls.margin}>Минимальная сумма 1500р</p>
+              <p className={cls.margin}>Минимальная сумма - 2000 тенге</p>
             )}
             <div className={cls.btnWrapper}>
               <Button
