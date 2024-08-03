@@ -1,4 +1,4 @@
-@use "../../utils/variables/global.scss";
+@use '../../utils/variables/global.scss';
 
 .section {
   max-width: 1280px;
@@ -52,7 +52,14 @@
   align-items: center;
   opacity: 1;
   visibility: visible;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
+}
+
+.cardSkeletonList {
+  display: flex;
+  flex-direction: column;
+  gap: 78px;
+  align-items: center;
 }
 
 .notFoundWrapper {
@@ -102,7 +109,6 @@
 }
 
 @media screen and (max-width: global.$breakpoint-small-laptop) {
-
   .list {
     gap: 35px;
   }
@@ -123,6 +129,12 @@
   }
 }
 
+@media screen and (max-width: global.$breakpoint-card-curses) {
+  .cardSkeletonList {
+    gap: 35px;
+  }
+}
+
 @media screen and (max-width: global.$breakpoint-pre-mobile) {
   .list {
     margin-top: 28px;
@@ -130,6 +142,10 @@
     align-items: center;
   }
 
+  .cardSkeletonList {
+    padding-top: 30px;
+    gap: 20px;
+  }
 }
 
 @media screen and (max-width: global.$breakpoint-mobile) {
