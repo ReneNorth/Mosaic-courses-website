@@ -78,19 +78,28 @@ const CalendarPopup = () => {
             <IconInfo
               iconPath={walletIconPath}
               alt="Иконка кошелёк"
-              text={`${selectedLesson.price} ${selectedLesson.currency}`}
+              text={
+                selectedLesson.price && selectedLesson.currency
+                  ? `${selectedLesson?.price} ${selectedLesson?.currency}` : ''
+              }
               needQuestion
             />
             <IconInfo
               iconPath={timeIconPath}
               alt="Иконка часы"
-              text={calculateLessonDuration(selectedLesson.time_start, selectedLesson.time_end)}
+              text={
+                selectedLesson.time_start && selectedLesson.time_end
+                  ? calculateLessonDuration(selectedLesson?.time_start, selectedLesson?.time_end) : ''
+              }
               needQuestion={false}
             />
             <IconInfo
               iconPath={teacherIconPath}
               alt="Иконка шапка"
-              text={`${selectedLesson.teacher_first_name} ${selectedLesson.teacher_last_name}`}
+              text={
+                selectedLesson.teacher_first_name && selectedLesson.teacher_last_name
+                  ? `${selectedLesson?.teacher_first_name} ${selectedLesson.teacher_last_name}` : ''
+              }
               needQuestion={false}
             />
           </div>

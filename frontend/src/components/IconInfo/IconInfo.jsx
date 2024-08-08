@@ -11,12 +11,12 @@ const IconInfo = ({
   function handleHintVisibility() {
     setIsHintVisible(!isHintVisible);
   }
-
+  console.log(text);
   return (
     <>
       <div className={iconInfoStyles.container}>
         <img className={iconInfoStyles.icon} src={iconPath} alt={alt} />
-        <p className={iconInfoStyles.iconLabel}>{text}</p>
+        <p className={iconInfoStyles.iconLabel}>{`${text || ''}`}</p>
         {needQuestion
           && (
             <button

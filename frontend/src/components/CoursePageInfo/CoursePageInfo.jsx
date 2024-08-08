@@ -10,7 +10,7 @@ export const CoursePageInfo = () => {
         <div className={cls.headerTitle}>
           <h1 className={cls.headerName}>
             Мастер-класс по римской мозаике,
-            <p className={cls.courseName}>{` ${currentCourse?.title}`}</p>
+            <p className={cls.courseName}>{` ${currentCourse.title ? currentCourse.title : ''}`}</p>
           </h1>
           <div className={cls.text}>
             <p className={cls.paragraph}>{currentCourse?.short_description}</p>
