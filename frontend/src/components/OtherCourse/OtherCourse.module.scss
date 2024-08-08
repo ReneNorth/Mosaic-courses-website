@@ -87,7 +87,7 @@
   margin-top: 60px;
 }
 
-@media screen and (max-width: #{global.$breakpoint-tablet-for-course-page}) {
+@media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
   .container {
     width: 220px;
   }
@@ -136,7 +136,7 @@
   }
 }
 
-@media screen and (max-width: #{global.$breakpoint-tablet}) {
+@media screen and (max-width: global.$breakpoint-tablet) {
   .container {
     width: 320px;
   }

@@ -4,6 +4,8 @@ import TimeAndPrice from '../TimeAndPrice/TimeAndPrice';
 import calendarStyles from './Calendar.module.scss';
 import CalendarDay from '../CalendarDay/CalendarDay';
 import { setSelectedLesson } from '../../services/slices/coursesSlice.js';
+import { generateDays } from '../../helpers/generateDays.js';
+import { MONTHS } from '../../utils/consts/constants.js';
 
 const Calendar = () => {
   const dispatch = useDispatch();
@@ -47,23 +49,6 @@ const Calendar = () => {
     setActiveDays(activeDates);
   }, [currentCourse]);
 
-  const generateDays = (date) => {
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
-
-    const daysOfWeek = [7, 1, 2, 3, 4, 5, 6];
-    const firstWeekDay = daysOfWeek[firstDay.getDay()];
-
-    const previousDays = Array.from({ length: firstWeekDay - 1 }, (_, i) => new Date(year, month, -i)
-      .getDate()).reverse();
-    const currentDays = Array.from({ length: lastDay.getDate() }, (_, i) => i + 1);
-    const nextDays = Array.from({ length: 42 - previousDays.length - currentDays.length }, (_, i) => i + 1);
-
-    return { previous: previousDays, current: currentDays, next: nextDays };
-  };
-
   useEffect(() => {
     setDays(generateDays(date));
   }, [date]);
@@ -98,8 +83,7 @@ const Calendar = () => {
     dispatch(setSelectedLesson(lesson));
   };
 
-  const monthAndYear = `${['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль',
-    'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'][date.getMonth()]} ${date.getFullYear()}`;
+  const monthAndYear = `${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
 
   return (
     <div className={calendarStyles.container}>

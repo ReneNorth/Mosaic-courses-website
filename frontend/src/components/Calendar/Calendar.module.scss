@@ -5,16 +5,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  @media screen and (max-width: 1320px) {
-    height: 500px;
-  }
-
-  @media screen and (max-width: 743px) {
-    box-shadow: none;
-    width: 360px;
-    justify-self: center;
-  }
 }
 
 .title {
@@ -22,10 +12,6 @@
   font-size: 20px;
   line-height: 120%;
   margin-top: 28px;
-
-  @media screen and (max-width: 1320px) {
-    line-height: 135%;
-  }
 }
 
 .menu {
@@ -35,25 +21,12 @@
   width: 368px;
   height: 44px;
   margin-top: 20px;
-
-  @media screen and (max-width: 1320px) {
-    width: 330px;
-  }
-
-  @media screen and (max-width: 743px) {
-    width: 320px;
-  }
 }
 
 .currentDate {
   font-weight: 600;
   font-size: 20px;
   line-height: 120%;
-
-  @media screen and (max-width: 1320px) {
-    font-size: 16px;
-    line-height: 135%;
-  }
 }
 
 .buttonContainer {
@@ -103,17 +76,6 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
   }
-
-  @media screen and (max-width: 1320px) {
-    width: 333px;
-    padding: 0 16px;
-    gap: 28px;
-    grid-template-columns: 21px 18px 19px 18px 19px 19px 19px;
-
-    li {
-      line-height: 135%;
-    }
-  }
 }
 
 .days {
@@ -125,15 +87,6 @@
   column-gap: 11px;
   row-gap: 4px;
   box-sizing: border-box;
-
-  @media screen and (max-width: 1320px) {
-    width: 330px;
-    column-gap: 3px;
-  }
-
-  @media screen and (max-width: 743px) {
-    padding: 0 2px;
-  }
 }
 
 .time {
@@ -146,16 +99,6 @@
   display: grid;
   grid-template-columns: 54px 1fr;
   column-gap: 18px;
-
-  @media screen and (max-width: 1320px) {
-    padding: 0 20px;
-    margin-bottom: 0;
-    column-gap: 52px;
-  }
-
-  @media screen and (max-width: 743px) {
-    column-gap: 26px;
-  }
 }
 
 .timeTitle {
@@ -170,12 +113,73 @@
   display: grid;
   grid-template-columns: repeat(4, 68px);
   gap: 8px;
+}
 
-  @media screen and (max-width: 1320px) {
-    grid-template-columns: repeat(4, 57px);
+@media screen and (max-width: 1320px) {
+  .container {
+    height: 500px;
   }
 
-  @media screen and (max-width: 743px) {
+  .title {
+    line-height: 135%;
+  }
+
+  .menu {
+    width: 330px;
+  }
+
+  .currentDate {
+    font-size: 16px;
+    line-height: 135%;
+  }
+
+  .weeks {
+    width: 333px;
+    padding: 0 16px;
+    gap: 28px;
+    grid-template-columns: 21px 18px 19px 18px 19px 19px 19px;
+  
+    li {
+      line-height: 135%;
+    }
+  }
+
+  .days {
+    width: 330px;
+    column-gap: 3px;
+  }
+
+  .time {
+    padding: 0 20px;
+    margin-bottom: 0;
+    column-gap: 52px;
+  }
+
+  .timeAndPriceContainer {
+    grid-template-columns: repeat(4, 57px);
+  }
+}
+
+@media screen and (max-width: 743px) {
+  .container {
+    box-shadow: none;
+    width: 360px;
+    justify-self: center;
+  }
+
+  .menu {
+    width: 320px;
+  }
+
+  .days {
+    padding: 0 2px;
+  }
+
+  .time {
+    column-gap: 26px;
+  }
+
+  .timeAndPriceContainer {
     gap: 4px;
   }
 }
