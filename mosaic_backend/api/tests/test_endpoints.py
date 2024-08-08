@@ -33,6 +33,7 @@ class FeedbackTest(TestCase):
             "/api/v1/feedback/",
             {
                 "phone_num": "+77770202936",
+                'comment': 'test comment',
                 "name": "mynameis",
                 "contact_consent": "TRUE",
             },
