@@ -18,11 +18,39 @@ export const CoursePageFinal = () => {
   const isRegistrationLessonPopupOpen = useSelector((store) => store.popup.isRegistrationLessonPopupOpen);
   const isApplicationAcceptedPopupOpen = useSelector((store) => store.popup.isApplicationAcceptedPopupOpen);
 
+  function getScrollbarWidth() {
+    // Создаем временный элемент
+    const outer = document.createElement('div');
+    outer.style.visibility = 'hidden';
+    outer.style.overflow = 'scroll'; // Принудительно включаем скроллбар
+    outer.style.position = 'absolute';
+    outer.style.top = '-9999px';
+    outer.style.width = '100px';
+    outer.style.height = '100px';
+    document.body.appendChild(outer);
+
+    // Измеряем ширину внутреннего содержимого
+    const innerWidth = document.createElement('div');
+    innerWidth.style.width = '100%';
+    outer.appendChild(innerWidth);
+
+    // Разница между шириной контейнера и шириной внутреннего содержимого
+    const scrollbarWidth = outer.offsetWidth - innerWidth.offsetWidth;
+
+    // Удаляем временный элемент
+    document.body.removeChild(outer);
+
+    return scrollbarWidth;
+  }
+
   useEffect(() => {
     if (isCalendarPopupOpen || isRegistrationLessonPopupOpen || isApplicationAcceptedPopupOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflowY = 'hidden';
+      document.body.style.width = `calc(100% - ${getScrollbarWidth()}px)`;
+      document.body.style.margin = 0;
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflowY = '';
+      document.body.style.width = '100%';
     }
   }, [isCalendarPopupOpen, isRegistrationLessonPopupOpen, isApplicationAcceptedPopupOpen]);
 

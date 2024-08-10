@@ -11,7 +11,7 @@ const IconInfo = ({
   function handleHintVisibility() {
     setIsHintVisible(!isHintVisible);
   }
-  console.log(text);
+
   return (
     <>
       <div className={iconInfoStyles.container}>
