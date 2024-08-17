@@ -83,7 +83,7 @@ export const SelectField = ({
       <InputLabel
         sx={{
           '&.MuiInputLabel-root': {
-            fontFamily: 'var(--font-primary)',
+            fontFamily: 'var(--font-primary), sans-serif',
             fontWeight: '500',
             fontSize: '17px',
             lineHeight: '135%',
@@ -97,6 +97,7 @@ export const SelectField = ({
       </InputLabel>
       <Select
         sx={{
+          fontFamily: 'var(--font-primary), sans-serif',
           backgroundColor: 'var(--color-background-color)',
           borderRadius: '14px',
           color: 'var(--text-color)',
@@ -143,7 +144,12 @@ export const SelectField = ({
         {values.map((element) => (
           <MenuItem
             sx={{
+              '& .MuiTypography-root': {
+                fontFamily: 'var(--font-primary), sans-serif',
+              },
+              fontFamily: 'var(--font-primary), sans-serif',
               '&.Mui-selected': {
+                fontFamily: 'var(--font-primary), sans-serif',
                 backgroundColor: 'var(--color-background-color)',
                 '&:hover': {
                   backgroundColor: 'var(--color-green-grey-light)',
@@ -168,7 +174,9 @@ export const SelectField = ({
               }}
               checked={selectValue.indexOf(element.name) > -1}
             />
-            <ListItemText primary={element.name} />
+            <ListItemText
+              primary={element.name}
+            />
           </MenuItem>
         ))}
       </Select>

@@ -43,14 +43,50 @@ class PostsFilter(django_filters.rest_framework.FilterSet):
 
 
 class CustomOrderingFilter(django_filters.OrderingFilter):
+    """
+This module defines custom filters for the MasterclassType model,
+including a custom ordering filter.
+
+Classes:
+- `CustomOrderingFilter`: Extends `django_filters.OrderingFilter` to support
+custom ordering logic.
+- `MasterclassTypeFilter`: Defines filters for the `MasterclassType` model.
+
+## CustomOrderingFilter
+
+This filter allows for custom sorting of queryset based on predefined fields.
+It supports sorting by 'date', 'price', and a custom 'recommended' category.
+
+### Initialization Parameters:
+- `fields`: A dictionary mapping internal field names to the parameter names
+exposed in the API.
+- `field_labels`: Optional.
+A dictionary providing human-readable labels for the fields.
+
+### Methods:
+- `filter`: Overrides the base class method to apply custom ordering logic
+based on the value of the `ordering` parameter.
+
+## MasterclassTypeFilter
+
+A `FilterSet` for the `MasterclassType` model that allows filtering
+by categories and custom ordering.
+
+### Fields:
+- `category`: Filters the queryset based on the slug of the categories.
+- `ordering`: Applies custom ordering to the queryset.
+Utilizes the `CustomOrderingFilter` class.
+
+"""
+
     def __init__(self, *args, **kwargs):
-        fields = kwargs.pop("fields", {})
+        fields = kwargs.pop('fields', {})
         fields = self.normalize_fields(fields)
-        field_labels = kwargs.pop("field_labels", {})
+        field_labels = kwargs.pop('field_labels', {})
         self.param_map = {v: k for k, v in fields.items()}
 
-        if "choices" not in kwargs:
-            kwargs["choices"] = self.build_choices(fields, field_labels)
+        if 'choices' not in kwargs:
+            kwargs['choices'] = self.build_choices(fields, field_labels)
         super().__init__(*args, **kwargs)
 
     def filter(self, qs, value):

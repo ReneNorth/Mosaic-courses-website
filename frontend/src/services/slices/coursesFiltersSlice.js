@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../utils/api';
 
 const initialState = {
-  sorting: [{ name: 'По умолчанию', slug: '' }],
-  activeSortingStatus: '',
+  sorting: [{ name: 'Рекомендуемые', slug: 'recommended' }],
+  activeSortingStatus: 'recommended',
   filters: {
     EXP: [
       { name: 'По умолчанию', slug: '' },
