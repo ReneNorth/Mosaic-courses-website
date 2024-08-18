@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { BlogPage } from '../../pages/BlogPage/BlogPage';
 import { MaingPage } from '../../pages/MainPage/MainPage';
 import { CoursePage } from '../../pages/CoursePage/CoursePage';
+import { GalleryPage } from '../../pages/GalleryPage/GalleryPage';
 import { NotFound } from '../../pages/NotFound/NotFound';
 import { AllCourses } from '../../pages/AllCourses/AllCourses';
 import { Footer } from '../Footer/Footer';
@@ -35,6 +36,7 @@ function App() {
           <Routes>
             <Route path={ENDPOINTS.main} element={<MaingPage />} />
             <Route path={`${ENDPOINTS.course}/:slug`} element={<CoursePage />} />
+            <Route path={ENDPOINTS.gallery} element={<GalleryPage />} />
             <Route path={ENDPOINTS.blog} element={<BlogPage />} />
             <Route path={`${ENDPOINTS.blog}/:slug`} element={<PostPage />} />
             <Route path={ENDPOINTS.courses} element={<AllCourses />} />

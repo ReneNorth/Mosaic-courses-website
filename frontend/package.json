@@ -20,6 +20,7 @@
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.7",
     "react-phone-number-input": "^3.3.7",
+    "react-photo-album": "^3.0.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
@@ -29,11 +30,13 @@
     "remark-gfm": "^3.0.1",
     "swiper": "^9.1.0",
     "web-vitals": "^2.1.4",
+    "yet-another-react-lightbox": "^3.21.1",
     "ymaps": "^0.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "dev": "cross-env BROWSER=none react-scripts start",
+    "devmac": "cross-env BROWSER=none PORT=3000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "predeploy": "PUBLIC_URL=https://renenorth.github.io/Mosaic-courses-website && npm run build-storybook",
