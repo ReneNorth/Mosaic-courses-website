@@ -126,6 +126,7 @@ class Api {
   }
 
   async postSubscriptionEmail(email) {
+    const csrftoken = getCookie('csrftoken');
     const data = {
       email,
     };
@@ -133,6 +134,7 @@ class Api {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
       },
       body: JSON.stringify(data),
     });
@@ -140,10 +142,12 @@ class Api {
   }
 
   async postGiftCertificate(data) {
+    const csrftoken = getCookie('csrftoken');
     const res = await fetch(`${this._url}/api/v1/certificate/`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
       },
       body: JSON.stringify(data),
     });
@@ -151,10 +155,12 @@ class Api {
   }
 
   async postCallbackNumber(data) {
+    const csrftoken = getCookie('csrftoken');
     const res = await fetch(`${this._url}/api/v1/feedback/`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
       },
       body: JSON.stringify(data),
     });

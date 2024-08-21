@@ -1,7 +1,9 @@
+/* eslint-disable no-nested-ternary */
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { CourseCard } from '../CourseCard/CourseCard.jsx';
+import { CourseCardSkeleton } from '../CourseCardSkeleton/CourseCardSkeleton.jsx';
 import cls from './MainCardsList.module.scss';
 import { getAllCourses, setCurrentCourse, setNavigating } from '../../services/slices/coursesSlice.js';
 import imageNotFound from '../../images/dali.png';
@@ -11,7 +13,10 @@ import { useResize } from '../../hooks/useResize.js';
 import { checkID } from '../../helpers/checkId.js';
 
 export const MainCardsList = ({
-  pageSize, infiniteScroll, showPagination,
+  setIsOpen,
+  pageSize,
+  infiniteScroll,
+  showPagination,
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -28,6 +33,7 @@ export const MainCardsList = ({
     dispatch(setCurrentCourse(currentCourse));
     dispatch(setNavigating(true));
   };
+
   const {
     allCourses,
     totalCount,
@@ -50,9 +56,14 @@ export const MainCardsList = ({
         filterString += `&category=${el}`;
       });
     }
-    dispatch(getAllCourses({
-      limit: pageSize, offset: currentPageOffset, order: activeSortingStatus, filter: filterString,
-    }));
+    dispatch(
+      getAllCourses({
+        limit: pageSize,
+        offset: currentPageOffset,
+        order: activeSortingStatus,
+        filter: filterString,
+      }),
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, currentPageOffset, activeSortingStatus, activeFilters]);
 
@@ -69,7 +80,10 @@ export const MainCardsList = ({
   }, [activeSortingStatus, activeFilters]);
 
   useEffect(() => {
-    setCoursesForMobile([...coursesForMobile, ...checkID(coursesForMobile, allCourses)]);
+    setCoursesForMobile([
+      ...coursesForMobile,
+      ...checkID(coursesForMobile, allCourses),
+    ]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allCourses]);
 
@@ -81,7 +95,7 @@ export const MainCardsList = ({
         behavior: 'smooth',
       });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
   useEffect(() => {
@@ -90,7 +104,10 @@ export const MainCardsList = ({
 
   const coursesToRender = allCourses.map((course) => {
     return (
-      <li className={`${cls.item} ${hideCards ? cls.hideCards : ''}`} key={course.id}>
+      <li
+        className={`${cls.item} ${hideCards ? cls.hideCards : ''}`}
+        key={course.id}
+      >
         <CourseCard
           item={course}
           handleEnroll={handleEnroll}
@@ -124,22 +141,42 @@ export const MainCardsList = ({
   }
 
   useEffect(() => {
-    if ((width <= 670) && (position > 40) && (totalCount >= currentPageOffset) && infiniteScroll) {
+    if (
+      width <= 670
+      && position > 40
+      && totalCount >= currentPageOffset
+      && infiniteScroll
+    ) {
       setCurrentPageOffset(currentPageOffset + pageSize);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [position]);
+
+  const cardsSkeleton = () => {
+    return (
+      <ul className={cls.cardSkeletonList}>
+        <CourseCardSkeleton />
+        <CourseCardSkeleton />
+        <CourseCardSkeleton />
+        <CourseCardSkeleton />
+      </ul>
+    );
+  };
+
   window.addEventListener('scroll', useThrottle(handleScroll, 1000));
   return (
     <section className={cls.section}>
-      {(coursesToRender.length || mobileCoursesToRender.length) ? (
+      {sending ? (
+        cardsSkeleton()
+      ) : coursesToRender.length || mobileCoursesToRender.length ? (
         <>
           <ul className={cls.list}>
-            {(infiniteScroll && width <= 670) ? mobileCoursesToRender : coursesToRender}
+            {infiniteScroll && width <= 670
+              ? mobileCoursesToRender
+              : coursesToRender}
           </ul>
           <div className={cls.paginationWrapper}>
-            {showPagination
-            && (
+            {showPagination && (
               <Pagination
                 currentPage={currentPage}
                 totalCount={totalCount}
@@ -151,14 +188,17 @@ export const MainCardsList = ({
             )}
           </div>
         </>
-      )
-        : (
-          <div className={cls.notFoundWrapper}>
-            <img className={cls.notFoundImage} src={imageNotFound} alt="" />
-            <h3 className={cls.notFoundTitle}>К сожалению, у нас нет курсов по такому запросу</h3>
-            <p className={cls.notFoundText}>Сбросьте фильтры, и введите другие параметры выбора.</p>
-          </div>
-        )}
+      ) : (
+        <div className={cls.notFoundWrapper}>
+          <img className={cls.notFoundImage} src={imageNotFound} alt="" />
+          <h3 className={cls.notFoundTitle}>
+            К сожалению, у нас нет курсов по такому запросу
+          </h3>
+          <p className={cls.notFoundText}>
+            Сбросьте фильтры, и введите другие параметры выбора.
+          </p>
+        </div>
+      )}
     </section>
   );
 };
