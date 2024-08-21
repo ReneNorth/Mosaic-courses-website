@@ -1,108 +1,125 @@
 @use "../../utils/variables/global.scss";
 
 .container {
-  margin-top: 104px;
+  margin-top: 97px;
   max-width: 843px;
+
+  .reactMarkdown {
+    display: flex;
+    flex-direction: column;
+    color: #000;
+    font-family: var(--font-primary);
+
+    h3 {
+      font-family: var(--font-primary);
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      margin-left: 0px;
+
+      @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+        font-size: 20px;
+        margin-bottom: 22px;
+      }
+
+      @media screen and (max-width: global.$breakpoint-tablet) {
+        &.lastTitle {
+          font-size: 26px;
+        }
+      }
+    }
+
+    ul {
+      padding-left: 24px;
+      padding-bottom: 86px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      position: relative;
+
+      li {
+        font-weight: 400;
+        font-size: 17px;
+        line-height: 135%;
+
+        @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+          font-size: 16px;
+        }
+
+        &::before {
+          content: "•";
+          position: absolute;
+          left: 9px;
+          font-size: 19px;
+          color: black;
+        }
+      }
+
+      @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+        gap: 0;
+        padding-bottom: 28px;
+      }
+    }
+
+    ul:last-of-type  {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+
+      li {
+        font-weight: 400;
+        font-size: 17px;
+        line-height: 135%;
+      }
+
+      @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+        gap: 2px;
+      }
+    }
+
+    p {
+      margin-bottom: 276px;
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 135%;
+
+      @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+        margin-bottom: 160px;
+      }
+
+      @media screen and (max-width: global.$breakpoint-tablet) {
+        margin-bottom: 78px;
+      }
+    }
+  }
 
   @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
     margin-top: 28px;
-    width: 93vw;
+    width: 51vw;
   }
 
   @media screen and (max-width: global.$breakpoint-tablet) {
     margin-top: 515px;
-  }
-}
-
-.containerInfo {
-  display: flex;
-  flex-direction: column;
-  font-family: var(--font-primary);
-
-  @media screen and (max-width: global.$breakpoint-tablet) {
-    width: 89%;
-
-    &:first-of-type {
-      width: 89%;
-    }
-  }
-
-  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
-    &:first-of-type {
-      width: 51vw;
-    }
+    width: 320px;
   }
 }
 
 .title {
   font-family: var(--font-primary);
-  font-size: 32px;
   font-weight: 700;
+  font-size: 32px;
+  line-height: 135%;
   margin-bottom: 16px;
-  margin-left: 0px;
 
   @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
     font-size: 20px;
-    margin-bottom: 22px;
+    margin-bottom: 32px;
   }
 
   @media screen and (max-width: global.$breakpoint-tablet) {
     &.lastTitle {
       font-size: 26px;
+      margin-bottom: 39px;
     }
-  }
-}
-
-.listFirst {
-  padding-left: 24px;
-  padding-bottom: 86px;
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-  position: relative;
-
-  li {
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 135%;
-
-    @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
-      font-size: 16px;
-    }
-
-    &::before {
-      content: "•";
-      position: absolute;
-      left: 9px;
-      font-size: 19px;
-      color: black;
-    }
-  }
-
-  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
-    gap: 0;
-    padding-bottom: 28px;
-  }
-}
-
-.listSecond {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-  margin-bottom: 248px;
-
-  li {
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 135%;
-  }
-
-  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
-    gap: 2px;
-    margin-bottom: 160px;
-  }
-
-  @media screen and (max-width: global.$breakpoint-tablet) {
-    margin-bottom: 78px;
   }
 }

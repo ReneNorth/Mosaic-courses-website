@@ -17,11 +17,11 @@ const OtherCourse = ({
           {title}
         </h4>
         <div className={otherCourseStyles.wrapperAtribut}>
-          <div className={otherCourseStyles.priceContainer}>
+          <div className={otherCourseStyles.iconContainer}>
             <div className={otherCourseStyles.timeIcon} />
             <p>{duration}</p>
           </div>
-          <div className={otherCourseStyles.priceContainer}>
+          <div className={otherCourseStyles.iconContainer}>
             <div className={otherCourseStyles.rubleIcon} />
             <p>{price}</p>
           </div>

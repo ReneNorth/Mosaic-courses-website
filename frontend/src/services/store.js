@@ -3,6 +3,7 @@ import { postSliceReducer } from './slices/postsSlice';
 import { courseSliceReducer } from './slices/coursesSlice';
 import { reviewsSliceReducer } from './slices/reviewsSlice';
 import { authSliceReducer } from './slices/authSlice';
+import { popupSliceReducer } from './slices/popupSlice';
 import { coursesFiltersSliceReducer } from './slices/coursesFiltersSlice';
 
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     courses: courseSliceReducer,
     reviews: reviewsSliceReducer,
     auth: authSliceReducer,
+    popup: popupSliceReducer,
     coursesFilters: coursesFiltersSliceReducer,
   },
 });

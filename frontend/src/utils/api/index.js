@@ -73,6 +73,11 @@ class Api {
     return this.constructor._checkResponse(res);
   }
 
+  async getAllcourses() {
+    const res = await fetch(`${this._url}/api/v1/masterclass_types`);
+    return this.constructor._checkResponse(res);
+  }
+
   async getCourses(dataReq) {
     const res = await fetch(
       // eslint-disable-next-line max-len
@@ -90,9 +95,34 @@ class Api {
     return data;
   }
 
-  async getCourseWithSlug(slug) {
-    const res = await fetch(`${this._url}/api/v1/masterclass_types/${slug}`);
+  async getCourseWithId(id) {
+    const res = await fetch(`${this._url}/api/v1/masterclass_types/${id}/`);
     return this.constructor._checkResponse(res);
+  }
+
+  async bookMasterclass(masterclassId) {
+    const res = await fetch(`${this._url}/api/v1/booking/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
+      body: JSON.stringify({
+        masterclass: masterclassId,
+      }),
+    });
+    return this.constructor._checkResponse(res);
+  }
+
+  async bookMasterclassForUnauthorizedUser(data) {
+    const res = await fetch(`${this._url}/api/v1/feedback/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
+      body: JSON.stringify(data),
+    });
   }
 
   async postSubscriptionEmail(email) {

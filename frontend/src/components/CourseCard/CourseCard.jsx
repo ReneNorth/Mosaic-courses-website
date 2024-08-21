@@ -65,7 +65,7 @@ export const CourseCard = ({
             <div className={cls.buttonWrapper}>
               <Button
                 className="fill"
-                onClick={handleEnroll}
+                onClick={() => handleEnroll(item)}
                 fill
               >
                 Записаться

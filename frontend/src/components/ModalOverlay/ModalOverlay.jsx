@@ -1,9 +1,12 @@
-import cls from './ModalOverlay.module.scss';
+import modalOverlayStyles from './ModalOverlay.module.scss';
 
-// export const ModalOverlay = ({ onClose }) => {
-//   return <div className={cls.overlay} onClick={() => onClose()} />;
-// };
-
-export const ModalOverlay = () => {
-  return <div className={cls.overlay} />;
+export const ModalOverlay = ({ children }) => {
+  return (
+    <div
+      className={modalOverlayStyles.overlay}
+      id="overlay"
+    >
+      {children}
+    </div>
+  );
 };

@@ -29,12 +29,14 @@ class Booking(models.Model):
 class GuestReservation(models.Model):
     guest_name = models.CharField(max_length=30)
     guest_phone = models.CharField(max_length=15)
+    guest_consent = models.BooleanField()
     attending = models.ForeignKey(
         Masterclass,
         on_delete=models.CASCADE,
         related_name='admin_reservations',
         verbose_name='course/masterclass',
-        help_text='the course this guests is going to attend')
+        help_text='the course this guests is going to attend',
+    )
 
     class Meta:
         verbose_name = 'A reservation made by an admin'

@@ -1,0 +1,185 @@
+.container {
+  background-color: white;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 120%;
+  margin-top: 28px;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 368px;
+  height: 44px;
+  margin-top: 20px;
+}
+
+.currentDate {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+}
+
+.buttonContainer {
+  width: 51px;
+  display: flex;
+  justify-content: space-between;
+
+  .button {
+    width: 10px;
+    height: 18px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .forwardButton:hover,
+  .backwardButton:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  .backwardButton {
+    @extend .button;
+    background-image: url('../../images/backward-button.svg');
+  }
+
+  .forwardButton {
+    @extend .button;
+    background-image: url('../../images/forward-button.svg');
+  }
+}
+
+.weeks {
+  margin-top: 4px;
+  padding: 0 12px;
+  width: 366px;
+  display: grid;
+  grid-template-columns: 21px 19px 19px 19px 20px 20px 20px;
+  gap: 36px;
+  box-sizing: border-box;
+
+  li {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+}
+
+.days {
+  padding: 0 4px;
+  width: 370px;
+  display: grid;
+  grid-template-columns: repeat(7, 44px);
+  grid-template-rows: repeat(5, 44px);
+  column-gap: 11px;
+  row-gap: 4px;
+  box-sizing: border-box;
+}
+
+.time {
+  width: 100%;
+  height: 44px;
+  padding: 0 71px;
+  margin-top: 20px;
+  margin-bottom: 28px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  column-gap: 18px;
+}
+
+.timeTitle {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 135%;
+  justify-self: center;
+  align-self: center;
+}
+
+.timeAndPriceContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 68px);
+  gap: 8px;
+}
+
+@media screen and (max-width: 1320px) {
+  .container {
+    height: 500px;
+  }
+
+  .title {
+    line-height: 135%;
+  }
+
+  .menu {
+    width: 330px;
+  }
+
+  .currentDate {
+    font-size: 16px;
+    line-height: 135%;
+  }
+
+  .weeks {
+    width: 333px;
+    padding: 0 16px;
+    gap: 28px;
+    grid-template-columns: 21px 18px 19px 18px 19px 19px 19px;
+  
+    li {
+      line-height: 135%;
+    }
+  }
+
+  .days {
+    width: 330px;
+    column-gap: 3px;
+  }
+
+  .time {
+    padding: 0 20px;
+    margin-bottom: 0;
+    column-gap: 52px;
+  }
+
+  .timeAndPriceContainer {
+    grid-template-columns: repeat(4, 57px);
+  }
+}
+
+@media screen and (max-width: 743px) {
+  .container {
+    box-shadow: none;
+    width: 360px;
+    justify-self: center;
+  }
+
+  .menu {
+    width: 320px;
+  }
+
+  .days {
+    padding: 0 2px;
+  }
+
+  .time {
+    column-gap: 26px;
+  }
+
+  .timeAndPriceContainer {
+    gap: 4px;
+  }
+}
