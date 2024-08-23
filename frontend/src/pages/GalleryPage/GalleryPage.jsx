@@ -1,26 +1,15 @@
-import { useState, useEffect } from 'react';
 import * as React from 'react';
-import NewSettler from '../../components/NewSettler/NewSettler.jsx';
-import { LightboxTest, GalleryTestRows, GallryTestMasonry } from '../../components/GalleryGrid/GalleryGrid.jsx';
+import cls from './GalleryPage.module.scss';
+import { MasonryWorksGallery } from '../../components/GalleryGrid/GalleryGrid.jsx';
+import { GalleryPromo } from '../../components/GalleryPromo/GalleryPromo';
 
 export const GalleryPage = () => {
   return (
     <>
-      {/* <NewSettler setIsOpen={setIsOpen} /> */}
-      <div>
-        testss
+      <GalleryPromo />
+      <div className={cls.galleryWrapper}>
+        <MasonryWorksGallery />
       </div>
-      <LightboxTest />
-      <div>
-        <h1>Gallery Page Rows</h1>
-        <GalleryTestRows />
-      </div>
-      <div>
-        <h1>Gallery Page Mansory</h1>
-        <GallryTestMasonry />
-      </div>
-x
-      {/* <RemainedQuestion isOpen={isOpen} setIsOpen={setIsOpen} /> */}
     </>
   );
 };
