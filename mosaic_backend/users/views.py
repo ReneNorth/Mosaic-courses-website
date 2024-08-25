@@ -48,7 +48,6 @@ class CustomizedUserViewSet(UserViewSet):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             user = serializer.user
-            log.info(user)
             return Response(
                 EmailbyUidUserSerializer(user).data,
                 status=status.HTTP_200_OK)

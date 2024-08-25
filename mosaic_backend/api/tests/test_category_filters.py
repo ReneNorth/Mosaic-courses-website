@@ -27,7 +27,6 @@ class ListViewTest(TestCase):
     def test_list_view(self):
         request = self.factory.get('/api/v1/filters/')
         response = self.view(request)
-        log.info(response.data)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'category1')
         self.assertContains(response, 'category2')
