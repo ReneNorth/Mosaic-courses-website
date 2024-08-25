@@ -5,8 +5,8 @@ export const AllCoursesHeader = () => {
     <section className={cls.section}>
       <div className={cls.block}>
         <h1 className={cls.title}>
-          Курсы по мозаике в студии
-          <span className={cls.span}>«Под горой»</span>
+          Курсы мозаики в студии
+          <span className={cls.span}>Tessera</span>
         </h1>
       </div>
     </section>

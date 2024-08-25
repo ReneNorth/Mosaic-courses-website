@@ -18,7 +18,7 @@ export const NavBar = ({ handleClick }) => {
         </li>
         <li className={cls.item}>
           <NavLink
-            to={ENDPOINTS.certificetes}
+            to={ENDPOINTS.certificates}
             className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
             onClick={handleClick}
           >
@@ -52,7 +52,7 @@ export const NavBar = ({ handleClick }) => {
             Блог
           </NavLink>
         </li>
-        <li className={cls.item}>
+        {/* <li className={cls.item}>
           <NavLink
             to={ENDPOINTS.shop}
             className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
@@ -60,7 +60,7 @@ export const NavBar = ({ handleClick }) => {
           >
             Магазин
           </NavLink>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );
