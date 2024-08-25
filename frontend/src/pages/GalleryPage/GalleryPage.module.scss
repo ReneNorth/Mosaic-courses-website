@@ -1,0 +1,17 @@
+@use "../../utils/variables/global.scss";
+
+
+.GalleryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    align-items: start;
+  }
+
+
+.galleryWrapper {
+    padding-top: 40px;
+    width: 100%;
+    max-width: 1280px;
+}

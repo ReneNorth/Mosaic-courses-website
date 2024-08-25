@@ -5,7 +5,7 @@
   box-sizing: border-box;
   width: 400px;
   height: 580px;
-  background-color: #ccdac6;
+  background-color: var(--color-white);
   border-radius: 20px;
   position: absolute;
   top: 0;
@@ -43,11 +43,11 @@
   height: 580px;
   justify-content: center;
   text-align: center;
-  padding: 178px 77px 43px 77px;
+  padding: 178px 42.5px 43px 42.5px;
   font-family: var(--font-primary);
 
   @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
-    padding: 68px 26px 40px;
+    padding: 68px 18.5px 40px;
   }
 
   @media screen and (max-width: global.$breakpoint-tablet) {
@@ -55,7 +55,7 @@
   }
 }
 
-.title, .coursePrice, .duration, .button, .buttonOutline, .giftContainer, .giftIcon, .gift {
+.title, .coursePrice, .duration, .buttonContainer, .giftContainer, .giftIcon, .gift {
   text-align: center;
 }
 
@@ -97,41 +97,14 @@
   }
 }
 
-.button {
+.buttonContainer {
   margin-top: 40px;
-  background-color: #247251;
-  border-radius: 60px;
-  padding: 17px 40px;
-  color: var(--text-color-invert);
-  font-family: var(--font-primary);
-  font-style: normal;
-  font-weight: 400;
-  font-size: 17px;
-  line-height: 20px;
-  white-space: nowrap;
-  cursor: pointer;
+  width: 315px;
 
   @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
-    padding: 12px 45px;
-    font-size: 16px;
     margin-top: 70px;
+    width: 261px;
   }
-}
-
-.buttonOutline {
-  margin-top: 24px;
-  background-color: transparent;
-  border-radius: 60px;
-  padding: 8px 20px;
-  border: 1px solid #247251 !important;
-  color: #247251;
-  font-family: var(--font-primary);
-  font-style: normal;
-  font-weight: 400;
-  font-size: 17px;
-  white-space: nowrap;
-  line-height: 20px;
-  cursor: pointer;
 }
 
 .giftContainer {
@@ -157,4 +130,8 @@
   font-weight: 500;
   font-size: 17px;
   line-height: 135%;
+
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+    font-size: 16px;
+  }
 }

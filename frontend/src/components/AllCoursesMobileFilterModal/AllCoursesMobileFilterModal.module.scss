@@ -1,0 +1,91 @@
+@use "../../utils/variables/global.scss";
+
+.popup {
+  background: var(--color-background-color);
+  position: fixed;
+  padding: 16px 20px 20px 20px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  opacity: 0;
+  visibility: hidden;
+  transition: .5s;
+  z-index: global.$layer-of-popup;
+  pointer-events: none;
+  box-sizing: border-box;
+
+  &Open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+.closeButton {
+  all: unset;
+  cursor: pointer;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.filterTitle {
+  font-family: var(--font-primary), sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 135%;
+  color: var(--text-color);
+}
+
+.filtersWrapper {
+  padding-top: 16px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.button {
+  all: unset;
+  cursor: pointer;
+  height: 52px;
+  box-sizing: border-box;
+  font-family: var(--font-primary), sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 135%;
+
+  color: var(--text-color);
+  padding: 10px 20px 10px 24px;
+  border-bottom: 1px solid var(--color-green-accent);
+  background-color: var(--color-background-color);
+  transition: all .3s ease;
+
+  &:last-child {
+    border-bottom: unset;
+  }
+
+  &:hover {
+    color: var(--color-green-accent);
+    background-color: var(--color-green-grey-light);
+  }
+}
+
+.active {
+  color: var(--color-background-color);
+  background-color: var(--color-green-accent);
+}
+
+.buttonsWrapper {
+  width: calc( 100dvw - 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}

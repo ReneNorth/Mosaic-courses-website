@@ -1,0 +1,189 @@
+@use '../../utils/variables/global.scss';
+
+.skeleton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 1280px;
+  height: 408px;
+  background-color: var(--color-background-skeleton-color);
+  padding: 24px 24px 24px 0;
+  box-sizing: border-box;
+  cursor: progress;
+  animation: skeleton-loading 1s linear infinite alternate;
+  gap: 110px;
+}
+
+.skeletonImage {
+  border-radius: 20px;
+  width: 100%;
+  max-width: 550px;
+  height: 360px;
+  background-color: var(--color-background-skeleton-image);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+.contentDescription {
+  border-radius: 20px;
+  width: 100%;
+  max-width: 526px;
+  height: 86px;
+  background-color: var(--color-background-skeleton-image);
+}
+
+.contentPriceWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.contentIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  background-color: var(--color-background-skeleton-image);
+  margin-right: 8px;
+}
+
+.contentPrice {
+  border-radius: 20px;
+  width: 54px;
+  height: 23px;
+  background-color: var(--color-background-skeleton-image);
+  margin-right: 40px;
+}
+
+.contentData {
+  border-radius: 20px;
+  width: 112px;
+  height: 23px;
+  background-color: var(--color-background-skeleton-image);
+  margin-right: 40px;
+}
+
+.contentButtonsWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.contentButton {
+  border-radius: 56px;
+  width: 100%;
+  max-width: 286px;
+  height: 56px;
+  background-color: var(--color-background-skeleton-image);
+}
+
+.contentButtonMain {
+  background-color: var(--color-background-skeleton-main);
+}
+
+@media screen and (max-width: global.$breakpoint-card-curses) {
+  .skeleton {
+    border-radius: 20px;
+    max-width: 696px;
+    height: 314px;
+    padding: 0;
+    gap: 20px;
+  }
+
+  .skeletonImage {
+    max-width: 278px;
+    height: 310px;
+  }
+
+  .contentDescription {
+    max-width: 374px;
+    height: 54px;
+  }
+
+  .contentDescriptionMiddle {
+    max-width: 322px;
+    height: 132px;
+  }
+
+  .contentIcon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .contentPrice {
+    width: 51px;
+    height: 22px;
+  }
+
+  .contentData {
+    width: 105px;
+    height: 22px;
+  }
+
+  .contentButton {
+    max-width: 189px;
+    height: 44px;
+  }
+}
+
+@media screen and (max-width: global.$breakpoint-pre-mobile) {
+  .skeleton {
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 24px;
+    max-width: 320px;
+    height: 677px;
+    padding: 0 0 20px 0;
+    gap: 20px;
+  }
+
+  .skeletonImage {
+    border-radius: 20px 20px 0 0;
+    max-width: 320px;
+    height: 210px;
+  }
+
+  .content {
+    align-items: center;
+    gap: 20px;
+  }
+
+  .contentDescription {
+    max-width: 276px;
+    height: 54px;
+  }
+
+  .contentDescriptionMiddle {
+    max-width: 276px;
+    height: 187px;
+  }
+
+  .contentButtonsWrapper {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .contentButton {
+    border-radius: 56px;
+    max-width: 276px;
+    height: 44px;
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -2,23 +2,28 @@
 import React, { useEffect, useState } from 'react';
 import cls from './CreateWithLove.module.scss';
 import SliderCardBottom from '../SliderCardBottom/SliderCardBottom';
-import imageSrc from '../../images/AlenaPetrova.png';
+import teacherSlider1 from '../../images/teacherSlider1.png';
+import teacherSlider2 from '../../images/teacherSlider2.png';
+import teacherDefault from '../../images/teacherDefault.png';
 
 const sliderDataBottom = [
   {
     id: 1,
+    text: 'Мы стремимся не просто обучать мозаике, а передавать знания, которые'
+    + 'ученики смогут использовать и дальше. Для нас важно сохранить и передать'
+    + 'традиции этого уникального ремесла.',
+    title: 'Не только мастерство, но и любовь к делу',
+    image: teacherSlider1,
+    name: 'Дарья, основательница студии',
   },
   {
     id: 2,
-  },
-  {
-    id: 3,
-  },
-  {
-    id: 4,
-  },
-  {
-    id: 5,
+    text: 'Наша студия обучает искусству мозаики, сохранившемуся с античных времен.'
+    + 'Вы получите навык, который позволит вам создавать уникальные произведени'
+    + 'искусства и продолжать развивать его самостоятельно.',
+    title: 'Вы сможете заниматься самостоятельно',
+    image: teacherSlider2,
+    name: 'Дарья, основательница студии',
   },
 ];
 
@@ -45,14 +50,20 @@ export const CreateWithLove = () => {
     <section className={cls.section}>
       <div className={cls.titleContent}>
         <h2 className={cls.title}>
-          Учим творить с
-          <span> любовью</span>
+          Учитываем
+          <br />
+          <span>индивидуальность</span>
         </h2>
         {/* eslint-disable max-len */}
         <p className={cls.description}>
-          Арт-школа — мастерская в центре Ростова-на-Дону.
-          Мы проводим мастер-классы по живописи и гончарному делу для деток и взрослых.
-          Мы делаем рисование доступным с помощью пошаговой программы и вовлечённых преподавателей. Вы как ученик обязательно прочувствуете нашу дружескую и лёгкую атмосферу.
+          В студии Tessera мы уделяем особое внимание индивидуальному подходу к каждому ученику.
+          Важно учитывать уровень вашего опыта, чтобы предложить задачи, соответствующие вашим навыкам.
+          <br />
+          <br />
+          Мы также ориентируемся на ваши желания: хотите ли вы просто попробовать технику или создать серьёзный проект. Процесс обучения строится вокруг ваших целей, будь то небольшая работа или крупная композиция. Мы подстраиваем программу под ваш темп, чтобы каждый этап обучения приносил вам удовольствие.
+          <br />
+          <br />
+          Опытные мастера помогут адаптировать технику к вашим потребностям и реализовать ваш уникальный проект.
         </p>
       </div>
 
@@ -70,15 +81,11 @@ export const CreateWithLove = () => {
                   ? `${cls.active}` : `${cls[position]}`}`}
               >
                 <SliderCardBottom
-                  image={imageSrc}
-                  title="Алёна Петрова"
-                  text="Мы обожаем такие трепетные моменты и с радостью поможем
-                  устроить вам самый яркий праздник в нашей мастерской. Мы
-                  обожаем такие трепетные моменты и с радостью поможем устроить
-                  вам самый яркий праздник в нашей мастерской. Мы обожаем такие
-                  трепетные моменты и с радостью поможем"
-                  name={null}
-                  date={null}
+                  image={slide.image}
+                  title={slide.title}
+                  text={slide.text}
+                  name={slide.name}
+                  date={slide.date}
                 />
               </li>
             );
@@ -100,7 +107,8 @@ export const CreateWithLove = () => {
         <div className={cls.slider__counter}>
           0
           {sliderIndex}
-          /05
+          /
+          {sliderDataBottom.length.toString().padStart(2, '0')}
         </div>
       </div>
 
