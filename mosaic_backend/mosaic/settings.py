@@ -177,8 +177,10 @@ DJOSER = {
     'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': True,
     "ACTIVATION_URL": "activate/{uid}/{token}",
     'SERIALIZERS': {
-        'user_create': 'users.serializers.CustomUserSerializer',
-        'user': 'users.serializers.CustomUserSerializer',
+        'user_create': 'users.serializers.CustomCreateUserSerializer',
+        'user': 'users.serializers.CustomCreateUserSerializer',
+        'current_user': 'users.serializers.UserPersonalPageSerializer',
+        # 'user_delete': 'users.serializers.CustomCreateUserSerializer',
     },
     # change the email templates later
     # 'EMAIL': {
