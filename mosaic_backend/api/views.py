@@ -1,6 +1,7 @@
 import logging
 import random
 import string
+from collections import OrderedDict
 
 from django.contrib.auth import get_user_model
 from django.db.models import Count
@@ -12,19 +13,22 @@ from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
-from api.filters import ArtworksFilter, PostsFilter
+from api.filters import ArtworksFilter, MasterclassTypeFilter, PostsFilter
 from api.serializers import (ArtworkSerializer, BookingSerializer,
                              EmailMainSerializer, GiftCertSerializer,
-                             MainCarouselSerializer, MasterclassSerializer,
-                             MasterclassTypeSerializer, PostSerializer,
-                             RequestSerializer, ReviewsSerializer,
-                             SchoolSerializer, TagReadOnlySerializer)
+                             MainCarouselSerializer,
+                             MasterclassCategoryFilterSerializer,
+                             MasterclassSerializer, MasterclassTypeSerializer,
+                             PostSerializer, RequestSerializer,
+                             ReviewsSerializer, SchoolSerializer,
+                             TagReadOnlySerializer)
 from blog.models import Post, Tag
 from booking.models import Booking
 from carousel.models import MainCarouselItem
 from crm_app.models import GiftCert
 from marketplace.models import Artwork
-from masterclass.models import Masterclass, MasterclassType
+from masterclass.models import (Masterclass, MasterclassCategory,
+                                MasterclassType)
 from school.models import Review, School
 from users.permissions import BookingPermission
 
@@ -73,6 +77,27 @@ class EmailCreateOnlyViewSet(mixins.CreateModelMixin,
     permission_classes = [AllowAny, ]
 
 
+class MasterclassCategoryFilterReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    # leave only list view not retrieve
+    queryset = MasterclassCategory.objects.all()
+    serializer_class = MasterclassCategoryFilterSerializer
+    permission_classes = [AllowAny, ]
+    pagination_class = None
+
+    def list(self, request, *args, **kwargs):
+        response = super().list(request, *args, **kwargs)
+        response_dict = OrderedDict(
+            {key: []
+             for key in MasterclassCategory.CATEGORY_FILTER_CHOICES.keys()}
+        )
+        for item in response.data:
+            category_filter = item.pop('category_filter', None)
+            if category_filter in response_dict:
+                response_dict[category_filter].append(item)
+        response.data = response_dict
+        return response
+
+
 class MasterclassReadOnlyViewset(viewsets.ReadOnlyModelViewSet):
     serializer_class = MasterclassSerializer
     permission_classes = [AllowAny, ]
@@ -91,8 +116,8 @@ class MasterclassTypeReadOnlyViewSet(viewsets.ModelViewSet):
     pagination_class = LimitOffsetPagination
     permission_classes = [AllowAny, ]
     filter_backends = [DjangoFilterBackend, ]
-    filterset_fields = ['slug', ]
-    lookup_field = 'slug'
+    pagination_class = LimitOffsetPagination
+    filterset_class = MasterclassTypeFilter
 
     @action(detail=True, methods=['get', ])
     def related_masterclasses(self, request, slug) -> Response:

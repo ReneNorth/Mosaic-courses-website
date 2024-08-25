@@ -1,11 +1,27 @@
 import React from 'react';
 import { Button } from './Button';
+import cls from './Button.module.scss';
+
+const customViewports = {
+  breakpointIpadMini: {
+    name: 'Breakpoint ipad mini',
+    styles: {
+      width: '720px',
+      height: '300px',
+    },
+  },
+};
 
 export default {
   title: 'UI-kit/Button',
   component: Button,
   parameters: {
     layout: 'centered',
+    viewport: {
+      viewports: {
+        ...customViewports,
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
@@ -32,6 +48,15 @@ export default {
     disabled: {
       type: { name: 'boolean' },
       description: 'Отключение действия кнопки',
+      table: {
+        type: { summary: ['true', 'false'] },
+        defaultValue: { summary: 'false' },
+      },
+      options: ['false', 'true'],
+    },
+    fill: {
+      type: { name: 'boolean' },
+      description: 'Заполнение кнопкой размеров обертки',
       table: {
         type: { summary: ['true', 'false'] },
         defaultValue: { summary: 'false' },
@@ -86,4 +111,38 @@ export const DisabledButton = {
     className: 'fill',
     disabled: true,
   },
+};
+
+/**
+ * Для правильного отображения адаптивной верстки перейдите по вкладке в навигационном меню слева
+ */
+export const ButtonDefaultMobile = {
+  parameters: {
+    viewport: {
+      defaultViewport: 'breakpointIpadMini',
+    },
+  },
+  args: {
+    children: 'Нажми на меня',
+    className: 'fill',
+  },
+};
+
+/**
+ * Размер обертки равен 400px - кнопка принимает его width
+ */
+export function FillButton(args) {
+  return (
+    <div className={cls.buttonStoryWrapper}>
+      <Button
+        {...args}
+      />
+    </div>
+  );
+}
+
+FillButton.args = {
+  children: 'Нажми на меня',
+  className: 'fill',
+  fill: true,
 };

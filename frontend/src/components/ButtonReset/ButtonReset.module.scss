@@ -1,0 +1,41 @@
+@use "../../utils/variables/global.scss";
+
+.button {
+  all:unset;
+  cursor: pointer;
+  background-color: var(--color-green-grey-light);
+  min-width: 203px;
+  height: 52px;
+  border-radius: 56px;
+  padding: 8px 20px;
+  box-sizing: border-box;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 135%;
+  color: var(--color-green-accent);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .6s ease;
+  &:hover {
+    background-color: var(--color-green-primary);
+  }
+  &:active {
+    background-color: var(--color-light-grey);
+
+  }
+  &:disabled {
+    background-color: var(--color-green-gray-4);
+    color: var(--color-green-grey);
+    cursor: default;
+  }
+}
+
+@media screen and (max-width: global.$breakpoint-xsmall-laptop) {
+  .button {
+    padding: 11px 20px;
+    height: 44px;
+    font-size: 16px;
+  }
+}

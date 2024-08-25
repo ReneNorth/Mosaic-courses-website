@@ -1,15 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as React from 'react';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
 import SvgIcon from '@mui/material/SvgIcon';
-import { classNames } from '../../helpers/classNames';
-import cls from './SelectField.module.scss';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -34,36 +33,62 @@ function CustomSvgIcon() {
     >
       <path d="M16 10L11.875 14L8 10" stroke="#247251" fill="none" strokeWidth="1.5" />
     </SvgIcon>
-
   );
 }
 
-export const SelectField = ({ placeholder, valuesArray }) => {
+export const SelectField = ({
+  placeholder,
+  values,
+  setActiveSelectors,
+  resetValue,
+}) => {
+  const matches = useMediaQuery('(min-width:1100px)');
   const [selectValue, setSelectValue] = useState([]);
+
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
+
+    const slugs = {};
+
+    values.forEach((filterElement) => {
+      slugs[`${filterElement.slug}`] = false;
+      for (let i = 0; i < value.length; i += 1) {
+        if (filterElement.name === value[i]) {
+          slugs[`${filterElement.slug}`] = true;
+        }
+      }
+    });
+
+    setActiveSelectors(slugs);
     setSelectValue(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
   };
+
+  useEffect(() => {
+    setSelectValue([]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resetValue]);
   return (
-    <FormControl sx={{
-      margin: '0 0 6px 0',
-      width: 220,
-      height: '52px',
-    }}
+    <FormControl
+      sx={{
+        margin: '0 0 6px 0',
+        width: 220,
+      }}
+      size={matches ? 'medium' : 'small'}
     >
       <InputLabel
         sx={{
           '&.MuiInputLabel-root': {
-            fontFamily: 'var(--font-primary)',
+            fontFamily: 'var(--font-primary), sans-serif',
             fontWeight: '500',
             fontSize: '17px',
             lineHeight: '135%',
             color: 'var(--color-black)',
+            marginLeft: '-3px',
           },
         }}
         id="demo-multiple-checkbox-label"
@@ -72,6 +97,7 @@ export const SelectField = ({ placeholder, valuesArray }) => {
       </InputLabel>
       <Select
         sx={{
+          fontFamily: 'var(--font-primary), sans-serif',
           backgroundColor: 'var(--color-background-color)',
           borderRadius: '14px',
           color: 'var(--text-color)',
@@ -99,7 +125,6 @@ export const SelectField = ({ placeholder, valuesArray }) => {
             rotate: '180deg',
           },
         }}
-        className={cls.globalSelect}
         labelId="demo-multiple-checkbox-label"
         id="demo-multiple-checkbox"
         multiple
@@ -116,10 +141,15 @@ export const SelectField = ({ placeholder, valuesArray }) => {
         renderValue={(selected) => selected.join(', ')}
         MenuProps={MenuProps}
       >
-        {valuesArray.map((name) => (
+        {values.map((element) => (
           <MenuItem
             sx={{
+              '& .MuiTypography-root': {
+                fontFamily: 'var(--font-primary), sans-serif',
+              },
+              fontFamily: 'var(--font-primary), sans-serif',
               '&.Mui-selected': {
+                fontFamily: 'var(--font-primary), sans-serif',
                 backgroundColor: 'var(--color-background-color)',
                 '&:hover': {
                   backgroundColor: 'var(--color-green-grey-light)',
@@ -129,8 +159,8 @@ export const SelectField = ({ placeholder, valuesArray }) => {
                 backgroundColor: 'var(--color-green-grey-light)',
               },
             }}
-            key={name}
-            value={name}
+            key={element.name}
+            value={element.name}
           >
             <Checkbox
               sx={{
@@ -138,10 +168,15 @@ export const SelectField = ({ placeholder, valuesArray }) => {
                 '&.Mui-checked': {
                   color: 'var(--color-green-accent)',
                 },
+                '&:hover': {
+                  backgroundColor: 'var(--color-green-grey-light)',
+                },
               }}
-              checked={selectValue.indexOf(name) > -1}
+              checked={selectValue.indexOf(element.name) > -1}
             />
-            <ListItemText primary={name} />
+            <ListItemText
+              primary={element.name}
+            />
           </MenuItem>
         ))}
       </Select>

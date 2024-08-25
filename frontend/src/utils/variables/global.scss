@@ -13,12 +13,14 @@
 
   --color-green-primary: #CCDAC6;
   --color-green-accent: #247251;
+  --color-green-accent-active: #299D6D;
   --color-green-secondary: #6AAF12;
   --color-green-grey: #819286;
   --color-green-grey-light: #E2E9E4;
   --color-green-valid: #1E8E0B;
   --color-green-active: #185F41;
   --color-white: #FFFFFF;
+  --color-white-active: #BFC8BF;
   --color-black: #121210;
   --color-red: #BF0000;
   --color-beige-primary: #F0ECE2;
@@ -26,7 +28,11 @@
   --color-background-color: #F5F4F1;
   --color-background-of-the-error-message: rgba(191, 0, 0, 0.15);
   --color-overlay: rgba(0, 0, 0, 0.5);
-
+  --color-light-grey: #9fb4a5;
+  --color-green-gray-4: rgba(159, 180, 165, 0.4);
+  --color-background-skeleton-color: #ecdfdf;
+  --color-background-skeleton-image: #d9cece;
+  --color-background-skeleton-main: #beb5b5;
 }
 
 button {
@@ -41,9 +47,13 @@ button {
 }
 
 $breakpoint-mobile: 550px;
-$breakpoint-tablet: 744px;
+$breakpoint-pre-mobile: 670px;
+$breakpoint-ipad-mini: 720px;
+$breakpoint-tablet: 743px;
 $breakpoint-xsmall-laptop: 1100px;
+$breakpoint-card-curses: 1200px;
 $breakpoint-small-laptop: 1300px;
+$breakpoint-tablet-for-course-page: 1340px;
 // .swiper-slide {
 //   transition: all 0.5s ease;
 //   padding: 40px 0;

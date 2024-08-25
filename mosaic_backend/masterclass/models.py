@@ -1,35 +1,75 @@
+import logging
+
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
-from django.db import models
+from django.db import IntegrityError, models
 
 from mosaic.business_logic import DummyTeacher
 
 User = get_user_model()
+log = logging.getLogger(__name__)
 
 
-def get_or_create_dummy_teacher() -> User:
-    """Method creates a dummy teacher instance to populate masterclasses
+def get_or_create_dummy_teacher():
+    '''Method creates a dummy teacher instance to populate masterclasses
 
     Returns:
         User: an instance of a User with a role set to a Teacher
-    """
-    return get_user_model().objects.get_or_create(
-        username=DummyTeacher.username,
-        first_name=DummyTeacher.first_name,
-        last_name=DummyTeacher.last_name,
-        is_staff=DummyTeacher.is_staff,
-        general_agreement=DummyTeacher.general_agreement,
-        role=DummyTeacher.role,
-        email=DummyTeacher.email,
-        phone=DummyTeacher.phone
-    )[0]
+    '''
+    try:
+        dummy_teacher = User.objects.get_or_create(
+            first_name=DummyTeacher.first_name,
+            last_name=DummyTeacher.last_name,
+            is_staff=DummyTeacher.is_staff,
+            general_agreement=DummyTeacher.general_agreement,
+            role=DummyTeacher.role,
+            email=DummyTeacher.email,
+            phone=DummyTeacher.phone)[0]
+        return dummy_teacher
+    except IntegrityError as e:
+        log.error(
+            'Got DB integrity error while'
+            f'creating or assigning dummy teacher: {e}')
+        raise
+    except Exception as e:
+        log.error(
+            'Got Non-DB integrity errors'
+            f'while creating or assigning dummy teacher: {e}')
+        raise
+
+
+class MasterclassCategory(models.Model):
+    CATEGORY_FILTER_CHOICES = {
+        'ORDER': 'Specific fields for ordering queryset results',
+        'EXP': 'Required or recommended experience',
+        'DURATION': 'Duration of the masterclass: daily, multiple days, etc.',
+        'TARGET_AUDIENCE': 'Target audience of the course',
+        'STYLE': 'Style of mosaic',
+
+    }
+    name = models.CharField(max_length=50, unique=True, verbose_name='Name')
+    slug = models.SlugField(max_length=50, unique=True, verbose_name='Slug')
+    category_filter = models.CharField(
+        max_length=20,
+        choices=CATEGORY_FILTER_CHOICES
+    )
+
+    class Meta:
+        ordering = ['-id']
+        verbose_name_plural = 'Categories'
+
+    def __str__(self) -> str:
+        '''Return the name field of the model.'''
+        return self.name
 
 
 class MasterclassType(models.Model):
     title = models.CharField(max_length=50, verbose_name='Title')
     slug = models.SlugField(max_length=15, verbose_name='Link')
     image = models.ImageField(upload_to='masterclasses/')
+    category = models.ManyToManyField(
+        MasterclassCategory, through='MasterclassTypeCategory')
     max_guests = models.PositiveSmallIntegerField(
         verbose_name='Max number of guests'
     )
@@ -89,3 +129,22 @@ class Masterclass(models.Model):
             f'Course {self.title} (id {self.id}) '
             f'at {self.time_start.strftime("%x")} '
         )
+
+
+class MasterclassTypeCategory(models.Model):
+    category = models.ForeignKey(MasterclassCategory, on_delete=models.CASCADE,
+                                 related_name='categories')
+    masterclass_type = models.ForeignKey(
+        MasterclassType, on_delete=models.CASCADE,
+        related_name='masterclass_type_categories')
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['category', 'masterclass_type'],
+                                    name='unique category-masterclass pair')
+        ]
+        verbose_name_plural = 'Masterclass Type Categories'
+
+    def __str__(self):
+        return (f'Masterclass Type: {self.masterclass_type.title},'
+                f'Category: {self.category.name}')

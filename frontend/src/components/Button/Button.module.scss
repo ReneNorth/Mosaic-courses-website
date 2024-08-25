@@ -14,39 +14,39 @@
   cursor: pointer;
 
   &.outline {
-    border: 1.5px solid #247251;
-    color: #247251;
+    border: 1.5px solid var(--color-green-accent);
+    color: var(--color-green-accent);
     background-color: transparent;
 
     &:hover {
-      background-color: #247251;
-      color: #fff;
+      background-color: var(--color-green-accent);
+      color: var(--color-white);
     }
 
     &:active {
       background-color: transparent;
-      border: 1.5px solid #185F41;
-      color: #185F41;
+      border: 1.5px solid var(--color-green-active);
+      color: var(--color-green-active);
     }
   }
 
   &.fill {
     border: none;
-    background-color: #247251;
-    color: #fff;
+    background-color: var(--color-green-accent);
+    color: var(--color-white);
 
     &:hover {
-      background-color: #299D6D;
+      background-color: var(--color-green-accent-active);
     }
 
     &:active {
-      background: #185F41;
-      color: #BFC8BF;
+      background: var(--color-green-active);
+      color: var(--color-white-active);
     }
 
     &:disabled {
-      background-color: #819286;
-      color: #BFC8BF;
+      background-color: var(--color-green-grey);
+      color: var(--color-white-active);
     }
   }
 
@@ -63,7 +63,7 @@
       left: 8px;
       content: '';
       border-radius: 56px;
-      border: 1px solid #000;
+      border: 1px solid var(--color-black);
       z-index: global.$layer-under-content;
     }
   }
@@ -81,13 +81,17 @@
       left: 8px;
       content: '';
       border-radius: 56px;
-      border: 1px solid #fff;
+      border: 1px solid var(--color-white);
       z-index: global.$layer-under-content;
     }
   }
 }
 
-@media screen and (max-width: global.$breakpoint-mobile) {
+.fillButton {
+  width: 100%;
+}
+
+@media screen and (max-width: global.$breakpoint-card-curses) {
   .button {
     font-family: var(--font-primary);
     font-size: 16px;
@@ -101,10 +105,16 @@
         height: 44px;
       }
     }
+
     &.decorationWhite {
       &::before {
         height: 44px;
       }
     }
   }
+}
+
+//StoryBook
+.buttonStoryWrapper {
+  width: 400px;
 }

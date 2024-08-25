@@ -1,66 +1,42 @@
-import cls from './AboutStudioHeader.module.scss';
-import indicator from '../../images/indicator.svg';
-import { PromoSection } from '../PromoSection-new/PromoSection';
+import { PromoSection } from '../PromoSection/PromoSection';
 import promoImg from '../../images/sboutStudioPromo.png';
 import imgBg from '../../images/aboutStudioDecor.png';
 import { Button } from '../Button/Button';
 
 export const AllStudioHeader = ({ setIsOpen }) => {
-  return (
+  const promoSectionTitle = (
     <>
-      <PromoSection
-        desktopImage={promoImg}
-        mobileImage={imgBg}
-        title={(
-          <>
-            О студии мозаики
-            <br />
-            <span>Tessera</span>
-          </>
-        )}
-        text={(
-          <>
-            Единственная в Казахстане студия римской мозаики.
-            <br />
-            <br />
-            Научим создавать античные шедевры на мастер-классах и украсим ваш
-            дом оригинальными арт-объектами.
-          </>
-        )}
-        otherElements={(
-          <Button
-            className="fill"
-            decoration="black"
-            onClick={() => setIsOpen(true)}
-          >
-            Записаться на мастер-класс
-          </Button>
-        )}
-      />
-      {/* <div className={cls.route}>
-        <ul className={cls.routeItems}>
-          <li>
-            <a href="!#" className={cls.routeItem}>
-              Главная
-            </a>
-          </li>
-          <li>
-            <a href="!#" className={cls.routeItem}>
-              <img
-                className={cls.indicator}
-                src={indicator}
-                alt="Промо картинка"
-              />
-            </a>
-          </li>
-          <li>
-            <a href="!#" className={cls.routeItemGreen}>
-              {' '}
-              О студии
-            </a>
-          </li>
-        </ul>
-      </div> */}
+      О студии мозаики
+      <br />
+      <span>Tessera</span>
     </>
+  );
+  /* eslint-disable max-len */
+  const promoSectionText = (
+    <>
+      В нашей студии вы освоите технику создания мозаики из камня, стекла, смальты и других материалов.
+      <br />
+      <br />
+      Под руководством опытных мастеров вы не только создадите мозаику, но и приобретете навык, который сможете развивать самостоятельно.
+      <br />
+      <br />
+      Мозика - это древнее ремесло, уходящее корнями в культуру Древнего Рима, позволяет создать уникальные произведения искусства, сохраняя традиции прошлого.
+    </>
+  );
+
+  const promoSectionOtherElements = (
+    <Button className="fill" decoration="black" onClick={() => setIsOpen(true)}>
+      Записаться на мастер-класс
+    </Button>
+  );
+
+  return (
+    <PromoSection
+      desktopImage={promoImg}
+      mobileImage={imgBg}
+      title={promoSectionTitle}
+      text={promoSectionText}
+      otherElements={promoSectionOtherElements}
+    />
   );
 };

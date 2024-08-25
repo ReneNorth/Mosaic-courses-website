@@ -10,7 +10,7 @@ export const ChooseCourseFinal = ({ setIsOpen }) => {
           <span> курс</span>
         </h2>
       </div>
-      <MainCardsList setIsOpen={setIsOpen} />
+      <MainCardsList setIsOpen={setIsOpen} pageSize={3} />
     </section>
   );
 };

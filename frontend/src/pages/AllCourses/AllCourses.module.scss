@@ -1,7 +1,7 @@
 @use "../../utils/variables/global.scss";
 
 .coursesWrapper {
-    padding-top: 80px;
+    padding-top: 40px;
     width: 100%;
     max-width: 1280px;
 }
@@ -10,12 +10,12 @@
     border-radius: 12px;
 }
 
-.MuiSelect-outlined{
+.MuiSelect-outlined {
     border-color: var(--color-green-accent);
 }
 
 .filterWrapper {
-    padding-top: 100px;
+    padding-top: 80px;
     max-width: 1280px;
     width: 100%;
     position: relative;
@@ -29,16 +29,58 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 0 24px;
-    gap: 12px;
+    gap: 16px;
+}
+
+.filterBlockMobile {
+    display: none;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0 20px;
+}
+
+@media screen and (max-width: global.$breakpoint-small-laptop) {
+    .filterBlock {
+        justify-content: center;
+    }
 }
 
 @media screen and (max-width: global.$breakpoint-xsmall-laptop) {
     .filterWrapper {
-        padding-top: 60px;
+        padding-top: 36px;
+        justify-content: center;
     }
+
+    .filterBlock {
+        gap: 10px;
+        padding: 0 24px;
+        max-width: 696px;
+        justify-content: flex-start;
+    }
+
+    .coursesWrapper {
+        padding-top: 40px;
+    }
+}
+
+@media screen and (max-width: global.$breakpoint-pre-mobile) {
 
     .coursesWrapper {
         padding-top: 0;
     }
-  }
+
+    .filterBlock {
+        display: none;
+    }
+
+    .filterBlockMobile {
+        display: flex;
+    }
+
+    .filterWrapper {
+        padding-top: 0;
+    }
+}

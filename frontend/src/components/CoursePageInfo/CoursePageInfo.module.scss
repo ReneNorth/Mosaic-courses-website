@@ -1,43 +1,82 @@
+@use "../../utils/variables/global.scss";
+
 .section {
   font-size: 20px;
+
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+    width: 48vw;
+    max-width: 358px;
+  }
+
+  @media screen and (max-width: global.$breakpoint-tablet) {
+    width: 100%;
+    max-width: 744px;
+  }
 }
+
 .block {
   display: flex;
   justify-content: space-between;
 }
+
 .headerTitle {
-  width: 716px;
+  width: 728px;
   font-family: var(--font-primary);
+
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+    width: 43vw;
+  }
+
+  @media screen and (max-width: global.$breakpoint-tablet) {
+    width: 100%;
+  }
 }
+
 .headerName {
   font-family: var(--font-primary);
   font-style: normal;
   font-weight: 700;
   font-size: 56px;
   line-height: 110%;
+
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+    font-size: 26px;
+  }
 }
+
 .courseName {
   text-transform: lowercase;
   font-size: 58px;
+  line-height: 110%;
   font-style: italic;
   font-weight: 500;
   font-family: var(--font-secondary);
   color: var(--text-color-secondary);
+
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+    font-weight: 600;
+    font-size: 28px;
+  }
 }
+
 .text {
   margin-top: 24px;
   max-width: 584px;
   font-family: var(--font-primary);
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 135%;
-}
-.paragraph {
-  margin-top: 8px;
 }
 
-.decorationElement {
-  margin-top: 88px;
-  display: block;
+.paragraph {
+  margin-top: 8px;
+  font-size: 20px;
+  line-height: 135%;
+
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+    font-size: 16px;
+  }
+
+  @media screen and (max-width: global.$breakpoint-tablet) {
+    margin-top: 0;
+  }
 }

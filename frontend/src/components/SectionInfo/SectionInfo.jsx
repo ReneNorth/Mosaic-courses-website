@@ -1,62 +1,23 @@
-import cls from './SectionInfo.module.scss';
-
+import { useSelector } from 'react-redux';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import sectionInfoStyles from './SectionInfo.module.scss';
 import { OtherCourses } from '../OtherCourses/OtherCourses';
-import { Route } from '../Route/Route';
-import { TeacherSection } from '../TeacherSection/TeacherSection';
-import { ToggleLearnMore } from '../ToggleLearnMore/ToggleLearnMore';
 
 export const SectionInfo = () => {
+  const currentCourse = useSelector((store) => store.courses.currentCourse);
   return (
-    <div className={cls.infoBlock}>
-      <div className={cls.sectionContainer}>
-        <div>
-          <Route />
-
-          <h3 className={cls.containerHeading}>Чему вы научитесь?</h3>
-          <div className={cls.containerInfo}>
-            <ul className={cls.listFirst}>
-              <li> Изучите базовый синтаксис и структуры данных Python 3! </li>
-
-              <li> Изучите продвинутые возможности Python.</li>
-
-              <li>
-                {' '}
-                Научитесь использовать Объектно-Ориентированное
-                Программирование!
-              </li>
-
-              <li>Изучите сложные темы, например декораторы и генераторы</li>
-            </ul>
-            <ul className={cls.listSecond}>
-              <li>Изучите базовый синтаксис и структуры данных Python 3! </li>
-              <li>Изучите продвинутые возможности Python, такие как модуль</li>
-              <li>
-                Научитесь использовать Объектно-Ориентированное
-                Программирование!
-              </li>
-              <li>Изучите сложные темы, например декораторы и генераторы</li>
-            </ul>
-          </div>
-
-          <h3 className={cls.containerHeading}>Этот курс включает:</h3>
-
-          <div className={cls.containerInfo}>
-            <ul className={cls.listFirst}>
-              <li>Изучите базовый синтаксис и структуры данных Python 3! </li>
-              <li>Изучите продвинутые возможности Python.</li>
-            </ul>
-            <ul className={cls.listSecond}>
-              <li>Изучите базовый синтаксис и структуры данных Python 3!</li>
-              <li>Изучите продвинутые возможности Python, такие как модуль</li>
-            </ul>
-          </div>
-
-          <ToggleLearnMore />
-          <TeacherSection />
-          <h3 className={cls.containerHeading}>Также покупают</h3>
-          <OtherCourses />
-        </div>
+    <>
+      <div className={sectionInfoStyles.container}>
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          className={sectionInfoStyles.reactMarkdown}
+        >
+          {currentCourse.full_description}
+        </ReactMarkdown>
+        <h3 className={`${sectionInfoStyles.title} ${sectionInfoStyles.lastTitle}`}>Также покупают</h3>
       </div>
-    </div>
+      <OtherCourses />
+    </>
   );
 };

@@ -1,88 +1,125 @@
-.sectionContainer {
-  display: flex;
-  gap: 40px;
-  margin-top: 118px;
+@use "../../utils/variables/global.scss";
+
+.container {
+  margin-top: 97px;
+  max-width: 843px;
+
+  .reactMarkdown {
+    display: flex;
+    flex-direction: column;
+    color: #000;
+    font-family: var(--font-primary);
+
+    h3 {
+      font-family: var(--font-primary);
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      margin-left: 0px;
+
+      @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+        font-size: 20px;
+        margin-bottom: 22px;
+      }
+
+      @media screen and (max-width: global.$breakpoint-tablet) {
+        &.lastTitle {
+          font-size: 26px;
+        }
+      }
+    }
+
+    ul {
+      padding-left: 24px;
+      padding-bottom: 86px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      position: relative;
+
+      li {
+        font-weight: 400;
+        font-size: 17px;
+        line-height: 135%;
+
+        @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+          font-size: 16px;
+        }
+
+        &::before {
+          content: "•";
+          position: absolute;
+          left: 9px;
+          font-size: 19px;
+          color: black;
+        }
+      }
+
+      @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+        gap: 0;
+        padding-bottom: 28px;
+      }
+    }
+
+    ul:last-of-type  {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+
+      li {
+        font-weight: 400;
+        font-size: 17px;
+        line-height: 135%;
+      }
+
+      @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+        gap: 2px;
+      }
+    }
+
+    p {
+      margin-bottom: 276px;
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 135%;
+
+      @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+        margin-bottom: 160px;
+      }
+
+      @media screen and (max-width: global.$breakpoint-tablet) {
+        margin-bottom: 78px;
+      }
+    }
+  }
+
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+    margin-top: 28px;
+    width: 51vw;
+  }
+
+  @media screen and (max-width: global.$breakpoint-tablet) {
+    margin-top: 515px;
+    width: 320px;
+  }
 }
 
-.containerHeading {
-  font-size: 32px;
+.title {
   font-family: var(--font-primary);
   font-weight: 700;
-  margin-bottom: 20px;
-  margin-top: 88px;
-  margin-left: 0px;
-}
-.containerInfo {
-  grid-column: 1 / 2;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-}
-
-.listFirst,
-.listSecond,
-.text {
-  justify-self: center;
-  font-family: var(--font-primary);
-  font-style: normal;
-  font-weight: 400;
-  font-size: 17px;
+  font-size: 32px;
   line-height: 135%;
-}
-.listFirst li,
-.listSecond li {
-  margin-bottom: 10px;
-  list-style-type: disc;
-}
+  margin-bottom: 16px;
 
-::marker {
-  color: #000;
-  display: inline-block;
-  vertical-align: middle;
-}
+  @media screen and (max-width: global.$breakpoint-tablet-for-course-page) {
+    font-size: 20px;
+    margin-bottom: 32px;
+  }
 
-.text p {
-  margin-top: 10px;
-}
-
-.btn {
-  padding: 0;
-  width: 32px;
-  height: 32px;
-  background-image: url('../../images/button-learn_more.svg');
-  background-color: transparent;
-  background-size: cover;
-  cursor: pointer;
-}
-
-///
-.sidebar {
-  top: 0px;
-  display: flex;
-  position: sticky;
-  -webkit-position: sticky;
-  max-width: 400px;
-  height: 580px;
-  background-color: #ccdac6;
-}
-.innerBlock {
-  justify-content: center;
-}
-.title {
-}
-.coursePrice {
-}
-.button {
-  margin-top: 40px;
-  background-color: #247251;
-  border-radius: 60px;
-  padding: 18px 40px;
-  color: var(--text-color-invert);
-  font-family: var(--font-primary);
-  font-style: normal;
-  font-weight: 400;
-  font-size: 17px;
-  line-height: 20px;
-  position: relative;
-  cursor: pointer;
+  @media screen and (max-width: global.$breakpoint-tablet) {
+    &.lastTitle {
+      font-size: 26px;
+      margin-bottom: 39px;
+    }
+  }
 }

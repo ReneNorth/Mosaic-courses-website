@@ -11,7 +11,6 @@ export const NotFound = () => {
       <NewSettler isOpen={isOpen} setIsOpen={setIsOpen} />
       <Element404 />
       <ListOfCourses />
-      <MainCardsList setIsOpen={setIsOpen} type="all" />
     </>
   );
 };

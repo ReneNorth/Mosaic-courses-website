@@ -8,11 +8,12 @@ from rest_framework import serializers
 from rest_framework.validators import ValidationError
 
 from blog.models import Post, Tag
-from booking.models import Booking, ReservationAdmin
+from booking.models import Booking, GuestReservation
 from carousel.models import MainCarouselItem
 from crm_app.models import EmailMainForm, FeedbackRequest, GiftCert
 from marketplace.models import Artwork, ArtworkMainPage
-from masterclass.models import Masterclass, MasterclassType
+from masterclass.models import (Masterclass, MasterclassCategory,
+                                MasterclassType)
 from mosaic.business_logic import BusinessLogic
 from school.models import Advatage, Approach, Question, Review, School
 
@@ -35,7 +36,8 @@ class RequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = FeedbackRequest
         fields = ['name', 'phone_num', 'comment', 'contact_consent']
-        extra_kwargs = {'contact_consent': {'required': True}}
+        extra_kwargs = {'contact_consent': {'required': True},
+                        'comment': {'required': True}}
 
 
 class MainCarouselSerializer(serializers.ModelSerializer):
@@ -102,14 +104,27 @@ class EmailMainSerializer(serializers.ModelSerializer):
         fields = ['email']
 
 
+class MasterclassCategoryFilterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MasterclassCategory
+        fields = ['category_filter', 'name', 'slug']
+
+
 class MasterclassSerializer(serializers.ModelSerializer):
     num_of_guests = serializers.SerializerMethodField()
+    teacher_id = serializers.PrimaryKeyRelatedField(
+        source='teacher.id', read_only=True)
+    teacher_first_name = serializers.CharField(
+        source='teacher.first_name', read_only=True)
+    teacher_last_name = serializers.CharField(
+        source='teacher.last_name', read_only=True)
 
     class Meta:
         model = Masterclass
         fields = [
             'id', 'title', 'price', 'currency', 'time_start', 'time_end',
             'num_of_guests',
+            'teacher_id', 'teacher_first_name', 'teacher_last_name'
         ]
         read_only_fields = [
             'title',
@@ -123,7 +138,7 @@ class MasterclassSerializer(serializers.ModelSerializer):
         return (
             sum((Booking.objects.filter(
                 masterclass=masterclass).count(),
-                ReservationAdmin.objects.filter(
+                GuestReservation.objects.filter(
                 attending=masterclass).count()))
         )
 

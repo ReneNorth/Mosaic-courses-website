@@ -15,10 +15,7 @@ export const Element404 = () => {
           src={notFoundImg}
           alt="элемент не найден"
         />
-
-        <img className={cls.zero} src={zero} alt="элемент не найден" />
       </div>
-
       <img className={cls.four} src={four} alt="элемент не найден" />
     </div>
   );

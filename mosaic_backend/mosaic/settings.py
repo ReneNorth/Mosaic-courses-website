@@ -1,9 +1,9 @@
+import logging
 import os
 from datetime import timedelta
 from pathlib import Path
 
 from django.utils.log import DEFAULT_LOGGING
-import logging
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -177,8 +177,10 @@ DJOSER = {
     'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': True,
     "ACTIVATION_URL": "activate/{uid}/{token}",
     'SERIALIZERS': {
-        'user_create': 'users.serializers.CustomUserSerializer',
-        'user': 'users.serializers.CustomUserSerializer',
+        'user_create': 'users.serializers.CustomCreateUserSerializer',
+        'user': 'users.serializers.CustomCreateUserSerializer',
+        'current_user': 'users.serializers.UserPersonalPageSerializer',
+        # 'user_delete': 'users.serializers.CustomCreateUserSerializer',
     },
     # change the email templates later
     # 'EMAIL': {
@@ -264,4 +266,4 @@ GRAPH_MODELS = {
     'group_models': True,
 }
 
-# FILE_UPLOAD_MAX_MEMORY_SIZE
+# FILE_UPLOAD_MAX_MEMORY_SIZE = 10

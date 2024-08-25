@@ -6,7 +6,6 @@ class BusinessLogic():
 
 
 class DummyTeacher():
-    username = 'Daria'
     first_name = 'Daria'
     last_name = 'Tessera'
     is_staff = True

@@ -12,6 +12,7 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
   const {
     errors, isValid, handleChange, handleBlur, handleChangeInRealTime, resetForm, values,
   } = useFormValidation();
+
   const [isResponse, setIsResponse] = useState('wait');
   const handleSubmit = async (e) => {
     e.preventDefault();

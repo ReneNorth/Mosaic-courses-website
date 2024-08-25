@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import cls from './ProfileNavMenu.module.scss';
 import { classNames } from '../../helpers/classNames';
-import { cardInfo } from '../../utils/consts/constants';
+import { CARD_CONFIG } from '../../utils/consts/constants';
 
 export const ProfileNavMenu = () => {
   return (
     <nav className={cls.block}>
       <ul className={cls.list}>
-        {cardInfo.map((element) => (
+        {CARD_CONFIG?.map((element) => (
           <li className={cls.item} key={element.cardId}>
             <NavLink
               to={element.cardRoute}

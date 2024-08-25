@@ -1,4 +1,4 @@
-import { mockSliderDataBottom } from '../consts/mockData';
+import { SLIDER_CONFIG } from '../consts/mockData';
 import { getCookie } from '../../helpers/getCookie';
 
 class Api {
@@ -73,8 +73,16 @@ class Api {
     return this.constructor._checkResponse(res);
   }
 
-  async getCourses() {
-    const res = await fetch(`${this._url}/api/v1/masterclass_types/`);
+  async getAllcourses() {
+    const res = await fetch(`${this._url}/api/v1/masterclass_types`);
+    return this.constructor._checkResponse(res);
+  }
+
+  async getCourses(dataReq) {
+    const res = await fetch(
+      // eslint-disable-next-line max-len
+      `${this._url}/api/v1/masterclass_types/?limit=${dataReq.limit}&offset=${dataReq.offset}&ordering=${dataReq.order}${dataReq.filter}`,
+    );
     const data = await this.constructor._checkResponse(res);
     if (res.ok) {
       data.results.forEach((course) => {
@@ -87,12 +95,38 @@ class Api {
     return data;
   }
 
-  async getCourseWithSlug(slug) {
-    const res = await fetch(`${this._url}/api/v1/masterclass_types/${slug}`);
+  async getCourseWithId(id) {
+    const res = await fetch(`${this._url}/api/v1/masterclass_types/${id}/`);
     return this.constructor._checkResponse(res);
   }
 
+  async bookMasterclass(masterclassId) {
+    const res = await fetch(`${this._url}/api/v1/booking/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
+      body: JSON.stringify({
+        masterclass: masterclassId,
+      }),
+    });
+    return this.constructor._checkResponse(res);
+  }
+
+  async bookMasterclassForUnauthorizedUser(data) {
+    const res = await fetch(`${this._url}/api/v1/feedback/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
+      body: JSON.stringify(data),
+    });
+  }
+
   async postSubscriptionEmail(email) {
+    const csrftoken = getCookie('csrftoken');
     const data = {
       email,
     };
@@ -100,6 +134,7 @@ class Api {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
       },
       body: JSON.stringify(data),
     });
@@ -107,10 +142,12 @@ class Api {
   }
 
   async postGiftCertificate(data) {
+    const csrftoken = getCookie('csrftoken');
     const res = await fetch(`${this._url}/api/v1/certificate/`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
       },
       body: JSON.stringify(data),
     });
@@ -118,10 +155,12 @@ class Api {
   }
 
   async postCallbackNumber(data) {
+    const csrftoken = getCookie('csrftoken');
     const res = await fetch(`${this._url}/api/v1/feedback/`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
       },
       body: JSON.stringify(data),
     });
@@ -132,7 +171,7 @@ class Api {
     const res = await fetch(`${this._url}/api/v1/reviews/`);
     const data = await this.constructor._checkResponse(res);
     if (res.ok) {
-      if (data.count === 0) { data.results = mockSliderDataBottom; } else {
+      if (data.count === 0) { data.results = SLIDER_CONFIG; } else {
         let firstId = 1;
         data.results.forEach((review) => {
           review.id = firstId;
@@ -247,6 +286,21 @@ class Api {
     });
     if (res.ok) {
       return res;
+    }
+    return Promise.reject(new Error(`${res.status}`));
+  }
+
+  async getAllFilters() {
+    const res = await fetch(`${this._url}/api/v1/filters/`);
+    const data = await this.constructor._checkResponse(res);
+    if (res.ok) {
+      const sorting = [
+        { name: 'Ближайшие', slug: 'date' },
+        { name: 'По цене', slug: 'price' },
+      ];
+      const result = data;
+      result.ORDER = [...sorting, ...result.ORDER];
+      return result;
     }
     return Promise.reject(new Error(`${res.status}`));
   }

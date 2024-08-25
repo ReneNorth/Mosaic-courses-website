@@ -1,10 +1,10 @@
 import { YMaps } from '@pbe/react-yandex-maps';
-import React from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 import { BlogPage } from '../../pages/BlogPage/BlogPage';
 import { MaingPage } from '../../pages/MainPage/MainPage';
 import { CoursePage } from '../../pages/CoursePage/CoursePage';
+import { GalleryPage } from '../../pages/GalleryPage/GalleryPage';
 import { NotFound } from '../../pages/NotFound/NotFound';
 import { AllCourses } from '../../pages/AllCourses/AllCourses';
 import { Footer } from '../Footer/Footer';
@@ -25,6 +25,7 @@ import { ProfilePersonalDataPage } from '../../pages/ProfilePersonalDataPage/Pro
 import { ProfileSecurityPage } from '../../pages/ProfileSecurityPage/ProfileSecurityPage';
 import { ProfileAlertPage } from '../../pages/ProfileAlertPage/ProfileAlertPage';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
+import { ENDPOINTS } from '../../utils/consts/constants';
 
 function App() {
   return (
@@ -33,23 +34,42 @@ function App() {
         <Header />
         <main>
           <Routes>
-            <Route path="/" element={<MaingPage />} />
-            <Route path="/course" element={<CoursePage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/blog/:slug" element={<PostPage />} />
-            <Route path="/courses" element={<AllCourses />} />
-            <Route path="/certificates" element={<Certificates />} />
-            <Route path="/about" element={<AboutStudio />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/activate/:uid/:token" element={<ActivatePage />} />
-            <Route path="/sign-in" element={<SignInPage />} />
-            <Route path="/password-reset" element={<PasswordResetPage />} />
-            <Route path="/password-reset/:uid/:token" element={<PasswordResetConfirm />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/profile/personal-data" element={<ProfilePersonalDataPage />} />
-            <Route path="/profile/security" element={<ProfileSecurityPage />} />
-            <Route path="/profile/alert" element={<ProfileAlertPage />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path={ENDPOINTS.main} element={<MaingPage />} />
+            <Route path={`${ENDPOINTS.course}/:slug`} element={<CoursePage />} />
+            <Route path={ENDPOINTS.gallery} element={<GalleryPage />} />
+            <Route path={ENDPOINTS.blog} element={<BlogPage />} />
+            <Route path={`${ENDPOINTS.blog}/:slug`} element={<PostPage />} />
+            <Route path={ENDPOINTS.courses} element={<AllCourses />} />
+            <Route path={ENDPOINTS.certificates} element={<Certificates />} />
+            <Route path={ENDPOINTS.about} element={<AboutStudio />} />
+            <Route path={ENDPOINTS.register} element={<RegisterPage />} />
+            <Route
+              path={`${ENDPOINTS.activate}/:uid/:token`}
+              element={<ActivatePage />}
+            />
+            <Route path={ENDPOINTS.signIn} element={<SignInPage />} />
+            <Route
+              path={ENDPOINTS.passwordReset}
+              element={<PasswordResetPage />}
+            />
+            <Route
+              path={`${ENDPOINTS.passwordReset}/:uid/:token`}
+              element={<PasswordResetConfirm />}
+            />
+            <Route path={ENDPOINTS.profile} element={<ProfilePage />} />
+            <Route
+              path={ENDPOINTS.profilePersonalData}
+              element={<ProfilePersonalDataPage />}
+            />
+            <Route
+              path={ENDPOINTS.profileSecurity}
+              element={<ProfileSecurityPage />}
+            />
+            <Route
+              path={ENDPOINTS.profileAlert}
+              element={<ProfileAlertPage />}
+            />
+            <Route path={ENDPOINTS.notFound} element={<NotFound />} />
           </Routes>
         </main>
         <Footer />
