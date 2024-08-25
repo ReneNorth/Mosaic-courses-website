@@ -1,6 +1,5 @@
 # for deploy, pulls images from dockerhub 
 
-version: '3.8'
 services:
   db:
     image: postgres:13.0-alpine

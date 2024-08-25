@@ -1,8 +1,6 @@
 # for local development 
 # build all images and runs all containers locally
 
-version: '3.8'
-
 services:
   db:
     image: postgres:13.0-alpine
