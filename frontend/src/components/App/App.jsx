@@ -12,7 +12,6 @@ import { Header } from '../Header/Header';
 
 import './App.scss';
 import { Certificates } from '../../pages/Certificates/Certificates';
-import { AboutUs } from '../AboutUs/AboutUs';
 import { AboutStudio } from '../../pages/AboutStudio/AboutStudio';
 import { PostPage } from '../../pages/PostPage/PostPage';
 import { RegisterPage } from '../../pages/RegisterPage/RegisterPage';
@@ -24,7 +23,6 @@ import { ProfilePage } from '../../pages/ProfilePage/ProfilePage';
 import { ProfilePersonalDataPage } from '../../pages/ProfilePersonalDataPage/ProfilePersonalDataPage';
 import { ProfileSecurityPage } from '../../pages/ProfileSecurityPage/ProfileSecurityPage';
 import { ProfileAlertPage } from '../../pages/ProfileAlertPage/ProfileAlertPage';
-import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import { ENDPOINTS } from '../../utils/consts/constants';
 
 function App() {
