@@ -334,6 +334,31 @@ class Api {
     }
     return Promise.reject(new Error(`${res.status}`));
   }
+
+  async _fetchAuthorized(url, method = 'GET', headers = null, body = null) {
+    const accessToken = localStorage.getItem('accessToken');
+    let res = await fetch(`${this._url}${url}`, {
+      method,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        ...(headers || {}),
+      },
+      body,
+    });
+    if (res.status === 401) {
+      await this.refreshToken(localStorage.getItem('refreshToken'));
+      const accessToken = localStorage.getItem('accessToken');
+      res = await fetch(`${this._url}${url}`, {
+        method,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          ...(headers || {}),
+        },
+        body,
+      });
+    }
+    return this._checkResponse(res);
+  }
 }
 
 console.log(process.env.REACT_APP_API_URL);
