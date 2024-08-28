@@ -101,11 +101,10 @@ class Api {
   }
 
   async bookMasterclass(masterclassId) {
-    const res = await fetch(`${this._url}/api/v1/booking/`, {
+    const res = await this._fetchAuthorized(`${this._url}/api/v1/booking/`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
       },
       body: JSON.stringify({
         masterclass: masterclassId,
@@ -247,7 +246,7 @@ class Api {
 
   async refreshToken(token) {
     const csrftoken = getCookie('csrftoken');
-    const res = await fetch(`${this._url}/api/auth/jwt/refresh/`, {
+    let res = await fetch(`${this._url}/api/auth/jwt/refresh/`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -257,6 +256,9 @@ class Api {
         refresh: token,
       }),
     });
+    res = await res.json();
+    localStorage.setItem('accessToken', res.accessToken);
+    localStorage.setItem('refreshToken', res.refreshToken);
     return this.constructor._checkResponse(res);
   }
 
