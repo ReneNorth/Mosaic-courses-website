@@ -19,7 +19,19 @@ const initialState = {
   passwordResetSucces: false,
   passwordResetError: null,
   passwordResetConfirm: false,
+  tokens: {
+    refresh: null,
+    access: null,
+  },
 };
+
+const refreshToken = createAsyncThunk('auth/refreshToken', async (token) => {
+  try {
+    return api.refreshToken(token);
+  } catch (err) {
+    return err;
+  }
+});
 
 const registerUser = createAsyncThunk('auth/registerUser', async (data) => {
   try {
@@ -82,6 +94,9 @@ export const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(refreshToken.fulfilled, (state, action) => {
+      state.tokens = action.payload;
+    });
     builder.addCase(registerUser.pending, (state) => {
       state.isSending = true;
       state.registerError = null;

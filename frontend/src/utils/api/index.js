@@ -245,6 +245,36 @@ class Api {
     return this.constructor._checkResponse(res);
   }
 
+  async refreshToken(token) {
+    const csrftoken = getCookie('csrftoken');
+    const res = await fetch(`${this._url}/api/auth/jwt/refresh/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify({
+        refresh: token,
+      }),
+    });
+    return this.constructor._checkResponse(res);
+  }
+
+  async verifyToken(accessToken) {
+    const csrftoken = getCookie('csrftoken');
+    const res = await fetch(`${this._url}/api/auth/jwt/verify/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify({
+        token: accessToken,
+      }),
+    });
+    return this.constructor._checkResponse(res);
+  }
+
   async postPasswordReset(data) {
     const csrftoken = getCookie('csrftoken');
     const res = await fetch(`${this._url}/api/v1/users/reset_password/`, {
