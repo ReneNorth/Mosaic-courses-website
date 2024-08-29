@@ -23,11 +23,20 @@ const initialState = {
     refresh: null,
     access: null,
   },
+  isAuthorized: false,
 };
 
 const refreshToken = createAsyncThunk('auth/refreshToken', async (token) => {
   try {
     return api.refreshToken(token);
+  } catch (err) {
+    return err;
+  }
+});
+
+const verifyToken = createAsyncThunk('auth/verifyToken', async (accessToken) => {
+  try {
+    return api.verifyToken(accessToken);
   } catch (err) {
     return err;
   }
@@ -96,6 +105,18 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(refreshToken.fulfilled, (state, action) => {
       state.tokens = action.payload;
+    });
+    builder.addCase(refreshToken.rejected, (state, action) => {
+      state.tokens = {
+        refresh: null,
+        access: null,
+      };
+    });
+    builder.addCase(verifyToken.fulfilled, (state) => {
+      state.isAuthorized = true;
+    });
+    builder.addCase(verifyToken.rejected, (state) => {
+      state.isAuthorized = false;
     });
     builder.addCase(registerUser.pending, (state) => {
       state.isSending = true;
@@ -169,4 +190,5 @@ const authSliceReducer = authSlice.reducer;
 export {
   authSliceReducer, registerUser, activateUser, resendActivationEmail,
   loginUser, passwordReset, getEmailByUID, resetPasswordConfirm,
+  refreshToken, verifyToken,
 };

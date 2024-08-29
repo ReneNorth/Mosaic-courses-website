@@ -1,5 +1,6 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { YMaps } from '@pbe/react-yandex-maps';
-
 import { Route, Routes } from 'react-router-dom';
 import { BlogPage } from '../../pages/BlogPage/BlogPage';
 import { MaingPage } from '../../pages/MainPage/MainPage';
@@ -9,7 +10,6 @@ import { NotFound } from '../../pages/NotFound/NotFound';
 import { AllCourses } from '../../pages/AllCourses/AllCourses';
 import { Footer } from '../Footer/Footer';
 import { Header } from '../Header/Header';
-
 import './App.scss';
 import { Certificates } from '../../pages/Certificates/Certificates';
 import { AboutStudio } from '../../pages/AboutStudio/AboutStudio';
@@ -24,8 +24,15 @@ import { ProfilePersonalDataPage } from '../../pages/ProfilePersonalDataPage/Pro
 import { ProfileSecurityPage } from '../../pages/ProfileSecurityPage/ProfileSecurityPage';
 import { ProfileAlertPage } from '../../pages/ProfileAlertPage/ProfileAlertPage';
 import { ENDPOINTS } from '../../utils/consts/constants';
+import { verifyToken } from '../../services/slices/authSlice';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(verifyToken(localStorage.getItem('accessToken')));
+  }, [dispatch]);
+
   return (
     <div className="App">
       <YMaps>
