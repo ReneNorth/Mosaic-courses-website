@@ -13,7 +13,7 @@ describe('ProfileModal', () => {
     );
 
     expect(getByText('Настройки аккаунта')).toBeInTheDocument();
-    expect(getByText('Записи на курсы')).toBeInTheDocument();
+    expect(getByText('Мои мастерклассы')).toBeInTheDocument();
     expect(getByText('Выйти')).toBeInTheDocument();
     expect(getByAltText('В настройки профиля')).toBeInTheDocument();
     expect(getByAltText('Записаться на курс')).toBeInTheDocument();
