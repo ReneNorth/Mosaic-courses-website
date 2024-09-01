@@ -32,6 +32,7 @@ export const ProfileModal = ({ isOpen, onClose }) => {
     <div
       className={classNames(cls.popup, { [cls.popupOpen]: isOpen }, [])}
       ref={popup}
+			data-testid="popup"
     >
       <div className={cls.contentWrapper}>
         <NavLink className={cls.link} to="/register">

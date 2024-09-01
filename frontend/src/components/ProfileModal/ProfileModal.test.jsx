@@ -5,30 +5,26 @@ import '@testing-library/jest-dom';
 import { ProfileModal } from './ProfileModal';
 
 describe('ProfileModal', () => {
-  it('despite the fact that the component is hidden all components are rendered', () => {
-    const { getByText, getByAltText, getByTestId } = render(
+  it('does not render anything when closed', () => {
+    const { queryByText, queryByAltText } = render(
       <BrowserRouter>
-        <ProfileModal isOpen={false} setIsOpen={() => {}} />
+        <ProfileModal isOpen={false} onClose={() => {}} />
       </BrowserRouter>,
     );
 
-    expect(getByText('Настройки аккаунта')).toBeInTheDocument();
-    expect(getByText('Мои мастерклассы')).toBeInTheDocument();
-    expect(getByText('Выйти')).toBeInTheDocument();
-    expect(getByAltText('В настройки профиля')).toBeInTheDocument();
-    expect(getByAltText('Записаться на курс')).toBeInTheDocument();
-    expect(getByAltText('Выйти из профиля')).toBeInTheDocument();
-    // check that the component is hidden
-    expect(getByTestId('overlay')).toHaveAttribute('class', 'overlay');
-    expect(getByTestId('popup')).toHaveAttribute('class', 'popup');
+    expect(queryByText('Настройки аккаунта')).not.toBeInTheDocument();
+    expect(queryByText('Мои мастер-классы')).not.toBeInTheDocument();
+    expect(queryByText('Выйти')).not.toBeInTheDocument();
+    expect(queryByAltText('В настройки профиля')).not.toBeInTheDocument();
+    expect(queryByAltText('Записаться на курс')).not.toBeInTheDocument();
+    expect(queryByAltText('Выйти из профиля')).not.toBeInTheDocument();
   });
   it('check whether the necessary classes are added when opening the component', () => {
     const { getByTestId } = render(
       <BrowserRouter>
-        <ProfileModal isOpen setIsOpen={() => {}} />
+        <ProfileModal isOpen onClose={() => {}} />
       </BrowserRouter>,
     );
-    expect(getByTestId('overlay')).toHaveAttribute('class', 'overlay overlayOpen');
     expect(getByTestId('popup')).toHaveAttribute('class', 'popup popupOpen');
   });
 
