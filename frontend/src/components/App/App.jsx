@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { YMaps } from '@pbe/react-yandex-maps';
 import { Route, Routes } from 'react-router-dom';
 import { BlogPage } from '../../pages/BlogPage/BlogPage';
@@ -28,10 +28,20 @@ import { verifyToken } from '../../services/slices/authSlice';
 
 function App() {
   const dispatch = useDispatch();
+  const { access, refresh } = useSelector((store) => store.auth.tokens);
 
   useEffect(() => {
     dispatch(verifyToken(localStorage.getItem('accessToken')));
   }, [dispatch]);
+
+  useEffect(() => {
+    if (access) {
+      localStorage.setItem('accessToken', access);
+    }
+    if (refresh) {
+      localStorage.setItem('refreshToken', refresh);
+    }
+  }, [access, refresh]);
 
   return (
     <div className="App">
