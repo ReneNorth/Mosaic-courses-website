@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cls from './RegisterPage.module.scss';
 import { Button } from '../../components/Button/Button';
@@ -28,6 +28,9 @@ export function RegisterPage() {
     resetForm,
     values,
     handlePhoneValidation,
+    handleChangeStorageByEvent,
+    handleChangeStorageByValue,
+    setValues,
   } = useFormValidation();
 
   const {
@@ -95,6 +98,12 @@ export function RegisterPage() {
     setDisabledButtonCounter(true);
   };
 
+  const storageKey = 'register';
+  useEffect(() => {
+    const savedValues = JSON.parse(localStorage.getItem(storageKey)) || {};
+    setValues(savedValues);
+  }, [setValues]);
+
   const subStepsDataEntry = (step) => {
     if (step === '2') {
       return (
@@ -137,20 +146,20 @@ export function RegisterPage() {
               type="name"
               errors={errors}
               isValid={isValid}
-              handleChange={handleChange}
+              handleChange={(e) => handleChangeStorageByEvent(e, storageKey, handleChange)}
               values={values}
             />
             <InputField
               type="email"
               errors={errors}
               isValid={isValid}
-              handleChange={handleChange}
+              handleChange={(e) => handleChangeStorageByEvent(e, storageKey, handleChange)}
               values={values}
             />
             <InputFieldPhone
               errors={errors}
               isValid={isValid}
-              handleChange={handlePhoneChange}
+              handleChange={(value) => handleChangeStorageByValue(storageKey, 'phone', value, handlePhoneChange)}
               handlePhoneValidation={handlePhoneValidation}
               values={values}
             />

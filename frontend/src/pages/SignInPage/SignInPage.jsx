@@ -12,7 +12,7 @@ import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/
 
 export function SignInPage() {
   const {
-    errors, isValid, handleChange, values,
+    errors, isValid, handleChange, values, useEffectInputStorage,
   } = useFormValidation();
 
   const navigate = useNavigate();
