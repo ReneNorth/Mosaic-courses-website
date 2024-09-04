@@ -3,6 +3,7 @@ import cls from './CheckBoxField.module.scss';
 export const CheckBoxField = ({
   type,
   handleChange,
+  values,
   ...props
 }) => {
   const CheckBoxSettings = {
@@ -26,6 +27,7 @@ export const CheckBoxField = ({
     // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label className={cls.content__checkbox} {...props}>
       <input
+        checked={values[CheckBoxSettings[type].name] || false}
         onChange={handleChange}
         type="checkbox"
         name={CheckBoxSettings[type].name}

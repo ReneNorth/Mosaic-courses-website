@@ -12,8 +12,8 @@ export const useFormValidation = () => {
     setIsValid(e.target.closest('form').checkValidity());
   };
 
-  const handlePhoneChange = (value) => {
-    setValues({ ...values, phone: value });
+  const handleChangeByValue = (name, value) => {
+    setValues({ ...values, [name]: value });
   };
 
   const updateLocalStorage = (key, name, value) => {
@@ -22,9 +22,15 @@ export const useFormValidation = () => {
     localStorage.setItem(key, JSON.stringify(stored));
   };
 
+  const handleChangeCheckbox = (e, key) => {
+    const { name, checked } = e.target;
+    updateLocalStorage(key, name, checked);
+    handleChangeByValue(name, checked);
+  };
+
   const handleChangeStorageByValue = (key, name, value, callback) => {
     updateLocalStorage(key, name, value);
-    callback(value);
+    callback(name, value);
   };
 
   const handleChangeStorageByEvent = (e, key, callback) => {
@@ -86,9 +92,10 @@ export const useFormValidation = () => {
     handleChangeInRealTime,
     handleSecondPasswordChange,
     resetForm,
-    handlePhoneChange,
+    handleChangeByValue,
     handlePhoneValidation,
     handleChangeStorageByEvent,
     handleChangeStorageByValue,
+    handleChangeCheckbox,
   };
 };

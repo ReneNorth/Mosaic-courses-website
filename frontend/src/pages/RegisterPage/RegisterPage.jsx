@@ -23,7 +23,7 @@ export function RegisterPage() {
     setIsValid,
     handleChange,
     handleBlur,
-    handlePhoneChange,
+    handleChangeByValue,
     handleChangeInRealTime,
     resetForm,
     values,
@@ -31,6 +31,7 @@ export function RegisterPage() {
     handleChangeStorageByEvent,
     handleChangeStorageByValue,
     setValues,
+    handleChangeCheckbox,
   } = useFormValidation();
 
   const {
@@ -159,13 +160,21 @@ export function RegisterPage() {
             <InputFieldPhone
               errors={errors}
               isValid={isValid}
-              handleChange={(value) => handleChangeStorageByValue(storageKey, 'phone', value, handlePhoneChange)}
+              handleChange={(value) => handleChangeStorageByValue(storageKey, 'phone', value, handleChangeByValue)}
               handlePhoneValidation={handlePhoneValidation}
               values={values}
             />
           </div>
-          <CheckBoxField type="agreement" handleChange={handleChange} />
-          <CheckBoxField type="mailing" handleChange={handleChange} />
+          <CheckBoxField
+            type="agreement"
+            handleChange={(e) => handleChangeCheckbox(e, storageKey)}
+            values={values}
+          />
+          <CheckBoxField
+            type="mailing"
+            handleChange={(e) => handleChangeCheckbox(e, storageKey)}
+            values={values}
+          />
         </div>
         <div className={cls.buttonWrapper}>
           <Button
