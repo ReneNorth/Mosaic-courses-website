@@ -101,7 +101,15 @@ const resetPasswordConfirm = createAsyncThunk('auth/resetPasswordConfirm', async
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      state.isAuthorized = false;
+      state.tokens = {
+        refresh: null,
+        access: null,
+      };
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(refreshToken.fulfilled, (state, action) => {
       state.tokens = action.payload;
@@ -193,3 +201,5 @@ export {
   loginUser, passwordReset, getEmailByUID, resetPasswordConfirm,
   refreshToken, verifyToken,
 };
+
+export const { logout } = authSlice.actions;
