@@ -12,7 +12,7 @@ import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/
 
 export function SignInPage() {
   const {
-    errors, isValid, handleChange, values, useEffectInputStorage,
+    errors, isValid, handleChange, values, setValues, handleChangeStorageByEvent,
   } = useFormValidation();
 
   const navigate = useNavigate();
@@ -38,6 +38,12 @@ export function SignInPage() {
     }
   }, [loginSucces, navigate]);
 
+  const storageKey = 'signIn';
+  useEffect(() => {
+    const savedValues = JSON.parse(localStorage.getItem(storageKey)) || {};
+    setValues(savedValues);
+  }, [setValues]);
+
   return (
     <section className={cls.section}>
       <div className={cls.block}>
@@ -53,7 +59,7 @@ export function SignInPage() {
               placeholder="Email*"
               errors={errors}
               isValid={isValid}
-              handleChange={handleChange}
+              handleChange={(e) => handleChangeStorageByEvent(e, storageKey, handleChange)}
               values={values}
             />
             <InputField
