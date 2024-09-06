@@ -59,6 +59,12 @@ export function RegisterPage() {
     setTitle('Придумайте пароль');
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      nextStep(e);
+    }
+  };
+
   const sendData = (e) => {
     e.preventDefault();
     const sendData = {
@@ -180,6 +186,7 @@ export function RegisterPage() {
           <Button
             type="button"
             onClick={(e) => nextStep(e)}
+            onKeyDown={handleKeyDown}
             disabled={!isValid}
             className="fill"
             decoration="black"

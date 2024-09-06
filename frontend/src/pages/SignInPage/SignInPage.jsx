@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cls from './SignInPage.module.scss';
 import { Button } from '../../components/Button/Button';
@@ -11,6 +11,8 @@ import { loginUser } from '../../services/slices/authSlice';
 import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/LogInPageDecorationImg';
 
 export function SignInPage() {
+  const [inputError, setInputError] = useState(false);
+
   const {
     errors, isValid, handleChange, values, setValues, handleChangeStorageByEvent,
   } = useFormValidation();
@@ -30,6 +32,19 @@ export function SignInPage() {
       password: values.password,
     };
     dispatch(loginUser(sendData));
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      const allFieldsFilled = values.email && values.password;
+      setInputError(false);
+      if (allFieldsFilled) {
+        login(e);
+      } else {
+        setInputError(true);
+        console.log('Пожалуйста, заполните все поля!');
+      }
+    }
   };
 
   useEffect(() => {
@@ -52,6 +67,7 @@ export function SignInPage() {
             <SignHeaderLinks />
           </ul>
           {loginError && (<span className={cls.errorMessage}>Неверный логин или пароль</span>)}
+          {inputError && (<span className={cls.errorMessage}>Пожалуйста, заполните все поля!</span>)}
           <h3 className={classNames(cls.title, { [cls.titleError]: loginError }, [])}>Войдите в свой профиль</h3>
           <div className={cls.inputsWrapper}>
             <InputField
@@ -60,6 +76,7 @@ export function SignInPage() {
               errors={errors}
               isValid={isValid}
               handleChange={(e) => handleChangeStorageByEvent(e, storageKey, handleChange)}
+              onKeyDown={handleKeyDown}
               values={values}
             />
             <InputField
@@ -68,6 +85,7 @@ export function SignInPage() {
               errors={errors}
               isValid={isValid}
               handleChange={handleChange}
+              onKeyDown={handleKeyDown}
               values={values}
             />
             <Link to="/password-reset">
