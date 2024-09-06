@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cls from './SignInPage.module.scss';
 import { Button } from '../../components/Button/Button';
@@ -25,16 +25,16 @@ export function SignInPage() {
   } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  const login = (e) => {
+  const login = useCallback((e) => {
     e.preventDefault();
     const sendData = {
       email: values.email,
       password: values.password,
     };
     dispatch(loginUser(sendData));
-  };
+  }, [dispatch, values.email, values.password]);
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = useCallback((e) => {
     if (e.key === 'Enter') {
       const allFieldsFilled = values.email && values.password;
       setInputError(false);
@@ -44,7 +44,14 @@ export function SignInPage() {
         setInputError(true);
       }
     }
-  };
+  }, [values, login]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleKeyDown]);
 
   useEffect(() => {
     if (loginSucces) {
@@ -75,7 +82,6 @@ export function SignInPage() {
               errors={errors}
               isValid={isValid}
               handleChange={(e) => handleChangeStorageByEvent(e, storageKey, handleChange)}
-              onKeyDown={handleKeyDown}
               values={values}
             />
             <InputField
@@ -84,7 +90,6 @@ export function SignInPage() {
               errors={errors}
               isValid={isValid}
               handleChange={handleChange}
-              onKeyDown={handleKeyDown}
               values={values}
             />
             <Link to="/password-reset">
