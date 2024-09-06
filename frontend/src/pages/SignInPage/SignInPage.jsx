@@ -42,7 +42,6 @@ export function SignInPage() {
         login(e);
       } else {
         setInputError(true);
-        console.log('Пожалуйста, заполните все поля!');
       }
     }
   };

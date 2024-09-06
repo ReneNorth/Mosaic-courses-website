@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cls from './RegisterPage.module.scss';
 import { Button } from '../../components/Button/Button';
@@ -51,19 +51,33 @@ export function RegisterPage() {
   const [disabledButtonCounter, setDisabledButtonCounter] = useState(true);
   const [dataEntryStep, setDataEntryStep] = useState(true);
   const [dataResponseStep, setDataResponseStep] = useState(false);
+  const [inputError, setInputError] = useState(false);
   const [counter, setCounter] = useState(30);
-  const nextStep = (e) => {
+  const nextStep = useCallback((e) => {
     e.preventDefault();
     setIsValid(false);
     setStepIndex('2');
     setTitle('Придумайте пароль');
-  };
-
-  const handleKeyDown = (e) => {
+  }, [setIsValid]);
+  const handleKeyDown = useCallback((e) => {
     if (e.key === 'Enter') {
-      nextStep(e);
+      const allFieldsFilled = values.email && values.name && values.phone;
+
+      if (allFieldsFilled) {
+        setInputError(false);
+        nextStep(e);
+      } else {
+        setInputError(true);
+      }
     }
-  };
+  }, [values, nextStep]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleKeyDown]);
 
   const sendData = (e) => {
     e.preventDefault();
@@ -186,7 +200,6 @@ export function RegisterPage() {
           <Button
             type="button"
             onClick={(e) => nextStep(e)}
-            onKeyDown={handleKeyDown}
             disabled={!isValid}
             className="fill"
             decoration="black"
@@ -202,6 +215,7 @@ export function RegisterPage() {
     <section className={cls.section}>
       <div className={cls.block}>
         <form className={cls.formContainer} noValidate>
+          {inputError && (<span className={cls.errorMessage}>Пожалуйста, заполните все поля!</span>)}
           {dataEntryStep && (
             <>
               <ul className={classNames(cls.list, {}, [])}>
