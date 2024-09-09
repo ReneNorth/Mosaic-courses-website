@@ -8,7 +8,7 @@ import { ProfileModal } from './ProfileModal';
 
 describe('ProfileModal', () => {
   it('despite the fact that the component is hidden all components are rendered', () => {
-    const { getByText, getByAltText, getByTestId } = render(
+    const { queryByText, queryByAltText } = render(
       <Provider store={store}>
         <BrowserRouter>
           <ProfileModal isOpen={false} setIsOpen={() => {}} />

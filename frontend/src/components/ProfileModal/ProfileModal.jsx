@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
 import cls from './ProfileModal.module.scss';
 import { classNames } from '../../helpers/classNames';
 import IconSettings from '../../images/profile_modal_settings.svg';
