@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useLocation, NavLink } from 'react-router-dom';
 import { classNames } from '../../helpers/classNames';
 import cls from './UserBar.module.scss';
@@ -14,24 +14,22 @@ import { ENDPOINTS } from '../../utils/consts/constants.js';
 
 export const UserBar = () => {
   const { isDesktopWidth } = useResize();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
-  const openHamburgerMenu = () => {
-    setHamburgerMenuOpen(true);
-  };
-  const closeHamburgerMenu = () => {
-    setHamburgerMenuOpen(false);
+
+  const toggleHamburgerMenu = () => {
+    setHamburgerMenuOpen((prev) => !prev);
   };
 
-  const openProfileModal = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleProfileModal = useCallback(() => {
+    setIsProfileModalOpen((prev) => !prev);
+  }, []);
 
   const { pathname } = useLocation();
 
   return (
     <>
-      {hamburgerMenuOpen && <HamburgerMenu handleClick={closeHamburgerMenu} />}
+      {hamburgerMenuOpen && <HamburgerMenu handleClick={toggleHamburgerMenu} />}
       <ul className={cls.list}>
         <div className={cls.decoration} />
         <li className={cls.item}>
@@ -43,7 +41,7 @@ export const UserBar = () => {
           <button
             type="button"
             aria-label="Открыть профиль"
-            onClick={openProfileModal}
+            onClick={toggleProfileModal}
             className={cls.button}
           >
             <ProfileLogo
@@ -54,7 +52,10 @@ export const UserBar = () => {
               )}
             />
           </button>
-          <ProfileModal isOpen={isOpen} setIsOpen={setIsOpen} />
+          <ProfileModal
+            isOpen={isProfileModalOpen}
+            onClose={toggleProfileModal}
+          />
         </li>
         <li className={cls.item}>
           <NavLink to={ENDPOINTS.favourites} className={cls.link}>
@@ -71,7 +72,7 @@ export const UserBar = () => {
             <button
               className={cls.button}
               type="button"
-              onClick={openHamburgerMenu}
+              onClick={toggleHamburgerMenu}
               aria-label="Открыть меню навигации"
             >
               <HamburgerLogo className={cls.icon} />

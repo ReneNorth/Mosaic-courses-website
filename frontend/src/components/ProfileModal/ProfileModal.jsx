@@ -1,13 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { NavLink } from 'react-router-dom';
 import cls from './ProfileModal.module.scss';
 import { classNames } from '../../helpers/classNames';
 import IconSettings from '../../images/profile_modal_settings.svg';
 import IconSignIn from '../../images/profile_modal_sign_in_course.svg';
 import IconLogOut from '../../images/profile_modal_log_out_profile.svg';
+import Calendar from '../../images/calendar.svg';
 import { logout as sliceLogout } from '../../services/slices/authSlice';
 
-export const ProfileModal = ({ isOpen, setIsOpen }) => {
+export const ProfileModal = ({ isOpen, onClose }) => {
+  const popup = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -20,35 +24,48 @@ export const ProfileModal = ({ isOpen, setIsOpen }) => {
     navigate('/sign-in');
   }
 
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (popup.current && !popup.current.contains(event.target)) {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
   return (
-    <>
-      <div
-        className={classNames(cls.overlay, { [cls.overlayOpen]: isOpen }, [])}
-        onClick={() => setIsOpen(!isOpen)}
-        data-testid="overlay"
-      />
-      <div className={classNames(cls.popup, { [cls.popupOpen]: isOpen }, [])} data-testid="popup">
-        <div className={cls.contentWrapper}>
-          <NavLink
-            className={cls.link}
-            to="/profile"
-          >
-            <img src={IconSettings} alt="В настройки профиля" />
-            Настройки аккаунта
-          </NavLink>
-          <NavLink
-            className={cls.link}
-            to="/course-registration"
-          >
-            <img src={IconSignIn} alt="Записаться на курс" />
-            Записи на курсы
-          </NavLink>
-          <button className={cls.button} type="button" onClick={logout}>
-            <img src={IconLogOut} alt="Выйти из профиля" />
-            Выйти
-          </button>
-        </div>
+    <div
+      className={classNames(cls.popup, { [cls.popupOpen]: isOpen }, [])}
+      ref={popup}
+      data-testid="popup"
+    >
+      <div className={cls.contentWrapper}>
+        <NavLink className={cls.link} to="/register">
+          <img src={IconSignIn} alt="Регистрация/логин" />
+          Регистрация/логин
+        </NavLink>
+        <NavLink className={cls.link} to="/my-masterclasses">
+          <img src={Calendar} alt="Записаться на курс" />
+          Мои мастер-классы
+        </NavLink>
+        <NavLink className={cls.link} to="/profile">
+          <img src={IconSettings} alt="В настройки профиля" />
+          Настройки аккаунта
+        </NavLink>
+        <button className={cls.button} type="button" onClick={logout}>
+          <img src={IconLogOut} alt="Выйти из профиля" />
+          Выйти
+        </button>
       </div>
-    </>
+    </div>
   );
 };

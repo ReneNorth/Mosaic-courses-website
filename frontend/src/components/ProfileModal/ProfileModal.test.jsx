@@ -16,15 +16,12 @@ describe('ProfileModal', () => {
       </Provider>,
     );
 
-    expect(getByText('Настройки аккаунта')).toBeInTheDocument();
-    expect(getByText('Записи на курсы')).toBeInTheDocument();
-    expect(getByText('Выйти')).toBeInTheDocument();
-    expect(getByAltText('В настройки профиля')).toBeInTheDocument();
-    expect(getByAltText('Записаться на курс')).toBeInTheDocument();
-    expect(getByAltText('Выйти из профиля')).toBeInTheDocument();
-    // check that the component is hidden
-    expect(getByTestId('overlay')).toHaveAttribute('class', 'overlay');
-    expect(getByTestId('popup')).toHaveAttribute('class', 'popup');
+    expect(queryByText('Настройки аккаунта')).not.toBeInTheDocument();
+    expect(queryByText('Мои мастер-классы')).not.toBeInTheDocument();
+    expect(queryByText('Выйти')).not.toBeInTheDocument();
+    expect(queryByAltText('В настройки профиля')).not.toBeInTheDocument();
+    expect(queryByAltText('Записаться на курс')).not.toBeInTheDocument();
+    expect(queryByAltText('Выйти из профиля')).not.toBeInTheDocument();
   });
   it('check whether the necessary classes are added when opening the component', () => {
     const { getByTestId } = render(
@@ -34,7 +31,6 @@ describe('ProfileModal', () => {
         </BrowserRouter>
       </Provider>,
     );
-    expect(getByTestId('overlay')).toHaveAttribute('class', 'overlay overlayOpen');
     expect(getByTestId('popup')).toHaveAttribute('class', 'popup popupOpen');
   });
 
