@@ -61,9 +61,9 @@ export function RegisterPage() {
   }, [setIsValid]);
   const handleKeyDown = useCallback((e) => {
     if (e.key === 'Enter') {
-      const allFieldsFilled = values.email && values.name && values.phone;
+      const areAllFieldsFilled = values.email && values.name && values.phone;
 
-      if (allFieldsFilled) {
+      if (areAllFieldsFilled) {
         setInputError(false);
         nextStep(e);
       } else {
@@ -121,8 +121,13 @@ export function RegisterPage() {
 
   const storageKey = 'register';
   useEffect(() => {
-    const savedValues = JSON.parse(localStorage.getItem(storageKey)) || {};
-    setValues(savedValues);
+    try {
+      const savedValues = JSON.parse(localStorage.getItem(storageKey)) || {};
+      setValues(savedValues);
+    } catch (error) {
+      console.error('Ошибка при разборе сохраненных значений:', error);
+      setValues({});
+    }
   }, [setValues]);
 
   const subStepsDataEntry = (step) => {
@@ -215,7 +220,7 @@ export function RegisterPage() {
     <section className={cls.section}>
       <div className={cls.block}>
         <form className={cls.formContainer} noValidate>
-          {inputError && (<span className={cls.errorMessage}>Пожалуйста, заполните все поля!</span>)}
+          {inputError && <span className={cls.errorMessage}>Пожалуйста, заполните все поля!</span>}
           {dataEntryStep && (
             <>
               <ul className={classNames(cls.list, {}, [])}>

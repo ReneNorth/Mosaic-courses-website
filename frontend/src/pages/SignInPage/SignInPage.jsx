@@ -36,9 +36,9 @@ export function SignInPage() {
 
   const handleKeyDown = useCallback((e) => {
     if (e.key === 'Enter') {
-      const allFieldsFilled = values.email && values.password;
+      const areAllFieldsFilled = values.email && values.password;
       setInputError(false);
-      if (allFieldsFilled) {
+      if (areAllFieldsFilled) {
         login(e);
       } else {
         setInputError(true);
@@ -73,7 +73,7 @@ export function SignInPage() {
             <SignHeaderLinks />
           </ul>
           {loginError && (<span className={cls.errorMessage}>Неверный логин или пароль</span>)}
-          {inputError && (<span className={cls.errorMessage}>Пожалуйста, заполните все поля!</span>)}
+          {inputError && <span className={cls.errorMessage}>Пожалуйста, заполните все поля!</span>}
           <h3 className={classNames(cls.title, { [cls.titleError]: loginError }, [])}>Войдите в свой профиль</h3>
           <div className={cls.inputsWrapper}>
             <InputField
