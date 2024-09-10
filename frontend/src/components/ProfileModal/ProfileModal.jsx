@@ -1,14 +1,27 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
 import cls from './ProfileModal.module.scss';
 import { classNames } from '../../helpers/classNames';
 import IconSettings from '../../images/profile_modal_settings.svg';
 import IconSignIn from '../../images/profile_modal_sign_in_course.svg';
 import IconLogOut from '../../images/profile_modal_log_out_profile.svg';
 import Calendar from '../../images/calendar.svg';
+import { logout as sliceLogout } from '../../services/slices/authSlice';
 
 export const ProfileModal = ({ isOpen, onClose }) => {
   const popup = useRef(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  function logout() {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+
+    dispatch(sliceLogout());
+
+    navigate('/sign-in');
+  }
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -47,7 +60,7 @@ export const ProfileModal = ({ isOpen, onClose }) => {
           <img src={IconSettings} alt="В настройки профиля" />
           Настройки аккаунта
         </NavLink>
-        <button className={cls.button} type="button">
+        <button className={cls.button} type="button" onClick={logout}>
           <img src={IconLogOut} alt="Выйти из профиля" />
           Выйти
         </button>

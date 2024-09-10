@@ -28,6 +28,11 @@ describe('authSlice register and activation reducer', () => {
     passwordResetSucces: false,
     passwordResetError: null,
     passwordResetConfirm: false,
+    tokens: {
+      refresh: null,
+      access: null,
+    },
+    isAuthorized: false,
   };
 
   it('should handle initial state', () => {
