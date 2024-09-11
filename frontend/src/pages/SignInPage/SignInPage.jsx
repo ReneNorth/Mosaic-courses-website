@@ -47,7 +47,6 @@ export function SignInPage() {
     if (isAuthorized) {
       navigate('/profile');
     }
-    console.log(isAuthorized);
   }, [isAuthorized, navigate]);
 
   return (
