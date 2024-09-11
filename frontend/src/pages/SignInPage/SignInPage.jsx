@@ -7,20 +7,21 @@ import { classNames } from '../../helpers/classNames';
 import { InputField } from '../../components/InputField/InputField';
 import { SignHeaderLinks } from '../../components/SignHeaderLinks/SignHeaderLinks';
 import { useFormValidation } from '../../hooks/useFormValidation';
-import { loginUser } from '../../services/slices/authSlice';
+import { loginUser, verifyToken } from '../../services/slices/authSlice';
 import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/LogInPageDecorationImg';
 
 export function SignInPage() {
   const {
-    errors, isValid, handleChange, values,
+    errors,
+    isValid,
+    handleChange,
+    values,
   } = useFormValidation();
+  const isAuthorized = useSelector((store) => store.auth.isAuthorized);
 
   const navigate = useNavigate();
 
-  const {
-    loginSucces,
-    loginError,
-  } = useSelector((state) => state.auth);
+  const { loginSucces, loginError } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const login = (e) => {
@@ -29,14 +30,25 @@ export function SignInPage() {
       email: values.email,
       password: values.password,
     };
-    dispatch(loginUser(sendData));
+    dispatch(loginUser(sendData))
+      .unwrap()
+      .then(() => {
+        const token = localStorage.getItem('accessToken');
+        if (token) {
+          dispatch(verifyToken(token));
+        }
+      })
+      .catch((error) => {
+        console.error('Login failed:', error);
+      });
   };
 
   useEffect(() => {
-    if (loginSucces) {
+    if (isAuthorized) {
       navigate('/profile');
     }
-  }, [loginSucces, navigate]);
+    console.log(isAuthorized);
+  }, [isAuthorized, navigate]);
 
   return (
     <section className={cls.section}>
@@ -45,8 +57,18 @@ export function SignInPage() {
           <ul className={classNames(cls.list, {}, [])}>
             <SignHeaderLinks />
           </ul>
-          {loginError && (<span className={cls.errorMessage}>Неверный логин или пароль</span>)}
-          <h3 className={classNames(cls.title, { [cls.titleError]: loginError }, [])}>Войдите в свой профиль</h3>
+          {loginError && (
+            <span className={cls.errorMessage}>Неверный логин или пароль</span>
+          )}
+          <h3
+            className={classNames(
+              cls.title,
+              { [cls.titleError]: loginError },
+              [],
+            )}
+          >
+            Войдите в свой профиль
+          </h3>
           <div className={cls.inputsWrapper}>
             <InputField
               type="email"

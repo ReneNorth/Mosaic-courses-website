@@ -11,7 +11,7 @@ import { StudentReviews } from '../../components/StudentReviews/StudentReviews';
 import Slider from '../../components/Slider/Slider';
 import NewSettler from '../../components/NewSettler/NewSettler';
 
-export const MaingPage = () => {
+export const MainPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
