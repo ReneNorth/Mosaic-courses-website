@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import cls from './ProfileModal.module.scss';
@@ -41,6 +41,8 @@ export const ProfileModal = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
+  const isAuthenticated = !!localStorage.getItem('accessToken');
+
   return (
     <div
       className={classNames(cls.popup, { [cls.popupOpen]: isOpen }, [])}
@@ -48,22 +50,27 @@ export const ProfileModal = ({ isOpen, onClose }) => {
       data-testid="popup"
     >
       <div className={cls.contentWrapper}>
-        <NavLink className={cls.link} to="/register">
-          <img src={IconSignIn} alt="Регистрация/логин" />
-          Регистрация/логин
-        </NavLink>
-        <NavLink className={cls.link} to="/my-masterclasses">
-          <img src={Calendar} alt="Записаться на курс" />
-          Мои мастер-классы
-        </NavLink>
-        <NavLink className={cls.link} to="/profile">
-          <img src={IconSettings} alt="В настройки профиля" />
-          Настройки аккаунта
-        </NavLink>
-        <button className={cls.button} type="button" onClick={logout}>
-          <img src={IconLogOut} alt="Выйти из профиля" />
-          Выйти
-        </button>
+        {!isAuthenticated ? (
+          <NavLink className={cls.link} to="/register">
+            <img src={IconSignIn} alt="Регистрация/логин" />
+            Регистрация/логин
+          </NavLink>
+        ) : (
+          <>
+            <NavLink className={cls.link} to="/my-masterclasses">
+              <img src={Calendar} alt="Записаться на курс" />
+              Мои мастер-классы
+            </NavLink>
+            <NavLink className={cls.link} to="/profile">
+              <img src={IconSettings} alt="В настройки профиля" />
+              Настройки аккаунта
+            </NavLink>
+            <button className={cls.button} type="button" onClick={logout}>
+              <img src={IconLogOut} alt="Выйти из профиля" />
+              Выйти
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
