@@ -47,7 +47,7 @@ export const UserBar = () => {
             <ProfileLogo
               className={classNames(
                 cls.icon,
-                { [cls.active]: pathname.startsWith(ENDPOINTS.profile) },
+                { [cls.active]: pathname.startsWith(ENDPOINTS.profile) || isProfileModalOpen },
                 [],
               )}
             />
