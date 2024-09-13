@@ -220,7 +220,6 @@ export function RegisterPage() {
     <section className={cls.section}>
       <div className={cls.block}>
         <form className={cls.formContainer} noValidate>
-          {inputError && <span className={cls.errorMessage}>Пожалуйста, заполните все поля!</span>}
           {dataEntryStep && (
             <>
               <ul className={classNames(cls.list, {}, [])}>
@@ -230,6 +229,7 @@ export function RegisterPage() {
                   /4
                 </div>
               </ul>
+              {inputError && <span className={cls.errorMessage}>Пожалуйста, заполните все поля!</span>}
               <h3 className={cls.title}>{formTitle}</h3>
               {subStepsDataEntry(stepIndex)}
             </>

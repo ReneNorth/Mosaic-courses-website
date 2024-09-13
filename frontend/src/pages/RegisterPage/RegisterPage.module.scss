@@ -17,6 +17,7 @@
 }
 
 .formContainer {
+  position: relative;
   width: 620px;
   height: 760px;
   box-sizing: border-box;
@@ -106,7 +107,7 @@
 .errorMessage {
   box-sizing: border-box;
   position: absolute;
-  top: 270px;
+  top: 134px;
   left: 55px;
   width: 510px;
   padding: 12px 16px;
