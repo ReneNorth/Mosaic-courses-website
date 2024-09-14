@@ -1,18 +1,17 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { YMaps } from '@pbe/react-yandex-maps';
-
 import { Route, Routes } from 'react-router-dom';
 import { BlogPage } from '../../pages/BlogPage/BlogPage';
-import { MaingPage } from '../../pages/MainPage/MainPage';
+import { MainPage } from '../../pages/MainPage/MainPage';
 import { CoursePage } from '../../pages/CoursePage/CoursePage';
 import { GalleryPage } from '../../pages/GalleryPage/GalleryPage';
 import { NotFound } from '../../pages/NotFound/NotFound';
 import { AllCourses } from '../../pages/AllCourses/AllCourses';
 import { Footer } from '../Footer/Footer';
 import { Header } from '../Header/Header';
-
 import './App.scss';
 import { Certificates } from '../../pages/Certificates/Certificates';
-import { AboutUs } from '../AboutUs/AboutUs';
 import { AboutStudio } from '../../pages/AboutStudio/AboutStudio';
 import { PostPage } from '../../pages/PostPage/PostPage';
 import { RegisterPage } from '../../pages/RegisterPage/RegisterPage';
@@ -24,18 +23,39 @@ import { ProfilePage } from '../../pages/ProfilePage/ProfilePage';
 import { ProfilePersonalDataPage } from '../../pages/ProfilePersonalDataPage/ProfilePersonalDataPage';
 import { ProfileSecurityPage } from '../../pages/ProfileSecurityPage/ProfileSecurityPage';
 import { ProfileAlertPage } from '../../pages/ProfileAlertPage/ProfileAlertPage';
-import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import { ENDPOINTS } from '../../utils/consts/constants';
+import { verifyToken } from '../../services/slices/authSlice';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
+  const dispatch = useDispatch();
+  const { access, refresh } = useSelector((store) => store.auth.tokens);
+  const isAuthorized = useSelector((store) => store.auth.isAuthorized);
+
+  useEffect(() => {
+    dispatch(verifyToken(localStorage.getItem('accessToken')));
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (access) {
+      localStorage.setItem('accessToken', access);
+    }
+    if (refresh) {
+      localStorage.setItem('refreshToken', refresh);
+    }
+  }, [access, refresh]);
+
   return (
     <div className="App">
       <YMaps>
         <Header />
         <main>
           <Routes>
-            <Route path={ENDPOINTS.main} element={<MaingPage />} />
-            <Route path={`${ENDPOINTS.course}/:slug`} element={<CoursePage />} />
+            <Route path={ENDPOINTS.main} element={<MainPage />} />
+            <Route
+              path={`${ENDPOINTS.course}/:slug`}
+              element={<CoursePage />}
+            />
             <Route path={ENDPOINTS.gallery} element={<GalleryPage />} />
             <Route path={ENDPOINTS.blog} element={<BlogPage />} />
             <Route path={`${ENDPOINTS.blog}/:slug`} element={<PostPage />} />
@@ -56,18 +76,37 @@ function App() {
               path={`${ENDPOINTS.passwordReset}/:uid/:token`}
               element={<PasswordResetConfirm />}
             />
-            <Route path={ENDPOINTS.profile} element={<ProfilePage />} />
+            <Route
+              path={ENDPOINTS.profile}
+              element={(
+                <ProtectedRoute isAuthorized={isAuthorized}>
+                  <ProfilePage />
+                </ProtectedRoute>
+              )}
+            />
             <Route
               path={ENDPOINTS.profilePersonalData}
-              element={<ProfilePersonalDataPage />}
+              element={(
+                <ProtectedRoute isAuthorized={isAuthorized}>
+                  <ProfilePersonalDataPage />
+                </ProtectedRoute>
+              )}
             />
             <Route
               path={ENDPOINTS.profileSecurity}
-              element={<ProfileSecurityPage />}
+              element={(
+                <ProtectedRoute isAuthorized={isAuthorized}>
+                  <ProfileSecurityPage />
+                </ProtectedRoute>
+              )}
             />
             <Route
               path={ENDPOINTS.profileAlert}
-              element={<ProfileAlertPage />}
+              element={(
+                <ProtectedRoute isAuthorized={isAuthorized}>
+                  <ProfileAlertPage />
+                </ProtectedRoute>
+              )}
             />
             <Route path={ENDPOINTS.notFound} element={<NotFound />} />
           </Routes>

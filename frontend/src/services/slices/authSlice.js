@@ -19,7 +19,28 @@ const initialState = {
   passwordResetSucces: false,
   passwordResetError: null,
   passwordResetConfirm: false,
+  tokens: {
+    refresh: null,
+    access: null,
+  },
+  isAuthorized: false,
 };
+
+const refreshToken = createAsyncThunk('auth/refreshToken', async (token) => {
+  try {
+    return api.refreshToken(token);
+  } catch (err) {
+    return err;
+  }
+});
+
+const verifyToken = createAsyncThunk('auth/verifyToken', async (accessToken) => {
+  try {
+    return api.verifyToken(accessToken);
+  } catch (err) {
+    return err;
+  }
+});
 
 const registerUser = createAsyncThunk('auth/registerUser', async (data) => {
   try {
@@ -80,8 +101,31 @@ const resetPasswordConfirm = createAsyncThunk('auth/resetPasswordConfirm', async
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      state.isAuthorized = false;
+      state.tokens = {
+        refresh: null,
+        access: null,
+      };
+    },
+  },
   extraReducers: (builder) => {
+    builder.addCase(refreshToken.fulfilled, (state, action) => {
+      state.tokens = action.payload;
+    });
+    builder.addCase(refreshToken.rejected, (state, action) => {
+      state.tokens = {
+        refresh: null,
+        access: null,
+      };
+    });
+    builder.addCase(verifyToken.fulfilled, (state) => {
+      state.isAuthorized = true;
+    });
+    builder.addCase(verifyToken.rejected, (state) => {
+      state.isAuthorized = false;
+    });
     builder.addCase(registerUser.pending, (state) => {
       state.isSending = true;
       state.registerError = null;
@@ -111,6 +155,7 @@ export const authSlice = createSlice({
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.loginSucces = true;
       state.loginError = false;
+      state.tokens = action.payload;
     });
     builder.addCase(loginUser.rejected, (state, action) => {
       state.loginSucces = false;
@@ -154,4 +199,7 @@ const authSliceReducer = authSlice.reducer;
 export {
   authSliceReducer, registerUser, activateUser, resendActivationEmail,
   loginUser, passwordReset, getEmailByUID, resetPasswordConfirm,
+  refreshToken, verifyToken,
 };
+
+export const { logout } = authSlice.actions;

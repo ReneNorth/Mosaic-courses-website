@@ -18,23 +18,6 @@
   }
 }
 
-.overlay {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: global.$layer-under-content;
-  opacity: 0;
-  visibility: hidden;
-  transition: .5s;
-
-  &Open {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
 .contentWrapper {
   // width: 100%;
   // max-width: 295px;

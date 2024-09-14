@@ -34,7 +34,6 @@ describe('generateDays', () => {
   it('should generate days correctly for December 2023', () => {
     const date = new Date(2023, 11, 1);
     const result = generateDays(date);
-    console.log(date.getDay());
 
     // There are 31 days in December 2023, the first day of the week is Friday (5 according to the given daysOfWeek array)
     expect(result.previous).toEqual([27, 28, 29, 30]);

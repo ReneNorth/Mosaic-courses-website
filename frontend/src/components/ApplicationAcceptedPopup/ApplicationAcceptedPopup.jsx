@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import ReactDOM from 'react-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ModalOverlay } from '../ModalOverlay/ModalOverlay';
 import applicationAcceptedPopupStyles from './ApplicationAcceptedPopup.module.scss';
@@ -14,10 +14,8 @@ import { ENDPOINTS } from '../../utils/consts/constants';
 
 const ApplicationAcceptedPopup = () => {
   const dispatch = useDispatch();
-  // const userName = useSelector((store) => store.auth.userName);
-  // const userEmail = useSelector((store) => store.auth.userEmail);
-  const userName = true;
-  const userEmail = true;
+  const isAuthorized = useSelector((store) => store.auth.isAuthorized);
+
   const { width } = useResize();
   const navigate = useNavigate();
 
@@ -52,17 +50,17 @@ const ApplicationAcceptedPopup = () => {
           className={applicationAcceptedPopupStyles.image}
         />
         <h2 className={applicationAcceptedPopupStyles.title}>
-          {userEmail && userName
+          {isAuthorized
             ? 'Мастер-класс забронирован'
             : 'Мы получили запрос на бронирование мастер-класса'}
         </h2>
         <p className={applicationAcceptedPopupStyles.text}>
-          {userEmail && userName
+          {isAuthorized
             ? 'Вы забронировали мастер-класс. Оплату осуществляется в студии.'
             + 'Оператор свяжется с вами в ближайшее время, для подтверждение заявки.'
             : 'Для подтверждения наш оператор свяжется с вами в ближайшее время'}
         </p>
-        {userEmail && userName
+        {isAuthorized
           && <p className={applicationAcceptedPopupStyles.text}>Спасибо за внимание к нашей студии!</p>}
         <div className={applicationAcceptedPopupStyles.buttonContainer}>
           <Button
