@@ -13,6 +13,20 @@ class Api {
     return Promise.reject(new Error(`${res.status}`));
   }
 
+  async getMyPersonalInfo() {
+    const url = `${this._url}/api/v1/users/me/`;
+    const accessToken = localStorage.getItem('accessToken');
+
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    return this.constructor._checkResponse(res);
+  }
+
   async getPosts() {
     const res = await fetch(`${this._url}/api/v1/blog/`);
     const data = await this.constructor._checkResponse(res);
@@ -170,7 +184,9 @@ class Api {
     const res = await fetch(`${this._url}/api/v1/reviews/`);
     const data = await this.constructor._checkResponse(res);
     if (res.ok) {
-      if (data.count === 0) { data.results = SLIDER_CONFIG; } else {
+      if (data.count === 0) {
+        data.results = SLIDER_CONFIG;
+      } else {
         let firstId = 1;
         data.results.forEach((review) => {
           review.id = firstId;
@@ -308,14 +324,17 @@ class Api {
 
   async postResetPasswordConfirm(data) {
     const csrftoken = getCookie('csrftoken');
-    const res = await fetch(`${this._url}/api/v1/users/reset_password_confirm/`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-        'X-CSRFToken': csrftoken,
+    const res = await fetch(
+      `${this._url}/api/v1/users/reset_password_confirm/`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+          'X-CSRFToken': csrftoken,
+        },
+        body: JSON.stringify(data),
       },
-      body: JSON.stringify(data),
-    });
+    );
     if (res.ok) {
       return res;
     }

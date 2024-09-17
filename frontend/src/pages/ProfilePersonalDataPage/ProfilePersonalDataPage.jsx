@@ -4,7 +4,11 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../helpers/classNames';
 import cls from './ProfilePersonalDataPage.module.scss';
-import { activateUser, getEmailByUID, resendActivationEmail } from '../../services/slices/authSlice';
+import {
+  activateUser,
+  getEmailByUID,
+  resendActivationEmail,
+} from '../../services/slices/authSlice';
 import { ProfileCardMenu } from '../../components/ProfileCardMenu/ProfileCardMenu';
 import { ProfileNavMenu } from '../../components/ProfileNavMenu/ProfileNavMenu';
 import { ProfileEditField } from '../../components/ProfileEditField/ProfileEditField';
@@ -13,25 +17,50 @@ import { InputFieldPhone } from '../../components/InputFieldPhone/InputFieldPhon
 import { useFormValidation } from '../../hooks/useFormValidation';
 import { Button } from '../../components/Button/Button';
 import { ProfileMobileSymbol } from '../../images/ProfileMobileSymbol';
+import {
+  fetchPersonalInfo,
+  selectPersonalInfo,
+} from '../../services/slices/personalInfoSlice';
 
 export function ProfilePersonalDataPage() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const toProfilePage = (e) => {
     e.preventDefault();
     navigate('/profile');
   };
   const {
-    errors, isValid, handleSecondPasswordChange, setIsValid, setValues,
-    handleChange, handleBlur, handlePhoneChange, handleChangeInRealTime, resetForm, values, handlePhoneValidation,
+    errors,
+    isValid,
+    handleSecondPasswordChange,
+    setIsValid,
+    setValues,
+    handleChange,
+    handleBlur,
+    handlePhoneChange,
+    handleChangeInRealTime,
+    resetForm,
+    values,
+    handlePhoneValidation,
   } = useFormValidation();
 
+  const personalInfo = useSelector(selectPersonalInfo);
+
   useEffect(() => {
-    setValues({
-      ...values, name: 'Иван', surname: 'Петрович', phone: '+7 912 123-45-67', email: 'mymail@fjdskl.ru',
-    });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatch(fetchPersonalInfo());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (personalInfo) {
+      setValues({
+        name: personalInfo.first_name || '',
+        surname: personalInfo.last_name || '',
+        phone: personalInfo.phone || '',
+        email: personalInfo.email || '',
+      });
+    }
+  }, [personalInfo, setValues]);
 
   return (
     <section className={cls.section}>
@@ -39,13 +68,22 @@ export function ProfilePersonalDataPage() {
         <ProfileNavMenu />
         <div className={cls.content}>
           <div className={cls.titleWrapper}>
-            <button onClick={(e) => toProfilePage(e)} className={cls.backButton} type="button">
+            <button
+              onClick={(e) => toProfilePage(e)}
+              className={cls.backButton}
+              type="button"
+            >
               <ProfileMobileSymbol />
             </button>
             <h2 className={cls.title}>Личная информация</h2>
           </div>
-          <p className={cls.subTitle}>Обновите свои данные и контактный телефон</p>
-          <ProfileEditField title="Имя и фамилия" fieldValue="Иван Петров">
+          <p className={cls.subTitle}>
+            Обновите свои данные и контактный телефон
+          </p>
+          <ProfileEditField
+            title="Имя и фамилия"
+            fieldValue={`${personalInfo.first_name} ${personalInfo.last_name}`}
+          >
             <form className={cls.formContainer} noValidate>
               <InputField
                 type="name"
@@ -61,15 +99,15 @@ export function ProfilePersonalDataPage() {
                 handleChange={handleChange}
                 values={values}
               />
-              <Button
-                disabled={!isValid}
-                className="fill"
-              >
+              <Button disabled={!isValid} className="fill">
                 Сохранить
               </Button>
             </form>
           </ProfileEditField>
-          <ProfileEditField title="Номер телефона" fieldValue="+7 912 123-45-67">
+          <ProfileEditField
+            title="Номер телефона"
+            fieldValue={personalInfo.phone}
+          >
             <form className={cls.formContainer} noValidate>
               <InputFieldPhone
                 errors={errors}
@@ -78,15 +116,12 @@ export function ProfilePersonalDataPage() {
                 handlePhoneValidation={handlePhoneValidation}
                 values={values}
               />
-              <Button
-                disabled={!isValid}
-                className="fill"
-              >
+              <Button disabled={!isValid} className="fill">
                 Сохранить
               </Button>
             </form>
           </ProfileEditField>
-          <ProfileEditField title="Почта" fieldValue="mymail@fjdskl.ru">
+          <ProfileEditField title="Почта" fieldValue={personalInfo.email}>
             <form className={cls.formContainer} noValidate>
               <InputField
                 type="email"
@@ -95,10 +130,7 @@ export function ProfilePersonalDataPage() {
                 handleChange={handleChange}
                 values={values}
               />
-              <Button
-                disabled={!isValid}
-                className="fill"
-              >
+              <Button disabled={!isValid} className="fill">
                 Сохранить
               </Button>
             </form>
