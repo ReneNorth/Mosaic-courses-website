@@ -36,16 +36,16 @@ const Calendar = () => {
 
   useEffect(() => {
     const activeDates = {};
-    currentCourse.masterclasses.forEach((masterclass) => {
-      const masterclassDate = new Date(masterclass.time_start);
-      if (masterclassDate >= new Date()) {
-        const key = convertDateToKey(masterclassDate);
-        if (!activeDates[key]) {
-          activeDates[key] = [];
-        }
-        activeDates[key].push(masterclass);
-      }
-    });
+    // currentCourse.masterclasses.forEach((masterclass) => {
+    //   const masterclassDate = new Date(masterclass.time_start);
+    //   if (masterclassDate >= new Date()) {
+    //     const key = convertDateToKey(masterclassDate);
+    //     if (!activeDates[key]) {
+    //       activeDates[key] = [];
+    //     }
+    //     activeDates[key].push(masterclass);
+    //   }
+    // });
     setActiveDays(activeDates);
   }, [currentCourse]);
 

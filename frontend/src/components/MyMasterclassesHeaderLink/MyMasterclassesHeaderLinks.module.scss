@@ -1,0 +1,30 @@
+@use "../../utils/variables/global.scss";
+
+.link {
+  text-decoration: none;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  padding: 14px 13px 12px 14px;
+  line-height: 24px;
+  font-size: 20px;
+  color: var(--text-color);
+}
+
+.active {
+  color: var( --color-green-accent);
+  border-bottom: 1px solid var(--color-green-accent);
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+
+  .link {
+    padding: 8px 2px;
+    line-height: 135%;
+    font-size: 14px;
+  }
+
+  .item:first-child {
+    padding-right: 14px;
+  }
+
+}
