@@ -1,0 +1,145 @@
+@use "../../utils/variables/global.scss";
+
+.flexContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    width: 730px;
+}
+
+.date {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;
+    font-family: var(--font-primary);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.description {
+    display: -webkit-box;
+    max-width: 471px;
+    max-height: 81px;
+    margin: 0;
+    padding: 0;
+    margin-left: 24px;
+    margin-bottom: 16px;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    font-family: var(--font-primary);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.schedule {
+    margin: 0;
+    padding: 0;
+    margin-left: 24px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    color: var(--color-green-accent-active);
+  }
+  
+.schedule span {
+    position: relative;
+    font-family: var(--font-primary);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.35;
+}
+  
+.schedule span:not(:last-child)::after {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background-color: var(--color-green-accent-active);
+    display: inline-block;
+    margin: 3px 6px; 
+}
+
+.buttonPay {
+    width: 157px;
+    height: 43px;
+    margin-left: 24px;
+    background-color: var(--color-green-accent);
+    color: var(--color-white);
+    border-radius: 56px;
+    font-family: var(--font-primary);
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.flexContainerForInfo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%; /* Убедитесь, что родительский контейнер имеет заданную высоту */
+}
+
+.flexContainerForPrice {
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+    margin-bottom: auto; /* Это даст пространство для teacher, если необходимо */
+}
+
+.price {
+    font-family: var(--font-primary);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.buttonPopup {
+    background-color: transparent;
+}
+
+.teacher {
+    min-width: 179px;
+    min-height: 40px;
+    padding: 4px 12px 0 52px;
+    box-sizing: border-box;
+    background-color: var(--color-green-primary);
+    background-image: url(../../images/masterclass-teacher.svg);
+    background-position: 12px center;
+    background-repeat: no-repeat;
+    border-radius: 56px;
+    font-family: var(--font-primary);
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.35;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto; /* Это будет перемещать teacher вниз */
+}
+
+
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 300px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
