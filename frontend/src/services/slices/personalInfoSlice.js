@@ -13,12 +13,23 @@ export const fetchPersonalInfo = createAsyncThunk(
   },
 );
 
+export const updatePersonalInfo = createAsyncThunk(
+  'userInfo/patchPersonalInfo',
+  async (changes) => {
+    const response = await api.changeMyPersonalInfo(changes);
+    return response;
+  },
+);
+
 const personalInfoSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchPersonalInfo.fulfilled, (state, action) => {
+      state.personalInfo = action.payload;
+    });
+    builder.addCase(updatePersonalInfo.fulfilled, (state, action) => {
       state.personalInfo = action.payload;
     });
   },

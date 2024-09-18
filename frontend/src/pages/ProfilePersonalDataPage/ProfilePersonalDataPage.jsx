@@ -20,6 +20,7 @@ import { ProfileMobileSymbol } from '../../images/ProfileMobileSymbol';
 import {
   fetchPersonalInfo,
   selectPersonalInfo,
+  updatePersonalInfo,
 } from '../../services/slices/personalInfoSlice';
 
 export function ProfilePersonalDataPage() {
@@ -37,8 +38,8 @@ export function ProfilePersonalDataPage() {
     setIsValid,
     setValues,
     handleChange,
-    handleBlur,
     handlePhoneChange,
+    handleBlur,
     handleChangeInRealTime,
     resetForm,
     values,
@@ -46,6 +47,25 @@ export function ProfilePersonalDataPage() {
   } = useFormValidation();
 
   const personalInfo = useSelector(selectPersonalInfo);
+
+  const handleUpdatePhone = (e) => {
+    e.preventDefault();
+
+    if (isValid) dispatch(updatePersonalInfo({ phone: values.phone }));
+  };
+
+  const handleUpdateName = (e) => {
+    e.preventDefault();
+
+    if (isValid) {
+      dispatch(
+        updatePersonalInfo({
+          first_name: values.name,
+          last_name: values.surname,
+        }),
+      );
+    }
+  };
 
   useEffect(() => {
     dispatch(fetchPersonalInfo());
@@ -84,7 +104,11 @@ export function ProfilePersonalDataPage() {
             title="Имя и фамилия"
             fieldValue={`${personalInfo.first_name} ${personalInfo.last_name}`}
           >
-            <form className={cls.formContainer} noValidate>
+            <form
+              className={cls.formContainer}
+              onSubmit={handleUpdateName}
+              noValidate
+            >
               <InputField
                 type="name"
                 errors={errors}
@@ -99,7 +123,7 @@ export function ProfilePersonalDataPage() {
                 handleChange={handleChange}
                 values={values}
               />
-              <Button disabled={!isValid} className="fill">
+              <Button disabled={!isValid} className="fill" type="submit">
                 Сохранить
               </Button>
             </form>
@@ -108,7 +132,11 @@ export function ProfilePersonalDataPage() {
             title="Номер телефона"
             fieldValue={personalInfo.phone}
           >
-            <form className={cls.formContainer} noValidate>
+            <form
+              className={cls.formContainer}
+              onSubmit={(e) => handleUpdatePhone(e)}
+              noValidate
+            >
               <InputFieldPhone
                 errors={errors}
                 isValid={isValid}
@@ -116,7 +144,7 @@ export function ProfilePersonalDataPage() {
                 handlePhoneValidation={handlePhoneValidation}
                 values={values}
               />
-              <Button disabled={!isValid} className="fill">
+              <Button disabled={!isValid} className="fill" type="submit">
                 Сохранить
               </Button>
             </form>
