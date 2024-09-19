@@ -2,26 +2,39 @@ import { useState } from 'react';
 import cls from './ProfileEditField.module.scss';
 import { classNames } from '../../helpers/classNames';
 
-export const ProfileEditField = ({ title, fieldValue, children }) => {
-  const [fieldName, setfieldName] = useState(false);
-  const openToEditName = (e) => {
-    e.preventDefault();
-    setfieldName(!fieldName);
-  };
+export const ProfileEditField = ({
+  title,
+  fieldValue,
+  isChanging,
+  setIsChanging,
+  children,
+}) => {
   return (
     <div className={cls.line}>
       <div className={cls.dataWrapper}>
-        <h3 className={classNames(cls.lineTitle, { [cls.lineTitleActive]: fieldName }, [])}>{title}</h3>
-        {!fieldName && (<p className={cls.fieldPlaceholder}>{fieldValue}</p>)}
-        {fieldName && (children)}
+        <h3
+          className={classNames(
+            cls.lineTitle,
+            { [cls.lineTitleActive]: isChanging },
+            [],
+          )}
+        >
+          {title}
+        </h3>
+        {!isChanging && <p className={cls.fieldPlaceholder}>{fieldValue}</p>}
+        {isChanging && children}
       </div>
       <button
         type="button"
-        className={classNames(cls.editButton, { [cls.editButtonActive]: fieldName }, [])}
-        onClick={(e) => openToEditName(e)}
+        className={classNames(
+          cls.editButton,
+          { [cls.editButtonActive]: isChanging },
+          [],
+        )}
+        onClick={() => setIsChanging(!isChanging)}
       >
-        {!fieldName && ('Редактировать')}
-        {fieldName && ('Отменить')}
+        {!isChanging && 'Редактировать'}
+        {isChanging && 'Отменить'}
       </button>
     </div>
   );

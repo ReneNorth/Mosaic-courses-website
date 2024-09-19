@@ -26,6 +26,9 @@ import {
 export function ProfilePersonalDataPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isChangingName, setIsChangingName] = useState(false);
+  const [isChangingPhone, setIsChangingPhone] = useState(false);
+  const [isChangingEmail, setIsChangingEmail] = useState(false);
 
   const toProfilePage = (e) => {
     e.preventDefault();
@@ -48,23 +51,29 @@ export function ProfilePersonalDataPage() {
 
   const personalInfo = useSelector(selectPersonalInfo);
 
-  const handleUpdatePhone = (e) => {
-    e.preventDefault();
-
-    if (isValid) dispatch(updatePersonalInfo({ phone: values.phone }));
-  };
-
   const handleUpdateName = (e) => {
     e.preventDefault();
-
     if (isValid) {
       dispatch(
         updatePersonalInfo({
           first_name: values.name,
           last_name: values.surname,
         }),
+      ).then(() => setIsChangingName(false));
+    }
+  };
+
+  const handleUpdatePhone = (e) => {
+    e.preventDefault();
+    if (isValid) {
+      dispatch(updatePersonalInfo({ phone: values.phone })).then(() =>
+        setIsChangingPhone(false),
       );
     }
+  };
+
+  const handleUpdateEmail = (e) => {
+    setIsChangingEmail(false);
   };
 
   useEffect(() => {
@@ -103,6 +112,8 @@ export function ProfilePersonalDataPage() {
           <ProfileEditField
             title="Имя и фамилия"
             fieldValue={`${personalInfo.first_name} ${personalInfo.last_name}`}
+            isChanging={isChangingName}
+            setIsChanging={setIsChangingName}
           >
             <form
               className={cls.formContainer}
@@ -131,6 +142,8 @@ export function ProfilePersonalDataPage() {
           <ProfileEditField
             title="Номер телефона"
             fieldValue={personalInfo.phone}
+            isChanging={isChangingPhone}
+            setIsChanging={setIsChangingPhone}
           >
             <form
               className={cls.formContainer}
@@ -149,8 +162,17 @@ export function ProfilePersonalDataPage() {
               </Button>
             </form>
           </ProfileEditField>
-          <ProfileEditField title="Почта" fieldValue={personalInfo.email}>
-            <form className={cls.formContainer} noValidate>
+          <ProfileEditField
+            title="Почта"
+            fieldValue={personalInfo.email}
+            isChanging={isChangingEmail}
+            setIsChanging={setIsChangingEmail}
+          >
+            <form
+              className={cls.formContainer}
+              onSubmit={(e) => handleUpdateEmail(e)}
+              noValidate
+            >
               <InputField
                 type="email"
                 errors={errors}
