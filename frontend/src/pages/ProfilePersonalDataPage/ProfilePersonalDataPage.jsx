@@ -73,7 +73,15 @@ export function ProfilePersonalDataPage() {
   };
 
   const handleUpdateEmail = (e) => {
-    setIsChangingEmail(false);
+    e.preventDefault();
+    if (isValid) {
+      // Здесь будет диспатч для обновления email
+      // dispatch(updatePersonalInfo({ email: values.email }))
+      //   .then(() => setIsChangingEmail(false));
+
+      // Пока без диспатча:
+      setIsChangingEmail(false);
+    }
   };
 
   useEffect(() => {
@@ -180,7 +188,7 @@ export function ProfilePersonalDataPage() {
                 handleChange={handleChange}
                 values={values}
               />
-              <Button disabled={!isValid} className="fill">
+              <Button disabled={!isValid} className="fill" type="submit">
                 Сохранить
               </Button>
             </form>
