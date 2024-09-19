@@ -83,7 +83,7 @@ export const MasterclassCard = ({ masterclasses }) => {
               // eslint-disable-next-line react/no-array-index-key
               key={index + 1}
               type="button"
-              className={currentPage === index + 1 ? cls.activePage : ''}
+              className={currentPage === index + 1 ? cls.activePage : cls.numberPage}
               onClick={() => setCurrentPage(index + 1)}
             >
               {index + 1}
@@ -91,10 +91,11 @@ export const MasterclassCard = ({ masterclasses }) => {
           ))}
           <button
             type="button"
+            className={cls.buttonFurther}
             disabled={currentPage === totalPages}
             onClick={handleNextPage}
           >
-            Дальше
+            Дальше →
           </button>
         </div>
       )}
