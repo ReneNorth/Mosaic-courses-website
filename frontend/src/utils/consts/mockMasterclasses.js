@@ -7,6 +7,7 @@ export const masterclasses = [
     duration: '3,5 часа',
     price: '7 000',
     teacher: 'Анна Павлова',
+    pay: true,
   },
   {
     description: 'Мастер-класс по римской мозаике, однодневный',
@@ -15,6 +16,7 @@ export const masterclasses = [
     duration: '4 часа',
     price: '8 000',
     teacher: 'Иван Иванов',
+    pay: false,
   },
   {
     // eslint-disable-next-line max-len
@@ -24,6 +26,7 @@ export const masterclasses = [
     duration: '3 часа',
     price: '6 500',
     teacher: 'Мария Сидорова',
+    pay: true,
   },
   {
     description: 'Мастер-класс по римской мозаике, однодневный',
@@ -32,6 +35,7 @@ export const masterclasses = [
     duration: '2,5 часа',
     price: '5 500',
     teacher: 'Петр Петров',
+    pay: false,
   },
   {
     description: 'Мастер-класс по римской мозаике, однодневный',
@@ -40,6 +44,7 @@ export const masterclasses = [
     duration: '3 часа',
     price: '7 500',
     teacher: 'Анна Павлова',
+    pay: true,
   },
   {
     description: 'Мастер-класс по римской мозаике, однодневный',
@@ -48,5 +53,6 @@ export const masterclasses = [
     duration: '4 часа',
     price: '8 500',
     teacher: 'Ольга Смирнова',
+    pay: false,
   },
 ];

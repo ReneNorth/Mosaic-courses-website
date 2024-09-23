@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-no-comment-textnodes */
 import { useState } from 'react';
@@ -8,8 +9,12 @@ export const MasterclassCard = ({ masterclasses }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
-  const toggleModal = () => {
+  const openModal = () => {
     setModalOpen(!isModalOpen);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   const totalPages = Math.ceil(masterclasses.length / itemsPerPage);
@@ -30,6 +35,12 @@ export const MasterclassCard = ({ masterclasses }) => {
     currentPage * itemsPerPage,
   );
 
+  // изменить функцию тк на бэке два метода для возврата будущих и прошлых событий
+  const isPastEvent = (eventDate) => {
+    console.log(eventDate);
+    return true;
+  };
+
   return (
     <>
       <div>
@@ -43,9 +54,15 @@ export const MasterclassCard = ({ masterclasses }) => {
                 <span>{masterclass.time}</span>
                 <span>{masterclass.duration}</span>
               </div>
-              <button type="button" className={cls.buttonPay}>
-                Оплатить
-              </button>
+              {isPastEvent(masterclass.date) ? (
+                <p className={cls.status}>Завершено</p>
+              ) : masterclass.pay ? (
+                <p className={cls.status}>Оплачено</p>
+              ) : (
+                <button type="button" className={cls.buttonPay}>
+                  Оплатить
+                </button>
+              )}
             </div>
             <div className={cls.rightContainer}>
               <div className={cls.flexContainerForPrice}>
@@ -55,7 +72,7 @@ export const MasterclassCard = ({ masterclasses }) => {
                 </p>
                 <button
                   type="button"
-                  onClick={toggleModal}
+                  onClick={openModal}
                   className={cls.buttonPopup}
                 >
                   ⋮
@@ -68,10 +85,10 @@ export const MasterclassCard = ({ masterclasses }) => {
       </div>
 
       {isModalOpen && (
-        <div className={cls.container}>
-          <div className={cls.popup}>
-            <button type="button">Перенести</button>
-            <button type="button">Отменить</button>
+        <div className={cls.container} onClick={closeModal}>
+          <div className={cls.popup} onClick={(e) => e.stopPropagation()}>
+            <button type="button" className={cls.popupButton}>Перенести</button>
+            <button type="button" className={cls.popupButton}>Отменить</button>
           </div>
         </div>
       )}
