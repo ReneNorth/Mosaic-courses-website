@@ -19,6 +19,10 @@ const MasterclassList = ({
     }
   };
 
+  const handlePreviousPage = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
   const currentMasterclasses = masterclasses.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage,
@@ -51,6 +55,16 @@ const MasterclassList = ({
           ))}
           {masterclasses.length > itemsPerPage && (
             <div className={cls.pagination}>
+              {currentPage === totalPages ? (
+                <button
+                  type="button"
+                  className={cls.buttonChangeCurrentPage}
+                  disabled={currentPage === 1}
+                  onClick={handlePreviousPage}
+                >
+                  ← Назад
+                </button>
+              ) : null}
               {[...Array(totalPages)].map((_, idx) => (
                 <button
                   // eslint-disable-next-line react/no-array-index-key
@@ -64,14 +78,16 @@ const MasterclassList = ({
                   {idx + 1}
                 </button>
               ))}
-              <button
-                type="button"
-                className={cls.buttonFurther}
-                disabled={currentPage === totalPages}
-                onClick={handleNextPage}
-              >
-                Дальше →
-              </button>
+              {currentPage < totalPages && (
+                <button
+                  type="button"
+                  className={cls.buttonChangeCurrentPage}
+                  disabled={currentPage === totalPages}
+                  onClick={handleNextPage}
+                >
+                  Дальше →
+                </button>
+              )}
             </div>
           )}
         </>
