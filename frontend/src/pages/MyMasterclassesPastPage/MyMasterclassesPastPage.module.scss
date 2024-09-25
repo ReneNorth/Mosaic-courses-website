@@ -1,5 +1,29 @@
 @use "../../utils/variables/global.scss";
 
+.flexContainer {
+  margin-top: 70px;
+  display: flex;
+  gap: 40px;
+}
+
+.calendarContainer {
+  flex: 1; 
+  max-width: 510px;
+  margin-right: 20px; 
+}
+
+.masterclassContainer {
+  flex: 2; 
+}
+
+.title {
+  margin-bottom: 48px;
+  font-family: var(--font-primary);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
 .list {
     margin: 40px 0;
     width: 730px;

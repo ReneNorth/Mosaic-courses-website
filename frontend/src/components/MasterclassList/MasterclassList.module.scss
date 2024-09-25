@@ -1,0 +1,29 @@
+@use "../../utils/variables/global.scss";
+
+.pagination {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    font-family: var(--font-primary);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.35;
+}
+
+.numberPage {
+    background-color: transparent;
+    margin: 0 8px;
+    cursor: pointer;
+}
+
+.activePage {
+    padding: 10px;
+    background-color: var(--color-beige-secondary);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttonFurther {
+    background-color: transparent;
+    cursor: pointer;
+}

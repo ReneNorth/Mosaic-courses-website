@@ -1,13 +1,37 @@
 @use "../../utils/variables/global.scss";
 
-.list {
-  margin: 40px 0;
-  width: 730px;
+.flexContainer {
+  margin-top: 70px;
   display: flex;
-  justify-content: left;
-  align-items: baseline;
-  list-style-type: none;
-  border-bottom: 1px solid var(--color-green-grey);
+  gap: 40px;
+}
+
+.calendarContainer {
+  flex: 1; 
+  max-width: 510px;
+  margin-right: 20px; 
+}
+
+.masterclassContainer {
+  flex: 2; 
+}
+
+.title {
+  margin-bottom: 48px;
+  font-family: var(--font-primary);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.list {
+    margin: 40px 0;
+    width: 730px;
+    display: flex;
+    justify-content: left;
+    align-items: baseline;
+    list-style-type: none;
+    border-bottom: 1px solid var(--color-green-grey);
 }
 
   @media screen and (max-width: global.$breakpoint-mobile) {
