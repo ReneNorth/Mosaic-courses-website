@@ -2,7 +2,12 @@ import { useState } from 'react';
 import cls from './MasterclassList.module.scss';
 import { MasterclassCard } from '../MasterclassCard/MasterclassCard';
 
-const MasterclassList = ({ masterclasses, message }) => {
+const MasterclassList = ({
+  masterclasses,
+  message,
+  showPopupButton,
+  isEventPast,
+}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
   const [openModalIndex, setOpenModalIndex] = useState(null);
@@ -40,6 +45,8 @@ const MasterclassList = ({ masterclasses, message }) => {
               isModalOpen={openModalIndex === index}
               openModal={() => openModal(index)}
               closeModal={closeModal}
+              showPopupButton={showPopupButton}
+              isEventPast={isEventPast}
             />
           ))}
           {masterclasses.length > itemsPerPage && (

@@ -9,10 +9,11 @@ export const MasterclassCard = ({
   isModalOpen,
   openModal,
   closeModal,
+  showPopupButton,
+  isEventPast,
 }) => {
   const popupRef = useRef(null);
 
-  // Close modal if clicked outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -30,10 +31,6 @@ export const MasterclassCard = ({
     };
   }, [isModalOpen, closeModal]);
 
-  const isPastEvent = (eventDate) => {
-    return true;
-  };
-
   return (
     <div>
       <div className={cls.flexContainer}>
@@ -45,7 +42,7 @@ export const MasterclassCard = ({
             <span>{masterclass.time}</span>
             <span>{masterclass.duration}</span>
           </div>
-          {isPastEvent(masterclass.date) ? (
+          {isEventPast ? (
             <p className={cls.status}>Завершено</p>
           ) : masterclass.pay ? (
             <p className={cls.status}>Оплачено</p>
@@ -61,13 +58,15 @@ export const MasterclassCard = ({
               {masterclass.price}
               ₽
             </p>
-            <button
-              type="button"
-              onClick={openModal}
-              className={cls.buttonPopup}
-            >
-              ⋮
-            </button>
+            {showPopupButton && (
+              <button
+                type="button"
+                onClick={openModal}
+                className={cls.buttonPopup}
+              >
+                ⋮
+              </button>
+            )}
             {isModalOpen && (
               <div ref={popupRef} className={cls.popup}>
                 <button type="button" className={cls.changeCourseButton}>

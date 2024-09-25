@@ -18,6 +18,8 @@ export const MyMasterclassesPage = () => {
       </NavLink>
     </p>
   );
+  const showPopupButton = true;
+  const isEventPast = false;
   return (
     <>
       <div className={cls.flexContainer}>
@@ -29,7 +31,12 @@ export const MyMasterclassesPage = () => {
           <ul className={classNames(cls.list, {}, [])}>
             <MyMasterclassesHeaderLinks />
           </ul>
-          <MasterclassList masterclasses={masterclasses} message={message} />
+          <MasterclassList
+            masterclasses={masterclasses}
+            message={message}
+            showPopupButton={showPopupButton}
+            isEventPast={isEventPast}
+          />
         </div>
       </div>
       {masterclasses.length === 0 && (

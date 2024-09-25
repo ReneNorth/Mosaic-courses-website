@@ -8,6 +8,9 @@ import { CardMoreContent } from '../../components/CardMoreContent/CardMoreConten
 
 export const MyMasterclassesPastPage = () => {
   const message = 'Нет прошедших занятий';
+  const showPopupButton = false;
+  const isEventPast = true;
+
   return (
     <>
       <div className={cls.flexContainer}>
@@ -19,7 +22,12 @@ export const MyMasterclassesPastPage = () => {
           <ul className={classNames(cls.list, {}, [])}>
             <MyMasterclassesHeaderLinks />
           </ul>
-          <MasterclassList masterclasses={masterclasses} message={message} />
+          <MasterclassList
+            masterclasses={masterclasses}
+            message={message}
+            showPopupButton={showPopupButton}
+            isEventPast={isEventPast}
+          />
         </div>
       </div>
       {masterclasses.length === 0 && (
