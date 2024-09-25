@@ -2,7 +2,7 @@ import { useState } from 'react';
 import cls from './MasterclassList.module.scss';
 import { MasterclassCard } from '../MasterclassCard/MasterclassCard';
 
-const MasterclassList = ({ masterclasses }) => {
+const MasterclassList = ({ masterclasses, message }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
   const [openModalIndex, setOpenModalIndex] = useState(null);
@@ -29,39 +29,45 @@ const MasterclassList = ({ masterclasses }) => {
 
   return (
     <div>
-      {currentMasterclasses.map((masterclass, index) => (
-        <MasterclassCard
-          key={masterclass.id}
-          masterclass={masterclass}
-          isModalOpen={openModalIndex === index}
-          openModal={() => openModal(index)}
-          closeModal={closeModal}
-        />
-      ))}
-      {masterclasses.length > itemsPerPage && (
-        <div className={cls.pagination}>
-          {[...Array(totalPages)].map((_, idx) => (
-            <button
-              // eslint-disable-next-line react/no-array-index-key
-              key={idx + 1}
-              type="button"
-              className={
-                currentPage === idx + 1 ? cls.activePage : cls.numberPage
-              }
-              onClick={() => setCurrentPage(idx + 1)}
-            >
-              {idx + 1}
-            </button>
+      {masterclasses.length === 0 ? (
+        <p className={cls.text}>{message}</p>
+      ) : (
+        <>
+          {currentMasterclasses.map((masterclass, index) => (
+            <MasterclassCard
+              key={masterclass.id}
+              masterclass={masterclass}
+              isModalOpen={openModalIndex === index}
+              openModal={() => openModal(index)}
+              closeModal={closeModal}
+            />
           ))}
-          <button
-            type="button"
-            className={cls.buttonFurther}
-            disabled={currentPage === totalPages}
-            onClick={handleNextPage}
-          >
-            Дальше →
-          </button>
-        </div>
+          {masterclasses.length > itemsPerPage && (
+            <div className={cls.pagination}>
+              {[...Array(totalPages)].map((_, idx) => (
+                <button
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={idx + 1}
+                  type="button"
+                  className={
+                    currentPage === idx + 1 ? cls.activePage : cls.numberPage
+                  }
+                  onClick={() => setCurrentPage(idx + 1)}
+                >
+                  {idx + 1}
+                </button>
+              ))}
+              <button
+                type="button"
+                className={cls.buttonFurther}
+                disabled={currentPage === totalPages}
+                onClick={handleNextPage}
+              >
+                Дальше →
+              </button>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

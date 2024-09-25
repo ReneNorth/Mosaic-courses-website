@@ -1,5 +1,12 @@
 @use "../../utils/variables/global.scss";
 
+.text {
+    font-family: var(--font-primary);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.35;
+}
+
 .pagination {
     margin-top: 32px;
     display: flex;

@@ -26,7 +26,7 @@ import { ProfileAlertPage } from '../../pages/ProfileAlertPage/ProfileAlertPage'
 import { ENDPOINTS } from '../../utils/consts/constants';
 import { verifyToken } from '../../services/slices/authSlice';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import { MyMasterclassesPage } from '../../pages/MyMasterclasses/MyMasterclassesPage';
+import { MyMasterclassesPage } from '../../pages/MyMasterclassesPage/MyMasterclassesPage';
 import { MyMasterclassesPastPage } from '../../pages/MyMasterclassesPastPage/MyMasterclassesPastPage';
 
 function App() {
