@@ -176,6 +176,7 @@ DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': 'password-reset/{uid}/{token}',
     'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': True,
     "ACTIVATION_URL": "activate/{uid}/{token}",
+    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
     'SERIALIZERS': {
         'user_create': 'users.serializers.CustomCreateUserSerializer',
         'user': 'users.serializers.CustomCreateUserSerializer',
