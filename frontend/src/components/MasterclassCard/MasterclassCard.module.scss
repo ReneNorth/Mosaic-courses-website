@@ -7,7 +7,8 @@
     justify-content: space-between; 
     align-items: flex-start; 
     gap: 32px; 
-    width: 730px; 
+    width: 100%;
+    max-width: 730px;
     border-bottom: 1px solid var(--color-green-grey);
 }
 
@@ -171,4 +172,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media screen and (min-width: global.$breakpoint-ipad-mini) and (max-width: global.$breakpoint-card-curses) {
+  .flexContainer {
+    max-width: 710px;
+  }
 }

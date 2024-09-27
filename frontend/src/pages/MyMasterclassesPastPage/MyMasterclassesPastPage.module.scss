@@ -25,7 +25,8 @@
 
 .list {
     margin: 40px 0;
-    width: 730px;
+    width: 100%;
+    max-width: 730px;
     display: flex;
     justify-content: left;
     align-items: baseline;
@@ -50,11 +51,23 @@
   gap: 40px; 
 }
 
-  @media screen and (max-width: global.$breakpoint-mobile) {
-  
-    .list {
-      min-width: 100%;
-      padding: 0;
-      padding-top: 8px;
-    }
+@media screen and (min-width: global.$breakpoint-ipad-mini) and (max-width: global.$breakpoint-card-curses) {
+  .flexContainer {
+    margin-top: 30px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .list {
+    max-width: 710px;
   }  
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+
+  .list {
+    min-width: 100%;
+    padding: 0;
+    padding-top: 8px;
+  }
+}

@@ -15,16 +15,6 @@
   border-bottom: 2px solid var(--color-green-accent);
 }
 
-@media screen and (max-width: global.$breakpoint-mobile) {
-
-  .link {
-    padding: 8px 2px;
-    line-height: 135%;
-    font-size: 14px;
-  }
-
-  .item:first-child {
-    padding-right: 14px;
-  }
+@media screen and (max-width: global.$breakpoint-ipad-mini) {
 
 }
