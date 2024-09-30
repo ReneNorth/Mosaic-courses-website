@@ -1,15 +1,8 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { classNames } from '../../helpers/classNames';
 import cls from './ProfilePersonalDataPage.module.scss';
-import {
-  activateUser,
-  getEmailByUID,
-  resendActivationEmail,
-} from '../../services/slices/authSlice';
-import { ProfileCardMenu } from '../../components/ProfileCardMenu/ProfileCardMenu';
 import { ProfileNavMenu } from '../../components/ProfileNavMenu/ProfileNavMenu';
 import { ProfileEditField } from '../../components/ProfileEditField/ProfileEditField';
 import { InputField } from '../../components/InputField/InputField';
@@ -20,6 +13,7 @@ import { ProfileMobileSymbol } from '../../images/ProfileMobileSymbol';
 import {
   fetchPersonalInfo,
   selectPersonalInfo,
+  updateEmail,
   updatePersonalInfo,
 } from '../../services/slices/personalInfoSlice';
 
@@ -37,14 +31,9 @@ export function ProfilePersonalDataPage() {
   const {
     errors,
     isValid,
-    handleSecondPasswordChange,
-    setIsValid,
     setValues,
     handleChange,
     handlePhoneChange,
-    handleBlur,
-    handleChangeInRealTime,
-    resetForm,
     values,
     handlePhoneValidation,
   } = useFormValidation();
@@ -66,21 +55,14 @@ export function ProfilePersonalDataPage() {
   const handleUpdatePhone = (e) => {
     e.preventDefault();
     if (isValid) {
-      dispatch(updatePersonalInfo({ phone: values.phone })).then(() =>
-        setIsChangingPhone(false),
-      );
+      dispatch(updatePersonalInfo({ phone: values.phone })).then(() => setIsChangingPhone(false));
     }
   };
 
   const handleUpdateEmail = (e) => {
     e.preventDefault();
     if (isValid) {
-      // Здесь будет диспатч для обновления email
-      // dispatch(updatePersonalInfo({ email: values.email }))
-      //   .then(() => setIsChangingEmail(false));
-
-      // Пока без диспатча:
-      setIsChangingEmail(false);
+      dispatch(updateEmail({ email: values.email })).then(() => setIsChangingEmail(false));
     }
   };
 
@@ -188,9 +170,6 @@ export function ProfilePersonalDataPage() {
                 handleChange={handleChange}
                 values={values}
               />
-              <Button disabled={!isValid} className="fill" type="submit">
-                Сохранить
-              </Button>
             </form>
           </ProfileEditField>
         </div>

@@ -27,6 +27,20 @@ class Api {
     return this.constructor._checkResponse(res);
   }
 
+  async changeEmail(newEmail) {
+    const url = `${this._url}/api/v1/users/reset_email/`;
+    const accessToken = localStorage.get('accessToken');
+
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(newEmail),
+    });
+    return this.constructor._checkResponse(res);
+  }
+
   async changeMyPersonalInfo(changes) {
     const url = `${this._url}/api/v1/users/me/`;
     const accessToken = localStorage.getItem('accessToken');

@@ -21,6 +21,14 @@ export const updatePersonalInfo = createAsyncThunk(
   },
 );
 
+export const updateEmail = createAsyncThunk(
+  'userInfo/patchEmail',
+  async (newEmail) => {
+    const response = await api.changeEmail(newEmail);
+    return response;
+  },
+);
+
 const personalInfoSlice = createSlice({
   name: 'user',
   initialState,
@@ -30,6 +38,9 @@ const personalInfoSlice = createSlice({
       state.personalInfo = action.payload;
     });
     builder.addCase(updatePersonalInfo.fulfilled, (state, action) => {
+      state.personalInfo = action.payload;
+    });
+    builder.addCase(updateEmail.fulfilled, (state, action) => {
       state.personalInfo = action.payload;
     });
   },
