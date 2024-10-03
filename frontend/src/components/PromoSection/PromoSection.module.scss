@@ -108,3 +108,31 @@
   }
 }
 
+@media screen and (max-width: 645px) {
+  .section {
+    margin-top: 2px;
+    padding: 0 20px;
+
+    .right {
+      display: none
+    }
+
+    .left {
+      .mobileImage {
+        display: block;
+      }
+
+      .title {
+        margin-bottom: 17px;
+      }
+
+      .paragraph {
+        margin-top: 20px;
+      }
+
+      .otherElements {
+        margin-top: 43px;
+      }
+    }
+  }
+}
