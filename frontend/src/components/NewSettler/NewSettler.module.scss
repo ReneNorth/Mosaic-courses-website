@@ -165,13 +165,13 @@
 }
 
 @media screen and (max-width: global.$breakpoint-mobile) {
-
   .popup {
     align-items: flex-start;
+    padding-top: 34px;
   }
 
   .content {
-    width: 100%;
+    width: 89vw;
   }
 
   .image {
@@ -204,21 +204,6 @@
 
   .textarea {
     margin-bottom: 20px;
-  }
-
-  .content {
-    width: 100%;
-
-    .button__close {
-      top: 10px;
-      right: 10px;
-  
-      svg {
-        width: 24px;
-        height: 24px;
-        fill: #fff;
-      }
-    }
   }
 
   .content__wrapper {

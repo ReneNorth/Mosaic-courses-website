@@ -22,8 +22,7 @@ export const AboutTeach = () => {
         </div>
         <div className={cls.test}>
           <h3>
-            <p>Обратная</p>
-            <p>связь</p>
+            Обратная связь
           </h3>
           <p className={cls.paragraph}>
             Преподаватель не оставит вас один на один с новым ремеслом
