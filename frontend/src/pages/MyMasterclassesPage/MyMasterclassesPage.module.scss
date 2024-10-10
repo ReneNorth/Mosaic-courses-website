@@ -37,7 +37,8 @@
 
 .list {
   margin: 40px 0;
-  width: 730px;
+  width: 100%;
+  max-width: 730px;
   display: flex;
   justify-content: left;
   align-items: baseline;
@@ -62,15 +63,23 @@
   gap: 40px; 
 }
 
-@media screen and (min-width: global.$breakpoint-ipad-mini) and (max-width: global.$breakpoint-card-curses) {
+@media screen and (min-width: global.$breakpoint-tablet) and (max-width: global.$breakpoint-card-curses) {
   .flexContainer {
-    margin-top: 30px;
-    flex-direction: column;
-    align-items: center;
+    margin-top: 0;
+    gap: 20px;
+  }
+
+  .calendarContainer {
+    max-width: 338px;
+  }
+
+  .title {
+    display: none;
   }
 
   .list {
-    max-width: 710px;
+    margin-top: 0;
+    max-width: 338px;
   }
 }
 

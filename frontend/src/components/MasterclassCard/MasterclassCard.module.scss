@@ -174,8 +174,8 @@
     justify-content: center;
 }
 
-@media screen and (min-width: global.$breakpoint-ipad-mini) and (max-width: global.$breakpoint-card-curses) {
+@media screen and (min-width: global.$breakpoint-tablet) and (max-width: global.$breakpoint-card-curses) {
   .flexContainer {
-    max-width: 710px;
+    max-width: 337px;
   }
 }
