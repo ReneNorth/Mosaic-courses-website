@@ -13,7 +13,7 @@ from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
-from api.filters import ArtworksFilter, MasterclassTypeFilter, PostsFilter
+from api.filters import MasterclassTypeFilter, PostsFilter
 from api.serializers import (ArtworkSerializer, BookingSerializer,
                              EmailMainSerializer, GiftCertSerializer,
                              MainCarouselSerializer,
@@ -26,7 +26,7 @@ from blog.models import Post, Tag
 from booking.models import Booking
 from carousel.models import MainCarouselItem
 from crm_app.models import GiftCert
-from marketplace.models import Artwork
+from gallery.models import Artwork
 from masterclass.models import (Masterclass, MasterclassCategory,
                                 MasterclassType)
 from school.models import Review, School
@@ -66,9 +66,8 @@ class ArtworkReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Artwork.objects.all()
     serializer_class = ArtworkSerializer
     pagination_class = LimitOffsetPagination
-    filterset_class = ArtworksFilter
     permission_classes = [AllowAny, ]
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, ]
+    # filter_backends = [DjangoFilterBackend, filters.SearchFilter, ]
 
 
 class EmailCreateOnlyViewSet(mixins.CreateModelMixin,
