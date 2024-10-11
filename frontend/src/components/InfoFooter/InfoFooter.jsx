@@ -19,7 +19,7 @@ export const InfoFooter = () => {
             />
           </li>
           <li>
-            <Link className={cls.linkTg} to="https://t.me/debobrova" />
+            <Link className={cls.linkTg} to="https://t.me/tesseramosaic" />
           </li>
           <li>
             <Link
