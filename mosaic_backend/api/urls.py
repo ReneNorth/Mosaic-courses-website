@@ -10,7 +10,7 @@ from .views import (ArtworkReadOnlyViewSet, BookingViewSet,
                     MasterclassReadOnlyViewset, MasterclassTypeReadOnlyViewSet,
                     PostViewSet, RequestCreateOnlyViewSet,
                     SchoolReadOnlyViewSet, StudentReviewsReadOnlyViewSet,
-                    TagReadOnlyViewSet)
+                    TagReadOnlyViewSet, FavoritedCreateDeleteViewSet)
 
 router1 = routers.SimpleRouter()
 
@@ -42,5 +42,7 @@ urlpatterns = [
     path('v1/school/', SchoolReadOnlyViewSet.as_view({'get': 'list'})),
     path('v1/', include('djoser.urls')),
     path(r'auth/', include('djoser.urls.jwt')),
-
+    path('v1/artworks/<int:pk>/favorite/',
+         FavoritedCreateDeleteViewSet.as_view({'post': 'create',
+                                              'delete': 'destroy'})),
 ]

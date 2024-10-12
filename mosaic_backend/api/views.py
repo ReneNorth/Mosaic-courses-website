@@ -21,16 +21,17 @@ from api.serializers import (ArtworkSerializer, BookingSerializer,
                              MasterclassSerializer, MasterclassTypeSerializer,
                              PostSerializer, RequestSerializer,
                              ReviewsSerializer, SchoolSerializer,
-                             TagReadOnlySerializer)
+                             TagReadOnlySerializer, FavoriteSerializer)
 from blog.models import Post, Tag
 from booking.models import Booking
 from carousel.models import MainCarouselItem
 from crm_app.models import GiftCert
 from gallery.models import Artwork
+from favorite.models import FavoriteArtwork
 from masterclass.models import (Masterclass, MasterclassCategory,
                                 MasterclassType)
 from school.models import Review, School
-from users.permissions import BookingPermission
+from users.permissions import BookingPermission, FavoritePermission
 
 User = User = get_user_model()
 log = logging.getLogger(__name__)
@@ -67,7 +68,42 @@ class ArtworkReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ArtworkSerializer
     pagination_class = LimitOffsetPagination
     permission_classes = [AllowAny, ]
-    # filter_backends = [DjangoFilterBackend, filters.SearchFilter, ]
+
+
+class FavoritedCreateDeleteViewSet(
+    mixins.CreateModelMixin, mixins.DestroyModelMixin, viewsets.GenericViewSet
+):
+    queryset = FavoriteArtwork.objects.all()
+    serializer_class = FavoriteSerializer
+    permission_classes = (FavoritePermission, )
+
+    @action(methods=["post"], detail=False)
+    def create(self, request, pk=None) -> Response:
+        """
+        The method adds an artwork to favorites. The user ID and artwork ID
+        are passed to the serializer through the context.
+        """
+        user = get_object_or_404(User, id=request.user.id)
+        favorited_artwork = get_object_or_404(FavoriteArtwork, pk=pk)
+        serializer = self.get_serializer(
+            data=request.data,
+            context={'who_favorited': user,
+                     'favorited_artwork': favorited_artwork},
+        )
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(methods=['delete'], detail=False)
+    def destroy(self, request, pk=None) -> Response:
+        favorited = get_object_or_404(
+            FavoriteArtwork,
+            who_favorited_id=request.user.id,
+            favorited_artwork_id=pk
+        )
+        self.perform_destroy(favorited)
+        return Response('object deleted', status=status.HTTP_204_NO_CONTENT)
 
 
 class EmailCreateOnlyViewSet(mixins.CreateModelMixin,

@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework import serializers
 from rest_framework.validators import ValidationError
 
+from favorite.models import FavoriteArtwork
 from blog.models import Post, Tag
 from booking.models import Booking, GuestReservation
 from carousel.models import MainCarouselItem
@@ -109,6 +110,25 @@ class ArtworkSerializer(serializers.ModelSerializer):
     #     if ArtworkMainPage.objects.filter(artwork=artwork).exists():
     #         return True
     #     return False
+
+
+class FavoriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FavoriteArtwork
+        fields = ['who_favorited', 'favorited_artwork']
+
+    def create(self, validated_data):
+        user_id = self.context["who_favorited"].id
+        artwork_id = self.context["favorited_artwork"].id
+        if FavoriteArtwork.objects.filter(who_favorited_id=user_id,
+                                          favorited_artwork_id=artwork_id):
+            raise serializers.ValidationError('You cannot add the artwork'
+                                              'to favorites twice')
+        favorite_artwork = FavoriteArtwork.objects.create(
+            who_favorited_id=user_id,
+            favorited_artwork_id=artwork_id)
+        favorite_artwork.save()
+        return favorite_artwork
 
 
 class EmailMainSerializer(serializers.ModelSerializer):
