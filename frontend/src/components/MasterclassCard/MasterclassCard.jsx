@@ -33,54 +33,58 @@ export const MasterclassCard = ({
 
   return (
     <div>
+      {/* <div className={cls.flexContainer}> */}
+      {/* <div className={cls.leftContainer}> */}
+      <p className={cls.date}>{masterclass.date}</p>
       <div className={cls.flexContainer}>
-        <div className={cls.leftContainer}>
-          <p className={cls.date}>{masterclass.date}</p>
-          <p className={cls.description}>{masterclass.description}</p>
-          <div className={cls.schedule}>
-            <span>{masterclass.date}</span>
-            <span>{masterclass.time}</span>
-            <span>{masterclass.duration}</span>
-          </div>
-          {isEventPast ? (
-            <p className={cls.status}>Завершено</p>
-          ) : masterclass.pay ? (
-            <p className={cls.status}>Оплачено</p>
-          ) : (
-            <button type="button" className={cls.buttonPay}>
-              Оплатить
+        <p className={cls.description}>{masterclass.description}</p>
+        <div className={cls.flexContainerForPrice}>
+          <p className={cls.price}>
+            {masterclass.price}
+            ₽
+          </p>
+          {showPopupButton && (
+            <button
+              type="button"
+              onClick={openModal}
+              className={cls.buttonPopup}
+            >
+              ⋮
             </button>
           )}
-        </div>
-        <div className={cls.rightContainer}>
-          <div className={cls.flexContainerForPrice}>
-            <p className={cls.price}>
-              {masterclass.price}
-              ₽
-            </p>
-            {showPopupButton && (
-              <button
-                type="button"
-                onClick={openModal}
-                className={cls.buttonPopup}
-              >
-                ⋮
+          {isModalOpen && (
+            <div ref={popupRef} className={cls.popup}>
+              <button type="button" className={cls.changeCourseButton}>
+                Перенести
               </button>
-            )}
-            {isModalOpen && (
-              <div ref={popupRef} className={cls.popup}>
-                <button type="button" className={cls.changeCourseButton}>
-                  Перенести
-                </button>
-                <button type="button" className={cls.changeCourseButton}>
-                  Отменить
-                </button>
-              </div>
-            )}
-          </div>
-          <p className={cls.teacher}>{masterclass.teacher}</p>
+              <button type="button" className={cls.changeCourseButton}>
+                Отменить
+              </button>
+            </div>
+          )}
         </div>
       </div>
+      <div className={cls.schedule}>
+        <span>{masterclass.date}</span>
+        <span>{masterclass.time}</span>
+        <span>{masterclass.duration}</span>
+      </div>
+      <div className={cls.flexContainerWithLine}>
+        <p className={cls.teacher}>{masterclass.teacher}</p>
+        {isEventPast ? (
+          <p className={cls.status}>Завершено</p>
+        ) : masterclass.pay ? (
+          <p className={cls.status}>Оплачено</p>
+        ) : (
+          <button type="button" className={cls.buttonPay}>
+            Оплатить
+          </button>
+        )}
+      </div>
+      {/* </div> */}
+      {/* <div className={cls.rightContainer}> */}
+      {/* </div> */}
+      {/* // </div> */}
     </div>
   );
 };
