@@ -168,7 +168,7 @@
     cursor: pointer;
 }
 
-@media screen and (min-width: global.$breakpoint-tablet) and (max-width: global.$breakpoint-xsmall-laptop) {
+@media screen and (min-width: 910px) and (max-width: global.$breakpoint-xsmall-laptop) {
   .flexContainer {
     max-width: 520px;
     gap: 12px; 
@@ -183,10 +183,60 @@
   .price {
     font-size: 16px;
   }
+
+  .date {
+    font-size: 16px;
+    margin-top: 32px;
+  }
+
 }
 
-@media screen and (min-width: global.$breakpoint-pre-mobile) and (max-width: 840px) {
+@media screen and (min-width: global.$breakpoint-ipad-mini) and (max-width: 909px) {
   .flexContainer {
     max-width: 337px;
+    gap: 12px; 
   }  
+
+  .flexContainerWithLine {
+    flex-direction: column;
+  }
+
+  .flexContainerForPrice {
+    gap: 12px;
+  }
+
+  .date {
+    font-size: 16px;
+    margin-top: 32px;
+  }
+
+  .description {
+    max-width: 181px;
+    height: 66px;
+    font-size: 16px;
+  }
+
+  .price {
+    font-size: 16px;
+  }
+
+  .schedule span {
+    font-size: 16px;
+  }
+
+  .teacher {
+    margin-left: 20px;
+    padding-left: 40px;
+    background-color: transparent;
+    background-position: 6px center;
+  }
+
+  .status {
+    margin-bottom: 20px;
+  }
+
+  .buttonPay {
+    margin-bottom: 20px;
+    width: 297px;
+  }
 }

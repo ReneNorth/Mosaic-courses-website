@@ -87,7 +87,7 @@ const Calendar = () => {
 
   return (
     <div className={calendarStyles.container}>
-      <h3 className={calendarStyles.title}>Выберите дату и время занятия</h3>
+      {/* <h3 className={calendarStyles.title}>Выберите дату и время занятия</h3> */}
       <div className={calendarStyles.menu}>
         <p className={calendarStyles.currentDate}>{monthAndYear}</p>
         <div className={calendarStyles.buttonContainer}>
@@ -136,7 +136,7 @@ const Calendar = () => {
           <CalendarDay key={crypto.randomUUID()} monthDay={day} isGrey isActive={false} isSelected={false} />
         ))}
       </ul>
-      <div className={calendarStyles.time}>
+      {/* <div className={calendarStyles.time}>
         <p className={calendarStyles.timeTitle}>Время</p>
         <div className={calendarStyles.timeAndPriceContainer}>
           {activeDays[convertDateToKey(closestDate)] ? activeDays[convertDateToKey(closestDate)]
@@ -151,7 +151,7 @@ const Calendar = () => {
               />
             )) : <p> </p>}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

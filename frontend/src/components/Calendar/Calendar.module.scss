@@ -20,7 +20,7 @@
   align-items: center;
   width: 368px;
   height: 44px;
-  margin-top: 20px;
+  margin-top: 36px;
 }
 
 .currentDate {
@@ -80,6 +80,7 @@
 
 .days {
   padding: 0 4px;
+  padding-bottom: 36px;
   width: 370px;
   display: grid;
   grid-template-columns: repeat(7, 44px);
@@ -117,7 +118,7 @@
 
 @media screen and (max-width: 1320px) {
   .container {
-    height: 500px;
+    height: 376px;
   }
 
   .title {
@@ -146,6 +147,7 @@
 
   .days {
     width: 330px;
+    padding-bottom: 36px;
     column-gap: 3px;
   }
 
@@ -163,7 +165,7 @@
 @media screen and (max-width: 743px) {
   .container {
     box-shadow: none;
-    width: 360px;
+    width: 337px;
     justify-self: center;
   }
 
@@ -173,6 +175,7 @@
 
   .days {
     padding: 0 2px;
+    padding-bottom: 36px;
   }
 
   .time {

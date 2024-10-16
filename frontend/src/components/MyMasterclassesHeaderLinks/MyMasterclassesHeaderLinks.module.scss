@@ -15,6 +15,9 @@
   border-bottom: 2px solid var(--color-green-accent);
 }
 
-@media screen and (max-width: global.$breakpoint-ipad-mini) {
-
+@media screen and (min-width: global.$breakpoint-ipad-mini) and (max-width: global.$breakpoint-xsmall-laptop) {
+  .link {
+    padding-bottom: 2px;
+    font-size: 18px;
+  }
 }
