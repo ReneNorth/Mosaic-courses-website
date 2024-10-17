@@ -4,7 +4,7 @@ import TimeAndPrice from '../TimeAndPrice/TimeAndPrice';
 import calendarStyles from './Calendar.module.scss';
 import CalendarDay from '../CalendarDay/CalendarDay';
 import { setSelectedLesson } from '../../services/slices/coursesSlice.js';
-import { generateDays } from '../../helpers/generateDays.js';
+import { generateDays, generateDaysForWeek } from '../../helpers/generateDays.js';
 import { MONTHS } from '../../utils/consts/constants.js';
 
 const Calendar = () => {
@@ -50,15 +50,36 @@ const Calendar = () => {
   }, [currentCourse]);
 
   useEffect(() => {
-    setDays(generateDays(date));
+    const updateDays = () => {
+      const isNarrowWidth = window.innerWidth >= 360 && window.innerWidth <= 719;
+      if (isNarrowWidth) {
+        setDays(generateDaysForWeek(date));
+      } else {
+        setDays(generateDays(date));
+      }
+    };
+
+    updateDays();
+    window.addEventListener('resize', updateDays);
+    return () => window.removeEventListener('resize', updateDays);
   }, [date]);
 
-  const goToPreviousMonth = () => {
-    setDate(new Date(date.getFullYear(), date.getMonth() - 1, 1));
+  const goToPrevious = () => {
+    const isNarrowWidth = window.innerWidth >= 360 && window.innerWidth <= 719;
+    if (isNarrowWidth) {
+      setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7)); // Перейти на 7 дней назад
+    } else {
+      setDate(new Date(date.getFullYear(), date.getMonth() - 1, 1)); // Перейти на предыдущий месяц
+    }
   };
 
-  const goToNextMonth = () => {
-    setDate(new Date(date.getFullYear(), date.getMonth() + 1, 1));
+  const goToNext = () => {
+    const isNarrowWidth = window.innerWidth >= 360 && window.innerWidth <= 719;
+    if (isNarrowWidth) {
+      setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() + 7)); // Перейти на 7 дней вперед
+    } else {
+      setDate(new Date(date.getFullYear(), date.getMonth() + 1, 1)); // Перейти на следующий месяц
+    }
   };
 
   const isActiveDay = (day, monthOffset = 0) => {
@@ -95,13 +116,13 @@ const Calendar = () => {
             className={calendarStyles.backwardButton}
             type="button"
             aria-label="Кнопка назад"
-            onClick={goToPreviousMonth}
+            onClick={goToPrevious}
           />
           <button
             className={calendarStyles.forwardButton}
             type="button"
             aria-label="Кнопка вперёд"
-            onClick={goToNextMonth}
+            onClick={goToNext}
           />
         </div>
       </div>

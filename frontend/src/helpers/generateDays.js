@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 export const generateDays = (date) => {
   const year = date.getFullYear();
   const month = date.getMonth();
@@ -13,4 +14,21 @@ export const generateDays = (date) => {
   const nextDays = Array.from({ length: 42 - previousDays.length - currentDays.length }, (_, i) => i + 1);
 
   return { previous: previousDays, current: currentDays, next: nextDays };
+};
+
+export const generateDaysForWeek = (date) => {
+  const startOfWeek = new Date(date);
+  startOfWeek.setDate(date.getDate() - date.getDay() + 1); // Пн
+  const weekDays = [];
+
+  for (let i = 0; i < 7; i++) {
+    weekDays.push(startOfWeek.getDate());
+    startOfWeek.setDate(startOfWeek.getDate() + 1);
+  }
+
+  return {
+    previous: [],
+    current: weekDays,
+    next: [],
+  };
 };

@@ -86,11 +86,18 @@
   }
 }
 
-  @media screen and (max-width: global.$breakpoint-mobile) {
-    .list {
-      min-width: 100%;
-      padding: 0;
-      padding-top: 8px;
-    }
+  @media screen and (max-width: global.$breakpoint-ipad-mini) {
+  .flexContainer {
+    margin-top: 10px;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
 
+  .list {
+    min-width: 100%;
+    padding: 0 24px;
+    margin: 0;
+    font-size: 18px;
+  }
   }  

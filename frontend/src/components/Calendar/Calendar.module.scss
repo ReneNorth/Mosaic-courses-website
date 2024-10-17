@@ -17,13 +17,13 @@
 .menu {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   width: 368px;
-  height: 44px;
+  height: 33px;
   margin-top: 36px;
 }
 
 .currentDate {
+  height: 44px;
   font-weight: 600;
   font-size: 20px;
   line-height: 120%;
@@ -31,6 +31,7 @@
 
 .buttonContainer {
   width: 51px;
+  height: 44px;
   display: flex;
   justify-content: space-between;
 
@@ -162,15 +163,27 @@
   }
 }
 
-@media screen and (max-width: 743px) {
+@media screen and (max-width: 719px) {
   .container {
+    background-color: transparent;
     box-shadow: none;
-    width: 337px;
+    width: 320px;
+    height: 116px;
     justify-self: center;
   }
 
   .menu {
     width: 320px;
+    height: 44px;
+    margin-top: 0;
+  }
+
+  .currentDate {
+    padding-top: 11px;
+  }
+
+  .buttonContainer {
+    padding-top: 11px
   }
 
   .days {

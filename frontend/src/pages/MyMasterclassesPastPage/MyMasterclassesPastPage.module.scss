@@ -51,23 +51,34 @@
   gap: 40px; 
 }
 
-@media screen and (min-width: global.$breakpoint-ipad-mini) and (max-width: global.$breakpoint-card-curses) {
+@media screen and (min-width: 360px) and (max-width: global.$breakpoint-xsmall-laptop) {
+  .title {
+    display: none;
+  }
+}
+
+@media screen and (min-width: global.$breakpoint-ipad-mini) and (max-width: global.$breakpoint-xsmall-laptop) {
   .flexContainer {
-    margin-top: 30px;
-    flex-direction: column;
-    align-items: center;
+    margin-top: 0;
+    gap: 20px;
+  }
+
+  .calendarContainer {
+    max-width: 338px;
   }
 
   .list {
-    max-width: 710px;
+    margin-top: 0;
+    margin-bottom: 31px;
+  }
+}
+
+  @media screen and (max-width: global.$breakpoint-ipad-mini) {
+    .list {
+      min-width: 100%;
+      padding: 0;
+      padding-top: 8px;
+      margin-top: 0;
+    }
+
   }  
-}
-
-@media screen and (max-width: global.$breakpoint-mobile) {
-
-  .list {
-    min-width: 100%;
-    padding: 0;
-    padding-top: 8px;
-  }
-}
