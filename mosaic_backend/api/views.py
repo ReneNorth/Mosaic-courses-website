@@ -15,19 +15,19 @@ from rest_framework.response import Response
 
 from api.filters import MasterclassTypeFilter, PostsFilter
 from api.serializers import (ArtworkSerializer, BookingSerializer,
-                             EmailMainSerializer, GiftCertSerializer,
-                             MainCarouselSerializer,
+                             EmailMainSerializer, FavoriteSerializer,
+                             GiftCertSerializer, MainCarouselSerializer,
                              MasterclassCategoryFilterSerializer,
                              MasterclassSerializer, MasterclassTypeSerializer,
                              PostSerializer, RequestSerializer,
                              ReviewsSerializer, SchoolSerializer,
-                             TagReadOnlySerializer, FavoriteSerializer)
+                             TagReadOnlySerializer)
 from blog.models import Post, Tag
 from booking.models import Booking
 from carousel.models import MainCarouselItem
 from crm_app.models import GiftCert
-from gallery.models import Artwork
 from favorite.models import FavoriteArtwork
+from gallery.models import Artwork
 from masterclass.models import (Masterclass, MasterclassCategory,
                                 MasterclassType)
 from school.models import Review, School

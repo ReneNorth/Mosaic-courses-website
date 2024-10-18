@@ -5,12 +5,12 @@ from users.views import CustomizedUserViewSet
 
 from .views import (ArtworkReadOnlyViewSet, BookingViewSet,
                     CertificatePostPatchViewSet, EmailCreateOnlyViewSet,
-                    MainCarouselReadOnlyViewSet,
+                    FavoritedCreateDeleteViewSet, MainCarouselReadOnlyViewSet,
                     MasterclassCategoryFilterReadOnlyViewSet,
                     MasterclassReadOnlyViewset, MasterclassTypeReadOnlyViewSet,
                     PostViewSet, RequestCreateOnlyViewSet,
                     SchoolReadOnlyViewSet, StudentReviewsReadOnlyViewSet,
-                    TagReadOnlyViewSet, FavoritedCreateDeleteViewSet)
+                    TagReadOnlyViewSet)
 
 router1 = routers.SimpleRouter()
 
