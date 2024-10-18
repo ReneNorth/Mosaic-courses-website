@@ -73,7 +73,7 @@
 @media screen and (min-width: global.$breakpoint-ipad-mini) and (max-width: global.$breakpoint-xsmall-laptop) {
   .flexContainer {
     margin-top: 0;
-    gap: 20px;
+    justify-content: space-between;
   }
 
   .calendarContainer {
@@ -86,7 +86,7 @@
   }
 }
 
-  @media screen and (max-width: global.$breakpoint-ipad-mini) {
+  @media screen and (min-width: 360px) and (max-width: global.$breakpoint-ipad-mini) {
   .flexContainer {
     margin-top: 10px;
     flex-direction: column;
@@ -94,10 +94,15 @@
     gap: 0;
   }
 
+  .masterclassContainer {
+    width: 100%;
+  }
+
   .list {
     min-width: 100%;
     padding: 0 24px;
     margin: 0;
     font-size: 18px;
+    border: none;
   }
   }  
