@@ -18,7 +18,7 @@ export const generateDays = (date) => {
 
 export const generateDaysForWeek = (date) => {
   const startOfWeek = new Date(date);
-  startOfWeek.setDate(date.getDate() - date.getDay() + 1); // Пн
+  startOfWeek.setDate(date.getDate() - date.getDay() + 1);
   const weekDays = [];
 
   for (let i = 0; i < 7; i++) {

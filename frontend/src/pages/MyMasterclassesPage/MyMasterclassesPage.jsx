@@ -20,6 +20,7 @@ export const MyMasterclassesPage = () => {
   );
   const showPopupButton = true;
   const isEventPast = false;
+
   return (
     <>
       <div className={cls.flexContainer}>

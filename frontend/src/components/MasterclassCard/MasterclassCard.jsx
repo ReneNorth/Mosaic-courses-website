@@ -32,7 +32,7 @@ export const MasterclassCard = ({
   }, [isModalOpen, closeModal]);
 
   return (
-    <div>
+    <div className={cls.wrapper}>
       {/* <div className={cls.flexContainer}> */}
       {/* <div className={cls.leftContainer}> */}
       <p className={cls.date}>{masterclass.date}</p>

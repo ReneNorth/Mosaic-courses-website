@@ -51,7 +51,7 @@ const Calendar = () => {
 
   useEffect(() => {
     const updateDays = () => {
-      const isNarrowWidth = window.innerWidth >= 360 && window.innerWidth <= 719;
+      const isNarrowWidth = window.innerWidth >= 360 && window.innerWidth <= 720;
       if (isNarrowWidth) {
         setDays(generateDaysForWeek(date));
       } else {
@@ -65,20 +65,20 @@ const Calendar = () => {
   }, [date]);
 
   const goToPrevious = () => {
-    const isNarrowWidth = window.innerWidth >= 360 && window.innerWidth <= 719;
+    const isNarrowWidth = window.innerWidth >= 360 && window.innerWidth <= 720;
     if (isNarrowWidth) {
-      setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7)); // Перейти на 7 дней назад
+      setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7));
     } else {
-      setDate(new Date(date.getFullYear(), date.getMonth() - 1, 1)); // Перейти на предыдущий месяц
+      setDate(new Date(date.getFullYear(), date.getMonth() - 1, 1));
     }
   };
 
   const goToNext = () => {
     const isNarrowWidth = window.innerWidth >= 360 && window.innerWidth <= 719;
     if (isNarrowWidth) {
-      setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() + 7)); // Перейти на 7 дней вперед
+      setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() + 7));
     } else {
-      setDate(new Date(date.getFullYear(), date.getMonth() + 1, 1)); // Перейти на следующий месяц
+      setDate(new Date(date.getFullYear(), date.getMonth() + 1, 1));
     }
   };
 

@@ -1,10 +1,12 @@
 .container {
-  background-color: white;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
+  padding: 36px 9px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  background-color: white;
+  border-radius: 13px;
+  box-sizing: content-box;
 }
 
 .title {
@@ -19,7 +21,7 @@
   justify-content: space-between;
   width: 368px;
   height: 33px;
-  margin-top: 36px;
+  // margin-top: 36px;
 }
 
 .currentDate {
@@ -62,17 +64,19 @@
 }
 
 .weeks {
-  margin-top: 4px;
-  padding: 0 12px;
-  width: 366px;
+  // margin-top: 4px;
+  // padding: 0 12px;
+  padding: 0 9.5px;
+  width: 320px;
   display: grid;
-  grid-template-columns: 21px 19px 19px 19px 20px 20px 20px;
-  gap: 36px;
+  grid-template-columns: 21px 18px 19px 18px 19px 19px 19px;
+  gap: 28px;
   box-sizing: border-box;
 
   li {
     font-weight: 400;
     font-size: 14px;
+    font-family: "Raleway";
     line-height: 140%;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -80,46 +84,47 @@
 }
 
 .days {
-  padding: 0 4px;
-  padding-bottom: 36px;
-  width: 370px;
+  // padding-bottom: 36px;
+  // width: 370px;
   display: grid;
   grid-template-columns: repeat(7, 44px);
   grid-template-rows: repeat(5, 44px);
-  column-gap: 11px;
-  row-gap: 4px;
+  // column-gap: 11px;
+  // row-gap: 4px;
   box-sizing: border-box;
-}
-
-.time {
-  width: 100%;
-  height: 44px;
-  padding: 0 71px;
-  margin-top: 20px;
-  margin-bottom: 28px;
-  box-sizing: border-box;
-  display: grid;
-  grid-template-columns: 54px 1fr;
-  column-gap: 18px;
-}
-
-.timeTitle {
-  font-weight: 500;
+  font-family: "Raleway";
   font-size: 17px;
-  line-height: 135%;
-  justify-self: center;
-  align-self: center;
 }
 
-.timeAndPriceContainer {
-  display: grid;
-  grid-template-columns: repeat(4, 68px);
-  gap: 8px;
-}
+// .time {
+//   width: 100%;
+//   height: 44px;
+//   padding: 0 71px;
+//   margin-top: 20px;
+//   margin-bottom: 28px;
+//   box-sizing: border-box;
+//   display: grid;
+//   grid-template-columns: 54px 1fr;
+//   column-gap: 18px;
+// }
+
+// .timeTitle {
+//   font-weight: 500;
+//   font-size: 17px;
+//   line-height: 135%;
+//   justify-self: center;
+//   align-self: center;
+// }
+
+// .timeAndPriceContainer {
+//   display: grid;
+//   grid-template-columns: repeat(4, 68px);
+//   gap: 8px;
+// }
 
 @media screen and (max-width: 1320px) {
   .container {
-    height: 376px;
+    height: 304px;
   }
 
   .title {
@@ -127,7 +132,7 @@
   }
 
   .menu {
-    width: 330px;
+    width: 320px;
   }
 
   .currentDate {
@@ -136,8 +141,8 @@
   }
 
   .weeks {
-    width: 333px;
-    padding: 0 16px;
+    width: 320px;
+    // padding: 0 16px;
     gap: 28px;
     grid-template-columns: 21px 18px 19px 18px 19px 19px 19px;
   
@@ -147,29 +152,33 @@
   }
 
   .days {
-    width: 330px;
-    padding-bottom: 36px;
-    column-gap: 3px;
+    width: 316px;
+    // padding-bottom: 36px;
+    // column-gap: 3px;
+    li {
+      padding: 1px;
+    }
   }
 
-  .time {
-    padding: 0 20px;
-    margin-bottom: 0;
-    column-gap: 52px;
-  }
+  // .time {
+  //   padding: 0 20px;
+  //   margin-bottom: 0;
+  //   column-gap: 52px;
+  // }
 
-  .timeAndPriceContainer {
-    grid-template-columns: repeat(4, 57px);
-  }
+  // .timeAndPriceContainer {
+  //   grid-template-columns: repeat(4, 57px);
+  // }
 }
 
-@media screen and (max-width: 719px) {
+@media screen and (max-width: 720px) {
   .container {
     background-color: transparent;
     box-shadow: none;
     width: 320px;
     height: 116px;
     justify-self: center;
+    overflow: hidden;
   }
 
   .menu {
@@ -188,7 +197,9 @@
 
   .days {
     padding: 0 2px;
-    padding-bottom: 36px;
+    height: 44px;
+    overflow: hidden;
+    // padding-bottom: 36px;
   }
 
   .time {
