@@ -77,25 +77,29 @@ class FavoritedCreateDeleteViewSet(
     serializer_class = FavoriteSerializer
     permission_classes = (FavoritePermission, )
 
-    @action(methods=["post"], detail=False)
+    @action(methods=["post"], detail=True)
     def create(self, request, pk=None) -> Response:
         """
         The method adds an artwork to favorites. The user ID and artwork ID
         are passed to the serializer through the context.
         """
+        log.info('1working here')
         user = get_object_or_404(User, id=request.user.id)
-        favorited_artwork = get_object_or_404(FavoriteArtwork, pk=pk)
+        favorited_artwork = get_object_or_404(Artwork, pk=pk)
+        log.info('working here')
         serializer = self.get_serializer(
             data=request.data,
             context={'who_favorited': user,
                      'favorited_artwork': favorited_artwork},
         )
+        log.info('trying to validate the serializer', f'{serializer}')
         if serializer.is_valid(raise_exception=True):
+            log.info('serializer errors', serializer.errors)
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    @action(methods=['delete'], detail=False)
+    @action(methods=['delete'], detail=True)
     def destroy(self, request, pk=None) -> Response:
         favorited = get_object_or_404(
             FavoriteArtwork,

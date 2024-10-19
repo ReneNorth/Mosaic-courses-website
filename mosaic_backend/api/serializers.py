@@ -113,13 +113,28 @@ class ArtworkSerializer(serializers.ModelSerializer):
 
 
 class FavoriteSerializer(serializers.ModelSerializer):
+
+    who_favorited = serializers.SerializerMethodField()
+    favorited_artwork = serializers.SerializerMethodField()
+
+    def get_who_favorited(self, obj):
+        if "who_favorited" in self.context:
+            return self.context["who_favorited"].id
+        return None
+
+    def get_favorited_artwork(self, obj):
+        if "favorited_artwork" in self.context:
+            return self.context["favorited_artwork"].id
+        return None
+
     class Meta:
         model = FavoriteArtwork
         fields = ['who_favorited', 'favorited_artwork']
 
     def create(self, validated_data):
-        user_id = self.context["who_favorited"].id
-        artwork_id = self.context["favorited_artwork"].id
+        log.info('working in serializer')
+        user_id = self.context['who_favorited'].id
+        artwork_id = self.context['favorited_artwork'].id
         if FavoriteArtwork.objects.filter(who_favorited_id=user_id,
                                           favorited_artwork_id=artwork_id):
             raise serializers.ValidationError('You cannot add the artwork'
