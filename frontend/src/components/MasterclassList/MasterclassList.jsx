@@ -37,7 +37,7 @@ const MasterclassList = ({
   };
 
   return (
-    <div>
+    <div className={cls.cardContainer}>
       {masterclasses.length === 0 ? (
         <p className={cls.text}>{message}</p>
       ) : (

@@ -21,7 +21,6 @@
   justify-content: space-between;
   width: 368px;
   height: 33px;
-  // margin-top: 36px;
 }
 
 .currentDate {
@@ -64,8 +63,6 @@
 }
 
 .weeks {
-  // margin-top: 4px;
-  // padding: 0 12px;
   padding: 0 9.5px;
   width: 320px;
   display: grid;
@@ -84,13 +81,9 @@
 }
 
 .days {
-  // padding-bottom: 36px;
-  // width: 370px;
   display: grid;
   grid-template-columns: repeat(7, 44px);
   grid-template-rows: repeat(5, 44px);
-  // column-gap: 11px;
-  // row-gap: 4px;
   box-sizing: border-box;
   font-family: "Raleway";
   font-size: 17px;
@@ -142,7 +135,6 @@
 
   .weeks {
     width: 320px;
-    // padding: 0 16px;
     gap: 28px;
     grid-template-columns: 21px 18px 19px 18px 19px 19px 19px;
   
@@ -153,8 +145,6 @@
 
   .days {
     width: 316px;
-    // padding-bottom: 36px;
-    // column-gap: 3px;
     li {
       padding: 1px;
     }
@@ -173,6 +163,7 @@
 
 @media screen and (max-width: 720px) {
   .container {
+    padding: 0 9px 24px;
     background-color: transparent;
     box-shadow: none;
     width: 320px;
@@ -199,7 +190,9 @@
     padding: 0 2px;
     height: 44px;
     overflow: hidden;
-    // padding-bottom: 36px;
+    li {
+      padding: 0;
+    }
   }
 
   .time {

@@ -1,5 +1,17 @@
 @use "../../utils/variables/global.scss";
 
+.text {
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.link {
+  color: var(--text-color);
+  text-decoration: underline;
+}
+
 .flexContainer {
   margin-top: 70px;
   display: flex;
@@ -7,12 +19,13 @@
 }
 
 .calendarContainer {
-  flex: 1; 
+  flex: 1;
   max-width: 510px;
 }
 
 .masterclassContainer {
-  flex: 2; 
+  flex: 2;
+  width: 40%;
 }
 
 .title {
@@ -24,18 +37,18 @@
 }
 
 .list {
-    margin: 40px 0;
-    width: 100%;
-    max-width: 730px;
-    display: flex;
-    justify-content: left;
-    align-items: baseline;
-    list-style-type: none;
-    border-bottom: 1px solid var(--color-green-grey);
+  margin-top: 40px;
+  width: 100%;
+  max-width: 730px;
+  display: flex;
+  justify-content: left;
+  align-items: baseline;
+  list-style-type: none;
+  border-bottom: 1px solid var(--color-green-grey);
 }
 
 .wrapper {
-  margin-top: 40px; 
+  margin-top: 40px;
 }
 
 .subtitle {
@@ -47,11 +60,11 @@
 }
 
 .cardMoreContentContainer {
-  display: flex; 
-  gap: 40px; 
+  display: flex;
+  gap: 40px;
 }
 
-@media screen and (min-width: 360px) and (max-width: global.$breakpoint-xsmall-laptop) {
+@media screen and (min-width: 320px) and (max-width: global.$breakpoint-xsmall-laptop) {
   .title {
     display: none;
   }
@@ -60,7 +73,7 @@
 @media screen and (min-width: global.$breakpoint-ipad-mini) and (max-width: global.$breakpoint-xsmall-laptop) {
   .flexContainer {
     margin-top: 0;
-    gap: 20px;
+    justify-content: space-between;
   }
 
   .calendarContainer {
@@ -73,12 +86,23 @@
   }
 }
 
-  @media screen and (max-width: global.$breakpoint-ipad-mini) {
-    .list {
-      min-width: 100%;
-      padding: 0;
-      padding-top: 8px;
-      margin-top: 0;
-    }
+@media screen and (min-width: 320px) and (max-width: global.$breakpoint-ipad-mini) {
+  .flexContainer {
+    margin-top: 10px;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
 
-  }  
+  .masterclassContainer {
+    width: 100%;
+  }
+
+  .list {
+    min-width: 100%;
+    padding: 0 20px;
+    margin: 0;
+    font-size: 18px;
+    border: none;
+  }
+}

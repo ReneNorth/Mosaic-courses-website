@@ -11,13 +11,20 @@
 }
 
 .active {
-  color: var( --color-green-accent);
+  color: var(--color-green-accent);
   border-bottom: 2px solid var(--color-green-accent);
 }
 
 @media screen and (min-width: global.$breakpoint-ipad-mini) and (max-width: global.$breakpoint-xsmall-laptop) {
   .link {
     padding-bottom: 2px;
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: global.$breakpoint-ipad-mini) {
+  .link {
+    font-weight: 600;
     font-size: 18px;
   }
 }
