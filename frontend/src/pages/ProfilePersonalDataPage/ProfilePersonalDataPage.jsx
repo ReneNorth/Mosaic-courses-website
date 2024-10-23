@@ -158,6 +158,8 @@ export function ProfilePersonalDataPage() {
             isChanging={isChangingEmail}
             setIsChanging={setIsChangingEmail}
           >
+            <p className={cls.fieldPlaceholder}>{personalInfo.email}</p>
+            <h3 className={cls.lineTitleActive}>Новая почта</h3>
             <form
               className={cls.formContainer}
               onSubmit={(e) => handleUpdateEmail(e)}
