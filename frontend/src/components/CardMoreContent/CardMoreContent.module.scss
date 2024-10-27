@@ -47,7 +47,7 @@
 
 @media screen and (max-width: 1310px) {
   .card {
-    width: 320px;
+    width: 220px;
 
     .container {
       padding: 24px;
@@ -59,7 +59,7 @@
     .text {
       align-self: flex-start;
       height: 88px;
-      width: 272px;
+      width: 188px;
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
@@ -68,8 +68,8 @@
     }
 
     .img {
-      width: 320px;
-      height: 198px;
+      width: 220px;
+      height: 136px;
     }
 
     .title {
@@ -82,4 +82,19 @@
       text-overflow: ellipsis;
     }
   }
+}
+
+@media screen and (max-width: 756px) {
+.card {
+  width: 320px;
+
+  .text {
+    width: 272px;
+  }
+
+  .img {
+    width: 220px;
+    height: 198px;
+  }
+}
 }

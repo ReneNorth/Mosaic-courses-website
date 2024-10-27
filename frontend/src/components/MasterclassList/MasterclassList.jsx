@@ -13,14 +13,24 @@ const MasterclassList = ({
   const [openModalIndex, setOpenModalIndex] = useState(null);
 
   const totalPages = Math.ceil(masterclasses.length / itemsPerPage);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
+      scrollToTop();
     }
   };
 
   const handlePreviousPage = () => {
     setCurrentPage(currentPage - 1);
+    scrollToTop();
   };
 
   const currentMasterclasses = masterclasses.slice(
@@ -73,7 +83,10 @@ const MasterclassList = ({
                   className={
                     currentPage === idx + 1 ? cls.activePage : cls.numberPage
                   }
-                  onClick={() => setCurrentPage(idx + 1)}
+                  onClick={() => {
+                    setCurrentPage(idx + 1);
+                    scrollToTop();
+                  }}
                 >
                   {idx + 1}
                 </button>

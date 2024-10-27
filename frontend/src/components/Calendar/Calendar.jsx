@@ -100,9 +100,9 @@ const Calendar = () => {
     }
   };
 
-  const handleTimeClick = (lesson) => {
-    dispatch(setSelectedLesson(lesson));
-  };
+  // const handleTimeClick = (lesson) => {
+  //   dispatch(setSelectedLesson(lesson));
+  // };
 
   const monthAndYear = `${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
 

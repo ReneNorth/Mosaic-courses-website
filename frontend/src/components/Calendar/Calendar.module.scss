@@ -115,9 +115,17 @@
 //   gap: 8px;
 // }
 
+@media screen and (min-width: 1320px) {
+  .container {
+    width: 400px;
+    max-height: 369px;
+  }
+}
+
 @media screen and (max-width: 1320px) {
   .container {
-    height: 304px;
+    min-height: 297px;
+    max-height: 352px;
   }
 
   .title {

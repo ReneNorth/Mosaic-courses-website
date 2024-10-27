@@ -1,19 +1,30 @@
 /* eslint-disable no-plusplus */
 export const generateDays = (date) => {
-  const year = date.getFullYear();
-  const month = date.getMonth();
-  const firstDay = new Date(year, month, 1);
-  const lastDay = new Date(year, month + 1, 0);
+  const startOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
+  const endOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 
-  const daysOfWeek = [7, 1, 2, 3, 4, 5, 6];
-  const firstWeekDay = daysOfWeek[firstDay.getDay()];
+  const startDay = startOfMonth.getDay();
+  const lastDay = endOfMonth.getDay();
 
-  const previousDays = Array.from({ length: firstWeekDay - 1 }, (_, i) => new Date(year, month, -i)
-    .getDate()).reverse();
-  const currentDays = Array.from({ length: lastDay.getDate() }, (_, i) => i + 1);
-  const nextDays = Array.from({ length: 42 - previousDays.length - currentDays.length }, (_, i) => i + 1);
+  const previousMonthDays = startDay === 0 ? 6 : startDay - 1;
 
-  return { previous: previousDays, current: currentDays, next: nextDays };
+  let nextMonthDays = 0;
+  if (lastDay !== 0) {
+    nextMonthDays = 7 - lastDay;
+  }
+
+  if (startDay === 1 || lastDay === 0) {
+    nextMonthDays = 0;
+  }
+
+  const previousMonth = new Date(date.getFullYear(), date.getMonth(), 0);
+  const days = {
+    previous: Array.from({ length: previousMonthDays }, (_, i) => previousMonth.getDate() - previousMonthDays + i + 1),
+    current: Array.from({ length: endOfMonth.getDate() }, (_, i) => i + 1),
+    next: Array.from({ length: nextMonthDays }, (_, i) => i + 1),
+  };
+
+  return days;
 };
 
 export const generateDaysForWeek = (date) => {
