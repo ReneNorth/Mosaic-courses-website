@@ -2,12 +2,14 @@
 
 .flexContainer {
   margin-bottom: 16px;
+  padding-right: 24px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 32px;
   width: 100%;
-  width: 730px;
+  width: 840px;
+  box-sizing: border-box;
 }
 
 .borderContainer {
@@ -173,6 +175,12 @@
   cursor: pointer;
 }
 
+@media screen and (min-width: 1101px) and (max-width: 1320px) {
+  .flexContainer {
+    max-width: 730px;
+  }
+}
+
 @media screen and (min-width: 910px) and (max-width: global.$breakpoint-xsmall-laptop) {
   .flexContainer {
     max-width: 520px;
@@ -182,7 +190,7 @@
   .borderContainer {
     margin-top: 16px;
     padding: 20px 0;
-    max-width: 320px;
+    max-width: 520px;
   }  
 
   .description {
