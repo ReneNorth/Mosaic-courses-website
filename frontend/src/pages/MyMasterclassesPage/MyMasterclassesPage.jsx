@@ -1,12 +1,14 @@
 import { NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { classNames } from '../../helpers/classNames';
+import { ENDPOINTS } from '../../utils/consts/constants';
 import cls from './MyMasterclassesPage.module.scss';
 import Calendar from '../../components/Calendar/Calendar';
 import { MyMasterclassesHeaderLinks } from '../../components/MyMasterclassesHeaderLinks/MyMasterclassesHeaderLinks';
 import MasterclassList from '../../components/MasterclassList/MasterclassList';
-import { masterclasses } from '../../utils/consts/mockMasterclasses';
-import { ENDPOINTS } from '../../utils/consts/constants';
+// import { masterclasses } from '../../utils/consts/mockMasterclasses';
 import { CardMoreContent } from '../../components/CardMoreContent/CardMoreContent';
+import { api } from '../../utils/api/index';
 
 export const MyMasterclassesPage = () => {
   const message = (
@@ -20,6 +22,21 @@ export const MyMasterclassesPage = () => {
   );
   const showPopupButton = true;
   const isEventPast = false;
+
+  const [masterclasses, setMasterclasses] = useState([]);
+
+  const fetchUpcomingCourses = async () => {
+    try {
+      const data = await api.getUserUpcomingCourses();
+      setMasterclasses(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUpcomingCourses();
+  }, []);
 
   return (
     <>

@@ -170,7 +170,9 @@ class Api {
     const res = await fetch(`${this._url}/api/v1/reviews/`);
     const data = await this.constructor._checkResponse(res);
     if (res.ok) {
-      if (data.count === 0) { data.results = SLIDER_CONFIG; } else {
+      if (data.count === 0) {
+        data.results = SLIDER_CONFIG;
+      } else {
         let firstId = 1;
         data.results.forEach((review) => {
           review.id = firstId;
@@ -308,14 +310,17 @@ class Api {
 
   async postResetPasswordConfirm(data) {
     const csrftoken = getCookie('csrftoken');
-    const res = await fetch(`${this._url}/api/v1/users/reset_password_confirm/`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-        'X-CSRFToken': csrftoken,
+    const res = await fetch(
+      `${this._url}/api/v1/users/reset_password_confirm/`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+          'X-CSRFToken': csrftoken,
+        },
+        body: JSON.stringify(data),
       },
-      body: JSON.stringify(data),
-    });
+    );
     if (res.ok) {
       return res;
     }
@@ -359,7 +364,12 @@ class Api {
         body,
       });
     }
-    return this._checkResponse(res);
+    return this.constructor._checkResponse(res);
+  }
+
+  // Методы для получения мастер-классов будущих и прошедших для определенного юзера
+  async getUserUpcomingCourses() {
+    return this._fetchAuthorized('/api/v1/users/my_masterclasses/upcoming/', 'GET');
   }
 }
 

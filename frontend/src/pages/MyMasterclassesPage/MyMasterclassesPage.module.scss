@@ -48,11 +48,11 @@
 }
 
 .wrapper {
-  margin-top: 40px;
+  margin-top: 160px;
 }
 
 .subtitle {
-  margin: 22px 0 16px 0;
+  margin: 0 0 16px 0;
   font-family: var(--font-primary);
   font-size: 32px;
   font-weight: 700;
@@ -99,8 +99,7 @@
   }
 
   .list {
-    min-width: 100%;
-    padding: 0 20px;
+    padding: 0 0 0 9px;
     margin: 0;
     font-size: 18px;
     border: none;
@@ -108,9 +107,30 @@
 }
 
 @media screen and (max-width: 756px) {
+  .wrapper {
+    width: 100%;
+    margin-top: 80px;
+    padding-left: 20px;
+    box-sizing: border-box;
+  }
+
   .cardMoreContentContainer {
     overflow-x: auto;
-    white-space: nowrap;
     gap: 12px;
+  }
+
+  .cardMoreContentContainer::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    background: transparent;
+}
+
+  .subtitle {
+    margin-top: 0;
+    font-size: 20px;
+  }
+
+  .text {
+    font-size: 16px;
   }
 }

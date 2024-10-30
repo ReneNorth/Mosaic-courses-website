@@ -175,7 +175,8 @@
     background-color: transparent;
     box-shadow: none;
     width: 320px;
-    height: 116px;
+    min-height: 116px;
+    max-height: 116px;
     justify-self: center;
     overflow: hidden;
   }

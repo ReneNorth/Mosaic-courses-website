@@ -7,7 +7,12 @@ import MasterclassList from '../../components/MasterclassList/MasterclassList';
 import { CardMoreContent } from '../../components/CardMoreContent/CardMoreContent';
 
 export const MyMasterclassesPastPage = () => {
-  const message = 'Нет прошедших занятий';
+  const message = (
+    <p className={cls.text}>
+      Нет прошедших занятий
+    </p>
+  );
+
   const showPopupButton = false;
   const isEventPast = true;
 

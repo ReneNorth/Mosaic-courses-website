@@ -292,6 +292,9 @@
 }  
 
 @media screen and (max-width: 420px) {
+  .navigation {
+    margin-left: 20px;
+  }
   .wrapperLinks {
     gap: 40px;
   }

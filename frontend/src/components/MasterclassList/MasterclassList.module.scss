@@ -39,14 +39,15 @@
 
 @media screen and (min-width: global.$breakpoint-ipad-mini) and (max-width: 1100px) {
   .text {
-    margin-top: 40px;
+    margin-top: 32px;
     width: 320px;
   }
 }
 
 @media screen and (max-width: 719px) {
     .text {
-      margin-top: 40px;
+      margin-top: 32px;
+      margin-left: 9px;
       width: 320px;
     }
   }
