@@ -371,6 +371,10 @@ class Api {
   async getUserUpcomingCourses() {
     return this._fetchAuthorized('/api/v1/users/my_masterclasses/upcoming/', 'GET');
   }
+
+  async getUserPastCourses() {
+    return this._fetchAuthorized('/api/v1/users/my_masterclasses/past/', 'GET');
+  }
 }
 
 export const api = new Api(

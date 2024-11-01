@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { classNames } from '../../helpers/classNames';
 import cls from './MyMasterclassesPastPage.module.scss';
 import Calendar from '../../components/Calendar/Calendar';
@@ -5,6 +6,7 @@ import { MyMasterclassesHeaderLinks } from '../../components/MyMasterclassesHead
 import { masterclasses } from '../../utils/consts/mockMasterclasses';
 import MasterclassList from '../../components/MasterclassList/MasterclassList';
 import { CardMoreContent } from '../../components/CardMoreContent/CardMoreContent';
+import { api } from '../../utils/api';
 
 export const MyMasterclassesPastPage = () => {
   const message = (
@@ -15,6 +17,21 @@ export const MyMasterclassesPastPage = () => {
 
   const showPopupButton = false;
   const isEventPast = true;
+
+  const [masterclasses, setMasterclasses] = useState([]);
+
+  const fetchPastCourses = async () => {
+    try {
+      const data = await api.getUserPastCourses();
+      setMasterclasses(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPastCourses();
+  }, []);
 
   return (
     <>
