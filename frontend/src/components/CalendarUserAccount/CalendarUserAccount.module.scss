@@ -1,0 +1,215 @@
+.container {
+    padding: 36px 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 13px;
+    box-sizing: content-box;
+  }
+  
+  .title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 120%;
+    margin-top: 28px;
+  }
+  
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    width: 368px;
+    height: 33px;
+  }
+  
+  .currentDate {
+    height: 44px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 120%;
+  }
+  
+  .buttonContainer {
+    width: 51px;
+    height: 44px;
+    display: flex;
+    justify-content: space-between;
+  
+    .button {
+      width: 10px;
+      height: 18px;
+      background-color: transparent;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+  
+    .forwardButton:hover,
+    .backwardButton:hover {
+      cursor: pointer;
+      opacity: 0.7;
+    }
+  
+    .backwardButton {
+      @extend .button;
+      background-image: url('../../images/backward-button.svg');
+    }
+  
+    .forwardButton {
+      @extend .button;
+      background-image: url('../../images/forward-button.svg');
+    }
+  }
+  
+  .weeks {
+    padding: 0 9.5px;
+    width: 320px;
+    display: grid;
+    grid-template-columns: 21px 18px 19px 18px 19px 19px 19px;
+    gap: 28px;
+    box-sizing: border-box;
+  
+    li {
+      font-weight: 400;
+      font-size: 14px;
+      font-family: "Raleway";
+      line-height: 140%;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+  }
+  
+  .days {
+    display: grid;
+    grid-template-columns: repeat(7, 44px);
+    grid-template-rows: repeat(5, 44px);
+    box-sizing: border-box;
+    font-family: "Raleway";
+    font-size: 17px;
+  }
+  
+  // .time {
+  //   width: 100%;
+  //   height: 44px;
+  //   padding: 0 71px;
+  //   margin-top: 20px;
+  //   margin-bottom: 28px;
+  //   box-sizing: border-box;
+  //   display: grid;
+  //   grid-template-columns: 54px 1fr;
+  //   column-gap: 18px;
+  // }
+  
+  // .timeTitle {
+  //   font-weight: 500;
+  //   font-size: 17px;
+  //   line-height: 135%;
+  //   justify-self: center;
+  //   align-self: center;
+  // }
+  
+  // .timeAndPriceContainer {
+  //   display: grid;
+  //   grid-template-columns: repeat(4, 68px);
+  //   gap: 8px;
+  // }
+  
+  @media screen and (min-width: 1320px) {
+    .container {
+      width: 400px;
+      max-height: 369px;
+    }
+  }
+  
+  @media screen and (max-width: 1320px) {
+    .container {
+      min-height: 297px;
+      max-height: 352px;
+    }
+  
+    .title {
+      line-height: 135%;
+    }
+  
+    .menu {
+      width: 320px;
+    }
+  
+    .currentDate {
+      font-size: 16px;
+      line-height: 135%;
+    }
+  
+    .weeks {
+      width: 320px;
+      gap: 28px;
+      grid-template-columns: 21px 18px 19px 18px 19px 19px 19px;
+    
+      li {
+        line-height: 135%;
+      }
+    }
+  
+    .days {
+      width: 316px;
+      li {
+        padding: 1px;
+      }
+    }
+  
+    // .time {
+    //   padding: 0 20px;
+    //   margin-bottom: 0;
+    //   column-gap: 52px;
+    // }
+  
+    // .timeAndPriceContainer {
+    //   grid-template-columns: repeat(4, 57px);
+    // }
+  }
+  
+  @media screen and (max-width: 720px) {
+    .container {
+      padding: 0 9px 24px;
+      background-color: transparent;
+      box-shadow: none;
+      width: 320px;
+      min-height: 116px;
+      max-height: 116px;
+      justify-self: center;
+      overflow: hidden;
+    }
+  
+    .menu {
+      width: 320px;
+      height: 44px;
+      margin-top: 0;
+    }
+  
+    .currentDate {
+      padding-top: 11px;
+    }
+  
+    .buttonContainer {
+      padding-top: 11px
+    }
+  
+    .days {
+      padding: 0 2px;
+      height: 44px;
+      overflow: hidden;
+      li {
+        padding: 0;
+      }
+    }
+  
+    .time {
+      column-gap: 26px;
+    }
+  
+    .timeAndPriceContainer {
+      gap: 4px;
+    }
+  }
+  

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { classNames } from '../../helpers/classNames';
 import { ENDPOINTS } from '../../utils/consts/constants';
 import cls from './MyMasterclassesPage.module.scss';
-import Calendar from '../../components/Calendar/Calendar';
+import Calendar from '../../components/CalendarUserAccount/CalendarUserAccount';
 import { MyMasterclassesHeaderLinks } from '../../components/MyMasterclassesHeaderLinks/MyMasterclassesHeaderLinks';
 import MasterclassList from '../../components/MasterclassList/MasterclassList';
 // import { masterclasses } from '../../utils/consts/mockMasterclasses';
