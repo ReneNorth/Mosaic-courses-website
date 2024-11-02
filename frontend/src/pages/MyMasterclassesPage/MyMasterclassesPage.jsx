@@ -27,7 +27,8 @@ export const MyMasterclassesPage = () => {
 
   const fetchUpcomingCourses = async () => {
     try {
-      const data = await api.getUserUpcomingCourses();
+      const response = await api.getUserUpcomingCourses();
+      const data = response.results;
       setMasterclasses(data);
     } catch (error) {
       console.error(error);

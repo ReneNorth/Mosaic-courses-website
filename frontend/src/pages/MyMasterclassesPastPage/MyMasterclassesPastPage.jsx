@@ -22,7 +22,8 @@ export const MyMasterclassesPastPage = () => {
 
   const fetchPastCourses = async () => {
     try {
-      const data = await api.getUserPastCourses();
+      const response = await api.getUserPastCourses();
+      const data = response.results;
       setMasterclasses(data);
     } catch (error) {
       console.error(error);

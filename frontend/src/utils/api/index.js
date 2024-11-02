@@ -344,7 +344,8 @@ class Api {
 
   async _fetchAuthorized(url, method = 'GET', headers = null, body = null) {
     const accessToken = localStorage.getItem('accessToken');
-    let res = await fetch(`${this._url}${url}`, {
+    const fullUrl = url.includes('http') ? url : `${this._url}${url}`;
+    let res = await fetch(fullUrl, {
       method,
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -369,11 +370,13 @@ class Api {
 
   // Методы для получения мастер-классов будущих и прошедших для определенного юзера
   async getUserUpcomingCourses() {
-    return this._fetchAuthorized('/api/v1/users/my_masterclasses/upcoming/', 'GET');
+    // eslint-disable-next-line max-len
+    return this._fetchAuthorized('https://1a0188d5-333c-4d55-ac99-7fa84dab4afe.mock.pstmn.io/api/v1/users/my_masterclasses/upcoming/', 'GET');
   }
 
   async getUserPastCourses() {
-    return this._fetchAuthorized('/api/v1/users/my_masterclasses/past/', 'GET');
+    // eslint-disable-next-line max-len
+    return this._fetchAuthorized('https://1a0188d5-333c-4d55-ac99-7fa84dab4afe.mock.pstmn.io/api/v1/users/my_masterclasses/past/', 'GET');
   }
 }
 

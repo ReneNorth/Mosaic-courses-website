@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import cls from './MasterclassList.module.scss';
 import { MasterclassCard } from '../MasterclassCard/MasterclassCard';
+import { formatCourseDate } from '../../helpers/formatDate';
 
 const MasterclassList = ({
   masterclasses,
@@ -8,35 +10,52 @@ const MasterclassList = ({
   showPopupButton,
   isEventPast,
 }) => {
+  const path = '/my-masterclasses';
+  const location = useLocation();
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
   const [openModalIndex, setOpenModalIndex] = useState(null);
 
   const totalPages = Math.ceil(masterclasses.length / itemsPerPage);
 
+  const currentMasterclasses = masterclasses.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage,
+  );
+
+  const today = new Date();
+  const todayDate = formatCourseDate(today);
+
+  const todayStart = new Date(today.setHours(0, 0, 0, 0));
+  const todayEnd = new Date(today.setHours(23, 59, 59, 999));
+
+  const todayMasterclasses = masterclasses.filter((masterclass) => {
+    const masterclassDate = new Date(masterclass.time_start);
+    return masterclassDate >= todayStart && masterclassDate <= todayEnd;
+  });
+
+  const todayMasterclassIds = new Set(todayMasterclasses.map((masterclass) => masterclass.id));
+
+  const uniqueCurrentMasterclasses = currentMasterclasses.filter((x) => !todayMasterclassIds.has(x.id));
+
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
+      setCurrentPage((prev) => prev + 1);
       scrollToTop();
     }
   };
 
   const handlePreviousPage = () => {
-    setCurrentPage(currentPage - 1);
-    scrollToTop();
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+      scrollToTop();
+    }
   };
-
-  const currentMasterclasses = masterclasses.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage,
-  );
 
   const openModal = (index) => {
     setOpenModalIndex(index);
@@ -46,64 +65,87 @@ const MasterclassList = ({
     setOpenModalIndex(null);
   };
 
+  const renderMasterclassCards = (masterclassArray) => masterclassArray.map((masterclass, index) => (
+    <MasterclassCard
+      key={masterclass.id}
+      todayDate={todayDate}
+      masterclass={masterclass}
+      isModalOpen={openModalIndex === index}
+      openModal={() => openModal(index)}
+      closeModal={closeModal}
+      showPopupButton={showPopupButton}
+      isEventPast={isEventPast}
+    />
+  ));
+
   return (
     <div className={cls.cardContainer}>
-      {masterclasses.length === 0 ? (
+      {masterclasses.length === 0 && (
         <p className={cls.text}>{message}</p>
-      ) : (
+      )}
+
+      {masterclasses.length > 0 && path === location.pathname && todayMasterclasses.length > 0 && (
         <>
-          {currentMasterclasses.map((masterclass, index) => (
-            <MasterclassCard
-              key={masterclass.id}
-              masterclass={masterclass}
-              isModalOpen={openModalIndex === index}
-              openModal={() => openModal(index)}
-              closeModal={closeModal}
-              showPopupButton={showPopupButton}
-              isEventPast={isEventPast}
-            />
-          ))}
-          {masterclasses.length > itemsPerPage && (
-            <div className={cls.pagination}>
-              {currentPage === totalPages ? (
-                <button
-                  type="button"
-                  className={cls.buttonChangeCurrentPage}
-                  disabled={currentPage === 1}
-                  onClick={handlePreviousPage}
-                >
-                  ← Назад
-                </button>
-              ) : null}
-              {[...Array(totalPages)].map((_, idx) => (
-                <button
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={idx + 1}
-                  type="button"
-                  className={
-                    currentPage === idx + 1 ? cls.activePage : cls.numberPage
-                  }
-                  onClick={() => {
-                    setCurrentPage(idx + 1);
-                    scrollToTop();
-                  }}
-                >
-                  {idx + 1}
-                </button>
-              ))}
-              {currentPage < totalPages && (
-                <button
-                  type="button"
-                  className={cls.buttonChangeCurrentPage}
-                  disabled={currentPage === totalPages}
-                  onClick={handleNextPage}
-                >
-                  Дальше →
-                </button>
-              )}
-            </div>
-          )}
+          {currentPage === 1 && renderMasterclassCards(todayMasterclasses)}
+          {renderMasterclassCards(uniqueCurrentMasterclasses)}
         </>
+      )}
+
+      {masterclasses.length > 0 && path === location.pathname && todayMasterclasses.length === 0 && (
+        <>
+          {currentPage === 1
+          && (
+            <>
+              <p className={cls.date}>Сегодня</p>
+              <p className={cls.text}>{`Нет занятий сегодня, ${todayDate}`}</p>
+            </>
+          )}
+          {renderMasterclassCards(currentMasterclasses)}
+        </>
+      )}
+
+      {masterclasses.length > 0 && path !== location.pathname && (
+        renderMasterclassCards(currentMasterclasses)
+      )}
+
+      {masterclasses.length > itemsPerPage && (
+        <div className={cls.pagination}>
+          {currentPage > 1 && (
+            <button
+              type="button"
+              className={cls.buttonChangeCurrentPage}
+              onClick={handlePreviousPage}
+            >
+              ← Назад
+            </button>
+          )}
+
+          {[...Array(totalPages)].map((_, idx) => (
+            <button
+              // eslint-disable-next-line react/no-array-index-key
+              key={idx + 1}
+              type="button"
+              className={
+                currentPage === idx + 1 ? cls.activePage : cls.numberPage
+              }
+              onClick={() => {
+                setCurrentPage(idx + 1);
+                scrollToTop();
+              }}
+            >
+              {idx + 1}
+            </button>
+          ))}
+          {currentPage < totalPages && (
+            <button
+              type="button"
+              className={cls.buttonChangeCurrentPage}
+              onClick={handleNextPage}
+            >
+              Дальше →
+            </button>
+          )}
+        </div>
       )}
     </div>
   );

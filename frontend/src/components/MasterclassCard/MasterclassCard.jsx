@@ -3,8 +3,12 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import { useEffect, useRef } from 'react';
 import cls from './MasterclassCard.module.scss';
+import { calculateLessonDuration } from '../../utils/functions/timeFunctions';
+import { formatCourseDate } from '../../helpers/formatDate';
+import { formatCourseWeekDay } from '../../helpers/formatWeekDay';
 
 export const MasterclassCard = ({
+  todayDate,
   masterclass,
   isModalOpen,
   openModal,
@@ -33,14 +37,21 @@ export const MasterclassCard = ({
 
   return (
     <div className={cls.wrapper}>
-      <p className={cls.date}>{masterclass.date}</p>
+      <p className={cls.date}>
+        {formatCourseDate(new Date(masterclass.time_start)) === todayDate
+          ? 'Сегодня'
+          : `${formatCourseWeekDay(
+            new Date(masterclass.time_start),
+          )}, ${formatCourseDate(new Date(masterclass.time_start))}`}
+      </p>
       <div className={cls.borderContainer}>
         <div className={cls.flexContainer}>
-          <p className={cls.description}>{masterclass.description}</p>
+          <p className={cls.description}>{masterclass.title}</p>
           <div className={cls.flexContainerForPrice}>
             <p className={cls.price}>
-              {masterclass.price}
-              ₽
+              {masterclass.price && masterclass.currency
+                ? `${masterclass?.price} ${masterclass?.currency}`
+                : ''}
             </p>
             {showPopupButton && (
               <button
@@ -64,12 +75,28 @@ export const MasterclassCard = ({
           </div>
         </div>
         <div className={cls.schedule}>
-          <span>{masterclass.date}</span>
-          <span>{masterclass.time}</span>
-          <span>{masterclass.duration}</span>
+          <span>{formatCourseDate(new Date(masterclass.time_start))}</span>
+          <span>
+            {new Date(masterclass.time_start).toLocaleTimeString([], {
+              hour: '2-digit',
+              minute: '2-digit',
+            })}
+          </span>
+          <span>
+            {masterclass.time_start && masterclass.time_end
+              ? calculateLessonDuration(
+                masterclass?.time_start,
+                masterclass?.time_end,
+              )
+              : ''}
+          </span>
         </div>
         <div className={cls.flexContainerWithLine}>
-          <p className={cls.teacher}>{masterclass.teacher}</p>
+          <p className={cls.teacher}>
+            {masterclass.teacher_first_name && masterclass.teacher_last_name
+              ? `${masterclass?.teacher_first_name} ${masterclass.teacher_last_name}`
+              : ''}
+          </p>
           {isEventPast ? (
             <p className={cls.status}>Завершено</p>
           ) : masterclass.pay ? (
