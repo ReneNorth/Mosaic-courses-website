@@ -8,21 +8,46 @@ export const ProfileEditField = ({
   isChanging,
   setIsChanging,
   children,
+  secondFieldValue,
+  secondTitle,
+  resetCheges,
+  resetErrors,
+  isDisabled,
+  onSave,
 }) => {
   return (
     <div className={cls.line}>
-      <div className={cls.dataWrapper}>
-        <h3
-          className={classNames(
-            cls.lineTitle,
-            { [cls.lineTitleActive]: isChanging },
-            [],
-          )}
-        >
-          {title}
-        </h3>
-        {!isChanging && <p className={cls.fieldPlaceholder}>{fieldValue}</p>}
-        {isChanging && children}
+      <div className={cls.column}>
+        <div className={cls.dataWrapper}>
+          <h3
+            className={classNames(
+              cls.lineTitle,
+              { [cls.lineTitleActive]: isChanging },
+              [],
+            )}
+          >
+            {title}
+          </h3>
+          {!isChanging && <p className={cls.fieldPlaceholder}>{fieldValue}</p>}
+          {isChanging && !secondFieldValue && children}
+        </div>
+        {secondFieldValue && (
+          <div className={cls.dataWrapper}>
+            <h3
+              className={classNames(
+                cls.secondLineTitle,
+                { [cls.secondLineTitleActive]: isChanging },
+                [],
+              )}
+            >
+              {!isChanging && secondTitle}
+            </h3>
+            {!isChanging && (
+              <p className={cls.fieldPlaceholder}>{secondFieldValue}</p>
+            )}
+            {isChanging && children}
+          </div>
+        )}
       </div>
       <button
         type="button"
@@ -31,7 +56,12 @@ export const ProfileEditField = ({
           { [cls.editButtonActive]: isChanging },
           [],
         )}
-        onClick={() => setIsChanging(!isChanging)}
+        onClick={() => {
+          setIsChanging(!isChanging);
+          resetCheges();
+          resetErrors();
+        }}
+        disabled={isDisabled}
       >
         {!isChanging && 'Редактировать'}
         {isChanging && 'Отменить'}

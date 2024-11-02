@@ -1,4 +1,4 @@
-@use "../../utils/variables/global.scss";
+@use '../../utils/variables/global.scss';
 
 .label {
   display: flex;
@@ -49,12 +49,11 @@
   letter-spacing: 0.04em;
 }
 
-.phoneBorder input{
-border: none;
+.phoneBorder input {
+  border: none;
 }
 
 @media screen and (max-width: global.$breakpoint-mobile) {
-
   .input {
     margin: 0;
     padding: 6px 0;
@@ -77,9 +76,7 @@ border: none;
 
   .label {
     margin-bottom: 19px;
-
   }
-
 }
 
 // Styles for Storybook

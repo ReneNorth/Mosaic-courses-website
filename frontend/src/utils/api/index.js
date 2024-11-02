@@ -28,13 +28,14 @@ class Api {
   }
 
   async changeEmail(newEmail) {
-    const url = `${this._url}/api/v1/users/reset_email/`;
-    const accessToken = localStorage.get('accessToken');
+    const url = `${this._url}/api/v1/users/set_email/`;
+    const accessToken = localStorage.getItem('accessToken');
 
     const res = await fetch(url, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(newEmail),
     });

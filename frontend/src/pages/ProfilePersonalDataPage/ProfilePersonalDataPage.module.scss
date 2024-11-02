@@ -1,145 +1,176 @@
-@use "../../utils/variables/global.scss";
+@use '../../utils/variables/global.scss';
 
 .section {
-    padding-top: 80px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    box-sizing: border-box;
+  padding-top: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 .block {
-    padding: 0;
-    max-width: 1280px;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 40px;
+  padding: 0;
+  max-width: 1280px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
 }
 
 .content {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 840px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 840px;
 }
 
 .title {
-    padding: 0;
-    margin: 0;
-    font-family: var(--font-primary);
-    color: var(--text-color);
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 135%;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-primary);
+  color: var(--text-color);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 135%;
 }
 
 .subTitle {
-    padding: 0 0 48px 0;
-    margin: 0;
-    font-family: var(--font-primary);
-    color: var(--text-color);
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 135%;
+  padding: 0 0 48px 0;
+  margin: 0;
+  font-family: var(--font-primary);
+  color: var(--text-color);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 135%;
 }
 
 .formContainer {
-    width: 510px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  width: 710px;
+  box-sizing: border-box;
 
-    input {
-        background-color: unset;
-    }
+  input {
+    background-color: unset;
+  }
 
-    button {
-        height: 46px;
+  button {
+    height: 46px;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
     }
+  }
 }
 
 .backButton {
-    width: 44px;
-    height: 44px;
-    all:unset;
-    cursor: pointer;
-    display: none;
+  width: 44px;
+  height: 44px;
+  all: unset;
+  cursor: pointer;
+  display: none;
 }
 
 .titleWrapper {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    padding: 0;
-    padding-bottom: 24px;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  padding: 0;
+  padding-bottom: 24px;
+  align-items: center;
+}
+
+.namesRow {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  justify-content: space-between;
 }
 
 .fieldPlaceholder {
-    padding: 0;
-    margin: 0;
-    font-family: var(--font-primary);
-    color: var(--text-color);
-    font-size: 17px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 135%;
-  }
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-primary);
+  color: var(--text-color);
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 135%;
+}
 
-  .lineTitleActive {
-    padding: 0;
-    margin: 0;
-    font-family: var(--font-primary);
-    color: var(--text-color);
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 135%;
-    padding-bottom: 16px;
-    padding-top: 24px;
-    padding-bottom: 20px;
-  }
+.lineTitleActive {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-primary);
+  color: var(--text-color);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 135%;
+  padding-bottom: 16px;
+  padding-top: 24px;
+  padding-bottom: 20px;
+}
 
 @media screen and (max-width: global.$breakpoint-small-laptop) {
-    .section {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+  .section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .namesRow {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: space-between;
+  }
+  .formContainer {
+    width: 510px;
+  }
 }
 
 @media screen and (max-width: global.$breakpoint-xsmall-laptop) {
-    .backButton {
-        display: flex;
-    }
+  .backButton {
+    display: flex;
+  }
+  .namesRow {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: space-between;
+  }
 }
 
 @media screen and (max-width: global.$breakpoint-mobile) {
-    .section {
-        padding-top: 18px;
+  .section {
+    padding-top: 18px;
+  }
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .titleWrapper {
+    padding-bottom: 20px;
+  }
+  .subTitle {
+    font-size: 16px;
+    padding: 0 0 28px 0;
+  }
+  .formContainer {
+    width: calc(100vw - 60px);
+    button {
+      width: 100%;
     }
-    .title {
-        font-size: 18px;
-        font-weight: 600;
-    }
-    .titleWrapper {
-        padding-bottom: 20px;
-    }
-    .subTitle {
-        font-size: 16px;
-        padding: 0 0 28px 0;
-    }
-
-    .formContainer {
-        width: calc(100vw - 60px);
-        button {
-            width: 100%;
-        }
-    }
-
+  }
+  .lineTitleActive {
+    font-size: 16px;
+  }
+  .namesRow {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: space-between;
+  }
 }

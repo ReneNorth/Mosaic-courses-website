@@ -1,13 +1,14 @@
-@use "../../utils/variables/global.scss";
+@use '../../utils/variables/global.scss';
 
 .label {
   display: flex;
   position: relative;
-  width: 100%;
+  width: 45%;
   flex-wrap: wrap;
 }
 
 .input {
+  position: relative;
   width: 100%;
   padding-bottom: 4px;
   margin-bottom: 24px;
@@ -39,6 +40,7 @@
   align-items: center;
   position: absolute;
   bottom: 5%;
+  width: 215%;
   color: var(--color-red);
   font-family: var(--font-primary), sans-serif;
   font-style: normal;
@@ -48,12 +50,11 @@
   letter-spacing: 0.04em;
 }
 
-.phoneBorder input{
-border: none;
+.phoneBorder input {
+  border: none;
 }
 
 @media screen and (max-width: global.$breakpoint-mobile) {
-
   .input {
     margin: 0;
     padding: 6px 0;
@@ -76,7 +77,6 @@ border: none;
 
   .label {
     margin-bottom: 19px;
-
+    width: 100%;
   }
-
 }

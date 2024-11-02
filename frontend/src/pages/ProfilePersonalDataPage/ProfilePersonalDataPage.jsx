@@ -20,17 +20,19 @@ import {
 export function ProfilePersonalDataPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isChangingName, setIsChangingName] = useState(false);
-  const [isChangingPhone, setIsChangingPhone] = useState(false);
+  const [isChangingNameAndPhone, setIsChangingNameAndPhone] = useState(false);
   const [isChangingEmail, setIsChangingEmail] = useState(false);
 
   const toProfilePage = (e) => {
     e.preventDefault();
     navigate('/profile');
   };
+
   const {
     errors,
+    setErrors,
     isValid,
+    setIsValid,
     setValues,
     handleChange,
     handlePhoneChange,
@@ -48,27 +50,43 @@ export function ProfilePersonalDataPage() {
           first_name: values.name,
           last_name: values.surname,
         }),
-      ).then(() => setIsChangingName(false));
+      ).then(() => setIsChangingNameAndPhone(false));
     }
   };
 
   const handleUpdatePhone = (e) => {
     e.preventDefault();
     if (isValid) {
-      dispatch(updatePersonalInfo({ phone: values.phone })).then(() => setIsChangingPhone(false));
+      dispatch(updatePersonalInfo({ phone: values.phone })).then(() => setIsChangingNameAndPhone(false));
     }
   };
 
   const handleUpdateEmail = (e) => {
     e.preventDefault();
     if (isValid) {
-      dispatch(updateEmail({ email: values.email })).then(() => setIsChangingEmail(false));
+      console.log('Submitting email update:', values.email);
+      dispatch(
+        updateEmail({
+          new_email: values.email,
+          current_password: values.password,
+        }),
+      ).then(() => {
+        setIsChangingEmail(false);
+        dispatch(fetchPersonalInfo());
+      });
     }
   };
 
   useEffect(() => {
     dispatch(fetchPersonalInfo());
   }, [dispatch]);
+
+  const [initialValues, setInitialValues] = useState({
+    name: '',
+    surname: '',
+    phone: '',
+    email: '',
+  });
 
   useEffect(() => {
     if (personalInfo) {
@@ -78,8 +96,55 @@ export function ProfilePersonalDataPage() {
         phone: personalInfo.phone || '',
         email: personalInfo.email || '',
       });
+      setInitialValues({
+        name: personalInfo.first_name || '',
+        surname: personalInfo.last_name || '',
+        phone: personalInfo.phone || '',
+        email: personalInfo.email || '',
+      });
     }
   }, [personalInfo, setValues]);
+
+  const hasChangedName = () => {
+    return (
+      values.name !== initialValues.name
+      || values.surname !== initialValues.surname
+    );
+  };
+
+  const hasChangedPhone = () => {
+    return values.phone !== initialValues.phone;
+  };
+
+  const hasChanges = () => {
+    return hasChangedName() || hasChangedPhone();
+  };
+
+  const hasChangedMail = () => {
+    return values.email !== initialValues.email;
+  };
+
+  const handleChangeNameAndPhone = (e) => {
+    e.preventDefault();
+    if (hasChangedName() && hasChangedPhone()) {
+      handleUpdateName(e);
+      handleUpdatePhone(e);
+    } else if (hasChangedPhone()) {
+      handleUpdatePhone(e);
+    } else if (hasChangedName()) {
+      handleUpdateName(e);
+    }
+  };
+
+  const resetCheges = () => {
+    if (personalInfo) {
+      setValues(initialValues);
+    }
+  };
+
+  const resetErrors = () => {
+    setErrors({});
+  };
 
   return (
     <section className={cls.section}>
@@ -102,44 +167,36 @@ export function ProfilePersonalDataPage() {
           <ProfileEditField
             title="Имя и фамилия"
             fieldValue={`${personalInfo.first_name} ${personalInfo.last_name}`}
-            isChanging={isChangingName}
-            setIsChanging={setIsChangingName}
+            isChanging={isChangingNameAndPhone}
+            setIsChanging={setIsChangingNameAndPhone}
+            secondTitle="Номер телефона"
+            secondFieldValue={`${personalInfo.phone}`}
+            resetCheges={resetCheges}
+            resetErrors={resetErrors}
+            isDisabled={isChangingEmail}
           >
             <form
               className={cls.formContainer}
-              onSubmit={handleUpdateName}
+              onSubmit={handleChangeNameAndPhone}
               noValidate
             >
-              <InputField
-                type="name"
-                errors={errors}
-                isValid={isValid}
-                handleChange={handleChange}
-                values={values}
-              />
-              <InputField
-                type="surname"
-                errors={errors}
-                isValid={isValid}
-                handleChange={handleChange}
-                values={values}
-              />
-              <Button disabled={!isValid} className="fill" type="submit">
-                Сохранить
-              </Button>
-            </form>
-          </ProfileEditField>
-          <ProfileEditField
-            title="Номер телефона"
-            fieldValue={personalInfo.phone}
-            isChanging={isChangingPhone}
-            setIsChanging={setIsChangingPhone}
-          >
-            <form
-              className={cls.formContainer}
-              onSubmit={(e) => handleUpdatePhone(e)}
-              noValidate
-            >
+              <div className={cls.namesRow}>
+                <InputField
+                  type="name"
+                  errors={errors}
+                  isValid={isValid}
+                  handleChange={handleChange}
+                  values={values}
+                />
+                <InputField
+                  type="surname"
+                  errors={errors}
+                  isValid={isValid}
+                  handleChange={handleChange}
+                  values={values}
+                />
+              </div>
+              <h3 className={cls.lineTitleActive}>Номер телефона</h3>
               <InputFieldPhone
                 errors={errors}
                 isValid={isValid}
@@ -147,7 +204,7 @@ export function ProfilePersonalDataPage() {
                 handlePhoneValidation={handlePhoneValidation}
                 values={values}
               />
-              <Button disabled={!isValid} className="fill" type="submit">
+              <Button disabled={!hasChanges() || !isValid} className="fill" type="submit">
                 Сохранить
               </Button>
             </form>
@@ -157,6 +214,9 @@ export function ProfilePersonalDataPage() {
             fieldValue={personalInfo.email}
             isChanging={isChangingEmail}
             setIsChanging={setIsChangingEmail}
+            resetCheges={resetCheges}
+            resetErrors={resetErrors}
+            isDisabled={isChangingNameAndPhone}
           >
             <p className={cls.fieldPlaceholder}>{personalInfo.email}</p>
             <h3 className={cls.lineTitleActive}>Новая почта</h3>
@@ -172,6 +232,16 @@ export function ProfilePersonalDataPage() {
                 handleChange={handleChange}
                 values={values}
               />
+              <InputField
+                type="password"
+                errors={errors}
+                isValid={isValid}
+                handleChange={handleChange}
+                values={values}
+              />
+              <Button disabled={!hasChangedMail() || !isValid} className="fill" type="submit">
+                Сохранить
+              </Button>
             </form>
           </ProfileEditField>
         </div>
