@@ -13,13 +13,15 @@
 }
 
 .borderContainer {
-  margin-top: 24px;
-  padding: 28px 0;
-  border-top: 1px solid var(--color-green-grey);
-  border-bottom: 1px solid var(--color-green-grey);
+  margin-top: 20px;
+  // padding-bottom: 24px;
+  // border-top: 1px solid var(--color-green-grey);
+  // border-bottom: 1px solid var(--color-green-grey);
 }
 
 .flexContainerWithLine {
+  margin: 0 24px;
+  padding-bottom: 24px;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
@@ -35,6 +37,14 @@
   position: relative;
 }
 
+.borderActive {
+  border-bottom: 1px solid var(--color-green-grey);
+}
+
+.hidden {
+  display: none;
+}
+
 .date {
   margin-top: 40px;
   padding: 0;
@@ -47,7 +57,7 @@
 .description {
   display: -webkit-box;
   max-width: 471px;
-  height: 81px;
+  max-height: 81px;
   margin: 0;
   padding: 0;
   margin-left: 24px;
@@ -112,7 +122,6 @@
 }
 
 .status {
-  margin-left: 24px;
   color: var(--color-green-grey);
   font-family: var(--font-primary);
   font-size: 17px;
@@ -123,7 +132,6 @@
 .buttonPay {
   width: 157px;
   height: 43px;
-  margin-left: 24px;
   background-color: var(--color-green-accent);
   color: var(--color-white);
   border-radius: 56px;
@@ -189,7 +197,6 @@
 
   .borderContainer {
     margin-top: 16px;
-    padding: 20px 0;
     max-width: 520px;
   }  
 
@@ -223,7 +230,6 @@
 
   .borderContainer {
     margin-top: 16px;
-    padding: 20px 0;
   }  
 
   .flexContainerForPrice {
@@ -270,7 +276,6 @@
 @media screen and (min-width: 320px) and (max-width: global.$breakpoint-ipad-mini) {
   .borderContainer {
     margin-top: 16px;
-    padding: 20px 0;
   }
 
   .flexContainer {
@@ -280,13 +285,12 @@
 
   .description {
     max-width: 164px;
-    height: 66px;
+    max-height: 66px;
     font-size: 16px;
   }
 
   .flexContainerWithLine {
     flex-direction: column;
-    border: none;
   }
 
   .date {
@@ -303,7 +307,7 @@
   }
 
   .teacher {
-    margin-left: 20px;
+    margin: 0;
     padding-left: 40px;
     background-color: transparent;
     background-position: 6px center;

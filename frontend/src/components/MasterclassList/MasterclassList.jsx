@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import cls from './MasterclassList.module.scss';
 import { MasterclassCard } from '../MasterclassCard/MasterclassCard';
@@ -37,7 +37,9 @@ const MasterclassList = ({
 
   const todayMasterclassIds = new Set(todayMasterclasses.map((masterclass) => masterclass.id));
 
-  const uniqueCurrentMasterclasses = currentMasterclasses.filter((x) => !todayMasterclassIds.has(x.id));
+  const uniqueCurrentMasterclasses = currentMasterclasses
+    .filter((masterclass) => !todayMasterclassIds.has(masterclass.id))
+    .sort((a, b) => new Date(a.time_start) - new Date(b.time_start));
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -65,18 +67,30 @@ const MasterclassList = ({
     setOpenModalIndex(null);
   };
 
-  const renderMasterclassCards = (masterclassArray) => masterclassArray.map((masterclass, index) => (
-    <MasterclassCard
-      key={masterclass.id}
-      todayDate={todayDate}
-      masterclass={masterclass}
-      isModalOpen={openModalIndex === index}
-      openModal={() => openModal(index)}
-      closeModal={closeModal}
-      showPopupButton={showPopupButton}
-      isEventPast={isEventPast}
-    />
-  ));
+  const renderMasterclassCards = (masterclassArray) => {
+    return masterclassArray.map((masterclass, index) => {
+      const currentDate = masterclass.time_start.split('T')[0];
+      const previousDate = masterclassArray[index - 1] ? masterclassArray[index - 1].time_start.split('T')[0] : null;
+      const nextDate = masterclassArray[index + 1] ? masterclassArray[index + 1].time_start.split('T')[0] : null;
+      const isSameDate = currentDate === nextDate;
+      const isSameNextDate = previousDate && currentDate === previousDate;
+
+      return (
+        <MasterclassCard
+          key={masterclass.id}
+          todayDate={todayDate}
+          masterclass={masterclass}
+          isModalOpen={openModalIndex === index}
+          openModal={() => openModal(index)}
+          closeModal={closeModal}
+          showPopupButton={showPopupButton}
+          isEventPast={isEventPast}
+          isSameDate={isSameDate}
+          isSameNextDate={isSameNextDate}
+        />
+      );
+    });
+  };
 
   return (
     <div className={cls.cardContainer}>

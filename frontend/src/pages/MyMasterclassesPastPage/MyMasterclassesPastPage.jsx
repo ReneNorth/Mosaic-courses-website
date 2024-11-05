@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { classNames } from '../../helpers/classNames';
 import cls from './MyMasterclassesPastPage.module.scss';
-import Calendar from '../../components/CalendarUserAccount/CalendarUserAccount';
+import CalendarUserAccount from '../../components/CalendarUserAccount/CalendarUserAccount';
 import { MyMasterclassesHeaderLinks } from '../../components/MyMasterclassesHeaderLinks/MyMasterclassesHeaderLinks';
 // import { masterclasses } from '../../utils/consts/mockMasterclasses';
 import MasterclassList from '../../components/MasterclassList/MasterclassList';
@@ -23,7 +23,7 @@ export const MyMasterclassesPastPage = () => {
   const fetchPastCourses = async () => {
     try {
       const response = await api.getUserPastCourses();
-      const data = response.results;
+      const data = response;
       setMasterclasses(data);
     } catch (error) {
       console.error(error);
@@ -38,7 +38,7 @@ export const MyMasterclassesPastPage = () => {
     <>
       <div className={cls.flexContainer}>
         <div className={cls.calendarContainer}>
-          <Calendar />
+          <CalendarUserAccount daysMasterclasses={[]} />
         </div>
         <div className={cls.masterclassContainer}>
           <h2 className={cls.title}>Записи на мастер-классы</h2>

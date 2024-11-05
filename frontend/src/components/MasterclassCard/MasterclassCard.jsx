@@ -15,8 +15,14 @@ export const MasterclassCard = ({
   closeModal,
   showPopupButton,
   isEventPast,
+  isSameDate,
+  isSameNextDate,
 }) => {
   const popupRef = useRef(null);
+
+  const yesterdayDate = new Date();
+  yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+  const formattedYesterday = formatCourseDate(yesterdayDate);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -37,14 +43,17 @@ export const MasterclassCard = ({
 
   return (
     <div className={cls.wrapper}>
-      <p className={cls.date}>
+      {/* <p className={cls.date}> */}
+      <p className={`${isSameNextDate ? cls.hidden : cls.date}`}>
         {formatCourseDate(new Date(masterclass.time_start)) === todayDate
-          ? 'Сегодня'
-          : `${formatCourseWeekDay(
-            new Date(masterclass.time_start),
-          )}, ${formatCourseDate(new Date(masterclass.time_start))}`}
+          ? `Сегодня, ${formatCourseDate(new Date(masterclass.time_start))}`
+          : formatCourseDate(new Date(masterclass.time_start)) === formattedYesterday
+            ? `Вчера, ${formatCourseDate(new Date(masterclass.time_start))}`
+            : `${formatCourseWeekDay(
+              new Date(masterclass.time_start),
+            )}, ${formatCourseDate(new Date(masterclass.time_start))}`}
       </p>
-      <div className={cls.borderContainer}>
+      <div className={`${cls.borderContainer} ${!isSameDate ? cls.borderActive : ''}`}>
         <div className={cls.flexContainer}>
           <p className={cls.description}>{masterclass.title}</p>
           <div className={cls.flexContainerForPrice}>
@@ -91,7 +100,7 @@ export const MasterclassCard = ({
               : ''}
           </span>
         </div>
-        <div className={cls.flexContainerWithLine}>
+        <div className={`${cls.flexContainerWithLine} ${!isSameDate ? '' : cls.borderActive}`}>
           <p className={cls.teacher}>
             {masterclass.teacher_first_name && masterclass.teacher_last_name
               ? `${masterclass?.teacher_first_name} ${masterclass.teacher_last_name}`

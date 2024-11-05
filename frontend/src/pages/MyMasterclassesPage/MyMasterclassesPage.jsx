@@ -3,10 +3,9 @@ import { useEffect, useState } from 'react';
 import { classNames } from '../../helpers/classNames';
 import { ENDPOINTS } from '../../utils/consts/constants';
 import cls from './MyMasterclassesPage.module.scss';
-import Calendar from '../../components/CalendarUserAccount/CalendarUserAccount';
+import CalendarUserAccount from '../../components/CalendarUserAccount/CalendarUserAccount';
 import { MyMasterclassesHeaderLinks } from '../../components/MyMasterclassesHeaderLinks/MyMasterclassesHeaderLinks';
 import MasterclassList from '../../components/MasterclassList/MasterclassList';
-// import { masterclasses } from '../../utils/consts/mockMasterclasses';
 import { CardMoreContent } from '../../components/CardMoreContent/CardMoreContent';
 import { api } from '../../utils/api/index';
 
@@ -24,12 +23,15 @@ export const MyMasterclassesPage = () => {
   const isEventPast = false;
 
   const [masterclasses, setMasterclasses] = useState([]);
+  const [daysMasterclasses, setDaysMasterclasses] = useState([]);
 
   const fetchUpcomingCourses = async () => {
     try {
       const response = await api.getUserUpcomingCourses();
-      const data = response.results;
+      const data = response;
       setMasterclasses(data);
+      const days = data.map((x) => x.time_start);
+      setDaysMasterclasses(days);
     } catch (error) {
       console.error(error);
     }
@@ -43,7 +45,7 @@ export const MyMasterclassesPage = () => {
     <>
       <div className={cls.flexContainer}>
         <div className={cls.calendarContainer}>
-          <Calendar />
+          <CalendarUserAccount daysMasterclasses={daysMasterclasses} />
         </div>
         <div className={cls.masterclassContainer}>
           <h2 className={cls.title}>Записи на мастер-классы</h2>
