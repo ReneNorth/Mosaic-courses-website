@@ -3,7 +3,6 @@ import { classNames } from '../../helpers/classNames';
 import cls from './MyMasterclassesPastPage.module.scss';
 import CalendarUserAccount from '../../components/CalendarUserAccount/CalendarUserAccount';
 import { MyMasterclassesHeaderLinks } from '../../components/MyMasterclassesHeaderLinks/MyMasterclassesHeaderLinks';
-// import { masterclasses } from '../../utils/consts/mockMasterclasses';
 import MasterclassList from '../../components/MasterclassList/MasterclassList';
 import { CardMoreContent } from '../../components/CardMoreContent/CardMoreContent';
 import { api } from '../../utils/api';

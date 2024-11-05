@@ -1,6 +1,4 @@
 /* eslint-disable no-nested-ternary */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable react/jsx-no-comment-textnodes */
 import { useEffect, useRef } from 'react';
 import cls from './MasterclassCard.module.scss';
 import { calculateLessonDuration } from '../../utils/functions/timeFunctions';
