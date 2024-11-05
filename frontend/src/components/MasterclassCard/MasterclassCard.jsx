@@ -41,7 +41,6 @@ export const MasterclassCard = ({
 
   return (
     <div className={cls.wrapper}>
-      {/* <p className={cls.date}> */}
       <p className={`${isSameNextDate ? cls.hidden : cls.date}`}>
         {formatCourseDate(new Date(masterclass.time_start)) === todayDate
           ? `Сегодня, ${formatCourseDate(new Date(masterclass.time_start))}`

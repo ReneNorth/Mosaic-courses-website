@@ -24,6 +24,8 @@ const MasterclassList = ({
     currentPage * itemsPerPage,
   );
 
+  const sortCurrentMasterclasses = currentMasterclasses.sort((a, b) => new Date(a.time_start) - new Date(b.time_start));
+
   const today = new Date();
   const todayDate = formatCourseDate(today);
 
@@ -37,7 +39,7 @@ const MasterclassList = ({
 
   const todayMasterclassIds = new Set(todayMasterclasses.map((masterclass) => masterclass.id));
 
-  const uniqueCurrentMasterclasses = currentMasterclasses
+  const uniqueCurrentMasterclasses = sortCurrentMasterclasses
     .filter((masterclass) => !todayMasterclassIds.has(masterclass.id))
     .sort((a, b) => new Date(a.time_start) - new Date(b.time_start));
 
@@ -114,12 +116,12 @@ const MasterclassList = ({
               <p className={cls.text}>{`Нет занятий сегодня, ${todayDate}`}</p>
             </>
           )}
-          {renderMasterclassCards(currentMasterclasses)}
+          {renderMasterclassCards(sortCurrentMasterclasses)}
         </>
       )}
 
       {masterclasses.length > 0 && path !== location.pathname && (
-        renderMasterclassCards(currentMasterclasses)
+        renderMasterclassCards(sortCurrentMasterclasses)
       )}
 
       {masterclasses.length > itemsPerPage && (
