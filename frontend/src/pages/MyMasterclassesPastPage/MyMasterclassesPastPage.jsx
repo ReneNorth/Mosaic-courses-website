@@ -23,7 +23,8 @@ export const MyMasterclassesPastPage = () => {
     try {
       const response = await api.getUserPastCourses();
       const data = response;
-      setMasterclasses(data);
+      const sortMasterclasses = data.sort((a, b) => new Date(b.time_start) - new Date(a.time_start));
+      setMasterclasses(sortMasterclasses);
     } catch (error) {
       console.error(error);
     }

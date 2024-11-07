@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import cls from './MasterclassList.module.scss';
@@ -24,7 +25,7 @@ const MasterclassList = ({
     currentPage * itemsPerPage,
   );
 
-  const sortCurrentMasterclasses = currentMasterclasses.sort((a, b) => new Date(a.time_start) - new Date(b.time_start));
+  const sortCurrentMasterclasses = [...currentMasterclasses].sort((a, b) => new Date(a.time_start) - new Date(b.time_start));
 
   const today = new Date();
   const todayDate = formatCourseDate(today);
@@ -121,7 +122,7 @@ const MasterclassList = ({
       )}
 
       {masterclasses.length > 0 && path !== location.pathname && (
-        renderMasterclassCards(sortCurrentMasterclasses)
+        renderMasterclassCards(currentMasterclasses)
       )}
 
       {masterclasses.length > itemsPerPage && (
