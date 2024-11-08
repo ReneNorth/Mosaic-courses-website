@@ -174,10 +174,12 @@ export function ProfilePersonalDataPage() {
             resetCheges={resetCheges}
             resetErrors={resetErrors}
             isDisabled={isChangingEmail}
+            handleSubmit={handleChangeNameAndPhone}
+            isValid={isValid}
+            disabledSave={!hasChanges() || !isValid}
           >
             <form
               className={cls.formContainer}
-              onSubmit={handleChangeNameAndPhone}
               noValidate
             >
               <div className={cls.namesRow}>
@@ -204,9 +206,6 @@ export function ProfilePersonalDataPage() {
                 handlePhoneValidation={handlePhoneValidation}
                 values={values}
               />
-              <Button disabled={!hasChanges() || !isValid} className="fill" type="submit">
-                Сохранить
-              </Button>
             </form>
           </ProfileEditField>
           <ProfileEditField
@@ -217,12 +216,14 @@ export function ProfilePersonalDataPage() {
             resetCheges={resetCheges}
             resetErrors={resetErrors}
             isDisabled={isChangingNameAndPhone}
+            handleSubmit={handleUpdateEmail}
+            isValid={isValid}
+            disabledSave={!hasChangedMail() || !isValid}
           >
             <p className={cls.fieldPlaceholder}>{personalInfo.email}</p>
-            <h3 className={cls.lineTitleActive}>Новая почта</h3>
+            <h3 className={cls.lineTitleActiveEmail}>Новая почта</h3>
             <form
               className={cls.formContainer}
-              onSubmit={(e) => handleUpdateEmail(e)}
               noValidate
             >
               <InputField
@@ -239,9 +240,6 @@ export function ProfilePersonalDataPage() {
                 handleChange={handleChange}
                 values={values}
               />
-              <Button disabled={!hasChangedMail() || !isValid} className="fill" type="submit">
-                Сохранить
-              </Button>
             </form>
           </ProfileEditField>
         </div>

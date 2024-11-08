@@ -22,16 +22,18 @@
   border: none;
   border-bottom: 1px solid var(--color-black);
 
-  &:valid {
-    border-bottom-color: var(--color-green-valid);
-  }
-
   &.invalid {
     border-bottom-color: var(--color-red);
   }
 
-  &.valid {
-    border-bottom-color: var(--color-green-valid);
+  &:focus {
+    &.invalid {
+      border-bottom-color: var(--color-red);
+    }
+
+    &.valid {
+      border-bottom-color: var(--color-green-valid);
+    }
   }
 }
 
@@ -61,14 +63,6 @@
     font-size: 15px;
     line-height: 135%;
     letter-spacing: 0.6px;
-
-    &:valid {
-      border-bottom-color: var(--color-green-valid);
-    }
-
-    &.invalid {
-      border-bottom-color: var(--color-red);
-    }
   }
 
   .error {

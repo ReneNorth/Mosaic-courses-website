@@ -68,8 +68,12 @@
 }
 
 .editButton {
+  transition: all .6s ease;
   all: unset;
   cursor: pointer;
+  position: absolute;
+  top: 25px;
+  right: 20px;
   padding: 0;
   margin: 0;
   font-family: var(--font-primary);
@@ -78,27 +82,117 @@
   font-style: normal;
   font-weight: 500;
   line-height: 135%;
-  transition: 0.3s;
+  box-sizing: border-box;
 
   &:hover {
     color: var(--color-green-secondary);
+    cursor: pointer;
   }
 
   &:disabled {
     cursor: not-allowed;
-    opacity: 0.6;
+    color: var(--color-green-grey);
   }
 }
 
-.editButtonActive {
-  position: absolute;
-  top: 33px;
-  right: 0;
+.cancelButton {
+  position: static;
+  transition: all .6s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  background-color: transparent;
+  border: 1px solid var(--color-green-accent);
+  color: var(--color-green-accent);
+  padding: 10px 40px;
+  border-radius: 56px;
+  font-family: var(--font-primary);
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  height: 46px;
+  line-height: 135%;
+  margin-left:-40px;
+  box-sizing: border-box;
+
+  &:hover {
+    color: var(--color-green-secondary);
+    cursor: pointer;
+    border: 1px solid var(--color-green-secondary);
+  }
+}
+
+.saveButton {
+  transition: all .6s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  border: none;
+  background-color: var(--color-green-accent);
+  color: var(--color-white);
+  padding: 10px 40px;
+  border-radius: 56px;
+  font-family: var(--font-primary);
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  height: 46px;
+  line-height: 135%;
+  box-sizing: border-box;
+  margin-left:-40px;
+
+  &:hover {
+    background-color: var(--color-green-accent-active);
+    color: var(--color-white);
+    cursor: pointer;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: var(--color-green-grey);
+    color: var(--color-white-active);
+  }
+}
+
+.buttons {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 100px;
+  align-items: center;
+
+}
+
+@media screen and (max-width: global.$breakpoint-tablet) {
+  .columnLayout {
+    flex-direction: column;
+  }
+
+  .saveButton {
+    margin: 0;
+    width: calc(100vw - 60px);
+  }
+
+  .cancelButton {
+    margin: 0;
+    width: calc(100vw - 60px);
+  }
+
+  .buttons {
+    gap: 20px;
+  }
 }
 
 @media screen and (max-width: global.$breakpoint-mobile) {
   .line {
     padding: 24px 0px;
+  }
+
+  .columnLayout {
+    flex-direction: column;
   }
 
   .lineTitle,
@@ -121,10 +215,17 @@
     right: 15px;
   }
 
-  .lineTitleActive,
-  .secondLineTitleActive {
+  .lineTitleActive {
     font-size: 16px;
-    padding-top: 10px;
-    padding-bottom: 20px;
+  }
+
+  .saveButton {
+    margin: 0;
+    height: 36px;
+  }
+
+  .cancelButton {
+    margin: 0;
+    height: 36px;
   }
 }

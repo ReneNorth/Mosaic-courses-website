@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import cls from './ProfileEditField.module.scss';
 import { classNames } from '../../helpers/classNames';
 
@@ -13,10 +12,11 @@ export const ProfileEditField = ({
   resetCheges,
   resetErrors,
   isDisabled,
-  onSave,
+  handleSubmit,
+  disabledSave,
 }) => {
   return (
-    <div className={cls.line}>
+    <div className={classNames(cls.line, { [cls.columnLayout]: isChanging }, [])}>
       <div className={cls.column}>
         <div className={cls.dataWrapper}>
           <h3
@@ -49,23 +49,36 @@ export const ProfileEditField = ({
           </div>
         )}
       </div>
-      <button
-        type="button"
-        className={classNames(
-          cls.editButton,
-          { [cls.editButtonActive]: isChanging },
-          [],
+
+      <div className={cls.buttons}>
+        <button
+          type="button"
+          className={classNames(
+            cls.editButton,
+            { [cls.cancelButton]: isChanging },
+            [],
+          )}
+          onClick={() => {
+            setIsChanging(!isChanging);
+            resetCheges();
+            resetErrors();
+          }}
+          disabled={isDisabled}
+        >
+          {!isChanging ? 'Редактировать' : 'Отменить'}
+        </button>
+
+        {isChanging && (
+          <button
+            type="submit"
+            className={cls.saveButton}
+            onClick={handleSubmit}
+            disabled={disabledSave}
+          >
+            Сохранить
+          </button>
         )}
-        onClick={() => {
-          setIsChanging(!isChanging);
-          resetCheges();
-          resetErrors();
-        }}
-        disabled={isDisabled}
-      >
-        {!isChanging && 'Редактировать'}
-        {isChanging && 'Отменить'}
-      </button>
+      </div>
     </div>
   );
 };
