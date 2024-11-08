@@ -7,16 +7,16 @@ from django.contrib.auth import get_user_model
 from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import filters, mixins, status, viewsets
+from rest_framework import mixins, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
-from api.filters import ArtworksFilter, MasterclassTypeFilter, PostsFilter
+from api.filters import MasterclassTypeFilter, PostsFilter
 from api.serializers import (ArtworkSerializer, BookingSerializer,
-                             EmailMainSerializer, GiftCertSerializer,
-                             MainCarouselSerializer,
+                             EmailMainSerializer, FavoriteSerializer,
+                             GiftCertSerializer, MainCarouselSerializer,
                              MasterclassCategoryFilterSerializer,
                              MasterclassSerializer, MasterclassTypeSerializer,
                              PostSerializer, RequestSerializer,
@@ -26,11 +26,12 @@ from blog.models import Post, Tag
 from booking.models import Booking
 from carousel.models import MainCarouselItem
 from crm_app.models import GiftCert
-from marketplace.models import Artwork
+from favorite.models import FavoriteArtwork
+from gallery.models import Artwork
 from masterclass.models import (Masterclass, MasterclassCategory,
                                 MasterclassType)
 from school.models import Review, School
-from users.permissions import BookingPermission
+from users.permissions import BookingPermission, FavoritePermission
 
 User = User = get_user_model()
 log = logging.getLogger(__name__)
@@ -66,9 +67,47 @@ class ArtworkReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Artwork.objects.all()
     serializer_class = ArtworkSerializer
     pagination_class = LimitOffsetPagination
-    filterset_class = ArtworksFilter
     permission_classes = [AllowAny, ]
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, ]
+
+
+class FavoritedCreateDeleteViewSet(
+    mixins.CreateModelMixin, mixins.DestroyModelMixin, viewsets.GenericViewSet
+):
+    queryset = FavoriteArtwork.objects.all()
+    serializer_class = FavoriteSerializer
+    permission_classes = (FavoritePermission, )
+
+    @action(methods=["post"], detail=True)
+    def create(self, request, pk=None) -> Response:
+        """
+        The method adds an artwork to favorites. The user ID and artwork ID
+        are passed to the serializer through the context.
+        """
+        log.info('1working here')
+        user = get_object_or_404(User, id=request.user.id)
+        favorited_artwork = get_object_or_404(Artwork, pk=pk)
+        log.info('working here')
+        serializer = self.get_serializer(
+            data=request.data,
+            context={'who_favorited': user,
+                     'favorited_artwork': favorited_artwork},
+        )
+        log.info('trying to validate the serializer', f'{serializer}')
+        if serializer.is_valid(raise_exception=True):
+            log.info('serializer errors', serializer.errors)
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(methods=['delete'], detail=True)
+    def destroy(self, request, pk=None) -> Response:
+        favorited = get_object_or_404(
+            FavoriteArtwork,
+            who_favorited_id=request.user.id,
+            favorited_artwork_id=pk
+        )
+        self.perform_destroy(favorited)
+        return Response('object deleted', status=status.HTTP_204_NO_CONTENT)
 
 
 class EmailCreateOnlyViewSet(mixins.CreateModelMixin,

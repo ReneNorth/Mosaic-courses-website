@@ -3,8 +3,8 @@ from rest_framework import routers
 
 from users.views import CustomizedUserViewSet
 
-from .views import (ArtworkReadOnlyViewSet, BookingViewSet,
-                    CertificatePostPatchViewSet, EmailCreateOnlyViewSet,
+from .views import (BookingViewSet, CertificatePostPatchViewSet,
+                    EmailCreateOnlyViewSet, FavoritedCreateDeleteViewSet,
                     MainCarouselReadOnlyViewSet,
                     MasterclassCategoryFilterReadOnlyViewSet,
                     MasterclassReadOnlyViewset, MasterclassTypeReadOnlyViewSet,
@@ -31,7 +31,7 @@ router1.register(r'booking',
 router1.register(r'blog', PostViewSet, basename='blog')
 router1.register(r'certificate', CertificatePostPatchViewSet,
                  basename='certificate')
-router1.register(r'artworks', ArtworkReadOnlyViewSet, basename='artwork')
+# router1.register(r'artworks', ArtworkReadOnlyViewSet, basename='artwork')
 router1.register(r'tags', TagReadOnlyViewSet, basename='tags')
 router1.register(r'filters', MasterclassCategoryFilterReadOnlyViewSet,
                  basename='filters')
@@ -42,5 +42,7 @@ urlpatterns = [
     path('v1/school/', SchoolReadOnlyViewSet.as_view({'get': 'list'})),
     path('v1/', include('djoser.urls')),
     path(r'auth/', include('djoser.urls.jwt')),
-
+    path('v1/artworks/<int:pk>/favorite/',
+         FavoritedCreateDeleteViewSet.as_view({'post': 'create',
+                                              'delete': 'destroy'})),
 ]
