@@ -27,10 +27,7 @@ const CalendarPopup = () => {
   const currentCourse = useSelector((store) => store.courses.currentCourse);
   const selectedLesson = useSelector((store) => store.courses.selectedLesson);
 
-  const userName = useSelector((store) => store.auth.userName);
-  const userEmail = useSelector((store) => store.auth.userEmail);
-  // const userName = true;
-  // const userEmail = true;
+  const isAuthorized = useSelector((store) => store.auth.isAuthorized);
 
   const {
     errors, handleChange, values, isValid,
@@ -43,12 +40,12 @@ const CalendarPopup = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (userName && userEmail && selectedLesson?.id) {
+    if (isAuthorized && selectedLesson?.id) {
       dispatch(bookMasterclass(selectedLesson.id));
       dispatch(setIsCalendarPopupOpen(false));
       dispatch(setIsRegistrationLessonPopupOpen(true));
     }
-    if (!userName && !userEmail && selectedLesson?.id) {
+    if (!isAuthorized && selectedLesson?.id) {
       dispatch(bookMasterclassForUnauthorizedUser({
         name: values.name,
         phone_num: values.phone,
@@ -104,7 +101,7 @@ const CalendarPopup = () => {
             />
           </div>
           <form className={calendarPopupStyles.form} onSubmit={handleSubmit} noValidate>
-            {!userName && !userEmail && (
+            {!isAuthorized && (
               <div className={calendarPopupStyles.notAuthorizedUserContainer}>
                 <div className={calendarPopupStyles.linkContainer}>
                   <p className={calendarPopupStyles.linkText}>

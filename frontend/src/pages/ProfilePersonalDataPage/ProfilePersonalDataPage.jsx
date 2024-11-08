@@ -23,7 +23,7 @@ export function ProfilePersonalDataPage() {
   };
   const {
     errors, isValid, handleSecondPasswordChange, setIsValid, setValues,
-    handleChange, handleBlur, handlePhoneChange, handleChangeInRealTime, resetForm, values, handlePhoneValidation,
+    handleChange, handleBlur, handleChangeByValue, handleChangeInRealTime, resetForm, values, handlePhoneValidation,
   } = useFormValidation();
 
   useEffect(() => {
@@ -74,7 +74,7 @@ export function ProfilePersonalDataPage() {
               <InputFieldPhone
                 errors={errors}
                 isValid={isValid}
-                handleChange={handlePhoneChange}
+                handleChange={(value) => handleChangeByValue('phone', value)}
                 handlePhoneValidation={handlePhoneValidation}
                 values={values}
               />

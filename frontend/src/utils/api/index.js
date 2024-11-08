@@ -101,11 +101,10 @@ class Api {
   }
 
   async bookMasterclass(masterclassId) {
-    const res = await fetch(`${this._url}/api/v1/booking/`, {
+    const res = await this._fetchAuthorized(`${this._url}/api/v1/booking/`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
       },
       body: JSON.stringify({
         masterclass: masterclassId,
@@ -245,6 +244,39 @@ class Api {
     return this.constructor._checkResponse(res);
   }
 
+  async refreshToken(token) {
+    const csrftoken = getCookie('csrftoken');
+    let res = await fetch(`${this._url}/api/auth/jwt/refresh/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify({
+        refresh: token,
+      }),
+    });
+    res = await res.json();
+    localStorage.setItem('accessToken', res.accessToken);
+    localStorage.setItem('refreshToken', res.refreshToken);
+    return this.constructor._checkResponse(res);
+  }
+
+  async verifyToken(accessToken) {
+    const csrftoken = getCookie('csrftoken');
+    const res = await fetch(`${this._url}/api/auth/jwt/verify/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify({
+        token: accessToken,
+      }),
+    });
+    return this.constructor._checkResponse(res);
+  }
+
   async postPasswordReset(data) {
     const csrftoken = getCookie('csrftoken');
     const res = await fetch(`${this._url}/api/v1/users/reset_password/`, {
@@ -304,9 +336,32 @@ class Api {
     }
     return Promise.reject(new Error(`${res.status}`));
   }
-}
 
-console.log(process.env.REACT_APP_API_URL);
+  async _fetchAuthorized(url, method = 'GET', headers = null, body = null) {
+    const accessToken = localStorage.getItem('accessToken');
+    let res = await fetch(`${this._url}${url}`, {
+      method,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        ...(headers || {}),
+      },
+      body,
+    });
+    if (res.status === 401) {
+      await this.refreshToken(localStorage.getItem('refreshToken'));
+      const accessToken = localStorage.getItem('accessToken');
+      res = await fetch(`${this._url}${url}`, {
+        method,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          ...(headers || {}),
+        },
+        body,
+      });
+    }
+    return this._checkResponse(res);
+  }
+}
 
 export const api = new Api(
   process.env.REACT_APP_API_URL || 'http://localhost:8000',
