@@ -1,7 +1,11 @@
 from django.db import models
 
 
-class Artwork(models.Model):
+class Item(models.Model):
+    pass
+
+
+class LegacyArtwork(models.Model):
     """Instance represents an artwork of a student or a teacher."""
     STUDENT = 'student'
     TEACHER = 'teacher'
@@ -29,7 +33,7 @@ class Artwork(models.Model):
 
 
 class ArtworkMainPage(models.Model):
-    artwork = models.ForeignKey(Artwork,
+    artwork = models.ForeignKey(LegacyArtwork,
                                 on_delete=models.CASCADE,
                                 related_name='artworks_on_main')
     custom_ordering = models.PositiveSmallIntegerField()

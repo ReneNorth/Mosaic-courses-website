@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'carousel.apps.CarouselConfig',
     'masterclass.apps.MasterclassConfig',
     'school.apps.SchoolConfig',
+    'favorite.apps.FavoriteConfig',
     'users.apps.UsersConfig',
     'custom_auth.apps.CustomAuthConfig',
     'teachers.apps.TeachersConfig',

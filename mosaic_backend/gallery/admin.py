@@ -1,9 +1,13 @@
 from django.contrib import admin
 
-from gallery.models import GalleryImage
+from gallery.models import Artwork, ArtworkImage
 
 
-@admin.register(GalleryImage)
-class PostTagAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'description', ]
-    list_filter = ['add_date', ]
+@admin.register(Artwork)
+class ArtworkAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(ArtworkImage)
+class ArtworkImageAdmin(admin.ModelAdmin):
+    pass
