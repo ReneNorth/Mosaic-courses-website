@@ -10,7 +10,7 @@ from .views import (BookingViewSet, CertificatePostPatchViewSet,
                     MasterclassReadOnlyViewset, MasterclassTypeReadOnlyViewSet,
                     PostViewSet, RequestCreateOnlyViewSet,
                     SchoolReadOnlyViewSet, StudentReviewsReadOnlyViewSet,
-                    TagReadOnlyViewSet)
+                    TagReadOnlyViewSet, ArtworkReadOnlyViewSet)
 
 router1 = routers.SimpleRouter()
 
