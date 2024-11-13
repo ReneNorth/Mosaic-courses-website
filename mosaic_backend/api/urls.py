@@ -3,14 +3,14 @@ from rest_framework import routers
 
 from users.views import CustomizedUserViewSet
 
-from .views import (BookingViewSet, CertificatePostPatchViewSet,
-                    EmailCreateOnlyViewSet, FavoritedCreateDeleteViewSet,
-                    MainCarouselReadOnlyViewSet,
+from .views import (ArtworkReadOnlyViewSet, BookingViewSet,
+                    CertificatePostPatchViewSet, EmailCreateOnlyViewSet,
+                    FavoritedCreateDeleteViewSet, MainCarouselReadOnlyViewSet,
                     MasterclassCategoryFilterReadOnlyViewSet,
                     MasterclassReadOnlyViewset, MasterclassTypeReadOnlyViewSet,
                     PostViewSet, RequestCreateOnlyViewSet,
                     SchoolReadOnlyViewSet, StudentReviewsReadOnlyViewSet,
-                    TagReadOnlyViewSet, ArtworkReadOnlyViewSet)
+                    TagReadOnlyViewSet)
 
 router1 = routers.SimpleRouter()
 
