@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'custom_auth.apps.CustomAuthConfig',
     'teachers.apps.TeachersConfig',
     'store.apps.StoreConfig',
+    'favorite.apps.FavoriteConfig',
     'drf_yasg',
     'rest_framework',
     'djoser',
