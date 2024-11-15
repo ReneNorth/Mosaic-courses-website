@@ -3,12 +3,16 @@ import { classNames } from '../../helpers/classNames';
 import cls from './NavBar.module.scss';
 import { ENDPOINTS } from '../../utils/consts/constants';
 import { useResize } from '../../hooks/useResize.js';
+import { SearchForm } from '../SearchForm/SearchForm.jsx';
 
 export const NavBar = ({ handleClick }) => {
   const { isDesktopWidth } = useResize();
 
   return (
     <nav className={cls.container}>
+      {!isDesktopWidth && (
+        <SearchForm />
+      )}
       <ul className={cls.list}>
         <li className={cls.item}>
           <NavLink

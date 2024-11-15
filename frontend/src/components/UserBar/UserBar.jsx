@@ -32,11 +32,13 @@ export const UserBar = () => {
       {hamburgerMenuOpen && <HamburgerMenu handleClick={toggleHamburgerMenu} />}
       <ul className={cls.list}>
         <div className={cls.decoration} />
-        <li className={cls.item}>
-          <button className={cls.button} type="button" aria-label="Поиск">
-            <SearcLogo className={cls.icon} />
-          </button>
-        </li>
+        {isDesktopWidth && (
+          <li className={cls.item}>
+            <button className={cls.button} type="button" aria-label="Поиск">
+              <SearcLogo className={cls.icon} />
+            </button>
+          </li>
+        )}
         <li className={cls.item}>
           <button
             type="button"
