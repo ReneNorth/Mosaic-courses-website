@@ -4,7 +4,7 @@ export const SearchForm = () => {
   return (
     <form
       className={cls.searchForm}
-      name="form-of-search"
+      noValidate
     //   onSubmit={handleSubmit}
     >
       <div className={cls.container}>
@@ -14,7 +14,6 @@ export const SearchForm = () => {
           name="searchText"
           placeholder="Поиск"
           className={cls.input}
-        //   onChange={handleChange}
         />
       </div>
     </form>
