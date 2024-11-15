@@ -2,8 +2,11 @@ import { NavLink } from 'react-router-dom';
 import { classNames } from '../../helpers/classNames';
 import cls from './NavBar.module.scss';
 import { ENDPOINTS } from '../../utils/consts/constants';
+import { useResize } from '../../hooks/useResize.js';
 
 export const NavBar = ({ handleClick }) => {
+  const { isDesktopWidth } = useResize();
+
   return (
     <nav className={cls.container}>
       <ul className={cls.list}>
@@ -52,7 +55,18 @@ export const NavBar = ({ handleClick }) => {
             Блог
           </NavLink>
         </li>
-        {/* <li className={cls.item}>
+        {!isDesktopWidth && (
+          <li className={cls.item}>
+            <NavLink
+              to={ENDPOINTS.favourites}
+              className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
+              onClick={handleClick}
+            >
+              Избранное
+            </NavLink>
+          </li>
+        )}
+        <li className={cls.item}>
           <NavLink
             to={ENDPOINTS.shop}
             className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [])}
@@ -60,7 +74,7 @@ export const NavBar = ({ handleClick }) => {
           >
             Магазин
           </NavLink>
-        </li> */}
+        </li>
       </ul>
     </nav>
   );

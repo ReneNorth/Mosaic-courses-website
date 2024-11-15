@@ -57,11 +57,13 @@ export const UserBar = () => {
             onClose={toggleProfileModal}
           />
         </li>
-        <li className={cls.item}>
-          <NavLink to={ENDPOINTS.favourites} className={cls.link}>
-            <HeartLogo className={cls.icon} />
-          </NavLink>
-        </li>
+        {isDesktopWidth && (
+          <li className={cls.item}>
+            <NavLink to={ENDPOINTS.favourites} className={cls.link}>
+              <HeartLogo className={cls.icon} />
+            </NavLink>
+          </li>
+        )}
         <li className={cls.item}>
           <NavLink to={ENDPOINTS.cart} className={cls.link}>
             <CartLogo className={cls.icon} />
