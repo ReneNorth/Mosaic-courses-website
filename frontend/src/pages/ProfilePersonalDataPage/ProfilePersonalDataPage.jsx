@@ -8,7 +8,6 @@ import { ProfileEditField } from '../../components/ProfileEditField/ProfileEditF
 import { InputField } from '../../components/InputField/InputField';
 import { InputFieldPhone } from '../../components/InputFieldPhone/InputFieldPhone';
 import { useFormValidation } from '../../hooks/useFormValidation';
-import { Button } from '../../components/Button/Button';
 import { ProfileMobileSymbol } from '../../images/ProfileMobileSymbol';
 import {
   fetchPersonalInfo,
@@ -32,7 +31,6 @@ export function ProfilePersonalDataPage() {
     errors,
     setErrors,
     isValid,
-    setIsValid,
     setValues,
     handleChange,
     handlePhoneChange,
