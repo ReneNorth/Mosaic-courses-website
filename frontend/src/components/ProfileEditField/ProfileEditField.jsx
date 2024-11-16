@@ -15,6 +15,7 @@ export const ProfileEditField = ({
   handleSubmit,
   disabledSave,
 }) => {
+  const handleEditButtonClick = () => { setIsChanging(!isChanging); resetCheges(); resetErrors(); };
   return (
     <div className={classNames(cls.line, { [cls.columnLayout]: isChanging }, [])}>
       <div className={cls.column}>
@@ -59,9 +60,7 @@ export const ProfileEditField = ({
             [],
           )}
           onClick={() => {
-            setIsChanging(!isChanging);
-            resetCheges();
-            resetErrors();
+            handleEditButtonClick();
           }}
           disabled={isDisabled}
         >
