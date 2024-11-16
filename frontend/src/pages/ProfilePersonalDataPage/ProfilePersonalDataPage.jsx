@@ -200,7 +200,7 @@ export function ProfilePersonalDataPage() {
               <InputFieldPhone
                 errors={errors}
                 isValid={isValid}
-                handleChange={handlePhoneChange}
+                handleChange={(value) => handleChangeByValue('phone', value)}
                 handlePhoneValidation={handlePhoneValidation}
                 values={values}
               />
