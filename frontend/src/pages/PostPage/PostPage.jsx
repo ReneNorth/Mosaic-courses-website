@@ -60,8 +60,8 @@ export const PostPage = () => {
   return (
     <>
       <PromoSection
-        desktopImage={currentPost.image}
-        mobileImage={currentPost.image}
+        desktopImage={null}
+        mobileImage={null}
         title={currentPost.title}
         text={currentPost.preview_text}
         otherElements={(
