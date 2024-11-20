@@ -6,8 +6,11 @@ export const useFormValidation = () => {
   const [isValid, setIsValid] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
+    const {
+      name, type, value, checked,
+    } = e.target;
+    const newValue = type === 'checkbox' ? checked : value;
+    setValues({ ...values, [name]: newValue });
     setErrors({ ...errors, [name]: e.target.validationMessage });
     setIsValid(e.target.closest('form').checkValidity());
   };
