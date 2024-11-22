@@ -15,7 +15,6 @@
 }
 
 .filterWrapper {
-    padding-top: 80px;
     max-width: 1280px;
     width: 100%;
     position: relative;
@@ -78,9 +77,5 @@
 
     .filterBlockMobile {
         display: flex;
-    }
-
-    .filterWrapper {
-        padding-top: 0;
     }
 }
