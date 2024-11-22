@@ -38,8 +38,7 @@
 
 .list {
   margin-top: 40px;
-  width: 100%;
-  max-width: 840px;
+  width: 689px;
   display: flex;
   justify-content: left;
   align-items: baseline;
@@ -71,6 +70,10 @@
 }
 
 @media screen and (min-width: global.$breakpoint-ipad-mini) and (max-width: global.$breakpoint-xsmall-laptop) {
+  .text {
+    width: 400px;
+  }
+
   .flexContainer {
     margin-top: 0;
     justify-content: space-between;
@@ -84,10 +87,28 @@
   .list {
     margin-top: 0;
     margin-bottom: 31px;
+    width: 400px;
+  }
+}
+
+@media screen and (min-width: 720px) and (max-width: 768px) {
+  .text {
+    width: 360px;
+  }
+
+  .list {
+    margin-top: 0;
+    margin-bottom: 31px;
+    width: 360px;
   }
 }
 
 @media screen and (min-width: 320px) and (max-width: global.$breakpoint-ipad-mini) {
+  .text {
+    width: 320px;
+    margin-left: 9px;
+  }
+
   .flexContainer {
     margin-top: 10px;
     flex-direction: column;
@@ -100,10 +121,11 @@
   }
 
   .list {
-    padding: 0 0 0 9px;
+    padding: 0;
     margin: 0;
+    margin-left: 9px;
     font-size: 18px;
-    border: none;
+    width: 320px;
   }
 }
 
