@@ -6,11 +6,28 @@ import { MONTHS } from '../../utils/consts/constants.js';
 
 const CalendarUserAccount = ({ daysMasterclasses }) => {
   const [date, setDate] = useState(new Date());
-  const [closestDate] = useState(new Date());
   const [activeDays, setActiveDays] = useState({});
   const [days, setDays] = useState({ previous: [], current: [], next: [] });
+  const weeks = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+  const closestDate = new Date();
 
-  const isNarrowWidth = window.innerWidth >= 360 && window.innerWidth <= 720;
+  const [isNarrowWidth, setIsNarrowWidth] = useState(
+    window.innerWidth >= 360 && window.innerWidth <= 720,
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsNarrowWidth(window.innerWidth >= 360 && window.innerWidth <= 720);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const convertDateToKey = (date) => `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
@@ -59,7 +76,7 @@ const CalendarUserAccount = ({ daysMasterclasses }) => {
         </div>
       </div>
       <ul className={calendarStyles.weeks}>
-        {['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map((x) => (
+        {weeks.map((x) => (
           <li key={x}>{x}</li>
         ))}
       </ul>

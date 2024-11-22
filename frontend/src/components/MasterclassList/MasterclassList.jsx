@@ -41,8 +41,7 @@ const MasterclassList = ({
   const todayMasterclassIds = new Set(todayMasterclasses.map((masterclass) => masterclass.id));
 
   const uniqueCurrentMasterclasses = sortCurrentMasterclasses
-    .filter((masterclass) => !todayMasterclassIds.has(masterclass.id))
-    .sort((a, b) => new Date(a.time_start) - new Date(b.time_start));
+    .filter((masterclass) => !todayMasterclassIds.has(masterclass.id));
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

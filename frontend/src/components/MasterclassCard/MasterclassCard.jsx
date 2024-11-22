@@ -24,7 +24,8 @@ export const MasterclassCard = ({
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (popupRef.current && !popupRef.current.contains(event.target)) {
+      const clickedOutside = popupRef.current && !popupRef.current.contains(event.target);
+      if (clickedOutside) {
         closeModal();
       }
     };
@@ -39,16 +40,25 @@ export const MasterclassCard = ({
     };
   }, [isModalOpen, closeModal]);
 
+  const formatMasterclassDate = (masterclassTimeStart) => {
+    const courseDate = new Date(masterclassTimeStart);
+    const formattedDate = formatCourseDate(courseDate);
+
+    if (formattedDate === todayDate) {
+      return `Сегодня, ${formattedDate}`;
+    }
+
+    if (formattedDate === formattedYesterday) {
+      return `Вчера, ${formattedDate}`;
+    }
+
+    return `${formatCourseWeekDay(courseDate)}, ${formattedDate}`;
+  };
+
   return (
     <div className={cls.wrapper}>
       <p className={`${isSameNextDate ? cls.hidden : cls.date}`}>
-        {formatCourseDate(new Date(masterclass.time_start)) === todayDate
-          ? `Сегодня, ${formatCourseDate(new Date(masterclass.time_start))}`
-          : formatCourseDate(new Date(masterclass.time_start)) === formattedYesterday
-            ? `Вчера, ${formatCourseDate(new Date(masterclass.time_start))}`
-            : `${formatCourseWeekDay(
-              new Date(masterclass.time_start),
-            )}, ${formatCourseDate(new Date(masterclass.time_start))}`}
+        {formatMasterclassDate(masterclass.time_start)}
       </p>
       <div className={`${cls.borderContainer} ${!isSameDate ? cls.borderActive : ''}`}>
         <div className={cls.flexContainer}>

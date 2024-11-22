@@ -28,9 +28,8 @@ export const MyMasterclassesPage = () => {
   const fetchUpcomingCourses = async () => {
     try {
       const response = await api.getUserUpcomingCourses();
-      const data = response;
-      setMasterclasses(data);
-      const days = data.map((x) => x.time_start);
+      setMasterclasses(response);
+      const days = response.map((x) => x.time_start);
       setDaysMasterclasses(days);
     } catch (error) {
       console.error(error);

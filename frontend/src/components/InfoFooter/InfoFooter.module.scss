@@ -13,8 +13,6 @@
   width: 100%;
   display: flex;
   flex-direction: row-reverse;
-  // display: grid;
-  // grid-template-rows: 112px 88px;
   justify-content: space-between;
 }
 
@@ -115,10 +113,6 @@
   .otherContainer {
     margin: 35px auto 0 24px;
     flex-direction: column;
-    // grid-template-rows: none;
-    // grid-template-areas: 
-    //   "logo navigation"
-    //   "linkList navigation";
     width: 88vw;
     max-width: 655px;
     column-gap: 80px;
@@ -134,8 +128,6 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    // justify-content: space-between;
-    // align-items: center;
   }
 
   .linkList {
@@ -187,7 +179,6 @@
 @media screen and (max-width: 696px) {
   .block {
     padding-bottom: 44px;
-    // margin-top: 85px;
   }
 
   .otherContainer {
