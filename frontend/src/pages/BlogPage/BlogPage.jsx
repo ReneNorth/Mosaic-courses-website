@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 import { PostCard } from '../../components/PostCard/PostCard';
 import { PromoSection } from '../../components/PromoSection/PromoSection';
 
-import desktopImage from '../../images/all-post-decor.png';
-import mobileImage from '../../images/blogDecor.png';
+// import desktopImage from '../../images/all-post-decor.png';
+// import mobileImage from '../../images/blogDecor.png';
 import { getAllPosts } from '../../services/slices/postsSlice';
 import cls from './BlogPage.module.scss';
 
@@ -20,8 +20,8 @@ export const BlogPage = () => {
   return (
     <>
       <PromoSection
-        desktopImage={desktopImage}
-        mobileImage={mobileImage}
+        // desktopImage={desktopImage}
+        // mobileImage={mobileImage}
         title={(
           <>
             Блог про
