@@ -377,8 +377,8 @@ class Api {
     const data = await this.constructor._checkResponse(res);
     if (res.ok) {
       const sorting = [
-        { name: 'Ближайшие', slug: 'date' },
-        { name: 'По цене', slug: 'price' },
+        { name: 'Рекомендуемые', slug: 'recommended' },
+        { name: 'Для начинающих', slug: 'beginners' },
       ];
       const result = data;
       result.ORDER = [...sorting, ...result.ORDER];
