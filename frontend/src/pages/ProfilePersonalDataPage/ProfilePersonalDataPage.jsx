@@ -19,6 +19,7 @@ import {
 export function ProfilePersonalDataPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
   const [isChangingNameAndPhone, setIsChangingNameAndPhone] = useState(false);
   const [isChangingEmail, setIsChangingEmail] = useState(false);
 
