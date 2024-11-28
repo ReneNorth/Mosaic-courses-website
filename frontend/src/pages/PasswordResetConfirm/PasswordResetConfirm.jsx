@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../helpers/classNames';
 import cls from './PasswordResetConfirm.module.scss';
@@ -21,10 +21,9 @@ export function PasswordResetConfirm() {
   const [title, setTitle] = useState('Придумайте новый пароль');
   const [text, setText] = useState('');
   const [buttonText, setButtonText] = useState('Дальше');
-  const [inputError, setInputError] = useState(false);
   const dispatch = useDispatch();
 
-  const onClickSendNewPassword = useCallback((e) => {
+  const onClickSendNewPassword = (e) => {
     e.preventDefault();
     const sendData = {
       uid,
@@ -37,19 +36,7 @@ export function PasswordResetConfirm() {
     if (passwordResetConfirm) {
       navigate('/sign-in');
     }
-  }, [uid, token, values.password, passwordResetConfirm, dispatch, navigate]);
-
-  const handleKeyDown = useCallback((e) => {
-    if (e.key === 'Enter') {
-      const areAllFieldsFilled = values.password && values.repeatPassword;
-      setInputError(false);
-      if (areAllFieldsFilled) {
-        onClickSendNewPassword(e);
-      } else {
-        setInputError(true);
-      }
-    }
-  }, [values, onClickSendNewPassword]);
+  };
 
   useEffect(() => {
     if (passwordResetConfirm) {
@@ -58,13 +45,6 @@ export function PasswordResetConfirm() {
       setButtonText('Войти в аккаунт');
     }
   }, [passwordResetConfirm]);
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [handleKeyDown]);
 
   return (
     <section className={cls.section}>
@@ -75,7 +55,6 @@ export function PasswordResetConfirm() {
             <p className={cls.text}>
               {text}
             </p>
-            {inputError && <span className={cls.errorMessage}>Пожалуйста, заполните все поля!</span>}
             {!passwordResetConfirm && (
               <div className={cls.inputsWrapper}>
                 <InputField

@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cls from './SignInPage.module.scss';
 import { Button } from '../../components/Button/Button';
@@ -11,15 +11,11 @@ import { loginUser, verifyToken } from '../../services/slices/authSlice';
 import { LogInPageDecorationImg } from '../../components/LogInPageDecorationImg/LogInPageDecorationImg';
 
 export function SignInPage() {
-  const [inputError, setInputError] = useState(false);
-
   const {
     errors,
     isValid,
     handleChange,
     values,
-    setValues,
-    handleChangeStorageByEvent,
   } = useFormValidation();
   const isAuthorized = useSelector((store) => store.auth.isAuthorized);
 
@@ -28,7 +24,7 @@ export function SignInPage() {
   const { loginSucces, loginError } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  const login = useCallback((e) => {
+  const login = (e) => {
     e.preventDefault();
     const sendData = {
       email: values.email,
@@ -45,38 +41,13 @@ export function SignInPage() {
       .catch((error) => {
         console.error('Login failed:', error);
       });
-  }, [dispatch, values.email, values.password]);
-
-  const handleKeyDown = useCallback((e) => {
-    if (e.key === 'Enter') {
-      const areAllFieldsFilled = values.email && values.password;
-      setInputError(false);
-      if (areAllFieldsFilled) {
-        login(e);
-      } else {
-        setInputError(true);
-      }
-    }
-  }, [values, login]);
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [handleKeyDown]);
+  };
 
   useEffect(() => {
     if (isAuthorized) {
       navigate('/profile');
     }
   }, [isAuthorized, navigate]);
-
-  const storageKey = 'signIn';
-  useEffect(() => {
-    const savedValues = JSON.parse(localStorage.getItem(storageKey)) || {};
-    setValues(savedValues);
-  }, [setValues]);
 
   return (
     <section className={cls.section}>
@@ -87,11 +58,6 @@ export function SignInPage() {
           </ul>
           {loginError && (
             <span className={cls.errorMessage}>Неверный логин или пароль</span>
-          )}
-          {inputError && (
-            <span className={cls.errorMessage}>
-              Пожалуйста, заполните все поля!
-            </span>
           )}
           <h3
             className={classNames(
@@ -108,7 +74,7 @@ export function SignInPage() {
               placeholder="Email*"
               errors={errors}
               isValid={isValid}
-              handleChange={(e) => handleChangeStorageByEvent(e, storageKey, handleChange)}
+              handleChange={handleChange}
               values={values}
             />
             <InputField
