@@ -1,1 +1,6 @@
 @use "../../utils/variables/global.scss";
+
+.flexContainer {
+  display: flex;
+  gap: 40px;
+}

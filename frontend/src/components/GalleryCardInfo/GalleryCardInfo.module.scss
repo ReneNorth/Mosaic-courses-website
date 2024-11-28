@@ -1,1 +1,43 @@
 @use "../../utils/variables/global.scss";
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.flexContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 620px;
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.buttonLink {
+  width: 32px;
+  height: 32px;
+  background-image: url(../../images/button-link.svg);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.buttonLike {
+  width: 32px;
+  height: 32px;  
+  background-image: url(../../images/button-like.svg);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.buttonLikeActive {
+  background-image: url(../../images/button-active-like.svg);
+}
