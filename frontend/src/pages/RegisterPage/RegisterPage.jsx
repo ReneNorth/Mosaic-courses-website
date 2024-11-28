@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cls from './RegisterPage.module.scss';
 import { Button } from '../../components/Button/Button';
@@ -23,15 +23,11 @@ export function RegisterPage() {
     setIsValid,
     handleChange,
     handleBlur,
-    handleChangeByValue,
+    handlePhoneChange,
     handleChangeInRealTime,
     resetForm,
     values,
     handlePhoneValidation,
-    handleChangeStorageByEvent,
-    handleChangeStorageByValue,
-    setValues,
-    handleChangeCheckbox,
   } = useFormValidation();
 
   const {
@@ -51,33 +47,13 @@ export function RegisterPage() {
   const [disabledButtonCounter, setDisabledButtonCounter] = useState(true);
   const [dataEntryStep, setDataEntryStep] = useState(true);
   const [dataResponseStep, setDataResponseStep] = useState(false);
-  const [inputError, setInputError] = useState(false);
   const [counter, setCounter] = useState(30);
-  const nextStep = useCallback((e) => {
+  const nextStep = (e) => {
     e.preventDefault();
     setIsValid(false);
     setStepIndex('2');
     setTitle('Придумайте пароль');
-  }, [setIsValid]);
-  const handleKeyDown = useCallback((e) => {
-    if (e.key === 'Enter') {
-      const areAllFieldsFilled = values.email && values.name && values.phone;
-
-      if (areAllFieldsFilled) {
-        setInputError(false);
-        nextStep(e);
-      } else {
-        setInputError(true);
-      }
-    }
-  }, [values, nextStep]);
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [handleKeyDown]);
+  };
 
   const sendData = (e) => {
     e.preventDefault();
@@ -118,17 +94,6 @@ export function RegisterPage() {
     setCounter(30);
     setDisabledButtonCounter(true);
   };
-
-  const storageKey = 'register';
-  useEffect(() => {
-    try {
-      const savedValues = JSON.parse(localStorage.getItem(storageKey)) || {};
-      setValues(savedValues);
-    } catch (error) {
-      console.error('Ошибка при разборе сохраненных значений:', error);
-      setValues({});
-    }
-  }, [setValues]);
 
   const subStepsDataEntry = (step) => {
     if (step === '2') {
@@ -172,34 +137,26 @@ export function RegisterPage() {
               type="name"
               errors={errors}
               isValid={isValid}
-              handleChange={(e) => handleChangeStorageByEvent(e, storageKey, handleChange)}
+              handleChange={handleChange}
               values={values}
             />
             <InputField
               type="email"
               errors={errors}
               isValid={isValid}
-              handleChange={(e) => handleChangeStorageByEvent(e, storageKey, handleChange)}
+              handleChange={handleChange}
               values={values}
             />
             <InputFieldPhone
               errors={errors}
               isValid={isValid}
-              handleChange={(value) => handleChangeStorageByValue(storageKey, 'phone', value, handleChangeByValue)}
+              handleChange={handlePhoneChange}
               handlePhoneValidation={handlePhoneValidation}
               values={values}
             />
           </div>
-          <CheckBoxField
-            type="agreement"
-            handleChange={(e) => handleChangeCheckbox(e, storageKey)}
-            values={values}
-          />
-          <CheckBoxField
-            type="mailing"
-            handleChange={(e) => handleChangeCheckbox(e, storageKey)}
-            values={values}
-          />
+          <CheckBoxField type="agreement" handleChange={handleChange} />
+          <CheckBoxField type="mailing" handleChange={handleChange} />
         </div>
         <div className={cls.buttonWrapper}>
           <Button
@@ -229,7 +186,6 @@ export function RegisterPage() {
                   /4
                 </div>
               </ul>
-              {inputError && <span className={cls.errorMessage}>Пожалуйста, заполните все поля!</span>}
               <h3 className={cls.title}>{formTitle}</h3>
               {subStepsDataEntry(stepIndex)}
             </>
