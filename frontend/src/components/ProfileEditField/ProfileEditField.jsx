@@ -1,83 +1,28 @@
+import { useState } from 'react';
 import cls from './ProfileEditField.module.scss';
 import { classNames } from '../../helpers/classNames';
 
-export const ProfileEditField = ({
-  title,
-  fieldValue,
-  isChanging,
-  setIsChanging,
-  children,
-  secondFieldValue,
-  secondTitle,
-  resetCheges,
-  resetErrors,
-  isDisabled,
-  handleSubmit,
-  disabledSave,
-}) => {
-  const handleEditButtonClick = () => { setIsChanging(!isChanging); resetCheges(); resetErrors(); };
+export const ProfileEditField = ({ title, fieldValue, children }) => {
+  const [fieldName, setfieldName] = useState(false);
+  const openToEditName = (e) => {
+    e.preventDefault();
+    setfieldName(!fieldName);
+  };
   return (
-    <div className={classNames(cls.line, { [cls.columnLayout]: isChanging }, [])}>
-      <div className={cls.column}>
-        <div className={cls.dataWrapper}>
-          <h3
-            className={classNames(
-              cls.lineTitle,
-              { [cls.lineTitleActive]: isChanging },
-              [],
-            )}
-          >
-            {title}
-          </h3>
-          {!isChanging && <p className={cls.fieldPlaceholder}>{fieldValue}</p>}
-          {isChanging && !secondFieldValue && children}
-        </div>
-        {secondFieldValue && (
-          <div className={cls.dataWrapper}>
-            <h3
-              className={classNames(
-                cls.secondLineTitle,
-                { [cls.secondLineTitleActive]: isChanging },
-                [],
-              )}
-            >
-              {!isChanging && secondTitle}
-            </h3>
-            {!isChanging && (
-              <p className={cls.fieldPlaceholder}>{secondFieldValue}</p>
-            )}
-            {isChanging && children}
-          </div>
-        )}
+    <div className={cls.line}>
+      <div className={cls.dataWrapper}>
+        <h3 className={classNames(cls.lineTitle, { [cls.lineTitleActive]: fieldName }, [])}>{title}</h3>
+        {!fieldName && (<p className={cls.fieldPlaceholder}>{fieldValue}</p>)}
+        {fieldName && (children)}
       </div>
-
-      <div className={cls.buttons}>
-        <button
-          type="button"
-          className={classNames(
-            cls.editButton,
-            { [cls.cancelButton]: isChanging },
-            [],
-          )}
-          onClick={() => {
-            handleEditButtonClick();
-          }}
-          disabled={isDisabled}
-        >
-          {!isChanging ? 'Редактировать' : 'Отменить'}
-        </button>
-
-        {isChanging && (
-          <button
-            type="submit"
-            className={cls.saveButton}
-            onClick={handleSubmit}
-            disabled={disabledSave}
-          >
-            Сохранить
-          </button>
-        )}
-      </div>
+      <button
+        type="button"
+        className={classNames(cls.editButton, { [cls.editButtonActive]: fieldName }, [])}
+        onClick={(e) => openToEditName(e)}
+      >
+        {!fieldName && ('Редактировать')}
+        {fieldName && ('Отменить')}
+      </button>
     </div>
   );
 };
