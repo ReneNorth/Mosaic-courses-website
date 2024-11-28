@@ -22,8 +22,14 @@ export function ProfilePersonalDataPage() {
     navigate('/profile');
   };
   const {
-    errors, isValid, handleSecondPasswordChange, setIsValid, setValues,
-    handleChange, handleBlur, handleChangeByValue, handleChangeInRealTime, resetForm, values, handlePhoneValidation,
+    errors,
+    setErrors,
+    isValid,
+    setValues,
+    handleChange,
+    handlePhoneChange,
+    values,
+    handlePhoneValidation,
   } = useFormValidation();
 
   useEffect(() => {
