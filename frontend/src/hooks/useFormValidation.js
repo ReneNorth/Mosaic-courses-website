@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 export const useFormValidation = () => {
   const [values, setValues] = useState({});
@@ -10,6 +10,22 @@ export const useFormValidation = () => {
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: e.target.validationMessage });
     setIsValid(e.target.closest('form').checkValidity());
+  };
+
+  const handlePhoneChange = (value) => {
+    setValues({ ...values, phone: value });
+  };
+
+  const handlePhoneValidation = (valid, ref) => {
+    if (values.phone !== undefined) {
+      if (valid) {
+        setIsValid(ref.closest('form').checkValidity());
+        setErrors({ ...errors, phone: '' });
+      } else {
+        setErrors({ ...errors, phone: 'Телефонный номер не валиден' });
+        setIsValid(false);
+      }
+    }
   };
 
   const handleChangeByValue = (name, value) => {
@@ -37,18 +53,6 @@ export const useFormValidation = () => {
     const { name, value } = e.target;
     updateLocalStorage(key, name, value);
     callback(e);
-  };
-
-  const handlePhoneValidation = (valid, ref) => {
-    if (values.phone !== undefined) {
-      if (valid) {
-        setIsValid(ref.closest('form').checkValidity());
-        setErrors({ ...errors, phone: '' });
-      } else {
-        setErrors({ ...errors, phone: 'Телефонный номер не валиден' });
-        setIsValid(false);
-      }
-    }
   };
 
   const handleSecondPasswordChange = (e) => {
@@ -92,8 +96,9 @@ export const useFormValidation = () => {
     handleChangeInRealTime,
     handleSecondPasswordChange,
     resetForm,
-    handleChangeByValue,
+    handlePhoneChange,
     handlePhoneValidation,
+    handleChangeByValue,
     handleChangeStorageByEvent,
     handleChangeStorageByValue,
     handleChangeCheckbox,
