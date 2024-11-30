@@ -6,8 +6,11 @@ export const useFormValidation = () => {
   const [isValid, setIsValid] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
+    const {
+      name, type, value, checked,
+    } = e.target;
+    const newValue = type === 'checkbox' ? checked : value;
+    setValues({ ...values, [name]: newValue });
     setErrors({ ...errors, [name]: e.target.validationMessage });
     setIsValid(e.target.closest('form').checkValidity());
   };
@@ -26,6 +29,33 @@ export const useFormValidation = () => {
         setIsValid(false);
       }
     }
+  };
+
+  const handleChangeByValue = (name, value) => {
+    setValues({ ...values, [name]: value });
+  };
+
+  const updateLocalStorage = (key, name, value) => {
+    let stored = JSON.parse(localStorage.getItem(key));
+    stored = { ...stored, [name]: value };
+    localStorage.setItem(key, JSON.stringify(stored));
+  };
+
+  const handleChangeCheckbox = (e, key) => {
+    const { name, checked } = e.target;
+    updateLocalStorage(key, name, checked);
+    handleChangeByValue(name, checked);
+  };
+
+  const handleChangeStorageByValue = (key, name, value, callback) => {
+    updateLocalStorage(key, name, value);
+    callback(name, value);
+  };
+
+  const handleChangeStorageByEvent = (e, key, callback) => {
+    const { name, value } = e.target;
+    updateLocalStorage(key, name, value);
+    callback(e);
   };
 
   const handleSecondPasswordChange = (e) => {
@@ -71,5 +101,9 @@ export const useFormValidation = () => {
     resetForm,
     handlePhoneChange,
     handlePhoneValidation,
+    handleChangeByValue,
+    handleChangeStorageByEvent,
+    handleChangeStorageByValue,
+    handleChangeCheckbox,
   };
 };

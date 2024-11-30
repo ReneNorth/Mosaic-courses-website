@@ -13,6 +13,51 @@ class Api {
     return Promise.reject(new Error(`${res.status}`));
   }
 
+  async getMyPersonalInfo() {
+    const url = `${this._url}/api/v1/users/me/`;
+    const accessToken = localStorage.getItem('accessToken');
+
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    return this.constructor._checkResponse(res);
+  }
+
+  async changeEmail(newEmail) {
+    const url = `${this._url}/api/v1/users/set_email/`;
+    const accessToken = localStorage.getItem('accessToken');
+
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newEmail),
+    });
+    return this.constructor._checkResponse(res);
+  }
+
+  async changeMyPersonalInfo(changes) {
+    const url = `${this._url}/api/v1/users/me/`;
+    const accessToken = localStorage.getItem('accessToken');
+
+    const res = await fetch(url, {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(changes),
+    });
+
+    return this.constructor._checkResponse(res);
+  }
+
   async getPosts() {
     const res = await fetch(`${this._url}/api/v1/blog/`);
     const data = await this.constructor._checkResponse(res);
@@ -73,6 +118,11 @@ class Api {
     return this.constructor._checkResponse(res);
   }
 
+  async getAllcourses() {
+    const res = await fetch(`${this._url}/api/v1/masterclass_types`);
+    return this.constructor._checkResponse(res);
+  }
+
   async getCourses(dataReq) {
     const res = await fetch(
       // eslint-disable-next-line max-len
@@ -90,9 +140,33 @@ class Api {
     return data;
   }
 
-  async getCourseWithSlug(slug) {
-    const res = await fetch(`${this._url}/api/v1/masterclass_types/${slug}`);
+  async getCourseWithId(id) {
+    const res = await fetch(`${this._url}/api/v1/masterclass_types/${id}/`);
     return this.constructor._checkResponse(res);
+  }
+
+  async bookMasterclass(masterclassId) {
+    const res = await this._fetchAuthorized(`${this._url}/api/v1/booking/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        masterclass: masterclassId,
+      }),
+    });
+    return this.constructor._checkResponse(res);
+  }
+
+  async bookMasterclassForUnauthorizedUser(data) {
+    const res = await fetch(`${this._url}/api/v1/feedback/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
+      body: JSON.stringify(data),
+    });
   }
 
   async postSubscriptionEmail(email) {
@@ -141,7 +215,9 @@ class Api {
     const res = await fetch(`${this._url}/api/v1/reviews/`);
     const data = await this.constructor._checkResponse(res);
     if (res.ok) {
-      if (data.count === 0) { data.results = SLIDER_CONFIG; } else {
+      if (data.count === 0) {
+        data.results = SLIDER_CONFIG;
+      } else {
         let firstId = 1;
         data.results.forEach((review) => {
           review.id = firstId;
@@ -215,6 +291,39 @@ class Api {
     return this.constructor._checkResponse(res);
   }
 
+  async refreshToken(token) {
+    const csrftoken = getCookie('csrftoken');
+    let res = await fetch(`${this._url}/api/auth/jwt/refresh/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify({
+        refresh: token,
+      }),
+    });
+    res = await res.json();
+    localStorage.setItem('accessToken', res.accessToken);
+    localStorage.setItem('refreshToken', res.refreshToken);
+    return this.constructor._checkResponse(res);
+  }
+
+  async verifyToken(accessToken) {
+    const csrftoken = getCookie('csrftoken');
+    const res = await fetch(`${this._url}/api/auth/jwt/verify/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify({
+        token: accessToken,
+      }),
+    });
+    return this.constructor._checkResponse(res);
+  }
+
   async postPasswordReset(data) {
     const csrftoken = getCookie('csrftoken');
     const res = await fetch(`${this._url}/api/v1/users/reset_password/`, {
@@ -246,14 +355,17 @@ class Api {
 
   async postResetPasswordConfirm(data) {
     const csrftoken = getCookie('csrftoken');
-    const res = await fetch(`${this._url}/api/v1/users/reset_password_confirm/`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-        'X-CSRFToken': csrftoken,
+    const res = await fetch(
+      `${this._url}/api/v1/users/reset_password_confirm/`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+          'X-CSRFToken': csrftoken,
+        },
+        body: JSON.stringify(data),
       },
-      body: JSON.stringify(data),
-    });
+    );
     if (res.ok) {
       return res;
     }
@@ -274,9 +386,43 @@ class Api {
     }
     return Promise.reject(new Error(`${res.status}`));
   }
-}
 
-console.log(process.env.REACT_APP_API_URL);
+  async _fetchAuthorized(url, method = 'GET', headers = null, body = null) {
+    const accessToken = localStorage.getItem('accessToken');
+    let res = await fetch(`${this._url}${url}`, {
+      method,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        ...(headers || {}),
+      },
+      body,
+    });
+    if (res.status === 401) {
+      await this.refreshToken(localStorage.getItem('refreshToken'));
+      const accessToken = localStorage.getItem('accessToken');
+      res = await fetch(`${this._url}${url}`, {
+        method,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          ...(headers || {}),
+        },
+        body,
+      });
+    }
+    return this.constructor._checkResponse(res);
+  }
+
+  // Методы для получения мастер-классов будущих и прошедших для определенного юзера
+  async getUserUpcomingCourses() {
+    // eslint-disable-next-line max-len
+    return this._fetchAuthorized('/api/v1/users/my_masterclasses/upcoming/', 'GET');
+  }
+
+  async getUserPastCourses() {
+    // eslint-disable-next-line max-len
+    return this._fetchAuthorized('/api/v1/users/my_masterclasses/past/', 'GET');
+  }
+}
 
 export const api = new Api(
   process.env.REACT_APP_API_URL || 'http://localhost:8000',

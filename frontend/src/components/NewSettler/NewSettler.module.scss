@@ -1,20 +1,20 @@
 @use "../../utils/variables/global.scss";
 
 .popup {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   position: fixed;
+  padding: 5vh 0;
   top: 0;
   right: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   opacity: 0;
   visibility: hidden;
-  background: rgba(0, 0, 0, 0.5);
   transition: .5s;
   z-index: 200;
-
+  
   &_open {
     opacity: 1;
     visibility: visible;
@@ -22,6 +22,7 @@
 }
 
 .overlay {
+  background: rgba(0, 0, 0, 0.5);
   position: absolute;
   top: 0;
   left: 0;
@@ -31,8 +32,7 @@
 }
 
 .content__wrapper {
-  padding: 0 75px;
-  margin: 48px 0;
+  padding: 18px 75px 28px;
   display: flex;
   flex-direction: column;
 }
@@ -60,7 +60,9 @@
 }
 
 .content {
-  width: 660px;
+  width: 100%;
+  max-width: 660px;
+  max-height: 90vh;
   border-radius: 20px;
   background-color: #fff;
   position: relative;
@@ -80,7 +82,7 @@
 }
 
 .title {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-family: 'Raleway', sans-serif;
   font-style: normal;
   font-weight: 700;
@@ -90,7 +92,7 @@
 }
 
 .description {
-  margin-bottom: 32px;
+  margin-bottom: 12px;
   font-family: 'Raleway', sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -123,11 +125,12 @@
 
 .textarea {
   width: 99%;
-  min-height: 98px;
+  min-height: 58px;
   margin-bottom: 24px;
   background-color: #CCDAC6;
   border-bottom: 1px solid #121210;
   resize: none;
+	font-family: 'Raleway', sans-serif;
 }
 
 @media screen and (max-width: global.$breakpoint-tablet) {

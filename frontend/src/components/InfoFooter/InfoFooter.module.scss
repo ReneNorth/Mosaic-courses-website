@@ -11,12 +11,19 @@
   margin: 88px auto 0;
   max-width: 1280px;
   width: 100%;
-  display: grid;
-  grid-template-rows: 112px 88px;
+  display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
 }
 
+.wrapperNav {
+  display: flex;
+  justify-content: space-between;
+  gap: 100px;
+}
+
 .linkList {
+  padding-left: 40px;
   max-width: 128px;
   display: flex;
   height: 32px;
@@ -82,6 +89,22 @@
   color: var(--color-green-accent);
 }
 
+@media screen and (min-width: 901px) and (max-width: 1100px) {
+  .wrapperNav {
+    gap: 40px;
+  }
+}
+
+@media screen and (min-width: 877px) and (max-width: 900px) {
+  .wrapperNav {
+    gap: 40px;
+  }
+
+  .navList {
+    gap: 20px 26px;
+  }
+}
+
 @media screen and (max-width: 876px) {
   .block {
     border: none;
@@ -89,18 +112,27 @@
 
   .otherContainer {
     margin: 35px auto 0 24px;
-    grid-template-rows: none;
-    grid-template-areas: 
-      "logo navigation"
-      "linkList navigation";
+    flex-direction: column;
     width: 88vw;
     max-width: 655px;
     column-gap: 80px;
     row-gap: 5px;
   }
 
+  .wrapperNav {
+    display: flex;
+    gap: 85px;
+  }
+
+  .wrapperLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
   .linkList {
     grid-area: linkList;
+    padding-left: 40px;;
   }
 
   .navigation {
@@ -116,6 +148,7 @@
       "shop certificates blog";
     gap: 40px 32px;
     padding: 0;
+    padding-top: 25px;
   }
 
   .about {
@@ -146,18 +179,23 @@
 @media screen and (max-width: 696px) {
   .block {
     padding-bottom: 44px;
-    margin-top: 85px;
   }
 
   .otherContainer {
     margin: 0;
     padding: 0 20px;
-    flex-direction: column;
     width: calc(100% - 40px);
-    grid-template-areas: 
-      "logo linkList"
-      "navigation navigation";
     column-gap: 0;
+  }
+
+  .wrapperNav {
+    margin-top: 48px;
+  }
+
+  .wrapperLinks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .logoContainer {
@@ -178,6 +216,7 @@
   .navigation {
     order: 3;
     margin-top: 22px;
+    margin-left: 30px;
   }
 
   .about {
@@ -217,5 +256,37 @@
   .navList {
     grid-template-columns: repeat(3, 90px);
     gap: 27px 32px;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .wrapperNav {
+    gap: 40px;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .wrapperNav {
+    flex-direction: column;
+    gap: 32px;
+  }
+  
+  .wrapperLinks {
+    flex-direction: row;
+    justify-content: center;
+    gap: 90px;
+  }
+
+  .navList {
+    padding: 0;
+  }
+}  
+
+@media screen and (max-width: 420px) {
+  .navigation {
+    margin-left: 20px;
+  }
+  .wrapperLinks {
+    gap: 40px;
   }
 }

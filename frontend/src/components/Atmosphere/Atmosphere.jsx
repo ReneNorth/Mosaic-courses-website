@@ -1,31 +1,31 @@
 import { useEffect, useState } from 'react';
 import { useSpringCarousel } from 'react-spring-carousel';
 import cls from './Atmosphere.module.scss';
-import paint from '../../images/atmospherePaint.png';
-import arm from '../../images/atmosphereArm.png';
-import man from '../../images/atmosphereMan.png';
-import mosaic from '../../images/atmosphereMosaic.png';
-import table from '../../images/atmosphereTable.png';
+import atmosphereLeftUp from '../../images/atmosphereLeftUp.png';
+import atmosphereLeftMiddle from '../../images/atmosphereLeftMiddle.png';
+import atmosphereRightDown from '../../images/atmosphereRightDown.png';
+import atmosphereLeftDown from '../../images/atmosphereLeftDown.png';
+import atmosphereRightUp from '../../images/atmosphereRightUp.png';
 
 const data = [
   {
-    link: paint,
+    link: atmosphereLeftUp,
     id: 1,
   },
   {
-    link: arm,
+    link: atmosphereLeftMiddle,
     id: 2,
   },
   {
-    link: man,
+    link: atmosphereRightDown,
     id: 3,
   },
   {
-    link: mosaic,
+    link: atmosphereLeftDown,
     id: 4,
   },
   {
-    link: table,
+    link: atmosphereRightUp,
     id: 5,
   },
 ];
@@ -109,11 +109,11 @@ export const Atmosphere = () => {
         </ul>
       </div>
       <div className={cls.container}>
-        <img className={cls.child1} src={paint} alt="атмосфера" />
-        <img className={cls.child2} src={table} alt="атмосфера" />
-        <img className={cls.child4} src={arm} alt="атмосфера" />
-        <img className={cls.child5} src={mosaic} alt="атмосфера" />
-        <img className={cls.child3} src={man} alt="атмосфера" />
+        <img className={cls.child1} src={atmosphereLeftUp} alt="атмосфера" />
+        <img className={cls.child2} src={atmosphereRightUp} alt="атмосфера" />
+        <img className={cls.child4} src={atmosphereLeftMiddle} alt="атмосфера" />
+        <img className={cls.child5} src={atmosphereLeftDown} alt="атмосфера" />
+        <img className={cls.child3} src={atmosphereRightDown} alt="атмосфера" />
       </div>
     </section>
   );

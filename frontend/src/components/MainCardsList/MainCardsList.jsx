@@ -1,10 +1,11 @@
 /* eslint-disable no-nested-ternary */
 import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { CourseCard } from '../CourseCard/CourseCard.jsx';
 import { CourseCardSkeleton } from '../CourseCardSkeleton/CourseCardSkeleton.jsx';
 import cls from './MainCardsList.module.scss';
-import { getAllCourses } from '../../services/slices/coursesSlice.js';
+import { getAllCourses, setCurrentCourse, setNavigating } from '../../services/slices/coursesSlice.js';
 import imageNotFound from '../../images/dali.png';
 import Pagination from '../Pagination/Pagination.jsx';
 import { useThrottle } from '../../hooks/useThrottle.jsx';
@@ -17,23 +18,36 @@ export const MainCardsList = ({
   infiniteScroll,
   showPagination,
 }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const currentCourse = useSelector((store) => store.courses.currentCourse);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentPageOffset, setCurrentPageOffset] = useState(0);
   const [hideCards, setHideCards] = useState(true);
   const [coursesForMobile, setCoursesForMobile] = useState([]);
   const [position, setPosition] = useState(0);
   const { width } = useResize();
+  const location = useLocation();
 
-  const handleEnroll = () => {
-    setIsOpen(true);
+  const handleEnroll = (currentCourse) => {
+    dispatch(setCurrentCourse(currentCourse));
+    dispatch(setNavigating(true));
   };
-  const { allCourses, totalCount, sending } = useSelector(
-    (state) => state.courses,
-  );
-  const { activeSortingStatus, activeFilters } = useSelector(
-    (state) => state.coursesFilters,
-  );
-  const dispatch = useDispatch();
+
+  const {
+    allCourses,
+    totalCount,
+    sending,
+    navigating,
+  } = useSelector((state) => state.courses);
+  const { activeSortingStatus, activeFilters } = useSelector((state) => state.coursesFilters);
+
+  useEffect(() => {
+    if (Object.keys(currentCourse).length && navigating) {
+      dispatch(setNavigating(false));
+      navigate(`/course/${currentCourse.slug}`);
+    }
+  }, [currentCourse, navigate, dispatch, navigating]);
 
   useEffect(() => {
     let filterString = '';

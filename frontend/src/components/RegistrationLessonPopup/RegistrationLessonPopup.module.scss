@@ -1,0 +1,117 @@
+@use "../../utils/variables/global.scss";
+
+.title {
+  margin-top: 84px;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 135%;
+}
+
+.subtitle {
+  margin-top: 16px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 135%;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 510px);
+  gap: 40px;
+  margin-top: 52px;
+}
+
+.infoTitle {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 130%;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.buttonContainer {
+  margin-top: 56px;
+  display: flex;
+  gap: 24px;
+}
+
+@media screen and (max-width: 1320px) {
+  .title {
+    margin-top: 32px;
+    font-size: 26px;
+    line-height: 130%;
+  }
+
+  .subtitle {
+    margin-top: 23px;
+    font-weight: 400;
+    font-size: 16px;
+    max-width: 574px;
+    text-align: center;
+  }
+
+  .container {
+    margin-top: 37px;
+    margin-bottom: 40px;
+    grid-template-columns: repeat(2, 338px);
+    gap: 20px;
+    position: relative;
+  }
+
+  .image {
+    width: 338px;
+    height: 220px;
+  }
+
+  .infoTitle {
+    line-height: 135%;
+    text-transform: none;
+    margin-bottom: 14px;
+  }
+
+  .buttonContainer {
+    position: absolute;
+    margin: 0;
+    bottom: -58px;
+    left: 0;
+    width: 518px;
+  }
+}
+
+@media screen and (max-width: 743px) {
+  .title {
+    margin-top: 67px;
+    text-align: center;
+  }
+
+  .subtitle {
+    margin-top: 4px;
+    padding: 0 20px;
+    text-align: left;
+  }
+
+  .container {
+    margin-top: 30px;
+    margin-bottom: 0;
+    grid-template-columns: repeat(1, 320px);
+    gap: 28px;
+  }
+
+  .image {
+    width: 320px;
+    height: 209px;
+  }
+
+  .infoTitle {
+    margin-bottom: 24px;
+  }
+
+  .buttonContainer {
+    margin-top: 26px;
+    position: static;
+    flex-direction: column;
+    gap: 20px;
+    width: 320px;
+  }
+}

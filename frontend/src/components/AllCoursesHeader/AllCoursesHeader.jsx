@@ -1,14 +1,17 @@
-import cls from './AllCoursesHeader.module.scss';
+import { PromoSectionWithoutImage } from '../PromoSectionWithoutImage/PromoSectionWithoutImage';
 
 export const AllCoursesHeader = () => {
+  const promoSectionTitle = (
+    <>
+      Курсы мозаики в студии
+      <br />
+      <span>Tessera&nbsp;</span>
+    </>
+  );
+
   return (
-    <section className={cls.section}>
-      <div className={cls.block}>
-        <h1 className={cls.title}>
-          Курсы по мозаике в студии
-          <span className={cls.span}>«Под горой»</span>
-        </h1>
-      </div>
-    </section>
+    <PromoSectionWithoutImage
+      title={promoSectionTitle}
+    />
   );
 };

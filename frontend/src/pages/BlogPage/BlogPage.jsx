@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 import { PostCard } from '../../components/PostCard/PostCard';
-import { PromoSection } from '../../components/PromoSection/PromoSection';
+import { PromoSectionWithoutImage } from '../../components/PromoSectionWithoutImage/PromoSectionWithoutImage';
 
 // import desktopImage from '../../images/all-post-decor.png';
 // import mobileImage from '../../images/blogDecor.png';
@@ -19,17 +19,16 @@ export const BlogPage = () => {
 
   return (
     <>
-      <PromoSection
-        // desktopImage={desktopImage}
-        // mobileImage={mobileImage}
+      <PromoSectionWithoutImage
+        desktopImage={desktopImage}
+        mobileImage={mobileImage}
         title={(
           <>
             Блог про
             <span> мозаику</span>
           </>
         )}
-        text="Единственная в Казахстане студия римской мозаики.
-        Научим создавать античные шедевры на мастер-классах и украсим ваш дом оригинальными арт-объектами."
+        text="Рассказываем про жизнь школы и историю мозаики."
       />
       <section className={cls.section}>
 

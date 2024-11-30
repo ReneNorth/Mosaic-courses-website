@@ -21,6 +21,8 @@ export const ENDPOINTS = {
   profilePersonalData: '/profile/personal-data',
   profileSecurity: '/profile/security',
   profileAlert: '/profile/alert',
+  myMasterclasses: '/my-masterclasses',
+  myMasterclassesPast: '/my-masterclasses-past',
   notFound: '*',
 };
 
@@ -53,3 +55,12 @@ export const SCREEN_WIDTH = {
   tabletScreen: 744,
   mobileScreen: 550,
 };
+
+export const MONTHS = [
+  'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль',
+  'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+
+export const GENITIVE_MOHTHS = [
+  'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+  'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря',
+];
