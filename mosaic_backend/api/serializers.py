@@ -11,7 +11,8 @@ from blog.models import Post, Tag
 from booking.models import Booking, GuestReservation
 from carousel.models import MainCarouselItem
 from crm_app.models import EmailMainForm, FeedbackRequest, GiftCert
-from marketplace.models import Artwork, ArtworkMainPage
+from favorite.models import FavoriteArtwork
+from gallery.models import Artwork
 from masterclass.models import (Masterclass, MasterclassCategory,
                                 MasterclassType)
 from mosaic.business_logic import BusinessLogic
@@ -70,32 +71,79 @@ class GiftCertSerializer(serializers.ModelSerializer):
 
 
 class ArtworkSerializer(serializers.ModelSerializer):
-    custom_ordering = serializers.SerializerMethodField()
-    is_on_main = serializers.SerializerMethodField()
+    images = serializers.SerializerMethodField()
+    is_for_sale = serializers.SerializerMethodField()
 
     class Meta:
         model = Artwork
         fields = [
-            'id', 'title', 'author', 'author_type', 'is_on_main',
+            'id', 'title', 'author', 'author_type',
             'is_for_sale', 'price',
-            'description',
-            'custom_ordering',
+            'dimensions', 'material', 'description',
+            'images', 'add_date', 'is_in_stock', 'is_replica_available'
         ]
 
-    def get_custom_ordering(self, artwork: Artwork) -> int:
-        try:
-            ordering = ArtworkMainPage.objects.get(
-                artwork=artwork).custom_ordering
-            if ordering is not None:
-                return ordering
-            return None
-        except Exception as er:
-            logging.error(er, exc_info=True)
+    def get_images(self, artwork: Artwork):
+        images_list = artwork.images.all()
+        log.info('testing', images_list)
+        # return f'{masterclas_type_item.image.url}'
+        if images_list:
+            return [image.image.url for image in images_list]
+        return None
 
-    def get_is_on_main(self, artwork: Artwork) -> bool:
-        if ArtworkMainPage.objects.filter(artwork=artwork).exists():
+    def get_is_for_sale(self, artwork: Artwork) -> bool:
+        if artwork.price:
             return True
         return False
+
+    # def get_custom_ordering(self, artwork: Artwork) -> int:
+    #     try:
+    #         ordering = ArtworkMainPage.objects.get(
+    #             artwork=artwork).custom_ordering
+    #         if ordering is not None:
+    #             return ordering
+    #         return None
+    #     except Exception as er:
+    #         logging.error(er, exc_info=True)
+
+    # def get_is_on_main(self, artwork: Artwork) -> bool:
+    #     if ArtworkMainPage.objects.filter(artwork=artwork).exists():
+    #         return True
+    #     return False
+
+
+class FavoriteSerializer(serializers.ModelSerializer):
+
+    who_favorited = serializers.SerializerMethodField()
+    favorited_artwork = serializers.SerializerMethodField()
+
+    def get_who_favorited(self, obj):
+        if "who_favorited" in self.context:
+            return self.context["who_favorited"].id
+        return None
+
+    def get_favorited_artwork(self, obj):
+        if "favorited_artwork" in self.context:
+            return self.context["favorited_artwork"].id
+        return None
+
+    class Meta:
+        model = FavoriteArtwork
+        fields = ['who_favorited', 'favorited_artwork']
+
+    def create(self, validated_data):
+        log.info('working in serializer')
+        user_id = self.context['who_favorited'].id
+        artwork_id = self.context['favorited_artwork'].id
+        if FavoriteArtwork.objects.filter(who_favorited_id=user_id,
+                                          favorited_artwork_id=artwork_id):
+            raise serializers.ValidationError('You cannot add the artwork'
+                                              'to favorites twice')
+        favorite_artwork = FavoriteArtwork.objects.create(
+            who_favorited_id=user_id,
+            favorited_artwork_id=artwork_id)
+        favorite_artwork.save()
+        return favorite_artwork
 
 
 class EmailMainSerializer(serializers.ModelSerializer):

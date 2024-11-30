@@ -5,6 +5,7 @@ import { reviewsSliceReducer } from './slices/reviewsSlice';
 import { authSliceReducer } from './slices/authSlice';
 import { popupSliceReducer } from './slices/popupSlice';
 import { coursesFiltersSliceReducer } from './slices/coursesFiltersSlice';
+import { personalInfoSliceReducer } from './slices/personalInfoSlice';
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     auth: authSliceReducer,
     popup: popupSliceReducer,
     coursesFilters: coursesFiltersSliceReducer,
+    user: personalInfoSliceReducer,
   },
 });

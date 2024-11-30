@@ -13,6 +13,51 @@ class Api {
     return Promise.reject(new Error(`${res.status}`));
   }
 
+  async getMyPersonalInfo() {
+    const url = `${this._url}/api/v1/users/me/`;
+    const accessToken = localStorage.getItem('accessToken');
+
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    return this.constructor._checkResponse(res);
+  }
+
+  async changeEmail(newEmail) {
+    const url = `${this._url}/api/v1/users/set_email/`;
+    const accessToken = localStorage.getItem('accessToken');
+
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newEmail),
+    });
+    return this.constructor._checkResponse(res);
+  }
+
+  async changeMyPersonalInfo(changes) {
+    const url = `${this._url}/api/v1/users/me/`;
+    const accessToken = localStorage.getItem('accessToken');
+
+    const res = await fetch(url, {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(changes),
+    });
+
+    return this.constructor._checkResponse(res);
+  }
+
   async getPosts() {
     const res = await fetch(`${this._url}/api/v1/blog/`);
     const data = await this.constructor._checkResponse(res);

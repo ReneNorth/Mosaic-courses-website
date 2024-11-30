@@ -60,8 +60,6 @@ export const PostPage = () => {
   return (
     <>
       <PromoSection
-        desktopImage={currentPost.image}
-        mobileImage={currentPost.image}
         title={currentPost.title}
         text={currentPost.preview_text}
         otherElements={(
@@ -69,7 +67,7 @@ export const PostPage = () => {
             <p className={cls.readingTime}>
               Время прочтения
               {currentPost.read_time}
-              {getNoun(currentPost.read_time, 'минута', 'минуты', 'минут')}
+              {getNoun(currentPost.read_time, ' минута', ' минуты', ' минут')}
             </p>
             <p className={cls.publishDate}>
               Опубликовано
@@ -124,7 +122,7 @@ export const PostPage = () => {
                     <p className={cls.readingTime}>
                       Время прочтения
                       {post.read_time}
-                      {getNoun(post.read_time, 'минута', 'минуты', 'минут')}
+                      {getNoun(post.read_time, ' минута', ' минуты', ' минут')}
                     </p>
                   )}
                   button={<Button className="outline">Узнать подробнее</Button>}
