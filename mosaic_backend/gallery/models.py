@@ -50,9 +50,7 @@ class Artwork(models.Model):
 class ArtworkImage(models.Model):
     artwork = models.ForeignKey(Artwork,
                                 related_name='images',
-                                on_delete=models.SET_NULL,
-                                blank=True,
-                                null=True)
+                                on_delete=models.DO_NOTHING)
     image = models.ImageField(
         upload_to='gallery/', default=None)
 

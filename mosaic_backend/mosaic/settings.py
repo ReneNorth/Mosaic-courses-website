@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'custom_auth.apps.CustomAuthConfig',
     'teachers.apps.TeachersConfig',
     'store.apps.StoreConfig',
+    'checkout.apps.CheckoutConfig',
+    'favorite.apps.FavoriteConfig',
     'drf_yasg',
     'rest_framework',
     'djoser',
@@ -236,7 +238,7 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
-            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message} {filename}:{lineno}',
             'style': '{',
         },
         'simple': {
