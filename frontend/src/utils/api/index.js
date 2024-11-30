@@ -409,7 +409,18 @@ class Api {
         body,
       });
     }
-    return this._checkResponse(res);
+    return this.constructor._checkResponse(res);
+  }
+
+  // Методы для получения мастер-классов будущих и прошедших для определенного юзера
+  async getUserUpcomingCourses() {
+    // eslint-disable-next-line max-len
+    return this._fetchAuthorized('/api/v1/users/my_masterclasses/upcoming/', 'GET');
+  }
+
+  async getUserPastCourses() {
+    // eslint-disable-next-line max-len
+    return this._fetchAuthorized('/api/v1/users/my_masterclasses/past/', 'GET');
   }
 }
 
