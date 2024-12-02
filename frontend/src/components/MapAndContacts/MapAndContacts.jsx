@@ -76,7 +76,7 @@ export const MapAndContacts = () => {
           </p>
         </div>
       </div>
-      {width <= 876 && <MailingForm />}
+      {/* {width <= 876 && <MailingForm />} */}
     </div>
   );
 };

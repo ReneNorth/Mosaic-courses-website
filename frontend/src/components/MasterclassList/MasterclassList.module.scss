@@ -1,0 +1,76 @@
+@use "../../utils/variables/global.scss";
+
+.text {
+  margin-top: 40px;
+  padding-left: 16px;
+  padding-bottom: 36px;
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.date {
+  margin-top: 40px;
+  padding: 0;
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.pagination {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  font-family: var(--font-primary);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.numberPage {
+  background-color: transparent;
+  margin: 0 8px;  cursor: pointer;
+}
+
+.activePage {
+  padding: 10px;
+  background-color: var(--color-beige-secondary);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.buttonChangeCurrentPage {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+@media screen and (min-width: global.$breakpoint-ipad-mini) and (max-width: 1100px) {
+  .text {
+    margin-top: 16px;
+    padding-bottom: 16px;
+    font-size: 16px;
+    padding-left: 0;
+  }
+
+  .date {
+    margin-top: 32px;
+    margin-bottom: 16px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 719px) {
+    .text {
+      margin-top: 16px;
+      padding: 0;
+      padding-bottom: 16px;
+      font-size: 16px;
+    }
+
+    .date {
+      margin: 24px 0 0 20px;
+      font-size: 16px;
+    }
+  }

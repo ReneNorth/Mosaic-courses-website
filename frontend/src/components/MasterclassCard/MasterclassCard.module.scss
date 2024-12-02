@@ -1,0 +1,321 @@
+@use "../../utils/variables/global.scss";
+
+.flexContainer {
+  margin-bottom: 16px;
+  padding-right: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  width: 100%;
+  width: 840px;
+  box-sizing: border-box;
+}
+
+.borderContainer {
+  margin-top: 20px;
+}
+
+.flexContainerWithLine {
+  margin: 0 24px;
+  padding-bottom: 24px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.flexContainerForPrice {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+.borderActive {
+  border-bottom: 1px solid var(--color-green-grey);
+}
+
+.hidden {
+  display: none;
+}
+
+.date {
+  margin-top: 40px;
+  padding: 0;
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.description {
+  display: -webkit-box;
+  max-width: 471px;
+  max-height: 81px;
+  margin: 0;
+  padding: 0;
+  margin-left: 24px;
+  margin-bottom: 16px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.schedule {
+  margin: 0;
+  padding: 0;
+  margin-left: 24px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  color: var(--color-green-accent-active);
+}
+
+.schedule span {
+  position: relative;
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.schedule span:not(:last-child)::after {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background-color: var(--color-green-accent-active);
+  display: inline-block;
+  margin: 3px 6px;
+}
+
+.teacher {
+  margin: 0 0 0 24px;
+  min-width: 179px;
+  min-height: 40px;
+  padding: 4px 12px 0 52px;
+  box-sizing: border-box;
+  background-color: var(--color-green-primary);
+  background-image: url(../../images/masterclass-teacher.svg);
+  background-position: 12px center;
+  background-repeat: no-repeat;
+  border-radius: 56px;
+  font-family: var(--font-primary);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status {
+  color: var(--color-green-grey);
+  font-family: var(--font-primary);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.buttonPay {
+  width: 157px;
+  height: 43px;
+  background-color: var(--color-green-accent);
+  color: var(--color-white);
+  border-radius: 56px;
+  font-family: var(--font-primary);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.price {
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.buttonPopup {
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.popup {
+  padding: 16px 20px;
+  box-sizing: border-box;
+  width: 120px;
+  height: 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background: var(--color-background-color);
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 4%;
+  border-radius: 2px;
+  border: none;
+  position: absolute;
+  top: 28px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.changeCourseButton {
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 1101px) and (max-width: 1320px) {
+  .flexContainer {
+    max-width: 730px;
+  }
+}
+
+@media screen and (min-width: 910px) and (max-width: global.$breakpoint-xsmall-laptop) {
+  .flexContainer {
+    max-width: 520px;
+    gap: 12px;
+  }
+
+  .borderContainer {
+    margin-top: 16px;
+    max-width: 520px;
+  }  
+
+  .description {
+    max-width: 70%;
+    height: 66px;
+    font-size: 16px;
+  }
+
+  .price {
+    font-size: 16px;
+  }
+
+  .date {
+    margin-top: 32px;
+    margin-bottom: 16px;
+    font-size: 16px;
+  }
+
+}
+
+@media screen and (min-width: global.$breakpoint-ipad-mini) and (max-width: 909px) {
+  .flexContainer {
+    max-width: 337px;
+    gap: 12px;
+  }
+
+  .flexContainerWithLine {
+    flex-direction: column;
+  }
+
+  .borderContainer {
+    margin-top: 16px;
+  }  
+
+  .flexContainerForPrice {
+    gap: 12px;
+  }
+
+  .date {
+    margin-top: 32px;
+    margin-bottom: 16px;
+    font-size: 16px;
+  }
+
+  .description {
+    max-width: 181px;
+    height: 66px;
+    font-size: 16px;
+  }
+
+  .price {
+    font-size: 16px;
+  }
+
+  .schedule span {
+    font-size: 16px;
+  }
+
+  .teacher {
+    margin-left: 20px;
+    padding-left: 40px;
+    background-color: transparent;
+    background-position: 6px center;
+  }
+
+  .status {
+    margin-top: 16px;
+  }
+
+  .buttonPay {
+    margin-top: 16px;
+    width: 297px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: global.$breakpoint-ipad-mini) {
+  .borderContainer {
+    margin-top: 16px;
+  }
+
+  .flexContainer {
+    max-width: 320px;
+    gap: 12px;
+  }
+
+  .description {
+    max-width: 164px;
+    max-height: 66px;
+    font-size: 16px;
+  }
+
+  .flexContainerWithLine {
+    flex-direction: column;
+  }
+
+  .date {
+    margin: 24px 0 0 20px;
+    font-size: 16px;
+  }
+
+  .price {
+    font-size: 16px;
+  }
+
+  .schedule span {
+    font-size: 16px;
+  }
+
+  .teacher {
+    margin: 0;
+    padding-left: 40px;
+    background-color: transparent;
+    background-position: 6px center;
+  }
+
+  .status {
+    margin-top: 16px;
+  }
+
+  .buttonPay {
+    margin-top: 16px;
+    width: 280px;
+  }  
+}

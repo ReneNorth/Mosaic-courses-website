@@ -21,6 +21,8 @@ export const ENDPOINTS = {
   profilePersonalData: '/profile/personal-data',
   profileSecurity: '/profile/security',
   profileAlert: '/profile/alert',
+  myMasterclasses: '/my-masterclasses',
+  myMasterclassesPast: '/my-masterclasses-past',
   notFound: '*',
 };
 
