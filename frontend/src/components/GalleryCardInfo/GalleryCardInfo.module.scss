@@ -1,5 +1,10 @@
 @use "../../utils/variables/global.scss";
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .container {
   display: flex;
   flex-direction: row;
@@ -40,4 +45,103 @@
 
 .buttonLikeActive {
   background-image: url(../../images/button-active-like.svg);
+}
+
+.author {
+  margin: 0;
+  padding: 0;
+  margin-top: 12px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  color: var(--color-green-grey);
+}
+  
+.author span {
+  position: relative;
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+  
+.author span:not(:last-child)::after {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background-color: var(--color-green-grey);
+  display: inline-block;
+  margin: 3px 8px;
+}
+
+.price {
+  margin-bottom: 32px;
+  font-family: var(--font-primary);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 43.2px;
+}
+
+.buttonBuyByClick {
+  margin-bottom: 16px;
+  width: 400px;
+  height: 56px;
+  border-radius: 56px;
+  border: 1.5px solid var(--color-green-accent);
+  color: var(--color-green-accent);
+  font-family: var(--font-primary);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 23.95px;
+  cursor: pointer;
+}
+
+.button {
+  margin-bottom: 48px;
+  width: 400px;
+  height: 56px;
+  border-radius: 56px;
+  background-color: var(--color-green-accent);
+  color: var(--bg-color-white);
+  font-family: var(--font-primary);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 23.95px;
+  cursor: pointer;
+}
+
+.table {
+  margin-bottom: 24px;
+}
+
+.tableTitle {
+  margin-bottom: 8px;
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.tableText {
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.description {
+  padding-top: 24px;
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  border-top: 1px solid var(--color-green-grey);
+}
+
+.descriptionText {
+  max-width: 620px;
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 27px;
 }
