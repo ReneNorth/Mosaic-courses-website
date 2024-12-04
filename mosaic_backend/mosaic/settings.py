@@ -10,12 +10,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 
 load_dotenv(os.path.join(BASE_DIR.parent, 'infra', '.env'))
-log_file = os.path.join(BASE_DIR, 'logs.txt')
-logging.basicConfig(filename=log_file, level=logging.DEBUG,
-                    format='%(asctime)s %(levelname)s %(message)s')
-
-log = logging.getLogger(__name__)
-
 
 KEY_ENV = os.getenv('SECRET_KEY')
 SECRET_KEY = f'{KEY_ENV}'
@@ -66,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'drf_api_logger.middleware.api_logger_middleware.APILoggerMiddleware',
+    'users.middleware.AdminAuthLoggingMiddleware',
 ]
 
 
@@ -253,14 +248,25 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'simple',
         },
+        'file': {
+            'level': LOGLEVEL,
+            'class': 'logging.FileHandler',
+            'formatter': 'verbose',
+            'filename': os.path.join(BASE_DIR, 'logs', 'django.log'),
+        },
         'django.server': DEFAULT_LOGGING['handlers']['django.server'],
     },
     'loggers': {
         '': {
             'level': LOGLEVEL,
-            'handlers': ['console', ],
+            'handlers': ['console', 'file'],
         },
         'django.server': DEFAULT_LOGGING['loggers']['django.server'],
+        'users.middleware': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'file'],
+            'propagate': False,
+        },
     }
 }
 
@@ -269,5 +275,3 @@ GRAPH_MODELS = {
     'all_applications': True,
     'group_models': True,
 }
-
-# FILE_UPLOAD_MAX_MEMORY_SIZE = 10

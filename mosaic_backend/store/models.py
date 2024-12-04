@@ -58,6 +58,8 @@ class StoreItemImage(models.Model):
 
 class Basket(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    item = models.ForeignKey(
+        StoreItem, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
