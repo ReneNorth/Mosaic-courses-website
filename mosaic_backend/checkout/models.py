@@ -22,21 +22,20 @@ class Order(models.Model):
 class OrderItem(models.Model):
     order = models.ForeignKey(
         Order, on_delete=models.CASCADE)
-    # artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)
     store_item = models.ForeignKey(StoreItem,
                                    related_name='items',
                                    on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return f'{self.quantity} x {self.artwork.title}'
+        return f'{self.quantity}'
 
 
 class OrderArtwork(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     artwork = models.ForeignKey(Artwork, related_name='artworks',
                                 on_delete=models.CASCADE)
+    is_reproduction = models.BooleanField()
 
 
 class Payment(models.Model):

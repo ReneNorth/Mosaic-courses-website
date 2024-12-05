@@ -36,9 +36,14 @@ class Artwork(models.Model):
                                    help_text='artwork`s description')
     is_in_stock = models.BooleanField(verbose_name='is this artwork available',
                                       default=True)
-    is_replica_available = models.BooleanField(
-        verbose_name='is this artwork can be made again',
+    is_reproducible = models.BooleanField(
+        verbose_name='is this artwork can be made again (is_reproducible)',
         default=False)
+    reproduction_estimation_in_days = models.PositiveSmallIntegerField(
+        default=14,
+        verbose_name='The calendar days estimation to recreate the artwork',
+        help_text='ask the management for an estimation if the number'
+        'is not provided by this point')
 
     class Meta:
         ordering = ['-add_date']
