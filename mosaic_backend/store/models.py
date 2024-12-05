@@ -58,8 +58,8 @@ class StoreItemImage(models.Model):
 
 class Basket(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    item = models.ForeignKey(
-        StoreItem, on_delete=models.CASCADE)
+    item = models.ManyToManyField(StoreItem, through='BasketItem')
+    artwork = models.ManyToManyField(Artwork, through='BasketArtwork')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -69,10 +69,16 @@ class Basket(models.Model):
 
 class BasketItem(models.Model):
     basket = models.ForeignKey(
-        Basket, related_name='items', on_delete=models.CASCADE)
-    artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)
+        Basket, on_delete=models.CASCADE)
     store_item = models.ForeignKey(StoreItem, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):
         return f'{self.quantity} x {self.artwork.title}'
+
+
+class BasketArtwork(models.Model):
+    basket = models.ForeignKey(Basket, on_delete=models.CASCADE)
+    artwork = models.ForeignKey(Artwork,
+                                on_delete=models.CASCADE)
+    is_reproduction = models.BooleanField()
