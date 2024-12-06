@@ -17,6 +17,8 @@ from masterclass.models import (Masterclass, MasterclassCategory,
                                 MasterclassType)
 from mosaic.business_logic import BusinessLogic
 from school.models import Advatage, Approach, Question, Review, School
+from store.models import Basket, BasketArtwork, BasketItem, StoreItem
+from checkout.models import Order, OrderArtwork, OrderItem, Payment, Receipt
 
 User = get_user_model()
 
@@ -306,3 +308,25 @@ class SchoolSerializer(serializers.ModelSerializer):
             'phone', 'email', 'facebook_link', 'tg_link', 'instagram_link',
             'advantages', 'questions', 'approach',
         ]
+
+
+class BasketSerialzer(serializers.ModelSerializer):
+    item_id = serializers.IntegerField()
+
+    class Meta:
+        model = Basket
+        fields = ['user', 'item', 'artwork', 'created_at', 'updated_at',
+                  'item_id']
+        extra_kwargs = {
+            'user': {'required': False},
+            'author': {'required': False},
+        }
+
+        def update(self, instance, validated_data):
+            item_id = validated_data.pop('item_id', None)
+            instance = super().update(instance, validated_data)
+
+            store_item = StoreItem.objects.get(id=item_id)
+            BasketItem.objects.create(basket=instance, store_item=store_item)
+
+            return instance

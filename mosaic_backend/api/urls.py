@@ -10,7 +10,8 @@ from .views import (BookingViewSet, CertificatePostPatchViewSet,
                     MasterclassReadOnlyViewset, MasterclassTypeReadOnlyViewSet,
                     PostViewSet, RequestCreateOnlyViewSet,
                     SchoolReadOnlyViewSet, StudentReviewsReadOnlyViewSet,
-                    TagReadOnlyViewSet, ArtworkReadOnlyViewSet)
+                    TagReadOnlyViewSet, ArtworkReadOnlyViewSet,
+                    BasketViewSet)
 
 router1 = routers.SimpleRouter()
 
@@ -40,6 +41,8 @@ router1.register(r'tags', TagReadOnlyViewSet,
                  basename='tags')
 router1.register(r'filters', MasterclassCategoryFilterReadOnlyViewSet,
                  basename='filters')
+router1.register(r'basket', BasketViewSet,
+                 basename='basket')
 
 urlpatterns = [
     path('admin/doc/', include('django.contrib.admindocs.urls')),

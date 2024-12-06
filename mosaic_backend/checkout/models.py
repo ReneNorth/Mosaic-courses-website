@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 
 from gallery.models import Artwork
-from store.models import StoreItem
+from store.models import StoreItem, Basket
 
 User = get_user_model()
 
@@ -12,11 +12,20 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_paid = models.BooleanField(default=False)
+    basket = models.ForeignKey(Basket, related_name='basket',
+                               on_delete=models.CASCADE)
     item = models.ManyToManyField(StoreItem, through='OrderItem')
     artwork = models.ManyToManyField(Artwork, through='OrderArtwork')
+    delivery_type = ...
+    delivery_adress = ...
+    total_price = ...
+    discount = ...  # I will need the update for it
+    lifetime = ...
 
     def __str__(self):
         return f'Order {self.id} by {self.user.username}'
+
+    # def
 
 
 class OrderItem(models.Model):
@@ -33,7 +42,7 @@ class OrderItem(models.Model):
 
 class OrderArtwork(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    artwork = models.ForeignKey(Artwork, related_name='artworks',
+    artwork = models.ForeignKey(Artwork, related_name='order_artworks',
                                 on_delete=models.CASCADE)
     is_reproduction = models.BooleanField()
 

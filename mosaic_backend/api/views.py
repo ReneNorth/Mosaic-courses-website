@@ -21,7 +21,7 @@ from api.serializers import (ArtworkSerializer, BookingSerializer,
                              MasterclassSerializer, MasterclassTypeSerializer,
                              PostSerializer, RequestSerializer,
                              ReviewsSerializer, SchoolSerializer,
-                             TagReadOnlySerializer)
+                             TagReadOnlySerializer, BasketSerialzer)
 from blog.models import Post, Tag
 from booking.models import Booking
 from carousel.models import MainCarouselItem
@@ -32,6 +32,8 @@ from masterclass.models import (Masterclass, MasterclassCategory,
                                 MasterclassType)
 from school.models import Review, School
 from users.permissions import BookingPermission, FavoritePermission
+from store.models import Basket, BasketArtwork, BasketItem, StoreItem
+from checkout.models import Order, OrderArtwork, OrderItem, Payment, Receipt
 
 User = User = get_user_model()
 log = logging.getLogger(__name__)
@@ -256,3 +258,45 @@ class StudentReviewsReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     pagination_class = LimitOffsetPagination
     ordering_fields = ['pub_date']
     ordering = ['pub_date']
+
+
+class BasketViewSet(viewsets.ModelViewSet):
+    serializer_class = BasketSerialzer
+    permission_classes = [AllowAny, ]
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            return Basket.objects.filter(user=self.request.user)
+        else:
+            session_key = self.request.session.session_key
+            if not session_key:
+                self.request.session.create()
+                session_key = self.request.session.session_key
+            return Basket.objects.filter(session_key=session_key)
+
+    def get_object(self):
+        if self.request.user.is_authenticated:
+            obj = Basket.objects.create(user=self.request.user)
+        else:
+            obj = Basket.objects.create(
+                session_key=self.request.session.session_key)
+        self.check_object_permissions(self.request, obj)
+        return obj
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(
+            instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
+
+    # add item - if the basket is not created - create it
+    # if the basket has already been created - add an item to a basket
