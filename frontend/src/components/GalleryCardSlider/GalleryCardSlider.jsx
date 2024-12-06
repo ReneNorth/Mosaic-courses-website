@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Slider from 'react-slick';
 import cls from './GalleryCardSlider.module.scss';
 import { CustomImage } from './CustomImage';
@@ -25,18 +25,21 @@ const images = [
 export const GalleryCardSlider = () => {
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
+    arrows: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     // eslint-disable-next-line react/no-unstable-nested-components
     customPaging: (i) => (
       <div style={{
-        display: 'flex',
-        width: '510px',
-        justifyContent: 'spaceBetween',
-        gap: '12px',
-        marginRight: '12px',
+        display: 'none',
+        // display: 'flex',
+        // flexDirection: 'column',
+        // justifyContent: 'center',
+        // alignItems: 'flex-start',
+        // width: '100px',
+        // marginLeft: '12px',
       }}
       >
         {CustomImage(images[i].src)}
@@ -44,19 +47,40 @@ export const GalleryCardSlider = () => {
     ),
   };
 
+  const sliderRef = useRef(null);
+
   return (
-    <div className={cls.container}>
-      <Slider {...settings}>
-        {images.map((image) => (
-          <div key={image.id} style={{ width: '510px', height: 'auto', borderRadius: '10px' }}>
+    <div className={cls.wrapper}>
+      <div className={cls.container}>
+        <div className={cls.sliderWrapper}>
+          <Slider ref={sliderRef} {...settings}>
+            {images.map((image) => (
+              <div key={image.id} className={cls.imageContainer}>
+                <img
+                  src={image.src}
+                  alt={`Slide ${image.id}`}
+                  className={cls.image}
+                />
+              </div>
+            ))}
+          </Slider>
+        </div>
+      </div>
+      <div className={cls.thumbnails}>
+        {images.map((image, index) => (
+          <div
+            key={image.id}
+            className={cls.thumbnail}
+            onClick={() => sliderRef.current.slickGoTo(index)}
+          >
             <img
               src={image.src}
-              alt={`Slide ${image.id}`}
-              style={{ width: '510px', height: 'auto', borderRadius: '10px' }}
+              alt={`Thumbnail ${image.id}`}
+              className={cls.thumbnailImage}
             />
           </div>
         ))}
-      </Slider>
+      </div>
     </div>
   );
 };

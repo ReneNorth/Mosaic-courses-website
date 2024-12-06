@@ -1,6 +1,92 @@
 @use "../../utils/variables/global.scss";
 
+.navWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.buttonLink {
+  width: 32px;
+  height: 32px;
+  background-image: url(../../images/button-link.svg);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.buttonLike {
+  width: 32px;
+  height: 32px;  
+  background-image: url(../../images/button-like.svg);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.buttonLikeActive {
+  background-image: url(../../images/button-active-like.svg);
+}
+
+.navigation {
+  margin: 32px 0 32px calc((100% - 990px)/2);
+  display: flex;
+  align-self: flex-start;
+  gap: 16px;
+}
+
+.link {
+  color: var(--color-green-grey);
+  font-family: var(--font-primary);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 22.95px;
+}
+
+.text {
+  color: var(--color-green-accent);
+  font-family: var(--font-primary);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 22.95px;
+}
+
 .flexContainer {
   display: flex;
   gap: 40px;
+}
+
+@media screen and (min-width: 1300px) {
+  .navigation {
+    margin: 32px 0 32px calc((100% - 1280px)/2);
+  }
+}
+
+@media screen and (max-width: 745px) {
+  .navigation {
+    margin: 19px 0 31px calc((100% - 1280px)/2);
+  }
+
+  .buttonLink {
+    width: 44px;
+    height: 44px;
+    background-repeat: no-repeat;
+  }
+  
+  .buttonLike {
+    width: 44px;
+    height: 44px;  
+    background-repeat: no-repeat;
+  }
+  
+
+  .link {
+    color: var(--color-green-accent);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 21.6px;
+  }
 }

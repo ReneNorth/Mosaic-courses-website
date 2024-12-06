@@ -1,6 +1,75 @@
 @use "../../utils/variables/global.scss";
+.slick-prev, .slick-next {
+  display: none;
+  opacity: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 20px;
+  width: 620px;
+}
 
 .container {
-  width: 330px;
-  height: 330px;
+  width: 510px;
+  height: 510px;
+}
+
+.sliderWrapper {
+  flex-grow: 1;
+}
+
+.thumbnails {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 12px;
+}
+
+.thumbnail {
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.thumbnailImage {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 510px;
+  height: 510px;
+  border-radius: 10px;
+}
+
+.image {
+   width: 510px;
+   height: 510px;
+   border-radius: 10px;
+}
+
+@media screen and (max-width: 745px) {
+  .container {
+    width: 278px;
+    height: 278px;
+    border-radius: 10px;
+  }
+
+  .imageContainer {
+    width: 278px;
+    height: 278px;
+    border-radius: 10px;
+  }
+
+  .image {
+    width: 278px;
+    height: 278px;
+    border-radius: 10px;
+ }
 }

@@ -145,3 +145,25 @@
   font-weight: 400;
   line-height: 27px;
 }
+
+@media screen and (max-width: 745px) {
+  .flexContainer {
+    width: 398px;
+  }
+  
+  .buttonContainer {
+    display: none;
+  }
+
+  .buttonBuyByClick {
+    width: 279px;
+  }
+
+  .button {
+    width: 279px;
+  }
+
+  .descriptionText {
+    max-width: 398px;
+  }  
+}
