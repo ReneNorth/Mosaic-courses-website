@@ -1,7 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Slider from 'react-slick';
 import cls from './GalleryCardSlider.module.scss';
-import { CustomImage } from './CustomImage';
 
 const images = [
   {
@@ -24,30 +23,37 @@ const images = [
 
 export const GalleryCardSlider = () => {
   const settings = {
-    dots: true,
-    infinite: false,
+    dots: false,
+    infinite: true,
     arrows: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // eslint-disable-next-line react/no-unstable-nested-components
-    customPaging: (i) => (
-      <div style={{
-        display: 'none',
-        // display: 'flex',
-        // flexDirection: 'column',
-        // justifyContent: 'center',
-        // alignItems: 'flex-start',
-        // width: '100px',
-        // marginLeft: '12px',
-      }}
-      >
-        {CustomImage(images[i].src)}
-      </div>
-    ),
   };
 
   const sliderRef = useRef(null);
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Обновленная функция, чтобы установить currentSlide
+  const goToSlide = (index) => {
+    sliderRef.current.slickGoTo(index);
+    setCurrentSlide(index);
+  };
+
+  // Обновленная функция для перехода к следующему слайду
+  const nextSlide = () => {
+    sliderRef.current.slickNext();
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length); // Переход к следующему слайду
+  };
+
+  // Обновленная функция для перехода к предыдущему слайду
+  const prevSlide = () => {
+    sliderRef.current.slickPrev();
+    setCurrentSlide(
+      (prevSlide) => (prevSlide - 1 + images.length) % images.length,
+    ); // Переход к предыдущему слайду
+  };
 
   return (
     <div className={cls.wrapper}>
@@ -66,6 +72,7 @@ export const GalleryCardSlider = () => {
           </Slider>
         </div>
       </div>
+
       <div className={cls.thumbnails}>
         {images.map((image, index) => (
           <div
@@ -81,6 +88,21 @@ export const GalleryCardSlider = () => {
           </div>
         ))}
       </div>
+
+      <div className={cls.navWrapper}>
+        <button className={cls.navButtonLeft} type="button" aria-label="Слайд назад" onClick={prevSlide} />
+        <div className={cls.sliderDots}>
+          {images.map((image, index) => (
+            <span
+              key={image.id}
+              className={`${cls.sliderDot} ${currentSlide === index ? cls.sliderDotActive : ''}`}
+              onClick={() => goToSlide(index)}
+            />
+          ))}
+        </div>
+        <button className={cls.navButtonRight} type="button" aria-label="Слайд вперед" onClick={nextSlide} />
+      </div>
+
     </div>
   );
 };

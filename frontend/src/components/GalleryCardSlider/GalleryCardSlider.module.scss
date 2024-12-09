@@ -1,10 +1,7 @@
 @use "../../utils/variables/global.scss";
-.slick-prev, .slick-next {
-  display: none;
-  opacity: 0;
-}
 
 .wrapper {
+  position: relative;
   display: flex;
   flex-direction: row-reverse;
   gap: 20px;
@@ -54,6 +51,72 @@
    border-radius: 10px;
 }
 
+@media screen and (min-width: 1300px) {
+  .sliderDots {
+    display: none;
+  }
+}
+
+
+@media screen and (max-width: 1299px) {
+  .thumbnails {
+    display: none;
+  }
+
+  .navWrapper {
+    width: 158px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 78px;
+    position: absolute;
+    bottom: 0;
+    left: 48%;
+  }
+
+  .navButtonLeft {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    background-image: url(../../images/slider-button-left.svg);
+    background-repeat: no-repeat;
+  }
+
+  .navButtonRight {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    background-image: url(../../images/slider-button-right.svg);
+    background-repeat: no-repeat;
+    background-position: right top;
+  }
+
+  .sliderDots {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 22px;
+  }
+  
+  .sliderDot {
+    width: 6px;
+    height: 6px;
+    margin: 0 4px;
+    border: 1px solid var(--color-green-accent);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sliderDotActive {
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-green-accent);
+  }
+}
+
 @media screen and (max-width: 745px) {
   .container {
     width: 278px;
@@ -72,4 +135,18 @@
     height: 278px;
     border-radius: 10px;
  }
+}
+
+@media screen and (max-width: 560px) {
+  .navButtonLeft {
+    display: none;
+  }
+
+  .navButtonRight {
+    display: none;
+  }
+
+  .sliderDots {
+    bottom: 8px;
+  }  
 }
