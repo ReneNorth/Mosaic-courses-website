@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { CardMoreContent } from '../../components/CardMoreContent/CardMoreContent';
 import { Button } from '../../components/Button/Button';
-import { PromoSection } from '../../components/PromoSection/PromoSection';
+import { PromoSectionWithoutImage } from '../../components/PromoSectionWithoutImage/PromoSectionWithoutImage';
 
 import {
   getAllPosts,
@@ -59,7 +59,7 @@ export const PostPage = () => {
 
   return (
     <>
-      <PromoSection
+      <PromoSectionWithoutImage
         title={currentPost.title}
         text={currentPost.preview_text}
         otherElements={(

@@ -61,7 +61,6 @@
 }
 
 .markdown__container {
-  margin-top: 119px;
   margin-left: 320px;
   margin-right: 320px;
   padding: 64px 110px 90px;
@@ -91,6 +90,7 @@
       font-style: normal;
       font-weight: 400;
       line-height: 22.95px;
+      
     }
 
     ul {
@@ -118,6 +118,7 @@
       max-width: 100%;
       object-fit: cover;
       padding-bottom: 52px;
+      padding-top: 40px;
     }
   }
 
