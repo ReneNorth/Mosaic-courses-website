@@ -2,26 +2,7 @@ import React, { useRef, useState } from 'react';
 import Slider from 'react-slick';
 import cls from './GalleryCardSlider.module.scss';
 
-const images = [
-  {
-    id: 1,
-    src: 'https://via.placeholder.com/600x400/FF5733/FFFFFF?text=Image+1',
-  },
-  {
-    id: 2,
-    src: 'https://via.placeholder.com/600x400/C70039/FFFFFF?text=Image+2',
-  },
-  {
-    id: 3,
-    src: 'https://via.placeholder.com/600x400/900C3F/FFFFFF?text=Image+3',
-  },
-  {
-    id: 4,
-    src: 'https://via.placeholder.com/600x400/581845/FFFFFF?text=Image+4',
-  },
-];
-
-export const GalleryCardSlider = () => {
+export const GalleryCardSlider = ({ images }) => {
   const settings = {
     dots: false,
     infinite: true,

@@ -10,6 +10,26 @@ export const GalleryCard = () => {
   const { width } = useResize();
 
   const [isLiked, setIsLiked] = useState(false);
+
+  const images = [
+    {
+      id: 1,
+      src: 'https://via.placeholder.com/600x400/FF5733/FFFFFF?text=Image+1',
+    },
+    {
+      id: 2,
+      src: 'https://via.placeholder.com/600x400/C70039/FFFFFF?text=Image+2',
+    },
+    {
+      id: 3,
+      src: 'https://via.placeholder.com/600x400/900C3F/FFFFFF?text=Image+3',
+    },
+    {
+      id: 4,
+      src: 'https://via.placeholder.com/600x400/581845/FFFFFF?text=Image+4',
+    },
+  ];
+
   function handleLike() {
     setIsLiked(!isLiked);
   }
@@ -48,9 +68,9 @@ export const GalleryCard = () => {
         </div>
       )}
       <div className={cls.flexContainer}>
-        <GalleryCardSlider />
+        <GalleryCardSlider images={images} />
         <div>
-          <GalleryCardInfo />
+          <GalleryCardInfo images={images} />
         </div>
       </div>
     </>

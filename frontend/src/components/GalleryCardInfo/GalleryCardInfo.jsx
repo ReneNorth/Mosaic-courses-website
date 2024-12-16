@@ -1,14 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import cls from './GalleryCardInfo.module.scss';
+import NewSettler from '../NewSettler/NewSettler';
 
-export const GalleryCardInfo = () => {
+export const GalleryCardInfo = ({ images }) => {
   const [isLiked, setIsLiked] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const title = 'Изготовим картину для Вас';
+  const description = 'Оставьте Ваши контакты, чтобы уточнить детали';
+
   function handleLike() {
     setIsLiked(!isLiked);
   }
 
   return (
     <div className={cls.wrapper}>
+      <NewSettler
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        title={title}
+        description={description}
+        image={images[0].src}
+      />
       <div className={cls.container}>
         <div className={cls.flexContainer}>
           <h2 className={cls.title}>Название</h2>
@@ -29,10 +42,17 @@ export const GalleryCardInfo = () => {
       </div>
       <p className={cls.price}>2000 P</p>
       <button className={cls.buttonBuyByClick} type="button" aria-label="Купить">Купить в один клик</button>
-      <button className={cls.button} type="button" aria-label="Добавить в корзину">Добавить в корзину</button>
-      {/* С бэка пробрасывается статус мозаики, от которого зависит текст кнопки
-      <button className={cls.button} type="button" aria-label="Заказать изготовление">Заказать изготовление</button>
-      <button className={cls.button} type="button" aria-label="Выбрать занятие">Выбрать занятие</button> */}
+      {/* С бэка пробрасывается статус мозаики, от которого зависит текст кнопки */}
+      {/* <button className={cls.button} type="button" aria-label="Добавить в корзину">Добавить в корзину</button> */}
+      <button
+        className={cls.button}
+        type="button"
+        onClick={() => setIsOpen(true)}
+        aria-label="Заказать изготовление"
+      >
+        Заказать изготовление
+      </button>
+      {/* <button className={cls.button} type="button" aria-label="Выбрать занятие">Выбрать занятие</button> */}
       <table className={cls.table}>
         <tr className={cls.tableCell}>
           <td className={cls.tableTitle}>Автор</td>
