@@ -35,24 +35,21 @@ export const GalleryCardSlider = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Обновленная функция, чтобы установить currentSlide
   const goToSlide = (index) => {
     sliderRef.current.slickGoTo(index);
     setCurrentSlide(index);
   };
 
-  // Обновленная функция для перехода к следующему слайду
   const nextSlide = () => {
     sliderRef.current.slickNext();
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length); // Переход к следующему слайду
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
   };
 
-  // Обновленная функция для перехода к предыдущему слайду
   const prevSlide = () => {
     sliderRef.current.slickPrev();
     setCurrentSlide(
       (prevSlide) => (prevSlide - 1 + images.length) % images.length,
-    ); // Переход к предыдущему слайду
+    );
   };
 
   return (

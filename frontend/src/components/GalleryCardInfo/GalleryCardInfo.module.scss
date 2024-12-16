@@ -32,6 +32,7 @@
   height: 32px;
   background-image: url(../../images/button-link.svg);
   background-color: transparent;
+  background-repeat: no-repeat;
   cursor: pointer;
 }
 
@@ -40,6 +41,7 @@
   height: 32px;  
   background-image: url(../../images/button-like.svg);
   background-color: transparent;
+  background-repeat: no-repeat;
   cursor: pointer;
 }
 
@@ -146,24 +148,136 @@
   line-height: 27px;
 }
 
-@media screen and (max-width: 745px) {
+@media screen and (max-width: 1199px) {
+  .flexContainer {
+    width: 520px;
+  }
+
+  .descriptionText {
+    max-width: 520px;
+  }  
+}
+
+@media screen and (max-width: 950px) {
   .flexContainer {
     width: 398px;
   }
+
+  .title {
+    font-size: 26px;
+    line-height: 33.8px;
+  }
+
+  .buttonLink {
+    background-size: 24px;
+  }
   
-  .buttonContainer {
-    display: none;
+  .buttonLike {
+    background-size: 24px;
+  }
+
+  .author {
+    margin-top: 16px;
+  }  
+
+  .author span {
+    font-size: 16px;
+    line-height: 21.6px;
+  }
+
+  .price {
+    margin-bottom: 24px;
+    font-size: 26px;
+    line-height: 33.8px;
   }
 
   .buttonBuyByClick {
+    margin-bottom: 12px;
     width: 279px;
+    height: 42px;
+    border-radius: 56px;
+    font-size: 16px;
+    line-height: 21.6px;
   }
 
   .button {
+    margin-bottom: 36px;
     width: 279px;
+    height: 42px;
+    border-radius: 56px;
+    font-size: 16px;
+    line-height: 21.6px;
+  }
+  
+  .tableTitle {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 21.6px;
+  }
+  
+  .tableText {
+    font-size: 16px;
+    line-height: 21.6px;
+  }
+
+  .description {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 21.6x;
   }
 
   .descriptionText {
     max-width: 398px;
+    font-size: 16px;
+    line-height: 21.6x;
+  }  
+}
+
+@media screen and (max-width: 745px) {
+  .buttonContainer {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 630px) and (max-width: 720px) {
+  .flexContainer {
+    width: 300px;
+  }
+
+  .descriptionText {
+    max-width: 300px;
+  }  
+}
+
+@media screen and (min-width: 360px) and (max-width: 629px) {
+  .flexContainer {
+    width: 320px;
+  }
+  
+  .title {
+    font-size: 18px;
+    line-height: 24.3px;
+  }
+
+  .author {
+    margin: 12px 0;
+  }  
+
+  .price {
+    margin-bottom: 20px;
+  }
+
+  .buttonBuyByClick {
+    margin-bottom: 8px;
+    width: 320px;
+  }
+
+  .button {
+    margin-bottom: 28px;
+    width: 320px;
+  }
+
+  .descriptionText {
+    max-width: 320px;
   }  
 }

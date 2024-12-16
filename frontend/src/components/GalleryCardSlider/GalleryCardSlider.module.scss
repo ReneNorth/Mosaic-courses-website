@@ -22,7 +22,6 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-left: 12px;
 }
 
 .thumbnail {
@@ -59,6 +58,10 @@
 
 
 @media screen and (max-width: 1299px) {
+  .wrapper {
+    width: 510px;
+  }
+
   .thumbnails {
     display: none;
   }
@@ -71,7 +74,7 @@
     gap: 78px;
     position: absolute;
     bottom: 0;
-    left: 48%;
+    left: 36%;
   }
 
   .navButtonLeft {
@@ -111,33 +114,92 @@
   }
   
   .sliderDotActive {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     background-color: var(--color-green-accent);
   }
 }
 
-@media screen and (max-width: 745px) {
+@media screen and (max-width: 1199px) {
+  .wrapper {
+    width: 360px;
+    height: 360px;
+  }
+
+  .container {
+    width: 360px;
+    height: 360px;
+  }
+
+  .imageContainer {
+    width: 360px;
+    height: 360px;
+  }
+
+  .image {
+    width: 360px;
+    height: 360px;
+  }
+
+  .navWrapper {
+    bottom: -50px;
+    left: 30%;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .wrapper {
+    width: 278px;
+    height: 278px;
+  }
+
   .container {
     width: 278px;
     height: 278px;
-    border-radius: 10px;
   }
 
   .imageContainer {
     width: 278px;
     height: 278px;
-    border-radius: 10px;
   }
 
   .image {
     width: 278px;
     height: 278px;
-    border-radius: 10px;
- }
+  }
+
+  .navWrapper {
+    bottom: -50px;
+    left: 24%;
+  }
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (min-width: 360px) and (max-width: 629px) {
+  .wrapper {
+    width: 320px;
+    height: 320px;
+  }
+
+  .container {
+    width: 320px;
+    height: 320px;
+  }
+
+  .imageContainer {
+    width: 320px;
+    height: 320px;
+  }
+
+  .image {
+    width: 320px;
+    height: 320px;
+  }
+
+  .navWrapper {
+    bottom: -30px;
+    left: 27%;
+  } 
+
   .navButtonLeft {
     display: none;
   }

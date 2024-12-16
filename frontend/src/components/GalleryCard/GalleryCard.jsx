@@ -18,8 +18,9 @@ export const GalleryCard = () => {
     <>
       {width < 765 ? (
         <div className={cls.navWrapper}>
-          <NavLink to={ENDPOINTS.gallery} className={cls.link}>
-            Назад
+          <NavLink to={ENDPOINTS.gallery} className={cls.navContainer}>
+            <div className={cls.backButton} />
+            <p className={cls.backText}>Назад</p>
           </NavLink>
           <div className={cls.buttonContainer}>
             <button
@@ -47,7 +48,6 @@ export const GalleryCard = () => {
         </div>
       )}
       <div className={cls.flexContainer}>
-        {/* Слайдер с превью сделать от 1300пикселей */}
         <GalleryCardSlider />
         <div>
           <GalleryCardInfo />

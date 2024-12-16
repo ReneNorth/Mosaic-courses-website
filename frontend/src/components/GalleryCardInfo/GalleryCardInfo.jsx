@@ -30,7 +30,8 @@ export const GalleryCardInfo = () => {
       <p className={cls.price}>2000 P</p>
       <button className={cls.buttonBuyByClick} type="button" aria-label="Купить">Купить в один клик</button>
       <button className={cls.button} type="button" aria-label="Добавить в корзину">Добавить в корзину</button>
-      {/* <button className={cls.button} type="button" aria-label="Заказать изготовление">Заказать изготовление</button>
+      {/* С бэка пробрасывается статус мозаики, от которого зависит текст кнопки
+      <button className={cls.button} type="button" aria-label="Заказать изготовление">Заказать изготовление</button>
       <button className={cls.button} type="button" aria-label="Выбрать занятие">Выбрать занятие</button> */}
       <table className={cls.table}>
         <tr className={cls.tableCell}>
@@ -42,7 +43,7 @@ export const GalleryCardInfo = () => {
           <td className={cls.tableText}>80Х80см</td>
         </tr>
         <tr className={cls.tableCell}>
-          <td className={cls.tableTitle}>Материал мозаики</td>
+          <td className={cls.tableTitle}>Материал</td>
           <td className={cls.tableText}>Натуральный камень</td>
         </tr>
       </table>
