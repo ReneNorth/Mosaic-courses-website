@@ -41,7 +41,7 @@ export const PostCard = ({ props }) => {
           <p className={cls.readingTime}>
             {width > 550 && <>Время прочтения</>}
             {readTime}
-            {getNoun(readTime, ' минута', ' минуты', ' минут')}
+            {getNoun(readTime, 'минута', 'минуты', 'минут')}
           </p>
           <p className={cls.publishDate}>
             {width > 550 && <>Опубликовано</>}
