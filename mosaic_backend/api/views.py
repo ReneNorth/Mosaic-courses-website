@@ -21,7 +21,7 @@ from api.serializers import (ArtworkSerializer, BookingSerializer,
                              MasterclassSerializer, MasterclassTypeSerializer,
                              PostSerializer, RequestSerializer,
                              ReviewsSerializer, SchoolSerializer,
-                             TagReadOnlySerializer, BasketSerialzer)
+                             TagReadOnlySerializer, BasketSerializer)
 from blog.models import Post, Tag
 from booking.models import Booking
 from carousel.models import MainCarouselItem
@@ -261,11 +261,14 @@ class StudentReviewsReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class BasketViewSet(viewsets.ModelViewSet):
-    serializer_class = BasketSerialzer
+    serializer_class = BasketSerializer
     permission_classes = [AllowAny, ]
+    queryset = Basket.objects.all()
 
     def get_queryset(self):
+        log.info('in get queryset')
         if self.request.user.is_authenticated:
+            log.info('step1', Basket.objects.filter(user=self.request.user))
             return Basket.objects.filter(user=self.request.user)
         else:
             session_key = self.request.session.session_key
@@ -274,14 +277,33 @@ class BasketViewSet(viewsets.ModelViewSet):
                 session_key = self.request.session.session_key
             return Basket.objects.filter(session_key=session_key)
 
-    def get_object(self):
-        if self.request.user.is_authenticated:
-            obj = Basket.objects.create(user=self.request.user)
-        else:
-            obj = Basket.objects.create(
-                session_key=self.request.session.session_key)
-        self.check_object_permissions(self.request, obj)
-        return obj
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        log.info('t123', request, queryset)
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            log.info('test123', serializer)
+            return self.get_paginated_response(serializer.data)  # падаем тут
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+    # def get_object(self):
+    #     log.info('in get object')
+    #     if self.request.user.is_authenticated:
+    #         log.info('step 1 get obj')
+    #         obj = Basket.objects.get_or_create(
+    #             user=self.request.user
+    #         )
+    #         # obj = Basket.objects.filter(user=self.request.user)
+    #         # obj = Basket.objects.create(user=self.request.user)
+    #     else:
+    #         log.info('step 2')
+    #         obj = Basket.objects.create(
+    #             session_key=self.request.session.session_key)
+    #     self.check_object_permissions(self.request, obj)
+    #     return obj
 
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
@@ -297,6 +319,13 @@ class BasketViewSet(viewsets.ModelViewSet):
             instance._prefetched_objects_cache = {}
 
         return Response(serializer.data)
+
+    @action(detail=True, methods=['post'])
+    def add_item(self, request, pk=None):
+        log.info('logging in add_item', request, pk)
+        # request
+
+        return Response()
 
     # add item - if the basket is not created - create it
     # if the basket has already been created - add an item to a basket

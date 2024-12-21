@@ -310,20 +310,63 @@ class SchoolSerializer(serializers.ModelSerializer):
         ]
 
 
-class BasketSerialzer(serializers.ModelSerializer):
-    item_id = serializers.IntegerField()
+class StoreItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StoreItem
+        fields = [
+            'id',
+            'name',
+            # 'description',
+            'price',
+            # 'quantity',
+        ]
+
+        def to_representation(self, instance):
+            log.info('step12', instance)
+            return 1
+
+
+class BasketItemSerializer(serializers.ModelSerializer):
+    store_item = StoreItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = BasketItem
+        fields = [
+            'id',
+            'store_item',
+            'quantity'
+        ]
+
+        def to_representation(self, instance):
+            log.info('step12', instance)
+            return 1
+
+
+class BasketSerializer(serializers.ModelSerializer):
+    items = BasketItemSerializer(
+        # source='items',
+        many=True,
+        read_only=True
+    )
 
     class Meta:
         model = Basket
-        fields = ['user', 'item', 'artwork', 'created_at', 'updated_at',
-                  'item_id']
+        fields = ['user',
+                  #   'artwork',
+                  'created_at',
+                  'updated_at',
+                  'items',
+                  ]
         extra_kwargs = {
             'user': {'required': False},
-            'author': {'required': False},
         }
 
+        def to_representation(self, instance):
+            log.info('step12', instance)
+            return 1
+
         def update(self, instance, validated_data):
-            item_id = validated_data.pop('item_id', None)
+            item_id = validated_data.pop('item', None)
             instance = super().update(instance, validated_data)
 
             store_item = StoreItem.objects.get(id=item_id)
