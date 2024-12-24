@@ -422,6 +422,17 @@ class Api {
     // eslint-disable-next-line max-len
     return this._fetchAuthorized('/api/v1/users/my_masterclasses/past/', 'GET');
   }
+
+  // Методы для получения информации о карточках в галерее
+  async getAllGalleryCards() {
+    const res = await fetch(`${this._url}/api/v1/artworks/`);
+    return this.constructor._checkResponse(res);
+  }
+
+  async getGalleryCard(id) {
+    const res = await fetch(`${this._url}/api/v1/artworks/${id}/`);
+    return this.constructor._checkResponse(res);
+  }
 }
 
 export const api = new Api(

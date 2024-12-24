@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import cls from './GalleryPage.module.scss';
 import { PromoSectionWithoutImage } from '../../components/PromoSectionWithoutImage/PromoSectionWithoutImage';
 import { SelectField } from '../../components/SelectField/SelectField';
 import { ButtonReset } from '../../components/ButtonReset/ButtonReset';
+import { api } from '../../utils/api';
 // Старая версия галереи
 // import cls from './GalleryPage.module.scss';
 // import { MasonryWorksGallery } from '../../components/GalleryGrid/GalleryGrid.jsx';
@@ -15,12 +17,32 @@ export const GalleryPage = () => {
       наших работ
     </>
   );
-  const author = ['Валентина', 'Инесса'];
-  const availability = ['Есть', 'Нет'];
-  const typesMosaic = ['Не керамика', 'Керамика'];
 
-  const [activeFilterSelect, setActiveFilterSelect] = React.useState([]);
-  const [resetFilterSelect, setResetFilterSelect] = React.useState('reset');
+  const author = ['Ученик', 'Преподаватель'];
+  const availability = ['Можно купить', 'Можно заказать'];
+  const typesMosaic = ['Современная', 'Классическая'];
+
+  const [activeFilterSelect, setActiveFilterSelect] = useState([]);
+  const [resetFilterSelect, setResetFilterSelect] = useState('reset');
+
+  const [galleryCards, setGalleryCards] = useState([]);
+
+  const fetchGalleryCards = useCallback(async () => {
+    if (galleryCards.length === 0) {
+      try {
+        const response = await api.getAllGalleryCards();
+        setGalleryCards(response);
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+      console.log(galleryCards);
+    }
+  }, [galleryCards]);
+
+  useEffect(() => {
+    fetchGalleryCards();
+  }, [fetchGalleryCards]);
 
   const handlerResetButton = (e) => {
     e.preventDefault();
@@ -98,6 +120,7 @@ export const GalleryPage = () => {
           saveFilterStatus={saveFilterStatus}
         /> */}
       </div>
+      <GalleryCardList />
     </>
   );
 };
