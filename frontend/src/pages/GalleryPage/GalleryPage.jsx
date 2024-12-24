@@ -5,6 +5,7 @@ import { PromoSectionWithoutImage } from '../../components/PromoSectionWithoutIm
 import { SelectField } from '../../components/SelectField/SelectField';
 import { ButtonReset } from '../../components/ButtonReset/ButtonReset';
 import { api } from '../../utils/api';
+import GalleryList from '../../components/GalleryList/GalleryList';
 // Старая версия галереи
 // import cls from './GalleryPage.module.scss';
 // import { MasonryWorksGallery } from '../../components/GalleryGrid/GalleryGrid.jsx';
@@ -31,12 +32,11 @@ export const GalleryPage = () => {
     if (galleryCards.length === 0) {
       try {
         const response = await api.getAllGalleryCards();
-        setGalleryCards(response);
-        console.log(response);
+        setGalleryCards(response.results);
+        // console.log(response.results);
       } catch (error) {
         console.error(error);
       }
-      console.log(galleryCards);
     }
   }, [galleryCards]);
 
@@ -120,7 +120,7 @@ export const GalleryPage = () => {
           saveFilterStatus={saveFilterStatus}
         /> */}
       </div>
-      <GalleryCardList />
+      <GalleryList gallerycards={galleryCards} />
     </>
   );
 };

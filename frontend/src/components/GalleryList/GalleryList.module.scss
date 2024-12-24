@@ -1,0 +1,16 @@
+.numberPage {
+    background-color: transparent;
+    margin: 0 8px;  cursor: pointer;
+  }
+  
+  .activePage {
+    padding: 10px;
+    background-color: var(--color-beige-secondary);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .buttonChangeCurrentPage {
+    background-color: transparent;
+    cursor: pointer;
+  }
