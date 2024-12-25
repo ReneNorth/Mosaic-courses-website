@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import cls from './GalleryCard.module.scss';
+import imageOne from '../../images/gallery_slider_1.png';
+import imageTwo from '../../images/gallery_slider_2.png';
+import imageThree from '../../images/gallery_slider_4.png';
+import imageFour from '../../images/gallery_slider_5.png';
 import { GalleryCardSlider } from '../GalleryCardSlider/GalleryCardSlider';
 import { GalleryCardInfo } from '../GalleryCardInfo/GalleryCardInfo';
 import { ENDPOINTS } from '../../utils/consts/constants';
@@ -13,20 +17,20 @@ export const GalleryCard = () => {
 
   const images = [
     {
+      link: imageOne,
       id: 1,
-      src: 'https://via.placeholder.com/600x400/FF5733/FFFFFF?text=Image+1',
     },
     {
+      link: imageTwo,
       id: 2,
-      src: 'https://via.placeholder.com/600x400/C70039/FFFFFF?text=Image+2',
     },
     {
+      link: imageThree,
       id: 3,
-      src: 'https://via.placeholder.com/600x400/900C3F/FFFFFF?text=Image+3',
     },
     {
+      link: imageFour,
       id: 4,
-      src: 'https://via.placeholder.com/600x400/581845/FFFFFF?text=Image+4',
     },
   ];
 

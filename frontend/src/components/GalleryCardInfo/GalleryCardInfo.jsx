@@ -20,7 +20,7 @@ export const GalleryCardInfo = ({ images }) => {
         setIsOpen={setIsOpen}
         title={title}
         description={description}
-        image={images[0].src}
+        image={images[0].link}
       />
       <div className={cls.container}>
         <div className={cls.flexContainer}>

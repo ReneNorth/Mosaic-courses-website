@@ -41,7 +41,7 @@ export const GalleryCardSlider = ({ images }) => {
             {images.map((image) => (
               <div key={image.id} className={cls.imageContainer}>
                 <img
-                  src={image.src}
+                  src={image.link}
                   alt={`Slide ${image.id}`}
                   className={cls.image}
                 />
@@ -59,7 +59,7 @@ export const GalleryCardSlider = ({ images }) => {
             onClick={() => sliderRef.current.slickGoTo(index)}
           >
             <img
-              src={image.src}
+              src={image.link}
               alt={`Thumbnail ${image.id}`}
               className={cls.thumbnailImage}
             />
