@@ -45,6 +45,35 @@
   object-fit: cover;
 }
 
+.button {
+  height: 48px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 10px;
+}
+  
+.order {
+  width: 187px;
+  background-color: var(--color-green-primary);
+  color: var(--text-color);
+}
+  
+.buy {
+  width: 170px;
+  background-color: var(--color-green-accent);
+  color: var(--text-color-invert);
+}
+
+.text {
+  padding: 10.5px 16px;
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 27px;
+}
+
 @media screen and (max-width: 1300px) {
   .image {
     width: 320px;

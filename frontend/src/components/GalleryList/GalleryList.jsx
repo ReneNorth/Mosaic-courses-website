@@ -51,6 +51,8 @@ const GalleryList = ({ gallerycards }) => {
             <GalleryPreviewCard
               title={gallerycard.title}
               author={gallerycard.author}
+              status={gallerycard.is_for_sale}
+              available={gallerycard.custom_ordering}
               // image={gallerycard.image}
             />
           </div>
