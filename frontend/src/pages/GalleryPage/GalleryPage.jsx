@@ -70,18 +70,21 @@ export const GalleryPage = () => {
             resetValue={resetFilterSelect}
             values={author}
             setActiveSelectors={setActiveFilterSelect}
+            type="gallery"
           />
           <SelectField
             placeholder="Наличие"
             resetValue={resetFilterSelect}
             values={availability}
             setActiveSelectors={setActiveFilterSelect}
+            type="gallery"
           />
           <SelectField
             placeholder="Тип мозаики"
             resetValue={resetFilterSelect}
             values={typesMosaic}
             setActiveSelectors={setActiveFilterSelect}
+            type="gallery"
           />
           <ButtonReset
             placeholder="Очистить "

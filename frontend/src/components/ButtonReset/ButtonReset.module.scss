@@ -4,7 +4,7 @@
   all:unset;
   cursor: pointer;
   background-color: var(--color-green-grey-light);
-  min-width: 203px;
+  min-width: 52px;
   height: 52px;
   border-radius: 56px;
   padding: 8px 20px;
@@ -13,7 +13,10 @@
   font-weight: 500;
   font-size: 17px;
   line-height: 135%;
-  color: var(--color-green-accent);
+  // color: var(--color-green-accent);
+  background-image: url(../../images/button-delete.svg);
+  background-repeat: no-repeat;
+  background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;

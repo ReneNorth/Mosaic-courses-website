@@ -41,6 +41,7 @@ export const SelectField = ({
   values,
   setActiveSelectors,
   resetValue,
+  type,
 }) => {
   const matches = useMediaQuery('(min-width:1100px)');
   const [selectValue, setSelectValue] = useState([]);
@@ -76,7 +77,7 @@ export const SelectField = ({
     <FormControl
       sx={{
         margin: '0 0 6px 0',
-        width: 220,
+        width: type === 'gallery' ? 389 : 220,
       }}
       size={matches ? 'medium' : 'small'}
     >
@@ -131,13 +132,7 @@ export const SelectField = ({
         value={selectValue}
         onChange={handleChange}
         IconComponent={CustomSvgIcon}
-        input={(
-          <OutlinedInput
-            sx={{
-            }}
-            label={placeholder}
-          />
-        )}
+        input={<OutlinedInput sx={{}} label={placeholder} />}
         renderValue={(selected) => selected.join(', ')}
         MenuProps={MenuProps}
       >
@@ -174,9 +169,7 @@ export const SelectField = ({
               }}
               checked={selectValue.indexOf(element.name) > -1}
             />
-            <ListItemText
-              primary={element.name}
-            />
+            <ListItemText primary={element.name} />
           </MenuItem>
         ))}
       </Select>

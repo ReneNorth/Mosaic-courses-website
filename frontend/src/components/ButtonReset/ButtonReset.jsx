@@ -7,7 +7,7 @@ export const ButtonReset = ({ placeholder, ...props }) => {
       className={cls.button}
       {...props}
     >
-      {placeholder}
+      {/* {placeholder} */}
     </button>
   );
 };

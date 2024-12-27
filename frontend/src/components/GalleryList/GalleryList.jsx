@@ -51,7 +51,7 @@ const GalleryList = ({ gallerycards }) => {
             <GalleryPreviewCard
               title={gallerycard.title}
               author={gallerycard.author}
-              image={gallerycard.image}
+              // image={gallerycard.image}
             />
           </div>
         ))}
