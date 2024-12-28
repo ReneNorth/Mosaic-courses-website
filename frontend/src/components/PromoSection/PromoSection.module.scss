@@ -3,12 +3,10 @@
 .section {
   width: 100%;
   box-sizing: border-box;
-  padding: 0 320px;
-  // margin-left: 320px;
+  padding: 0 320px 116px;
   display: flex;
   justify-content: space-between;
   margin-top: 31px;
-  align-items: center;
 
   .left {
     .mobileImage {
@@ -41,18 +39,17 @@
       font-size: 20px;
       font-style: normal;
       font-weight: 400;
-      line-height: 27px;
-      width: 729px;
+      line-height: 135%;
+      width: 584px;
     }
 
     .otherElements {
       margin-top: 40px;
-      gap: 44px;
     }
   }
 
   .right {
-    // border: 1px solid #000;
+    border: 1px solid #000;
     box-sizing: border-box;
     width: 426px;
     height: 596px;
@@ -75,31 +72,31 @@
 
 @media screen and (max-width: 1550px) {
   .section {
-    // padding: 0 160px 116px;
+    padding: 0 160px 116px;
   }
 }
 
 @media screen and (max-width: 1350px) {
   .section {
-    // padding: 0 80px 116px;
+    padding: 0 80px 116px;
   }
 }
 
 @media screen and (max-width: 1190px) {
   .section {
-    // padding: 0 40px 116px;
+    padding: 0 40px 116px;
   }
 }
 
 @media screen and (max-width: 950px) {
   .section {
-    // padding: 0 20px 116px;
+    padding: 0 20px 116px;
   }
 }
 
 @media screen and (max-width: 1080px) {
   .section {
-    // padding: 0 20px 20px;
+    padding: 0 20px 20px;
 
     .left {
       .mobileImage {
