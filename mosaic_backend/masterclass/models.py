@@ -71,7 +71,8 @@ class MasterclassType(models.Model):
     category = models.ManyToManyField(
         MasterclassCategory, through='MasterclassTypeCategory')
     max_guests = models.PositiveSmallIntegerField(
-        verbose_name='Max number of guests'
+        verbose_name='Max number of guests',
+        validators=[MinValueValidator(1)]
     )
     duration = models.PositiveSmallIntegerField(
         verbose_name='How many hours required to finish the masterclass'
