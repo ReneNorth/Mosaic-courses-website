@@ -119,10 +119,10 @@ class Masterclass(models.Model):
         constraints = []
 
     def clean(self):
-        if self.time_start > self.time_end:
+        super().clean()
+        if self.time_start >= self.time_end:
             raise ValidationError(
-                'There is an overlap between the start time and end time. '
-                'Please ensure that the course timing is accurate.')
+                'The end time must be later than the start time.')
 
     def __str__(self) -> str:
         return (
