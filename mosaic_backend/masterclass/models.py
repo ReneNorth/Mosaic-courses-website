@@ -1,5 +1,7 @@
 import logging
 
+from django.utils import timezone
+
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
@@ -120,6 +122,9 @@ class Masterclass(models.Model):
 
     def clean(self):
         super().clean()
+        if self.time_start < timezone.now():
+            raise ValidationError(
+                'The start date must be in the future.')
         if self.time_start >= self.time_end:
             raise ValidationError(
                 'The end time must be later than the start time.')
