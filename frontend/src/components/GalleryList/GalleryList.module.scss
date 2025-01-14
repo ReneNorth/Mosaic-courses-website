@@ -29,7 +29,17 @@
 
 @media screen and (max-width: 1300px) {
   .galleryListGrid {
-    grid-column-gap: 32px;
+    grid-column-gap: 19px;
+    grid-row-gap: 32px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .galleryListGrid {
+    margin-top: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(auto, 1fr);
+    grid-column-gap: 16px;
     grid-row-gap: 20px;
   }
 }

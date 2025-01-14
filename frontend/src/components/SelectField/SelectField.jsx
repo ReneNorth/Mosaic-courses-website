@@ -9,6 +9,8 @@ import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
 import SvgIcon from '@mui/material/SvgIcon';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useResize } from '../../hooks/useResize';
+import { SCREEN_WIDTH } from '../../utils/consts/constants';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -73,11 +75,27 @@ export const SelectField = ({
     setSelectValue([]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resetValue]);
+
+  const getGalleryWidth = (width) => {
+    if (width >= 1301) {
+      return 389;
+    } if (width < 1301 && width >= 1081) {
+      return 300;
+    } if (width < 1081 && width >= 720) {
+      return 196;
+    } if (width < 720) {
+      return 0;
+    }
+    return undefined;
+  };
+
+  const { width } = useResize();
+
   return (
     <FormControl
       sx={{
         margin: '0 0 6px 0',
-        width: type === 'gallery' ? 389 : 220,
+        width: type === 'gallery' ? getGalleryWidth(width) : 220,
       }}
       size={matches ? 'medium' : 'small'}
     >

@@ -10,8 +10,9 @@ const GalleryPreviewCard = ({
 }) => {
   const [isLiked, setIsLiked] = useState(false);
 
-  function handleLike() {
-    setIsLiked(!isLiked);
+  function handleLike(event) {
+    event.stopPropagation();
+    setIsLiked((prev) => !prev);
   }
 
   const containerClass = available === 0 ? `${cls.button} ${cls.order}` : `${cls.button} ${cls.buy}`;
