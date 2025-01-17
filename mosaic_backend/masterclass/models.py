@@ -61,22 +61,42 @@ class MasterclassCategory(models.Model):
         ordering = ['-id']
         verbose_name_plural = 'Categories'
 
-    def clean(self, *args, **kwargs):
+    def delete(self, *args, **kwargs):
         if self.slug == 'recommended':
             raise ValidationError(
                 'The "recommended" category cannot be deleted.')
-
-    @receiver(post_migrate)
-    def create_recommended_category(sender, **kwargs):
-        if sender.name == 'masterclass':
-            MasterclassCategory.objects.get_or_create(
-                slug='recommended',
-                defaults={'name': 'recommended'}
-            )
+        super().delete(*args, **kwargs)
 
     def __str__(self) -> str:
         '''Return the name field of the model.'''
         return self.name
+
+
+@receiver(post_migrate)
+def create_recommended_category(sender, **kwargs):
+    """
+Signal receiver that creates a 'recommended' category
+for Masterclass after migrations.
+
+This function listens to the `post_migrate` signal
+and checks if the sender is the 'masterclass' app.
+If so, it attempts to get or create a `MasterclassCategory`
+with the slug 'recommended', category filter 'ORDER',
+and the name 'Recommended'.
+
+Args:
+    sender (module): The app config of the app that just finished migrating.
+    **kwargs: Additional keyword arguments.
+
+Returns:
+    None
+"""
+    if sender.name == 'masterclass':
+        MasterclassCategory.objects.get_or_create(
+            slug='recommended',
+            defaults={'name': 'Recommended',
+                      'category_filter': 'ORDER'}
+        )
 
 
 class MasterclassType(models.Model):
