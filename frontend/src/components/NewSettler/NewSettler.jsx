@@ -77,7 +77,7 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
               />
             </div>
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <CheckBoxField type="agreement" handleChange={handleChange} />
+            <CheckBoxField type="agreement" handleChange={handleChange} values={values} />
             <div className={styles.button__container}>
               <Button
                 type="submit"
