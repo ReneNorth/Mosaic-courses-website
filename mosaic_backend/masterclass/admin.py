@@ -41,7 +41,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
     def delete_model(self, request, obj):
         """
-        Deletes the specified model instance if it is not the "recommended" category.
+        Deletes the specified model instance
+        if it is not the "recommended" category.
 
         Raises:
             ValidationError: If the model instance has a slug of 'recommended'.
@@ -53,12 +54,14 @@ class CategoryAdmin(admin.ModelAdmin):
 
     def delete_queryset(self, request, queryset):
         """
-        Deletes the given queryset, but raises a ValidationError if any object in the queryset
+        Deletes the given queryset, but raises a ValidationError
+        if any object in the queryset
         has a slug of 'recommended'.
 
 
         Raises:
-            ValidationError: If any object in the queryset has a slug of 'recommended'.
+            ValidationError: If any object
+            in the queryset has a slug of 'recommended'.
         """
         for obj in queryset:
             if obj.slug == 'recommended':
