@@ -4,6 +4,8 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
 from django.db import IntegrityError, models
+from django.db.models.signals import post_migrate
+from django.dispatch import receiver
 
 from mosaic.business_logic import DummyTeacher
 
@@ -58,6 +60,19 @@ class MasterclassCategory(models.Model):
     class Meta:
         ordering = ['-id']
         verbose_name_plural = 'Categories'
+
+    def clean(self, *args, **kwargs):
+        if self.slug == 'recommended':
+            raise ValidationError(
+                'The "recommended" category cannot be deleted.')
+
+    @receiver(post_migrate)
+    def create_recommended_category(sender, **kwargs):
+        if sender.name == 'masterclass':
+            MasterclassCategory.objects.get_or_create(
+                slug='recommended',
+                defaults={'name': 'recommended'}
+            )
 
     def __str__(self) -> str:
         '''Return the name field of the model.'''
