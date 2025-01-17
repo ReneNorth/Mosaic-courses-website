@@ -1,10 +1,10 @@
 from django.contrib import admin
+from django.core.exceptions import ValidationError
 
 from booking.models import Booking, GuestReservation
 from masterclass.models import (Masterclass, MasterclassCategory,
                                 MasterclassType, MasterclassTypeCategory)
 
-from django.core.exceptions import ValidationError
 from .models import MasterclassCategory
 
 
