@@ -149,7 +149,7 @@ class MasterclassReadOnlyViewset(viewsets.ReadOnlyModelViewSet):
         )
 
 
-class MasterclassTypeReadOnlyViewSet(viewsets.ModelViewSet):
+class MasterclassTypeReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = MasterclassTypeSerializer
     queryset = MasterclassType.objects.all()
     pagination_class = LimitOffsetPagination
