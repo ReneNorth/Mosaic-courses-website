@@ -1,0 +1,216 @@
+@use "../../utils/variables/global.scss";
+
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 20px;
+  width: 620px;
+}
+
+.container {
+  width: 510px;
+  height: 510px;
+}
+
+.sliderWrapper {
+  flex-grow: 1;
+}
+
+.thumbnails {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.thumbnail {
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.thumbnailImage {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 510px;
+  height: 510px;
+  border-radius: 10px;
+}
+
+.image {
+   width: 510px;
+   height: 510px;
+   border-radius: 10px;
+   object-fit: cover;
+}
+
+@media screen and (min-width: 1300px) {
+  .sliderDots {
+    display: none;
+  }
+}
+
+
+@media screen and (max-width: 1299px) {
+  .wrapper {
+    width: 510px;
+  }
+
+  .thumbnails {
+    display: none;
+  }
+
+  .navWrapper {
+    width: 158px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 78px;
+    position: absolute;
+    bottom: 0;
+    left: 36%;
+  }
+
+  .navButtonLeft {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    background-image: url(../../images/slider-button-left.svg);
+    background-repeat: no-repeat;
+  }
+
+  .navButtonRight {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    background-image: url(../../images/slider-button-right.svg);
+    background-repeat: no-repeat;
+    background-position: right top;
+  }
+
+  .sliderDots {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 22px;
+  }
+  
+  .sliderDot {
+    width: 6px;
+    height: 6px;
+    margin: 0 4px;
+    border: 1px solid var(--color-green-accent);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sliderDotActive {
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-green-accent);
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .wrapper {
+    width: 360px;
+    height: 360px;
+  }
+
+  .container {
+    width: 360px;
+    height: 360px;
+  }
+
+  .imageContainer {
+    width: 360px;
+    height: 360px;
+  }
+
+  .image {
+    width: 360px;
+    height: 360px;
+  }
+
+  .navWrapper {
+    bottom: -50px;
+    left: 30%;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .wrapper {
+    width: 278px;
+    height: 278px;
+  }
+
+  .container {
+    width: 278px;
+    height: 278px;
+  }
+
+  .imageContainer {
+    width: 278px;
+    height: 278px;
+  }
+
+  .image {
+    width: 278px;
+    height: 278px;
+  }
+
+  .navWrapper {
+    bottom: -50px;
+    left: 24%;
+  }
+}
+
+@media screen and (min-width: 360px) and (max-width: 629px) {
+  .wrapper {
+    width: 320px;
+    height: 320px;
+  }
+
+  .container {
+    width: 320px;
+    height: 320px;
+  }
+
+  .imageContainer {
+    width: 320px;
+    height: 320px;
+  }
+
+  .image {
+    width: 320px;
+    height: 320px;
+  }
+
+  .navWrapper {
+    bottom: -30px;
+    left: 27%;
+  } 
+
+  .navButtonLeft {
+    display: none;
+  }
+
+  .navButtonRight {
+    display: none;
+  }
+
+  .sliderDots {
+    bottom: 8px;
+  }  
+}
