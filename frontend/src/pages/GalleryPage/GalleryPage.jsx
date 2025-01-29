@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { useState, useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import cls from './GalleryPage.module.scss';
 import { PromoSectionWithoutImage } from '../../components/PromoSectionWithoutImage/PromoSectionWithoutImage';
 import { SelectField } from '../../components/SelectField/SelectField';
 import { ButtonReset } from '../../components/ButtonReset/ButtonReset';
+import { Chip } from '../../components/Chip/Chip';
+import { Arrows } from '../../images/Arrows';
+import { AllCoursesMobileSortModal } from '../../components/AllCoursesMobileSortModal/AllCoursesMobileSortModal';
+import { AllCoursesMobileFilterModal } from '../../components/AllCoursesMobileFilterModal/AllCoursesMobileFilterModal';
 import { api } from '../../utils/api';
 import GalleryList from '../../components/GalleryList/GalleryList';
-// Старая версия галереи
-// import cls from './GalleryPage.module.scss';
-// import { MasonryWorksGallery } from '../../components/GalleryGrid/GalleryGrid.jsx';
-// import { GalleryPromo } from '../../components/GalleryPromo/GalleryPromo';
 
 export const GalleryPage = () => {
   const promoSectionTitle = (
@@ -23,8 +24,18 @@ export const GalleryPage = () => {
   const availability = ['Можно купить', 'Можно заказать'];
   const typesMosaic = ['Современная', 'Классическая'];
 
+  const [isOpen, setIsOpen] = useState(false);
+
   const [activeFilterSelect, setActiveFilterSelect] = useState([]);
   const [resetFilterSelect, setResetFilterSelect] = useState('reset');
+  const [sortMobileModalOpen, setSortMobileModalOpen] = useState(false);
+  const [filterMobileModalOpen, setFilterMobileModalOpen] = useState(false);
+  const [saveFilterStatus, setSaveFilterStatus] = useState([]);
+
+  const {
+    filters, activeFilters, filtersSlugs,
+  } = useSelector((state) => state.coursesFilters);
+  const dispatch = useDispatch();
 
   const [galleryCards, setGalleryCards] = useState([]);
 
@@ -33,7 +44,6 @@ export const GalleryPage = () => {
       try {
         const response = await api.getAllGalleryCards();
         setGalleryCards(response.results);
-        // console.log(response.results);
       } catch (error) {
         console.error(error);
       }
@@ -51,15 +61,19 @@ export const GalleryPage = () => {
     // setActiveSortingSelect('');
   };
 
+  const handlerSortMobileButton = (e) => {
+    e.preventDefault();
+    // setSortMobileModalOpen(true);
+  };
+
+  const handlerFilterMobileButton = (e) => {
+    e.preventDefault();
+    // setFilterMobileModalOpen(true);
+    // setSaveFilterStatus(activeFilters);
+  };
+
   return (
     <>
-      {/* Старая версия галереи */}
-      {/* <GalleryPromo />
-      <div className={cls.galleryWrapper}>
-        <MasonryWorksGallery />
-      </div> */}
-
-      {/* Новая версия галереи */}
       <PromoSectionWithoutImage
         title={promoSectionTitle}
       />
@@ -93,16 +107,8 @@ export const GalleryPage = () => {
           />
         </div>
         {/* Для мобильной версии */}
-        {/* <div className={cls.filterBlockMobile}>
-          <Chip
-            border
-            active={activeSortingStatus !== ''}
-            onClick={(e) => handlerSortMobileButton(e)}
-            fill
-          >
-            <Arrows />
-            {sortSelectFieldPlaceholder}
-          </Chip>
+        <div className={cls.filterBlockMobile}>
+          <p>Все работы студии</p>
           <Chip
             border
             number={activeFilters.length}
@@ -110,7 +116,8 @@ export const GalleryPage = () => {
             onClick={(e) => handlerFilterMobileButton(e)}
             fill
           >
-            Фильтры
+            <Arrows />
+            {/* {sortSelectFieldPlaceholder} */}
           </Chip>
         </div>
         <AllCoursesMobileSortModal
@@ -120,8 +127,8 @@ export const GalleryPage = () => {
         <AllCoursesMobileFilterModal
           isOpen={filterMobileModalOpen}
           setIsOpen={setFilterMobileModalOpen}
-          saveFilterStatus={saveFilterStatus}
-        /> */}
+          // saveFilterStatus={saveFilterStatus}
+        />
       </div>
       <GalleryList gallerycards={galleryCards} />
     </>
