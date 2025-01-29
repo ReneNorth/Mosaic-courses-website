@@ -67,7 +67,7 @@ export const PostPage = () => {
             <p className={cls.readingTime}>
               Время прочтения
               {currentPost.read_time}
-              {getNoun(currentPost.read_time, ' минута', ' минуты', ' минут')}
+              {getNoun(currentPost.read_time, '  минута', '  минуты', '  минут')}
             </p>
             <p className={cls.publishDate}>
               Опубликовано
