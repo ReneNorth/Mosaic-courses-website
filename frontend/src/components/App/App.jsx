@@ -60,7 +60,7 @@ function App() {
               path={`${ENDPOINTS.course}/:slug`}
               element={<CoursePage />}
             />
-            <Route path={ENDPOINTS.favourites} element={<GalleryCard />} />
+            <Route path={ENDPOINTS.test} element={<GalleryCard />} />
             {/* Удалить то, что выше */}
             <Route path={ENDPOINTS.gallery} element={<GalleryPage />} />
             <Route path={ENDPOINTS.blog} element={<BlogPage />} />
