@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { CardMoreContent } from '../../components/CardMoreContent/CardMoreContent';
 import { Button } from '../../components/Button/Button';
-import { PromoSection } from '../../components/PromoSection/PromoSection';
+import { PromoSectionWithoutImage } from '../../components/PromoSectionWithoutImage/PromoSectionWithoutImage';
 
 import {
   getAllPosts,
@@ -59,9 +59,7 @@ export const PostPage = () => {
 
   return (
     <>
-      <PromoSection
-        desktopImage={currentPost.image}
-        mobileImage={currentPost.image}
+      <PromoSectionWithoutImage
         title={currentPost.title}
         text={currentPost.preview_text}
         otherElements={(
@@ -69,7 +67,7 @@ export const PostPage = () => {
             <p className={cls.readingTime}>
               Время прочтения
               {currentPost.read_time}
-              {getNoun(currentPost.read_time, 'минута', 'минуты', 'минут')}
+              {getNoun(currentPost.read_time, '  минута', '  минуты', '  минут')}
             </p>
             <p className={cls.publishDate}>
               Опубликовано

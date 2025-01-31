@@ -20,8 +20,6 @@ export const BlogPage = () => {
   return (
     <>
       <PromoSectionWithoutImage
-        desktopImage={desktopImage}
-        mobileImage={mobileImage}
         title={(
           <>
             Блог про
