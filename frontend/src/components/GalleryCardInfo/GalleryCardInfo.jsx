@@ -60,7 +60,7 @@ export const GalleryCardInfo = ({ images }) => {
         </tr>
         <tr className={cls.tableCell}>
           <td className={cls.tableTitle}>Размер</td>
-          <td className={cls.tableText}>80Х80см</td>
+          <td className={cls.tableText}>80х80см</td>
         </tr>
         <tr className={cls.tableCell}>
           <td className={cls.tableTitle}>Материал</td>
