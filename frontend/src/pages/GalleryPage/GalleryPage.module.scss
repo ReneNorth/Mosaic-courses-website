@@ -20,3 +20,35 @@
   display: flex;
   gap: 20px;
 }
+
+.filterBlockMobile {
+  display: none;
+  width: 320px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+@media screen and (max-width: global.$breakpoint-ipad-mini) {
+  .coursesWrapper {
+      padding-top: 0;
+  }
+
+  .filterBlock {
+      display: none;
+  }
+
+  .filterBlockMobile {
+      display: flex;
+  }
+
+  .filterText {
+    color: var(--color-green-grey);
+    font-family: var(--font-primary);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.6px;
+  }
+}

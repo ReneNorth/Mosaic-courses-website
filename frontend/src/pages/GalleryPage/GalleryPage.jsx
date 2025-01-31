@@ -11,6 +11,10 @@ import { AllCoursesMobileSortModal } from '../../components/AllCoursesMobileSort
 import { AllCoursesMobileFilterModal } from '../../components/AllCoursesMobileFilterModal/AllCoursesMobileFilterModal';
 import { api } from '../../utils/api';
 import GalleryList from '../../components/GalleryList/GalleryList';
+import {
+  setCurrentSortingStatus,
+  getFilters, setCurrentFilter, setfiltersSlugs,
+} from '../../services/slices/coursesFiltersSlice.js';
 
 export const GalleryPage = () => {
   const promoSectionTitle = (
@@ -26,6 +30,7 @@ export const GalleryPage = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const [activeSortingSelect, setActiveSortingSelect] = useState('recommended');
   const [activeFilterSelect, setActiveFilterSelect] = useState([]);
   const [resetFilterSelect, setResetFilterSelect] = useState('reset');
   const [sortMobileModalOpen, setSortMobileModalOpen] = useState(false);
@@ -38,6 +43,11 @@ export const GalleryPage = () => {
   const dispatch = useDispatch();
 
   const [galleryCards, setGalleryCards] = useState([]);
+
+  useEffect(() => {
+    dispatch(setCurrentSortingStatus(activeSortingSelect));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSortingSelect]);
 
   const fetchGalleryCards = useCallback(async () => {
     if (galleryCards.length === 0) {
@@ -57,19 +67,19 @@ export const GalleryPage = () => {
   const handlerResetButton = (e) => {
     e.preventDefault();
     setResetFilterSelect(`${resetFilterSelect}+`);
-    // dispatch(setCurrentFilter([]));
-    // setActiveSortingSelect('');
+    dispatch(setCurrentFilter([]));
+    setActiveSortingSelect('');
   };
 
   const handlerSortMobileButton = (e) => {
     e.preventDefault();
-    // setSortMobileModalOpen(true);
+    setSortMobileModalOpen(true);
   };
 
   const handlerFilterMobileButton = (e) => {
     e.preventDefault();
-    // setFilterMobileModalOpen(true);
-    // setSaveFilterStatus(activeFilters);
+    setFilterMobileModalOpen(true);
+    setSaveFilterStatus(activeFilters);
   };
 
   return (
@@ -102,14 +112,16 @@ export const GalleryPage = () => {
           />
           <ButtonReset
             placeholder="Очистить "
-            // disabled={!activeFilters.length && (activeSortingSelect === '')}
+            disabled={!activeFilters.length && (activeSortingSelect === '')}
             onClick={(e) => handlerResetButton(e)}
           />
         </div>
+
         {/* Для мобильной версии */}
         <div className={cls.filterBlockMobile}>
-          <p>Все работы студии</p>
+          <p className={cls.filterText}>Все работы студии</p>
           <Chip
+            className="galleryPageChip"
             border
             number={activeFilters.length}
             active={activeFilters.length}
@@ -127,7 +139,7 @@ export const GalleryPage = () => {
         <AllCoursesMobileFilterModal
           isOpen={filterMobileModalOpen}
           setIsOpen={setFilterMobileModalOpen}
-          // saveFilterStatus={saveFilterStatus}
+          saveFilterStatus={saveFilterStatus}
         />
       </div>
       <GalleryList gallerycards={galleryCards} />

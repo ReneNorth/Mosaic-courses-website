@@ -6,6 +6,7 @@ export const ButtonReset = ({ placeholder, ...props }) => {
       type="button"
       className={cls.button}
       {...props}
+      data-placeholder={placeholder}
     >
       {/* {placeholder} */}
     </button>

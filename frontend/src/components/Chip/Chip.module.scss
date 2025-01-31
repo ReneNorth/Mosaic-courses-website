@@ -79,6 +79,18 @@
   display: inline;
 }
 
+@media screen and (max-width: global.$breakpoint-ipad-mini) {
+  .galleryPageChip {
+    width: 44px;
+    height: 44px;
+    background-color: var(--color-green-accent);
+    border-radius: 500px;
+    border: 1.5px solid var(--color-green-accent);
+    background-image: url(../../images/sort-button.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
 
 @media screen and (max-width: global.$breakpoint-pre-mobile) {
   .chip {

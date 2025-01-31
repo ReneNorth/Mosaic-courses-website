@@ -33,6 +33,24 @@
     color: var(--color-green-grey);
     cursor: default;
   }
+
+  &::after {
+    content: "";
+    display: none; 
+  }
+
+  @media screen and (max-width: global.$breakpoint-ipad-mini) {
+    &::after {
+      content: attr(data-placeholder);
+      display: inline;
+    }
+  }
+}
+
+@media screen and (max-width: global.$breakpoint-ipad-mini) {
+  .button {
+    background-image: none;
+  }
 }
 
 @media screen and (max-width: global.$breakpoint-xsmall-laptop) {
