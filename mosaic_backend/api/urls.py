@@ -40,11 +40,11 @@ router1.register(r'tags', TagReadOnlyViewSet,
                  basename='tags')
 router1.register(r'filters', MasterclassCategoryFilterReadOnlyViewSet,
                  basename='filters')
+router1.register(r'school', SchoolReadOnlyViewSet, basename='school')
 
 urlpatterns = [
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('v1/', include(router1.urls)),
-    path('v1/school/', SchoolReadOnlyViewSet.as_view({'get': 'list'})),
     path('v1/', include('djoser.urls')),
     path(r'auth/', include('djoser.urls.jwt')),
     path('v1/artworks/<int:pk>/favorite/',
