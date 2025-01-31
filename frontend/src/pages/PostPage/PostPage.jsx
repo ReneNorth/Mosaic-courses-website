@@ -122,7 +122,7 @@ export const PostPage = () => {
                     <p className={cls.readingTime}>
                       Время прочтения
                       {post.read_time}
-                      {getNoun(post.read_time, ' минута', ' минуты', ' минут')}
+                      {getNoun(post.read_time, 'минута', 'минуты', 'минут')}
                     </p>
                   )}
                   button={<Button className="outline">Узнать подробнее</Button>}
