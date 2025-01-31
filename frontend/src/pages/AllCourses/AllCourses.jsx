@@ -163,6 +163,8 @@ export const AllCourses = () => {
           isOpen={filterMobileModalOpen}
           setIsOpen={setFilterMobileModalOpen}
           saveFilterStatus={saveFilterStatus}
+          filters={filters}
+          activeFilters={activeFilters}
         />
       </div>
       <div className={cls.coursesWrapper}>

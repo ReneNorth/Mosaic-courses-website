@@ -7,14 +7,13 @@ import { SelectField } from '../../components/SelectField/SelectField';
 import { ButtonReset } from '../../components/ButtonReset/ButtonReset';
 import { Chip } from '../../components/Chip/Chip';
 import { Arrows } from '../../images/Arrows';
-import { AllCoursesMobileSortModal } from '../../components/AllCoursesMobileSortModal/AllCoursesMobileSortModal';
 import { AllCoursesMobileFilterModal } from '../../components/AllCoursesMobileFilterModal/AllCoursesMobileFilterModal';
 import { api } from '../../utils/api';
 import GalleryList from '../../components/GalleryList/GalleryList';
 import {
   setCurrentSortingStatus,
   getFilters, setCurrentFilter, setfiltersSlugs,
-} from '../../services/slices/coursesFiltersSlice.js';
+} from '../../services/slices/galleryFilterSlice.js';
 
 export const GalleryPage = () => {
   const promoSectionTitle = (
@@ -30,24 +29,39 @@ export const GalleryPage = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const [activeSortingSelect, setActiveSortingSelect] = useState('recommended');
   const [activeFilterSelect, setActiveFilterSelect] = useState([]);
   const [resetFilterSelect, setResetFilterSelect] = useState('reset');
-  const [sortMobileModalOpen, setSortMobileModalOpen] = useState(false);
   const [filterMobileModalOpen, setFilterMobileModalOpen] = useState(false);
   const [saveFilterStatus, setSaveFilterStatus] = useState([]);
 
   const {
     filters, activeFilters, filtersSlugs,
-  } = useSelector((state) => state.coursesFilters);
+  } = useSelector((state) => state.galleryFilters);
   const dispatch = useDispatch();
 
   const [galleryCards, setGalleryCards] = useState([]);
 
   useEffect(() => {
-    dispatch(setCurrentSortingStatus(activeSortingSelect));
+    dispatch(getFilters());
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeSortingSelect]);
+  }, []);
+
+  useEffect(() => {
+    const filtersSlugsCopy = { ...filtersSlugs };
+    const filtersSending = [];
+    Object.keys(activeFilterSelect).forEach((key) => {
+      filtersSlugsCopy[key] = activeFilterSelect[key];
+    });
+
+    dispatch(setfiltersSlugs(filtersSlugsCopy));
+    Object.keys(filtersSlugsCopy).forEach((key) => {
+      if (filtersSlugsCopy[key]) {
+        filtersSending.push(key);
+      }
+    });
+    dispatch(setCurrentFilter(filtersSending));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeFilterSelect]);
 
   const fetchGalleryCards = useCallback(async () => {
     if (galleryCards.length === 0) {
@@ -68,12 +82,6 @@ export const GalleryPage = () => {
     e.preventDefault();
     setResetFilterSelect(`${resetFilterSelect}+`);
     dispatch(setCurrentFilter([]));
-    setActiveSortingSelect('');
-  };
-
-  const handlerSortMobileButton = (e) => {
-    e.preventDefault();
-    setSortMobileModalOpen(true);
   };
 
   const handlerFilterMobileButton = (e) => {
@@ -112,7 +120,6 @@ export const GalleryPage = () => {
           />
           <ButtonReset
             placeholder="Очистить "
-            disabled={!activeFilters.length && (activeSortingSelect === '')}
             onClick={(e) => handlerResetButton(e)}
           />
         </div>
@@ -132,14 +139,12 @@ export const GalleryPage = () => {
             {/* {sortSelectFieldPlaceholder} */}
           </Chip>
         </div>
-        <AllCoursesMobileSortModal
-          isOpen={sortMobileModalOpen}
-          setIsOpen={setSortMobileModalOpen}
-        />
         <AllCoursesMobileFilterModal
           isOpen={filterMobileModalOpen}
           setIsOpen={setFilterMobileModalOpen}
           saveFilterStatus={saveFilterStatus}
+          filters={filters}
+          activeFilters={activeFilters}
         />
       </div>
       <GalleryList gallerycards={galleryCards} />

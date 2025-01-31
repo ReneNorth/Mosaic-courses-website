@@ -8,9 +8,9 @@ import { ButtonReset } from '../ButtonReset/ButtonReset';
 import { setCurrentFilter } from '../../services/slices/coursesFiltersSlice.js';
 
 export const AllCoursesMobileFilterModal = ({
-  isOpen, setIsOpen, saveFilterStatus,
+  isOpen, setIsOpen, saveFilterStatus, filters, activeFilters,
 }) => {
-  const { filters, activeFilters } = useSelector((state) => state.coursesFilters);
+  // const { filters, activeFilters } = useSelector((state) => state.coursesFilters);
   const dispatch = useDispatch();
 
   const handlerFilterClick = (e, filter) => {
@@ -23,33 +23,50 @@ export const AllCoursesMobileFilterModal = ({
     }
   };
 
-  const filtersButtons = [];
+  const createFilters = (filters, filterTitles) => {
+    const filtersButtons = [];
 
-  Object.keys(filters).forEach((filterArr) => {
-    filtersButtons.push(
-      <div key={`${filterArr}`} className={cls.contentWrapper}>
-        <h2 className={cls.filterTitle}>
-          { `${filterArr}` === 'EXP' && 'Для кого'}
-          { `${filterArr}` === 'DURATION' && 'По времени'}
-          { `${filterArr}` === 'STYLE' && 'Тип мозаики'}
-          { `${filterArr}` === 'TARGET_AUDIENCE' && 'Тип занятия'}
-        </h2>
-        <div className={cls.filtersWrapper}>
-          {filters[filterArr].map((elementFilter) => {
-            return (
-              <Chip
-                onClick={(e) => handlerFilterClick(e, elementFilter.slug)}
-                active={activeFilters.includes(elementFilter.slug)}
-                key={crypto.randomUUID()}
-              >
-                {elementFilter.name}
-              </Chip>
-            );
-          })}
-        </div>
-      </div>,
-    );
-  });
+    Object.keys(filters).forEach((filterArr) => {
+      filtersButtons.push(
+        <div key={`${filterArr}`} className={cls.contentWrapper}>
+          <h2 className={cls.filterTitle}>
+            {filterTitles[filterArr]}
+          </h2>
+          <div className={cls.filtersWrapper}>
+            {filters[filterArr].map((elementFilter) => {
+              return (
+                <Chip
+                  onClick={(e) => handlerFilterClick(e, elementFilter.slug)}
+                  active={activeFilters.includes(elementFilter.slug)}
+                  key={crypto.randomUUID()}
+                >
+                  {elementFilter.name}
+                </Chip>
+              );
+            })}
+          </div>
+        </div>,
+      );
+    });
+
+    return filtersButtons;
+  };
+
+  const filterTitles1 = {
+    EXP: 'Для кого',
+    DURATION: 'По времени',
+    STYLE: 'Тип мозаики',
+    TARGET_AUDIENCE: 'Тип занятия',
+  };
+
+  const filterTitles2 = {
+    author: 'Автор',
+    availability: 'Наличие',
+    typesMosaic: 'Тип мозаики',
+  };
+
+  const filtersButtons1 = createFilters(filters, filterTitles1);
+  const filtersButtons2 = createFilters(filters, filterTitles2);
 
   return (
     <div className={classNames(cls.popup, { [cls.popupOpen]: isOpen }, [])}>
@@ -61,7 +78,8 @@ export const AllCoursesMobileFilterModal = ({
       >
         <AllCoursesCloseFilterIcon />
       </button>
-      {filtersButtons}
+      {filtersButtons1}
+      {filtersButtons2}
       <div className={cls.buttonsWrapper}>
         <ButtonReset
           placeholder="Очистить"
