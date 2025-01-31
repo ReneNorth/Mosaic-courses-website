@@ -30,9 +30,9 @@ from favorite.models import FavoriteArtwork
 from gallery.models import Artwork
 from masterclass.models import (Masterclass, MasterclassCategory,
                                 MasterclassType)
+from mosaic.business_logic import BusinessLogic
 from school.models import Review, School
 from users.permissions import BookingPermission, FavoritePermission
-from mosaic.business_logic import BusinessLogic
 
 User = User = get_user_model()
 log = logging.getLogger(__name__)
