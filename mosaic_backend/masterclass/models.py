@@ -1,5 +1,7 @@
 import logging
 
+from django.utils import timezone
+
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
@@ -120,10 +122,13 @@ class Masterclass(models.Model):
         constraints = []
 
     def clean(self):
-        if self.time_start > self.time_end:
+        super().clean()
+        if self.time_start < timezone.now():
             raise ValidationError(
-                'There is an overlap between the start time and end time. '
-                'Please ensure that the course timing is accurate.')
+                'The start date must be in the future.')
+        if self.time_start >= self.time_end:
+            raise ValidationError(
+                'The end time must be later than the start time.')
 
     def __str__(self) -> str:
         return (
