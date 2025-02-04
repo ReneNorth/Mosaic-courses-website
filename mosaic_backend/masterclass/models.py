@@ -17,7 +17,7 @@ def get_or_create_dummy_teacher():
     Returns:
         User: an instance of a User with a role set to a Teacher
     '''
-    log.info('dummy teacher start')
+    log.info('get_or_create_dummy_teacher is triggered')
     try:
         dummy_teacher = User.objects.get_or_create(
             first_name=DummyTeacher.first_name,
