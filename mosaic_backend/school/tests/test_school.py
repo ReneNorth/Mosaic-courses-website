@@ -1,4 +1,5 @@
 from django.test import Client, TestCase
+
 from school.models import School
 
 

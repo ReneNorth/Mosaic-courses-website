@@ -8,7 +8,13 @@ import CloseIcon from '../../images/CloseIcon';
 import { InputField } from '../InputField/InputField';
 import { CheckBoxField } from '../CheckBoxField/CheckBoxField';
 
-const NewSettler = ({ isOpen, setIsOpen }) => {
+const NewSettler = ({
+  isOpen,
+  setIsOpen,
+  title,
+  description,
+  image,
+}) => {
   const {
     errors, isValid, handleChange, handleBlur, handleChangeInRealTime, resetForm, values,
   } = useFormValidation();
@@ -48,10 +54,10 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
               <CloseIcon />
             </div>
           </button>
-          <img className={styles.image} src={formImg} alt="form header" />
+          <img className={styles.image} src={image || formImg} alt="form header" />
           <div className={styles.content__wrapper}>
-            <h2 className={styles.title}>Закажите обратный звонок</h2>
-            <p className={styles.description}>Заполните поля формы</p>
+            <h2 className={styles.title}>{title}</h2>
+            <p className={styles.description}>{description}</p>
             <InputField
               type="name"
               placeholder="Имя"
@@ -77,7 +83,7 @@ const NewSettler = ({ isOpen, setIsOpen }) => {
               />
             </div>
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <CheckBoxField type="agreement" handleChange={handleChange} />
+            <CheckBoxField type="agreement" handleChange={handleChange} values={values} />
             <div className={styles.button__container}>
               <Button
                 type="submit"

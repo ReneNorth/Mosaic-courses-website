@@ -26,6 +26,10 @@ import { ProfileAlertPage } from '../../pages/ProfileAlertPage/ProfileAlertPage'
 import { ENDPOINTS } from '../../utils/consts/constants';
 import { verifyToken } from '../../services/slices/authSlice';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import { MyMasterclassesPage } from '../../pages/MyMasterclassesPage/MyMasterclassesPage';
+import { MyMasterclassesPastPage } from '../../pages/MyMasterclassesPastPage/MyMasterclassesPastPage';
+import { GalleryCard } from '../GalleryCard/GalleryCard';
+import { GalleryCardInfo } from '../GalleryCardInfo/GalleryCardInfo';
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +60,8 @@ function App() {
               path={`${ENDPOINTS.course}/:slug`}
               element={<CoursePage />}
             />
+            <Route path={ENDPOINTS.test} element={<GalleryCard />} />
+            {/* Удалить то, что выше */}
             <Route path={ENDPOINTS.gallery} element={<GalleryPage />} />
             <Route path={ENDPOINTS.blog} element={<BlogPage />} />
             <Route path={`${ENDPOINTS.blog}/:slug`} element={<PostPage />} />
@@ -108,6 +114,25 @@ function App() {
                 </ProtectedRoute>
               )}
             />
+
+            <Route
+              path={ENDPOINTS.myMasterclasses}
+              element={(
+                <ProtectedRoute isAuthorized={isAuthorized}>
+                  <MyMasterclassesPage />
+                </ProtectedRoute>
+              )}
+            />
+
+            <Route
+              path={ENDPOINTS.myMasterclassesPast}
+              element={(
+                <ProtectedRoute isAuthorized={isAuthorized}>
+                  <MyMasterclassesPastPage />
+                </ProtectedRoute>
+              )}
+            />
+
             <Route path={ENDPOINTS.notFound} element={<NotFound />} />
           </Routes>
         </main>

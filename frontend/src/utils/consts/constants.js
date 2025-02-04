@@ -13,6 +13,7 @@ export const ENDPOINTS = {
   cart: '/cart',
   shop: '/shop',
   favourites: '/favourites',
+  test: '/test',
   register: '/register',
   activate: '/activate',
   signIn: '/sign-in',
@@ -21,6 +22,8 @@ export const ENDPOINTS = {
   profilePersonalData: '/profile/personal-data',
   profileSecurity: '/profile/security',
   profileAlert: '/profile/alert',
+  myMasterclasses: '/my-masterclasses',
+  myMasterclassesPast: '/my-masterclasses-past',
   notFound: '*',
 };
 

@@ -1,0 +1,75 @@
+@use '../../utils/variables/global.scss';
+
+@media (max-width: global.$breakpoint-small-laptop) {
+  .input {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    padding-left: 48px;
+    width: 648px;
+    box-sizing: content-box;
+    height: 44px;
+    border: 1.5px solid var(--color-green-accent);
+    border-radius: 12px;
+  }
+
+  .input:focus {
+    outline: 0.5px solid var(--color-green-accent);
+  }
+
+  ::-webkit-input-placeholder {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    line-height: 20.25px;
+    font-size: 15px;
+    letter-spacing: .04em;
+  }
+  
+  ::-moz-placeholder {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    line-height: 20.25px;
+    font-size: 15px;
+    letter-spacing: .04em;
+  }
+  
+  :-ms-input-placeholder {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    line-height: 20.25px;
+    font-size: 15px;
+    letter-spacing: .04em;
+  }
+  
+  :-moz-placeholder {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    line-height: 20.25px;
+    font-size: 15px;
+    letter-spacing: .04em;
+  }
+
+  .container {
+    position: relative;
+  }
+  
+  .container .icon {
+    position: absolute;
+    left: 28px;
+    top: 35%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    background-image: url('../../images/Ic_search_input.svg');
+    background-size: cover;
+  }
+}
+
+@media (max-width: global.$breakpoint-tablet) {
+  .input {
+    width: 272px;
+  }
+
+  .container .icon {
+    background-image: url('../../images/Ic_search_mobile_input.svg');
+  }
+}
