@@ -28,6 +28,8 @@ import { verifyToken } from '../../services/slices/authSlice';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { MyMasterclassesPage } from '../../pages/MyMasterclassesPage/MyMasterclassesPage';
 import { MyMasterclassesPastPage } from '../../pages/MyMasterclassesPastPage/MyMasterclassesPastPage';
+import { GalleryCard } from '../GalleryCard/GalleryCard';
+import { GalleryCardInfo } from '../GalleryCardInfo/GalleryCardInfo';
 
 function App() {
   const dispatch = useDispatch();
@@ -58,6 +60,8 @@ function App() {
               path={`${ENDPOINTS.course}/:slug`}
               element={<CoursePage />}
             />
+            <Route path={ENDPOINTS.test} element={<GalleryCard />} />
+            {/* Удалить то, что выше */}
             <Route path={ENDPOINTS.gallery} element={<GalleryPage />} />
             <Route path={ENDPOINTS.blog} element={<BlogPage />} />
             <Route path={`${ENDPOINTS.blog}/:slug`} element={<PostPage />} />

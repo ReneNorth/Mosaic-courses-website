@@ -39,12 +39,12 @@ export const PostCard = ({ props }) => {
         <h3 className={cls.title}>{title}</h3>
         <div className={cls.info}>
           <p className={cls.readingTime}>
-            {width > 550 && <>Время прочтения</>}
+            {width > 550 && <> Время прочтения </>}
             {readTime}
             {getNoun(readTime, 'минута', 'минуты', 'минут')}
           </p>
           <p className={cls.publishDate}>
-            {width > 550 && <>Опубликовано</>}
+            {width > 550 && <>Опубликовано </>}
             {date.toLocaleString().slice(0, 10)}
           </p>
         </div>

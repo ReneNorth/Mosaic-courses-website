@@ -1,9 +1,8 @@
 @use '../../utils/variables/global.scss';
 
 .section {
-  width: 100%;
+  width: 1280px;
   box-sizing: border-box;
-  padding: 0 320px 116px;
   display: flex;
   justify-content: space-between;
   margin-top: 31px;
@@ -21,6 +20,7 @@
       line-height: 110%;
       color: #121210;
       margin-bottom: 24px;
+      margin-top: 44px;
 
       span {
         font-family: Lora;
@@ -70,67 +70,68 @@
   }
 }
 
-@media screen and (max-width: 1550px) {
-  .section {
-    padding: 0 160px 116px;
-  }
-}
-
 @media screen and (max-width: 1350px) {
   .section {
-    padding: 0 80px 116px;
-  }
-}
+    width: 100%;
+    padding: 0 24px;
 
-@media screen and (max-width: 1190px) {
-  .section {
-    padding: 0 40px 116px;
-  }
-}
+    .right {
+      width: 229px;
+      height: 313px;
 
-@media screen and (max-width: 950px) {
-  .section {
-    padding: 0 20px 116px;
-  }
-}
-
-@media screen and (max-width: 1080px) {
-  .section {
-    padding: 0 20px 20px;
+      .desktopImage {
+        width: 229px;
+        height: 313px;
+      }
+    }
 
     .left {
-      .mobileImage {
-        display: block;
-        object-fit: cover;
-        border-radius: 20px 20px 300px 20px;
-        width: 320px;
-        height: 179px;
-        margin-bottom: 20px;
-      }
-
       .title {
-        font-family: Raleway;
         font-size: 26px;
-        font-style: normal;
-        font-weight: 700;
         line-height: 110%;
+        margin-top: 0;
 
         span {
-          font-family: Lora;
           font-size: 28px;
-          font-style: italic;
-          font-weight: 600;
-          line-height: 110%;
         }
       }
 
       .paragraph {
-        font-family: Raleway;
         font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 135%;
-        width: 315px;
+        width: 48vw;
+      }
+
+      .otherElements {
+        margin-top: 28px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 645px) {
+  .section {
+    margin-top: 2px;
+    padding: 0 20px;
+
+    .right {
+      display: none
+    }
+
+    .left {
+      .mobileImage {
+        display: block;
+      }
+
+      .title {
+        margin-bottom: 17px;
+      }
+
+      .paragraph {
+        margin-top: 20px;
+      }
+
+      .otherElements {
+        margin-top: 43px;
       }
     }
   }
