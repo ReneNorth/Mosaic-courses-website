@@ -30,6 +30,7 @@ from favorite.models import FavoriteArtwork
 from gallery.models import Artwork
 from masterclass.models import (Masterclass, MasterclassCategory,
                                 MasterclassType)
+from mosaic.business_logic import BusinessLogic
 from school.models import Review, School
 from users.permissions import BookingPermission, FavoritePermission
 
@@ -149,7 +150,7 @@ class MasterclassReadOnlyViewset(viewsets.ReadOnlyModelViewSet):
         )
 
 
-class MasterclassTypeReadOnlyViewSet(viewsets.ModelViewSet):
+class MasterclassTypeReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = MasterclassTypeSerializer
     queryset = MasterclassType.objects.all()
     pagination_class = LimitOffsetPagination
@@ -213,6 +214,12 @@ class SchoolReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [AllowAny, ]
     pagination_class = None
 
+    @action(detail=False, methods=['get', ], url_path='certificate_min_max')
+    def certificate_min_max(self, request) -> Response:
+        """Returns the minimum and maximum certificate values."""
+        return Response({'certificate_min_value': BusinessLogic.MIN_CERT_TG,
+                         'certificate_max_value': BusinessLogic.MIN_CERT_TG})
+
 
 class MainCarouselReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = MainCarouselItem.objects.all()
@@ -236,6 +243,7 @@ class CertificatePostPatchViewSet(viewsets.GenericViewSet,
 
     def create(self, request, *args, **kwargs):
         """Returns the certificate's ID among the other data"""
+        log.info(self)
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             cert_id = self.perform_create(serializer)

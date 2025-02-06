@@ -28,6 +28,8 @@ import { verifyToken } from '../../services/slices/authSlice';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { MyMasterclassesPage } from '../../pages/MyMasterclassesPage/MyMasterclassesPage';
 import { MyMasterclassesPastPage } from '../../pages/MyMasterclassesPastPage/MyMasterclassesPastPage';
+import { GalleryCard } from '../GalleryCard/GalleryCard';
+import { GalleryCardInfo } from '../GalleryCardInfo/GalleryCardInfo';
 
 function App() {
   const dispatch = useDispatch();
@@ -35,7 +37,14 @@ function App() {
   const isAuthorized = useSelector((store) => store.auth.isAuthorized);
 
   useEffect(() => {
-    dispatch(verifyToken(localStorage.getItem('accessToken')));
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      dispatch(verifyToken(token))
+        .catch((error) => {
+          console.error('Token verification failed:', error);
+          // Handle token verification failure (e.g., redirect to login, clear token, etc.)
+        });
+    }
   }, [dispatch]);
 
   useEffect(() => {
@@ -58,6 +67,8 @@ function App() {
               path={`${ENDPOINTS.course}/:slug`}
               element={<CoursePage />}
             />
+            <Route path={ENDPOINTS.test} element={<GalleryCard />} />
+            {/* Удалить то, что выше */}
             <Route path={ENDPOINTS.gallery} element={<GalleryPage />} />
             <Route path={ENDPOINTS.blog} element={<BlogPage />} />
             <Route path={`${ENDPOINTS.blog}/:slug`} element={<PostPage />} />

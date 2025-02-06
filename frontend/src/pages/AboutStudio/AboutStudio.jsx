@@ -9,9 +9,11 @@ import NewSettler from '../../components/NewSettler/NewSettler';
 
 export const AboutStudio = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const title = 'Закажите обратный звонок';
+  const description = 'Заполните поля формы';
   return (
     <>
-      <NewSettler isOpen={isOpen} setIsOpen={setIsOpen} />
+      <NewSettler isOpen={isOpen} setIsOpen={setIsOpen} title={title} description={description} />
       <AllStudioHeader setIsOpen={setIsOpen} />
       <GetToKnowUs />
       <Atmosphere />

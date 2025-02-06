@@ -177,7 +177,7 @@ DJOSER = {
     'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
     'PASSWORD_RESET_CONFIRM_URL': 'password-reset/{uid}/{token}',
     'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': True,
-    "ACTIVATION_URL": "activate/{uid}/{token}",
+    'ACTIVATION_URL': 'activate/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
     'SERIALIZERS': {
         'user_create': 'users.serializers.CustomCreateUserSerializer',
@@ -247,17 +247,24 @@ LOGGING = {
         'django.server': DEFAULT_LOGGING['formatters']['django.server'],
     },
     'handlers': {
+        'file': {
+            'level': f'{LOGLEVEL}',
+            'class': 'logging.FileHandler',
+            'filename': log_file,
+            'formatter': 'verbose',
+        },
         'console': {
             'level': f'{LOGLEVEL}',
             'class': 'logging.StreamHandler',
             'formatter': 'simple',
         },
+
         'django.server': DEFAULT_LOGGING['handlers']['django.server'],
     },
     'loggers': {
         '': {
             'level': LOGLEVEL,
-            'handlers': ['console', ],
+            'handlers': ['console', 'file'],
         },
         'django.server': DEFAULT_LOGGING['loggers']['django.server'],
     }
@@ -268,5 +275,3 @@ GRAPH_MODELS = {
     'all_applications': True,
     'group_models': True,
 }
-
-# FILE_UPLOAD_MAX_MEMORY_SIZE = 10

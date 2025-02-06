@@ -13,6 +13,7 @@ export const ENDPOINTS = {
   cart: '/cart',
   shop: '/shop',
   favourites: '/favourites',
+  test: '/test',
   register: '/register',
   activate: '/activate',
   signIn: '/sign-in',
