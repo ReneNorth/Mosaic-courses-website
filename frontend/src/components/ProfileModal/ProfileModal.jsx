@@ -58,7 +58,7 @@ export const ProfileModal = ({ isOpen, onClose }) => {
         ) : (
           <>
             <NavLink className={cls.link} to="/my-masterclasses">
-              <img src={Calendar} alt="Записаться на курс" />
+              <img src={Calendar} alt="Записаться" />
               Мои мастер-классы
             </NavLink>
             <NavLink className={cls.link} to="/profile">

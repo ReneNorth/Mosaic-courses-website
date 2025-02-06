@@ -64,7 +64,7 @@ export const StickySidebar = () => {
               fill
               onClick={handlePopupOpen}
             >
-              Записаться на мастер-класс
+              Записаться
             </Button>
           </div>
           <div className={cls.giftContainer}>

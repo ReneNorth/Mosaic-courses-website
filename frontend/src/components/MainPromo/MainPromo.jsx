@@ -22,7 +22,7 @@ export const MainPromo = ({ setIsOpen }) => {
 
   const promoSectionOtherElements = (
     <Button onClick={() => setIsOpen(true)} className="fill" decoration="black">
-      Записаться на мастер-класс
+      Записаться
     </Button>
   );
 
