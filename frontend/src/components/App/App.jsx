@@ -37,7 +37,14 @@ function App() {
   const isAuthorized = useSelector((store) => store.auth.isAuthorized);
 
   useEffect(() => {
-    dispatch(verifyToken(localStorage.getItem('accessToken')));
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      dispatch(verifyToken(token))
+        .catch((error) => {
+          console.error('Token verification failed:', error);
+          // Handle token verification failure (e.g., redirect to login, clear token, etc.)
+        });
+    }
   }, [dispatch]);
 
   useEffect(() => {
