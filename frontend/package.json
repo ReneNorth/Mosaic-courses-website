@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "classnames": "^2.3.2",
     "env-cmd": "^10.1.0",
+    "http-proxy-middleware": "^3.0.3",
     "install": "^0.13.0",
     "npm": "^9.6.0",
     "react": "^18.2.0",
@@ -103,6 +104,5 @@
     "storybook": "^7.5.3",
     "style-loader": "^3.3.3",
     "webpack": "^5.89.0"
-  },
-  "proxy": "http://web:8000/"
+  }
 }
