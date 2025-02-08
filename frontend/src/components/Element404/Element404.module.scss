@@ -22,3 +22,9 @@
   left: 610px;
   z-index: -1;
 }
+
+@media (max-width: 700px) {
+  .NotFoundElement {
+    max-width: 100%;
+  }
+}

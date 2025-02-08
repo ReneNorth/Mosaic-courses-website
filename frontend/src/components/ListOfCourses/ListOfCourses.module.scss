@@ -1,6 +1,13 @@
 .main {
-  max-width: 1280px;
+  // max-width: 1280px;
   width: 100%;
+}/* Add the missing opening curly brace */
+.groupOFCouses {
+  display: flex;
+  gap: 40px;
+
+  margin-top: 200px;
+  margin-bottom: 200px;
 }
 
 .mainSection {
@@ -153,4 +160,39 @@
   font-size: 17px;
   line-height: 20px;
   border-radius: 56px;
+}
+
+@media (max-width:750px) {
+  .main {
+    max-width: 435px;
+    margin: 0 auto;
+
+  }
+  .notFoundText {
+    font-size: 20px;
+    line-height: 27px;
+  }
+  .instruction {
+  font-family: Raleway;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21.6px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .main {
+    max-width: 320px;
+  }
+  .notFoundText {
+    text-align: center;
+  }
+  .instruction {
+  font-size: 16px;
+  text-align: center;
+
+  }
 }
