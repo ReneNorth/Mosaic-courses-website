@@ -1,8 +1,11 @@
 .NotFoundElement {
   margin-top: 89px;
-  max-width: 1280px;
+  max-width: 100%;
   display: flex;
-  gap: 50px;
+  gap: 46px;
+  object-fit: cover;
+  justify-content: center;
+  height: auto;
 }
 
 .four {
@@ -11,7 +14,6 @@
 }
 
 .NotFoundImg {
-  width: 100%;
   display: block;
   position: relative;
   z-index: 100;
@@ -21,10 +23,35 @@
   top: 200px;
   left: 610px;
   z-index: -1;
+  transform: translate(-50%, -50%);
+  left: 50%;
 }
 
 @media (max-width: 700px) {
   .NotFoundElement {
-    max-width: 100%;
+    gap: 27px;
+    margin: 0 auto;
+  }
+}
+
+@media(max-width: 600px) {
+  .NotFoundElement {
+    gap: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .NotFoundImg {
+    max-width: 80%;
+    height: auto;
+  }
+  .zero {
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    max-width: 300px;
+    transform: translate(-50%, -50%);
   }
 }

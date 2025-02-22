@@ -1,5 +1,5 @@
 .main {
-  // max-width: 1280px;
+  max-width: 1280px;
   width: 100%;
 }/* Add the missing opening curly brace */
 .groupOFCouses {
@@ -19,7 +19,7 @@
 .notFoundText {
   font-family: var(--font-primary);
   font-size: 32px;
-  line-height: 135%;
+  line-height: 43.2px;
   text-align: center;
 
   margin-top: 83px;
@@ -164,9 +164,12 @@
 
 @media (max-width:750px) {
   .main {
-    max-width: 435px;
     margin: 0 auto;
-
+  }
+  .mainSection {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
   }
   .notFoundText {
     font-size: 20px;
@@ -187,9 +190,7 @@
   .main {
     max-width: 320px;
   }
-  .notFoundText {
-    text-align: center;
-  }
+
   .instruction {
   font-size: 16px;
   text-align: center;
