@@ -11,20 +11,15 @@
 .four {
   display: block;
   position: relative;
+  flex-shrink: 0;
 }
 
-.NotFoundImg {
+.notFoundImg {
   display: block;
   position: relative;
   z-index: 100;
-}
-.zero {
-  position: absolute;
-  top: 200px;
-  left: 610px;
-  z-index: -1;
-  transform: translate(-50%, -50%);
-  left: 50%;
+  flex-shrink: 0;
+
 }
 
 @media (max-width: 700px) {
@@ -35,23 +30,30 @@
 }
 
 @media(max-width: 600px) {
+  // .NotFoundElement {
+  //   gap: 20px;
+  //   margin-left: auto;
+  //   margin-right: auto;
+  //   // flex-direction: column;
+  //   align-items: center;
+  //   text-align: center;
+  // }
+  // .notFoundImg {
+  //   max-width: 80%;
+  //   height: auto;
+  // }
   .NotFoundElement {
-    gap: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    gap: 5vw;
   }
-  .NotFoundImg {
-    max-width: 80%;
-    height: auto;
+
+  .four {
+    // width: 30vw; /* Чуть меньше, чтобы не вылезали за границы */
+    max-width: 100px;
   }
-  .zero {
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    max-width: 300px;
-    transform: translate(-50%, -50%);
+
+  .notFoundImg {
+    // width: 30vw; /* Чуть меньше, чтобы не вылезали за границы */
+    max-width: 100px;
+
   }
 }
