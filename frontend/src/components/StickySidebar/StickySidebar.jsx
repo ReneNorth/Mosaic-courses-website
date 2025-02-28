@@ -47,7 +47,7 @@ export const StickySidebar = () => {
   return (
     <div>
       <div className={cls.sidebar}>
-        <a href="!#" className={cls.shareItem}>
+        <a href="courses" className={cls.shareItem}>
           <img className={cls.share} src={share} alt="ссылка" />
         </a>
 
