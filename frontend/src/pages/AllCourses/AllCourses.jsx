@@ -23,7 +23,7 @@ export const AllCourses = () => {
 
   const [sortSelectFieldPlaceholder, setSortSelectFieldPlaceholder] = useState('Сортировка');
 
-  const [activeSortingSelect, setActiveSortingSelect] = useState('recommended');
+  const [activeSortingSelect, setActiveSortingSelect] = useState('');
   const [activeFilterSelect, setActiveFilterSelect] = useState([]);
 
   const [resetFilterSelect, setResetFilterSelect] = useState('reset');
@@ -134,7 +134,7 @@ export const AllCourses = () => {
           />
           <ButtonReset
             placeholder="Очистить "
-            disabled={!activeFilters.length && (activeSortingSelect === '')}
+            disabled={!activeFilters.length && !activeSortingSelect}
             onClick={(e) => handlerResetButton(e)}
           />
         </div>
