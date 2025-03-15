@@ -46,17 +46,22 @@ export const StickySidebar = () => {
     return 'от 0 часов';
   }, [currentCourse]);
 
+  const toCoursesPage = (e) => {
+    e.preventDefault();
+    navigate(-1);
+  };
+
   return (
     <div>
       <div className={cls.sidebar}>
-        <Button
+        <a
           href="/courses"
           className={cls.shareItem}
           type="button"
-          onClick={() => navigate(-1)}
+          onClick={(e) => toCoursesPage(e)}
         >
           <img className={cls.share} src={share} alt="ссылка" />
-        </Button>
+        </a>
 
         <div className={cls.innerBlock}>
           <h3 className={cls.title}>
