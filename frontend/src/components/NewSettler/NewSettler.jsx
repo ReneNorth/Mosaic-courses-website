@@ -8,13 +8,7 @@ import CloseIcon from '../../images/CloseIcon';
 import { InputField } from '../InputField/InputField';
 import { CheckBoxField } from '../CheckBoxField/CheckBoxField';
 
-const NewSettler = ({
-  isOpen,
-  setIsOpen,
-  title,
-  description,
-  image,
-}) => {
+const NewSettler = ({ isOpen, setIsOpen }) => {
   const {
     errors, isValid, handleChange, handleBlur, handleChangeInRealTime, resetForm, values,
   } = useFormValidation();
@@ -54,10 +48,9 @@ const NewSettler = ({
               <CloseIcon />
             </div>
           </button>
-          <img className={styles.image} src={image || formImg} alt="form header" />
           <div className={styles.content__wrapper}>
-            <h2 className={styles.title}>{title}</h2>
-            <p className={styles.description}>{description}</p>
+            <h2 className={styles.title}>Закажите обратный звонок</h2>
+            <p className={styles.description}>Заполните поля формы</p>
             <InputField
               type="name"
               placeholder="Имя"
@@ -110,7 +103,6 @@ const NewSettler = ({
                 <CloseIcon />
               </div>
             </button>
-            <img className={styles.image} src={formImg} alt="form header" />
             <div className={styles.content__wrapper}>
               <h2 className={styles.title}>Ваша заявка принята!</h2>
               <p className={styles.description}>
@@ -141,7 +133,6 @@ const NewSettler = ({
               <CloseIcon />
             </div>
           </button>
-          <img className={styles.image} src={formImg} alt="form header" />
           <div className={styles.content__wrapper}>
             <h2 className={styles.title}>Произошла ошибка!</h2>
             <p className={styles.description}>

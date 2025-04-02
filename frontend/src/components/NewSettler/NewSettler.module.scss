@@ -125,12 +125,13 @@
 
 .textarea {
   width: 99%;
-  min-height: 58px;
+  min-height: 72px;
   margin-bottom: 24px;
-  background-color: #CCDAC6;
+  background-color: #F5F4F1;
   border-bottom: 1px solid #121210;
   resize: none;
 	font-family: 'Raleway', sans-serif;
+  overflow: auto
 }
 
 @media screen and (max-width: global.$breakpoint-tablet) {
