@@ -26,7 +26,7 @@ export const AllStudioHeader = ({ setIsOpen }) => {
 
   const promoSectionOtherElements = (
     <Button className="fill" decoration="black" onClick={() => setIsOpen(true)}>
-      Записаться на мастер-класс
+      Записаться
     </Button>
   );
 

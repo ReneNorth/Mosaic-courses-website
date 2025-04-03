@@ -15,4 +15,7 @@ class EmailMainFormAdmin(admin.ModelAdmin):
 
 @admin.register(GiftCert)
 class GiftCertAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('id', 'date_issued', 'status', 'email_sender', 'amount')
+    search_fields = ('id',)
+    list_filter = ('status', )
+    ordering = ('-date_issued',)

@@ -37,6 +37,9 @@ export const AllCourses = () => {
   } = useSelector((state) => state.coursesFilters);
   const dispatch = useDispatch();
 
+  const title = 'Закажите обратный звонок';
+  const description = 'Заполните поля формы';
+
   useEffect(() => {
     dispatch(getFilters());
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -95,7 +98,7 @@ export const AllCourses = () => {
 
   return (
     <>
-      <NewSettler setIsOpen={setIsOpen} />
+      <NewSettler isOpen={isOpen} setIsOpen={setIsOpen} title={title} description={description} />
       <AllCoursesHeader />
       <div className={cls.filterWrapper}>
         <div className={cls.filterBlock}>

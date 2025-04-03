@@ -6,7 +6,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { CardMoreContent } from '../../components/CardMoreContent/CardMoreContent';
 import { Button } from '../../components/Button/Button';
-import { PromoSection } from '../../components/PromoSection/PromoSection';
+import { useResize } from '../../hooks/useResize';
+
+import { PromoSectionWithoutImage } from '../../components/PromoSectionWithoutImage/PromoSectionWithoutImage';
 
 import {
   getAllPosts,
@@ -26,6 +28,7 @@ export const PostPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const slug = useLocation().pathname.replace(ENDPOINTS.blog, '');
+  const { width } = useResize();
 
   // eslint-disable-next-line consistent-return
   // const validImage = useMemo(() => {
@@ -59,21 +62,21 @@ export const PostPage = () => {
 
   return (
     <>
-      <PromoSection
-        desktopImage={currentPost.image}
-        mobileImage={currentPost.image}
+      <PromoSectionWithoutImage
         title={currentPost.title}
         text={currentPost.preview_text}
         otherElements={(
           <>
             <p className={cls.readingTime}>
-              Время прочтения
+              {width > 550 && <> Время прочтения </>}
               {currentPost.read_time}
-              {getNoun(currentPost.read_time, 'минута', 'минуты', 'минут')}
+              {getNoun(currentPost.read_time, '  минута', '  минуты', '  минут')}
             </p>
             <p className={cls.publishDate}>
-              Опубликовано
-              {currentPost.pub_date?.toLocaleString().slice(0, 10)}
+              {width > 550 && <> Опубликовано </>}
+              {currentPost.pub_date
+                ? new Date(currentPost.pub_date).toLocaleDateString()
+                : 'Дата неизвестна'}
             </p>
           </>
         )}
@@ -124,7 +127,7 @@ export const PostPage = () => {
                     <p className={cls.readingTime}>
                       Время прочтения
                       {post.read_time}
-                      {getNoun(post.read_time, 'минута', 'минуты', 'минут')}
+                      {getNoun(post.read_time, ' минута', ' минуты', ' минут')}
                     </p>
                   )}
                   button={<Button className="outline">Узнать подробнее</Button>}

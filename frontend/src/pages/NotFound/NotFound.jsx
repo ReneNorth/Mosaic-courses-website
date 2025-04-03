@@ -6,9 +6,11 @@ import NewSettler from '../../components/NewSettler/NewSettler';
 
 export const NotFound = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const title = 'Закажите обратный звонок';
+  const description = 'Заполните поля формы';
   return (
     <>
-      <NewSettler isOpen={isOpen} setIsOpen={setIsOpen} />
+      <NewSettler isOpen={isOpen} setIsOpen={setIsOpen} title={title} description={description} />
       <Element404 />
       <ListOfCourses />
     </>

@@ -1,0 +1,283 @@
+@use "../../utils/variables/global.scss";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.flexContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 620px;
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.buttonLink {
+  width: 32px;
+  height: 32px;
+  background-image: url(../../images/button-link.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.buttonLike {
+  width: 32px;
+  height: 32px;  
+  background-image: url(../../images/button-like.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.buttonLikeActive {
+  background-image: url(../../images/button-active-like.svg);
+}
+
+.author {
+  margin: 0;
+  padding: 0;
+  margin-top: 12px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  color: var(--color-green-grey);
+}
+  
+.author span {
+  position: relative;
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+  
+.author span:not(:last-child)::after {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background-color: var(--color-green-grey);
+  display: inline-block;
+  margin: 3px 8px;
+}
+
+.price {
+  margin-bottom: 32px;
+  font-family: var(--font-primary);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 43.2px;
+}
+
+.buttonBuyByClick {
+  margin-bottom: 16px;
+  width: 400px;
+  height: 56px;
+  border-radius: 56px;
+  border: 1.5px solid var(--color-green-accent);
+  color: var(--color-green-accent);
+  font-family: var(--font-primary);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 23.95px;
+  cursor: pointer;
+}
+
+.button {
+  margin-bottom: 48px;
+  width: 400px;
+  height: 56px;
+  border-radius: 56px;
+  background-color: var(--color-green-accent);
+  color: var(--bg-color-white);
+  font-family: var(--font-primary);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 23.95px;
+  cursor: pointer;
+}
+
+.table {
+  margin-bottom: 24px;
+}
+
+.tableTitle {
+  margin-bottom: 8px;
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.tableText {
+  font-family: var(--font-secondary);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.description {
+  padding-top: 24px;
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  border-top: 1px solid var(--color-green-grey);
+}
+
+.descriptionText {
+  max-width: 620px;
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 27px;
+}
+
+@media screen and (max-width: 1199px) {
+  .flexContainer {
+    width: 520px;
+  }
+
+  .descriptionText {
+    max-width: 520px;
+  }  
+}
+
+@media screen and (max-width: 950px) {
+  .flexContainer {
+    width: 398px;
+  }
+
+  .title {
+    font-size: 26px;
+    line-height: 33.8px;
+  }
+
+  .buttonLink {
+    background-size: 24px;
+  }
+  
+  .buttonLike {
+    background-size: 24px;
+  }
+
+  .author {
+    margin-top: 16px;
+  }  
+
+  .author span {
+    font-size: 16px;
+    line-height: 21.6px;
+  }
+
+  .price {
+    margin-bottom: 24px;
+    font-size: 26px;
+    line-height: 33.8px;
+  }
+
+  .buttonBuyByClick {
+    margin-bottom: 12px;
+    width: 279px;
+    height: 42px;
+    border-radius: 56px;
+    font-size: 16px;
+    line-height: 21.6px;
+  }
+
+  .button {
+    margin-bottom: 36px;
+    width: 279px;
+    height: 42px;
+    border-radius: 56px;
+    font-size: 16px;
+    line-height: 21.6px;
+  }
+  
+  .tableTitle {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 21.6px;
+  }
+  
+  .tableText {
+    font-size: 16px;
+    line-height: 21.6px;
+  }
+
+  .description {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 21.6x;
+  }
+
+  .descriptionText {
+    max-width: 398px;
+    font-size: 16px;
+    line-height: 21.6x;
+  }  
+}
+
+@media screen and (max-width: 745px) {
+  .buttonContainer {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 630px) and (max-width: 720px) {
+  .flexContainer {
+    width: 300px;
+  }
+
+  .descriptionText {
+    max-width: 300px;
+  }  
+}
+
+@media screen and (min-width: 360px) and (max-width: 629px) {
+  .flexContainer {
+    width: 320px;
+  }
+  
+  .title {
+    font-size: 18px;
+    line-height: 24.3px;
+  }
+
+  .author {
+    margin: 12px 0;
+  }  
+
+  .price {
+    margin-bottom: 20px;
+  }
+
+  .buttonBuyByClick {
+    margin-bottom: 8px;
+    width: 320px;
+  }
+
+  .button {
+    margin-bottom: 28px;
+    width: 320px;
+  }
+
+  .descriptionText {
+    max-width: 320px;
+  }  
+}

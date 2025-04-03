@@ -1,4 +1,4 @@
-from django.core.validators import MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 from mosaic.business_logic import BusinessLogic
@@ -44,10 +44,13 @@ class GiftCert(models.Model):
     id = models.CharField(primary_key=True,
                           blank=False,
                           max_length=6)
-    amount = models.PositiveSmallIntegerField(
+    amount = models.PositiveBigIntegerField(
         validators=[MinValueValidator(BusinessLogic.MIN_CERT_TG,
                                       f'Минимальная стоимость сертификата'
-                                      f'{BusinessLogic.MIN_CERT_TG} тенге')])
+                                      f'{BusinessLogic.MIN_CERT_TG} тенге'),
+                    MaxValueValidator(BusinessLogic.MAX_CERT_TG,
+                                      f'Максимальная стоимость сертификата'
+                                      f'{BusinessLogic.MAX_CERT_TG} тенге')])
     name_sender = models.CharField(max_length=50)
     email_sender = models.EmailField(max_length=50)
     name_recepient = models.CharField(max_length=50)

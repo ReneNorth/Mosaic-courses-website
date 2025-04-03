@@ -27,7 +27,7 @@ export const MailingForm = () => {
     <div className={cls.formWrapper}>
       <h3 className={`${cls.formTitle} ${cls.wide}`}>
         {isSuccess ? 'Вы успешно подписаны на рассылку!'
-          : 'Будь в курсе новостей студии и получи скидку 10% на первое зянятие'}
+          : 'Будь в курсе новостей студии и получи скидку 10% на первое занятие'}
       </h3>
       {!isSuccess && (
         <form onSubmit={handleSubmit} className={cls.form} noValidate>

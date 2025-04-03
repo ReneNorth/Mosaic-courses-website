@@ -45,6 +45,19 @@ class CustomCreateUserSerializer(serializers.ModelSerializer,
                         'general_agreement': {'required': True},
                         'markcomm_agreement': {'required': True}}
 
+    def validate_phone(self, value):
+        """
+        Validate the phone number to ensure it starts with a '+' and has
+        between 10 and 20 characters.
+        """
+        if not value.startswith('+'):
+            raise serializers.ValidationError(
+                'The phone number should start with the "+"')
+        if not (10 <= len(value) <= 20):
+            raise serializers.ValidationError(
+                'The number should be between 10 and 20 characters')
+        return value
+
     def create(self, validated_data):
         validated_data['password'] = make_password(validated_data['password'])
         user = super().create(validated_data)

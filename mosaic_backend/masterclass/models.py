@@ -1,5 +1,7 @@
 import logging
 
+from django.utils import timezone
+
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
@@ -17,6 +19,7 @@ def get_or_create_dummy_teacher():
     Returns:
         User: an instance of a User with a role set to a Teacher
     '''
+    log.info('get_or_create_dummy_teacher is triggered')
     try:
         dummy_teacher = User.objects.get_or_create(
             first_name=DummyTeacher.first_name,
@@ -71,10 +74,13 @@ class MasterclassType(models.Model):
     category = models.ManyToManyField(
         MasterclassCategory, through='MasterclassTypeCategory')
     max_guests = models.PositiveSmallIntegerField(
-        verbose_name='Max number of guests'
+        verbose_name='Max number of guests',
+        validators=[MinValueValidator(1)]
     )
     duration = models.PositiveSmallIntegerField(
-        verbose_name='How many hours required to finish the masterclass'
+        verbose_name='How many hours required to finish the masterclass',
+        validators=[MinValueValidator(
+            0.5, 'It cannot be shorter than 30 minutes')]
     )
     short_description = models.CharField(max_length=230,
                                          verbose_name='Short description')
@@ -119,10 +125,13 @@ class Masterclass(models.Model):
         constraints = []
 
     def clean(self):
-        if self.time_start > self.time_end:
+        super().clean()
+        if self.time_start < timezone.now():
             raise ValidationError(
-                'There is an overlap between the start time and end time. '
-                'Please ensure that the course timing is accurate.')
+                'The start date must be in the future.')
+        if self.time_start >= self.time_end:
+            raise ValidationError(
+                'The end time must be later than the start time.')
 
     def __str__(self) -> str:
         return (

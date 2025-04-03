@@ -9,7 +9,7 @@ export const CoursePageInfo = () => {
       <div className={cls.block}>
         <div className={cls.headerTitle}>
           <h1 className={cls.headerName}>
-            Мастер-класс по римской мозаике,
+            Мастер-класс по римской мозаике
             <p className={cls.courseName}>{` ${currentCourse.title ? currentCourse.title : ''}`}</p>
           </h1>
           <div className={cls.text}>

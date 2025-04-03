@@ -17,16 +17,15 @@ export const AboutTeach = () => {
         <div className={cls.test}>
           <h3>Мини-группы</h3>
           <p className={cls.paragraph}>
-            Создавайте в комфорте — в группах не больше 6 человек
+            Создавайте в комфорте —&nbsp;в группах не больше 6 человек
           </p>
         </div>
         <div className={cls.test}>
           <h3>
-            <p>Обратная</p>
-            <p>связь</p>
+            Обратная связь
           </h3>
           <p className={cls.paragraph}>
-            Преподаватель не оставит вас один на один с новым ремеслом
+            Преподаватель не оставит вас один на один&nbsp;с новым ремеслом
           </p>
         </div>
         <div className={cls.test}>

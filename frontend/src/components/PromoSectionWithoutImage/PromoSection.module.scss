@@ -3,10 +3,9 @@
 .section {
   width: 100%;
   box-sizing: border-box;
-  padding: 0 320px 20px;
+  padding: 76px 320px 20px;
   display: flex;
   justify-content: space-between;
-  margin-top: 31px;
 
   .left {
     .mobileImage {
@@ -45,6 +44,7 @@
 
     .otherElements {
       margin-top: 40px;
+      gap: 40px;
     }
   }
 

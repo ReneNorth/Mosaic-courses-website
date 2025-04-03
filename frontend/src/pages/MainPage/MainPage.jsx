@@ -13,9 +13,11 @@ import NewSettler from '../../components/NewSettler/NewSettler';
 
 export const MainPage = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const title = 'Закажите обратный звонок';
+  const description = 'Заполните поля формы';
   return (
     <>
-      <NewSettler isOpen={isOpen} setIsOpen={setIsOpen} />
+      <NewSettler isOpen={isOpen} setIsOpen={setIsOpen} title={title} description={description} />
       <MainPromo setIsOpen={setIsOpen} />
       <Slider />
       <AboutUs />

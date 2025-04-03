@@ -1,0 +1,159 @@
+@use "../../utils/variables/global.scss";
+
+.navWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttonLikeActive {
+  background-image: url(../../images/button-active-like.svg);
+}
+
+.navigation {
+  margin: 32px 0 32px calc((100% - 990px)/2);
+  display: flex;
+  align-self: flex-start;
+  gap: 16px;
+}
+
+.link {
+  color: var(--color-green-grey);
+  font-family: var(--font-primary);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 22.95px;
+}
+
+.text {
+  color: var(--color-green-accent);
+  font-family: var(--font-primary);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 22.95px;
+}
+
+.flexContainer {
+  display: flex;
+  gap: 40px;
+}
+
+@media screen and (min-width: 1300px) {
+  .navigation {
+    margin: 32px 0 32px calc((100% - 1280px)/2);
+  }
+}
+
+@media screen and (max-width: 1299px) {
+  .navigation {
+    margin: 32px 0 32px calc((100% - 1170px)/2);
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .navigation {
+    margin: 32px 0 32px calc((100% - 920px)/2);
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .navWrapper {
+    width: calc(100% - ((100% - 696px) / 2));
+    margin: 12px 0 20px;
+  }
+
+  .navContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .backButton {
+    width: 24px;
+    height: 24px;
+    background-image: url(../../images/button-back.svg);
+  }
+
+  .navigation {
+    margin: 19px 0 20px calc((100% - 696px)/2);
+  }
+
+  .buttonLink {
+    display: none;
+  }
+  
+  .buttonLike {
+    display: none;
+  }
+  
+  .backText {
+    color: var(--color-green-accent);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 21.6px;
+  }
+
+  .link {
+    font-size: 16px;
+  }
+
+  .flexContainer {
+    gap: 20px;
+  }
+  
+  .text {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 745px) {
+  .buttonContainer {
+    display: flex;
+    gap: 4px;
+  }
+
+  .buttonLink {
+    display: block;
+    width: 44px;
+    height: 44px;
+    padding: 10px; 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px;
+    background-image: url(../../images/button-link.svg);
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  .buttonLike {
+    display: block;
+    width: 44px;
+    height: 44px;
+    padding: 10px; 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px;
+    background-image: url(../../images/button-like.svg);
+    background-color: transparent;
+    cursor: pointer;
+  }
+}
+
+@media screen and (min-width: 630px) and (max-width: 720px) {
+  .navWrapper {
+    width: calc(100% - ((100% - 598px) / 2));
+  }
+}
+
+@media screen and (min-width: 360px) and (max-width: 629px) {
+  .navWrapper {
+    width: calc(100% - ((100% - 320px) / 2));
+    margin-bottom: 12px;
+  }
+
+  .flexContainer {
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+  }
+}

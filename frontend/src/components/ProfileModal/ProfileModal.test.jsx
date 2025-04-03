@@ -20,7 +20,7 @@ describe('ProfileModal', () => {
     expect(queryByText('Мои мастер-классы')).not.toBeInTheDocument();
     expect(queryByText('Выйти')).not.toBeInTheDocument();
     expect(queryByAltText('В настройки профиля')).not.toBeInTheDocument();
-    expect(queryByAltText('Записаться на курс')).not.toBeInTheDocument();
+    expect(queryByAltText('Записаться')).not.toBeInTheDocument();
     expect(queryByAltText('Выйти из профиля')).not.toBeInTheDocument();
   });
   it('check whether the necessary classes are added when opening the component', () => {
