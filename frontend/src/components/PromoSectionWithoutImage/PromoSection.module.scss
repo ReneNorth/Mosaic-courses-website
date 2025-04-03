@@ -135,3 +135,18 @@
     }
   }
 }
+
+@media screen and (max-width: 800px) {
+
+  .section {
+    max-width: 696px;
+  }
+
+  .right {
+    width: 220px;
+  }
+
+  .paragraph{
+   width: 358px;
+  }
+}

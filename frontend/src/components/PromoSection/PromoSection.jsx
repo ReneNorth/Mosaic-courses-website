@@ -17,7 +17,7 @@ export const PromoSection = ({
     <section className={cls.section}>
       <div className={cls.left}>
         <h1 className={cls.title}>{title}</h1>
-        <img src={mobileImage} alt="мобильная декоративная картинка" className={cls.mobileImage} />
+        {/* <img src={mobileImage} alt="мобильная декоративная картинка" className={cls.mobileImage} /> */}
         <p className={cls.paragraph}>{text}</p>
         <div className={cls.otherElements}>
           {otherElements}
