@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useCallback, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import giftIcon from '../../images/gift-outline.svg';
 import share from '../../images/share.png';
 import cls from './StickySidebar.module.scss';
@@ -8,6 +9,7 @@ import { Button } from '../Button/Button';
 
 export const StickySidebar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const currentCourse = useSelector((store) => store.courses.currentCourse);
 
   const handlePopupOpen = useCallback(() => {
@@ -44,10 +46,20 @@ export const StickySidebar = () => {
     return 'от 0 часов';
   }, [currentCourse]);
 
+  const toCoursesPage = (e) => {
+    e.preventDefault();
+    navigate(-1);
+  };
+
   return (
     <div>
       <div className={cls.sidebar}>
-        <a href="!#" className={cls.shareItem}>
+        <a
+          href="/courses"
+          className={cls.shareItem}
+          type="button"
+          onClick={(e) => toCoursesPage(e)}
+        >
           <img className={cls.share} src={share} alt="ссылка" />
         </a>
 
